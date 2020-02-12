@@ -57,7 +57,7 @@ const Navbar = () => {
           <NavLink to="/reports/">
             Հաշվետվության<br /> տրամադրում
           </NavLink>
-          <NavLink to="/">
+          <NavLink to="/calculator/">
             Հաշվիչ
           </NavLink>
         </LeftBottom>
@@ -68,13 +68,13 @@ const Navbar = () => {
       <Side>
         <RightTop />
         <RightBottom>
-          <NavLink to="/">
-            Օգրակար<br /> տեղեկություն
+          <NavLink to="/information/">
+            Օգտակար<br /> տեղեկություն
           </NavLink>
-          <NavLink to="/">
+          <NavLink to="/career/">
             Միացիր<br /> մեր թիմին
           </NavLink>
-          <NavLink to="/">
+          <NavLink to="/contact/">
             Կապ մեզ հետ
           </NavLink>
         </RightBottom>
