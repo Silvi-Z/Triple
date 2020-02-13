@@ -17,6 +17,8 @@ const NavLink = styled(Link)`
   align-items: center;
   background-color: #fff;
   margin: 1px;
+  color: #000;
+  text-decoration: none;
 `;
 
 const Side = styled.div`
@@ -45,36 +47,40 @@ const RightBottom = styled.div`
   display: flex;
 `;
 
+const activeStyle = {
+  color: '#009db8',
+};
+
 const Navbar = () => {
   return (
     <Wrapper>
       <Side>
         <LeftTop />
         <LeftBottom>
-          <NavLink to="/services/">
+          <NavLink to="/services/" activeStyle={activeStyle}>
             Ծառայություններ
           </NavLink>
-          <NavLink to="/reports/">
+          <NavLink to="/reports/" activeStyle={activeStyle}>
             Հաշվետվության<br /> տրամադրում
           </NavLink>
-          <NavLink to="/calculator/">
+          <NavLink to="/calculator/" activeStyle={activeStyle}>
             Հաշվիչ
           </NavLink>
         </LeftBottom>
       </Side>
-      <NavLink to="/">
+      <NavLink to="/" activeStyle={activeStyle}>
         Home
       </NavLink>
       <Side>
         <RightTop />
         <RightBottom>
-          <NavLink to="/information/">
+          <NavLink to="/information/" activeStyle={activeStyle}>
             Օգտակար<br /> տեղեկություն
           </NavLink>
-          <NavLink to="/career/">
+          <NavLink to="/career/" activeStyle={activeStyle}>
             Միացիր<br /> մեր թիմին
           </NavLink>
-          <NavLink to="/contact/">
+          <NavLink to="/contact/" activeStyle={activeStyle}>
             Կապ մեզ հետ
           </NavLink>
         </RightBottom>
