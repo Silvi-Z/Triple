@@ -6,15 +6,15 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
 const Slide = styled.div`
-  ${'' /* width: 150px; */}
-  ${'' /* height: 500px; */}
-  ${'' /* background-color: #548798; */}
+  width: 100%;
+  overflow: hidden;
 `;
 
 const Slideshow = () => {
   const settings = {
     dots: false,
     infinite: true,
+    arrows: false,
     autoplay: true,
     autoplaySpeed: 5000,
   };
