@@ -29,6 +29,16 @@ module.exports = {
     },
     'gatsby-plugin-styled-components',
     'gatsby-plugin-antd',
+    {
+      resolve: 'gatsby-plugin-less',
+      options: {
+        javascriptEnabled: true,
+        modifyVars: {
+          'primary-color': '#009db8',
+          'font-family': 'Arial',
+        },
+      },
+    },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,

@@ -15,12 +15,12 @@ const H2Styled = styled.h2`
 
 const ButtonBase = styled(Button)`
   height: 55px;
-  background-color: ${props => props.dark ? '#009db8' : '#fff'};
+  border-color: #009db8;
 `;
 
 const ButtonLarge = styled(Button)`
   height: 70px;
-  background-color: ${props => props.dark ? '#009db8' : '#fff'};
+  border-color: #009db8;
 `;
 
 const ResultCell = styled.div`
@@ -95,8 +95,6 @@ const SalaryCalculator = () => {
     },
   });
 
-  // const handleCalculation = async val
-
   console.log('Formik object: ', formik.values);
 
   return (
@@ -117,8 +115,7 @@ const SalaryCalculator = () => {
         <Row align="middle" gutter={[20, 10]}>
           <Col span={6} offset={4}>
             <ButtonBase
-              dark={formik.values.salary_type}
-              // type={formik.values.salary_type ? 'primary' : 'default'}
+              type={formik.values.salary_type ? 'primary' : 'default'}
               size="large"
               block
               onClick={() => formik.setFieldValue('salary_type', true)}
@@ -128,7 +125,7 @@ const SalaryCalculator = () => {
           </Col>
           <Col span={6}>
             <ButtonBase
-              dark={!formik.values.salary_type}
+              type={!formik.values.salary_type ? 'primary' : 'default'}
               size="large"
               block
               onClick={() => formik.setFieldValue('salary_type', false)}
@@ -141,7 +138,7 @@ const SalaryCalculator = () => {
         <Row align="middle" gutter={[20, 10]}>
           <Col span={3} offset={4}>
             <ButtonLarge
-              dark={formik.values.patent !== 1 && formik.values.patent !== 0 ? true : false}
+              type={formik.values.patent !== 1 && formik.values.patent !== 0 ? 'primary' : 'default'}
               size="large"
               block
               onClick={() => formik.setFieldValue('patent', null)}
@@ -151,7 +148,7 @@ const SalaryCalculator = () => {
           </Col>
           <Col span={4}>
             <ButtonLarge
-              dark={formik.values.patent === 1 ? true : false}
+              type={formik.values.patent === 1 ? 'primary' : 'default'}
               size="large"
               block
               onClick={() => formik.setFieldValue('patent', 1)}
@@ -161,7 +158,7 @@ const SalaryCalculator = () => {
           </Col>
           <Col span={3}>
             <ButtonLarge
-              dark={formik.values.patent === 0 ? true : false}
+              type={formik.values.patent === 0 ? 'primary' : 'default'}
               size="large"
               block
               onClick={() => formik.setFieldValue('patent', 0)}
@@ -207,7 +204,7 @@ const SalaryCalculator = () => {
           </Col>
           <Col span={1}>
             <ButtonBase
-              dark={formik.values.pension}
+              type={formik.values.pension ? 'primary' : 'default'}
               size="large"
               block
               onClick={() => formik.setFieldValue('pension', true)}
@@ -217,7 +214,7 @@ const SalaryCalculator = () => {
           </Col>
           <Col span={1}>
             <ButtonBase
-              dark={!formik.values.pension}
+              type={!formik.values.pension ? 'primary' : 'default'}
               size="large"
               block
               onClick={() => formik.setFieldValue('pension', false)}
@@ -233,7 +230,7 @@ const SalaryCalculator = () => {
           </Col>
           <Col span={1}>
             <ButtonBase
-              dark={formik.values.bonus_stamp}
+              type={formik.values.bonus_stamp ? 'primary' : 'default'}
               size="large"
               block
               onClick={() => formik.setFieldValue('bonus_stamp', true)}
@@ -243,7 +240,7 @@ const SalaryCalculator = () => {
           </Col>
           <Col span={1}>
             <ButtonBase
-              dark={!formik.values.bonus_stamp}
+              type={!formik.values.bonus_stamp ? 'primary' : 'default'}
               size="large"
               block
               onClick={() => formik.setFieldValue('bonus_stamp', false)}
