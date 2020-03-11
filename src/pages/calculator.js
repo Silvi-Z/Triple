@@ -18,12 +18,12 @@ const TextStyled = styled(Text)`
 const Calculator = () => (
   <Layout>
     <Row>
-      <Col offset={2}>
+      <Col offset={3}>
         <H1Styled>Հաշվիչ</H1Styled>
       </Col>
     </Row>
-    <Row>
-      <Col span={17} offset={2}>
+    <Row gutter={[1, 30]}>
+      <Col span={17} offset={3}>
         <TextStyled>
           “Թրիփլ Քնսալթինգ” ընկերությունը տրամադրում է “Հաշվիչ” ծառայություն, որի միջոցով դուք կարող եք կատարել առցանց հաշվարկում։
         </TextStyled>
