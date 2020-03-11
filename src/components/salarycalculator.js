@@ -63,13 +63,28 @@ const SalaryCalculator = () => {
     onSubmit: async values => {
       let res = {};
       let body = {};
-      if (values.patent) {
+      if (values.patent && values.bonus_price) {
         body = {...values};
-      } else {
+      } else if (!values.patent && values.bonus_price) {
         body = {
           salary_type: values.salary_type,
           price: values.price,
           bonus_price: values.bonus_price,
+          pension: values.pension,
+          bonus_stamp: values.bonus_stamp,
+        };
+      } else if (values.patent && !values.bonus_price) {
+        body = {
+          salary_type: values.salary_type,
+          price: values.price,
+          pension: values.pension,
+          bonus_stamp: values.bonus_stamp,
+          patent: values.patent,
+        };
+      } else if (!values.patent && !values.bonus_price) {
+        body = {
+          salary_type: values.salary_type,
+          price: values.price,
           pension: values.pension,
           bonus_stamp: values.bonus_stamp,
         };
