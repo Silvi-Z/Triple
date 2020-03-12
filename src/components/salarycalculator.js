@@ -75,7 +75,7 @@ const ResultLabel = styled(Typography)`
 `;
 
 const initialValues = {
-  salary_type: true,
+  salary_type: false,
   patent: null,
   price: 0,
   bonus_price: 0,
@@ -98,7 +98,7 @@ const SalaryCalculator = () => {
     onSubmit: async values => {
       let res = {};
       let body = {};
-      if (values.patent && values.bonus_price) {
+      if ((values.patent || values.patent === 0) && values.bonus_price) {
         body = {...values};
       } else if (!values.patent && values.bonus_price) {
         body = {
@@ -108,7 +108,7 @@ const SalaryCalculator = () => {
           pension: values.pension,
           bonus_stamp: values.bonus_stamp,
         };
-      } else if (values.patent && !values.bonus_price) {
+      } else if ((values.patent || values.patent === 0) && !values.bonus_price) {
         body = {
           salary_type: values.salary_type,
           price: values.price,
@@ -124,13 +124,14 @@ const SalaryCalculator = () => {
           bonus_stamp: values.bonus_stamp,
         };
       }
+
+      console.log('Formik values: ', values);
+      console.log('Body: ', body);
       res = await apiHelper.post('/api/counter/salary', body);
       console.log('Response: ', res.data.data.result);
       setResult(res.data.data.result);
     },
   });
-
-  console.log('Formik object: ', formik.values);
 
   return (
     <>
@@ -161,20 +162,20 @@ const SalaryCalculator = () => {
             <Row align="middle" gutter={[20, 20]}>
               <Col span={6} offset={4}>
                 <ButtonBase
-                  type={formik.values.salary_type ? 'primary' : 'default'}
+                  type={!formik.values.salary_type ? 'primary' : 'default'}
                   size="large"
                   block
-                  onClick={() => formik.setFieldValue('salary_type', true)}
+                  onClick={() => formik.setFieldValue('salary_type', false)}
                 >
                   Մաքուր
                 </ButtonBase>
               </Col>
               <Col span={6}>
                 <ButtonBase
-                  type={!formik.values.salary_type ? 'primary' : 'default'}
+                  type={formik.values.salary_type ? 'primary' : 'default'}
                   size="large"
                   block
-                  onClick={() => formik.setFieldValue('salary_type', false)}
+                  onClick={() => formik.setFieldValue('salary_type', true)}
                 >
                   Կեղտոտ
                 </ButtonBase>
