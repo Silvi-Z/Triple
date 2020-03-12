@@ -15,7 +15,7 @@ const TextStyled = styled(Text)`
   font-size: 20px;
 `;
 
-const Calculator = () => (
+const Calculators = () => (
   <Layout>
     <Row>
       <Col offset={3}>
@@ -33,4 +33,4 @@ const Calculator = () => (
   </Layout>
 );
 
-export default Calculator;
+export default Calculators;

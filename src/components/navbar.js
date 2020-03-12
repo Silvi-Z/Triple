@@ -83,7 +83,7 @@ const Navbar = () => {
           </NavLink>
         </GridReport>
         <GridCalc>
-          <NavLink to="/calculator/" activeStyle={activeStyle}>
+          <NavLink to="/calculators/" activeStyle={activeStyle}>
             Հաշվիչ
           </NavLink>
         </GridCalc>
