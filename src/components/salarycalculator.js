@@ -136,7 +136,7 @@ const SalaryCalculator = () => {
     <>
       <Row align="middle" gutter={[10, 10]}>
         <Col span={1} offset={3}>
-          <HeadIcon src={AccountImg} alt={'lol'} />
+          <HeadIcon src={AccountImg} alt={'icon'} />
         </Col>
         <Col span={16}>
           <H2Styled>Աշխատավարձի հաշվիչ</H2Styled>

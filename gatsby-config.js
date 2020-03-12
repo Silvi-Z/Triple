@@ -35,7 +35,7 @@ module.exports = {
         javascriptEnabled: true,
         modifyVars: {
           'primary-color': '#009db8',
-          'font-family': 'Arial',
+          'font-family': ['Arial', 'sans-serif'],
         },
       },
     },

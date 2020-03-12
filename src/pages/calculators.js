@@ -1,8 +1,9 @@
 import React from 'react';
-import { Typography, Row, Col } from 'antd';
+import { Typography, Row, Col, Divider } from 'antd';
 import styled from 'styled-components';
 import Layout from '../components/layout';
 import SalaryCalculator from '../components/salarycalculator';
+import VacationCalculator from '../components/vacationcalculator';
 
 const { Text } = Typography;
 
@@ -13,6 +14,7 @@ const H1Styled = styled.h1`
 
 const TextStyled = styled(Text)`
   font-size: 20px;
+  font-family: ArialAMU, sans-serif;
 `;
 
 const Calculators = () => (
@@ -30,6 +32,8 @@ const Calculators = () => (
       </Col>
     </Row>
     <SalaryCalculator />
+    <Divider />
+    <VacationCalculator />
   </Layout>
 );
 
