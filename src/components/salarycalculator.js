@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
-import { Typography, Row, Col, Button, Form, InputNumber } from 'antd';
+import { Typography, Row, Col, Button, InputNumber } from 'antd';
 import { PlusOutlined, MinusOutlined } from '@ant-design/icons';
 import styled from 'styled-components';
 import { useFormik } from 'formik';
 // import * as Yup from 'yup';
 import { apiHelper } from '../helpers/apiHelper';
 import AccountImg from '../assets/account.png';
-
-const FormItem = Form.Item;
 
 const HeadIcon = styled.img`
   width: 50px;
@@ -19,6 +17,11 @@ const H2Styled = styled.h2`
   font-weight: 400;
 `;
 
+const H3Styled = styled.h3`
+  font-size: 24px;
+  font-weight: 400;
+`;
+
 const ToggleButton = styled(Button)`
   height: 80px;
   width: 80px;
@@ -27,10 +30,20 @@ const ToggleButton = styled(Button)`
 const ButtonBase = styled(Button)`
   height: 55px;
   border-color: #009db8;
+  overflow: hidden;
 `;
 
 const ButtonLarge = styled(Button)`
   height: 70px;
+  border-color: #009db8;
+  overflow: hidden;
+`;
+
+const StyledInputNumber = styled(InputNumber)`
+  width: 100%;
+  height: 55px;
+  display: flex;
+  align-items: center;
   border-color: #009db8;
 `;
 
@@ -171,7 +184,9 @@ const SalaryCalculator = () => {
             <Row align="middle" gutter={[20, 20]}>
               <Col span={3} offset={4}>
                 <ButtonLarge
-                  type={formik.values.patent !== 1 && formik.values.patent !== 0 ? 'primary' : 'default'}
+                  type={formik.values.patent !== 1 && formik.values.patent !== 0
+                    ? 'primary'
+                    : 'default'}
                   size="large"
                   block
                   onClick={() => formik.setFieldValue('patent', null)}
@@ -202,32 +217,39 @@ const SalaryCalculator = () => {
             </Row>
 
             <Row align="middle" gutter={[20, 20]}>
-              <Col span={10} offset={4}>
-                <FormItem label="Աշխատավարձ">
-                  <InputNumber
-                    min={0}
-                    id="price"
-                    name="price"
-                    type="number"
-                    onChange={value => formik.setFieldValue('price', value)}
-                    value={formik.values.price}
-                  />
-                </FormItem>
+              <Col span={7} offset={4}>
+                <FormLabelCell>
+                  Աշխատավարձ
+                </FormLabelCell>
+              </Col>
+              <Col span={3}>
+                <StyledInputNumber
+                  size="large"
+                  min={0}
+                  id="price"
+                  name="price"
+                  type="number"
+                  onChange={value => formik.setFieldValue('price', value)}
+                  value={formik.values.price}
+                />
               </Col>
             </Row>
 
             <Row align="middle" gutter={[20, 20]}>
-              <Col span={10} offset={4}>
-                <FormItem label="Պարգևավճար">
-                  <InputNumber
-                    min={0}
-                    id="bonus_price"
-                    name="bonus_price"
-                    type="number"
-                    onChange={value => formik.setFieldValue('bonus_price', value)}
-                    value={formik.values.bonus_price}
-                  />
-                </FormItem>
+              <Col span={7} offset={4}>
+                <FormLabelCell>
+                  Պարգևավճար
+                </FormLabelCell>
+              </Col>
+              <Col span={3}>
+                <StyledInputNumber
+                  min={0}
+                  id="bonus_price"
+                  name="bonus_price"
+                  type="number"
+                  onChange={value => formik.setFieldValue('bonus_price', value)}
+                  value={formik.values.bonus_price}
+                />
               </Col>
             </Row>
 
@@ -304,7 +326,7 @@ const SalaryCalculator = () => {
               <>
                 <Row align="middle" gutter={[10, 40]}>
                   <Col offset={4}>
-                    <Typography>Արդյունք</Typography>
+                    <H3Styled>Արդյունք</H3Styled>
                   </Col>
                 </Row>
 
