@@ -98,6 +98,7 @@ const SalaryCalculator = () => {
     onSubmit: async values => {
       let res = {};
       let body = {};
+      // TODO: refactor this filter
       if ((values.patent || values.patent === 0) && values.bonus_price) {
         body = {...values};
       } else if (!values.patent && values.bonus_price) {
@@ -123,6 +124,10 @@ const SalaryCalculator = () => {
           pension: values.pension,
           bonus_stamp: values.bonus_stamp,
         };
+      }
+
+      if (!values.price) {
+        delete body.price;
       }
 
       console.log('Formik values: ', values);
