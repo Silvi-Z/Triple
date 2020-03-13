@@ -10,8 +10,16 @@ import UserImg from '../assets/user.png';
 const { Title, Text } = Typography;
 
 const HeadIcon = styled.img`
-  width: 50px;
-  height: 50px;
+  width: 30px;
+  height: 30px;
+  @media (min-width: 1200px) {
+    width: 40px;
+    height: 40px;
+  }
+  @media (min-width: 1600px) {
+    width: 50px;
+    height: 50px;
+  }
 `;
 
 const H2Styled = styled.h2`
@@ -71,11 +79,15 @@ const VacationCalculator = () => {
 
   return (
     <>
-      <Row align="middle" gutter={[10, 10]}>
-        <Col span={1} offset={3}>
+      <Row align="middle" gutter={[10, 50]}>
+        <Col
+          xxl={{span: 1, offset: 3}}
+          xl={{span: 1, offset: 2}}
+          lg={{span: 1, offset: 1}}
+        >
           <HeadIcon src={UserImg} alt={'icon'} />
         </Col>
-        <Col span={16}>
+        <Col xxl={17} xl={18} lg={19} span={19}>
           <H2Styled>Արձակուրդայինի հաշվիչ</H2Styled>
         </Col>
         <Col span={2}>
@@ -94,25 +106,50 @@ const VacationCalculator = () => {
       {showForm ? (
         <>
           <Row align="middle" gutter={[20, 20]}>
-            <Col span={9} offset={4}>
+            <Col
+              xxl={{span: 9, offset: 4}}
+              xl={{span: 10, offset: 3}}
+              lg={{span: 12, offset: 2}}
+              span={19}
+              offset={1}
+            >
               <Title level={4}>
                 Ժամանակահատված, որի ընթացքում աշխատողը գտնվել(ու) է արձակուրդի մեջ
               </Title>
             </Col>
           </Row>
           <Row align="middle" gutter={[20, 20]}>
-            <Col span={2} offset={4}>
+            <Col
+              xxl={{span: 2, offset: 4}}
+              xl={{span: 3, offset: 3}}
+              lg={{span: 4, offset: 2}}
+              span={4}
+              offset={1}
+            >
               <FormLabelCell>
                 <Text>Սկիզբ</Text>
               </FormLabelCell>
             </Col>
-            <Col span={3}>
+            <Col xxl={3} xl={4} lg={5} span={6}>
               <StyledDatePicker
-                // popupStyle={{
-                //   fontFamily: 'sans-serif',
-                //   fontSize: '8px',
-                // }}
                 size="large"
+                format="DD.MM.YYYY"
+              />
+            </Col>
+            <Col
+              xxl={2}
+              xl={3}
+              lg={4}
+              span={4}
+            >
+              <FormLabelCell>
+                <Text>Ավարտ</Text>
+              </FormLabelCell>
+            </Col>
+            <Col xxl={3} xl={4} lg={5} span={6}>
+              <StyledDatePicker
+                size="large"
+                format="DD.MM.YYYY"
               />
             </Col>
           </Row>

@@ -17,7 +17,20 @@ import './layout.css';
 const { Content, Footer } = CustomLayout;
 
 const ContentStyled = styled(Content)`
-  padding: 50px 100px;
+  ${'' /* padding: 50px 100px; */}
+  padding-top: 50px;
+  padding-bottom: 50px;
+  padding-left: 20px;
+  padding-right: 20px;
+  @media (min-width: 1200px) {
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+  @media (min-width: 1600px) {
+    padding-left: 100px;
+    padding-right: 100px;
+  }
+  
 `;
 
 const Layout = ({ children }) => {

@@ -8,8 +8,16 @@ import { apiHelper } from '../helpers/apiHelper';
 import AccountImg from '../assets/account.png';
 
 const HeadIcon = styled.img`
-  width: 50px;
-  height: 50px;
+  width: 30px;
+  height: 30px;
+  @media (min-width: 1200px) {
+    width: 40px;
+    height: 40px;
+  }
+  @media (min-width: 1600px) {
+    width: 50px;
+    height: 50px;
+  }
 `;
 
 const H2Styled = styled.h2`
@@ -140,11 +148,15 @@ const SalaryCalculator = () => {
 
   return (
     <>
-      <Row align="middle" gutter={[10, 10]}>
-        <Col span={1} offset={3}>
+      <Row align="middle" gutter={[10, 50]}>
+        <Col
+          xxl={{span: 1, offset: 3}}
+          xl={{span: 1, offset: 2}}
+          lg={{span: 1, offset: 1}}
+        >
           <HeadIcon src={AccountImg} alt={'icon'} />
         </Col>
-        <Col span={16}>
+        <Col xxl={17} xl={18} lg={19} span={19}>
           <H2Styled>Աշխատավարձի հաշվիչ</H2Styled>
         </Col>
         <Col span={2}>
@@ -164,8 +176,14 @@ const SalaryCalculator = () => {
       {showForm ? (
         <>
           <form onSubmit={formik.handleSubmit}>
-            <Row align="middle" gutter={[20, 20]}>
-              <Col span={6} offset={4}>
+            <Row align="middle" gutter={[13, 13]}>
+              <Col
+                xxl={{span: 6, offset: 4}}
+                xl={{span: 8, offset: 3}}
+                lg={{span: 9, offset: 2}}
+                offset={1}
+                span={11}
+              >
                 <ButtonBase
                   type={!formik.values.salary_type ? 'primary' : 'default'}
                   size="large"
@@ -175,7 +193,7 @@ const SalaryCalculator = () => {
                   Մաքուր
                 </ButtonBase>
               </Col>
-              <Col span={6}>
+              <Col xxl={6} xl={8} lg={9} span={11}>
                 <ButtonBase
                   type={formik.values.salary_type ? 'primary' : 'default'}
                   size="large"
@@ -187,8 +205,14 @@ const SalaryCalculator = () => {
               </Col>
             </Row>
 
-            <Row align="middle" gutter={[20, 20]}>
-              <Col span={3} offset={4}>
+            <Row align="middle" gutter={[13, 13]}>
+              <Col
+                xxl={{span: 3, offset: 4}}
+                xl={{span: 4, offset: 3}}
+                lg={{span: 5, offset: 2}}
+                offset={1}
+                span={6}
+              >
                 <ButtonLarge
                   type={formik.values.patent !== 1 && formik.values.patent !== 0
                     ? 'primary'
@@ -200,7 +224,7 @@ const SalaryCalculator = () => {
                   Ընդհանուր<br />հարկման դաշտ
                 </ButtonLarge>
               </Col>
-              <Col span={4}>
+              <Col xxl={6} xl={8} lg={8} span={10}>
                 <ButtonLarge
                   type={formik.values.patent === 1 ? 'primary' : 'default'}
                   size="large"
@@ -210,7 +234,7 @@ const SalaryCalculator = () => {
                   Միկրոձեռնարկատիրության<br />սուբյեկտ
                 </ButtonLarge>
               </Col>
-              <Col span={3}>
+              <Col xxl={3} xl={4} lg={5} span={6}>
                 <ButtonLarge
                   type={formik.values.patent === 0 ? 'primary' : 'default'}
                   size="large"
@@ -222,13 +246,19 @@ const SalaryCalculator = () => {
               </Col>
             </Row>
 
-            <Row align="middle" gutter={[20, 20]}>
-              <Col span={7} offset={4}>
+            <Row align="middle" gutter={[13, 13]}>
+              <Col
+                xxl={{span: 9, offset: 4}}
+                xl={{span: 12, offset: 3}}
+                lg={{span: 13, offset: 2}}
+                offset={1}
+                span={16}
+              >
                 <FormLabelCell>
                   Աշխատավարձ
                 </FormLabelCell>
               </Col>
-              <Col span={3}>
+              <Col xxl={3} xl={4} lg={5} span={6}>
                 <StyledInputNumber
                   size="large"
                   min={0}
@@ -241,13 +271,19 @@ const SalaryCalculator = () => {
               </Col>
             </Row>
 
-            <Row align="middle" gutter={[20, 20]}>
-              <Col span={7} offset={4}>
+            <Row align="middle" gutter={[13, 13]}>
+              <Col
+                xxl={{span: 9, offset: 4}}
+                xl={{span: 12, offset: 3}}
+                lg={{span: 13, offset: 2}}
+                offset={1}
+                span={16}
+              >
                 <FormLabelCell>
                   Պարգևավճար
                 </FormLabelCell>
               </Col>
-              <Col span={3}>
+              <Col xxl={3} xl={4} lg={5} span={6}>
                 <StyledInputNumber
                   min={0}
                   id="bonus_price"
@@ -259,13 +295,19 @@ const SalaryCalculator = () => {
               </Col>
             </Row>
 
-            <Row align="middle" gutter={[10, 10]}>
-              <Col span={8} offset={4}>
+            <Row align="middle" gutter={[13, 13]}>
+              <Col
+                xxl={{span: 8, offset: 4}}
+                xl={{span: 12, offset: 3}}
+                lg={{span: 12, offset: 2}}
+                offset={1}
+                span={16}
+              >
                 <FormLabelCell>
                   <Typography>Մասնակցու՞մ եք կուտակային կենսաթոշակայինին</Typography>
                 </FormLabelCell>
               </Col>
-              <Col span={1}>
+              <Col xxl={2} xl={2} lg={3} span={3}>
                 <ButtonBase
                   type={formik.values.pension ? 'primary' : 'default'}
                   size="large"
@@ -275,7 +317,7 @@ const SalaryCalculator = () => {
                   Այո
                 </ButtonBase>
               </Col>
-              <Col span={1}>
+              <Col xxl={2} xl={2} lg={3} span={3}>
                 <ButtonBase
                   type={!formik.values.pension ? 'primary' : 'default'}
                   size="large"
@@ -287,13 +329,19 @@ const SalaryCalculator = () => {
               </Col>
             </Row>
 
-            <Row align="middle" gutter={[10, 40]}>
-              <Col span={8} offset={4}>
+            <Row align="middle" gutter={[13, 40]}>
+              <Col
+                xxl={{span: 8, offset: 4}}
+                xl={{span: 12, offset: 3}}
+                lg={{span: 12, offset: 2}}
+                offset={1}
+                span={16}
+              >
                 <FormLabelCell>
                   <Typography>Վճարե՞լ եք արդեն դրոշմանիշային վճարը</Typography>
                 </FormLabelCell>
               </Col>
-              <Col span={1}>
+              <Col xxl={2} xl={2} lg={3} span={3}>
                 <ButtonBase
                   type={formik.values.bonus_stamp ? 'primary' : 'default'}
                   size="large"
@@ -303,7 +351,7 @@ const SalaryCalculator = () => {
                   Այո
                 </ButtonBase>
               </Col>
-              <Col span={1}>
+              <Col xxl={2} xl={2} lg={3} span={3}>
                 <ButtonBase
                   type={!formik.values.bonus_stamp ? 'primary' : 'default'}
                   size="large"
@@ -316,7 +364,13 @@ const SalaryCalculator = () => {
             </Row>
 
             <Row align="middle" gutter={[10, 40]}>
-              <Col span={4} offset={4}>
+              <Col
+                xxl={{span: 4, offset: 4}}
+                xl={{span: 5, offset: 3}}
+                lg={{span: 5, offset: 2}}
+                offset={1}
+                span={8}
+              >
                 <ButtonLarge
                   size="large"
                   block
@@ -330,15 +384,27 @@ const SalaryCalculator = () => {
           {result
             ? (
               <>
-                <Row align="middle" gutter={[10, 40]}>
-                  <Col offset={4}>
+                <Row align="middle" gutter={[5, 30]}>
+                  <Col
+                    xxl={{span: 4, offset: 4}}
+                    xl={{span: 6, offset: 3}}
+                    lg={{span: 8, offset: 2}}
+                    offset={1}
+                    span={10}
+                  >
                     <H3Styled>Արդյունք</H3Styled>
                   </Col>
                 </Row>
 
-                <Row>
-                  <Col offset={4} span={9}>
-                    <Row gutter={[15, 15]}>
+                <Row gutter={[1, 1]}>
+                  <Col
+                    xxl={{span: 9, offset: 4}}
+                    xl={{span: 10, offset: 3}}
+                    lg={{span: 11, offset: 2}}
+                    offset={1}
+                    span={20}
+                  >
+                    <Row gutter={[10, 10]}>
                       <Col span={16}>
                         <ResultCell>
                           <ResultLabel>Ընդհանուր պահում</ResultLabel>
@@ -351,7 +417,7 @@ const SalaryCalculator = () => {
                       </Col>
                     </Row>
 
-                    <Row gutter={[15, 15]}>
+                    <Row gutter={[10, 10]}>
                       <Col span={16}>
                         <ResultCell>
                           <ResultLabel>Եկամտային հարկ</ResultLabel>
@@ -364,7 +430,7 @@ const SalaryCalculator = () => {
                       </Col>
                     </Row>
 
-                    <Row gutter={[15, 15]}>
+                    <Row gutter={[10, 10]}>
                       <Col span={16}>
                         <ResultCell>
                           <ResultLabel>Կենսաթոշակային վճար</ResultLabel>
@@ -377,7 +443,7 @@ const SalaryCalculator = () => {
                       </Col>
                     </Row>
 
-                    <Row gutter={[15, 15]}>
+                    <Row gutter={[10, 10]}>
                       <Col span={16}>
                         <ResultCell>
                           <ResultLabel>Դրոշմանիշային վճար</ResultLabel>
@@ -391,8 +457,14 @@ const SalaryCalculator = () => {
                     </Row>
                   </Col>
 
-                  <Col span={9}>
-                    <Row gutter={[15, 15]}>
+                  <Col
+                    xxl={{span: 9, offset: 0}}
+                    xl={{span:10, offset: 0}}
+                    lg={{span: 11, offset: 0}}
+                    span={20}
+                    offset={1}
+                  >
+                    <Row gutter={[10, 10]}>
                       <Col span={9}>
                         <ResultCell large>
                           <ResultLabel large>
@@ -407,7 +479,7 @@ const SalaryCalculator = () => {
                       </Col>
                     </Row>
 
-                    <Row gutter={[15, 15]}>
+                    <Row gutter={[10, 10]}>
                       <Col span={9}>
                         <ResultCell large>
                           <ResultLabel large>
