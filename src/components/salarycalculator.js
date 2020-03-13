@@ -91,7 +91,7 @@ const initialValues = {
 const SalaryCalculator = () => {
   const [result, setResult] = useState(null);
   const [showForm, toggleForm] = useState(false);
-
+  
   const formik = useFormik({
     initialValues,
     // validationSchema,
@@ -395,7 +395,9 @@ const SalaryCalculator = () => {
                     <Row gutter={[15, 15]}>
                       <Col span={9}>
                         <ResultCell large>
-                          <ResultLabel large>Զուտ աշխատավարձ</ResultLabel>
+                          <ResultLabel large>
+                            {`${+result.salary_type ? 'Զուտ' : 'Մաքուր'} աշխատավարձ`}
+                          </ResultLabel>
                         </ResultCell>
                       </Col>
                       <Col span={9}>
@@ -408,7 +410,9 @@ const SalaryCalculator = () => {
                     <Row gutter={[15, 15]}>
                       <Col span={9}>
                         <ResultCell large>
-                          <ResultLabel large>Զուտ պարգևավճար</ResultLabel>
+                          <ResultLabel large>
+                            {`${+result.salary_type ? 'Զուտ' : 'Մաքուր'} պարգևավճար`}
+                          </ResultLabel>
                         </ResultCell>
                       </Col>
                       <Col span={9}>
