@@ -1,23 +1,14 @@
-import React, { useState } from "react"
-import { Typography, Row, Col, Button, InputNumber } from "antd"
+import React, { useState, useEffect } from "react"
+import { Typography, Row, Col } from "antd"
 import { Link } from "gatsby"
 import styled from "styled-components"
-// import * as Yup from 'yup';
-import { apiHelper } from "../helpers/apiHelper"
-import CalcImg from "../assets/homeImages/calculator-1.png"
-import TaxImg from "../assets/homeImages/tax-1@3x.png"
-import AuditImg from "../assets/homeImages/audit@3x.png"
-import ClientImg from "../assets/homeImages/client-1@3x.png"
-import BrowserImg from "../assets/homeImages/browser@3x.png"
-import UserImg from "../assets/homeImages/user-1@3x.png"
-import LawImg from "../assets/homeImages/law@3x.png"
-import TeamImg from "../assets/homeImages/teamwork@3x.png"
+//import { apiHelper } from "../helpers/apiHelper"
+import AlgorithmImg from "../assets/homeImages/algorithm.png"
 import RightArrowImg from "../assets/homeImages/right-arrow.png"
 
 const NavLink = styled(Link)`
   text-decoration: none;
 `
-
 const H2Styled = styled.section`
   width: 166px;
   height: 18px;
@@ -72,42 +63,21 @@ const Seemoreimg = styled.img`
   height: 17px;
   margin-left: 100%;
 `
-
 const IconWrapper = styled.img`
-  width: 35px;
-  height: 35px;
-  margin-top: 25.6%;
-  margin-left: 45%;
-`
-const TextWrapperSmall = styled.p`
-  width: 143px;
-  height: 34px;
-  font-family: ArialAMU;
-  font-size: 16px;
-  font-weight: normal;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: normal;
-  letter-spacing: normal;
-  text-align: center;
-  color: #000000;
-  margin-left: 30.3%;
-`
-const TextWrapperBig = styled.p`
-  width: 156px;
-  height: 34px;
-  font-family: ArialAMU;
-  font-size: 16px;
-  font-weight: normal;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: normal;
-  letter-spacing: normal;
-  text-align: center;
-  color: #000000;
-  margin-left: 30.3%;
+  width: 95px;
+  height: 130px;
+  margin-top: 16.6%;
+  margin-left: 35%;
 `
 const Homepartners = () => {
+  // const [hasError, setErrors] = useState(false)
+  // const [images, setImages] = useState({})
+
+  // async function fetchData() {
+  //   res = await apiHelper.get("/api/partner")
+  //   console.log("Response: ", res.json())
+  // }
+  // useEffect(() => fetchData())
   return (
     <>
       <Row style={{ marginTop: "59px" }}>
@@ -148,8 +118,7 @@ const Homepartners = () => {
                 borderColor: "#d7d7d7",
               }}
             >
-              <IconWrapper src={CalcImg} alt={"icon"}></IconWrapper>
-              <TextWrapperSmall>Հաշվապահական հաշվառում</TextWrapperSmall>
+              <IconWrapper src={AlgorithmImg} alt={"icon"}></IconWrapper>
             </Col>
             <Col
               span={6}
@@ -160,8 +129,7 @@ const Homepartners = () => {
                 borderColor: "#d7d7d7",
               }}
             >
-              <IconWrapper src={TaxImg} alt={"icon"}></IconWrapper>
-              <TextWrapperBig>Հարկային հաշվառում</TextWrapperBig>
+              <IconWrapper src={AlgorithmImg} alt={"icon"}></IconWrapper>
             </Col>
             <Col
               span={6}
@@ -172,8 +140,7 @@ const Homepartners = () => {
                 borderColor: "#d7d7d7",
               }}
             >
-              <IconWrapper src={AuditImg} alt={"icon"}></IconWrapper>
-              <TextWrapperBig>Հարկային աուդիտ</TextWrapperBig>
+              <IconWrapper src={AlgorithmImg} alt={"icon"}></IconWrapper>
             </Col>
             <Col
               span={6}
@@ -183,8 +150,7 @@ const Homepartners = () => {
                 borderColor: "#d7d7d7",
               }}
             >
-              <IconWrapper src={ClientImg} alt={"icon"}></IconWrapper>
-              <TextWrapperBig>Խորհրդատվություն</TextWrapperBig>
+              <IconWrapper src={AlgorithmImg} alt={"icon"}></IconWrapper>
             </Col>
           </Row>
         </Col>
@@ -198,8 +164,7 @@ const Homepartners = () => {
                 borderColor: "#d7d7d7",
               }}
             >
-              <IconWrapper src={BrowserImg} alt={"icon"}></IconWrapper>
-              <TextWrapperSmall>Կազմակերպության գրանցում</TextWrapperSmall>
+              <IconWrapper src={AlgorithmImg} alt={"icon"}></IconWrapper>
             </Col>
             <Col
               span={6}
@@ -209,8 +174,7 @@ const Homepartners = () => {
                 borderColor: "#d7d7d7",
               }}
             >
-              <IconWrapper src={UserImg} alt={"icon"}></IconWrapper>
-              <TextWrapperBig>Ֆիզիկական անձանց</TextWrapperBig>
+              <IconWrapper src={AlgorithmImg} alt={"icon"}></IconWrapper>
             </Col>
             <Col
               span={6}
@@ -220,8 +184,7 @@ const Homepartners = () => {
                 borderColor: "#d7d7d7",
               }}
             >
-              <IconWrapper src={LawImg} alt={"icon"}></IconWrapper>
-              <TextWrapperBig>Մաքսային գոծարքներ</TextWrapperBig>
+              <IconWrapper src={AlgorithmImg} alt={"icon"}></IconWrapper>
             </Col>
             <Col
               span={6}
@@ -230,8 +193,7 @@ const Homepartners = () => {
                 borderColor: "#d7d7d7",
               }}
             >
-              <IconWrapper src={TeamImg} alt={"icon"}></IconWrapper>
-              <TextWrapperBig>Կադրային աշխատանքի վարում</TextWrapperBig>
+              <IconWrapper src={AlgorithmImg} alt={"icon"}></IconWrapper>
             </Col>
           </Row>
         </Col>

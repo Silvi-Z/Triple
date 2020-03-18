@@ -91,7 +91,7 @@ const TextWrapperSmall = styled.p`
   letter-spacing: normal;
   text-align: center;
   color: #000000;
-  margin-left: 30.3%;
+  margin-left: 28.8%;
 `
 const TextWrapperBig = styled.p`
   width: 156px;
