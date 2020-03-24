@@ -32,6 +32,10 @@ const ContentStyled = styled(Content)`
     padding-left: 50px;
     padding-right: 50px;
   }
+  @media (max-width: 768px) {
+    padding-bottom: ${props => (props.Responswrapper ? 50 : 0)};
+    padding-top: ${props => (props.Responswrapper ? 50 : 0)};
+  }
   @media (min-width: 1600px) {
     padding-left: 100px;
     padding-right: 100px;
@@ -41,9 +45,16 @@ const ContentStyled = styled(Content)`
 const FooterCust = styled(Footer)`
   height: 130px;
   background-color: #1c1d21;
+  @media (max-width: 768px) {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+  @media (max-width: 380px) {
+    height: 234px;
+  }
 `
 const FooterNumberWrap = styled.div`
-  // width: 235px;
+  width: 235px;
   height: 15px;
   font-family: ArialAMU;
   font-size: 16px;
@@ -55,6 +66,19 @@ const FooterNumberWrap = styled.div`
   text-align: center;
   margin-left: 17px;
   color: #ffffff;
+  /* @media only screen and (max-width: 768px) {
+    width: 100%;
+    height: 16px;
+    font-family: Sylfaen;
+    font-size: 16px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #ffffff;
+  } */
 `
 const FooterAdressWrap = styled.div`
   height: 16px;
@@ -69,6 +93,19 @@ const FooterAdressWrap = styled.div`
   color: #ffffff;
   margin-left: 17px;
   text-align: center;
+  /* @media only screen and (max-width: 768px) {
+    width: 89px;
+    height: 16px;
+    font-family: Sylfaen;
+    font-size: 16px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #009db8;
+  } */
 `
 const FooterFollowUsWrap = styled.div`
   width: 90px;
@@ -84,7 +121,7 @@ const FooterFollowUsWrap = styled.div`
   color: #ffffff;
 `
 const FooterCopyRightWrap = styled.div`
-  // width: 191px;
+  width: 100%;
   height: 13px;
   font-family: ArialAMU;
   font-size: 15px;
@@ -99,16 +136,58 @@ const FooterCopyRightWrap = styled.div`
   border-width: thin;
   padding-top: 14px;
   color: #e8e8e8;
+  /* @media only screen and (min-width: 768px) {
+    display: none;
+  } */
 `
 const CallIconWrapper = styled.img`
   width: 20px;
   height: 20px;
+  /* @media only screen and (max-width: 768px) {
+    background-color: #000000;
+  } */
 `
-const LocationIconWrapper = styled.img``
-const LinkdinWrapper = styled.img``
+const LocationIconWrapper = styled.img`
+  /* @media only screen and (max-width: 768px) {
+    color: #009db8;
+  } */
+`
+const LinkdinWrapper = styled.img`
+  /* @media only screen and (max-width: 768px) {
+    color: #009db8;
+  } */
+`
 const FacebookWrapper = styled.img``
 
-const Layout = ({ children }) => {
+const FooterNumberColumn = styled(Col)`
+  display: flex;
+  padding-left: 15%;
+  @media only screen and (max-width: 768px) {
+    padding-left: 0%;
+  }
+  @media (max-width: 380px) {
+    padding-left: 10%;
+  }
+`
+const FooterAdressColumn = styled(Col)`
+  display: flex;
+  padding-left: 12%;
+  @media only screen and (max-width: 768px) {
+    padding-left: 0%;
+    justify-content: center;
+  }
+`
+const FooterFollowUsColumn = styled(Col)`
+  display: flex;
+  justify-content: space-around;
+  padding-right: 17%;
+  @media only screen and (max-width: 768px) {
+    padding-right: 0%;
+  }
+`
+const FooterCopyRightColumn = styled(Col)``
+
+const Layout = ({ children, SetResponswrapper, Responswrapper }) => {
   // const data = useStaticQuery(graphql`
   //   query SiteTitleQuery {
   //     site {
@@ -121,7 +200,10 @@ const Layout = ({ children }) => {
 
   return (
     <>
-      <Navbar />
+      <Navbar
+        setResponswrapper={SetResponswrapper}
+        responswrapper={Responswrapper}
+      />
       <div
         style={{
           margin: "0 auto",
@@ -133,52 +215,26 @@ const Layout = ({ children }) => {
       </div>
       <FooterCust>
         <Row>
-          <Col
-            xs={2}
-            sm={4}
-            md={6}
-            lg={8}
-            xl={10}
-            style={{ display: "flex", paddingLeft: "15%" }}
-          >
+          <FooterNumberColumn xs={24} sm={24} md={6} lg={8} xl={8}>
             <CallIconWrapper src={CallPhoneImg} alt={"icon"}></CallIconWrapper>
             <FooterNumberWrap>+374 93706010,+374 93706010</FooterNumberWrap>
-          </Col>
-          <Col
-            xs={20}
-            sm={16}
-            md={12}
-            lg={8}
-            xl={4}
-            style={{ display: "flex", paddingLeft: "5%" }}
-          >
+          </FooterNumberColumn>
+          <FooterAdressColumn xs={24} sm={24} md={12} lg={8} xl={8}>
             <LocationIconWrapper src={LocationImg} alt={"icon"} />
             <FooterAdressWrap>Հր, Քոչար 44</FooterAdressWrap>
-          </Col>
-          <Col
-            xs={2}
-            sm={4}
-            md={6}
-            lg={8}
-            xl={10}
-            style={{
-              display: "flex",
-              justifyContent: "space-around",
-              paddingLeft: "11%",
-              paddingRight: "17%",
-            }}
-          >
+          </FooterAdressColumn>
+          <FooterFollowUsColumn xs={24} sm={24} md={6} lg={8} xl={8}>
             <FooterFollowUsWrap>Հետևեք մեզ</FooterFollowUsWrap>
             <LinkdinWrapper src={LinkedinImg} alt={"icon"} />
             <FacebookWrapper src={FacebookImg} alt={"icon"} />
-          </Col>
+          </FooterFollowUsColumn>
         </Row>
         <Row>
-          <Col lg={24}>
+          <FooterCopyRightColumn lg={24}>
             <FooterCopyRightWrap>
               Copyright © {new Date().getFullYear()} AlgorithmSolutions
             </FooterCopyRightWrap>
-          </Col>
+          </FooterCopyRightColumn>
         </Row>
       </FooterCust>
     </>

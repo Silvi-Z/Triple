@@ -12,6 +12,10 @@ import UserImg from "../assets/homeImages/user-1@3x.png"
 import LawImg from "../assets/homeImages/law@3x.png"
 import TeamImg from "../assets/homeImages/teamwork@3x.png"
 
+const HeadingParagraphRow = styled(Row)`
+  padding: 0 12%;
+  margin-bottom: 2.8%;
+`
 const H2Styled = styled.h2`
   width: 155px;
   height: 18px;
@@ -77,7 +81,8 @@ const SubParagStyled = styled.div`
   color: #000000;
   margin-left: 13%;
 `
-const Services = () => {
+const Services = props => {
+  console.log(props)
   //const [result, setResult] = useState(null);
   const [showAccountingForm, toggleAccountingForm] = useState(false)
   const [showTaxForm, toggleTaxForm] = useState(false)
@@ -90,15 +95,15 @@ const Services = () => {
 
   return (
     <Layout>
-      <Row style={{ padding: "0 12%", marginBottom: "2.8%" }}>
+      <HeadingParagraphRow>
         <Col lg={{ span: 12 }}>
           <H2Styled>Ծառայություններ</H2Styled>
           <PStyled>
-            “Թրիփլ Քնսալթինգ” ընկերությունն բոլոր հիմնական ծառայությունները՛
-            կապված հաշվախահության և աւդիտի հետ։
+            “Թրիփլ Քնսալթինգ” ընկերության բոլոր հիմնական ծառայությունները կապված
+            են հաշվապահական հաշվառման և աուդիտի հետ։
           </PStyled>
         </Col>
-      </Row>
+      </HeadingParagraphRow>
       <Row
         align="middle"
         gutter={[10, 50]}
