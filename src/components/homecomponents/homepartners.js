@@ -3,8 +3,8 @@ import { Typography, Row, Col } from "antd"
 import { Link } from "gatsby"
 import styled from "styled-components"
 //import { apiHelper } from "../helpers/apiHelper"
-import AlgorithmImg from "../assets/homeImages/algorithm.png"
-import RightArrowImg from "../assets/homeImages/right-arrow.png"
+import AlgorithmImg from "../../assets/homeImages/algorithm.png"
+import RightArrowImg from "../../assets/homeImages/right-arrow.png"
 
 const NavLink = styled(Link)`
   text-decoration: none;

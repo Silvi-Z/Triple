@@ -2,8 +2,8 @@ import React from "react"
 import Layout from "../components/layout"
 import styled from "styled-components"
 import { Typography, Row, Col, Button, InputNumber } from "antd"
-import FormindIviduals from "../components/formindividuals"
-import FormOrganizations from "../components/formorganizations"
+import FormindIviduals from "../components/contactcomponts/formindividuals"
+import FormOrganizations from "../components/contactcomponts/formorganizations"
 
 import CallPhoneImg from "../assets/footericons/phone-call.svg"
 
@@ -56,7 +56,7 @@ const CallIconWrapper = styled.img`
   height: 20px;
   color: #000000;
 `
-const FooterNumberWrap = styled.div`
+const ContactNumberWrap = styled.div`
   width: 235px;
   height: 15px;
   font-family: ArialAMU;
@@ -108,7 +108,7 @@ const Contact = () => {
         </Col>
         <HeaderNumberColumn lg={{ span: 24 }}>
           <CallIconWrapper src={CallPhoneImg} alt={"icon"}></CallIconWrapper>
-          <FooterNumberWrap>+374 93706010,+374 93706010</FooterNumberWrap>
+          <ContactNumberWrap>+374 93706010,+374 93706010</ContactNumberWrap>
         </HeaderNumberColumn>
       </HeadingParagraphRow>
       <FormRow>

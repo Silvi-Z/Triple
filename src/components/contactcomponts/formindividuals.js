@@ -95,8 +95,9 @@ const Formfield = () => {
             message: "Խնդրում եմ լրացրեք այս դաշտը!",
           },
         ]}
+        span={24}
       >
-        <Upload {...fileprops} lg={24}>
+        <Upload {...fileprops} span={24}>
           <Button>
             <UploadOutlined />
           </Button>

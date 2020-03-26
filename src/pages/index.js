@@ -3,8 +3,8 @@ import Layout from "../components/layout"
 // import Image from '../components/image';
 import SEO from "../components/seo"
 import Slideshow from "../components/slideshow"
-import HomeServices from "../components/homeservices"
-import Homepartners from "../components/homepartners"
+import HomeServices from "../components/homecomponents/homeservices"
+import Homepartners from "../components/homecomponents/homepartners"
 
 const IndexPage = () => {
   const [responswrapper, setResponswrapper] = useState(true)
