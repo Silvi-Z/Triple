@@ -69,6 +69,10 @@ const SeemoreWrapper = styled.div`
   padding: 22px 43px;
   display: flex;
 
+  @media only screen and (max-width: 1524px) {
+    padding: 22px 43px;
+  }
+
   @media only screen and (max-width: 768px) {
     width: 208px;
     height: 56px;
@@ -83,7 +87,7 @@ const SeemoreWrapper = styled.div`
   }
 `
 const SeemoreSpan = styled.span`
-  width: 104px;
+  width: 125px;
   height: 16px;
   font-family: ArialAMU;
   font-size: 16px;
@@ -94,6 +98,9 @@ const SeemoreSpan = styled.span`
   letter-spacing: normal;
   text-align: center;
   color: #009db8;
+  @media only screen and (max-width: 1524px) {
+    width: 125px;
+  }
 `
 const Seemoreimg = styled.img`
   width: 22px;
@@ -161,6 +168,9 @@ const ResponsWrapper = styled.div`
 `
 const SeemoreColumn = styled(Col)`
   padding-left: 35%;
+  @media only screen and (max-width: 1524px) {
+    padding-left: 33%;
+  }
   @media only screen and (max-width: 768px) {
     padding-left: 21%;
   }
@@ -181,14 +191,12 @@ const Homeservices = () => {
           </PStyled>
         </Col>
         <SeemoreColumn ls={12} sm={24} md={12} lg={12}>
-          {/* <Col ls={12} sm={12} md={12} style={{ paddingLeft: "35%" }}> */}
           <SeemoreWrapper>
             <NavLink to="/services/">
               <SeemoreSpan>Տեսնել ավելին</SeemoreSpan>
               <Seemoreimg src={RightArrowImg} alt={"icon"}></Seemoreimg>
             </NavLink>
           </SeemoreWrapper>
-          {/* /</Col> */}
         </SeemoreColumn>
       </Row>
       <ResponsWrapper>

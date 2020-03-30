@@ -33,7 +33,7 @@ const H2Styled = styled.section`
   color: #000000;
 `
 const PStyled = styled.section`
-  width: 517px;
+  width: 519px;
   height: 46px;
   font-family: ArialAMU;
   font-size: 16px;
@@ -59,6 +59,10 @@ const SeemoreWrapper = styled.div`
   text-align: center;
   padding: 22px 33px;
   display: flex;
+
+  @media only screen and (max-width: 1524px) {
+    padding: 20px 40px;
+  }
   @media only screen and (max-width: 768px) {
     width: 225px;
     height: 58px;
@@ -73,6 +77,9 @@ const SeemoreWrapper = styled.div`
 `
 const SeemoreColumn = styled(Col)`
   padding-left: 33%;
+  @media only screen and (max-width: 1524px) {
+    padding-left: 32%;
+  }
   @media only screen and (max-width: 768px) {
     padding-left: 18%;
   }
@@ -81,7 +88,7 @@ const SeemoreColumn = styled(Col)`
   }
 `
 const SeemoreSpan = styled.span`
-  width: 137px;
+  width: 162px;
   height: 16px;
   font-family: ArialAMU;
   font-size: 16px;
@@ -93,6 +100,9 @@ const SeemoreSpan = styled.span`
   text-align: center;
   color: #009db8;
   box-shadow: none;
+  @media only screen and (max-width: 1524px) {
+    width: 162px;
+  }
   @media only screen and (max-width: 768px) {
     width: 208px;
     height: 56px;
@@ -167,7 +177,7 @@ const Homepartners = () => {
         </PartnerspHeadingColumn>
         <SeemoreColumn ls={12} sm={24} md={12} lg={12} xs={24}>
           <SeemoreWrapper>
-            <NavLink to="/services/">
+            <NavLink to="/contact/">
               <SeemoreSpan>Դառնալ գործընկեր</SeemoreSpan>
               <Seemoreimg src={RightArrowImg} alt={"icon"}></Seemoreimg>
             </NavLink>

@@ -4,6 +4,7 @@ import styled from "styled-components"
 import { Row, Col } from "antd"
 import CallImg from "../assets/homeImages/phone-call3.png"
 import MainLogo from "../assets/homeImages/3c.png"
+import { EnvironmentOutlined, PhoneOutlined } from "@ant-design/icons"
 
 const NavLink = styled(Link)`
   flex-grow: 1;
@@ -78,6 +79,10 @@ const HeadMainIcon = styled.img`
   border-color: #ebebeb;
   padding-top: 7%;
 
+  @media only screen and (max-width: 1524px) {
+    border-left: 0px solid;
+  }
+
   @media only screen and (max-width: 968px) {
     height: 500%;
     padding-top: 0%;
@@ -107,6 +112,7 @@ const Label = styled.label`
   cursor: pointer;
   margin: 0 10px 0 0;
   font-size: 32px;
+  font-family: ArialAMU;
   line-height: 70px;
   float: right;
   @media (max-width: 380px) {
@@ -250,7 +256,12 @@ const Navbar = ({ setResponswrapper, responswrapper }) => {
             <option value="ru">Рус</option>
           </select>
         </GridLang>
-        <GridAddress>Հր Քոչար 44</GridAddress>
+        <GridAddress>
+          <EnvironmentOutlined
+            style={{ fontSize: "14px", marginRight: "5%" }}
+          />
+          <span>Հր Քոչար 44</span>
+        </GridAddress>
         <GridBlank1 />
         <GridHome>
           <NavLink to="/" activeStyle={activeStyle}>
@@ -258,7 +269,16 @@ const Navbar = ({ setResponswrapper, responswrapper }) => {
           </NavLink>
         </GridHome>
         <GridBlank2 />
-        <GridPhone>374 93 00 00 00</GridPhone>
+        <GridPhone>
+          <PhoneOutlined
+            style={{
+              fontSize: "14px",
+              marginRight: "5%",
+              transform: "rotate(90deg)",
+            }}
+          />
+          <span>374 93 00 00 00</span>
+        </GridPhone>
         <GridService>
           <NavLink
             to="/services/"

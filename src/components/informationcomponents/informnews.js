@@ -1,13 +1,14 @@
-import React from "react"
+import React, { useState } from "react"
 import styled from "styled-components"
 import { Typography, Row, Col, Button, InputNumber } from "antd"
+
 
 const ContainerNews = styled(Row)`
   width: 85%;
   height: 150px;
   overflow: hidden;
   margin-top: 5%;
-  box-shadow: 0px 5px 40px 0 rgba(0, 0, 0, 0.05);
+  box-shadow: 0px 5px 40px 0 rgba(0, 0, 0, 0.4);
   background-color: #ffffff;
 `
 const ImgWrapper = styled(Col)``
@@ -47,10 +48,12 @@ const H2text = styled.h2`
   text-align: left;
   color: #000000;
 `
-const News = ({ data }) => {
+const News = ({ data, openpage }) => {
   console.log(data)
+  //const [open, setopen] = useState(false)
+
   return (
-    <ContainerNews>
+    <ContainerNews onClick={openpage}>
       <ImgWrapper span={6}>
         <WrapperImg src={data.Imgurl} alt={"img"} />
       </ImgWrapper>

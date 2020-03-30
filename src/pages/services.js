@@ -1,8 +1,9 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import Layout from "../components/layout"
 import { Typography, Row, Col, Button, InputNumber } from "antd"
 import { PlusOutlined, MinusOutlined } from "@ant-design/icons"
 import styled from "styled-components"
+import ServiceDropWrap from "../components/servicecomponents/servicedrop"
 import CalcImg from "../assets/homeImages/calculator-1.png"
 import TaxImg from "../assets/homeImages/tax-1@3x.png"
 import AuditImg from "../assets/homeImages/audit@3x.png"
@@ -81,17 +82,140 @@ const SubParagStyled = styled.div`
   color: #000000;
   margin-left: 13%;
 `
-const Services = props => {
-  console.log(props)
-  //const [result, setResult] = useState(null);
-  const [showAccountingForm, toggleAccountingForm] = useState(false)
-  const [showTaxForm, toggleTaxForm] = useState(false)
-  const [showAuditForm, toggleAuditForm] = useState(false)
-  const [showClientForm, toggleClientForm] = useState(false)
-  const [showCompRegForm, toggleCompRegForm] = useState(false)
-  const [showIndividualForm, toggleIndividualForm] = useState(false)
-  const [showLawForm, toggleLawForm] = useState(false)
-  const [showTeamForm, toggleTeamForm] = useState(false)
+const Services = () => {
+  const [servicedata, setservicedata] = useState([])
+
+  const getServiceData = () => {
+    setservicedata([
+      {
+        status: true,
+        data: {
+          id: 0,
+          image: CalcImg,
+          paragraph: "Հաշվապահական հաշվառում",
+          text:
+            "-հաշվապահական հաշվառման քաղաքականության մշակում - հարկային քաղաքականության մշակում",
+          name_arm: "string",
+          name_ru: "string",
+          name_en: "string",
+        },
+        open: false,
+      },
+      {
+        status: true,
+        data: {
+          id: 1,
+          image: TaxImg,
+          paragraph: "Հարկային հաշվառում",
+          text:
+            "-հաշվապահական հաշվառման քաղաքականության մշակում - հարկային քաղաքականության մշակում",
+          name_arm: "string",
+          name_ru: "string",
+          name_en: "string",
+        },
+        open: false,
+      },
+      {
+        status: true,
+        data: {
+          id: 2,
+          image: AuditImg,
+          paragraph: "Հարկային աուդիտ",
+          text:
+            "-հաշվապահական հաշվառման քաղաքականության մշակում - հարկային քաղաքականության մշակում",
+          name_arm: "string",
+          name_ru: "string",
+          name_en: "string",
+        },
+        open: false,
+      },
+      {
+        status: true,
+        data: {
+          id: 3,
+          image: ClientImg,
+          paragraph: "Խորհրդատվություն",
+          text:
+            "-հաշվապահական հաշվառման քաղաքականության մշակում - հարկային քաղաքականության մշակում",
+          name_arm: "string",
+          name_ru: "string",
+          name_en: "string",
+        },
+        open: false,
+      },
+      {
+        status: true,
+        data: {
+          id: 4,
+          image: BrowserImg,
+          paragraph: "Կազմակերպության գրանցում",
+          text:
+            "-հաշվապահական հաշվառման քաղաքականության մշակում - հարկային քաղաքականության մշակում",
+          name_arm: "string",
+          name_ru: "string",
+          name_en: "string",
+        },
+        open: false,
+      },
+      {
+        status: true,
+        data: {
+          id: 5,
+          image: LawImg,
+          paragraph: "Ֆիզիկական անձանց",
+          text:
+            "-հաշվապահական հաշվառման քաղաքականության մշակում - հարկային քաղաքականության մշակում",
+          name_arm: "string",
+          name_ru: "string",
+          name_en: "string",
+        },
+        open: false,
+      },
+      {
+        status: true,
+        data: {
+          id: 6,
+          image: UserImg,
+          paragraph: "Մաքսային գոծարքներ",
+          text:
+            "-հաշվապահական հաշվառման քաղաքականության մշակում - հարկային քաղաքականության մշակում",
+          name_arm: "string",
+          name_ru: "string",
+          name_en: "string",
+        },
+        open: false,
+      },
+      {
+        status: true,
+        data: {
+          id: 7,
+          image: TeamImg,
+          paragraph: "Կադրային աշխատանքի վարում",
+          text:
+            "-հաշվապահական հաշվառման քաղաքականության մշակում - հարկային քաղաքականության մշակում",
+          name_arm: "string",
+          name_ru: "string",
+          name_en: "string",
+        },
+        open: false,
+      },
+    ])
+  }
+
+  useEffect(() => {
+    getServiceData()
+  }, [])
+
+  const toggle = current => {
+    const data = servicedata.map(d =>
+      d.data.id === current.data.id && d.open === false
+        ? { ...d, open: true }
+        : d.data.id !== current.data.id && d.open === true
+        ? { ...d, open: false }
+        : { ...d, open: false }
+    )
+    setservicedata(data)
+  }
 
   return (
     <Layout>
@@ -104,315 +228,14 @@ const Services = props => {
           </PStyled>
         </Col>
       </HeadingParagraphRow>
-      <Row
-        align="middle"
-        gutter={[10, 50]}
-        style={{ marginBottom: "2.2%", paddingRight: "7%" }}
-      >
-        <Col
-          xxl={{ span: 1, offset: 3 }}
-          xl={{ span: 1, offset: 2 }}
-          lg={{ span: 1, offset: 1 }}
-        >
-          <HeadIcon src={CalcImg} alt={"icon"} />
-        </Col>
-        <Col xxl={17} xl={18} lg={19} span={19}>
-          <ToggleH2Styled>Հաշվապահական հաշվառում</ToggleH2Styled>
-        </Col>
-        <Col span={2}>
-          <ToggleButton
-            block
-            onClick={() => toggleAccountingForm(!showAccountingForm)}
-          >
-            {showAccountingForm ? (
-              <MinusOutlined style={{ fontSize: "20px" }} />
-            ) : (
-              <PlusOutlined style={{ fontSize: "20px" }} />
-            )}
-          </ToggleButton>
-        </Col>
-        {showAccountingForm ? (
-          <Col span={24}>
-            <SubParagStyled>
-              -հաշվապահական հաշվառման քաղաքականության մշակում <br /> -հարկային
-              քաղաքականության մշակում
-            </SubParagStyled>
-          </Col>
-        ) : null}
-      </Row>
-
-      <Row
-        align="middle"
-        gutter={[10, 50]}
-        style={{
-          marginBottom: "2.2%",
-          paddingRight: "7%",
-          borderTop: "1px solid",
-          borderColor: "#d7d7d7",
-        }}
-      >
-        <Col
-          xxl={{ span: 1, offset: 3 }}
-          xl={{ span: 1, offset: 2 }}
-          lg={{ span: 1, offset: 1 }}
-        >
-          <HeadIcon src={TaxImg} alt={"icon"} />
-        </Col>
-        <Col xxl={17} xl={18} lg={19} span={19}>
-          <ToggleH2Styled>Հարկային հաշվառում</ToggleH2Styled>
-        </Col>
-        <Col span={2}>
-          <ToggleButton block onClick={() => toggleTaxForm(!showTaxForm)}>
-            {showTaxForm ? (
-              <MinusOutlined style={{ fontSize: "20px" }} />
-            ) : (
-              <PlusOutlined style={{ fontSize: "20px" }} />
-            )}
-          </ToggleButton>
-        </Col>
-        {showTaxForm ? (
-          <Col span={24}>
-            <SubParagStyled>
-              -հարկային պլանավորում <br /> -հարկային հաշվառում և
-              հաշվետվությունների ներկայացում
-            </SubParagStyled>
-          </Col>
-        ) : null}
-      </Row>
-      <Row
-        align="middle"
-        gutter={[10, 50]}
-        style={{
-          marginBottom: "2.2%",
-          paddingRight: "7%",
-          borderTop: "1px solid",
-          borderColor: "#d7d7d7",
-        }}
-      >
-        <Col
-          xxl={{ span: 1, offset: 3 }}
-          xl={{ span: 1, offset: 2 }}
-          lg={{ span: 1, offset: 1 }}
-        >
-          <HeadIcon src={AuditImg} alt={"icon"} />
-        </Col>
-        <Col xxl={17} xl={18} lg={19} span={19}>
-          <ToggleH2Styled>Հարկային աուդիտ</ToggleH2Styled>
-        </Col>
-        <Col span={2}>
-          <ToggleButton block onClick={() => toggleAuditForm(!showAuditForm)}>
-            {showAuditForm ? (
-              <MinusOutlined style={{ fontSize: "20px" }} />
-            ) : (
-              <PlusOutlined style={{ fontSize: "20px" }} />
-            )}
-          </ToggleButton>
-        </Col>
-        {showAuditForm ? (
-          <Col span={24}>
-            <SubParagStyled>
-              -հարկային քաղաքականության մշակում <br /> -հարկային բեռի նվազեցում
-            </SubParagStyled>
-          </Col>
-        ) : null}
-      </Row>
-      <Row
-        align="middle"
-        gutter={[10, 50]}
-        style={{
-          marginBottom: "2.2%",
-          paddingRight: "7%",
-          borderTop: "1px solid",
-          borderColor: "#d7d7d7",
-        }}
-      >
-        <Col
-          xxl={{ span: 1, offset: 3 }}
-          xl={{ span: 1, offset: 2 }}
-          lg={{ span: 1, offset: 1 }}
-        >
-          <HeadIcon src={ClientImg} alt={"icon"} />
-        </Col>
-        <Col xxl={17} xl={18} lg={19} span={19}>
-          <ToggleH2Styled>Խորհրդատվություն</ToggleH2Styled>
-        </Col>
-        <Col span={2}>
-          <ToggleButton block onClick={() => toggleClientForm(!showClientForm)}>
-            {showClientForm ? (
-              <MinusOutlined style={{ fontSize: "20px" }} />
-            ) : (
-              <PlusOutlined style={{ fontSize: "20px" }} />
-            )}
-          </ToggleButton>
-        </Col>
-        {showClientForm ? (
-          <Col span={24}>
-            <SubParagStyled>
-              -հաշվապահական հաշվառման քաղաքականության մշակում <br />
-              -հարկային հաշվառման քաղաքականության մշակում <br />
-            </SubParagStyled>
-          </Col>
-        ) : null}
-      </Row>
-      <Row
-        align="middle"
-        gutter={[10, 50]}
-        style={{
-          marginBottom: "2.2%",
-          paddingRight: "7%",
-          borderTop: "1px solid",
-          borderColor: "#d7d7d7",
-        }}
-      >
-        <Col
-          xxl={{ span: 1, offset: 3 }}
-          xl={{ span: 1, offset: 2 }}
-          lg={{ span: 1, offset: 1 }}
-        >
-          <HeadIcon src={BrowserImg} alt={"icon"} />
-        </Col>
-        <Col xxl={17} xl={18} lg={19} span={19}>
-          <ToggleH2Styled>Կազմակերպության գրանցում</ToggleH2Styled>
-        </Col>
-        <Col span={2}>
-          <ToggleButton
-            block
-            onClick={() => toggleCompRegForm(!showCompRegForm)}
-          >
-            {showCompRegForm ? (
-              <MinusOutlined style={{ fontSize: "20px" }} />
-            ) : (
-              <PlusOutlined style={{ fontSize: "20px" }} />
-            )}
-          </ToggleButton>
-        </Col>
-        {showCompRegForm ? (
-          <Col span={24}>
-            <SubParagStyled>
-              -հաշվապահական հաշվառման քաղաքականության մշակում <br />
-              -կազմակերպության հաշվապահական հաշվառում
-            </SubParagStyled>
-          </Col>
-        ) : null}
-      </Row>
-      <Row
-        align="middle"
-        gutter={[10, 50]}
-        style={{
-          marginBottom: "2.2%",
-          paddingRight: "7%",
-          borderTop: "1px solid",
-          borderColor: "#d7d7d7",
-        }}
-      >
-        <Col
-          xxl={{ span: 1, offset: 3 }}
-          xl={{ span: 1, offset: 2 }}
-          lg={{ span: 1, offset: 1 }}
-        >
-          <HeadIcon src={UserImg} alt={"icon"} />
-        </Col>
-        <Col xxl={17} xl={18} lg={19} span={19}>
-          <ToggleH2Styled>Ֆիզիկական անձանց</ToggleH2Styled>
-        </Col>
-        <Col span={2}>
-          <ToggleButton
-            block
-            onClick={() => toggleIndividualForm(!showIndividualForm)}
-          >
-            {showIndividualForm ? (
-              <MinusOutlined style={{ fontSize: "20px" }} />
-            ) : (
-              <PlusOutlined style={{ fontSize: "20px" }} />
-            )}
-          </ToggleButton>
-        </Col>
-        {showIndividualForm ? (
-          <Col span={24}>
-            <SubParagStyled>
-              -հաշվապահական հաշվառման քաղաքականության մշակում <br />
-              -կազմակերպության հաշվապահական հաշվառում
-            </SubParagStyled>
-          </Col>
-        ) : null}
-      </Row>
-      <Row
-        align="middle"
-        gutter={[10, 50]}
-        style={{
-          marginBottom: "2.2%",
-          paddingRight: "7%",
-          borderTop: "1px solid",
-          borderColor: "#d7d7d7",
-        }}
-      >
-        <Col
-          xxl={{ span: 1, offset: 3 }}
-          xl={{ span: 1, offset: 2 }}
-          lg={{ span: 1, offset: 1 }}
-        >
-          <HeadIcon src={LawImg} alt={"icon"} />
-        </Col>
-        <Col xxl={17} xl={18} lg={19} span={19}>
-          <ToggleH2Styled>Մաքսային գոծարքներ</ToggleH2Styled>
-        </Col>
-        <Col span={2}>
-          <ToggleButton block onClick={() => toggleLawForm(!showLawForm)}>
-            {showLawForm ? (
-              <MinusOutlined style={{ fontSize: "20px" }} />
-            ) : (
-              <PlusOutlined style={{ fontSize: "20px" }} />
-            )}
-          </ToggleButton>
-        </Col>
-        {showLawForm ? (
-          <Col span={24}>
-            <SubParagStyled>
-              -հաշվապահական հաշվառման քաղաքականության մշակում <br />
-              -կազմակերպության հաշվապահական հաշվառում
-            </SubParagStyled>
-          </Col>
-        ) : null}
-      </Row>
-      <Row
-        align="middle"
-        gutter={[10, 50]}
-        style={{
-          marginBottom: "2.2%",
-          paddingRight: "7%",
-          borderTop: "1px solid",
-          borderBottom: "1px solid",
-          borderColor: "#d7d7d7",
-        }}
-      >
-        <Col
-          xxl={{ span: 1, offset: 3 }}
-          xl={{ span: 1, offset: 2 }}
-          lg={{ span: 1, offset: 1 }}
-        >
-          <HeadIcon src={TeamImg} alt={"icon"} />
-        </Col>
-        <Col xxl={17} xl={18} lg={19} span={19}>
-          <ToggleH2Styled>Կադրային աշխատանքի վարում</ToggleH2Styled>
-        </Col>
-        <Col span={2}>
-          <ToggleButton block onClick={() => toggleTeamForm(!showTeamForm)}>
-            {showTeamForm ? (
-              <MinusOutlined style={{ fontSize: "20px" }} />
-            ) : (
-              <PlusOutlined style={{ fontSize: "20px" }} />
-            )}
-          </ToggleButton>
-        </Col>
-        {showTeamForm ? (
-          <Col span={24}>
-            <SubParagStyled>
-              -աշխատանքային պայմանագրերի կազմում -հրամանների կազմում <br />
-              -աշխատաժամանակի, գրաֆիկի ցուցակների կազմում
-            </SubParagStyled>
-          </Col>
-        ) : null}
-      </Row>
+      {servicedata.map((d, id) => (
+        <ServiceDropWrap
+          // showForm={showdrop}
+          showServiceForm={toggle}
+          data={d}
+          key={id}
+        />
+      ))}
     </Layout>
   )
 }

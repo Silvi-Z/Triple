@@ -8,6 +8,7 @@ import InformDocTemplate from "../components/informationcomponents/doctemplatein
 import Img1 from "../assets/informimages/src6821.jpg"
 import Img2 from "../assets/informimages/water.jpg"
 import Img3 from "../assets/informimages/drosh.jpg"
+import News1 from "../components/informationcomponents/secondnewspage"
 
 const InformationParagraphRow = styled(Row)`
   padding: 0 12%;
@@ -42,12 +43,6 @@ const PStyled = styled.p`
 const InformationNavRow = styled(Row)`
   padding: 0 16%;
   margin-bottom: 3%;
-  /* height: 4.7%;
-  padding-top: 2%;
-  box-shadow: 0px 5px 40px 0 rgba(0, 0, 0, 0.05);
-  background-color: #ffffff;
-  display: flex;
-  justify-content: center; */
 `
 const InformationNewsCol = styled(Col)`
   width: 232px;
@@ -140,6 +135,7 @@ const InformSectionRow = styled(Row)`
 
 const Information = () => {
   const [dataNewsInfo, setDataNewsinfo] = useState([])
+  const [open, setopen] = useState(false)
   const [dataUseInfo, setdataUseInfo] = useState([])
   const [dataDoctempInfo, setdataDoctempInfo] = useState([])
   const [openNews, setOpenNews] = useState(true)
@@ -452,6 +448,13 @@ const Information = () => {
     setOpenNews(false)
   }
 
+  const openPage = () => {
+    setopen(!open)
+    setOpenDocTemp(false)
+    setOpenUseful(false)
+    setOpenNews(false)
+  }
+
   return (
     <Layout>
       <InformationParagraphRow>
@@ -491,9 +494,11 @@ const Information = () => {
       ) : openNews ? (
         <InformSectionRow>
           {dataNewsInfo.map(d => (
-            <InformNews data={d} key={d.id} />
+            <InformNews data={d} key={d.id} openpage={openPage} />
           ))}
         </InformSectionRow>
+      ) : open ? (
+        <News1 />
       ) : null}
     </Layout>
   )

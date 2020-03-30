@@ -48,7 +48,6 @@ const ListWrapper = styled(Col)`
   } */
 `
 const DocTemplateInform = ({ usedata }) => {
-  console.log(usedata)
   const linklist = usedata.data.links.map(lin => (
     <a
       href={lin.link}

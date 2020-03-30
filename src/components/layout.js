@@ -54,7 +54,7 @@ const FooterCust = styled(Footer)`
   }
 `
 const FooterNumberWrap = styled.div`
-  width: 235px;
+  width: 238px;
   height: 15px;
   font-family: ArialAMU;
   font-size: 16px;
@@ -131,9 +131,8 @@ const FooterCopyRightWrap = styled.div`
   line-height: normal;
   letter-spacing: normal;
   text-align: center;
-  border-top: 1px solid;
+  border-top: 0.1em solid;
   border-color: #ffffff;
-  border-width: thin;
   padding-top: 14px;
   color: #e8e8e8;
   /* @media only screen and (min-width: 768px) {
@@ -162,6 +161,9 @@ const FacebookWrapper = styled.img``
 const FooterNumberColumn = styled(Col)`
   display: flex;
   padding-left: 15%;
+  @media only screen and (max-width: 1524px) {
+    padding-left: 12%;
+  }
   @media only screen and (max-width: 768px) {
     padding-left: 0%;
   }

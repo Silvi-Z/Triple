@@ -8,10 +8,10 @@
 
 exports.onCreateBabelConfig = ({ actions }) => {
   actions.setBabelPlugin({
-    name: 'babel-plugin-import',
+    name: "babel-plugin-import",
     options: {
-      libraryName: 'antd',
+      libraryName: "antd",
       style: true,
     },
-  });
-};
+  })
+}

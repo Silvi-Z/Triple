@@ -75,7 +75,7 @@ const Formfield = () => {
           },
         ]}
       >
-        <Input />
+        <Input style={{ width: "400px", height: "38px" }} size="large" />
       </Form.Item>
 
       <Form.Item
@@ -83,7 +83,7 @@ const Formfield = () => {
         label="Էլ․ հասցե"
         rules={[{ type: "email", required: true }]}
       >
-        <Input />
+        <Input style={{ width: "400px", height: "38px" }} size="large" />
       </Form.Item>
 
       <Form.Item
@@ -98,8 +98,16 @@ const Formfield = () => {
         span={24}
       >
         <Upload {...fileprops} span={24}>
-          <Button>
-            <UploadOutlined />
+          <Button
+            style={{ width: "400px", height: "38px", textAlign: "right" }}
+            size="large"
+          >
+            <UploadOutlined
+              style={{
+                color: "#009db8",
+                fontSize: "20px",
+              }}
+            />
           </Button>
         </Upload>
       </Form.Item>
@@ -114,7 +122,7 @@ const Formfield = () => {
           },
         ]}
       >
-        <Input />
+        <Input style={{ width: "400px", height: "38px" }} size="large" />
       </Form.Item>
 
       <Form.Item
@@ -126,12 +134,17 @@ const Formfield = () => {
             message: "",
           },
         ]}
+        style={{ width: "600px", height: "80px" }}
       >
         <Input.TextArea />
       </Form.Item>
 
       <Form.Item {...tailLayout}>
-        <Button type="primary" htmlType="submit">
+        <Button
+          type="primary"
+          htmlType="submit"
+          style={{ width: "180px", height: "46px" }}
+        >
           Ուղարկել
         </Button>
       </Form.Item>
