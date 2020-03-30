@@ -8,6 +8,7 @@ const ServiceDropRow = styled(Row)`
   /* height: 120px; */
   margin-bottom: 2.2%;
   padding-right: 7%;
+  padding-left: 4.5%;
   border-bottom: 1px solid;
   border-color: "#009db8";
 `
@@ -59,7 +60,7 @@ const SubParagStyled = styled.div`
   letter-spacing: normal;
   text-align: left;
   color: #000000;
-  margin-left: 18%;
+  margin-left: 14%;
 `
 
 const DropHeadingIconCol = styled(Col)``

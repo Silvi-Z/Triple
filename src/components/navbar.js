@@ -250,7 +250,7 @@ const Navbar = ({ setResponswrapper, responswrapper }) => {
 
       <GridWrapper>
         <GridLang>
-          <select id="lang">
+          <select id="lang" style={{ border: "0px" }}>
             <option value="hy">Հայ</option>
             <option value="en">Eng</option>
             <option value="ru">Рус</option>
