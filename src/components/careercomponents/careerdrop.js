@@ -47,6 +47,10 @@ const DropCareerRow = styled(Row)`
   padding-right: "7%";
   border-bottom: 1px solid;
   border-color: "#009db8";
+  @media only screen and (max-width: 1524px) {
+    padding-left: 5%;
+    padding-right: 10%;
+  }
 `
 const DropHeadingIconCol = styled(Col)``
 const DropHeadingTitleCol = styled(Col)``

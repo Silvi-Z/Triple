@@ -131,9 +131,9 @@ const FooterCopyRightWrap = styled.div`
   line-height: normal;
   letter-spacing: normal;
   text-align: center;
-  border-top: 0.1em solid;
+  border-top: 0.01em solid;
   border-color: #ffffff;
-  padding-top: 14px;
+  padding-top: 22px;
   color: #e8e8e8;
   /* @media only screen and (min-width: 768px) {
     display: none;

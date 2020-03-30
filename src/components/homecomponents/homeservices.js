@@ -148,6 +148,9 @@ const TextWrapperBig = styled.p`
   text-align: center;
   color: #000000;
   margin-left: 30.3%;
+  @media only screen and (max-width: 1524px) {
+    margin-left: 27.3%;
+  }
   @media (max-width: 380px) {
     margin-left: 4.8%;
   }
