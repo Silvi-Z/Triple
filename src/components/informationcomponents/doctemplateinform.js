@@ -27,7 +27,7 @@ const TextWrapper = styled(Col)`
     color: #000000;
   }
   h3 {
-    width: 195px;
+    width: 200px;
     height: 12px;
     font-family: ArialAMU;
     font-size: 13px;

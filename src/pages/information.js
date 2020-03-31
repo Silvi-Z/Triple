@@ -50,7 +50,15 @@ const InformationNewsCol = styled(Col)`
   text-align: center;
   padding-top: 2%;
   box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
-  background-color: #ffffff;
+  background-color: ${props => (props.openNews ? "#009db8" : "#ffffff")};
+  .className {
+    background-color: red;
+    max-width: 232px;
+    height: 50px;
+    text-align: center;
+    padding-top: 2%;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
+  }
   > span {
     width: 105px;
     height: 15px;
@@ -135,7 +143,7 @@ const InformSectionRow = styled(Row)`
   margin-bottom: 2.8%;
 `
 
-const Information = () => {
+const Information = props => {
   const [dataNewsInfo, setDataNewsinfo] = useState([])
   const [open, setopen] = useState(false)
   const [dataUseInfo, setdataUseInfo] = useState([])
@@ -471,7 +479,10 @@ const Information = () => {
         </Col>
       </InformationParagraphRow>
       <InformationNavRow>
-        <InformationNewsCol onClick={ChangePageNews}>
+        <InformationNewsCol
+          className={openNews ? "className" : ""}
+          onClick={ChangePageNews}
+        >
           <span>Նորություններ</span>
         </InformationNewsCol>
         <InformationUsfulCol offset={1.5} onClick={ChangePageUse}>
