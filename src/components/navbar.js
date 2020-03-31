@@ -37,6 +37,33 @@ const ResponsiveMenuWrapper = styled.div`
   }
 `
 
+const AdressSpan = styled.span`
+  width: 67px;
+  height: 13px;
+  font-family: Sylfaen;
+  font-size: 12px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: #000000;
+`
+const PhoneSpan = styled.span`
+  width: 93px;
+  height: 10px;
+  font-family: ArialAMU;
+  font-size: 12px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: #000000;
+`
+
 const GridWrapper = styled.nav`
   padding: 1px;
   background-color: #ebebeb;
@@ -81,6 +108,7 @@ const HeadMainIcon = styled.img`
 
   @media only screen and (max-width: 1524px) {
     border-left: 0px solid;
+    border-right: 0px solid;
   }
 
   @media only screen and (max-width: 968px) {
@@ -260,7 +288,7 @@ const Navbar = ({ setResponswrapper, responswrapper }) => {
           <EnvironmentOutlined
             style={{ fontSize: "14px", marginRight: "5%" }}
           />
-          <span>Հր Քոչար 44</span>
+          <AdressSpan>Հր Քոչար 44</AdressSpan>
         </GridAddress>
         <GridBlank1 />
         <GridHome>
@@ -273,11 +301,11 @@ const Navbar = ({ setResponswrapper, responswrapper }) => {
           <PhoneOutlined
             style={{
               fontSize: "14px",
-              marginRight: "5%",
+              marginRight: "4%",
               transform: "rotate(90deg)",
             }}
           />
-          <span>374 93 00 00 00</span>
+          <PhoneSpan>374 93 00 00 00</PhoneSpan>
         </GridPhone>
         <GridService>
           <NavLink

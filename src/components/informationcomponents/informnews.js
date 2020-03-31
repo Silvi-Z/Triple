@@ -2,9 +2,8 @@ import React, { useState } from "react"
 import styled from "styled-components"
 import { Typography, Row, Col, Button, InputNumber } from "antd"
 
-
-const ContainerNews = styled(Row)`
-  width: 85%;
+const ContainerNews = styled(Col)`
+  max-width: 790px;
   height: 150px;
   overflow: hidden;
   margin-top: 5%;
@@ -13,7 +12,7 @@ const ContainerNews = styled(Row)`
 `
 const ImgWrapper = styled(Col)``
 const TextWrapper = styled(Col)`
-  padding: 1% 1%;
+  padding: 2.2% 1%;
   &:hover {
     color: #009db8;
     cursor: pointer;
@@ -26,6 +25,7 @@ const TextWrapper = styled(Col)`
   }
 `
 const Ptext = styled.p`
+  height: auto;
   font-family: ArialAMU;
   font-size: 12px;
   font-weight: normal;
@@ -36,7 +36,9 @@ const Ptext = styled.p`
   text-align: left;
   color: #000000;
 `
-const WrapperImg = styled.img``
+const WrapperImg = styled.img`
+  height: fit-content;
+`
 const H2text = styled.h2`
   font-family: ArialAMU;
   font-size: 16px;
@@ -47,21 +49,24 @@ const H2text = styled.h2`
   letter-spacing: normal;
   text-align: left;
   color: #000000;
+  margin-bottom: 8px;
 `
 const News = ({ data, openpage }) => {
   console.log(data)
   //const [open, setopen] = useState(false)
 
   return (
-    <ContainerNews onClick={openpage}>
-      <ImgWrapper span={6}>
-        <WrapperImg src={data.Imgurl} alt={"img"} />
-      </ImgWrapper>
-      <TextWrapper span={18}>
-        <H2text>{data.heading}</H2text>
-        <hr width="10%" />
-        <Ptext>{data.paragraph}</Ptext>
-      </TextWrapper>
+    <ContainerNews ls={24} onClick={openpage}>
+      <Row>
+        <ImgWrapper span={6}>
+          <WrapperImg src={data.Imgurl} alt={"img"} />
+        </ImgWrapper>
+        <TextWrapper span={18}>
+          <H2text>{data.heading}</H2text>
+          <hr width="10%" style={{ marginBottom: "9px" }} />
+          <Ptext>{data.paragraph}</Ptext>
+        </TextWrapper>
+      </Row>
     </ContainerNews>
   )
 }

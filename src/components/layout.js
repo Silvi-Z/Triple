@@ -162,7 +162,7 @@ const FooterNumberColumn = styled(Col)`
   display: flex;
   padding-left: 15%;
   @media only screen and (max-width: 1524px) {
-    padding-left: 12%;
+    padding-left: 7%;
   }
   @media only screen and (max-width: 768px) {
     padding-left: 0%;

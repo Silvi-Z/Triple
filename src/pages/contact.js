@@ -10,6 +10,9 @@ import CallPhoneImg from "../assets/footericons/phone-call.svg"
 const HeadingParagraphRow = styled(Row)`
   padding: 0 15%;
   margin-bottom: 2.8%;
+  @media only screen and (max-width: 1524px) {
+    padding: 0 10.5%;
+  }
 `
 const H2Styled = styled.h2`
   width: 119px;
@@ -61,8 +64,8 @@ const HeaderNumberColumn = styled(Col)`
 
   @media only screen and (max-width: 1524px) {
     max-width: 562px;
-    max-height: 50px;
-    margin-left: 15.5%;
+    max-height: 54px;
+    margin-left: 15%;
   }
   @media (max-width: 380px) {
     padding-left: 10%;
@@ -77,6 +80,7 @@ const CallIconWrapper = styled.img`
   width: 20px;
   height: 20px;
   color: #000000;
+  margin-top: 0.4%;
 `
 const ContactNumberWrap = styled.div`
   width: 240px;
@@ -91,6 +95,7 @@ const ContactNumberWrap = styled.div`
   text-align: center;
   margin-left: 17px;
   color: #000000;
+  margin-top: 0.4%;
 `
 
 const FormRow = styled(Row)`
@@ -101,14 +106,17 @@ const FormColumn = styled(Col)`
   background-color: #ffffff;
   padding: 1.8% 8.4%;
   @media only screen and (max-width: 1524px) {
-    margin-left: 19%;
+    margin-left: 16.5%;
     max-width: 562px;
-    max-height: 776px;
+    max-height: 700px;
   }
 `
 const InformationNavRow = styled(Row)`
   padding: 0 16%;
   margin-bottom: 3%;
+  @media only screen and (max-width: 1524px) {
+    padding: 0 13.6%;
+  }
 `
 const InformationIndividCol = styled(Col)`
   width: 256px;

@@ -12,7 +12,8 @@ const ServiceDropRow = styled(Row)`
   border-bottom: 1px solid;
   border-color: "#009db8";
   @media only screen and (max-width: 1524px) {
-    padding-left: 4.5%;
+    padding-left: 8.8%;
+    padding-right: 9%;
   }
 `
 const ToggleH2Styled = styled.h2`
@@ -65,7 +66,7 @@ const SubParagStyled = styled.div`
   color: #000000;
   margin-left: 18%;
   @media only screen and (max-width: 1524px) {
-    padding-left: 14%;
+    margin-left: 10%;
   }
 `
 

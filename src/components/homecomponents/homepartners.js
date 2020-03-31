@@ -52,8 +52,8 @@ const PStyled = styled.section`
   }
 `
 const SeemoreWrapper = styled.div`
-  width: 245px;
-  height: 60px;
+  width: 226px;
+  height: 50px;
   box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
   background-color: #ffffff;
   text-align: center;
@@ -61,7 +61,7 @@ const SeemoreWrapper = styled.div`
   display: flex;
 
   @media only screen and (max-width: 1524px) {
-    padding: 20px 40px;
+    padding: 16px 22px;
   }
   @media only screen and (max-width: 768px) {
     width: 225px;
@@ -78,7 +78,7 @@ const SeemoreWrapper = styled.div`
 const SeemoreColumn = styled(Col)`
   padding-left: 33%;
   @media only screen and (max-width: 1524px) {
-    padding-left: 32%;
+    padding-left: 30%;
   }
   @media only screen and (max-width: 768px) {
     padding-left: 18%;

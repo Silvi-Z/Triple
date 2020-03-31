@@ -11,7 +11,7 @@ import Img3 from "../assets/informimages/drosh.jpg"
 import News1 from "../components/informationcomponents/secondnewspage"
 
 const InformationParagraphRow = styled(Row)`
-  padding: 0 12%;
+  padding: 0 13.5%;
   margin-bottom: 2.8%;
 `
 const H2Styled = styled.h2`
@@ -45,15 +45,15 @@ const InformationNavRow = styled(Row)`
   margin-bottom: 3%;
 `
 const InformationNewsCol = styled(Col)`
-  width: 232px;
+  max-width: 232px;
   height: 50px;
   text-align: center;
-  padding-top: 1.2%;
+  padding-top: 2%;
   box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
   background-color: #ffffff;
   > span {
-    width: 205px;
-    height: 16px;
+    width: 105px;
+    height: 15px;
     font-family: ArialAMU;
     font-size: 16px;
     font-weight: normal;
@@ -73,12 +73,13 @@ const InformationNewsCol = styled(Col)`
   }
 `
 const InformationUsfulCol = styled(Col)`
-  width: 232px;
+  max-width: 232px;
   height: 50px;
   text-align: center;
-  padding-top: 1.2%;
+  padding-top: 2%;
   box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
   background-color: #ffffff;
+  margin-left: 0.7%;
   > span {
     width: 205px;
     height: 16px;
@@ -101,14 +102,15 @@ const InformationUsfulCol = styled(Col)`
   }
 `
 const InformationDocumentCol = styled(Col)`
-  width: 232px;
+  max-width: 232px;
   height: 50px;
   text-align: center;
-  padding-top: 1.2%;
+  padding-top: 2%;
   box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
   background-color: #ffffff;
+  margin-left: 0.7%;
   > span {
-    width: 205px;
+    width: 214px;
     height: 16px;
     font-family: ArialAMU;
     font-size: 16px;
@@ -469,13 +471,13 @@ const Information = () => {
         </Col>
       </InformationParagraphRow>
       <InformationNavRow>
-        <InformationNewsCol lg={7} onClick={ChangePageNews}>
+        <InformationNewsCol onClick={ChangePageNews}>
           <span>Նորություններ</span>
         </InformationNewsCol>
-        <InformationUsfulCol lg={7} offset={1.5} onClick={ChangePageUse}>
+        <InformationUsfulCol offset={1.5} onClick={ChangePageUse}>
           <span>Օգտակար տեղեկություններ</span>
         </InformationUsfulCol>
-        <InformationDocumentCol lg={7} offset={1.5} onClick={ChangePageDoc}>
+        <InformationDocumentCol offset={1.5} onClick={ChangePageDoc}>
           <span>Փաստաթղթերի ձևանմուշներ</span>
         </InformationDocumentCol>
       </InformationNavRow>

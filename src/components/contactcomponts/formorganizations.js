@@ -154,7 +154,7 @@ const Formfield = () => {
         <Button
           type="primary"
           htmlType="submit"
-          style={{ width: "180px", height: "46px" }}
+          style={{ width: "180px", height: "46px", margin: "5px -30px" }}
         >
           Ուղարկել
         </Button>

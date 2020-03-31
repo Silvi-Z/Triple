@@ -62,7 +62,7 @@ const PStyled = styled.section`
 `
 const SeemoreWrapper = styled.div`
   width: 226px;
-  height: 60px;
+  height: 50px;
   box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
   background-color: #ffffff;
   text-align: center;
@@ -70,7 +70,7 @@ const SeemoreWrapper = styled.div`
   display: flex;
 
   @media only screen and (max-width: 1524px) {
-    padding: 22px 43px;
+    padding: 17px 40px;
   }
 
   @media only screen and (max-width: 768px) {
@@ -127,6 +127,9 @@ const TextWrapperSmall = styled.p`
   text-align: center;
   color: #000000;
   margin-left: 28.8%;
+  @media only screen and (max-width: 1524px) {
+    margin-left: 22.8%;
+  }
   @media (max-width: 380px) {
     margin-left: 10.8%;
   }
@@ -136,8 +139,8 @@ const TextWrapperSmall = styled.p`
   }
 `
 const TextWrapperBig = styled.p`
-  width: 156px;
-  height: 34px;
+  width: 163px;
+  height: 16px;
   font-family: ArialAMU;
   font-size: 16px;
   font-weight: normal;
@@ -149,7 +152,7 @@ const TextWrapperBig = styled.p`
   color: #000000;
   margin-left: 30.3%;
   @media only screen and (max-width: 1524px) {
-    margin-left: 27.3%;
+    margin-left: 22.3%;
   }
   @media (max-width: 380px) {
     margin-left: 4.8%;
@@ -172,7 +175,7 @@ const ResponsWrapper = styled.div`
 const SeemoreColumn = styled(Col)`
   padding-left: 35%;
   @media only screen and (max-width: 1524px) {
-    padding-left: 33%;
+    padding-left: 29.5%;
   }
   @media only screen and (max-width: 768px) {
     padding-left: 21%;

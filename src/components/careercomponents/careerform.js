@@ -45,7 +45,7 @@ const layout = {
     span: 24,
   },
   wrapperCol: {
-    span: 16,
+    span: 24,
   },
 }
 const tailLayout = {
@@ -103,6 +103,7 @@ const Formfield = () => {
             message: "",
           },
         ]}
+        // style={{ div = {maxWidth: "0px"}}}
       >
         <Input.TextArea style={{ width: "540px", height: "80px" }} />
       </Form.Item>
@@ -120,7 +121,7 @@ const Formfield = () => {
           >
             <Upload {...fileprops}>
               <Button
-                style={{ width: "290px", height: "46px", textAlign: "right" }}
+                style={{ width: "340px", height: "46px", textAlign: "right" }}
               >
                 <UploadOutlined
                   style={{
@@ -132,12 +133,12 @@ const Formfield = () => {
             </Upload>
           </Form.Item>
         </Col>
-        <Col span={10} style={{ paddingTop: "5.8%", marginLeft: "3%" }}>
+        <Col span={8} style={{ paddingTop: "7.5%", marginLeft: "25%" }}>
           <Form.Item {...tailLayout}>
             <Button
               type="primary"
               htmlType="submit"
-              style={{ width: "150px", height: "46px" }}
+              style={{ width: "180px", height: "45px" }}
             >
               Ուղարկել
             </Button>
