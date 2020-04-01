@@ -10,7 +10,7 @@ const IndexPage = () => {
   const [responswrapper, setResponswrapper] = useState(true)
   return (
     <Layout
-      SetResponswrapper={() => setResponswrapper(!responswrapper)}
+      SetResponswrapper={() => setResponswrapper(false)}
       Responswrapper={responswrapper}
     >
       <SEO title="Home" />

@@ -16,6 +16,11 @@ import TeamImg from "../assets/homeImages/teamwork@3x.png"
 const HeadingParagraphRow = styled(Row)`
   padding: 0 12%;
   margin-bottom: 2.8%;
+  @media only screen and (max-width: 768px) {
+    padding-top: 49px;
+    padding-left: 8.8%;
+    padding-right: 9%;
+  }
 `
 const H2Styled = styled.h2`
   width: 155px;
@@ -29,6 +34,7 @@ const H2Styled = styled.h2`
   letter-spacing: normal;
   text-align: center;
   color: #000000;
+  text-align: left;
 `
 const PStyled = styled.p`
   width: 517px;
@@ -43,45 +49,34 @@ const PStyled = styled.p`
   text-align: left;
   color: #000000;
   margin-top: 26px;
-`
-const HeadIcon = styled.img`
-  width: 30px;
-  height: 30px;
-  @media (min-width: 1200px) {
-    width: 40px;
-    height: 40px;
+  @media only screen and (max-width: 375px) {
+    width: 289px;
+    height: 103px;
+    font-family: ArialAMU;
+    font-size: 16px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.88;
+    letter-spacing: normal;
+    text-align: left;
+    color: #000000;
   }
-  @media (min-width: 1600px) {
-    width: 50px;
-    height: 50px;
+  @media only screen and (max-width: 320px) {
+    width: 289px;
+    height: 103px;
+    font-family: ArialAMU;
+    font-size: 16px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.88;
+    letter-spacing: normal;
+    text-align: left;
+    color: #000000;
   }
 `
-const ToggleH2Styled = styled.h2`
-  font-size: 25px;
-  font-weight: 400;
-  margin-left: 2.7%;
-`
-const ToggleButton = styled(Button)`
-  width: 60px;
-  height: 60px;
-  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
-  background-color: #ffffff;
-  color: #009db8;
-`
-const SubParagStyled = styled.div`
-  width: 517px;
-  height: 46px;
-  font-family: ArialAMU;
-  font-size: 16px;
-  font-weight: normal;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: 1.88;
-  letter-spacing: normal;
-  text-align: left;
-  color: #000000;
-  margin-left: 13%;
-`
+
 const Services = () => {
   const [servicedata, setservicedata] = useState([])
 

@@ -66,8 +66,8 @@ const FooterNumberWrap = styled.div`
   text-align: center;
   margin-left: 17px;
   color: #ffffff;
-  /* @media only screen and (max-width: 768px) {
-    width: 100%;
+  @media only screen and (max-width: 768px) {
+    width: 235px;
     height: 16px;
     font-family: Sylfaen;
     font-size: 16px;
@@ -78,7 +78,7 @@ const FooterNumberWrap = styled.div`
     letter-spacing: normal;
     text-align: center;
     color: #ffffff;
-  } */
+  }
 `
 const FooterAdressWrap = styled.div`
   height: 16px;
@@ -165,7 +165,7 @@ const FooterNumberColumn = styled(Col)`
     padding-left: 7%;
   }
   @media only screen and (max-width: 768px) {
-    padding-left: 0%;
+    padding-left: 1%;
   }
   @media (max-width: 380px) {
     padding-left: 10%;
@@ -217,16 +217,22 @@ const Layout = ({ children, SetResponswrapper, Responswrapper }) => {
       </div>
       <FooterCust>
         <Row>
-          <FooterNumberColumn xs={24} sm={24} md={6} lg={8} xl={8}>
+          <FooterNumberColumn xs={24} sm={24} md={8} lg={8} xl={8}>
             <CallIconWrapper src={CallPhoneImg} alt={"icon"}></CallIconWrapper>
-            <FooterNumberWrap>+374 93706010,+374 93706010</FooterNumberWrap>
+            <FooterNumberWrap>
+              <span>+374 93706010,+374 93706010</span>
+            </FooterNumberWrap>
           </FooterNumberColumn>
-          <FooterAdressColumn xs={24} sm={24} md={12} lg={8} xl={8}>
+          <FooterAdressColumn xs={24} sm={24} md={8} lg={8} xl={8}>
             <LocationIconWrapper src={LocationImg} alt={"icon"} />
-            <FooterAdressWrap>Հր, Քոչար 44</FooterAdressWrap>
+            <FooterAdressWrap>
+              <span>Հր, Քոչար 44</span>
+            </FooterAdressWrap>
           </FooterAdressColumn>
-          <FooterFollowUsColumn xs={24} sm={24} md={6} lg={8} xl={8}>
-            <FooterFollowUsWrap>Հետևեք մեզ</FooterFollowUsWrap>
+          <FooterFollowUsColumn xs={24} sm={24} md={8} lg={8} xl={8}>
+            <FooterFollowUsWrap>
+              <span>Հետևեք մեզ</span>
+            </FooterFollowUsWrap>
             <LinkdinWrapper src={LinkedinImg} alt={"icon"} />
             <FacebookWrapper src={FacebookImg} alt={"icon"} />
           </FooterFollowUsColumn>

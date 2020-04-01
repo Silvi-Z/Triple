@@ -3,7 +3,9 @@ import { Typography, Row, Col } from "antd"
 import { Link } from "gatsby"
 import styled from "styled-components"
 //import { apiHelper } from "../helpers/apiHelper"
-import AlgorithmImg from "../../assets/homeImages/algorithm.png"
+import AlgorithmImg from "../../assets/homeImages/partners/algorithm-logo.png"
+import KochonImg from "../../assets/homeImages/partners/kochon.png"
+import AbcImg from "../../assets/homeImages/partners/abc.png"
 import RightArrowImg from "../../assets/homeImages/right-arrow.png"
 
 const NavLink = styled(Link)`
@@ -29,7 +31,6 @@ const H2Styled = styled.section`
   font-style: normal;
   line-height: normal;
   letter-spacing: normal;
-  text-align: center;
   color: #000000;
 `
 const PStyled = styled.section`
@@ -45,6 +46,19 @@ const PStyled = styled.section`
   text-align: left;
   color: #000000;
   margin-top: 26px;
+  @media only screen and (max-width: 768px) {
+    width: 442px;
+    height: 76px;
+    font-family: ArialAMU;
+    font-size: 16px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.88;
+    letter-spacing: normal;
+    text-align: left;
+    color: #000000;
+  }
 
   @media (max-width: 380px) {
     width: 285px;
@@ -57,28 +71,31 @@ const SeemoreWrapper = styled.div`
   box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
   background-color: #ffffff;
   text-align: center;
-  padding: 22px 33px;
+  padding: 16px 23px;
   display: flex;
 
-  @media only screen and (max-width: 1524px) {
+  @media only screen and (max-width: 1170px) {
     padding: 16px 22px;
   }
   @media only screen and (max-width: 768px) {
-    width: 225px;
-    height: 58px;
+    width: 226px;
+    height: 50px;
     box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
     background-color: #ffffff;
     text-align: center;
-    padding: 0px 35px;
+    padding: 0px;
     padding-left: 0px;
     padding-top: 0px;
     display: flex;
   }
 `
 const SeemoreColumn = styled(Col)`
-  padding-left: 33%;
-  @media only screen and (max-width: 1524px) {
+  padding-left: 32%;
+  @media only screen and (max-width: 1170px) {
     padding-left: 30%;
+  }
+  @media only screen and (max-width: 1024px) {
+    padding-left: 26.5%;
   }
   @media only screen and (max-width: 768px) {
     padding-left: 18%;
@@ -100,16 +117,16 @@ const SeemoreSpan = styled.span`
   text-align: center;
   color: #009db8;
   box-shadow: none;
-  @media only screen and (max-width: 1524px) {
+  @media only screen and (max-width: 1170px) {
     width: 162px;
   }
   @media only screen and (max-width: 768px) {
-    width: 208px;
-    height: 56px;
+    width: 187px;
+    height: 50px;
     box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
     background-color: #ffffff;
     text-align: center;
-    padding: 22px 22px;
+    padding: 15px 22px;
     display: flex;
     box-shadow: none;
   }
@@ -117,14 +134,6 @@ const SeemoreSpan = styled.span`
     padding: 19px 16px;
     box-shadow: none;
   }
-`
-const PartnersLogosWrapperRow = styled(Row)`
-  margin-top: 37px;
-  width: 100%;
-  height: 500px;
-  box-shadow: 0px 5px 40px 0 rgba(0, 0, 0, 0.05);
-  background-color: #ffffff;
-  margin: 37 auto;
 `
 const PartnersLogosFirstRow = styled(Row)`
   width: 100%;
@@ -134,17 +143,19 @@ const Seemoreimg = styled.img`
   width: 22px;
   height: 17px;
   margin-left: 20px;
+  @media only screen and (max-width: 768px) {
+    margin-left: 0px;
+    margin-top: 8%;
+  }
   @media (max-width: 380px) {
     margin-bottom: 0px;
     margin-top: 23px;
   }
 `
 const IconWrapper = styled.img`
-  width: 95px;
-  height: 130px;
-  margin-top: 16.6%;
-  margin-left: 35%;
-
+  width: 171px;
+  height: 50px;
+  margin-top: 18.7%;
   @media (max-width: 380px) {
     margin-left: 18%;
   }
@@ -154,6 +165,23 @@ const ResponsWrapper = styled.div`
     display: block;
     height: 838px;
   }
+`
+const IconWrapperCol = styled(Col)`
+  width: 250px;
+  height: 180px;
+  border-bottom: 1px solid;
+  border-right: 1px solid;
+  border-color: #d7d7d7;
+  background-color: #ffffff;
+  text-align: center;
+`
+const ContainerRow = styled(Row)`
+  margin-top: 37px;
+  width: 100%;
+  height: auto;
+  box-shadow: 0px 5px 40px 0 rgba(0, 0, 0, 0.05);
+  background-color: #ffffff;
+  margin: 37 auto;
 `
 
 const Homepartners = () => {
@@ -185,122 +213,40 @@ const Homepartners = () => {
         </SeemoreColumn>
       </Row>
       <ResponsWrapper>
-        <PartnersLogosWrapperRow>
+        <ContainerRow>
           <Col span={24}>
             <PartnersLogosFirstRow>
-              <Col
-                lg={6}
-                sm={12}
-                md={12}
-                xs={12}
-                style={{
-                  width: "25%",
-                  borderBottom: "1px solid",
-                  borderRight: "1px solid",
-                  borderColor: "#d7d7d7",
-                }}
-              >
+              <IconWrapperCol lg={6} xl={6} sm={12} md={12} xs={12}>
                 <IconWrapper src={AlgorithmImg} alt={"icon"}></IconWrapper>
-              </Col>
-              <Col
-                lg={6}
-                sm={12}
-                md={12}
-                xs={12}
-                style={{
-                  width: "25%",
-                  borderBottom: "1px solid",
-                  borderRight: "1px solid",
-                  borderColor: "#d7d7d7",
-                }}
-              >
+              </IconWrapperCol>
+              <IconWrapperCol lg={6} xl={6} sm={12} md={12} xs={12}>
+                <IconWrapper src={AbcImg} alt={"icon"}></IconWrapper>
+              </IconWrapperCol>
+              <IconWrapperCol lg={6} xl={6} sm={12} md={12} xs={12}>
                 <IconWrapper src={AlgorithmImg} alt={"icon"}></IconWrapper>
-              </Col>
-              <Col
-                lg={6}
-                sm={12}
-                md={12}
-                xs={12}
-                style={{
-                  width: "25%",
-                  borderBottom: "1px solid",
-                  borderRight: "1px solid",
-                  borderColor: "#d7d7d7",
-                }}
-              >
-                <IconWrapper src={AlgorithmImg} alt={"icon"}></IconWrapper>
-              </Col>
-              <Col
-                lg={6}
-                sm={12}
-                md={12}
-                xs={12}
-                style={{
-                  width: "25%",
-                  borderBottom: "1px solid",
-                  borderColor: "#d7d7d7",
-                }}
-              >
-                <IconWrapper src={AlgorithmImg} alt={"icon"}></IconWrapper>
-              </Col>
+              </IconWrapperCol>
+              <IconWrapperCol lg={6} xl={6} sm={12} md={12} xs={12}>
+                <IconWrapper src={AbcImg} alt={"icon"}></IconWrapper>
+              </IconWrapperCol>
             </PartnersLogosFirstRow>
           </Col>
           <Col span={24}>
             <PartnersLogosFirstRow>
-              <Col
-                lg={6}
-                sm={12}
-                md={12}
-                xs={12}
-                style={{
-                  width: "25%",
-                  borderRight: "1px solid",
-                  borderColor: "#d7d7d7",
-                }}
-              >
-                <IconWrapper src={AlgorithmImg} alt={"icon"}></IconWrapper>
-              </Col>
-              <Col
-                lg={6}
-                sm={12}
-                md={12}
-                xs={12}
-                style={{
-                  width: "25%",
-                  borderRight: "1px solid",
-                  borderColor: "#d7d7d7",
-                }}
-              >
-                <IconWrapper src={AlgorithmImg} alt={"icon"}></IconWrapper>
-              </Col>
-              <Col
-                lg={6}
-                sm={12}
-                md={12}
-                xs={12}
-                style={{
-                  width: "25%",
-                  borderRight: "1px solid",
-                  borderColor: "#d7d7d7",
-                }}
-              >
-                <IconWrapper src={AlgorithmImg} alt={"icon"}></IconWrapper>
-              </Col>
-              <Col
-                lg={6}
-                sm={12}
-                md={12}
-                xs={12}
-                style={{
-                  width: "25%",
-                  borderColor: "#d7d7d7",
-                }}
-              >
-                <IconWrapper src={AlgorithmImg} alt={"icon"}></IconWrapper>
-              </Col>
+              <IconWrapperCol lg={6} sm={12} md={12} xs={12}>
+                <IconWrapper src={KochonImg} alt={"icon"}></IconWrapper>
+              </IconWrapperCol>
+              <IconWrapperCol lg={6} sm={12} md={12} xs={12}>
+                <IconWrapper src={AbcImg} alt={"icon"}></IconWrapper>
+              </IconWrapperCol>
+              <IconWrapperCol lg={6} sm={12} md={12} xs={12}>
+                <IconWrapper src={KochonImg} alt={"icon"}></IconWrapper>
+              </IconWrapperCol>
+              <IconWrapperCol lg={6} sm={12} md={12} xs={12}>
+                <IconWrapper src={AbcImg} alt={"icon"}></IconWrapper>
+              </IconWrapperCol>
             </PartnersLogosFirstRow>
           </Col>
-        </PartnersLogosWrapperRow>
+        </ContainerRow>
       </ResponsWrapper>
     </>
   )

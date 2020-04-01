@@ -52,9 +52,6 @@ const H2text = styled.h2`
   margin-bottom: 8px;
 `
 const News = ({ data, openpage }) => {
-  console.log(data)
-  //const [open, setopen] = useState(false)
-
   return (
     <ContainerNews ls={24} onClick={openpage}>
       <Row>

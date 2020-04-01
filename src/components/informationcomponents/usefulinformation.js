@@ -27,7 +27,7 @@ const TextWrapper = styled(Col)`
     color: #000000;
   }
   h3 {
-    width: 195px;
+    width: 199px;
     height: 12px;
     font-family: ArialAMU;
     font-size: 13px;
@@ -50,7 +50,7 @@ const ListWrapper = styled(Col)`
 const UsefulInform = ({ usedata }) => {
   console.log(usedata)
   const linklist = usedata.data.links.map(lin => (
-    <a href={lin.link} download={lin.link}>
+    <a href={lin.link} download={lin.link} target="_blank">
       <li>{lin.label}</li>
     </a>
   ))

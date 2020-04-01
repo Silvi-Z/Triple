@@ -1,10 +1,40 @@
 import React, { useState } from "react"
 import { Link } from "gatsby"
 import styled from "styled-components"
-import { Row, Col } from "antd"
+import { Row, Col, Dropdown } from "antd"
 import CallImg from "../assets/homeImages/phone-call3.png"
 import MainLogo from "../assets/homeImages/3c.png"
 import { EnvironmentOutlined, PhoneOutlined } from "@ant-design/icons"
+import { DownOutlined } from "@ant-design/icons"
+
+const phones = (
+  <div className="phonedrop">
+    <div>
+      <PhoneOutlined
+        style={{
+          fontSize: "14px",
+          marginRight: "4%",
+          transform: "rotate(90deg)",
+        }}
+      />
+      <span className="phonenumber">374 93 00 00 00</span>
+    </div>
+    <div>
+      <i
+        class="fa fa-whatsapp"
+        style={{ fontSize: "15px", color: "green", marginRight: "4%" }}
+      ></i>
+      <span className="phonenumber">374 93 00 00 00</span>
+    </div>
+    <div>
+      <i
+        class="fa fa-whatsapp"
+        style={{ fontSize: "15px", color: "#7d3daf", marginRight: "4%" }}
+      ></i>
+      <span className="phonenumber">374 93 00 00 00</span>
+    </div>
+  </div>
+)
 
 const NavLink = styled(Link)`
   flex-grow: 1;
@@ -123,6 +153,7 @@ const ResponsiveNavWrapper = styled(Row)`
   display: none;
   width: 100%;
   height: 90px;
+  background-color: white;
   @media only screen and (max-width: 768px) {
     display: flex;
     > div {
@@ -213,7 +244,7 @@ const Navbar = ({ setResponswrapper, responswrapper }) => {
         </Col>
       </ResponsiveNavWrapper>
 
-      {!responswrapper ? (
+      {/* {!responswrapper ? (
         <ResponsiveMenuWrapper>
           <Row>
             <Col span={24} style={{ marginBottom: "4.6%" }}>
@@ -274,7 +305,7 @@ const Navbar = ({ setResponswrapper, responswrapper }) => {
             </Col>
           </Row>
         </ResponsiveMenuWrapper>
-      ) : null}
+      ) : null} */}
 
       <GridWrapper>
         <GridLang>
@@ -297,16 +328,31 @@ const Navbar = ({ setResponswrapper, responswrapper }) => {
           </NavLink>
         </GridHome>
         <GridBlank2 />
-        <GridPhone>
-          <PhoneOutlined
+        {/* <PhoneOutlined
             style={{
-              fontSize: "14px",
+              fontSize: "10px",
               marginRight: "4%",
               transform: "rotate(90deg)",
             }}
           />
-          <PhoneSpan>374 93 00 00 00</PhoneSpan>
-        </GridPhone>
+          <PhoneSpan>374 93 00 00 00</PhoneSpan> */}
+        <Dropdown overlay={phones} trigger={["click"]}>
+          <GridPhone>
+            <a
+              onClick={e => e.preventDefault()}
+              style={{ width: "100%", color: "black" }}
+            >
+              <PhoneOutlined
+                style={{
+                  fontSize: "14px",
+                  marginRight: "4%",
+                  transform: "rotate(90deg)",
+                }}
+              />
+              <PhoneSpan>374 93 00 00 00</PhoneSpan> <DownOutlined />
+            </a>
+          </GridPhone>
+        </Dropdown>
         <GridService>
           <NavLink
             to="/services/"

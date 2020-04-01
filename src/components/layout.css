@@ -627,6 +627,26 @@ pre tt:before,
 pre tt:after {
   content: "";
 }
+
+.phonedrop {
+  background: white;
+  width: 161px;
+  height: 69px;
+  text-align: center;
+}
+.phonenumber {
+  width: 91px;
+  height: 10px;
+  font-family: ArialAMU;
+  font-size: 12px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: #000000;
+}
 @media only screen and (max-width: 480px) {
   html {
     font-size: 100%;

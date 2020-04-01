@@ -45,6 +45,19 @@ const PStyled = styled.section`
   text-align: left;
   color: #000000;
   margin-top: 26px;
+  @media only screen and (max-width: 768px) {
+    width: 457px;
+    height: 46px;
+    font-family: ArialAMU;
+    font-size: 16px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.88;
+    letter-spacing: normal;
+    text-align: left;
+    color: #000000;
+  }
   @media (max-width: 380px) {
     width: 370px;
     height: 46px;
@@ -66,10 +79,10 @@ const SeemoreWrapper = styled.div`
   box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
   background-color: #ffffff;
   text-align: center;
-  padding: 22px 43px;
+  padding: 16px 45px;
   display: flex;
 
-  @media only screen and (max-width: 1524px) {
+  @media only screen and (max-width: 1170px) {
     padding: 17px 40px;
   }
 
@@ -98,7 +111,7 @@ const SeemoreSpan = styled.span`
   letter-spacing: normal;
   text-align: center;
   color: #009db8;
-  @media only screen and (max-width: 1524px) {
+  @media only screen and (max-width: 1170px) {
     width: 125px;
   }
 `
@@ -111,7 +124,7 @@ const Seemoreimg = styled.img`
 const IconWrapper = styled.img`
   width: 35px;
   height: 35px;
-  margin-top: 25.6%;
+  margin-top: 18.6%;
   margin-left: 45%;
 `
 const TextWrapperSmall = styled.p`
@@ -126,8 +139,9 @@ const TextWrapperSmall = styled.p`
   letter-spacing: normal;
   text-align: center;
   color: #000000;
-  margin-left: 28.8%;
-  @media only screen and (max-width: 1524px) {
+  /* margin-left: 28.8%; */
+  margin: auto;
+  @media only screen and (max-width: 1170px) {
     margin-left: 22.8%;
   }
   @media (max-width: 380px) {
@@ -150,9 +164,11 @@ const TextWrapperBig = styled.p`
   letter-spacing: normal;
   text-align: center;
   color: #000000;
-  margin-left: 30.3%;
-  @media only screen and (max-width: 1524px) {
-    margin-left: 22.3%;
+  /* margin-left: 30.3%; */
+  margin: auto;
+  @media only screen and (max-width: 1170px) {
+    margin-left: auto;
+    margin-bottom: 36px;
   }
   @media (max-width: 380px) {
     margin-left: 4.8%;
@@ -164,8 +180,8 @@ const TextWrapperBig = styled.p`
 `
 const ResponsWrapper = styled.div`
   @media only screen and (max-width: 768px) {
-    display: block;
-    height: 838px;
+    /* display: block; */
+    height: 700px;
   }
   @media (max-width: 380px) {
     display: block;
@@ -173,9 +189,13 @@ const ResponsWrapper = styled.div`
   }
 `
 const SeemoreColumn = styled(Col)`
-  padding-left: 35%;
-  @media only screen and (max-width: 1524px) {
+  padding-left: 32%;
+
+  @media only screen and (max-width: 1170px) {
     padding-left: 29.5%;
+  }
+  @media only screen and (max-width: 1024px) {
+    padding-left: 26.5%;
   }
   @media only screen and (max-width: 768px) {
     padding-left: 21%;
@@ -183,6 +203,22 @@ const SeemoreColumn = styled(Col)`
   @media (max-width: 380px) {
     padding-left: 0%;
   }
+`
+const IconWrapperCol = styled(Col)`
+  width: 250px;
+  height: 180px;
+  border-bottom: 1px solid;
+  border-right: 1px solid;
+  border-color: #d7d7d7;
+  background-color: #ffffff;
+`
+const ContainerRow = styled(Row)`
+  margin-top: 37px;
+  width: 100%;
+  height: auto;
+  box-shadow: 0px 5px 40px 0 rgba(0, 0, 0, 0.05);
+  background-color: #ffffff;
+  margin: 37 auto;
 `
 
 const Homeservices = () => {
@@ -206,139 +242,48 @@ const Homeservices = () => {
         </SeemoreColumn>
       </Row>
       <ResponsWrapper>
-        <Row
-          style={{
-            marginTop: "37px",
-            width: "100%",
-            height: "500px",
-            boxShadow: "0px 5px 40px 0 rgba(0, 0, 0, 0.05)",
-            backgroundColor: "#ffffff",
-            margin: "37 auto",
-          }}
-        >
+        <ContainerRow>
           <Col span={24}>
             <Row style={{ width: "100%", height: "100%" }}>
-              <Col
-                lg={6}
-                md={12}
-                sm={12}
-                xs={12}
-                style={{
-                  width: "25%",
-                  borderBottom: "1px solid",
-                  borderRight: "1px solid",
-                  borderColor: "#d7d7d7",
-                }}
-              >
+              <IconWrapperCol lg={6} md={12} xl={6} sm={12} xs={12}>
                 <IconWrapper src={CalcImg} alt={"icon"}></IconWrapper>
-                <TextWrapperSmall>Հաշվապահական հաշվառում</TextWrapperSmall>
-              </Col>
-              <Col
-                lg={6}
-                sm={12}
-                md={12}
-                xs={12}
-                style={{
-                  width: "25%",
-                  borderBottom: "1px solid",
-                  borderRight: "1px solid",
-                  borderColor: "#d7d7d7",
-                }}
-              >
+                <TextWrapperBig>Հաշվապահական հաշվառում</TextWrapperBig>
+              </IconWrapperCol>
+              <IconWrapperCol lg={6} xl={6} sm={12} md={12} xs={12}>
                 <IconWrapper src={TaxImg} alt={"icon"}></IconWrapper>
                 <TextWrapperBig>Հարկային հաշվառում</TextWrapperBig>
-              </Col>
-              <Col
-                lg={6}
-                sm={12}
-                md={12}
-                xs={12}
-                style={{
-                  width: "25%",
-                  borderBottom: "1px solid",
-                  borderRight: "1px solid",
-                  borderColor: "#d7d7d7",
-                }}
-              >
+              </IconWrapperCol>
+              <IconWrapperCol lg={6} xl={6} sm={12} md={12} xs={12}>
                 <IconWrapper src={AuditImg} alt={"icon"}></IconWrapper>
                 <TextWrapperBig>Հարկային աուդիտ</TextWrapperBig>
-              </Col>
-              <Col
-                lg={6}
-                sm={12}
-                md={12}
-                xs={12}
-                style={{
-                  width: "25%",
-                  borderBottom: "1px solid",
-                  borderColor: "#d7d7d7",
-                }}
-              >
+              </IconWrapperCol>
+              <IconWrapperCol lg={6} xl={6} sm={12} md={12} xs={12}>
                 <IconWrapper src={ClientImg} alt={"icon"}></IconWrapper>
                 <TextWrapperBig>Խորհրդատվություն</TextWrapperBig>
-              </Col>
+              </IconWrapperCol>
             </Row>
           </Col>
           <Col span={24}>
             <Row style={{ width: "100%", height: "100%" }}>
-              <Col
-                lg={6}
-                sm={12}
-                md={12}
-                xs={12}
-                style={{
-                  width: "25%",
-                  borderRight: "1px solid",
-                  borderColor: "#d7d7d7",
-                }}
-              >
+              <IconWrapperCol lg={6} xl={6} sm={12} md={12} xs={12}>
                 <IconWrapper src={BrowserImg} alt={"icon"}></IconWrapper>
-                <TextWrapperSmall>Կազմակերպության գրանցում</TextWrapperSmall>
-              </Col>
-              <Col
-                lg={6}
-                sm={12}
-                md={12}
-                xs={12}
-                style={{
-                  width: "25%",
-                  borderRight: "1px solid",
-                  borderColor: "#d7d7d7",
-                }}
-              >
+                <TextWrapperBig>Կազմակերպության գրանցում</TextWrapperBig>
+              </IconWrapperCol>
+              <IconWrapperCol lg={6} xl={6} sm={12} md={12} xs={12}>
                 <IconWrapper src={UserImg} alt={"icon"}></IconWrapper>
                 <TextWrapperBig>Ֆիզիկական անձանց</TextWrapperBig>
-              </Col>
-              <Col
-                lg={6}
-                sm={12}
-                md={12}
-                xs={12}
-                style={{
-                  width: "25%",
-                  borderRight: "1px solid",
-                  borderColor: "#d7d7d7",
-                }}
-              >
+              </IconWrapperCol>
+              <IconWrapperCol lg={6} xl={6} sm={12} md={12} xs={12}>
                 <IconWrapper src={LawImg} alt={"icon"}></IconWrapper>
                 <TextWrapperBig>Մաքսային գոծարքներ</TextWrapperBig>
-              </Col>
-              <Col
-                lg={6}
-                sm={12}
-                md={12}
-                xs={12}
-                style={{
-                  width: "25%",
-                  borderColor: "#d7d7d7",
-                }}
-              >
+              </IconWrapperCol>
+              <IconWrapperCol lg={6} xl={6} sm={12} md={12} xs={12}>
                 <IconWrapper src={TeamImg} alt={"icon"}></IconWrapper>
                 <TextWrapperBig>Կադրային աշխատանքի վարում</TextWrapperBig>
-              </Col>
+              </IconWrapperCol>
             </Row>
           </Col>
-        </Row>
+        </ContainerRow>
       </ResponsWrapper>
     </>
   )
