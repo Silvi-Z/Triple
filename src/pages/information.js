@@ -48,17 +48,9 @@ const InformationNewsCol = styled(Col)`
   max-width: 232px;
   height: 50px;
   text-align: center;
-  padding-top: 2%;
+  padding-top: 1.5%;
   box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
-  background-color: ${props => (props.openNews ? "#009db8" : "#ffffff")};
-  .className {
-    background-color: red;
-    max-width: 232px;
-    height: 50px;
-    text-align: center;
-    padding-top: 2%;
-    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
-  }
+  background-color: ${props => (props.open ? "#009db8" : "#ffffff")};
   > span {
     width: 105px;
     height: 15px;
@@ -70,10 +62,10 @@ const InformationNewsCol = styled(Col)`
     line-height: normal;
     letter-spacing: normal;
     text-align: center;
-    color: #009db8;
+    color: ${props => (props.open ? "#ffffff" : "#009db8")};
   }
   &:hover {
-    background-color: #009db8;
+    background-color: "#009db8";
     cursor: pointer;
     span {
       color: white;
@@ -84,9 +76,9 @@ const InformationUsfulCol = styled(Col)`
   max-width: 232px;
   height: 50px;
   text-align: center;
-  padding-top: 2%;
+  padding-top: 1.5%;
   box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
-  background-color: #ffffff;
+  background-color: ${props => (props.open ? "#009db8" : "#ffffff")};
   margin-left: 0.7%;
   > span {
     width: 205px;
@@ -99,7 +91,7 @@ const InformationUsfulCol = styled(Col)`
     line-height: normal;
     letter-spacing: normal;
     text-align: center;
-    color: #009db8;
+    color: ${props => (props.open ? "#ffffff" : "#009db8")};
   }
   &:hover {
     background-color: #009db8;
@@ -113,9 +105,9 @@ const InformationDocumentCol = styled(Col)`
   max-width: 232px;
   height: 50px;
   text-align: center;
-  padding-top: 2%;
+  padding-top: 1.5%;
   box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
-  background-color: #ffffff;
+  background-color: ${props => (props.open ? "#009db8" : "#ffffff")};
   margin-left: 0.7%;
   > span {
     width: 214px;
@@ -128,7 +120,7 @@ const InformationDocumentCol = styled(Col)`
     line-height: normal;
     letter-spacing: normal;
     text-align: center;
-    color: #009db8;
+    color: ${props => (props.open ? "#ffffff" : "#009db8")};
   }
   &:hover {
     background-color: #009db8;
@@ -479,16 +471,21 @@ const Information = props => {
         </Col>
       </InformationParagraphRow>
       <InformationNavRow>
-        <InformationNewsCol
-          className={openNews ? "className" : ""}
-          onClick={ChangePageNews}
-        >
+        <InformationNewsCol onClick={ChangePageNews} open={openNews}>
           <span>Նորություններ</span>
         </InformationNewsCol>
-        <InformationUsfulCol offset={1.5} onClick={ChangePageUse}>
+        <InformationUsfulCol
+          offset={1.5}
+          onClick={ChangePageUse}
+          open={openUseful}
+        >
           <span>Օգտակար տեղեկություններ</span>
         </InformationUsfulCol>
-        <InformationDocumentCol offset={1.5} onClick={ChangePageDoc}>
+        <InformationDocumentCol
+          offset={1.5}
+          onClick={ChangePageDoc}
+          open={openDocTemp}
+        >
           <span>Փաստաթղթերի ձևանմուշներ</span>
         </InformationDocumentCol>
       </InformationNavRow>
