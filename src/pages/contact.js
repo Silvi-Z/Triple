@@ -4,13 +4,14 @@ import styled from "styled-components"
 import { Typography, Row, Col, Button, InputNumber } from "antd"
 import FormindIviduals from "../components/contactcomponts/formindividuals"
 import FormOrganizations from "../components/contactcomponts/formorganizations"
+import { EnvironmentOutlined } from "@ant-design/icons"
 
 import CallPhoneImg from "../assets/footericons/phone-call.svg"
 
-const HeadingParagraphRow = styled(Row)`
+const ParagraphRow = styled(Row)`
   padding: 0 15%;
   margin-bottom: 2.8%;
-  @media only screen and (max-width: 1524px) {
+  @media only screen and (max-width: 1170px) {
     padding: 0 10.5%;
   }
 `
@@ -39,7 +40,7 @@ const PStyled = styled.p`
   letter-spacing: normal;
   text-align: left;
   color: #000000;
-  @media only screen and (max-width: 1524px) {
+  @media only screen and (max-width: 1170px) {
     width: 768px;
     height: 76px;
     font-family: ArialAMU;
@@ -53,8 +54,9 @@ const PStyled = styled.p`
     color: #000000;
   }
 `
-const HeaderNumberColumn = styled(Col)`
-  height: 4.7%;
+const NumberCol = styled(Col)`
+  max-width: 562px;
+  max-height: 55px;
   padding-top: 2%;
   box-shadow: 0px 5px 40px 0 rgba(0, 0, 0, 0.05);
   background-color: #ffffff;
@@ -62,7 +64,7 @@ const HeaderNumberColumn = styled(Col)`
   justify-content: center;
   margin-top: 1.4%;
 
-  @media only screen and (max-width: 1524px) {
+  @media only screen and (max-width: 1170px) {
     max-width: 562px;
     max-height: 54px;
     margin-left: 15%;
@@ -71,8 +73,66 @@ const HeaderNumberColumn = styled(Col)`
     padding-left: 10%;
   }
 `
+const AdressCol = styled(Col)`
+  max-width: 562px;
+  max-height: 55px;
+  padding-top: 2%;
+  box-shadow: 0px 5px 40px 0 rgba(0, 0, 0, 0.05);
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+  margin-top: 1.4%;
+  padding-bottom: 18px;
+
+  @media only screen and (max-width: 1170px) {
+    max-width: 562px;
+    max-height: 54px;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.05);
+    background-color: #ffffff;
+    margin-left: 15%;
+    padding-bottom: 18px;
+  }
+  @media (max-width: 380px) {
+    padding-left: 10%;
+  }
+`
+const AddressSpan = styled.span`
+  width: 263px;
+  height: 16px;
+  font-family: ArialAMU;
+  font-size: 16px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: #000000;
+
+  a {
+    font-size: 14px;
+    color: #009db8;
+    font-family: ArialAMU;
+  }
+`
+const ContactAdressWrap = styled.div`
+  width: 263px;
+  height: 15px;
+  font-family: ArialAMU;
+  font-size: 16px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  margin-left: 11px;
+  color: #000000;
+  margin-top: 0.4%;
+`
+
 const HeadingParagrCol = styled(Col)`
-  @media only screen and (max-width: 1524px) {
+  @media only screen and (max-width: 1170px) {
     margin-left: 3.8%;
   }
 `
@@ -93,7 +153,7 @@ const ContactNumberWrap = styled.div`
   line-height: normal;
   letter-spacing: normal;
   text-align: center;
-  margin-left: 17px;
+  margin-left: 11px;
   color: #000000;
   margin-top: 0.4%;
 `
@@ -102,29 +162,32 @@ const FormRow = styled(Row)`
   padding: 0 12%;
 `
 const FormColumn = styled(Col)`
+  margin-left: 17%;
+  max-width: 562px;
+  max-height: 700px;
   box-shadow: 0px 5px 40px 0 rgba(0, 0, 0, 0.05);
   background-color: #ffffff;
   padding: 1.8% 8.4%;
-  @media only screen and (max-width: 1524px) {
+  @media only screen and (max-width: 1170px) {
     margin-left: 16.5%;
     max-width: 562px;
     max-height: 700px;
   }
 `
-const InformationNavRow = styled(Row)`
-  padding: 0 16%;
+const ContactNavRow = styled(Row)`
+  padding: 0 20%;
   margin-bottom: 3%;
-  @media only screen and (max-width: 1524px) {
+  @media only screen and (max-width: 1170px) {
     padding: 0 13.6%;
   }
 `
-const InformationIndividCol = styled(Col)`
-  width: 256px;
+const IndividCol = styled(Col)`
+  max-width: 275px;
   height: 50px;
   text-align: center;
   padding-top: 1.6%;
   box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
-  background-color: #ffffff;
+  background-color: ${props => (props.open ? "#009db8" : "#ffffff")};
   > span {
     width: 205px;
     height: 16px;
@@ -136,7 +199,7 @@ const InformationIndividCol = styled(Col)`
     line-height: normal;
     letter-spacing: normal;
     text-align: center;
-    color: #009db8;
+    color: ${props => (props.open ? "#ffffff" : "#009db8")};
   }
   &:hover {
     background-color: #009db8;
@@ -145,18 +208,19 @@ const InformationIndividCol = styled(Col)`
       color: white;
     }
   }
-  @media only screen and (max-width: 1524px) {
-    margin-left: 17.5%;
-    max-width: 256px;
+  @media only screen and (max-width: 1170px) {
+    margin-left: 15%;
+    max-width: 275px;
   }
 `
-const InformationCompCol = styled(Col)`
-  width: 256px;
+const CompanyCol = styled(Col)`
+  max-width: 275px;
   height: 50px;
   text-align: center;
   padding-top: 1.4%;
   box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
-  background-color: #ffffff;
+  background-color: ${props => (props.open ? "#009db8" : "#ffffff")};
+  margin-left: 1.6%;
   > span {
     width: 205px;
     height: 16px;
@@ -168,7 +232,7 @@ const InformationCompCol = styled(Col)`
     line-height: normal;
     letter-spacing: normal;
     text-align: center;
-    color: #009db8;
+    color: ${props => (props.open ? "#ffffff" : "#009db8")};
   }
   &:hover {
     background-color: #009db8;
@@ -177,9 +241,9 @@ const InformationCompCol = styled(Col)`
       color: white;
     }
   }
-  @media only screen and (max-width: 1524px) {
-    margin-left: 1.8%;
-    max-width: 256px;
+  @media only screen and (max-width: 1170px) {
+    margin-left: 1.5%;
+    max-width: 275px;
   }
 `
 const Contact = () => {
@@ -197,7 +261,7 @@ const Contact = () => {
 
   return (
     <Layout>
-      <HeadingParagraphRow>
+      <ParagraphRow>
         <HeadingParagrCol lg={{ span: 24 }}>
           <H2Styled>Կապ մեզ հետ</H2Styled>
           <PStyled>
@@ -207,21 +271,40 @@ const Contact = () => {
             մեզ։
           </PStyled>
         </HeadingParagrCol>
-      </HeadingParagraphRow>
-      <InformationNavRow>
-        <InformationIndividCol lg={8} offset={3} onClick={ChangeOpenInvid}>
+      </ParagraphRow>
+      <ContactNavRow>
+        <IndividCol
+          lg={9}
+          offset={2}
+          onClick={ChangeOpenInvid}
+          open={openIndivid}
+        >
           <span>Անհատների համար</span>
-        </InformationIndividCol>
-        <InformationCompCol lg={8} offset={1} onClick={ChangeOpenComp}>
+        </IndividCol>
+        <CompanyCol lg={9} offset={1} onClick={ChangeOpenComp} open={openComp}>
           <span>Կազմակերպությունների համար</span>
-        </InformationCompCol>
-        <HeaderNumberColumn lg={{ span: 19 }} offset={2}>
+        </CompanyCol>
+        <NumberCol lg={{ span: 19 }} offset={2}>
           <CallIconWrapper src={CallPhoneImg} alt={"icon"} />
           <ContactNumberWrap>
             <span>+374 93706010,+374 93706010</span>
           </ContactNumberWrap>
-        </HeaderNumberColumn>
-      </InformationNavRow>
+        </NumberCol>
+        <AdressCol lg={{ span: 19 }} offset={2}>
+          <EnvironmentOutlined style={{ fontSize: "16px", marginTop: "1%" }} />
+          <ContactAdressWrap>
+            <AddressSpan>
+              Հր Քոչար 44/54{" "}
+              <a
+                href="https://maps.google.com/?q=40.204059,44.508450"
+                target="_blank"
+              >
+                (Տեսնել քարտեզի վրա)
+              </a>
+            </AddressSpan>
+          </ContactAdressWrap>
+        </AdressCol>
+      </ContactNavRow>
       <FormRow>
         {openIndivid ? (
           <FormColumn lg={{ span: 17 }} offset={3}>
