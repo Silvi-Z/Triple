@@ -5,6 +5,7 @@
   "version": "0.1.0",
   "author": "Kyle Mathews <mathews.kyle@gmail.com>",
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.13.0",
     "antd": "^4.0.2",
     "axios": "^0.19.2",
     "babel-plugin-styled-components": "^1.10.7",

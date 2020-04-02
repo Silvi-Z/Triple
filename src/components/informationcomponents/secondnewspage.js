@@ -1,8 +1,8 @@
 import React from "react"
 import styled from "styled-components"
-import { Link } from "gatsby"
-import { Typography, Row, Col, Button, InputNumber } from "antd"
+import { Row, Col } from "antd"
 import Img1 from "../../assets/informimages/src6821.jpg"
+import BottomImg from "../../assets/informimages/newsimage.png"
 
 const ContainerNews = styled.div`
   max-width: 883px;
@@ -15,7 +15,10 @@ const ContainerNews = styled.div`
 
 const NewsCol = styled(Col)`
   max-width: 576px;
-  max-height: 672px;
+  height: 955px;
+  @media only screen and (max-width: 768px) {
+    max-width: 439px;
+  }
 `
 const ImagesCol = styled(Col)`
   max-width: 208px;
@@ -66,6 +69,10 @@ const H3Styled = styled.h2`
 const RowArticle = styled(Row)`
   max-width: 571px;
   max-height: 590px;
+  @media only screen and (max-width: 768px) {
+    max-width: 439px;
+    max-height: 590px;
+  }
 `
 const ArtCol1 = styled(Col)`
   margin-bottom: 2px;
@@ -89,6 +96,9 @@ const ArtCol1 = styled(Col)`
     text-align: left;
     color: #000000;
     margin-bottom: 0px;
+  }
+  @media only screen and (max-width: 768px) {
+    max-width: 439px;
   }
 `
 const ArtCol2 = styled(Col)`
@@ -118,7 +128,15 @@ const ArtCol2 = styled(Col)`
     color: #000000;
     margin-bottom: 0px;
   }
+  @media only screen and (max-width: 768px) {
+    width: 439px;
+  }
 `
+const ArtCol3 = styled(Col)`
+  margin-top: 32px;
+`
+const BottomImgWrapper = styled.img``
+
 const WrapperImg = styled(Col)`
   height: 224px;
   margin-bottom: 15px;
@@ -163,14 +181,14 @@ const UsefulNews = () => {
   return (
     <ContainerNews>
       <Row>
-        <NewsCol span={16}>
+        <NewsCol xl={16} lg={16} md={16}>
           <H2Styled>
             ՀԱՅԱՍՏԱՆԻ ՀԱՆՐԱՊԵՏՈՒԹՅԱՆ ՕՐԵՆՔԸ ՀԱՇՎԱՊԱՀԱԿԱՆ ՀԱՇՎԱՌՄԱՆ ՄԱՍԻՆ
           </H2Styled>
           <hr width="76px" style={{ marginBottom: "7px" }} />
           <H3Styled>25 Փետրվարի 2020թ</H3Styled>
           <RowArticle>
-            <ArtCol1 span={24}>
+            <ArtCol1 xl={24} lg={24} md={24}>
               <h2>Հոդված 1. Օրենքի նպատակը</h2>
               <p>
                 Սույն օրենքը սահմանում է Հայաստանի Հանրապետությունում
@@ -181,7 +199,7 @@ const UsefulNews = () => {
                 հարաբերություններ:
               </p>
             </ArtCol1>
-            <ArtCol2 span={24}>
+            <ArtCol2 xl={24} lg={24} md={24}>
               <h2>Հոդված 2. Օրենքի գործողության ոլորտը</h2>
               <p>
                 Սույն օրենքը տարածվում է Հայաստանի Հանրապետությունում սահմանված
@@ -206,9 +224,12 @@ const UsefulNews = () => {
                 հատուկ կանոնակարգը:
               </p>
             </ArtCol2>
+            <ArtCol3 span={24}>
+              <BottomImgWrapper src={BottomImg} />
+            </ArtCol3>
           </RowArticle>
         </NewsCol>
-        <ImagesCol span={6}>
+        <ImagesCol xl={6} lg={6} md={6}>
           <ImagesH2Styled>
             Ամենաընթերցված <br /> նորություններ
           </ImagesH2Styled>

@@ -41,11 +41,32 @@ const TextWrapper = styled(Col)`
   }
 `
 const ListWrapper = styled(Col)`
-  /* &:hover {
-    ol > li {
+  @media only screen and (max-width: 320px) {
+    ol {
+      font-family: ArialAMU;
+      font-size: 12px;
+      font-weight: normal;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: normal;
+      letter-spacing: normal;
+      text-align: left;
       color: #009db8;
     }
-  } */
+  }
+  @media only screen and (max-width: 375px) {
+    ol {
+      font-family: ArialAMU;
+      font-size: 12px;
+      font-weight: normal;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: normal;
+      letter-spacing: normal;
+      text-align: left;
+      color: #009db8;
+    }
+  }
 `
 const DocTemplateInform = ({ usedata }) => {
   const linklist = usedata.data.links.map(lin => (

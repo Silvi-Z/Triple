@@ -628,6 +628,9 @@ pre tt:after {
   content: "";
 }
 
+.phonebox {
+  margin-right: 10%;
+}
 .phonedrop {
   background: white;
   width: 161px;
@@ -650,5 +653,10 @@ pre tt:after {
 @media only screen and (max-width: 480px) {
   html {
     font-size: 100%;
+  }
+}
+@media only screen and (max-width: 1200px) {
+  .phonebox {
+    margin-right: 6%;
   }
 }

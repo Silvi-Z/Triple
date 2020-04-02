@@ -39,13 +39,57 @@ const TextWrapper = styled(Col)`
     text-align: left;
     color: #000000;
   }
+  @media only screen and (max-width: 375px) {
+    h2 {
+      width: 249px;
+      height: 35px;
+      font-family: ArialAMU;
+      font-size: 16px;
+      font-weight: bold;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: normal;
+      letter-spacing: normal;
+      text-align: left;
+      color: #000000;
+    }
+    h3 {
+      font-size: 12px;
+    }
+  }
+  @media only screen and (max-width: 320px) {
+    h2 {
+      width: 249px;
+      height: 35px;
+      font-family: ArialAMU;
+      font-size: 16px;
+      font-weight: bold;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: normal;
+      letter-spacing: normal;
+      text-align: left;
+      color: #000000;
+    }
+    h3 {
+      font-size: 12px;
+    }
+  }
 `
 const ListWrapper = styled(Col)`
-  /* &:hover {
-    ol > li {
+  @media only screen and (max-width: 320px) {
+    ol {
+      font-family: ArialAMU;
+      font-size: 12px;
+      font-weight: normal;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: normal;
+      letter-spacing: normal;
+      text-align: left;
       color: #009db8;
     }
-  } */
+  }
 `
 const UsefulInform = ({ usedata }) => {
   console.log(usedata)

@@ -5,7 +5,7 @@ import { Typography, Row, Col, Button, InputNumber } from "antd"
 import InformNews from "../components/informationcomponents/informnews"
 import InformUseFul from "../components/informationcomponents/usefulinformation"
 import InformDocTemplate from "../components/informationcomponents/doctemplateinform"
-import Img1 from "../assets/informimages/src6821.jpg"
+import Img1 from "../assets/informimages/hdm.jpg"
 import Img2 from "../assets/informimages/water.jpg"
 import Img3 from "../assets/informimages/drosh.jpg"
 import News1 from "../components/informationcomponents/secondnewspage"
@@ -13,6 +13,18 @@ import News1 from "../components/informationcomponents/secondnewspage"
 const InformationParagraphRow = styled(Row)`
   padding: 0 13.5%;
   margin-bottom: 2.8%;
+  @media only screen and (max-width: 768px) {
+    margin-top: 49px;
+    padding: 0 3.5%;
+  }
+  @media only screen and (max-width: 375px) {
+    margin-bottom: 70px;
+    padding: 0 3.5%;
+  }
+  @media only screen and (max-width: 320px) {
+    margin-bottom: 70px;
+    padding: 0 3.5%;
+  }
 `
 const H2Styled = styled.h2`
   width: 244px;
@@ -39,10 +51,32 @@ const PStyled = styled.p`
   letter-spacing: normal;
   text-align: left;
   color: #000000;
+  @media only screen and (max-width: 768px) {
+    max-width: 509px;
+    max-height: 106px;
+    margin-left: 0%;
+    margin-bottom: 40px;
+  }
+  @media only screen and (max-width: 375px) {
+    width: 288px;
+    height: 226px;
+    font-family: ArialAMU;
+  }
+  @media only screen and (max-width: 320px) {
+    width: 288px;
+    height: 226px;
+    font-family: ArialAMU;
+  }
 `
 const InformationNavRow = styled(Row)`
   padding: 0 16%;
   margin-bottom: 3%;
+  @media only screen and (max-width: 1024px) {
+    padding: 0 14%;
+  }
+  @media only screen and (max-width: 768px) {
+    padding: 0 0%;
+  }
 `
 const InformationNewsCol = styled(Col)`
   max-width: 232px;
@@ -70,6 +104,16 @@ const InformationNewsCol = styled(Col)`
     span {
       color: white;
     }
+  }
+  @media only screen and (max-width: 375px) {
+    max-width: 290px;
+    height: 50px;
+    padding-top: 3.5%;
+  }
+  @media only screen and (max-width: 320px) {
+    max-width: 290px;
+    height: 50px;
+    padding-top: 3.5%;
   }
 `
 const InformationUsfulCol = styled(Col)`
@@ -100,6 +144,16 @@ const InformationUsfulCol = styled(Col)`
       color: white;
     }
   }
+  @media only screen and (max-width: 375px) {
+    max-width: 290px;
+    height: 50px;
+    padding-top: 3.5%;
+  }
+  @media only screen and (max-width: 320px) {
+    max-width: 290px;
+    height: 50px;
+    padding-top: 3.5%;
+  }
 `
 const InformationDocumentCol = styled(Col)`
   max-width: 232px;
@@ -129,15 +183,34 @@ const InformationDocumentCol = styled(Col)`
       color: white;
     }
   }
+  @media only screen and (max-width: 375px) {
+    max-width: 290px;
+    height: 50px;
+    padding-top: 3.5%;
+  }
+  @media only screen and (max-width: 320px) {
+    max-width: 290px;
+    height: 50px;
+    padding-top: 3.5%;
+  }
 `
 const InformSectionRow = styled(Row)`
   padding: 0 12%;
   margin-bottom: 2.8%;
+  @media only screen and (max-width: 768px) {
+    padding: 0 0%;
+  }
+  @media only screen and (max-width: 375px) {
+    padding: 0 0%;
+  }
+  @media only screen and (max-width: 320px) {
+    padding: 0 0%;
+  }
 `
 
 const Information = props => {
   const [dataNewsInfo, setDataNewsinfo] = useState([])
-  const [open, setopen] = useState(false)
+  const [openSecondNews, setopenSecondNews] = useState(false)
   const [dataUseInfo, setdataUseInfo] = useState([])
   const [dataDoctempInfo, setdataDoctempInfo] = useState([])
   const [openNews, setOpenNews] = useState(true)
@@ -451,7 +524,7 @@ const Information = props => {
   }
 
   const openPage = () => {
-    setopen(!open)
+    setopenSecondNews(true)
     setOpenDocTemp(false)
     setOpenUseful(false)
     setOpenNews(false)
@@ -471,20 +544,22 @@ const Information = props => {
         </Col>
       </InformationParagraphRow>
       <InformationNavRow>
-        <InformationNewsCol onClick={ChangePageNews} open={openNews}>
+        <InformationNewsCol onClick={ChangePageNews} open={openNews} xs={24}>
           <span>Նորություններ</span>
         </InformationNewsCol>
         <InformationUsfulCol
-          offset={1.5}
+          offset={0}
           onClick={ChangePageUse}
           open={openUseful}
+          xs={24}
         >
           <span>Օգտակար տեղեկություններ</span>
         </InformationUsfulCol>
         <InformationDocumentCol
-          offset={1.5}
+          offset={0}
           onClick={ChangePageDoc}
           open={openDocTemp}
+          xs={24}
         >
           <span>Փաստաթղթերի ձևանմուշներ</span>
         </InformationDocumentCol>
@@ -507,7 +582,7 @@ const Information = props => {
             <InformNews data={d} key={d.id} openpage={openPage} />
           ))}
         </InformSectionRow>
-      ) : open ? (
+      ) : openSecondNews ? (
         <News1 />
       ) : null}
     </Layout>

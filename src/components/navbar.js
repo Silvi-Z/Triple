@@ -5,11 +5,11 @@ import { Row, Col, Dropdown } from "antd"
 import CallImg from "../assets/homeImages/phone-call3.png"
 import MainLogo from "../assets/homeImages/3c.png"
 import { EnvironmentOutlined, PhoneOutlined } from "@ant-design/icons"
-import { DownOutlined } from "@ant-design/icons"
+import { CaretDownOutlined } from "@ant-design/icons"
 
 const phones = (
   <div className="phonedrop">
-    <div>
+    <div className="phonebox">
       <PhoneOutlined
         style={{
           fontSize: "14px",
@@ -19,14 +19,14 @@ const phones = (
       />
       <span className="phonenumber">374 93 00 00 00</span>
     </div>
-    <div>
+    <div className="phonebox">
       <i
         class="fa fa-whatsapp"
         style={{ fontSize: "15px", color: "green", marginRight: "4%" }}
       ></i>
       <span className="phonenumber">374 93 00 00 00</span>
     </div>
-    <div>
+    <div className="phonebox">
       <i
         class="fa fa-whatsapp"
         style={{ fontSize: "15px", color: "#7d3daf", marginRight: "4%" }}
@@ -349,7 +349,7 @@ const Navbar = ({ setResponswrapper, responswrapper }) => {
                   transform: "rotate(90deg)",
                 }}
               />
-              <PhoneSpan>374 93 00 00 00</PhoneSpan> <DownOutlined />
+              <PhoneSpan>374 93 00 00 00</PhoneSpan> <CaretDownOutlined />
             </a>
           </GridPhone>
         </Dropdown>
