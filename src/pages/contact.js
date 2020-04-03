@@ -14,6 +14,18 @@ const ParagraphRow = styled(Row)`
   @media only screen and (max-width: 1170px) {
     padding: 0 10.5%;
   }
+  @media only screen and (max-width: 768px) {
+    margin-top: 49px;
+    padding: 0 3.5%;
+  }
+  @media only screen and (max-width: 375px) {
+    margin-bottom: 70px;
+    padding: 0 3.5%;
+  }
+  @media only screen and (max-width: 320px) {
+    margin-bottom: 70px;
+    padding: 0 2.5%;
+  }
 `
 const H2Styled = styled.h2`
   width: 119px;
@@ -53,6 +65,22 @@ const PStyled = styled.p`
     text-align: left;
     color: #000000;
   }
+  @media only screen and (max-width: 768px) {
+    max-width: 639px;
+    max-height: 106px;
+    margin-left: 0%;
+    margin-bottom: 40px;
+  }
+  @media only screen and (max-width: 375px) {
+    width: 288px;
+    height: 226px;
+    font-family: ArialAMU;
+  }
+  @media only screen and (max-width: 320px) {
+    width: 288px;
+    height: 226px;
+    font-family: ArialAMU;
+  }
 `
 const NumberCol = styled(Col)`
   max-width: 562px;
@@ -69,8 +97,17 @@ const NumberCol = styled(Col)`
     max-height: 54px;
     margin-left: 15%;
   }
-  @media (max-width: 380px) {
-    padding-left: 10%;
+  @media (max-width: 375px) {
+    max-width: 290px;
+    max-height: 54px;
+    margin-left: 5%;
+    padding-top: 5%;
+  }
+  @media (max-width: 320px) {
+    max-width: 290px;
+    max-height: 54px;
+    margin-left: -2%;
+    padding-top: 5%;
   }
 `
 const AdressCol = styled(Col)`
@@ -92,8 +129,17 @@ const AdressCol = styled(Col)`
     margin-left: 15%;
     padding-bottom: 18px;
   }
-  @media (max-width: 380px) {
-    padding-left: 10%;
+  @media (max-width: 375px) {
+    max-width: 290px;
+    max-height: 54px;
+    margin-left: 5%;
+    padding-top: 5%;
+  }
+  @media (max-width: 320px) {
+    max-width: 290px;
+    max-height: 54px;
+    margin-left: -2%;
+    padding-top: 5%;
   }
 `
 const AddressSpan = styled.span`
@@ -114,6 +160,30 @@ const AddressSpan = styled.span`
     color: #009db8;
     font-family: ArialAMU;
   }
+  @media only screen and (max-width: 375px) {
+    width: 235px;
+    height: 15px;
+    font-family: ArialAMU;
+    font-size: 15px;
+    padding: 0 0%;
+    a {
+      font-size: 12px;
+      color: #009db8;
+      font-family: ArialAMU;
+    }
+  }
+  @media only screen and (max-width: 320px) {
+    width: 235px;
+    height: 15px;
+    font-family: ArialAMU;
+    font-size: 15px;
+    padding: 0 0%;
+    a {
+      font-size: 12px;
+      color: #009db8;
+      font-family: ArialAMU;
+    }
+  }
 `
 const ContactAdressWrap = styled.div`
   width: 263px;
@@ -129,11 +199,33 @@ const ContactAdressWrap = styled.div`
   margin-left: 11px;
   color: #000000;
   margin-top: 0.4%;
+  @media only screen and (max-width: 375px) {
+    width: 235px;
+    height: 15px;
+    font-family: ArialAMU;
+    font-size: 15px;
+    padding: 0 0%;
+  }
+  @media only screen and (max-width: 320px) {
+    width: 235px;
+    height: 15px;
+    font-family: ArialAMU;
+    font-size: 15px;
+    padding: 0 0%;
+  }
 `
 
 const HeadingParagrCol = styled(Col)`
   @media only screen and (max-width: 1170px) {
     margin-left: 3.8%;
+  }
+  @media only screen and (max-width: 375px) {
+    margin-left: 0%;
+    margin-bottom: 13%;
+  }
+  @media only screen and (max-width: 320px) {
+    margin-left: 0%;
+    margin-bottom: 13%;
   }
 `
 const CallIconWrapper = styled.img`
@@ -156,10 +248,27 @@ const ContactNumberWrap = styled.div`
   margin-left: 11px;
   color: #000000;
   margin-top: 0.4%;
+  @media only screen and (max-width: 375px) {
+    width: 235px;
+    height: 15px;
+    font-family: ArialAMU;
+    font-size: 15px;
+    padding: 0 0%;
+  }
+  @media only screen and (max-width: 320px) {
+    width: 235px;
+    height: 15px;
+    font-family: ArialAMU;
+    font-size: 15px;
+    padding: 0 0%;
+  }
 `
 
 const FormRow = styled(Row)`
   padding: 0 12%;
+  @media only screen and (max-width: 768px) {
+    padding: 0 0%;
+  }
 `
 const FormColumn = styled(Col)`
   margin-left: 17%;
@@ -173,12 +282,35 @@ const FormColumn = styled(Col)`
     max-width: 562px;
     max-height: 700px;
   }
+  @media only screen and (max-width: 768px) {
+    margin-left: 15%;
+    max-width: 562px;
+    max-height: 700px;
+  }
+  @media only screen and (max-width: 375px) {
+    max-width: 290px;
+    font-size: 15px;
+    padding: 0 0%;
+    margin-left: 5%;
+  }
+  @media only screen and (max-width: 320px) {
+    max-width: 290px;
+    font-size: 15px;
+    padding: 0 0%;
+    margin-left: -3%;
+  }
 `
 const ContactNavRow = styled(Row)`
   padding: 0 20%;
   margin-bottom: 3%;
   @media only screen and (max-width: 1170px) {
     padding: 0 13.6%;
+  }
+  @media only screen and (max-width: 768px) {
+    padding: 0 0%;
+  }
+  @media only screen and (max-width: 320px) {
+    padding: 0 0%;
   }
 `
 const IndividCol = styled(Col)`
@@ -211,6 +343,44 @@ const IndividCol = styled(Col)`
   @media only screen and (max-width: 1170px) {
     margin-left: 15%;
     max-width: 275px;
+  }
+  @media only screen and (max-width: 375px) {
+    margin-left: 10%;
+    max-width: 256px;
+    padding-top: 3.6%;
+    margin-bottom: 5%;
+    > span {
+      width: 143px;
+      height: 15px;
+      font-family: ArialAMU;
+      font-size: 16px;
+      font-weight: normal;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: normal;
+      letter-spacing: normal;
+      text-align: center;
+      color: ${props => (props.open ? "#ffffff" : "#009db8")};
+    }
+  }
+  @media only screen and (max-width: 320px) {
+    margin-left: 2%;
+    max-width: 256px;
+    padding-top: 3.6%;
+    margin-bottom: 5%;
+    > span {
+      width: 143px;
+      height: 15px;
+      font-family: ArialAMU;
+      font-size: 16px;
+      font-weight: normal;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: normal;
+      letter-spacing: normal;
+      text-align: center;
+      color: ${props => (props.open ? "#ffffff" : "#009db8")};
+    }
   }
 `
 const CompanyCol = styled(Col)`
@@ -245,6 +415,52 @@ const CompanyCol = styled(Col)`
     margin-left: 1.5%;
     max-width: 275px;
   }
+  @media only screen and (max-width: 1024px) {
+    margin-left: 3.5%;
+    max-width: 275px;
+  }
+  @media only screen and (max-width: 768px) {
+    margin-left: 2%;
+    max-width: 275px;
+  }
+  @media only screen and (max-width: 375px) {
+    margin-left: 10%;
+    max-width: 256px;
+    padding-top: 3.6%;
+    margin-bottom: 5%;
+    > span {
+      width: 143px;
+      height: 15px;
+      font-family: ArialAMU;
+      font-size: 16px;
+      font-weight: normal;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: normal;
+      letter-spacing: normal;
+      text-align: center;
+      color: ${props => (props.open ? "#ffffff" : "#009db8")};
+    }
+  }
+  @media only screen and (max-width: 320px) {
+    margin-left: 2%;
+    max-width: 256px;
+    padding-top: 3.6%;
+    margin-bottom: 5%;
+    > span {
+      width: 143px;
+      height: 15px;
+      font-family: ArialAMU;
+      font-size: 16px;
+      font-weight: normal;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: normal;
+      letter-spacing: normal;
+      text-align: center;
+      color: ${props => (props.open ? "#ffffff" : "#009db8")};
+    }
+  }
 `
 const Contact = () => {
   const [openIndivid, setopenIndivid] = useState(true)
@@ -275,13 +491,24 @@ const Contact = () => {
       <ContactNavRow>
         <IndividCol
           lg={9}
+          md={9}
+          sm={24}
+          xs={24}
           offset={2}
           onClick={ChangeOpenInvid}
           open={openIndivid}
         >
           <span>Անհատների համար</span>
         </IndividCol>
-        <CompanyCol lg={9} offset={1} onClick={ChangeOpenComp} open={openComp}>
+        <CompanyCol
+          lg={9}
+          md={9}
+          sm={24}
+          xs={24}
+          offset={1}
+          onClick={ChangeOpenComp}
+          open={openComp}
+        >
           <span>Կազմակերպությունների համար</span>
         </CompanyCol>
         <NumberCol lg={{ span: 19 }} offset={2}>
@@ -307,7 +534,7 @@ const Contact = () => {
       </ContactNavRow>
       <FormRow>
         {openIndivid ? (
-          <FormColumn lg={{ span: 17 }} offset={3}>
+          <FormColumn lg={{ span: 17 }} xs={{ span: 17 }} offset={3}>
             <FormindIviduals />
           </FormColumn>
         ) : openComp ? (

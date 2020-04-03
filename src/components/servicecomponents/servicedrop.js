@@ -146,13 +146,8 @@ const DropButtonCol = styled(Col)`
 const DropTextCol = styled(Col)``
 
 const Servicedrop = ({ data, showServiceForm }) => {
-  console.log(data)
   return (
-    <ServiceDropRow
-      align="middle"
-      gutter={[10, 30]}
-      //   style={{ marginBottom: "2.2%", paddingRight: "7%" }}
-    >
+    <ServiceDropRow align="middle" gutter={[10, 30]}>
       <DropHeadingIconCol
         xxl={{ span: 1, offset: 3 }}
         xl={{ span: 1, offset: 2 }}

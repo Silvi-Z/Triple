@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react"
 import Layout from "../components/layout"
-import { Typography, Row, Col, Button, InputNumber } from "antd"
-import { PlusOutlined, MinusOutlined } from "@ant-design/icons"
+import { Row, Col } from "antd"
 import styled from "styled-components"
 import ServiceDropWrap from "../components/servicecomponents/servicedrop"
 import CalcImg from "../assets/homeImages/calculator-1.png"
@@ -77,7 +76,8 @@ const PStyled = styled.p`
   }
 `
 
-const Services = () => {
+const Services = ({ location, ...props }) => {
+  console.log(location)
   const [servicedata, setservicedata] = useState([])
 
   const getServiceData = () => {
