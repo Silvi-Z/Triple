@@ -58,12 +58,16 @@ const ResponsiveMenuWrapper = styled.div`
   width: 100%;
   height: 100%;
   padding: 7% 20%;
-  z-index: 999;
+  /* z-index: 999; */
+  background-color: white;
   @media only screen and (min-width: 968px) {
     display: none;
   }
-  @media only screen and (min-width: 320px) {
+  @media only screen and (min-width: 375px) {
     padding: 7% 8%;
+  }
+  @media only screen and (min-width: 320px) {
+    padding: 7% 6%;
   }
 `
 
@@ -219,7 +223,7 @@ const activeStyle = {
   color: "#009db8",
 }
 
-const Navbar = ({ setResponswrapper, responswrapper }) => {
+const Navbar = ({ open, responswrapper }) => {
   return (
     <>
       <ResponsiveNavWrapper>
@@ -233,18 +237,18 @@ const Navbar = ({ setResponswrapper, responswrapper }) => {
         </Col>
         <Col lg={8} md={8} sm={8} xs={8} sm={8}>
           {!responswrapper ? (
-            <Label htmlFor="toggle" onClick={setResponswrapper}>
+            <Label htmlFor="toggle" onClick={() => open()}>
               &#x2573;
             </Label>
           ) : (
-            <Label htmlFor="toggle" onClick={setResponswrapper}>
+            <Label htmlFor="toggle" onClick={() => open()}>
               &#9776;
             </Label>
           )}
         </Col>
       </ResponsiveNavWrapper>
 
-      {/* {!responswrapper ? (
+      {!responswrapper ? (
         <ResponsiveMenuWrapper>
           <Row>
             <Col span={24} style={{ marginBottom: "4.6%" }}>
@@ -252,7 +256,8 @@ const Navbar = ({ setResponswrapper, responswrapper }) => {
                 to="/services/"
                 activeStyle={activeStyle}
                 style={{ fontSize: "20px" }}
-                onClick={setResponswrapper}
+                onClick={() => setResponswrapper()}
+                state={{ fromFeed: responswrapper }}
               >
                 Ծառայություններ
               </NavLink>
@@ -262,7 +267,7 @@ const Navbar = ({ setResponswrapper, responswrapper }) => {
                 to="/reports/"
                 activeStyle={activeStyle}
                 style={{ fontSize: "20px" }}
-                onClick={setResponswrapper}
+                onClick={() => setResponswrapper()}
               >
                 Հաշվետվության տրամադրում
               </NavLink>
@@ -305,7 +310,7 @@ const Navbar = ({ setResponswrapper, responswrapper }) => {
             </Col>
           </Row>
         </ResponsiveMenuWrapper>
-      ) : null} */}
+      ) : null}
 
       <GridWrapper>
         <GridLang>

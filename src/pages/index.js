@@ -7,16 +7,15 @@ import HomeServices from "../components/homecomponents/homeservices"
 import Homepartners from "../components/homecomponents/homepartners"
 
 const IndexPage = () => {
-  const [responswrapper, setResponswrapper] = useState(true)
   return (
     <Layout
-      SetResponswrapper={() => setResponswrapper(false)}
-      Responswrapper={responswrapper}
+    // SetResponswrapper={() => setResponswrapper(false)}
+    // Responswrapper={responswrapper}
     >
       <SEO title="Home" />
-      {responswrapper ? <Slideshow /> : null}
-      {responswrapper ? <HomeServices /> : null}
-      {responswrapper ? <Homepartners /> : null}
+      <Slideshow />
+      <HomeServices />
+      <Homepartners />
     </Layout>
   )
 }

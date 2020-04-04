@@ -64,6 +64,7 @@ const Formfield = () => {
       }}
       onFinish={onFinish}
       onFinishFailed={onFinishFailed}
+      id="formcontact"
     >
       <Form.Item
         label="Կազմակերպության անվանում *"
@@ -75,7 +76,7 @@ const Formfield = () => {
           },
         ]}
       >
-        <Input style={{ width: "400px", height: "38px" }} size="large" />
+        <Input />
       </Form.Item>
       <Form.Item
         label="Անուն / Ազգանուն *"
@@ -87,7 +88,7 @@ const Formfield = () => {
           },
         ]}
       >
-        <Input style={{ width: "400px", height: "38px" }} size="large" />
+        <Input />
       </Form.Item>
 
       <Form.Item
@@ -95,7 +96,7 @@ const Formfield = () => {
         label="Էլ․ հասցե"
         rules={[{ type: "email", required: true }]}
       >
-        <Input style={{ width: "400px", height: "38px" }} size="large" />
+        <Input />
       </Form.Item>
 
       <Form.Item
@@ -109,10 +110,7 @@ const Formfield = () => {
         ]}
       >
         <Upload {...fileprops} lg={24}>
-          <Button
-            style={{ width: "400px", height: "38px", textAlign: "right" }}
-            size="large"
-          >
+          <Button id="uploadbutton">
             <UploadOutlined
               style={{
                 color: "#009db8",
@@ -133,7 +131,7 @@ const Formfield = () => {
           },
         ]}
       >
-        <Input style={{ width: "400px", height: "38px" }} size="large" />
+        <Input />
       </Form.Item>
 
       <Form.Item
@@ -145,17 +143,13 @@ const Formfield = () => {
             message: "",
           },
         ]}
-        style={{ width: "600px", height: "80px" }}
+        noStyle="true"
       >
         <Input.TextArea />
       </Form.Item>
 
       <Form.Item {...tailLayout}>
-        <Button
-          type="primary"
-          htmlType="submit"
-          style={{ width: "180px", height: "46px", margin: "5px -30px" }}
-        >
+        <Button type="primary" htmlType="submit" id="submitbottoncompany">
           Ուղարկել
         </Button>
       </Form.Item>

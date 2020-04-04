@@ -1,7 +1,9 @@
 import React from "react"
-import { Form, Input, Button, Checkbox } from "antd"
+import { Form, Input, Button, Row, Col } from "antd"
 import { Upload, message } from "antd"
 import { UploadOutlined } from "@ant-design/icons"
+//input styled custom with id in layout css #basic_username
+import "../layout.css"
 
 const fileprops = {
   name: "file",
@@ -64,6 +66,7 @@ const Formfield = () => {
       }}
       onFinish={onFinish}
       onFinishFailed={onFinishFailed}
+      id="formcontact"
     >
       <Form.Item
         label="Անուն / Ազգանուն"
@@ -75,7 +78,7 @@ const Formfield = () => {
           },
         ]}
       >
-        <Input style={{ width: "400px", height: "38px" }} size="large" />
+        <Input />
       </Form.Item>
 
       <Form.Item
@@ -83,7 +86,7 @@ const Formfield = () => {
         label="Էլ․ հասցե"
         rules={[{ type: "email", required: true }]}
       >
-        <Input style={{ width: "400px", height: "38px" }} size="large" />
+        <Input size="large" />
       </Form.Item>
 
       <Form.Item
@@ -98,10 +101,7 @@ const Formfield = () => {
         span={24}
       >
         <Upload {...fileprops} span={24}>
-          <Button
-            style={{ width: "400px", height: "38px", textAlign: "right" }}
-            size="large"
-          >
+          <Button size="large" id="uploadbutton">
             <UploadOutlined
               style={{
                 color: "#009db8",
@@ -122,7 +122,7 @@ const Formfield = () => {
           },
         ]}
       >
-        <Input style={{ width: "400px", height: "38px" }} size="large" />
+        <Input size="large" />
       </Form.Item>
 
       <Form.Item
@@ -134,17 +134,13 @@ const Formfield = () => {
             message: "",
           },
         ]}
-        style={{ width: "600px", height: "80px" }}
+        noStyle="true"
       >
         <Input.TextArea />
       </Form.Item>
 
       <Form.Item {...tailLayout}>
-        <Button
-          type="primary"
-          htmlType="submit"
-          style={{ width: "180px", height: "46px", margin: "5px -30px" }}
-        >
+        <Button type="primary" htmlType="submit" id="submitbotton">
           Ուղարկել
         </Button>
       </Form.Item>

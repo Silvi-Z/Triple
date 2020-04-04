@@ -650,6 +650,104 @@ pre tt:after {
   text-align: center;
   color: #000000;
 }
+#basic_username {
+  width: 400px;
+  height: 38px;
+}
+#basic_companyname {
+  width: 400px;
+  height: 38px;
+}
+#basic_user_email {
+  width: 400px;
+  height: 38px;
+}
+#basic_title {
+  width: 400px;
+  height: 38px;
+}
+#basic_textarea {
+  width: 400px;
+  height: 80px;
+}
+#formtextarea {
+  width: 600px;
+  height: 80px;
+}
+#uploadbutton {
+  width: 400px;
+  height: 38px;
+  text-align: right;
+}
+#submitbotton {
+  width: 180px;
+  height: 46px;
+  margin: 5px -30px;
+}
+#submitbottoncompany {
+  width: 180px;
+  height: 46px;
+  margin: 5px -30px;
+}
+
+@media only screen and (max-width: 375px) {
+  #basic_username {
+    width: 270px;
+    height: 38px;
+  }
+  #basic_companyname {
+    width: 270px;
+    height: 38px;
+  }
+  #basic_user_email {
+    width: 270px;
+    height: 38px;
+  }
+  #uploadbutton {
+    width: 270px;
+    height: 38px;
+    text-align: right;
+  }
+  #basic_title {
+    width: 270px;
+    height: 38px;
+    margin-bottom: 20px;
+  }
+  #basic_textarea {
+    width: 270px;
+    height: 80px;
+  }
+  #formcontact {
+    width: 390px;
+    padding: 3% 3%;
+  }
+  #submitbotton {
+    width: 180px;
+    height: 46px;
+    margin-left: -20%;
+    margin-top: 20px;
+  }
+  #submitbottoncompany {
+    width: 180px;
+    height: 46px;
+    margin-left: -20%;
+    margin-top: 0px;
+  }
+}
+
+@media only screen and (max-width: 320px) {
+  #formcontact {
+    width: 290px;
+    padding: 2% 2%;
+    margin-left: 2%;
+  }
+}
+@media only screen and (max-width: 768px) {
+  #basic_textarea {
+    margin-bottom: 20px;
+  }
+}
+
 @media only screen and (max-width: 480px) {
   html {
     font-size: 100%;
