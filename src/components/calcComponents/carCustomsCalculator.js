@@ -350,7 +350,7 @@ const CarCustomsCalculator = () => {
                         <ResultLabel>Վճարման ենթակա գումար AMD</ResultLabel>
                       </ResultCell>
                     </Col>
-                    <Col span={5}>
+                    <Col span={6}>
                       <ResultCell>
                         <ResultLabel>{result.data.AMD}</ResultLabel>
                       </ResultCell>
@@ -363,7 +363,7 @@ const CarCustomsCalculator = () => {
                         <ResultLabel>Վճարման ենթակա գումար USD</ResultLabel>
                       </ResultCell>
                     </Col>
-                    <Col span={5}>
+                    <Col span={6}>
                       <ResultCell>
                         <ResultLabel>{result.data.USD}</ResultLabel>
                       </ResultCell>
@@ -376,7 +376,7 @@ const CarCustomsCalculator = () => {
                         <ResultLabel>Վճարման ենթակա գումար EUR</ResultLabel>
                       </ResultCell>
                     </Col>
-                    <Col span={5}>
+                    <Col span={6}>
                       <ResultCell>
                         <ResultLabel>{result.data.EUR}</ResultLabel>
                       </ResultCell>
@@ -389,7 +389,7 @@ const CarCustomsCalculator = () => {
                         <ResultLabel>Վճարման ենթակա գումար RUB</ResultLabel>
                       </ResultCell>
                     </Col>
-                    <Col span={5}>
+                    <Col span={6}>
                       <ResultCell>
                         <ResultLabel>{result.data.RUB}</ResultLabel>
                       </ResultCell>
