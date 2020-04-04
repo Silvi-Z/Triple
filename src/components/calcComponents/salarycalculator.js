@@ -1,51 +1,51 @@
-import React, { useState } from "react"
-import { Typography, Row, Col, Button, InputNumber } from "antd"
-import { PlusOutlined, MinusOutlined } from "@ant-design/icons"
-import styled from "styled-components"
-import { useFormik } from "formik"
+import React, { useState } from 'react';
+import { Typography, Row, Col, Button, InputNumber } from 'antd';
+import { PlusOutlined, MinusOutlined } from '@ant-design/icons';
+import styled from 'styled-components';
+import { useFormik } from 'formik';
 // import * as Yup from 'yup';
-import { apiHelper } from "../helpers/apiHelper"
-import AccountImg from "../assets/account.png"
+import { apiHelper } from '../../helpers/apiHelper';
+import AccountImg from '../../assets/calcImages/account.png';
 
 const HeadIcon = styled.img`
-  width: 30px;
-  height: 30px;
+  width: 25px;
+  height: 25px;
   @media (min-width: 1200px) {
-    width: 40px;
-    height: 40px;
+    width: 35px;
+    height: 35px;
   }
   @media (min-width: 1600px) {
-    width: 50px;
-    height: 50px;
+    width: 45px;
+    height: 45px;
   }
-`
+`;
 
 const H2Styled = styled.h2`
   font-size: 25px;
   font-weight: 400;
-`
+`;
 
 const H3Styled = styled.h3`
   font-size: 24px;
   font-weight: 400;
-`
+`;
 
 const ToggleButton = styled(Button)`
   height: 80px;
   width: 80px;
-`
+`;
 
 const ButtonBase = styled(Button)`
   height: 55px;
   border-color: #009db8;
   overflow: hidden;
-`
+`;
 
 const ButtonLarge = styled(Button)`
   height: 70px;
   border-color: #009db8;
   overflow: hidden;
-`
+`;
 
 const StyledInputNumber = styled(InputNumber)`
   width: 100%;
@@ -53,7 +53,7 @@ const StyledInputNumber = styled(InputNumber)`
   display: flex;
   align-items: center;
   border-color: #009db8;
-`
+`;
 
 const FormLabelCell = styled.div`
   padding-left: 16px;
@@ -63,7 +63,7 @@ const FormLabelCell = styled.div`
   align-items: center;
   text-align: center;
   border: 1px solid #d7d7d7;
-`
+`;
 
 const ResultCell = styled.div`
   background-color: #21363d;
@@ -72,15 +72,15 @@ const ResultCell = styled.div`
   height: ${props => (props.large ? 80 : 60)}px;
   display: flex;
   align-items: center;
-  justify-content: ${props => (props.large ? "center" : "flex-start")};
+  justify-content: ${props => (props.large ? 'center' : 'flex-start')};
   text-align: center;
-`
+`;
 
 const ResultLabel = styled(Typography)`
   color: #fff;
   font-weight: 600;
   font-size: ${props => (props.large ? 18 : 16)}px;
-`
+`;
 
 const initialValues = {
   salary_type: false,
@@ -89,7 +89,7 @@ const initialValues = {
   bonus_price: 0,
   pension: true,
   bonus_stamp: true,
-}
+};
 
 // const validationSchema = Yup.object().shape({
 //   price: Yup.number().required().min(1000),
@@ -97,18 +97,18 @@ const initialValues = {
 // });
 
 const SalaryCalculator = () => {
-  const [result, setResult] = useState(null)
-  const [showForm, toggleForm] = useState(false)
+  const [result, setResult] = useState(null);
+  const [showForm, toggleForm] = useState(false);
 
   const formik = useFormik({
     initialValues,
     // validationSchema,
     onSubmit: async values => {
-      let res = {}
-      let body = {}
+      let res = {};
+      let body = {};
       // TODO: refactor this filter
       if ((values.patent || values.patent === 0) && values.bonus_price) {
-        body = { ...values }
+        body = { ...values };
       } else if (!values.patent && values.bonus_price) {
         body = {
           salary_type: values.salary_type,
@@ -116,7 +116,7 @@ const SalaryCalculator = () => {
           bonus_price: values.bonus_price,
           pension: values.pension,
           bonus_stamp: values.bonus_stamp,
-        }
+        };
       } else if (
         (values.patent || values.patent === 0) &&
         !values.bonus_price
@@ -127,37 +127,37 @@ const SalaryCalculator = () => {
           pension: values.pension,
           bonus_stamp: values.bonus_stamp,
           patent: values.patent,
-        }
+        };
       } else if (!values.patent && !values.bonus_price) {
         body = {
           salary_type: values.salary_type,
           price: values.price,
           pension: values.pension,
           bonus_stamp: values.bonus_stamp,
-        }
+        };
       }
 
       if (!values.price) {
-        delete body.price
+        delete body.price;
       }
 
-      console.log("Formik values: ", values)
-      console.log("Body: ", body)
-      res = await apiHelper.post("/api/counter/salary", body)
-      console.log("Response: ", res.data.data.result)
-      setResult(res.data.data.result)
+      console.log('Formik values: ', values);
+      console.log('Body: ', body);
+      res = await apiHelper.post('/api/counter/salary', body);
+      console.log('Response: ', res.data.data.result);
+      setResult(res.data.data.result);
     },
-  })
+  });
 
   return (
     <>
       <Row align="middle" gutter={[10, 50]}>
         <Col
-          xxl={{ span: 1, offset: 3 }}
-          xl={{ span: 1, offset: 2 }}
-          lg={{ span: 1, offset: 1 }}
+          xxl={{ span: 2, offset: 3 }}
+          xl={{ span: 2, offset: 2 }}
+          lg={{ span: 2, offset: 1 }}
         >
-          <HeadIcon src={AccountImg} alt={"icon"} />
+          <HeadIcon src={AccountImg} alt={'icon'} />
         </Col>
         <Col xxl={17} xl={18} lg={19} span={19}>
           <H2Styled>Աշխատավարձի հաշվիչ</H2Styled>
@@ -165,9 +165,9 @@ const SalaryCalculator = () => {
         <Col span={2}>
           <ToggleButton block onClick={() => toggleForm(!showForm)}>
             {showForm ? (
-              <MinusOutlined style={{ fontSize: "20px" }} />
+              <MinusOutlined style={{ fontSize: '20px' }} />
             ) : (
-              <PlusOutlined style={{ fontSize: "20px" }} />
+              <PlusOutlined style={{ fontSize: '20px' }} />
             )}
           </ToggleButton>
         </Col>
@@ -185,20 +185,20 @@ const SalaryCalculator = () => {
                 span={11}
               >
                 <ButtonBase
-                  type={!formik.values.salary_type ? "primary" : "default"}
+                  type={!formik.values.salary_type ? 'primary' : 'default'}
                   size="large"
                   block
-                  onClick={() => formik.setFieldValue("salary_type", false)}
+                  onClick={() => formik.setFieldValue('salary_type', false)}
                 >
                   Մաքուր
                 </ButtonBase>
               </Col>
               <Col xxl={6} xl={8} lg={9} span={11}>
                 <ButtonBase
-                  type={formik.values.salary_type ? "primary" : "default"}
+                  type={formik.values.salary_type ? 'primary' : 'default'}
                   size="large"
                   block
-                  onClick={() => formik.setFieldValue("salary_type", true)}
+                  onClick={() => formik.setFieldValue('salary_type', true)}
                 >
                   Կեղտոտ
                 </ButtonBase>
@@ -216,12 +216,12 @@ const SalaryCalculator = () => {
                 <ButtonLarge
                   type={
                     formik.values.patent !== 1 && formik.values.patent !== 0
-                      ? "primary"
-                      : "default"
+                      ? 'primary'
+                      : 'default'
                   }
                   size="large"
                   block
-                  onClick={() => formik.setFieldValue("patent", null)}
+                  onClick={() => formik.setFieldValue('patent', null)}
                 >
                   Ընդհանուր
                   <br />
@@ -230,10 +230,10 @@ const SalaryCalculator = () => {
               </Col>
               <Col xxl={6} xl={8} lg={8} span={10}>
                 <ButtonLarge
-                  type={formik.values.patent === 1 ? "primary" : "default"}
+                  type={formik.values.patent === 1 ? 'primary' : 'default'}
                   size="large"
                   block
-                  onClick={() => formik.setFieldValue("patent", 1)}
+                  onClick={() => formik.setFieldValue('patent', 1)}
                 >
                   Միկրոձեռնարկատիրության
                   <br />
@@ -242,10 +242,10 @@ const SalaryCalculator = () => {
               </Col>
               <Col xxl={3} xl={4} lg={5} span={6}>
                 <ButtonLarge
-                  type={formik.values.patent === 0 ? "primary" : "default"}
+                  type={formik.values.patent === 0 ? 'primary' : 'default'}
                   size="large"
                   block
-                  onClick={() => formik.setFieldValue("patent", 0)}
+                  onClick={() => formik.setFieldValue('patent', 0)}
                 >
                   ՏՏ ոլորտի
                   <br />
@@ -271,7 +271,7 @@ const SalaryCalculator = () => {
                   id="price"
                   name="price"
                   type="number"
-                  onChange={value => formik.setFieldValue("price", value)}
+                  onChange={value => formik.setFieldValue('price', value)}
                   value={formik.values.price}
                 />
               </Col>
@@ -293,7 +293,7 @@ const SalaryCalculator = () => {
                   id="bonus_price"
                   name="bonus_price"
                   type="number"
-                  onChange={value => formik.setFieldValue("bonus_price", value)}
+                  onChange={value => formik.setFieldValue('bonus_price', value)}
                   value={formik.values.bonus_price}
                 />
               </Col>
@@ -315,20 +315,20 @@ const SalaryCalculator = () => {
               </Col>
               <Col xxl={2} xl={2} lg={3} span={3}>
                 <ButtonBase
-                  type={formik.values.pension ? "primary" : "default"}
+                  type={formik.values.pension ? 'primary' : 'default'}
                   size="large"
                   block
-                  onClick={() => formik.setFieldValue("pension", true)}
+                  onClick={() => formik.setFieldValue('pension', true)}
                 >
                   Այո
                 </ButtonBase>
               </Col>
               <Col xxl={2} xl={2} lg={3} span={3}>
                 <ButtonBase
-                  type={!formik.values.pension ? "primary" : "default"}
+                  type={!formik.values.pension ? 'primary' : 'default'}
                   size="large"
                   block
-                  onClick={() => formik.setFieldValue("pension", false)}
+                  onClick={() => formik.setFieldValue('pension', false)}
                 >
                   Ոչ
                 </ButtonBase>
@@ -349,20 +349,20 @@ const SalaryCalculator = () => {
               </Col>
               <Col xxl={2} xl={2} lg={3} span={3}>
                 <ButtonBase
-                  type={formik.values.bonus_stamp ? "primary" : "default"}
+                  type={formik.values.bonus_stamp ? 'primary' : 'default'}
                   size="large"
                   block
-                  onClick={() => formik.setFieldValue("bonus_stamp", true)}
+                  onClick={() => formik.setFieldValue('bonus_stamp', true)}
                 >
                   Այո
                 </ButtonBase>
               </Col>
               <Col xxl={2} xl={2} lg={3} span={3}>
                 <ButtonBase
-                  type={!formik.values.bonus_stamp ? "primary" : "default"}
+                  type={!formik.values.bonus_stamp ? 'primary' : 'default'}
                   size="large"
                   block
-                  onClick={() => formik.setFieldValue("bonus_stamp", false)}
+                  onClick={() => formik.setFieldValue('bonus_stamp', false)}
                 >
                   Ոչ
                 </ButtonBase>
@@ -470,7 +470,7 @@ const SalaryCalculator = () => {
                       <ResultCell large>
                         <ResultLabel large>
                           {`${
-                            +result.salary_type ? "Զուտ" : "Մաքուր"
+                            +result.salary_type ? 'Զուտ' : 'Մաքուր'
                           } աշխատավարձ`}
                         </ResultLabel>
                       </ResultCell>
@@ -487,7 +487,7 @@ const SalaryCalculator = () => {
                       <ResultCell large>
                         <ResultLabel large>
                           {`${
-                            +result.salary_type ? "Զուտ" : "Մաքուր"
+                            +result.salary_type ? 'Զուտ' : 'Մաքուր'
                           } պարգևավճար`}
                         </ResultLabel>
                       </ResultCell>
@@ -505,7 +505,7 @@ const SalaryCalculator = () => {
         </>
       ) : null}
     </>
-  )
-}
+  );
+};
 
-export default SalaryCalculator
+export default SalaryCalculator;

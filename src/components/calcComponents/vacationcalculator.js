@@ -4,21 +4,21 @@ import { PlusOutlined, MinusOutlined } from '@ant-design/icons';
 import styled from 'styled-components';
 import { useFormik } from 'formik';
 // import * as Yup from 'yup';
-import { apiHelper } from '../helpers/apiHelper';
-import UserImg from '../assets/user.png';
+import { apiHelper } from '../../helpers/apiHelper';
+import UserImg from '../../assets/calcImages/user.png';
 
 const { Title, Text } = Typography;
 
 const HeadIcon = styled.img`
-  width: 30px;
-  height: 30px;
+  width: 25px;
+  height: 25px;
   @media (min-width: 1200px) {
-    width: 40px;
-    height: 40px;
+    width: 35px;
+    height: 35px;
   }
   @media (min-width: 1600px) {
-    width: 50px;
-    height: 50px;
+    width: 45px;
+    height: 45px;
   }
 `;
 
@@ -81,9 +81,9 @@ const VacationCalculator = () => {
     <>
       <Row align="middle" gutter={[10, 50]}>
         <Col
-          xxl={{span: 1, offset: 3}}
-          xl={{span: 1, offset: 2}}
-          lg={{span: 1, offset: 1}}
+          xxl={{span: 2, offset: 3}}
+          xl={{span: 2, offset: 2}}
+          lg={{span: 2, offset: 1}}
         >
           <HeadIcon src={UserImg} alt={'icon'} />
         </Col>

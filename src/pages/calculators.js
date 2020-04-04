@@ -1,21 +1,22 @@
-import React from "react"
-import { Typography, Row, Col, Divider } from "antd"
-import styled from "styled-components"
-import Layout from "../components/layout"
-import SalaryCalculator from "../components/salarycalculator"
-import VacationCalculator from "../components/vacationcalculator"
+import React from 'react';
+import { Typography, Row, Col, Divider } from 'antd';
+import styled from 'styled-components';
+import Layout from '../components/layout';
+import SalaryCalculator from '../components/calcComponents/salarycalculator';
+import VacationCalculator from '../components/calcComponents/vacationcalculator';
+import CarCustomsCalculator from '../components/calcComponents/carCustomsCalculator';
 
-const { Text } = Typography
+const { Text } = Typography;
 
 const H1Styled = styled.h1`
   font-size: 26px;
   font-weight: 900;
-`
+`;
 
 const TextStyled = styled(Text)`
   font-size: 20px;
   font-family: ArialAMU, sans-serif;
-`
+`;
 
 const Calculators = () => (
   <Layout>
@@ -43,7 +44,9 @@ const Calculators = () => (
     <SalaryCalculator />
     <Divider />
     <VacationCalculator />
+    <Divider />
+    <CarCustomsCalculator />
   </Layout>
-)
+);
 
-export default Calculators
+export default Calculators;
