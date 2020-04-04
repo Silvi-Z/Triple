@@ -6,6 +6,7 @@ import SalaryCalculator from '../components/calcComponents/salarycalculator';
 import VacationCalculator from '../components/calcComponents/vacationcalculator';
 import CarCustomsCalculator from '../components/calcComponents/carCustomsCalculator';
 import CarSellCalculator from '../components/calcComponents/carSellCalculator';
+import CarPropTaxCalculator from '../components/calcComponents/carPropTaxCalculator';
 
 const { Text } = Typography;
 
@@ -49,6 +50,8 @@ const Calculators = () => (
     <CarCustomsCalculator />
     <Divider />
     <CarSellCalculator />
+    <Divider />
+    <CarPropTaxCalculator />
   </Layout>
 );
 
