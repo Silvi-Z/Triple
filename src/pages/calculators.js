@@ -5,6 +5,7 @@ import Layout from '../components/layout';
 import SalaryCalculator from '../components/calcComponents/salarycalculator';
 import VacationCalculator from '../components/calcComponents/vacationcalculator';
 import CarCustomsCalculator from '../components/calcComponents/carCustomsCalculator';
+import CarSellCalculator from '../components/calcComponents/carSellCalculator';
 
 const { Text } = Typography;
 
@@ -46,6 +47,8 @@ const Calculators = () => (
     <VacationCalculator />
     <Divider />
     <CarCustomsCalculator />
+    <Divider />
+    <CarSellCalculator />
   </Layout>
 );
 

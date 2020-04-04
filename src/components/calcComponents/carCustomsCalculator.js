@@ -1,5 +1,13 @@
 import React, { useState } from 'react';
-import { Typography, Row, Col, Button, InputNumber, Select, Spin } from 'antd';
+import {
+  Typography,
+  Row,
+  Col,
+  Button,
+  InputNumber,
+  Select,
+  Spin,
+} from 'antd';
 import { PlusOutlined, MinusOutlined } from '@ant-design/icons';
 import styled from 'styled-components';
 import { useFormik } from 'formik';
@@ -54,10 +62,6 @@ const ButtonLarge = styled(Button)`
   height: 70px;
   border-color: #009db8;
   overflow: hidden;
-`;
-
-const Separator = styled.div`
-  height: 55px;
 `;
 
 const StyledInputNumber = styled(InputNumber)`
