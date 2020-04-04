@@ -747,7 +747,43 @@ pre tt:after {
     margin-bottom: 20px;
   }
 }
-
+select {
+  font-size: 12px;
+  border-style: none;
+}
+#footerfirstrow {
+  height: 70%;
+}
+#footersecondtrow {
+  height: 30%;
+}
+.copyright {
+  width: 95px;
+  height: 13px;
+  font-family: ArialAMU;
+  font-size: 12px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: #e8e8e8;
+}
+.footerlinkweb {
+  width: 155px;
+  height: 13px;
+  font-family: ArialAMU;
+  font-size: 12px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: #e8e8e8;
+  text-decoration: underline;
+}
 @media only screen and (max-width: 480px) {
   html {
     font-size: 100%;

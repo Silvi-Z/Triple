@@ -58,7 +58,7 @@ const PStyled = styled.section`
     text-align: left;
     color: #000000;
   }
-  @media (max-width: 380px) {
+  @media (max-width: 375px) {
     width: 370px;
     height: 46px;
     font-family: ArialAMU;
@@ -170,8 +170,9 @@ const TextWrapperBig = styled.p`
     margin-left: auto;
     margin-bottom: 36px;
   }
-  @media (max-width: 380px) {
+  @media (max-width: 375px) {
     margin-left: 4.8%;
+    font-size: 13px;
   }
   @media (max-width: 320px) {
     margin-left: -7.2%;
@@ -183,7 +184,7 @@ const ResponsWrapper = styled.div`
     /* display: block; */
     height: 700px;
   }
-  @media (max-width: 380px) {
+  @media (max-width: 375px) {
     display: block;
     height: 600px;
   }
@@ -200,7 +201,7 @@ const SeemoreColumn = styled(Col)`
   @media only screen and (max-width: 768px) {
     padding-left: 21%;
   }
-  @media (max-width: 380px) {
+  @media (max-width: 375px) {
     padding-left: 0%;
   }
 `
@@ -212,6 +213,27 @@ const IconWrapperCol = styled(Col)`
   border-color: #d7d7d7;
   background-color: #ffffff;
 `
+const IconWrapperColLast = styled(Col)`
+  width: 250px;
+  height: 180px;
+  border-bottom: 1px solid;
+  border-color: #d7d7d7;
+  background-color: #ffffff;
+`
+const IconWrapperSecondLastCol = styled(Col)`
+  width: 250px;
+  height: 180px;
+  border-color: #d7d7d7;
+  background-color: #ffffff;
+`
+const IconWrapperSecondCol = styled(Col)`
+  width: 250px;
+  height: 180px;
+  border-right: 1px solid;
+  border-color: #d7d7d7;
+  background-color: #ffffff;
+`
+
 const ContainerRow = styled(Row)`
   margin-top: 37px;
   width: 100%;
@@ -257,30 +279,30 @@ const Homeservices = () => {
                 <IconWrapper src={AuditImg} alt={"icon"}></IconWrapper>
                 <TextWrapperBig>Հարկային աուդիտ</TextWrapperBig>
               </IconWrapperCol>
-              <IconWrapperCol lg={6} xl={6} sm={12} md={12} xs={12}>
+              <IconWrapperColLast lg={6} xl={6} sm={12} md={12} xs={12}>
                 <IconWrapper src={ClientImg} alt={"icon"}></IconWrapper>
                 <TextWrapperBig>Խորհրդատվություն</TextWrapperBig>
-              </IconWrapperCol>
+              </IconWrapperColLast>
             </Row>
           </Col>
           <Col span={24}>
             <Row style={{ width: "100%", height: "100%" }}>
-              <IconWrapperCol lg={6} xl={6} sm={12} md={12} xs={12}>
+              <IconWrapperSecondCol lg={6} xl={6} sm={12} md={12} xs={12}>
                 <IconWrapper src={BrowserImg} alt={"icon"}></IconWrapper>
                 <TextWrapperBig>Կազմակերպության գրանցում</TextWrapperBig>
-              </IconWrapperCol>
-              <IconWrapperCol lg={6} xl={6} sm={12} md={12} xs={12}>
+              </IconWrapperSecondCol>
+              <IconWrapperSecondCol lg={6} xl={6} sm={12} md={12} xs={12}>
                 <IconWrapper src={UserImg} alt={"icon"}></IconWrapper>
                 <TextWrapperBig>Ֆիզիկական անձանց</TextWrapperBig>
-              </IconWrapperCol>
-              <IconWrapperCol lg={6} xl={6} sm={12} md={12} xs={12}>
+              </IconWrapperSecondCol>
+              <IconWrapperSecondCol lg={6} xl={6} sm={12} md={12} xs={12}>
                 <IconWrapper src={LawImg} alt={"icon"}></IconWrapper>
                 <TextWrapperBig>Մաքսային գոծարքներ</TextWrapperBig>
-              </IconWrapperCol>
-              <IconWrapperCol lg={6} xl={6} sm={12} md={12} xs={12}>
+              </IconWrapperSecondCol>
+              <IconWrapperSecondLastCol lg={6} xl={6} sm={12} md={12} xs={12}>
                 <IconWrapper src={TeamImg} alt={"icon"}></IconWrapper>
                 <TextWrapperBig>Կադրային աշխատանքի վարում</TextWrapperBig>
-              </IconWrapperCol>
+              </IconWrapperSecondLastCol>
             </Row>
           </Col>
         </ContainerRow>

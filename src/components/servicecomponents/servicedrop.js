@@ -25,24 +25,19 @@ const ServiceDropRow = styled(Row)`
   }
 `
 const ToggleH2Styled = styled.h2`
-  /* font-size: 25px;
-  font-weight: 400;
-  margin-left: 2.7%; */
-  width: 264px;
+  width: 240px;
   height: 18px;
   font-family: ArialAMU;
   font-size: 18px;
-  font-weight: bold;
+  font-weight: normal;
   font-stretch: normal;
   font-style: normal;
   line-height: normal;
   letter-spacing: normal;
-  text-align: left;
-  margin-left: 2%;
-  margin-top: 2.5%;
+  text-align: center;
   color: #000000;
-  @media (min-width: 375px) {
-    width: 143px;
+  @media only screen and (max-width: 320px) {
+    width: 126px;
     height: 34px;
     font-family: ArialAMU;
     font-size: 16px;
@@ -54,8 +49,8 @@ const ToggleH2Styled = styled.h2`
     text-align: left;
     color: #000000;
   }
-  @media (min-width: 320px) {
-    width: 143px;
+  @media only screen and (max-width: 375px) {
+    width: 128px;
     height: 34px;
     font-family: ArialAMU;
     font-size: 16px;
@@ -115,12 +110,12 @@ const SubParagStyled = styled.div`
   letter-spacing: normal;
   text-align: left;
   color: #000000;
-  margin-left: 14%;
+  margin-left: 17%;
   @media only screen and (max-width: 1170px) {
-    margin-left: 10%;
+    margin-left: 13%;
   }
   @media only screen and (max-width: 375px) {
-    margin-left: 3%;
+    margin-left: 12%;
     width: 260px;
     height: 74px;
     font-family: ArialAMU;
@@ -136,9 +131,7 @@ const SubParagStyled = styled.div`
 `
 
 const DropHeadingIconCol = styled(Col)``
-const DropHeadingParagraphCol = styled(Col)`
-  padding: 15px 13px;
-`
+const DropHeadingParagraphCol = styled(Col)``
 const DropButtonCol = styled(Col)`
   margin-bottom: 17px;
   margin-top: 18px;
@@ -149,14 +142,14 @@ const Servicedrop = ({ data, showServiceForm }) => {
   return (
     <ServiceDropRow align="middle" gutter={[10, 30]}>
       <DropHeadingIconCol
-        xxl={{ span: 1, offset: 3 }}
-        xl={{ span: 1, offset: 2 }}
-        lg={{ span: 1, offset: 1 }}
+        // xxl={{ span: 1, offset: 3 }}
+        xl={{ span: 2, offset: 2 }}
+        lg={{ span: 2, offset: 1 }}
         xs={{ span: 3, offset: 0 }}
       >
         <HeadIcon src={data.data.image} alt={"icon"} />
       </DropHeadingIconCol>
-      <DropHeadingParagraphCol xxl={17} xl={18} lg={19} xl={19} xs={17}>
+      <DropHeadingParagraphCol xxl={17} xl={16} lg={18} xs={17}>
         <ToggleH2Styled>{data.data.paragraph}</ToggleH2Styled>
       </DropHeadingParagraphCol>
       <DropButtonCol lg={2} xl={2} md={2} xs={4}>

@@ -11,12 +11,13 @@ import RightArrowImg from "../../assets/homeImages/right-arrow.png"
 const NavLink = styled(Link)`
   text-decoration: none;
   display: flex;
-  @media (max-width: 380px) {
+  @media (max-width: 375px) {
     margin-top: auto;
   }
 `
 const PartnerspHeadingColumn = styled(Col)`
-  @media (max-width: 380px) {
+  @media (max-width: 375px) {
+    margin-top: 88px;
     margin-bottom: 28px;
   }
 `
@@ -156,10 +157,13 @@ const IconWrapper = styled.img`
   width: 171px;
   height: 50px;
   margin-top: 18.7%;
-  @media (max-width: 380px) {
-    margin-left: 18%;
+  @media (max-width: 375px) {
+    width: 116px;
+    height: 34px;
+    margin-top: 44.7%;
   }
 `
+
 const ResponsWrapper = styled.div`
   @media only screen and (max-width: 768px) {
     display: block;
@@ -170,6 +174,29 @@ const IconWrapperCol = styled(Col)`
   width: 250px;
   height: 180px;
   border-bottom: 1px solid;
+  border-right: 1px solid;
+  border-color: #d7d7d7;
+  background-color: #ffffff;
+  text-align: center;
+`
+const IconWrapperColLast = styled(Col)`
+  width: 250px;
+  height: 180px;
+  border-bottom: 1px solid;
+  border-color: #d7d7d7;
+  background-color: #ffffff;
+  text-align: center;
+`
+const IconWrapperSecondLastCol = styled(Col)`
+  width: 250px;
+  height: 180px;
+  border-color: #d7d7d7;
+  background-color: #ffffff;
+  text-align: center;
+`
+const IconWrapperSecondCol = styled(Col)`
+  width: 250px;
+  height: 180px;
   border-right: 1px solid;
   border-color: #d7d7d7;
   background-color: #ffffff;
@@ -225,25 +252,25 @@ const Homepartners = () => {
               <IconWrapperCol lg={6} xl={6} sm={12} md={12} xs={12}>
                 <IconWrapper src={AlgorithmImg} alt={"icon"}></IconWrapper>
               </IconWrapperCol>
-              <IconWrapperCol lg={6} xl={6} sm={12} md={12} xs={12}>
+              <IconWrapperColLast lg={6} xl={6} sm={12} md={12} xs={12}>
                 <IconWrapper src={AbcImg} alt={"icon"}></IconWrapper>
-              </IconWrapperCol>
+              </IconWrapperColLast>
             </PartnersLogosFirstRow>
           </Col>
           <Col span={24}>
             <PartnersLogosFirstRow>
-              <IconWrapperCol lg={6} sm={12} md={12} xs={12}>
+              <IconWrapperSecondCol lg={6} sm={12} md={12} xs={12}>
                 <IconWrapper src={KochonImg} alt={"icon"}></IconWrapper>
-              </IconWrapperCol>
-              <IconWrapperCol lg={6} sm={12} md={12} xs={12}>
+              </IconWrapperSecondCol>
+              <IconWrapperSecondCol lg={6} sm={12} md={12} xs={12}>
                 <IconWrapper src={AbcImg} alt={"icon"}></IconWrapper>
-              </IconWrapperCol>
-              <IconWrapperCol lg={6} sm={12} md={12} xs={12}>
+              </IconWrapperSecondCol>
+              <IconWrapperSecondCol lg={6} sm={12} md={12} xs={12}>
                 <IconWrapper src={KochonImg} alt={"icon"}></IconWrapper>
-              </IconWrapperCol>
-              <IconWrapperCol lg={6} sm={12} md={12} xs={12}>
+              </IconWrapperSecondCol>
+              <IconWrapperSecondLastCol lg={6} sm={12} md={12} xs={12}>
                 <IconWrapper src={AbcImg} alt={"icon"}></IconWrapper>
-              </IconWrapperCol>
+              </IconWrapperSecondLastCol>
             </PartnersLogosFirstRow>
           </Col>
         </ContainerRow>

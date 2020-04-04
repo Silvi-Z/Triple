@@ -4,8 +4,14 @@ import styled from "styled-components"
 import { Row, Col, Dropdown } from "antd"
 import CallImg from "../assets/homeImages/phone-call3.png"
 import MainLogo from "../assets/homeImages/3c.png"
-import { EnvironmentOutlined, PhoneOutlined } from "@ant-design/icons"
-import { CaretDownOutlined } from "@ant-design/icons"
+import "@fortawesome/fontawesome-free/css/all.css"
+import "@fortawesome/fontawesome-free/js/all.js"
+import {
+  EnvironmentOutlined,
+  PhoneOutlined,
+  CaretDownOutlined,
+} from "@ant-design/icons"
+import "./layout.css"
 
 const phones = (
   <div className="phonedrop">
@@ -21,15 +27,15 @@ const phones = (
     </div>
     <div className="phonebox">
       <i
-        class="fa fa-whatsapp"
+        className="fab fa-whatsapp"
         style={{ fontSize: "15px", color: "green", marginRight: "4%" }}
       ></i>
       <span className="phonenumber">374 93 00 00 00</span>
     </div>
     <div className="phonebox">
       <i
-        class="fa fa-whatsapp"
-        style={{ fontSize: "15px", color: "#7d3daf", marginRight: "4%" }}
+        className="fab fa-viber"
+        style={{ fontSize: "15px", color: "purply", marginRight: "4%" }}
       ></i>
       <span className="phonenumber">374 93 00 00 00</span>
     </div>
@@ -314,7 +320,7 @@ const Navbar = ({ open, responswrapper }) => {
 
       <GridWrapper>
         <GridLang>
-          <select id="lang" style={{ border: "0px" }}>
+          <select id="lang">
             <option value="hy">Հայ</option>
             <option value="en">Eng</option>
             <option value="ru">Рус</option>
@@ -354,7 +360,8 @@ const Navbar = ({ open, responswrapper }) => {
                   transform: "rotate(90deg)",
                 }}
               />
-              <PhoneSpan>374 93 00 00 00</PhoneSpan> <CaretDownOutlined />
+              <PhoneSpan>374 93 00 00 00</PhoneSpan>{" "}
+              <CaretDownOutlined style={{ fontSize: "11px" }} />
             </a>
           </GridPhone>
         </Dropdown>
