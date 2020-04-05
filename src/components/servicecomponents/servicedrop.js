@@ -10,7 +10,7 @@ const ServiceDropRow = styled(Row)`
   padding-right: 7%;
   padding-left: 4.5%;
   border-bottom: 1px solid;
-  border-color: "#009db8";
+  border-color: #d7d7d7;
   @media only screen and (max-width: 1170px) {
     padding-left: 8.8%;
     padding-right: 9%;
@@ -50,7 +50,7 @@ const ToggleH2Styled = styled.h2`
     color: #000000;
   }
   @media only screen and (max-width: 375px) {
-    width: 128px;
+    width: 143px;
     height: 34px;
     font-family: ArialAMU;
     font-size: 16px;
@@ -97,6 +97,11 @@ const ToggleButton = styled(Button)`
   box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
   background-color: #ffffff;
   color: #009db8;
+  &:hover {
+    .button {
+      display: none;
+    }
+  }
 `
 const SubParagStyled = styled.div`
   width: 517px;

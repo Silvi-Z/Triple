@@ -124,17 +124,17 @@ const Formfield = () => {
       >
         <Input size="large" />
       </Form.Item>
-
+      <label>Ձեր հաղորդագրությունը</label>
       <Form.Item
         label="Ձեր հաղորդագրությունը"
         name="textarea"
+        noStyle="false"
         rules={[
           {
             required: false,
             message: "",
           },
         ]}
-        noStyle="true"
       >
         <Input.TextArea />
       </Form.Item>

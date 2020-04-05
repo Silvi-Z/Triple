@@ -735,16 +735,68 @@ pre tt:after {
   }
 }
 
+#basic_career {
+  width: 540px;
+}
+#basic_career_textarea {
+  height: 80px;
+}
+#careersubmitcol {
+  padding-top: 7.5%;
+  margin-left: 25%;
+}
+#careeruploadbutton {
+  width: 340px;
+  height: 46px;
+  text-align: right;
+}
+
+@media only screen and (max-width: 768px) {
+  #basic_textarea {
+    margin-bottom: 20px;
+  }
+  #basic_career_textarea {
+    height: 80px;
+  }
+  #basic_career {
+    width: 540px;
+  }
+}
+@media only screen and (max-width: 375px) {
+  #basic_career {
+    width: 290px;
+  }
+  #basic_career_textarea {
+    height: 160px;
+  }
+  #careersubmitcol {
+    padding-top: 7.5%;
+    margin-left: 0%;
+  }
+  #careeruploadbutton {
+    width: 290px;
+    height: 46px;
+    text-align: right;
+  }
+}
+@media only screen and (max-width: 320px) {
+  #basic_career {
+    width: 290px;
+  }
+  #basic_career_textarea {
+    height: 160px;
+  }
+  #careeruploadbutton {
+    width: 290px;
+    height: 46px;
+    text-align: right;
+  }
+}
 @media only screen and (max-width: 320px) {
   #formcontact {
     width: 290px;
     padding: 2% 2%;
     margin-left: 2%;
-  }
-}
-@media only screen and (max-width: 768px) {
-  #basic_textarea {
-    margin-bottom: 20px;
   }
 }
 select {

@@ -8,6 +8,7 @@ import {
   LinkedinOutlined,
 } from "@ant-design/icons"
 import styled from "styled-components"
+import "../layout.css"
 
 const fileprops = {
   name: "file",
@@ -86,13 +87,13 @@ const Formfield = () => {
   return (
     <Form
       {...layout}
-      name="basic"
+      name="basic_career"
       initialValues={{
         remember: true,
       }}
       onFinish={onFinish}
       onFinishFailed={onFinishFailed}
-      style={{ margin: "0 15px" }}
+      noStyle="true"
     >
       <Form.Item
         label="Ձեր հաղորդագրությունը"
@@ -103,12 +104,11 @@ const Formfield = () => {
             message: "",
           },
         ]}
-        // style={{ div = {maxWidth: "0px"}}}
       >
-        <Input.TextArea style={{ width: "540px", height: "80px" }} />
+        <Input.TextArea />
       </Form.Item>
       <Row>
-        <Col span={10}>
+        <Col span={10} xl={10} lg={10} md={10} xs={24}>
           <Form.Item
             label="Ներբեռնել CV * "
             name="file"
@@ -120,9 +120,7 @@ const Formfield = () => {
             ]}
           >
             <Upload {...fileprops}>
-              <Button
-                style={{ width: "340px", height: "46px", textAlign: "right" }}
-              >
+              <Button id="careeruploadbutton">
                 <UploadOutlined
                   style={{
                     color: "#009db8",
@@ -133,7 +131,14 @@ const Formfield = () => {
             </Upload>
           </Form.Item>
         </Col>
-        <Col span={8} style={{ paddingTop: "7.5%", marginLeft: "25%" }}>
+        <Col
+          span={8}
+          xl={8}
+          lg={8}
+          md={8}
+          xs={{ span: 24, offset: 0 }}
+          id="careersubmitcol"
+        >
           <Form.Item {...tailLayout}>
             <Button
               type="primary"

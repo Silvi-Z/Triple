@@ -20,10 +20,12 @@ const InformationParagraphRow = styled(Row)`
   @media only screen and (max-width: 375px) {
     margin-bottom: 70px;
     padding: 0 3.5%;
+    margin-top: 39px;
   }
   @media only screen and (max-width: 320px) {
     margin-bottom: 70px;
     padding: 0 3.5%;
+    margin-top: 39px;
   }
 `
 const H2Styled = styled.h2`
@@ -109,11 +111,13 @@ const InformationNewsCol = styled(Col)`
     max-width: 290px;
     height: 50px;
     padding-top: 3.5%;
+    margin-bottom: 10px;
   }
   @media only screen and (max-width: 320px) {
     max-width: 290px;
     height: 50px;
     padding-top: 3.5%;
+    margin-bottom: 10px;
   }
 `
 const InformationUsfulCol = styled(Col)`
@@ -148,11 +152,13 @@ const InformationUsfulCol = styled(Col)`
     max-width: 290px;
     height: 50px;
     padding-top: 3.5%;
+    margin-bottom: 10px;
   }
   @media only screen and (max-width: 320px) {
     max-width: 290px;
     height: 50px;
     padding-top: 3.5%;
+    margin-bottom: 10px;
   }
 `
 const InformationDocumentCol = styled(Col)`

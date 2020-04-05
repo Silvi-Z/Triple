@@ -56,7 +56,7 @@ const Ptext = styled.p`
     font-weight: normal;
     font-stretch: normal;
     font-style: normal;
-    line-height: 2;
+    line-height: 1;
     letter-spacing: normal;
     text-align: left;
     color: #000000;
@@ -69,7 +69,7 @@ const Ptext = styled.p`
     font-weight: normal;
     font-stretch: normal;
     font-style: normal;
-    line-height: 2;
+    line-height: 1;
     letter-spacing: normal;
     text-align: left;
     color: #000000;
