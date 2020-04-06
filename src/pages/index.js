@@ -5,13 +5,10 @@ import SEO from "../components/seo"
 import Slideshow from "../components/slideshow"
 import HomeServices from "../components/homecomponents/homeservices"
 import Homepartners from "../components/homecomponents/homepartners"
-
+import MessengerCustomerChat from "react-messenger-customer-chat"
 const IndexPage = () => {
   return (
-    <Layout
-    // SetResponswrapper={() => setResponswrapper(false)}
-    // Responswrapper={responswrapper}
-    >
+    <Layout>
       <SEO title="Home" />
       <Slideshow />
       <HomeServices />

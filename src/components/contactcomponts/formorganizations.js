@@ -2,6 +2,8 @@ import React from "react"
 import { Form, Input, Button, Checkbox } from "antd"
 import { Upload, message } from "antd"
 import { UploadOutlined } from "@ant-design/icons"
+import styled from "styled-components"
+import uploadImage from "../../assets/upload.svg"
 
 const fileprops = {
   name: "file",
@@ -21,6 +23,20 @@ const fileprops = {
   },
 }
 
+const Arealabel = styled.label`
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  height: 32px;
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 14px;
+`
+const UploadImg = styled.img`
+  width: 20px;
+  height: 20px;
+  color: "#009db8";
+  margin-top: 2px;
+`
 const layout = {
   labelCol: {
     span: 24,
@@ -67,7 +83,7 @@ const Formfield = () => {
       id="formcontact"
     >
       <Form.Item
-        label="Կազմակերպության անվանում *"
+        label="Կազմակերպության անվանում"
         name="companyname"
         rules={[
           {
@@ -79,7 +95,7 @@ const Formfield = () => {
         <Input />
       </Form.Item>
       <Form.Item
-        label="Անուն / Ազգանուն *"
+        label="Անուն / Ազգանուն"
         name="username"
         rules={[
           {
@@ -100,7 +116,7 @@ const Formfield = () => {
       </Form.Item>
 
       <Form.Item
-        label="Կցել ֆայլը *"
+        label="Կցել ֆայլը"
         name="file"
         rules={[
           {
@@ -111,18 +127,19 @@ const Formfield = () => {
       >
         <Upload {...fileprops} lg={24}>
           <Button id="uploadbutton">
-            <UploadOutlined
+            {/* <UploadOutlined
               style={{
                 color: "#009db8",
                 fontSize: "20px",
               }}
-            />
+            /> */}
+            <UploadImg src={uploadImage} />
           </Button>
         </Upload>
       </Form.Item>
 
       <Form.Item
-        label="Վերնագիր *"
+        label="Վերնագիր"
         name="title"
         rules={[
           {
@@ -133,7 +150,7 @@ const Formfield = () => {
       >
         <Input />
       </Form.Item>
-      <label>Ձեր հաղորդագրությունը</label>
+      <Arealabel>Ձեր հաղորդագրությունը</Arealabel>
       <Form.Item
         label="Ձեր հաղորդագրությունը"
         name="textarea"

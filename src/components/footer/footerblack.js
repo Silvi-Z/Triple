@@ -1,7 +1,7 @@
 import React from "react"
 import { Row, Col } from "antd"
 import styled from "styled-components"
-import LinkedinImg from "../../assets/footericons/linkedin.png"
+import EnvironmentImg from "../../assets/footericons/location.png"
 import FacebookImg from "../../assets/footericons/facebook-4.png"
 import {
   WhatsAppOutlined,
@@ -107,10 +107,9 @@ const FooterCopyRightWrap = styled.div`
     display: none;
   } */
 `
-const LinkdinWrapper = styled.img`
-  /* @media only screen and (max-width: 768px) {
-    color: #009db8;
-  } */
+const EnvironmentWrapper = styled.img`
+  width: 14px;
+  height: 20px;
 `
 const FacebookWrapper = styled.img``
 
@@ -169,7 +168,8 @@ const FooterBlack = () => {
           </FooterNumberWrap>
         </FooterNumberColumn>
         <FooterAdressColumn xs={24} sm={24} md={8} lg={8} xl={8}>
-          <EnvironmentOutlined style={{ fontSize: "20px", color: "white" }} />
+          {/* <EnvironmentOutlined style={{ fontSize: "20px", color: "white" }} /> */}
+          <EnvironmentWrapper src={EnvironmentImg} />
           <FooterAdressWrap>
             <span>Հր, Քոչար 44</span>
           </FooterAdressWrap>
@@ -190,7 +190,7 @@ const FooterBlack = () => {
             <span className="copyright">
               Copyright © {new Date().getFullYear()}
             </span>{" "}
-            <a className="footerlinkweb">Website by AlgorithmSolutions</a>
+            <a className="footerlinkweb">Powered by algorithm</a>
           </FooterCopyRightWrap>
         </FooterCopyRightColumn>
       </Row>

@@ -110,7 +110,7 @@ const Formfield = () => {
       <Row>
         <Col span={10} xl={10} lg={10} md={10} xs={24}>
           <Form.Item
-            label="Ներբեռնել CV * "
+            label="Վերբեռնել CV * "
             name="file"
             rules={[
               {

@@ -2,6 +2,8 @@ import React from "react"
 import { Form, Input, Button, Row, Col } from "antd"
 import { Upload, message } from "antd"
 import { UploadOutlined } from "@ant-design/icons"
+import styled from "styled-components"
+import uploadImage from "../../assets/upload.svg"
 //input styled custom with id in layout css #basic_username
 import "../layout.css"
 
@@ -22,6 +24,21 @@ const fileprops = {
     }
   },
 }
+
+const Arealabel = styled.label`
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  height: 32px;
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 14px;
+`
+const UploadImg = styled.img`
+  width: 20px;
+  height: 20px;
+  color: "#009db8";
+  margin-top: 2px;
+`
 
 const layout = {
   labelCol: {
@@ -90,7 +107,7 @@ const Formfield = () => {
       </Form.Item>
 
       <Form.Item
-        label="Կցել ֆայլը *"
+        label="Կցել ֆայլը"
         name="file"
         rules={[
           {
@@ -102,18 +119,20 @@ const Formfield = () => {
       >
         <Upload {...fileprops} span={24}>
           <Button size="large" id="uploadbutton">
-            <UploadOutlined
+            {/* <UploadOutlined
               style={{
                 color: "#009db8",
                 fontSize: "20px",
+                margin: "20px";
               }}
-            />
+            /> */}
+            <UploadImg src={uploadImage} />
           </Button>
         </Upload>
       </Form.Item>
 
       <Form.Item
-        label="Վերնագիր *"
+        label="Վերնագիր"
         name="title"
         rules={[
           {
@@ -124,7 +143,7 @@ const Formfield = () => {
       >
         <Input size="large" />
       </Form.Item>
-      <label>Ձեր հաղորդագրությունը</label>
+      <Arealabel>Ձեր հաղորդագրությունը</Arealabel>
       <Form.Item
         label="Ձեր հաղորդագրությունը"
         name="textarea"

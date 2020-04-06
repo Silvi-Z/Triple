@@ -9,6 +9,12 @@ const ContainerUseful = styled(Row)`
   padding: 2%;
   box-shadow: 0px 5px 40px 0 rgba(0, 0, 0, 0.05);
   background-color: #ffffff;
+  @media only screen and (max-width: 1170px) {
+    width: 94%;
+  }
+  @media only screen and (max-width: 768px) {
+    width: 97%;
+  }
 `
 
 const TextWrapper = styled(Col)`

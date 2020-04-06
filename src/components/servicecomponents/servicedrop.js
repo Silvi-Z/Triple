@@ -25,7 +25,7 @@ const ServiceDropRow = styled(Row)`
   }
 `
 const ToggleH2Styled = styled.h2`
-  width: 240px;
+  width: 265px;
   height: 18px;
   font-family: ArialAMU;
   font-size: 18px;
@@ -34,7 +34,7 @@ const ToggleH2Styled = styled.h2`
   font-style: normal;
   line-height: normal;
   letter-spacing: normal;
-  text-align: center;
+  text-align: left;
   color: #000000;
   @media only screen and (max-width: 320px) {
     width: 126px;
@@ -147,7 +147,7 @@ const Servicedrop = ({ data, showServiceForm }) => {
   return (
     <ServiceDropRow align="middle" gutter={[10, 30]}>
       <DropHeadingIconCol
-        // xxl={{ span: 1, offset: 3 }}
+        xxl={{ span: 1, offset: 3 }}
         xl={{ span: 2, offset: 2 }}
         lg={{ span: 2, offset: 1 }}
         xs={{ span: 3, offset: 0 }}

@@ -687,7 +687,7 @@ pre tt:after {
 #submitbottoncompany {
   width: 180px;
   height: 46px;
-  margin: 5px -30px;
+  margin: 7px -30px;
 }
 
 @media only screen and (max-width: 375px) {
@@ -802,6 +802,30 @@ pre tt:after {
 select {
   font-size: 12px;
   border-style: none;
+}
+.languagetext {
+  width: 18px;
+  height: 13px;
+  font-family: ArialAMU;
+  font-size: 12px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: #000000;
+}
+.languagedrop {
+  width: 43px;
+  height: 52px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+  border: solid 1px #ebebeb;
+  background-color: #ffffff;
+}
+
+.languagetext:hover {
+  color: #009db8;
 }
 #footerfirstrow {
   height: 70%;

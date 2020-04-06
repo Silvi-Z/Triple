@@ -4,6 +4,7 @@ import styled from "styled-components"
 import { Row, Col, Dropdown } from "antd"
 import CallImg from "../assets/homeImages/phone-call3.png"
 import MainLogo from "../assets/homeImages/3c.png"
+import EnvironmentImg from "../assets/footericons/location.svg"
 import "@fortawesome/fontawesome-free/css/all.css"
 import "@fortawesome/fontawesome-free/js/all.js"
 import {
@@ -38,6 +39,16 @@ const phones = (
         style={{ fontSize: "15px", color: "purply", marginRight: "4%" }}
       ></i>
       <span className="phonenumber">374 93 00 00 00</span>
+    </div>
+  </div>
+)
+const language = (
+  <div className="languagedrop">
+    <div className="languagebox">
+      <span className="languagetext">Eng</span>
+    </div>
+    <div className="languagebox">
+      <span className="languagetext">Рус</span>
     </div>
   </div>
 )
@@ -89,6 +100,7 @@ const AdressSpan = styled.span`
   letter-spacing: normal;
   text-align: center;
   color: #000000;
+  margin-bottom: 4%;
 `
 const PhoneSpan = styled.span`
   width: 93px;
@@ -187,6 +199,12 @@ const Label = styled.label`
   @media (max-width: 380px) {
     margin-top: 7%;
   }
+`
+const EnvironmentWrapper = styled.img`
+  width: 14px;
+  height: 20px;
+  margin-right: 5%;
+  margin-top: 20%;
 `
 const GridLang = styled.div`
   grid-area: lang;
@@ -320,16 +338,20 @@ const Navbar = ({ open, responswrapper }) => {
 
       <GridWrapper>
         <GridLang>
-          <select id="lang">
-            <option value="hy">Հայ</option>
-            <option value="en">Eng</option>
-            <option value="ru">Рус</option>
-          </select>
+          <Dropdown overlay={language} trigger={["click"]}>
+            <GridPhone>
+              <a
+                onClick={e => e.preventDefault()}
+                style={{ width: "100%", color: "black" }}
+              >
+                <PhoneSpan>Հայ</PhoneSpan>{" "}
+                <CaretDownOutlined style={{ fontSize: "11px" }} />
+              </a>
+            </GridPhone>
+          </Dropdown>
         </GridLang>
         <GridAddress>
-          <EnvironmentOutlined
-            style={{ fontSize: "14px", marginRight: "5%" }}
-          />
+          <EnvironmentWrapper src={EnvironmentImg} />
           <AdressSpan>Հր Քոչար 44</AdressSpan>
         </GridAddress>
         <GridBlank1 />
@@ -339,14 +361,6 @@ const Navbar = ({ open, responswrapper }) => {
           </NavLink>
         </GridHome>
         <GridBlank2 />
-        {/* <PhoneOutlined
-            style={{
-              fontSize: "10px",
-              marginRight: "4%",
-              transform: "rotate(90deg)",
-            }}
-          />
-          <PhoneSpan>374 93 00 00 00</PhoneSpan> */}
         <Dropdown overlay={phones} trigger={["click"]}>
           <GridPhone>
             <a
