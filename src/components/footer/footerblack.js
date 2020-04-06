@@ -140,8 +140,8 @@ const FooterAdressColumn = styled(Col)`
 `
 const FooterFollowUsColumn = styled(Col)`
   display: flex;
-  justify-content: space-around;
-  padding-right: 17%;
+  justify-content: space-evenly;
+  padding-left: 15%;
   @media only screen and (max-width: 768px) {
     padding-right: 0%;
   }

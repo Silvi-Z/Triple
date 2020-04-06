@@ -1,14 +1,18 @@
-import React from 'react';
-import styled from 'styled-components';
-import Slider from 'react-slick';
-
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
-
+import React from "react"
+import styled from "styled-components"
+import Slider from "react-slick"
+import "slick-carousel/slick/slick.css"
+import "slick-carousel/slick/slick-theme.css"
+import Img from "../assets/homeImages/icons/home_slidephoto.jpg"
 const Slide = styled.div`
   width: 100%;
   overflow: hidden;
-`;
+
+  img {
+    width: 100%;
+    margin-left: 0;
+  }
+`
 
 const Slideshow = () => {
   const settings = {
@@ -17,21 +21,21 @@ const Slideshow = () => {
     arrows: false,
     autoplay: true,
     autoplaySpeed: 5000,
-  };
+  }
 
   return (
     <Slider {...settings}>
       <Slide>
-        <img src="https://via.placeholder.com/1920x400?text=Slide+1" />
+        <img src={Img} />
       </Slide>
       <Slide>
-        <img src="https://via.placeholder.com/1920x400?text=Slide+2" />
+        <img src={Img} />
       </Slide>
       <Slide>
-        <img src="https://via.placeholder.com/1920x400?text=Slide+3" />
+        <img src={Img} />
       </Slide>
     </Slider>
-  );
-};
+  )
+}
 
-export default Slideshow;
+export default Slideshow

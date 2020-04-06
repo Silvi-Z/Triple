@@ -77,7 +77,6 @@ const PStyled = styled.p`
 `
 
 const Services = ({ location, ...props }) => {
-  console.log(location)
   const [servicedata, setservicedata] = useState([])
 
   const getServiceData = () => {
@@ -224,12 +223,7 @@ const Services = ({ location, ...props }) => {
         </Col>
       </HeadingParagraphRow>
       {servicedata.map((d, id) => (
-        <ServiceDropWrap
-          // showForm={showdrop}
-          showServiceForm={toggle}
-          data={d}
-          key={id}
-        />
+        <ServiceDropWrap showServiceForm={toggle} data={d} key={id} />
       ))}
     </Layout>
   )

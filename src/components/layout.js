@@ -39,9 +39,11 @@ const ContentStyled = styled(Content)`
 `
 
 const FooterCust = styled(Footer)`
-  height: ${props => (props.backcolor ? "130px" : "208px")};
-  background-color: ${props => (props.backcolor ? "#1c1d21" : "white")};
-  border-top: ${props => (props.backcolor ? null : "0.01em solid #ebebeb")};
+  height: ${props => (props.backcolor === "true" ? "130px" : "208px")};
+  background-color: ${props =>
+    props.backcolor === "true" ? "#1c1d21" : "white"};
+  border-top: ${props =>
+    props.backcolor === "true" ? null : "0.01em solid #ebebeb"};
   border-top-width: 80% thin;
   @media (max-width: 768px) {
     padding-left: 0px;
@@ -65,7 +67,6 @@ const Layout = ({ children }) => {
   // `);
   const openMenu = () => {
     setResponswrapper(!responswrapper)
-    console.log(responswrapper)
   }
 
   return (
@@ -80,7 +81,7 @@ const Layout = ({ children }) => {
       >
         <ContentStyled>{responswrapper ? children : null}</ContentStyled>
       </div>
-      <FooterCust backcolor={responswrapper}>
+      <FooterCust backcolor={responswrapper.toString()}>
         {!responswrapper ? <FooterWhite /> : <FooterBlack />}
       </FooterCust>
     </>
