@@ -12,7 +12,7 @@ import BrowserImg from "../../assets/homeImages/icons/browser.svg"
 import UserImg from "../../assets/homeImages/icons/user.svg"
 import LawImg from "../../assets/homeImages/icons/law.svg"
 import TeamImg from "../../assets/homeImages/icons/teamwork.svg"
-import RightArrowImg from "../../assets/homeImages/icons/calculator.svg"
+import RightArrowImg from "../../assets/homeImages/right-arrow.png"
 
 const NavLink = styled(Link)`
   text-decoration: none;

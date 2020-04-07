@@ -4,6 +4,7 @@ import styled from "styled-components"
 import { Typography, Row, Col, Button, InputNumber } from "antd"
 import FormindIviduals from "../components/contactcomponts/formindividuals"
 import FormOrganizations from "../components/contactcomponts/formorganizations"
+import EnvironmentImg from "../assets/footericons/location.svg"
 import { EnvironmentOutlined } from "@ant-design/icons"
 
 import CallPhoneImg from "../assets/footericons/phone-call.svg"
@@ -83,7 +84,7 @@ const PStyled = styled.p`
   }
 `
 const NumberCol = styled(Col)`
-  max-width: 562px;
+  max-width: 602px;
   max-height: 55px;
   padding-top: 2%;
   box-shadow: 0px 5px 40px 0 rgba(0, 0, 0, 0.05);
@@ -93,7 +94,7 @@ const NumberCol = styled(Col)`
   margin-top: 1.4%;
 
   @media only screen and (max-width: 1170px) {
-    max-width: 562px;
+    max-width: 602px;
     max-height: 54px;
     margin-left: 15%;
   }
@@ -110,9 +111,9 @@ const NumberCol = styled(Col)`
     padding-top: 5%;
   }
 `
-const AdressCol = styled(Col)`
-  max-width: 562px;
-  max-height: 55px;
+const AdressMapCol = styled(Col)`
+  max-width: 602px;
+  max-height: 410px;
   padding-top: 2%;
   box-shadow: 0px 5px 40px 0 rgba(0, 0, 0, 0.05);
   background-color: #ffffff;
@@ -122,8 +123,8 @@ const AdressCol = styled(Col)`
   padding-bottom: 18px;
 
   @media only screen and (max-width: 1170px) {
-    max-width: 562px;
-    max-height: 54px;
+    max-width: 602px;
+    max-height: 410px;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.05);
     background-color: #ffffff;
     margin-left: 15%;
@@ -143,7 +144,7 @@ const AdressCol = styled(Col)`
   }
 `
 const AddressSpan = styled.span`
-  width: 263px;
+  width: 142px;
   height: 16px;
   font-family: ArialAMU;
   font-size: 16px;
@@ -155,22 +156,12 @@ const AddressSpan = styled.span`
   text-align: center;
   color: #000000;
 
-  a {
-    font-size: 14px;
-    color: #009db8;
-    font-family: ArialAMU;
-  }
   @media only screen and (max-width: 375px) {
-    width: 235px;
+    width: 142px;
     height: 15px;
     font-family: ArialAMU;
     font-size: 15px;
     padding: 0 0%;
-    a {
-      font-size: 12px;
-      color: #009db8;
-      font-family: ArialAMU;
-    }
   }
   @media only screen and (max-width: 320px) {
     width: 235px;
@@ -186,7 +177,6 @@ const AddressSpan = styled.span`
   }
 `
 const ContactAdressWrap = styled.div`
-  width: 263px;
   height: 15px;
   font-family: ArialAMU;
   font-size: 16px;
@@ -199,6 +189,8 @@ const ContactAdressWrap = styled.div`
   margin-left: 11px;
   color: #000000;
   margin-top: 0.4%;
+  display: flex;
+  justify-content: center;
   @media only screen and (max-width: 375px) {
     width: 235px;
     height: 15px;
@@ -214,7 +206,18 @@ const ContactAdressWrap = styled.div`
     padding: 0 0%;
   }
 `
-
+const MapCol = styled(Col)`
+  padding: 2% 3%;
+`
+const Mapiframe = styled.iframe`
+  width: 564px;
+  height: 340px;
+  border: 0;
+`
+const EnvironmentWrapper = styled.img`
+  width: 14px;
+  height: 20px;
+`
 const HeadingParagrCol = styled(Col)`
   @media only screen and (max-width: 1170px) {
     margin-left: 3.8%;
@@ -272,15 +275,15 @@ const FormRow = styled(Row)`
 `
 const FormColumn = styled(Col)`
   margin-left: 17%;
-  max-width: 562px;
-  max-height: 700px;
+  max-width: 602px;
+  max-height: 513px;
   box-shadow: 0px 5px 40px 0 rgba(0, 0, 0, 0.05);
   background-color: #ffffff;
-  padding: 1.8% 8.4%;
+  padding: 4.8% 5%;
   @media only screen and (max-width: 1170px) {
     margin-left: 16.5%;
-    max-width: 562px;
-    max-height: 700px;
+    /* max-width: 562px;
+    max-height: 700px; */
   }
   @media only screen and (max-width: 768px) {
     margin-left: 15%;
@@ -314,7 +317,7 @@ const ContactNavRow = styled(Row)`
   }
 `
 const IndividCol = styled(Col)`
-  max-width: 275px;
+  max-width: 294px;
   height: 50px;
   text-align: center;
   padding-top: 1.6%;
@@ -342,7 +345,7 @@ const IndividCol = styled(Col)`
   }
   @media only screen and (max-width: 1170px) {
     margin-left: 15%;
-    max-width: 275px;
+    max-width: 294px;
   }
   @media only screen and (max-width: 375px) {
     margin-left: 10%;
@@ -384,7 +387,7 @@ const IndividCol = styled(Col)`
   }
 `
 const CompanyCol = styled(Col)`
-  max-width: 275px;
+  max-width: 294px;
   height: 50px;
   text-align: center;
   padding-top: 1.4%;
@@ -413,15 +416,15 @@ const CompanyCol = styled(Col)`
   }
   @media only screen and (max-width: 1170px) {
     margin-left: 1.5%;
-    max-width: 275px;
+    max-width: 294px;
   }
   @media only screen and (max-width: 1024px) {
     margin-left: 3.5%;
-    max-width: 275px;
+    max-width: 294px;
   }
   @media only screen and (max-width: 768px) {
     margin-left: 2%;
-    max-width: 275px;
+    max-width: 294px;
   }
   @media only screen and (max-width: 375px) {
     margin-left: 10%;
@@ -490,6 +493,7 @@ const Contact = () => {
       </ParagraphRow>
       <ContactNavRow>
         <IndividCol
+          xl={11}
           lg={9}
           md={9}
           sm={24}
@@ -501,6 +505,7 @@ const Contact = () => {
           <span>Անհատների համար</span>
         </IndividCol>
         <CompanyCol
+          xl={11}
           lg={9}
           md={9}
           sm={24}
@@ -511,26 +516,6 @@ const Contact = () => {
         >
           <span>Կազմակերպությունների համար</span>
         </CompanyCol>
-        <NumberCol lg={{ span: 19 }} offset={2}>
-          <CallIconWrapper src={CallPhoneImg} alt={"icon"} />
-          <ContactNumberWrap>
-            <span>+374 93706010,+374 93706010</span>
-          </ContactNumberWrap>
-        </NumberCol>
-        <AdressCol lg={{ span: 19 }} offset={2}>
-          <EnvironmentOutlined style={{ fontSize: "16px", marginTop: "1%" }} />
-          <ContactAdressWrap>
-            <AddressSpan>
-              Հր Քոչար 44/54{" "}
-              <a
-                href="https://maps.google.com/?q=40.204059,44.508450"
-                target="_blank"
-              >
-                (Տեսնել քարտեզի վրա)
-              </a>
-            </AddressSpan>
-          </ContactAdressWrap>
-        </AdressCol>
       </ContactNavRow>
       <FormRow>
         {openIndivid ? (
@@ -543,6 +528,33 @@ const Contact = () => {
           </FormColumn>
         ) : null}
       </FormRow>
+      <ContactNavRow>
+        <NumberCol lg={{ span: 19 }} offset={2}>
+          <CallIconWrapper src={CallPhoneImg} alt={"icon"} />
+          <ContactNumberWrap>
+            <span>+374 93706010,+374 93706010</span>
+          </ContactNumberWrap>
+        </NumberCol>
+        <AdressMapCol lg={{ span: 19 }} offset={2}>
+          <Row>
+            <Col span={24}>
+              <ContactAdressWrap>
+                {/* <EnvironmentOutlined
+                  style={{ fontSize: "16px", marginTop: "1%" }}
+                /> */}
+                <EnvironmentWrapper src={EnvironmentImg} />
+                <AddressSpan>Հր Քոչար 44/54 </AddressSpan>
+              </ContactAdressWrap>
+            </Col>
+            <MapCol span={24}>
+              <Mapiframe
+                frameborder="0"
+                src="https://maps.google.com/maps?q=Armenia%2C%20Yerevan%20Hrachya%20Qochar%2044%2F54&t=&z=17&ie=UTF8&iwloc=&output=embed"
+              ></Mapiframe>
+            </MapCol>
+          </Row>
+        </AdressMapCol>
+      </ContactNavRow>
     </Layout>
   )
 }

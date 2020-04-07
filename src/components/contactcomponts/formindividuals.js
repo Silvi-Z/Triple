@@ -45,7 +45,7 @@ const layout = {
     span: 24,
   },
   wrapperCol: {
-    span: 16,
+    span: 24,
   },
 }
 const tailLayout = {
@@ -85,27 +85,33 @@ const Formfield = () => {
       onFinishFailed={onFinishFailed}
       id="formcontact"
     >
-      <Form.Item
-        label="Անուն / Ազգանուն"
-        name="username"
-        rules={[
-          {
-            required: true,
-            message: "Խնդրում եմ լրացրեք այս դաշտը!",
-          },
-        ]}
-      >
-        <Input />
-      </Form.Item>
-
-      <Form.Item
-        name={["user", "email"]}
-        label="Էլ․ հասցե"
-        rules={[{ type: "email", required: true }]}
-      >
-        <Input size="large" />
-      </Form.Item>
-
+      <Row>
+        <Col span={11}>
+          <Form.Item
+            label="Անուն / Ազգանուն"
+            name="username"
+            rules={[
+              {
+                required: true,
+                message: "Խնդրում եմ լրացրեք այս դաշտը!",
+              },
+            ]}
+            style={{ marginBottom: "3px" }}
+          >
+            <Input />
+          </Form.Item>
+        </Col>
+        <Col span={11} offset={1}>
+          <Form.Item
+            name={["user", "email"]}
+            label="Էլ․ հասցե"
+            rules={[{ type: "email", required: true }]}
+            style={{ marginBottom: "3px" }}
+          >
+            <Input size="large" />
+          </Form.Item>
+        </Col>
+      </Row>
       <Form.Item
         label="Կցել ֆայլը"
         name="file"
@@ -115,9 +121,9 @@ const Formfield = () => {
             message: "Խնդրում եմ լրացրեք այս դաշտը!",
           },
         ]}
-        span={24}
+        style={{ marginBottom: "3px" }}
       >
-        <Upload {...fileprops} span={24}>
+        <Upload {...fileprops}>
           <Button size="large" id="uploadbutton">
             {/* <UploadOutlined
               style={{
@@ -140,6 +146,7 @@ const Formfield = () => {
             message: "Խնդրում եմ լրացրեք այս դաշտը!",
           },
         ]}
+        style={{ marginBottom: "3px" }}
       >
         <Input size="large" />
       </Form.Item>

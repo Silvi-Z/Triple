@@ -1,5 +1,5 @@
 import React from "react"
-import { Form, Input, Button, Checkbox } from "antd"
+import { Form, Input, Button, Checkbox, Row, Col } from "antd"
 import { Upload, message } from "antd"
 import { UploadOutlined } from "@ant-design/icons"
 import styled from "styled-components"
@@ -82,39 +82,33 @@ const Formfield = () => {
       onFinishFailed={onFinishFailed}
       id="formcontact"
     >
-      <Form.Item
-        label="Կազմակերպության անվանում"
-        name="companyname"
-        rules={[
-          {
-            required: true,
-            message: "Խնդրում եմ լրացրեք այս դաշտը!",
-          },
-        ]}
-      >
-        <Input />
-      </Form.Item>
-      <Form.Item
-        label="Անուն / Ազգանուն"
-        name="username"
-        rules={[
-          {
-            required: true,
-            message: "Խնդրում եմ լրացրեք այս դաշտը!",
-          },
-        ]}
-      >
-        <Input />
-      </Form.Item>
-
-      <Form.Item
-        name={["user", "email"]}
-        label="Էլ․ հասցե"
-        rules={[{ type: "email", required: true }]}
-      >
-        <Input />
-      </Form.Item>
-
+      <Row>
+        <Col span={11}>
+          <Form.Item
+            label="Կազմակերպության անվանում"
+            name="username"
+            rules={[
+              {
+                required: true,
+                message: "Խնդրում եմ լրացրեք այս դաշտը!",
+              },
+            ]}
+            style={{ marginBottom: "3px" }}
+          >
+            <Input />
+          </Form.Item>
+        </Col>
+        <Col span={11} offset={1}>
+          <Form.Item
+            name={["user", "email"]}
+            label="Էլ․ հասցե"
+            rules={[{ type: "email", required: true }]}
+            style={{ marginBottom: "3px" }}
+          >
+            <Input size="large" />
+          </Form.Item>
+        </Col>
+      </Row>
       <Form.Item
         label="Կցել ֆայլը"
         name="file"
@@ -124,13 +118,15 @@ const Formfield = () => {
             message: "Խնդրում եմ լրացրեք այս դաշտը!",
           },
         ]}
+        style={{ marginBottom: "3px" }}
       >
-        <Upload {...fileprops} lg={24}>
-          <Button id="uploadbutton">
+        <Upload {...fileprops}>
+          <Button size="large" id="uploadbutton">
             {/* <UploadOutlined
               style={{
                 color: "#009db8",
                 fontSize: "20px",
+                margin: "20px";
               }}
             /> */}
             <UploadImg src={uploadImage} />
@@ -147,26 +143,27 @@ const Formfield = () => {
             message: "Խնդրում եմ լրացրեք այս դաշտը!",
           },
         ]}
+        style={{ marginBottom: "3px" }}
       >
-        <Input />
+        <Input size="large" />
       </Form.Item>
       <Arealabel>Ձեր հաղորդագրությունը</Arealabel>
       <Form.Item
         label="Ձեր հաղորդագրությունը"
         name="textarea"
+        noStyle="false"
         rules={[
           {
             required: false,
             message: "",
           },
         ]}
-        noStyle="true"
       >
         <Input.TextArea />
       </Form.Item>
 
       <Form.Item {...tailLayout}>
-        <Button type="primary" htmlType="submit" id="submitbottoncompany">
+        <Button type="primary" htmlType="submit" id="submitbotton">
           Ուղարկել
         </Button>
       </Form.Item>

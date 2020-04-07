@@ -651,38 +651,54 @@ pre tt:after {
   color: #000000;
 }
 #basic_username {
-  width: 400px;
+  width: 252px;
   height: 38px;
 }
+#basic_username label {
+  width: 122px;
+  height: 14px;
+  font-family: ArialAMU;
+  font-size: 14px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: left;
+  color: #000000;
+  padding: 0%;
+}
 #basic_companyname {
-  width: 400px;
+  width: 252px;
   height: 38px;
 }
 #basic_user_email {
-  width: 400px;
+  width: 252px;
   height: 38px;
+  margin-left: 2%;
 }
 #basic_title {
-  width: 400px;
+  width: 514px;
   height: 38px;
 }
 #basic_textarea {
-  width: 400px;
+  width: 514px;
   height: 80px;
+  margin-bottom: 30px;
 }
 #formtextarea {
-  width: 600px;
+  width: 514px;
   height: 80px;
 }
 #uploadbutton {
-  width: 400px;
+  width: 514px;
   height: 38px;
   text-align: right;
 }
 #submitbotton {
   width: 180px;
   height: 46px;
-  margin: 5px -30px;
+  margin: 5px;
 }
 #submitbottoncompany {
   width: 180px;
@@ -717,9 +733,12 @@ pre tt:after {
     width: 270px;
     height: 80px;
   }
-  #formcontact {
-    width: 390px;
-    padding: 3% 3%;
+  #formcontact div {
+    width: 518px;
+    margin-top: 0px;
+  }
+  #formcontact div {
+    margin-top: 0%;
   }
   #submitbotton {
     width: 180px;
