@@ -83,8 +83,11 @@ const TextWrapper = styled(Col)`
   }
 `
 const ListWrapper = styled(Col)`
+  ul {
+    list-style: none;
+  }
   @media only screen and (max-width: 320px) {
-    ol {
+    ul {
       font-family: ArialAMU;
       font-size: 12px;
       font-weight: normal;

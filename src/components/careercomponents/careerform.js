@@ -8,6 +8,8 @@ import {
   LinkedinOutlined,
 } from "@ant-design/icons"
 import styled from "styled-components"
+import facebookImg from "../../assets/career/facebook.png"
+import linkedinImg from "../../assets/career/linkedin.png"
 import "../layout.css"
 
 const fileprops = {
@@ -61,8 +63,17 @@ const SharedWrapperCol = styled(Col)`
   display: flex;
   &:hover {
     cursor: pointer;
-    color: "#009db8";
+    color: red;
+    a {
+      fill: #da4567;
+    }
   }
+`
+
+const Image = styled.img`
+  height: 32px;
+  width: 32px;
+  margin-left: 19px;
 `
 
 const validateMessages = {
@@ -152,26 +163,28 @@ const Formfield = () => {
         <SharedWrapperCol span={10}>
           <ShareLabel>Կիսվել</ShareLabel>
           <a
-            href="https://www.facebook.com/sharer/sharer.php?u=https://www.facebook.com/AlgorithmSolutionsCompany/"
+            href="https://www.facebook.com/sharer/sharer.php?u=https://www.facebook.com/TripleCArmenia/"
             target="_blank"
             rel="noopener"
           >
-            <FacebookOutlined
+            {/* <FacebookOutlined
               style={{
                 color: "#000000",
                 fontSize: "32px",
                 marginLeft: "19px",
               }}
-            />
+            /> */}
+            <Image src={facebookImg} />
           </a>
+          <Image src={linkedinImg} />
 
-          <LinkedinOutlined
+          {/* <LinkedinOutlined
             style={{
               color: "#000000",
               fontSize: "32px",
               marginLeft: "19px",
             }}
-          />
+          /> */}
         </SharedWrapperCol>
       </Row>
     </Form>

@@ -47,6 +47,9 @@ const TextWrapper = styled(Col)`
   }
 `
 const ListWrapper = styled(Col)`
+  ul {
+    list-style: none;
+  }
   @media only screen and (max-width: 320px) {
     ol {
       font-family: ArialAMU;
@@ -80,7 +83,6 @@ const DocTemplateInform = ({ usedata }) => {
       href={lin.link}
       target="_blank
     "
-      // download={lin.link}
     >
       <li>{lin.label}</li>
     </a>
@@ -93,7 +95,7 @@ const DocTemplateInform = ({ usedata }) => {
         <h3> {usedata.data.second_heading}</h3>
       </TextWrapper>
       <ListWrapper>
-        <ol>{linklist}</ol>
+        <ul>{linklist}</ul>
       </ListWrapper>
     </ContainerUseful>
   )
