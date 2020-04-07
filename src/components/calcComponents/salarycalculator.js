@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { useFormik } from 'formik';
 // import * as Yup from 'yup';
 import { apiHelper } from '../../helpers/apiHelper';
-import AccountImg from '../../assets/calcImages/account.png';
+import SalaryImg from '../../assets/calcImages/salary.png';
 
 const HeadIcon = styled.img`
   width: 25px;
@@ -157,7 +157,7 @@ const SalaryCalculator = () => {
           xl={{ span: 2, offset: 2 }}
           lg={{ span: 2, offset: 1 }}
         >
-          <HeadIcon src={AccountImg} alt={'icon'} />
+          <HeadIcon src={SalaryImg} alt={'icon'} />
         </Col>
         <Col xxl={17} xl={18} lg={19} span={19}>
           <H2Styled>Աշխատավարձի հաշվիչ</H2Styled>

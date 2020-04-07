@@ -14,7 +14,7 @@ import { useFormik } from 'formik';
 // import * as Yup from 'yup';
 import moment from 'moment';
 import { apiHelper } from '../../helpers/apiHelper';
-import CarImg from '../../assets/calcImages/carCustoms.png';
+import CarImg from '../../assets/calcImages/carTax.png';
 
 const { Option } = Select;
 

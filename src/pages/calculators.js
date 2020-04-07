@@ -3,10 +3,11 @@ import { Typography, Row, Col, Divider } from 'antd';
 import styled from 'styled-components';
 import Layout from '../components/layout';
 import SalaryCalculator from '../components/calcComponents/salarycalculator';
-import VacationCalculator from '../components/calcComponents/vacationcalculator';
+// import VacationCalculator from '../components/calcComponents/vacationcalculator';
 import CarCustomsCalculator from '../components/calcComponents/carCustomsCalculator';
 import CarSellCalculator from '../components/calcComponents/carSellCalculator';
 import CarPropTaxCalculator from '../components/calcComponents/carPropTaxCalculator';
+import MortgageCalculator from '../components/calcComponents/mortgageCalculator';
 
 const { Text } = Typography;
 
@@ -45,7 +46,9 @@ const Calculators = () => (
     </Row>
     <SalaryCalculator />
     <Divider />
-    <VacationCalculator />
+    {/* <VacationCalculator />
+    <Divider /> */}
+    <MortgageCalculator />
     <Divider />
     <CarCustomsCalculator />
     <Divider />

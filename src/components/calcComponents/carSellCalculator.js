@@ -14,7 +14,7 @@ import { useFormik } from 'formik';
 // import * as Yup from 'yup';
 import moment from 'moment';
 import { apiHelper } from '../../helpers/apiHelper';
-import CarImg from '../../assets/calcImages/carCustoms.png';
+import CarImg from '../../assets/calcImages/carSell.png';
 
 const { Text } = Typography;
 
@@ -229,7 +229,7 @@ const CarSellCalculator = () => {
                 span={14}
               >
                 <FormLabelCell>
-                Վաճառքի գին
+                  Վաճառքի գին
                 </FormLabelCell>
               </Col>
               <Col xxl={3} xl={3} lg={3} span={4}>

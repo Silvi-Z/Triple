@@ -6,6 +6,7 @@ import { useFormik } from 'formik';
 // import * as Yup from 'yup';
 import { apiHelper } from '../../helpers/apiHelper';
 import UserImg from '../../assets/calcImages/user.png';
+import VacationImg from '../../assets/calcImages/vacation.png';
 
 const { Title, Text } = Typography;
 
@@ -85,7 +86,7 @@ const VacationCalculator = () => {
           xl={{span: 2, offset: 2}}
           lg={{span: 2, offset: 1}}
         >
-          <HeadIcon src={UserImg} alt={'icon'} />
+          <HeadIcon src={VacationImg} alt={'icon'} />
         </Col>
         <Col xxl={17} xl={18} lg={19} span={19}>
           <H2Styled>Արձակուրդայինի հաշվիչ</H2Styled>
