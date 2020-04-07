@@ -355,7 +355,7 @@ const ContactMapRow = styled(Row)`
     margin-left: 0%;
     padding: 0 13.6%;
   }
-  @media only screen and (max-width: 1170px) {
+  @media only screen and (max-width: 1024px) {
     margin-left: 0%;
     padding: 0 9.6%;
   }

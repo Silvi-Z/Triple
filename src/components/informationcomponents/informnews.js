@@ -77,6 +77,7 @@ const Ptext = styled.p`
 `
 const WrapperImg = styled.img`
   height: -webkit-fill-available;
+  cursor: pointer;
   @media only screen and (max-width: 375px) {
     width: 100%;
     height: 150px;

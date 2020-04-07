@@ -112,7 +112,7 @@ const UsefulInform = ({ usedata }) => {
         <h3> {usedata.data.second_heading}</h3>
       </TextWrapper>
       <ListWrapper>
-        <ol>{linklist}</ol>
+        <ul>{linklist}</ul>
       </ListWrapper>
     </ContainerUseful>
   )
