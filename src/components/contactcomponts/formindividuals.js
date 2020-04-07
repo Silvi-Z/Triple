@@ -86,7 +86,7 @@ const Formfield = () => {
       id="formcontact"
     >
       <Row>
-        <Col span={11}>
+        <Col span={11} xs={24}>
           <Form.Item
             label="Անուն / Ազգանուն"
             name="username"
@@ -101,7 +101,7 @@ const Formfield = () => {
             <Input />
           </Form.Item>
         </Col>
-        <Col span={11} offset={1}>
+        <Col span={11} xs={{ span: 24, offset: 0 }} offset={1}>
           <Form.Item
             name={["user", "email"]}
             label="Էլ․ հասցե"

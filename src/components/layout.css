@@ -743,7 +743,7 @@ pre tt:after {
   #submitbotton {
     width: 180px;
     height: 46px;
-    margin-left: -20%;
+    margin-left: -26%;
     margin-top: 20px;
   }
   #submitbottoncompany {
@@ -772,6 +772,7 @@ pre tt:after {
 
 @media only screen and (max-width: 768px) {
   #basic_textarea {
+    max-width: 102%;
     margin-bottom: 20px;
   }
   #basic_career_textarea {
@@ -779,6 +780,50 @@ pre tt:after {
   }
   #basic_career {
     width: 540px;
+  }
+  #basic_user_email {
+    width: 245px;
+    height: 38px;
+    margin-left: 6%;
+  }
+  #basic_username {
+    width: 240px;
+    height: 38px;
+  }
+  #basic_title {
+    width: 500px;
+    height: 38px;
+  }
+  #uploadbutton {
+    width: 500px;
+    height: 38px;
+    text-align: right;
+  }
+}
+
+@media only screen and (max-width: 375px) {
+  #basic_user_email {
+    width: 270px;
+    height: 38px;
+    margin-left: 0%;
+  }
+  #basic_username {
+    width: 270px;
+    height: 38px;
+  }
+  #uploadbutton {
+    width: 270px;
+    height: 38px;
+    text-align: right;
+  }
+  #basic_title {
+    width: 270px;
+    height: 38px;
+  }
+  #formcontact {
+    width: 290px;
+    padding: 2% 2%;
+    margin-left: 2%;
   }
 }
 @media only screen and (max-width: 375px) {
@@ -810,17 +855,6 @@ pre tt:after {
     height: 46px;
     text-align: right;
   }
-}
-@media only screen and (max-width: 320px) {
-  #formcontact {
-    width: 290px;
-    padding: 2% 2%;
-    margin-left: 2%;
-  }
-}
-select {
-  font-size: 12px;
-  border-style: none;
 }
 .languagetext {
   width: 18px;
