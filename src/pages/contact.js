@@ -98,10 +98,15 @@ const NumberCol = styled(Col)`
     max-height: 54px;
     margin-left: 15%;
   }
+  @media only screen and (max-width: 768px) {
+    max-width: 562px;
+    max-height: 54px;
+    margin-left: 15%;
+  }
   @media (max-width: 375px) {
     max-width: 290px;
     max-height: 54px;
-    margin-left: 5%;
+    margin-left: 2%;
     padding-top: 5%;
   }
   @media (max-width: 320px) {
@@ -114,7 +119,7 @@ const NumberCol = styled(Col)`
 const AdressMapCol = styled(Col)`
   max-width: 602px;
   max-height: 410px;
-  padding-top: 2%;
+  padding-top: 1%;
   box-shadow: 0px 5px 40px 0 rgba(0, 0, 0, 0.05);
   background-color: #ffffff;
   display: flex;
@@ -130,15 +135,20 @@ const AdressMapCol = styled(Col)`
     margin-left: 15%;
     padding-bottom: 18px;
   }
+  @media only screen and (max-width: 768px) {
+    max-width: 562px;
+    max-height: 410px;
+    margin-left: 15%;
+  }
   @media (max-width: 375px) {
     max-width: 290px;
-    max-height: 54px;
-    margin-left: 5%;
+    max-height: 250px;
+    margin-left: 2%;
     padding-top: 5%;
   }
   @media (max-width: 320px) {
     max-width: 290px;
-    max-height: 54px;
+    max-height: 250px;
     margin-left: -2%;
     padding-top: 5%;
   }
@@ -192,14 +202,14 @@ const ContactAdressWrap = styled.div`
   display: flex;
   justify-content: center;
   @media only screen and (max-width: 375px) {
-    width: 235px;
+    width: 290px;
     height: 15px;
     font-family: ArialAMU;
     font-size: 15px;
     padding: 0 0%;
   }
   @media only screen and (max-width: 320px) {
-    width: 235px;
+    width: 290px;
     height: 15px;
     font-family: ArialAMU;
     font-size: 15px;
@@ -213,6 +223,16 @@ const Mapiframe = styled.iframe`
   width: 564px;
   height: 340px;
   border: 0;
+  @media only screen and (max-width: 375px) {
+    width: 290px;
+    height: 180px;
+    margin-top: 10px;
+  }
+  @media only screen and (max-width: 320px) {
+    width: 290px;
+    height: 180px;
+    margin-top: 10px;
+  }
 `
 const EnvironmentWrapper = styled.img`
   width: 14px;
@@ -269,7 +289,16 @@ const ContactNumberWrap = styled.div`
 
 const FormRow = styled(Row)`
   padding: 0 12%;
+  @media only screen and (max-width: 1024px) {
+    padding: 0 8%;
+  }
   @media only screen and (max-width: 768px) {
+    padding: 0 0%;
+  }
+  @media only screen and (max-width: 375px) {
+    padding: 0 0%;
+  }
+  @media only screen and (max-width: 320px) {
     padding: 0 0%;
   }
 `
@@ -294,7 +323,7 @@ const FormColumn = styled(Col)`
     max-width: 290px;
     font-size: 15px;
     padding: 0 0%;
-    margin-left: 5%;
+    margin-left: 2%;
   }
   @media only screen and (max-width: 320px) {
     max-width: 290px;
@@ -308,6 +337,27 @@ const ContactNavRow = styled(Row)`
   margin-bottom: 3%;
   @media only screen and (max-width: 1170px) {
     padding: 0 13.6%;
+  }
+  @media only screen and (max-width: 1024px) {
+    padding: 0 10.6%;
+  }
+  @media only screen and (max-width: 768px) {
+    padding: 0 0%;
+  }
+  @media only screen and (max-width: 320px) {
+    padding: 0 0%;
+  }
+`
+const ContactMapRow = styled(Row)`
+  margin-left: 18%;
+  margin-bottom: 3%;
+  @media only screen and (max-width: 1170px) {
+    margin-left: 0%;
+    padding: 0 13.6%;
+  }
+  @media only screen and (max-width: 1024px) {
+    margin-left: 0%;
+    padding: 0 9.6%;
   }
   @media only screen and (max-width: 768px) {
     padding: 0 0%;
@@ -348,8 +398,8 @@ const IndividCol = styled(Col)`
     max-width: 294px;
   }
   @media only screen and (max-width: 375px) {
-    margin-left: 10%;
-    max-width: 256px;
+    margin-left: 2%;
+    max-width: 290px;
     padding-top: 3.6%;
     margin-bottom: 5%;
     > span {
@@ -368,7 +418,7 @@ const IndividCol = styled(Col)`
   }
   @media only screen and (max-width: 320px) {
     margin-left: 2%;
-    max-width: 256px;
+    max-width: 390px;
     padding-top: 3.6%;
     margin-bottom: 5%;
     > span {
@@ -419,7 +469,7 @@ const CompanyCol = styled(Col)`
     max-width: 294px;
   }
   @media only screen and (max-width: 1024px) {
-    margin-left: 3.5%;
+    margin-left: 1.5%;
     max-width: 294px;
   }
   @media only screen and (max-width: 768px) {
@@ -427,8 +477,8 @@ const CompanyCol = styled(Col)`
     max-width: 294px;
   }
   @media only screen and (max-width: 375px) {
-    margin-left: 10%;
-    max-width: 256px;
+    margin-left: 2%;
+    max-width: 290px;
     padding-top: 3.6%;
     margin-bottom: 5%;
     > span {
@@ -447,7 +497,7 @@ const CompanyCol = styled(Col)`
   }
   @media only screen and (max-width: 320px) {
     margin-left: 2%;
-    max-width: 256px;
+    max-width: 290px;
     padding-top: 3.6%;
     margin-bottom: 5%;
     > span {
@@ -528,20 +578,17 @@ const Contact = () => {
           </FormColumn>
         ) : null}
       </FormRow>
-      <ContactNavRow>
-        <NumberCol lg={{ span: 19 }} offset={2}>
+      <ContactMapRow>
+        <NumberCol xl={19} lg={{ span: 19 }} md={{ span: 19 }} offset={2}>
           <CallIconWrapper src={CallPhoneImg} alt={"icon"} />
           <ContactNumberWrap>
             <span>+374 93706010,+374 93706010</span>
           </ContactNumberWrap>
         </NumberCol>
-        <AdressMapCol lg={{ span: 19 }} offset={2}>
+        <AdressMapCol xl={19} lg={{ span: 19 }} md={{ span: 19 }} offset={2}>
           <Row>
             <Col span={24}>
               <ContactAdressWrap>
-                {/* <EnvironmentOutlined
-                  style={{ fontSize: "16px", marginTop: "1%" }}
-                /> */}
                 <EnvironmentWrapper src={EnvironmentImg} />
                 <AddressSpan>Հր Քոչար 44/54 </AddressSpan>
               </ContactAdressWrap>
@@ -554,7 +601,7 @@ const Contact = () => {
             </MapCol>
           </Row>
         </AdressMapCol>
-      </ContactNavRow>
+      </ContactMapRow>
     </Layout>
   )
 }

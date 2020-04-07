@@ -573,7 +573,7 @@ const Information = props => {
       {openUseful ? (
         <InformSectionRow>
           {dataUseInfo.map(d => (
-            <InformUseFul usedata={d} key={d.id}></InformUseFul>
+            <InformUseFul usedata={d} key={d.id} />
           ))}
         </InformSectionRow>
       ) : openDocTemp ? (
