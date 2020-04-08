@@ -29,7 +29,7 @@ const H2Styled = styled.h2`
   line-height: 1.88;
   letter-spacing: normal;
   text-align: left;
-  margin-left: 2%;
+  margin-left: 4.3%;
   color: #000000;
   @media only screen and (max-width: 768px) {
     width: 211px;
@@ -70,6 +70,7 @@ const FormWrapperCol = styled(Col)`
 `
 const OrderList = styled.ul`
   list-style-type: none;
+  margin-left: 4.3%;
   li {
     text-indent: -5px;
   }

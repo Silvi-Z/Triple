@@ -677,6 +677,13 @@ pre tt:after {
   height: 38px;
   margin-left: 2%;
 }
+#uploadbuttoncompany {
+  width: 252px;
+  height: 38px;
+  margin-left: 2%;
+  text-align: right;
+}
+
 #basic_title {
   width: 514px;
   height: 38px;
@@ -719,6 +726,11 @@ pre tt:after {
     width: 270px;
     height: 38px;
   }
+  #uploadbuttoncompany {
+    width: 270px;
+    height: 38px;
+    text-align: right;
+  }
   #uploadbutton {
     width: 270px;
     height: 38px;
@@ -756,6 +768,7 @@ pre tt:after {
 
 #basic_career {
   width: 540px;
+  margin-left: 4%;
 }
 #basic_career_textarea {
   height: 80px;
@@ -786,6 +799,12 @@ pre tt:after {
     height: 38px;
     margin-left: 6%;
   }
+  #uploadbuttoncompany {
+    width: 245px;
+    height: 38px;
+    margin-left: 4%;
+    text-align: right;
+  }
   #basic_username {
     width: 240px;
     height: 38px;
@@ -806,6 +825,12 @@ pre tt:after {
     width: 270px;
     height: 38px;
     margin-left: 0%;
+  }
+  #uploadbuttoncompany {
+    width: 270px;
+    height: 38px;
+    margin-left: 0%;
+    text-align: right;
   }
   #basic_username {
     width: 270px;
@@ -848,10 +873,11 @@ pre tt:after {
     width: 290px;
   }
   #basic_career_textarea {
+    max-width: 95%;
     height: 160px;
   }
   #careeruploadbutton {
-    width: 290px;
+    width: 280px;
     height: 46px;
     text-align: right;
   }
@@ -875,6 +901,7 @@ pre tt:after {
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
   border: solid 1px #ebebeb;
   background-color: #ffffff;
+  cursor: pointer;
 }
 
 .languagetext:hover {

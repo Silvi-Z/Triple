@@ -245,6 +245,8 @@ const GridContact = styled.div`
 
 const activeStyle = {
   color: "#009db8",
+  height: "100%",
+  border: "1px solid #009db8",
 }
 
 const Navbar = ({ open, responswrapper }) => {
@@ -255,7 +257,7 @@ const Navbar = ({ open, responswrapper }) => {
           <HeadIcon src={CallImg} alt={"icon"} />
         </Col>
         <Col lg={8} md={8} sm={8} xs={8} sm={8} style={{ textAlign: "center" }}>
-          <RespNavLink to="/" activeStyle={activeStyle}>
+          <RespNavLink to="/">
             <HeadMainIcon src={MainLogo} alt={"icon"} />
           </RespNavLink>
         </Col>
@@ -356,7 +358,7 @@ const Navbar = ({ open, responswrapper }) => {
         </GridAddress>
         <GridBlank1 />
         <GridHome>
-          <NavLink to="/" activeStyle={activeStyle}>
+          <NavLink to="/">
             <HeadMainIcon src={MainLogo} alt={"icon"} />
           </NavLink>
         </GridHome>

@@ -3,7 +3,7 @@ import { Form, Input, Button, Row, Col } from "antd"
 import { Upload, message } from "antd"
 import { UploadOutlined } from "@ant-design/icons"
 import styled from "styled-components"
-import uploadImage from "../../assets/upload.svg"
+import uploadImage from "../../assets/upload2.svg"
 //input styled custom with id in layout css #basic_username
 import "../layout.css"
 

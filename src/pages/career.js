@@ -113,28 +113,28 @@ const Career = () => {
         },
         open: false,
       },
-      {
-        status: true,
-        data: {
-          id: 1,
-          title_arm: "ԳԼԽԱՎՈՐ",
-          title_ru: "string",
-          title_en: "string",
-          description_arm_1:
-            "Հաշվապահական կամ ֆինանսական ոլորտում աշխատանքային փորձ (առնվազն 3 տարի)",
-          description_arm_2: "Հաշվապահական ստանդարտների իմացություն,",
-          description_arm_3:
-            "ՀԾ, 1 C, E-invoicing և այլ հարակից հաշվապահական ծրագրերի իմացություն,",
-          description_arm_4: "Microsoft Office փաթեթի իմացություն",
-          description_arm_5:
-            "Հաշվապահական հաշվառման ստանդարտների լավ տիրապետում",
-          description_arm_6:
-            "Հաշվապահական հաշվառման ստանդարտների լավ տիրապետում",
-          description_ru: "string",
-          description_en: "string",
-        },
-        open: false,
-      },
+      // {
+      //   status: true,
+      //   data: {
+      //     id: 1,
+      //     title_arm: "ԳԼԽԱՎՈՐ",
+      //     title_ru: "string",
+      //     title_en: "string",
+      //     description_arm_1:
+      //       "Հաշվապահական կամ ֆինանսական ոլորտում աշխատանքային փորձ (առնվազն 3 տարի)",
+      //     description_arm_2: "Հաշվապահական ստանդարտների իմացություն,",
+      //     description_arm_3:
+      //       "ՀԾ, 1 C, E-invoicing և այլ հարակից հաշվապահական ծրագրերի իմացություն,",
+      //     description_arm_4: "Microsoft Office փաթեթի իմացություն",
+      //     description_arm_5:
+      //       "Հաշվապահական հաշվառման ստանդարտների լավ տիրապետում",
+      //     description_arm_6:
+      //       "Հաշվապահական հաշվառման ստանդարտների լավ տիրապետում",
+      //     description_ru: "string",
+      //     description_en: "string",
+      //   },
+      //   open: false,
+      // },
     ])
   }
 

@@ -3,7 +3,7 @@ module.exports = {
     title: "Triple Consulting",
     description:
       "Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.",
-    author: "@gatsbyjs",
+    author: "@algorithm solutions",
   },
   plugins: [
     "gatsby-plugin-react-helmet",
@@ -19,7 +19,7 @@ module.exports = {
     {
       resolve: "gatsby-plugin-manifest",
       options: {
-        name: "gatsby-starter-default",
+        name: "Triple Consulting",
         short_name: "starter",
         start_url: "/",
         background_color: "#f7f7f7",

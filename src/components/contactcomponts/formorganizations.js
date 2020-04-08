@@ -3,7 +3,7 @@ import { Form, Input, Button, Checkbox, Row, Col } from "antd"
 import { Upload, message } from "antd"
 import { UploadOutlined } from "@ant-design/icons"
 import styled from "styled-components"
-import uploadImage from "../../assets/upload.svg"
+import uploadImage from "../../assets/upload2.svg"
 
 const fileprops = {
   name: "file",
@@ -83,7 +83,7 @@ const Formfield = () => {
       id="formcontact"
     >
       <Row>
-        <Col span={11}>
+        <Col lg={{ span: 11 }} xl={{ span: 11 }} md={{ span: 11 }} xs={24}>
           <Form.Item
             label="Կազմակերպության անվանում"
             name="username"
@@ -98,10 +98,17 @@ const Formfield = () => {
             <Input />
           </Form.Item>
         </Col>
-        <Col span={11} offset={1}>
+        <Col
+          span={11}
+          lg={{ span: 11, offset: 1 }}
+          xl={{ span: 11, offset: 1 }}
+          md={{ span: 11, offset: 1 }}
+          xs={{ span: 11, offset: 0 }}
+          offset={1}
+        >
           <Form.Item
             name={["user", "email"]}
-            label="Էլ․ հասցե"
+            label="Անուն / Ազգանուն"
             rules={[{ type: "email", required: true }]}
             style={{ marginBottom: "3px" }}
           >
@@ -109,7 +116,45 @@ const Formfield = () => {
           </Form.Item>
         </Col>
       </Row>
-      <Form.Item
+      <Row>
+        <Col lg={{ span: 11 }} xl={{ span: 11 }} md={{ span: 11 }} xs={24}>
+          <Form.Item
+            label="Էլ հասցե"
+            name="username"
+            rules={[{ type: "email", required: true }]}
+            style={{ marginBottom: "3px" }}
+          >
+            <Input />
+          </Form.Item>
+        </Col>
+        <Col
+          span={11}
+          lg={{ span: 11, offset: 1 }}
+          xl={{ span: 11, offset: 1 }}
+          md={{ span: 11, offset: 1 }}
+          xs={{ span: 11, offset: 0 }}
+          offset={1}
+        >
+          <Form.Item
+            label="Կցել ֆայլը"
+            name="file"
+            rules={[
+              {
+                required: true,
+                message: "Խնդրում եմ լրացրեք այս դաշտը!",
+              },
+            ]}
+            style={{ marginBottom: "3px" }}
+          >
+            <Upload {...fileprops}>
+              <Button size="large" id="uploadbuttoncompany">
+                <UploadImg src={uploadImage} />
+              </Button>
+            </Upload>
+          </Form.Item>
+        </Col>
+      </Row>
+      {/* <Form.Item
         label="Կցել ֆայլը"
         name="file"
         rules={[
@@ -122,17 +167,10 @@ const Formfield = () => {
       >
         <Upload {...fileprops}>
           <Button size="large" id="uploadbutton">
-            {/* <UploadOutlined
-              style={{
-                color: "#009db8",
-                fontSize: "20px",
-                margin: "20px";
-              }}
-            /> */}
             <UploadImg src={uploadImage} />
           </Button>
         </Upload>
-      </Form.Item>
+      </Form.Item> */}
 
       <Form.Item
         label="Վերնագիր"

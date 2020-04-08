@@ -68,6 +68,12 @@ const SharedWrapperCol = styled(Col)`
       fill: #da4567;
     }
   }
+  @media (min-width: 375px) {
+    a {
+      display: contents;
+      fill: #da4567;
+    }
+  }
 `
 
 const Image = styled.img`

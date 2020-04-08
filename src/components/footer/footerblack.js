@@ -6,7 +6,6 @@ import FacebookImg from "../../assets/footericons/facebook-4.png"
 import {
   WhatsAppOutlined,
   PhoneOutlined,
-  EnvironmentOutlined,
   LinkedinOutlined,
   FacebookOutlined,
 } from "@ant-design/icons"
@@ -25,13 +24,13 @@ const FooterNumberWrap = styled.div`
   line-height: normal;
   letter-spacing: normal;
   text-align: center;
-  margin-left: 17px;
+  margin-left: 16px;
   color: #ffffff;
   @media only screen and (max-width: 768px) {
     width: 220px;
     height: 15px;
     font-family: Sylfaen;
-    font-size: 13px;
+    font-size: 12px;
     font-weight: normal;
     font-stretch: normal;
     font-style: normal;
@@ -44,7 +43,7 @@ const FooterNumberWrap = styled.div`
     width: 220px;
     height: 15px;
     font-family: Sylfaen;
-    font-size: 16px;
+    font-size: 15px;
     font-weight: normal;
     font-stretch: normal;
     font-style: normal;
@@ -57,7 +56,7 @@ const FooterNumberWrap = styled.div`
 const FooterAdressWrap = styled.div`
   height: 16px;
   font-family: ArialAMU;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;
@@ -115,10 +114,10 @@ const FacebookWrapper = styled.img``
 
 const FooterNumberColumn = styled(Col)`
   display: flex;
-  padding-left: 7%;
+  padding-left: 5%;
   justify-content: space-around;
   @media only screen and (max-width: 1170px) {
-    padding-left: 2%;
+    padding-left: 1%;
   }
   @media only screen and (max-width: 768px) {
     padding-left: 1%;
@@ -163,6 +162,10 @@ const FooterBlack = () => {
             className="fab fa-viber"
             style={{ fontSize: "20px", color: "white" }}
           ></i>
+          <i
+            className="fab fa-telegram-plane"
+            style={{ fontSize: "20px", color: "white" }}
+          ></i>
           <FooterNumberWrap>
             <span>+374 93706010,+374 93706010</span>
           </FooterNumberWrap>
@@ -185,7 +188,7 @@ const FooterBlack = () => {
         </FooterFollowUsColumn>
       </Row>
       <Row id="footersecondrow">
-        <FooterCopyRightColumn lg={24}>
+        <FooterCopyRightColumn lg={24} xs={24}>
           <FooterCopyRightWrap>
             <span className="copyright">
               Copyright © {new Date().getFullYear()}
