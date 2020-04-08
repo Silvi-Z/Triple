@@ -11,7 +11,7 @@ import {
 import { PlusOutlined, MinusOutlined } from '@ant-design/icons';
 import styled from 'styled-components';
 import { useFormik } from 'formik';
-// import * as Yup from 'yup';
+import * as Yup from 'yup';
 import moment from 'moment';
 import { apiHelper } from '../../helpers/apiHelper';
 import CarImg from '../../assets/calcImages/carTax.png';
@@ -26,14 +26,15 @@ const HeadIcon = styled.img`
     height: 35px;
   }
   @media (min-width: 1600px) {
-    width: 45px;
-    height: 45px;
+    width: 35px;
+    height: 35px;
   }
 `;
 
 const H2Styled = styled.h2`
-  font-size: 25px;
-  font-weight: 400;
+  font-size: 18px;
+  font-weight: normal;
+  margin-left: 10px;
 `;
 
 const H3Styled = styled.h3`
@@ -43,13 +44,12 @@ const H3Styled = styled.h3`
 
 const CustomSelect = styled(Select)`
   width: 100%;
-  ${'' /* height: 55px; */}
   border-color: #009db8;
 `;
 
 const ToggleButton = styled(Button)`
-  height: 80px;
-  width: 80px;
+  height: 60px;
+  width: 60px;
 `;
 
 const ButtonLarge = styled(Button)`
@@ -106,6 +106,10 @@ const initialValues = {
   'horsepower': 0,
 };
 
+const validationSchema = Yup.object().shape({
+  horsepower: Yup.number().required().min(1),
+});
+
 const CarPropTaxCalculator = () => {
   const [loading, toggleLoading] = useState(false);
   const [result, setResult] = useState(null);
@@ -113,7 +117,8 @@ const CarPropTaxCalculator = () => {
 
   const formik = useFormik({
     initialValues,
-    // validationSchema,
+    validationSchema,
+    validateOnMount: true,
     onSubmit: async values => {
       console.log('Formik values: ', values);
       setResult(null);
@@ -133,13 +138,13 @@ const CarPropTaxCalculator = () => {
     <>
       <Row align="middle" gutter={[10, 50]}>
         <Col
-          xxl={{ span: 2, offset: 3 }}
-          xl={{ span: 2, offset: 2 }}
-          lg={{ span: 2, offset: 1 }}
+          xxl={{ span: 1, offset: 3 }}
+          xl={{ span: 1, offset: 2 }}
+          lg={{ span: 1, offset: 1 }}
         >
           <HeadIcon src={CarImg} alt={'icon'} />
         </Col>
-        <Col xxl={17} xl={18} lg={19} span={19}>
+        <Col xxl={13} xl={14} lg={15} md={16} span={17}>
           <H2Styled>Ավտոմեքենայի գույքահարկի հաշվիչ</H2Styled>
         </Col>
         <Col span={2}>
@@ -239,7 +244,12 @@ const CarPropTaxCalculator = () => {
                 offset={1}
                 span={8}
               >
-                <ButtonLarge disabled={loading} size="large" block htmlType="submit">
+                <ButtonLarge
+                  disabled={loading || !formik.isValid}
+                  size="large"
+                  block
+                  htmlType="submit"
+                >
                   {loading ? <Spin /> : 'Հաշվել'}
                 </ButtonLarge>
               </Col>

@@ -12,14 +12,27 @@ import MortgageCalculator from "../components/calcComponents/mortgageCalculator"
 const { Text } = Typography
 
 const H1Styled = styled.h1`
+<<<<<<< HEAD
   font-size: 26px;
   font-weight: 900;
 `
+=======
+  font-size: 18px;
+  font-weight: bold;
+  font-family: ArialAMU, sans-serif;
+  color: #000;
+`;
+>>>>>>> 46dcae7664bbd5d819074c2de93c0b94ba92daba
 
 const TextStyled = styled(Text)`
-  font-size: 20px;
+  font-size: 16px;
   font-family: ArialAMU, sans-serif;
+<<<<<<< HEAD
 `
+=======
+  color: #000;
+`;
+>>>>>>> 46dcae7664bbd5d819074c2de93c0b94ba92daba
 
 const Calculators = () => (
   <Layout>
@@ -28,15 +41,17 @@ const Calculators = () => (
         xxl={{ span: 8, offset: 3 }}
         xl={{ span: 8, offset: 2 }}
         lg={{ span: 8, offset: 1 }}
+        span={16}
       >
         <H1Styled>Հաշվիչ</H1Styled>
       </Col>
     </Row>
     <Row gutter={[1, 30]}>
       <Col
-        xxl={{ span: 17, offset: 3 }}
-        xl={{ span: 18, offset: 2 }}
-        lg={{ span: 20, offset: 1 }}
+        xxl={{ span: 13, offset: 3 }}
+        xl={{ span: 14, offset: 2 }}
+        lg={{ span: 15, offset: 1 }}
+        span={16}
       >
         <TextStyled>
           “Թրիփլ Քնսալթինգ” ընկերությունը տրամադրում է “Հաշվիչ” ծառայություն,
