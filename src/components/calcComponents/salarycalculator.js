@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { Typography, Row, Col, Button, InputNumber } from 'antd';
+import { Typography, Row, Col, Button, InputNumber, Spin } from 'antd';
 import { PlusOutlined, MinusOutlined } from '@ant-design/icons';
 import styled from 'styled-components';
 import { useFormik } from 'formik';
-// import * as Yup from 'yup';
+import * as Yup from 'yup';
 import { apiHelper } from '../../helpers/apiHelper';
 import SalaryImg from '../../assets/calcImages/salary.png';
 
@@ -91,19 +91,22 @@ const initialValues = {
   bonus_stamp: true,
 };
 
-// const validationSchema = Yup.object().shape({
-//   price: Yup.number().required().min(1000),
-//   bonus_price: Yup.number().min(1000),
-// });
+const validationSchema = Yup.object().shape({
+  price: Yup.number().required().min(40000),
+  bonus_price: Yup.number().min(1000),
+});
 
 const SalaryCalculator = () => {
+  const [loading, setLoading] = useState(false);
   const [result, setResult] = useState(null);
   const [showForm, toggleForm] = useState(false);
 
   const formik = useFormik({
     initialValues,
-    // validationSchema,
+    validationSchema,
     onSubmit: async values => {
+      setResult(null);
+      setLoading(true);
       let res = {};
       let body = {};
       // TODO: refactor this filter
@@ -143,9 +146,14 @@ const SalaryCalculator = () => {
 
       console.log('Formik values: ', values);
       console.log('Body: ', body);
-      res = await apiHelper.post('/api/counter/salary', body);
-      console.log('Response: ', res.data.data.result);
-      setResult(res.data.data.result);
+      try {
+        res = await apiHelper.post('/api/counter/salary', body);
+        console.log('Response: ', res.data.data.result);
+        setResult(res.data.data.result);
+      } catch (e) {
+        console.log('Calculation error: ', e);
+      }
+      setLoading(false);
     },
   });
 
@@ -377,8 +385,12 @@ const SalaryCalculator = () => {
                 offset={1}
                 span={8}
               >
-                <ButtonLarge size="large" block htmlType="submit">
-                  Հաշվել
+                <ButtonLarge
+                  disabled={loading || !formik.isValid || !formik.dirty}
+                  size="large"
+                  block htmlType="submit"
+                >
+                  {loading ? <Spin /> : 'Հաշվել'}
                 </ButtonLarge>
               </Col>
             </Row>
@@ -470,7 +482,7 @@ const SalaryCalculator = () => {
                       <ResultCell large>
                         <ResultLabel large>
                           {`${
-                            +result.salary_type ? 'Զուտ' : 'Մաքուր'
+                            +result.salary_type ? 'Մաքուր' : 'Կեղտոտ'
                           } աշխատավարձ`}
                         </ResultLabel>
                       </ResultCell>
@@ -482,12 +494,12 @@ const SalaryCalculator = () => {
                     </Col>
                   </Row>
 
-                  <Row gutter={[10, 10]}>
+                  {result.bonusSalary ? (<Row gutter={[10, 10]}>
                     <Col span={9}>
                       <ResultCell large>
                         <ResultLabel large>
                           {`${
-                            +result.salary_type ? 'Զուտ' : 'Մաքուր'
+                            +result.salary_type ? 'Մաքուր' : 'Կեղտոտ'
                           } պարգևավճար`}
                         </ResultLabel>
                       </ResultCell>
@@ -497,7 +509,7 @@ const SalaryCalculator = () => {
                         <ResultLabel large>{result.bonusSalary}</ResultLabel>
                       </ResultCell>
                     </Col>
-                  </Row>
+                  </Row>) : null}
                 </Col>
               </Row>
             </>

@@ -5,7 +5,6 @@ import {
   Col,
   Button,
   InputNumber,
-  Select,
   Spin,
 } from 'antd';
 import { PlusOutlined, MinusOutlined } from '@ant-design/icons';
@@ -17,7 +16,6 @@ import { apiHelper } from '../../helpers/apiHelper';
 import ContractImg from '../../assets/calcImages/contract.png';
 
 const { Text } = Typography;
-const { Option } = Select;
 
 const HeadIcon = styled.img`
   width: 25px;
@@ -40,12 +38,6 @@ const H2Styled = styled.h2`
 const H3Styled = styled.h3`
   font-size: 24px;
   font-weight: 400;
-`;
-
-const CustomSelect = styled(Select)`
-  width: 100%;
-  ${'' /* height: 55px; */}
-  border-color: #009db8;
 `;
 
 const ToggleButton = styled(Button)`
