@@ -34,6 +34,7 @@ const HeadIcon = styled.img`
 const H2Styled = styled.h2`
   font-size: 18px;
   font-weight: normal;
+  margin-left: 10px;
 `;
 
 const H3Styled = styled.h3`
@@ -43,13 +44,12 @@ const H3Styled = styled.h3`
 
 const CustomSelect = styled(Select)`
   width: 100%;
-  ${'' /* height: 55px; */}
   border-color: #009db8;
 `;
 
 const ToggleButton = styled(Button)`
-  height: 80px;
-  width: 80px;
+  height: 60px;
+  width: 60px;
 `;
 
 const ButtonBase = styled(Button)`
@@ -154,13 +154,13 @@ const CarCustomsCalculator = () => {
     <>
       <Row align="middle" gutter={[10, 50]}>
         <Col
-          xxl={{ span: 2, offset: 3 }}
-          xl={{ span: 2, offset: 2 }}
-          lg={{ span: 2, offset: 1 }}
+          xxl={{ span: 1, offset: 3 }}
+          xl={{ span: 1, offset: 2 }}
+          lg={{ span: 1, offset: 1 }}
         >
           <HeadIcon src={CarImg} alt={'icon'} />
         </Col>
-        <Col xxl={17} xl={18} lg={19} span={19}>
+        <Col xxl={13} xl={14} lg={15} md={16} span={17}>
           <H2Styled>Ավտոմեքենայի մաքսազերծման վճարի հաշվիչ</H2Styled>
         </Col>
         <Col span={2}>
