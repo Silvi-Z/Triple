@@ -10,7 +10,7 @@ import {
 import { PlusOutlined, MinusOutlined } from '@ant-design/icons';
 import styled from 'styled-components';
 import { useFormik } from 'formik';
-// import * as Yup from 'yup';
+import * as Yup from 'yup';
 import moment from 'moment';
 import { apiHelper } from '../../helpers/apiHelper';
 import ContractImg from '../../assets/calcImages/contract.png';
@@ -158,6 +158,19 @@ const initialValuesOne = {
   'additional_price3': 0,
 };
 
+const schemaOne =  Yup.object().shape({
+  'price1': Yup.number().required().min(40000),
+  'price2': Yup.number().required().min(40000),
+  'price3': Yup.number().required().min(40000),
+});
+
+const schemaTwo =  Yup.object().shape({
+  'price1': Yup.number().required().min(40000),
+  'price2': Yup.number().required().min(40000),
+  'price3': Yup.number().required().min(40000),
+  'paid_price': Yup.number().required().min(1),
+});
+
 const MortgageCalculator = () => {
   const [showForm, toggleForm] = useState(false);
   const [salary, setSalary] = useState(0); // autofill salary
@@ -182,7 +195,8 @@ const MortgageCalculator = () => {
 
   const formikOne = useFormik({
     initialValues: initialValuesOne,
-    // validationSchema,
+    validationSchema: schemaOne,
+    validateOnMount: true,
     onSubmit: async values => {
       console.log('Formik values: ', values);
       toggleLoadingOne(true);
@@ -205,7 +219,8 @@ const MortgageCalculator = () => {
 
   const formikTwo = useFormik({
     initialValues: initialValuesTwo,
-    // validationSchema,
+    validationSchema: schemaTwo,
+    validateOnMount: true,
     enableReinitialize: true,
     onSubmit: async values => {
       console.log('Formik values 2: ', values);
@@ -335,6 +350,10 @@ const MortgageCalculator = () => {
                     formikOne.setFieldValue('price1', salary);
                     formikOne.setFieldValue('price2', salary);
                     formikOne.setFieldValue('price3', salary);
+                    formikOne.validateForm().then(res => {
+                      console.log('Validation fired: ', res);
+                      console.log(formikOne.values);
+                    });
                   }}
                 >
                   Լրացնել
@@ -510,7 +529,12 @@ const MortgageCalculator = () => {
                 offset={1}
                 span={8}
               >
-                <ButtonLarge disabled={loadingOne} size="large" block htmlType="submit">
+                <ButtonLarge
+                  disabled={loadingOne  || !formikOne.isValid}
+                  size="large"
+                  block
+                  htmlType="submit"
+                >
                   {loadingOne ? <Spin /> : 'Հաշվել'}
                 </ButtonLarge>
               </Col>
@@ -557,7 +581,7 @@ const MortgageCalculator = () => {
                   min={0}
                   type="number"
                   onChange={value => formikTwo.setFieldValue('paid_price', value)}
-                  value={formikTwo.values.paid_price}
+                  // value={formikTwo.values.paid_price}
                 />
               </Col>
             </Row>
@@ -570,7 +594,12 @@ const MortgageCalculator = () => {
                 offset={1}
                 span={8}
               >
-                <ButtonLarge disabled={loadingTwo} size="large" block htmlType="submit">
+                <ButtonLarge
+                  disabled={loadingTwo  || !formikTwo.isValid}
+                  size="large"
+                  block
+                  htmlType="submit"
+                >
                   {loadingTwo ? <Spin /> : 'Հաշվել'}
                 </ButtonLarge>
               </Col>

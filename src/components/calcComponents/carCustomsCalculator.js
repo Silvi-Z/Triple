@@ -11,7 +11,7 @@ import {
 import { PlusOutlined, MinusOutlined } from '@ant-design/icons';
 import styled from 'styled-components';
 import { useFormik } from 'formik';
-// import * as Yup from 'yup';
+import * as Yup from 'yup';
 import moment from 'moment';
 import { apiHelper } from '../../helpers/apiHelper';
 import CarImg from '../../assets/calcImages/carCustoms.png';
@@ -110,10 +110,21 @@ const initialValues = {
   'person': true,
   'country': true,
   'date_issue': currentYear,
-  'engine_working_volume': 1600,
+  'engine_working_volume': 1,
   'car_price': 0,
   'currency': 0,
 };
+
+const validationSchema = Yup.object().shape({
+  'engine_working_volume': Yup.number().required().min(1),
+  'car_price': Yup.number().required().when('currency', (currency, schema) => {
+    if (currency === 0 || currency === 3) {
+      return schema.min(100000);
+    } else if (currency === 1 || currency === 2) {
+      return schema.min(100);
+    }
+  }),
+});
 
 const CarCustomsCalculator = () => {
   const [loading, toggleLoading] = useState(false);
@@ -122,7 +133,8 @@ const CarCustomsCalculator = () => {
 
   const formik = useFormik({
     initialValues,
-    // validationSchema,
+    validationSchema,
+    validateOnMount: true,
     onSubmit: async values => {
       console.log('Formik values: ', values);
       setResult(null);
@@ -321,7 +333,12 @@ const CarCustomsCalculator = () => {
                 offset={1}
                 span={8}
               >
-                <ButtonLarge disabled={loading} size="large" block htmlType="submit">
+                <ButtonLarge
+                  disabled={loading || !formik.isValid}
+                  size="large"
+                  block
+                  htmlType="submit"
+                >
                   {loading ? <Spin /> : 'Հաշվել'}
                 </ButtonLarge>
               </Col>
