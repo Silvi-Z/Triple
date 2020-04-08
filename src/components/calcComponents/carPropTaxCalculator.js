@@ -11,7 +11,7 @@ import {
 import { PlusOutlined, MinusOutlined } from '@ant-design/icons';
 import styled from 'styled-components';
 import { useFormik } from 'formik';
-// import * as Yup from 'yup';
+import * as Yup from 'yup';
 import moment from 'moment';
 import { apiHelper } from '../../helpers/apiHelper';
 import CarImg from '../../assets/calcImages/carTax.png';
@@ -106,6 +106,10 @@ const initialValues = {
   'horsepower': 0,
 };
 
+const validationSchema = Yup.object().shape({
+  horsepower: Yup.number().required().min(1),
+});
+
 const CarPropTaxCalculator = () => {
   const [loading, toggleLoading] = useState(false);
   const [result, setResult] = useState(null);
@@ -113,7 +117,8 @@ const CarPropTaxCalculator = () => {
 
   const formik = useFormik({
     initialValues,
-    // validationSchema,
+    validationSchema,
+    validateOnMount: true,
     onSubmit: async values => {
       console.log('Formik values: ', values);
       setResult(null);
@@ -239,7 +244,12 @@ const CarPropTaxCalculator = () => {
                 offset={1}
                 span={8}
               >
-                <ButtonLarge disabled={loading} size="large" block htmlType="submit">
+                <ButtonLarge
+                  disabled={loading || !formik.isValid}
+                  size="large"
+                  block
+                  htmlType="submit"
+                >
                   {loading ? <Spin /> : 'Հաշվել'}
                 </ButtonLarge>
               </Col>

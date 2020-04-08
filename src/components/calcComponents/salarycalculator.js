@@ -110,6 +110,7 @@ const SalaryCalculator = () => {
   const formik = useFormik({
     initialValues,
     validationSchema,
+    validateOnMount: true,
     onSubmit: async values => {
       setResult(null);
       setLoading(true);
@@ -392,7 +393,7 @@ const SalaryCalculator = () => {
                 span={8}
               >
                 <ButtonLarge
-                  disabled={loading || !formik.isValid || !formik.dirty}
+                  disabled={loading || !formik.isValid}
                   size="large"
                   block htmlType="submit"
                 >

@@ -11,7 +11,7 @@ import {
 import { PlusOutlined, MinusOutlined } from '@ant-design/icons';
 import styled from 'styled-components';
 import { useFormik } from 'formik';
-// import * as Yup from 'yup';
+import * as Yup from 'yup';
 import moment from 'moment';
 import { apiHelper } from '../../helpers/apiHelper';
 import CarImg from '../../assets/calcImages/carSell.png';
@@ -100,6 +100,11 @@ const initialValues = {
   'carPrice': 0,
 };
 
+const validationSchema = Yup.object().shape({
+  horsepower: Yup.number().required().min(1),
+  carPrice: Yup.number().required().min(100000),
+});
+
 const CarSellCalculator = () => {
   const [loading, toggleLoading] = useState(false);
   const [result, setResult] = useState(null);
@@ -107,7 +112,8 @@ const CarSellCalculator = () => {
 
   const formik = useFormik({
     initialValues,
-    // validationSchema,
+    validationSchema,
+    validateOnMount: true,
     onSubmit: async values => {
       console.log('Formik values: ', values);
       setResult(null);
@@ -134,7 +140,7 @@ const CarSellCalculator = () => {
           <HeadIcon src={CarImg} alt={'icon'} />
         </Col>
         <Col xxl={17} xl={18} lg={19} span={19}>
-          <H2Styled>Մեքենաների վաճառքի հաշվիչ</H2Styled>
+          <H2Styled>Ավտոմեքենայի վաճառքի հաշվիչ</H2Styled>
         </Col>
         <Col span={2}>
           <ToggleButton block onClick={() => toggleForm(!showForm)}>
@@ -253,7 +259,12 @@ const CarSellCalculator = () => {
                 offset={1}
                 span={8}
               >
-                <ButtonLarge disabled={loading} size="large" block htmlType="submit">
+                <ButtonLarge
+                  disabled={loading || !formik.isValid}
+                  size="large"
+                  block
+                  htmlType="submit"
+                >
                   {loading ? <Spin /> : 'Հաշվել'}
                 </ButtonLarge>
               </Col>
