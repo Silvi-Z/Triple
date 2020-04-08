@@ -18,8 +18,8 @@ const HeadIcon = styled.img`
     height: 35px;
   }
   @media (min-width: 1600px) {
-    width: 45px;
-    height: 45px;
+    width: 35px;
+    height: 35px;
   }
 `;
 

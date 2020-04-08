@@ -1,16 +1,16 @@
-import React, { useState, useEffect } from "react"
-import Layout from "../components/layout"
-import { Row, Col } from "antd"
-import styled from "styled-components"
-import ServiceDropWrap from "../components/servicecomponents/servicedrop"
-import CalcImg from "../assets/homeImages/icons/calculator.svg"
-import TaxImg from "../assets/homeImages/icons/tax.svg"
-import AuditImg from "../assets/homeImages/icons/audit.svg"
-import ClientImg from "../assets/homeImages/icons/client.svg"
-import BrowserImg from "../assets/homeImages/icons/browser.svg"
-import UserImg from "../assets/homeImages/icons/user.svg"
-import LawImg from "../assets/homeImages/icons/law.svg"
-import TeamImg from "../assets/homeImages/icons/teamwork.svg"
+import React, { useState, useEffect } from 'react';
+import Layout from '../components/layout';
+import { Row, Col } from 'antd';
+import styled from 'styled-components';
+import ServiceDropWrap from '../components/servicecomponents/servicedrop';
+import CalcImg from '../assets/homeImages/icons/calculator.svg';
+import TaxImg from '../assets/homeImages/icons/tax.svg';
+import AuditImg from '../assets/homeImages/icons/audit.svg';
+import ClientImg from '../assets/homeImages/icons/client.svg';
+import BrowserImg from '../assets/homeImages/icons/browser.svg';
+import UserImg from '../assets/homeImages/icons/user.svg';
+import LawImg from '../assets/homeImages/icons/law.svg';
+import TeamImg from '../assets/homeImages/icons/teamwork.svg';
 
 const HeadingParagraphRow = styled(Row)`
   padding: 0 12%;
@@ -20,7 +20,7 @@ const HeadingParagraphRow = styled(Row)`
     padding-left: 8.8%;
     padding-right: 9%;
   }
-`
+`;
 const H2Styled = styled.h2`
   width: 155px;
   height: 18px;
@@ -34,7 +34,7 @@ const H2Styled = styled.h2`
   text-align: center;
   color: #000000;
   text-align: left;
-`
+`;
 const PStyled = styled.p`
   width: 517px;
   height: 46px;
@@ -74,10 +74,10 @@ const PStyled = styled.p`
     text-align: left;
     color: #000000;
   }
-`
+`;
 
 const Services = ({ location, ...props }) => {
-  const [servicedata, setservicedata] = useState([])
+  const [servicedata, setservicedata] = useState([]);
 
   const getServiceData = () => {
     setservicedata([
@@ -86,12 +86,12 @@ const Services = ({ location, ...props }) => {
         data: {
           id: 0,
           image: CalcImg,
-          paragraph: "Հաշվապահական հաշվառում",
+          paragraph: 'Հաշվապահական հաշվառում',
           text:
-            "-հաշվապահական հաշվառման քաղաքականության մշակում - հարկային քաղաքականության մշակում",
-          name_arm: "string",
-          name_ru: "string",
-          name_en: "string",
+            '-հաշվապահական հաշվառման քաղաքականության մշակում - հարկային քաղաքականության մշակում',
+          name_arm: 'string',
+          name_ru: 'string',
+          name_en: 'string',
         },
         open: false,
       },
@@ -100,12 +100,12 @@ const Services = ({ location, ...props }) => {
         data: {
           id: 1,
           image: TaxImg,
-          paragraph: "Հարկային հաշվառում",
+          paragraph: 'Հարկային հաշվառում',
           text:
-            "-հաշվապահական հաշվառման քաղաքականության մշակում - հարկային քաղաքականության մշակում",
-          name_arm: "string",
-          name_ru: "string",
-          name_en: "string",
+            '-հաշվապահական հաշվառման քաղաքականության մշակում - հարկային քաղաքականության մշակում',
+          name_arm: 'string',
+          name_ru: 'string',
+          name_en: 'string',
         },
         open: false,
       },
@@ -114,12 +114,12 @@ const Services = ({ location, ...props }) => {
         data: {
           id: 2,
           image: AuditImg,
-          paragraph: "Հարկային աուդիտ",
+          paragraph: 'Հարկային աուդիտ',
           text:
-            "-հաշվապահական հաշվառման քաղաքականության մշակում - հարկային քաղաքականության մշակում",
-          name_arm: "string",
-          name_ru: "string",
-          name_en: "string",
+            '-հաշվապահական հաշվառման քաղաքականության մշակում - հարկային քաղաքականության մշակում',
+          name_arm: 'string',
+          name_ru: 'string',
+          name_en: 'string',
         },
         open: false,
       },
@@ -128,12 +128,12 @@ const Services = ({ location, ...props }) => {
         data: {
           id: 3,
           image: ClientImg,
-          paragraph: "Խորհրդատվություն",
+          paragraph: 'Խորհրդատվություն',
           text:
-            "-հաշվապահական հաշվառման քաղաքականության մշակում - հարկային քաղաքականության մշակում",
-          name_arm: "string",
-          name_ru: "string",
-          name_en: "string",
+            '-հաշվապահական հաշվառման քաղաքականության մշակում - հարկային քաղաքականության մշակում',
+          name_arm: 'string',
+          name_ru: 'string',
+          name_en: 'string',
         },
         open: false,
       },
@@ -142,12 +142,12 @@ const Services = ({ location, ...props }) => {
         data: {
           id: 4,
           image: BrowserImg,
-          paragraph: "Կազմակերպության գրանցում",
+          paragraph: 'Կազմակերպության գրանցում',
           text:
-            "-հաշվապահական հաշվառման քաղաքականության մշակում - հարկային քաղաքականության մշակում",
-          name_arm: "string",
-          name_ru: "string",
-          name_en: "string",
+            '-հաշվապահական հաշվառման քաղաքականության մշակում - հարկային քաղաքականության մշակում',
+          name_arm: 'string',
+          name_ru: 'string',
+          name_en: 'string',
         },
         open: false,
       },
@@ -156,12 +156,12 @@ const Services = ({ location, ...props }) => {
         data: {
           id: 5,
           image: LawImg,
-          paragraph: "Ֆիզիկական անձանց",
+          paragraph: 'Ֆիզիկական անձանց',
           text:
-            "-հաշվապահական հաշվառման քաղաքականության մշակում - հարկային քաղաքականության մշակում",
-          name_arm: "string",
-          name_ru: "string",
-          name_en: "string",
+            '-հաշվապահական հաշվառման քաղաքականության մշակում - հարկային քաղաքականության մշակում',
+          name_arm: 'string',
+          name_ru: 'string',
+          name_en: 'string',
         },
         open: false,
       },
@@ -170,12 +170,12 @@ const Services = ({ location, ...props }) => {
         data: {
           id: 6,
           image: UserImg,
-          paragraph: "Մաքսային գոծարքներ",
+          paragraph: 'Մաքսային գոծարքներ',
           text:
-            "-հաշվապահական հաշվառման քաղաքականության մշակում - հարկային քաղաքականության մշակում",
-          name_arm: "string",
-          name_ru: "string",
-          name_en: "string",
+            '-հաշվապահական հաշվառման քաղաքականության մշակում - հարկային քաղաքականության մշակում',
+          name_arm: 'string',
+          name_ru: 'string',
+          name_en: 'string',
         },
         open: false,
       },
@@ -184,32 +184,32 @@ const Services = ({ location, ...props }) => {
         data: {
           id: 7,
           image: TeamImg,
-          paragraph: "Կադրային աշխատանքի վարում",
+          paragraph: 'Կադրային աշխատանքի վարում',
           text:
-            "-հաշվապահական հաշվառման քաղաքականության մշակում - հարկային քաղաքականության մշակում",
-          name_arm: "string",
-          name_ru: "string",
-          name_en: "string",
+            '-հաշվապահական հաշվառման քաղաքականության մշակում - հարկային քաղաքականության մշակում',
+          name_arm: 'string',
+          name_ru: 'string',
+          name_en: 'string',
         },
         open: false,
       },
-    ])
-  }
+    ]);
+  };
 
   useEffect(() => {
-    getServiceData()
-  }, [])
+    getServiceData();
+  }, []);
 
   const toggle = current => {
     const data = servicedata.map(d =>
       d.data.id === current.data.id && d.open === false
         ? { ...d, open: true }
         : d.data.id !== current.data.id && d.open === true
-        ? { ...d, open: false }
-        : { ...d, open: false }
-    )
-    setservicedata(data)
-  }
+          ? { ...d, open: false }
+          : { ...d, open: false }
+    );
+    setservicedata(data);
+  };
 
   return (
     <Layout>
@@ -226,6 +226,6 @@ const Services = ({ location, ...props }) => {
         <ServiceDropWrap showServiceForm={toggle} data={d} key={id} />
       ))}
     </Layout>
-  )
-}
-export default Services
+  );
+};
+export default Services;

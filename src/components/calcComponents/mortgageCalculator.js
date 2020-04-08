@@ -25,14 +25,14 @@ const HeadIcon = styled.img`
     height: 35px;
   }
   @media (min-width: 1600px) {
-    width: 45px;
-    height: 45px;
+    width: 35px;
+    height: 35px;
   }
 `;
 
 const H2Styled = styled.h2`
-  font-size: 25px;
-  font-weight: 400;
+  font-size: 18px;
+  font-weight: normal;
 `;
 
 const H3Styled = styled.h3`
