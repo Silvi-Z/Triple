@@ -93,7 +93,13 @@ const initialValues = {
 
 const validationSchema = Yup.object().shape({
   price: Yup.number().required().min(40000),
-  bonus_price: Yup.number().min(1000),
+  bonus_price: Yup.number().transform(value => {
+    if (value === 0 || value >= 1000) {
+      return value;
+    } else {
+      return null;
+    }
+  }),
 });
 
 const SalaryCalculator = () => {
