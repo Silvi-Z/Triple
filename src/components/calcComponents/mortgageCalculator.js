@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import {
   Typography,
   Row,
@@ -175,6 +175,9 @@ const schemaTwo =  Yup.object().shape({
 });
 
 const MortgageCalculator = () => {
+  const monthOne = useRef(1);
+  const monthTwo = useRef(2);
+  const monthThree = useRef(3);
   const [showForm, toggleForm] = useState(false);
   const [salary, setSalary] = useState(0); // autofill salary
   const [loadingOne, toggleLoadingOne] = useState(false);
@@ -392,6 +395,7 @@ const MortgageCalculator = () => {
                       console.log('Validation fired: ', res);
                       console.log(formikOne.values);
                     });
+                    console.log('Ref test', monthOne.current);
                   }}
                 >
                   <Label fontColor="#fff">
@@ -451,6 +455,7 @@ const MortgageCalculator = () => {
                   type="number"
                   onChange={value => formikOne.setFieldValue('price1', value)}
                   value={formikOne.values.price1}
+                  ref={monthOne}
                 />
               </Col>
               <Col xxl={3} xl={4} lg={5} span={6}>
@@ -498,6 +503,7 @@ const MortgageCalculator = () => {
                   type="number"
                   onChange={value => formikOne.setFieldValue('price2', value)}
                   value={formikOne.values.price2}
+                  ref={monthTwo}
                 />
               </Col>
               <Col xxl={3} xl={4} lg={5} span={6}>
@@ -545,6 +551,7 @@ const MortgageCalculator = () => {
                   type="number"
                   onChange={value => formikOne.setFieldValue('price3', value)}
                   value={formikOne.values.price3}
+                  ref={monthThree}
                 />
               </Col>
               <Col xxl={3} xl={4} lg={5} span={6}>
