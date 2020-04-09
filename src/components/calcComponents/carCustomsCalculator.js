@@ -17,6 +17,7 @@ import { apiHelper } from '../../helpers/apiHelper';
 import CarImg from '../../assets/calcImages/carCustoms.png';
 
 const { Option } = Select;
+const { Text } = Typography;
 
 const HeadIcon = styled.img`
   width: 25px;
@@ -52,30 +53,46 @@ const ToggleButton = styled(Button)`
   width: 60px;
 `;
 
+const Label = styled(Text)`
+  font-size: 14px;
+  font-family: ArialAMU;
+  font-weight: 600;
+  line-height: 20px;
+  color: ${props => props.fontColor};
+`;
+
+const ButtonSubmit = styled(Button)`
+  height: 46px;
+  border-color: #009db8;
+  overflow: hidden;
+  padding-vertical: 0;
+`;
+
 const ButtonBase = styled(Button)`
-  height: 55px;
+  height: 40px;
   border-color: #009db8;
   overflow: hidden;
 `;
 
-const ButtonLarge = styled(Button)`
-  height: 70px;
-  border-color: #009db8;
-  overflow: hidden;
-`;
+// const ButtonLarge = styled(Button)`
+//   height: 70px;
+//   border-color: #009db8;
+//   overflow: hidden;
+// `;
 
 const StyledInputNumber = styled(InputNumber)`
   width: 100%;
-  height: 55px;
+  height: 40px;
   display: flex;
   align-items: center;
   border-color: #009db8;
+  font-size: 14px;
 `;
 
 const FormLabelCell = styled.div`
-  padding-left: 16px;
-  padding-right: 16px;
-  height: 55px;
+  padding-left: 12px;
+  padding-right: 12px;
+  height: 40px;
   display: flex;
   align-items: center;
   text-align: center;
@@ -86,18 +103,18 @@ const ResultCell = styled.div`
   background-color: #21363d;
   padding-left: 16px;
   padding-right: 16px;
-  height: ${props => (props.large ? 80 : 60)}px;
+  height: ${props => (props.large ? 60 : 40)}px;
   display: flex;
   align-items: center;
   justify-content: ${props => (props.large ? 'center' : 'flex-start')};
   text-align: center;
 `;
 
-const ResultLabel = styled(Typography)`
-  color: #fff;
-  font-weight: 600;
-  font-size: ${props => (props.large ? 18 : 16)}px;
-`;
+// const ResultLabel = styled(Typography)`
+//   color: #fff;
+//   font-weight: 600;
+//   font-size: ${props => (props.large ? 18 : 16)}px;
+// `;
 
 const currentYear = +moment().format('YYYY');
 const years = [];
@@ -179,11 +196,11 @@ const CarCustomsCalculator = () => {
           <form onSubmit={formik.handleSubmit}>
             <Row align="middle" gutter={[13, 13]}>
               <Col
-                xxl={{ span: 6, offset: 4 }}
-                xl={{ span: 8, offset: 3 }}
-                lg={{ span: 9, offset: 2 }}
+                xxl={{ span: 5, offset: 4 }}
+                xl={{ span: 5, offset: 3 }}
+                lg={{ span: 6, offset: 2 }}
                 offset={1}
-                span={11}
+                span={7}
               >
                 <ButtonBase
                   type={formik.values.person ? 'primary' : 'default'}
@@ -191,28 +208,40 @@ const CarCustomsCalculator = () => {
                   block
                   onClick={() => formik.setFieldValue('person', true)}
                 >
-                  Իրավաբանական անձ
+                  <Label fontColor={
+                    formik.values.person
+                      ? '#fff'
+                      : '#000'
+                  }>
+                    Իրավաբանական անձ
+                  </Label>
                 </ButtonBase>
               </Col>
-              <Col xxl={6} xl={8} lg={9} span={11}>
+              <Col xxl={5} xl={5} lg={6} span={7}>
                 <ButtonBase
                   type={!formik.values.person ? 'primary' : 'default'}
                   size="large"
                   block
                   onClick={() => formik.setFieldValue('person', false)}
                 >
-                  Ֆիզիկական անձ
+                  <Label fontColor={
+                    !formik.values.person
+                      ? '#fff'
+                      : '#000'
+                  }>
+                    Ֆիզիկական անձ
+                  </Label>
                 </ButtonBase>
               </Col>
             </Row>
 
             <Row align="middle" gutter={[13, 13]}>
               <Col
-                xxl={{ span: 6, offset: 4 }}
-                xl={{ span: 8, offset: 3 }}
-                lg={{ span: 9, offset: 2 }}
+                xxl={{ span: 5, offset: 4 }}
+                xl={{ span: 5, offset: 3 }}
+                lg={{ span: 6, offset: 2 }}
                 offset={1}
-                span={11}
+                span={7}
               >
                 <ButtonBase
                   type={formik.values.country ? 'primary' : 'default'}
@@ -220,34 +249,48 @@ const CarCustomsCalculator = () => {
                   block
                   onClick={() => formik.setFieldValue('country', true)}
                 >
-                  ԵԱՏՄ երկրներից ներմուծված
+                  <Label fontColor={
+                    formik.values.country
+                      ? '#fff'
+                      : '#000'
+                  }>
+                    ԵԱՏՄ երկրներից ներմուծված
+                  </Label>
                 </ButtonBase>
               </Col>
-              <Col xxl={6} xl={8} lg={9} span={11}>
+              <Col xxl={5} xl={5} lg={6} span={7}>
                 <ButtonBase
                   type={!formik.values.country ? 'primary' : 'default'}
                   size="large"
                   block
                   onClick={() => formik.setFieldValue('country', false)}
                 >
-                  Երրորդ երկրներից ներմուծված
+                  <Label fontColor={
+                    !formik.values.country
+                      ? '#fff'
+                      : '#000'
+                  }>
+                    Երրորդ երկրներից ներմուծված
+                  </Label>
                 </ButtonBase>
               </Col>
             </Row>
 
             <Row align="middle" gutter={[13, 13]}>
               <Col
-                xxl={{ span: 9, offset: 4 }}
-                xl={{ span: 13, offset: 3 }}
-                lg={{ span: 15, offset: 2 }}
+                xxl={{ span: 8, offset: 4 }}
+                xl={{ span: 8, offset: 3 }}
+                lg={{ span: 12, offset: 2 }}
                 offset={1}
                 span={14}
               >
                 <FormLabelCell>
-                  Թողարկման տարեթիվը
+                  <Label fontColor="#000">
+                    Թողարկման տարեթիվը
+                  </Label>
                 </FormLabelCell>
               </Col>
-              <Col xxl={3} xl={3} lg={3} span={4}>
+              <Col xxl={2} xl={2} lg={3} span={4}>
                 <CustomSelect
                   size="large"
                   defaultValue={formik.values.date_issue}
@@ -260,17 +303,19 @@ const CarCustomsCalculator = () => {
 
             <Row align="middle" gutter={[13, 13]}>
               <Col
-                xxl={{ span: 9, offset: 4 }}
-                xl={{ span: 13, offset: 3 }}
-                lg={{ span: 15, offset: 2 }}
+                xxl={{ span: 8, offset: 4 }}
+                xl={{ span: 8, offset: 3 }}
+                lg={{ span: 12, offset: 2 }}
                 offset={1}
                 span={14}
               >
                 <FormLabelCell>
-                  Շարժիչի աշխատանքային ծավալ
+                  <Label fontColor="#000">
+                    Շարժիչի աշխատանքային ծավալ
+                  </Label>
                 </FormLabelCell>
               </Col>
-              <Col xxl={3} xl={3} lg={3} span={4}>
+              <Col xxl={2} xl={2} lg={3} span={4}>
                 <StyledInputNumber
                   size="large"
                   min={51}
@@ -283,24 +328,28 @@ const CarCustomsCalculator = () => {
               </Col>
               <Col xxl={2} xl={2} lg={2} span={3}>
                 <FormLabelCell>
-                  սմ<sup>3</sup>
+                  <Label fontColor="#000">
+                    սմ<sup>3</sup>
+                  </Label>
                 </FormLabelCell>
               </Col>
             </Row>
 
             <Row align="middle" gutter={[13, 55]}>
               <Col
-                xxl={{ span: 9, offset: 4 }}
-                xl={{ span: 13, offset: 3 }}
-                lg={{ span: 15, offset: 2 }}
+                xxl={{ span: 8, offset: 4 }}
+                xl={{ span: 8, offset: 3 }}
+                lg={{ span: 12, offset: 2 }}
                 offset={1}
                 span={14}
               >
                 <FormLabelCell>
-                  Ավտոմեքենայի գինը
+                  <Label fontColor="#000">
+                    Ավտոմեքենայի գինը
+                  </Label>
                 </FormLabelCell>
               </Col>
-              <Col xxl={3} xl={3} lg={3} span={4}>
+              <Col xxl={2} xl={2} lg={3} span={4}>
                 <StyledInputNumber
                   size="large"
                   min={0}
@@ -333,14 +382,14 @@ const CarCustomsCalculator = () => {
                 offset={1}
                 span={8}
               >
-                <ButtonLarge
+                <ButtonSubmit
                   disabled={loading || !formik.isValid}
                   size="large"
                   block
                   htmlType="submit"
                 >
                   {loading ? <Spin /> : 'Հաշվել'}
-                </ButtonLarge>
+                </ButtonSubmit>
               </Col>
             </Row>
           </form>
@@ -366,53 +415,53 @@ const CarCustomsCalculator = () => {
                   span={20}
                 >
                   <Row gutter={[10, 10]}>
-                    <Col span={15}>
+                    <Col span={14}>
                       <ResultCell>
-                        <ResultLabel>Վճարման ենթակա գումար AMD</ResultLabel>
+                        <Label fontColor="#fff">Վճարման ենթակա գումար AMD</Label>
                       </ResultCell>
                     </Col>
-                    <Col span={6}>
+                    <Col span={4}>
                       <ResultCell>
-                        <ResultLabel>{result.data.AMD}</ResultLabel>
-                      </ResultCell>
-                    </Col>
-                  </Row>
-
-                  <Row gutter={[10, 10]}>
-                    <Col span={15}>
-                      <ResultCell>
-                        <ResultLabel>Վճարման ենթակա գումար USD</ResultLabel>
-                      </ResultCell>
-                    </Col>
-                    <Col span={6}>
-                      <ResultCell>
-                        <ResultLabel>{result.data.USD}</ResultLabel>
+                        <Label fontColor="#fff">{result.data.AMD}</Label>
                       </ResultCell>
                     </Col>
                   </Row>
 
                   <Row gutter={[10, 10]}>
-                    <Col span={15}>
+                    <Col span={14}>
                       <ResultCell>
-                        <ResultLabel>Վճարման ենթակա գումար EUR</ResultLabel>
+                        <Label fontColor="#fff">Վճարման ենթակա գումար USD</Label>
                       </ResultCell>
                     </Col>
-                    <Col span={6}>
+                    <Col span={4}>
                       <ResultCell>
-                        <ResultLabel>{result.data.EUR}</ResultLabel>
+                        <Label fontColor="#fff">{result.data.USD}</Label>
                       </ResultCell>
                     </Col>
                   </Row>
 
                   <Row gutter={[10, 10]}>
-                    <Col span={15}>
+                    <Col span={14}>
                       <ResultCell>
-                        <ResultLabel>Վճարման ենթակա գումար RUB</ResultLabel>
+                        <Label fontColor="#fff">Վճարման ենթակա գումար EUR</Label>
                       </ResultCell>
                     </Col>
-                    <Col span={6}>
+                    <Col span={4}>
                       <ResultCell>
-                        <ResultLabel>{result.data.RUB}</ResultLabel>
+                        <Label fontColor="#fff">{result.data.EUR}</Label>
+                      </ResultCell>
+                    </Col>
+                  </Row>
+
+                  <Row gutter={[10, 10]}>
+                    <Col span={14}>
+                      <ResultCell>
+                        <Label fontColor="#fff">Վճարման ենթակա գումար RUB</Label>
+                      </ResultCell>
+                    </Col>
+                    <Col span={4}>
+                      <ResultCell>
+                        <Label fontColor="#fff">{result.data.RUB}</Label>
                       </ResultCell>
                     </Col>
                   </Row>

@@ -47,24 +47,32 @@ const ToggleButton = styled(Button)`
   width: 60px;
 `;
 
-const ButtonLarge = styled(Button)`
-  height: 70px;
+const ButtonSubmit = styled(Button)`
+  height: 46px;
   border-color: #009db8;
   overflow: hidden;
+  padding-vertical: 0;
 `;
+
+// const ButtonLarge = styled(Button)`
+//   height: 70px;
+//   border-color: #009db8;
+//   overflow: hidden;
+// `;
 
 const StyledInputNumber = styled(InputNumber)`
   width: 100%;
-  height: 55px;
+  height: 40px;
   display: flex;
   align-items: center;
   border-color: #009db8;
+  font-size: 14px;
 `;
 
 const FormLabelCell = styled.div`
-  padding-left: 16px;
-  padding-right: 16px;
-  height: 55px;
+  padding-left: 12px;
+  padding-right: 12px;
+  height: 40px;
   display: flex;
   align-items: center;
   text-align: center;
@@ -75,22 +83,30 @@ const ResultCell = styled.div`
   background-color: #21363d;
   padding-left: 16px;
   padding-right: 16px;
-  height: ${props => (props.large ? 80 : 60)}px;
+  height: ${props => (props.large ? 60 : 40)}px;
   display: flex;
   align-items: center;
   justify-content: ${props => (props.large ? 'center' : 'flex-start')};
   text-align: center;
 `;
 
-const ResultLabel = styled(Typography)`
-  color: #fff;
+const Label = styled(Text)`
+  font-size: 14px;
+  font-family: ArialAMU;
   font-weight: 600;
-  font-size: ${props => (props.large ? 18 : 16)}px;
+  line-height: 20px;
+  color: ${props => props.fontColor};
 `;
+
+// const ResultLabel = styled(Typography)`
+//   color: #fff;
+//   font-weight: 600;
+//   font-size: ${props => (props.large ? 18 : 16)}px;
+// `;
 
 const StyledDatePicker = styled(DatePicker)`
   width: 100%;
-  height: 55px;
+  height: 40px;
   border-color: #009db8;
 `;
 
@@ -156,19 +172,19 @@ const CarSellCalculator = () => {
       {showForm ? (
         <>
           <form onSubmit={formik.handleSubmit}>
-            <Row align="middle" gutter={[20, 20]}>
+            <Row align="middle" gutter={[13, 13]}>
               <Col
-                xxl={{span: 4, offset: 4}}
-                xl={{span: 5, offset: 3}}
-                lg={{span: 6, offset: 2}}
+                xxl={{span: 3, offset: 4}}
+                xl={{span: 3, offset: 3}}
+                lg={{span: 5, offset: 2}}
                 span={6}
                 offset={1}
               >
                 <FormLabelCell>
-                  <Text>Գնման ամսաթիվ</Text>
+                  <Label fontColor="#000">Գնման ամսաթիվ</Label>
                 </FormLabelCell>
               </Col>
-              <Col xxl={3} xl={4} lg={5} span={6}>
+              <Col xxl={3} xl={3} lg={5} span={6}>
                 <StyledDatePicker
                   size="large"
                   format="DD.MM.YYYY"
@@ -180,16 +196,16 @@ const CarSellCalculator = () => {
                 />
               </Col>
               <Col
-                xxl={4}
-                xl={5}
-                lg={6}
+                xxl={3}
+                xl={3}
+                lg={5}
                 span={6}
               >
                 <FormLabelCell>
-                  <Text>Վաճառքի ամսաթիվ</Text>
+                  <Label fontColor="#000">Վաճառքի ամսաթիվ</Label>
                 </FormLabelCell>
               </Col>
-              <Col xxl={3} xl={4} lg={5} span={6}>
+              <Col xxl={3} xl={3} lg={5} span={6}>
                 <StyledDatePicker
                   size="large"
                   format="DD.MM.YYYY"
@@ -204,17 +220,19 @@ const CarSellCalculator = () => {
 
             <Row align="middle" gutter={[13, 13]}>
               <Col
-                xxl={{ span: 9, offset: 4 }}
-                xl={{ span: 13, offset: 3 }}
-                lg={{ span: 15, offset: 2 }}
+                xxl={{ span: 8, offset: 4 }}
+                xl={{ span: 8, offset: 3 }}
+                lg={{ span: 11, offset: 2 }}
                 offset={1}
                 span={14}
               >
                 <FormLabelCell>
-                Մեքենայի ձիաուժ
+                  <Label fontColor="#000">
+                    Մեքենայի ձիաուժ
+                  </Label>
                 </FormLabelCell>
               </Col>
-              <Col xxl={3} xl={3} lg={3} span={4}>
+              <Col xxl={2} xl={2} lg={3} span={4}>
                 <StyledInputNumber
                   size="large"
                   min={0}
@@ -229,17 +247,19 @@ const CarSellCalculator = () => {
 
             <Row align="middle" gutter={[13, 55]}>
               <Col
-                xxl={{ span: 9, offset: 4 }}
-                xl={{ span: 13, offset: 3 }}
-                lg={{ span: 15, offset: 2 }}
+                xxl={{ span: 8, offset: 4 }}
+                xl={{ span: 8, offset: 3 }}
+                lg={{ span: 11, offset: 2 }}
                 offset={1}
                 span={14}
               >
                 <FormLabelCell>
-                  Վաճառքի գին
+                  <Label fontColor="#000">
+                    Վաճառքի գին
+                  </Label>
                 </FormLabelCell>
               </Col>
-              <Col xxl={3} xl={3} lg={3} span={4}>
+              <Col xxl={2} xl={2} lg={3} span={4}>
                 <StyledInputNumber
                   size="large"
                   min={0}
@@ -260,14 +280,14 @@ const CarSellCalculator = () => {
                 offset={1}
                 span={8}
               >
-                <ButtonLarge
+                <ButtonSubmit
                   disabled={loading || !formik.isValid}
                   size="large"
                   block
                   htmlType="submit"
                 >
                   {loading ? <Spin /> : 'Հաշվել'}
-                </ButtonLarge>
+                </ButtonSubmit>
               </Col>
             </Row>
           </form>
@@ -286,21 +306,21 @@ const CarSellCalculator = () => {
               </Row>
               <Row gutter={[1, 1]}>
                 <Col
-                  xxl={{ span: 14, offset: 4 }}
-                  xl={{ span: 16, offset: 3 }}
-                  lg={{ span: 17, offset: 2 }}
+                  xxl={{ span: 13, offset: 4 }}
+                  xl={{ span: 13, offset: 3 }}
+                  lg={{ span: 16, offset: 2 }}
                   offset={1}
-                  span={20}
+                  span={19}
                 >
                   <Row gutter={[10, 10]}>
                     <Col span={15}>
                       <ResultCell>
-                        <ResultLabel>Վճարման ենթակա եկամտային հարկ</ResultLabel>
+                        <Label fontColor="#fff">Վճարման ենթակա եկամտային հարկ</Label>
                       </ResultCell>
                     </Col>
-                    <Col span={6}>
+                    <Col span={4}>
                       <ResultCell>
-                        <ResultLabel>{result.data.price}</ResultLabel>
+                        <Label fontColor="#fff">{result.data.price}</Label>
                       </ResultCell>
                     </Col>
                   </Row>
