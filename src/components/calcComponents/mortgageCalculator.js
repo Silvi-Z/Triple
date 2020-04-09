@@ -1,17 +1,3 @@
-<<<<<<< HEAD
-import React, { useState } from "react"
-import { Typography, Row, Col, Button, InputNumber, Select, Spin } from "antd"
-import { PlusOutlined, MinusOutlined } from "@ant-design/icons"
-import styled from "styled-components"
-import { useFormik } from "formik"
-// import * as Yup from 'yup';
-import moment from "moment"
-import { apiHelper } from "../../helpers/apiHelper"
-import ContractImg from "../../assets/calcImages/contract.png"
-
-const { Text } = Typography
-const { Option } = Select
-=======
 import React, { useState } from 'react';
 import {
   Typography,
@@ -30,7 +16,6 @@ import { apiHelper } from '../../helpers/apiHelper';
 import ContractImg from '../../assets/calcImages/contract.png';
 
 const { Text } = Typography;
->>>>>>> 46dcae7664bbd5d819074c2de93c0b94ba92daba
 
 const HeadIcon = styled.img`
   width: 25px;
@@ -43,54 +28,35 @@ const HeadIcon = styled.img`
     width: 35px;
     height: 35px;
   }
-`
+`;
 
 const H2Styled = styled.h2`
-<<<<<<< HEAD
-  font-size: 25px;
-  font-weight: 400;
-`
-=======
   font-size: 18px;
   font-weight: normal;
   margin-left: 10px;
 `;
->>>>>>> 46dcae7664bbd5d819074c2de93c0b94ba92daba
 
 const H3Styled = styled.h3`
   font-size: 24px;
   font-weight: 400;
-`
+`;
 
-<<<<<<< HEAD
-const CustomSelect = styled(Select)`
-  width: 100%;
-  ${"" /* height: 55px; */}
-  border-color: #009db8;
-`
-
-const ToggleButton = styled(Button)`
-  height: 80px;
-  width: 80px;
-`
-=======
 const ToggleButton = styled(Button)`
   height: 60px;
   width: 60px;
 `;
->>>>>>> 46dcae7664bbd5d819074c2de93c0b94ba92daba
 
 const ButtonBase = styled(Button)`
   height: 55px;
   border-color: #009db8;
   overflow: hidden;
-`
+`;
 
 const ButtonLarge = styled(Button)`
   height: 70px;
   border-color: #009db8;
   overflow: hidden;
-`
+`;
 
 const StyledInputNumber = styled(InputNumber)`
   width: 100%;
@@ -98,7 +64,7 @@ const StyledInputNumber = styled(InputNumber)`
   display: flex;
   align-items: center;
   border-color: #009db8;
-`
+`;
 
 const FormLabelCell = styled.div`
   padding-left: 16px;
@@ -108,7 +74,7 @@ const FormLabelCell = styled.div`
   align-items: center;
   text-align: center;
   border: 1px solid #d7d7d7;
-`
+`;
 
 const TabHeadCell = styled.div`
   padding-left: 16px;
@@ -117,7 +83,7 @@ const TabHeadCell = styled.div`
   display: flex;
   align-items: center;
   text-align: center;
-`
+`;
 
 const ResultCellLight = styled.div`
   padding-left: 16px;
@@ -128,7 +94,7 @@ const ResultCellLight = styled.div`
   text-align: center;
   background-color: #fff;
   border: 1px solid #009db8;
-`
+`;
 
 const ResultCell = styled.div`
   background-color: #21363d;
@@ -137,47 +103,47 @@ const ResultCell = styled.div`
   height: ${props => (props.large ? 80 : 60)}px;
   display: flex;
   align-items: center;
-  justify-content: ${props => (props.large ? "center" : "flex-start")};
+  justify-content: ${props => (props.large ? 'center' : 'flex-start')};
   text-align: center;
-`
+`;
 
 const ResultLabel = styled(Text)`
   color: #fff;
   font-weight: 600;
   font-size: ${props => (props.large ? 18 : 16)}px;
-`
+`;
 
 const TableLabel = styled(Text)`
   color: #000;
   font-weight: 600;
   font-size: 16px;
-`
+`;
 
-const currentYear = +moment().format("YYYY")
-const years = []
+const currentYear = +moment().format('YYYY');
+const years = [];
 
 for (let i = currentYear; i >= 1900; i--) {
-  years.push(i)
+  years.push(i);
 }
 
 const months = [
-  "Հունվար",
-  "Փետրվար",
-  "Մարտ",
-  "Ապրիլ",
-  "Մայիս",
-  "Հունիս",
-  "Հուլիս",
-  "Օգոստոս",
-  "Սեպտեմբեր",
-  "Հոկտեմբեր",
-  "Նոյեմբեր",
-  "Դեկտեմբեր",
-]
+  'Հունվար',
+  'Փետրվար',
+  'Մարտ',
+  'Ապրիլ',
+  'Մայիս',
+  'Հունիս',
+  'Հուլիս',
+  'Օգոստոս',
+  'Սեպտեմբեր',
+  'Հոկտեմբեր',
+  'Նոյեմբեր',
+  'Դեկտեմբեր',
+];
 
-const monthCurrent = +moment().format("M") - 1
-const monthPrev1 = !monthCurrent ? 12 : monthCurrent - 1
-const monthPrev2 = !monthPrev1 ? 12 : monthPrev1 - 1
+const monthCurrent = +moment().format('M') - 1;
+const monthPrev1 = !monthCurrent ? 12 : monthCurrent - 1;
+const monthPrev2 = !monthPrev1 ? 12 : monthPrev1 - 1;
 
 const initialValuesOne = {
   price_type: false,
@@ -191,7 +157,7 @@ const initialValuesOne = {
   additional_price1: 0,
   additional_price2: 0,
   additional_price3: 0,
-}
+};
 
 const schemaOne =  Yup.object().shape({
   'price1': Yup.number().required().min(40000),
@@ -207,10 +173,10 @@ const schemaTwo =  Yup.object().shape({
 });
 
 const MortgageCalculator = () => {
-  const [showForm, toggleForm] = useState(false)
-  const [salary, setSalary] = useState(0) // autofill salary
-  const [loadingOne, toggleLoadingOne] = useState(false)
-  const [loadingTwo, toggleLoadingTwo] = useState(false)
+  const [showForm, toggleForm] = useState(false);
+  const [salary, setSalary] = useState(0); // autofill salary
+  const [loadingOne, toggleLoadingOne] = useState(false);
+  const [loadingTwo, toggleLoadingTwo] = useState(false);
   const [initialValuesTwo, setInitialValuesTwo] = useState({
     price_type: false,
     patent: false,
@@ -224,36 +190,36 @@ const MortgageCalculator = () => {
     additional_price2: 0,
     additional_price3: 0,
     paid_price: 0,
-  })
-  const [resultOne, setResultOne] = useState(0)
-  const [resultTwo, setResultTwo] = useState(0)
+  });
+  const [resultOne, setResultOne] = useState(0);
+  const [resultTwo, setResultTwo] = useState(0);
 
   const formikOne = useFormik({
     initialValues: initialValuesOne,
     validationSchema: schemaOne,
     validateOnMount: true,
     onSubmit: async values => {
-      console.log("Formik values: ", values)
-      toggleLoadingOne(true)
+      console.log('Formik values: ', values);
+      toggleLoadingOne(true);
       try {
         const res = await apiHelper.post(
-          "/api/counter/income_tax_return",
+          '/api/counter/income_tax_return',
           values
-        )
-        console.log("Response: ", res.data)
+        );
+        console.log('Response: ', res.data);
         if (res.data.success) {
-          setResultOne(res.data.data.returnedTaxPrice)
+          setResultOne(res.data.data.returnedTaxPrice);
           setInitialValuesTwo({
             ...values,
             paid_price: res.data.data.returnedTaxPrice,
-          })
+          });
         }
       } catch (e) {
-        console.log("Error: ", e)
+        console.log('Error: ', e);
       }
-      toggleLoadingOne(false)
+      toggleLoadingOne(false);
     },
-  })
+  });
 
   const formikTwo = useFormik({
     initialValues: initialValuesTwo,
@@ -261,23 +227,23 @@ const MortgageCalculator = () => {
     validateOnMount: true,
     enableReinitialize: true,
     onSubmit: async values => {
-      console.log("Formik values 2: ", values)
-      toggleLoadingTwo(true)
+      console.log('Formik values 2: ', values);
+      toggleLoadingTwo(true);
       try {
         const res = await apiHelper.post(
-          "/api/counter/income_tax_return",
+          '/api/counter/income_tax_return',
           values
-        )
-        console.log("Response: ", res.data)
+        );
+        console.log('Response: ', res.data);
         if (res.data.success) {
-          setResultTwo(res.data)
+          setResultTwo(res.data);
         }
       } catch (e) {
-        console.log("Error: ", e)
+        console.log('Error: ', e);
       }
-      toggleLoadingTwo(false)
+      toggleLoadingTwo(false);
     },
-  })
+  });
 
   return (
     <>
@@ -287,7 +253,7 @@ const MortgageCalculator = () => {
           xl={{ span: 1, offset: 2 }}
           lg={{ span: 1, offset: 1 }}
         >
-          <HeadIcon src={ContractImg} alt={"icon"} />
+          <HeadIcon src={ContractImg} alt={'icon'} />
         </Col>
         <Col xxl={13} xl={14} lg={15} md={16} span={17}>
           <H2Styled>Հիփոթեքի տոկոսագումարի ետ վերադարձի հաշվիչ</H2Styled>
@@ -295,9 +261,9 @@ const MortgageCalculator = () => {
         <Col span={2}>
           <ToggleButton block onClick={() => toggleForm(!showForm)}>
             {showForm ? (
-              <MinusOutlined style={{ fontSize: "20px" }} />
+              <MinusOutlined style={{ fontSize: '20px' }} />
             ) : (
-              <PlusOutlined style={{ fontSize: "20px" }} />
+              <PlusOutlined style={{ fontSize: '20px' }} />
             )}
           </ToggleButton>
         </Col>
@@ -315,20 +281,20 @@ const MortgageCalculator = () => {
                 span={11}
               >
                 <ButtonBase
-                  type={!formikOne.values.price_type ? "primary" : "default"}
+                  type={!formikOne.values.price_type ? 'primary' : 'default'}
                   size="large"
                   block
-                  onClick={() => formikOne.setFieldValue("price_type", false)}
+                  onClick={() => formikOne.setFieldValue('price_type', false)}
                 >
                   Մաքուր
                 </ButtonBase>
               </Col>
               <Col xxl={6} xl={8} lg={9} span={11}>
                 <ButtonBase
-                  type={formikOne.values.price_type ? "primary" : "default"}
+                  type={formikOne.values.price_type ? 'primary' : 'default'}
                   size="large"
                   block
-                  onClick={() => formikOne.setFieldValue("price_type", true)}
+                  onClick={() => formikOne.setFieldValue('price_type', true)}
                 >
                   Կեղտոտ
                 </ButtonBase>
@@ -344,20 +310,20 @@ const MortgageCalculator = () => {
                 span={11}
               >
                 <ButtonBase
-                  type={!formikOne.values.patent ? "primary" : "default"}
+                  type={!formikOne.values.patent ? 'primary' : 'default'}
                   size="large"
                   block
-                  onClick={() => formikOne.setFieldValue("patent", false)}
+                  onClick={() => formikOne.setFieldValue('patent', false)}
                 >
                   ՏՏ ոլորտի Արտոնագիր
                 </ButtonBase>
               </Col>
               <Col xxl={6} xl={8} lg={9} span={11}>
                 <ButtonBase
-                  type={formikOne.values.patent ? "primary" : "default"}
+                  type={formikOne.values.patent ? 'primary' : 'default'}
                   size="large"
                   block
-                  onClick={() => formikOne.setFieldValue("patent", true)}
+                  onClick={() => formikOne.setFieldValue('patent', true)}
                 >
                   Ընդհանուր հարկման դաշտ
                 </ButtonBase>
@@ -389,11 +355,6 @@ const MortgageCalculator = () => {
                   size="large"
                   block
                   onClick={() => {
-<<<<<<< HEAD
-                    formikOne.setFieldValue("price1", salary)
-                    formikOne.setFieldValue("price2", salary)
-                    formikOne.setFieldValue("price3", salary)
-=======
                     formikOne.setFieldValue('price1', salary);
                     formikOne.setFieldValue('price2', salary);
                     formikOne.setFieldValue('price3', salary);
@@ -401,7 +362,6 @@ const MortgageCalculator = () => {
                       console.log('Validation fired: ', res);
                       console.log(formikOne.values);
                     });
->>>>>>> 46dcae7664bbd5d819074c2de93c0b94ba92daba
                   }}
                 >
                   Լրացնել
@@ -453,7 +413,7 @@ const MortgageCalculator = () => {
                   size="large"
                   min={0}
                   type="number"
-                  onChange={value => formikOne.setFieldValue("price1", value)}
+                  onChange={value => formikOne.setFieldValue('price1', value)}
                   value={formikOne.values.price1}
                 />
               </Col>
@@ -463,7 +423,7 @@ const MortgageCalculator = () => {
                   min={0}
                   type="number"
                   onChange={value =>
-                    formikOne.setFieldValue("bonus_price1", value)
+                    formikOne.setFieldValue('bonus_price1', value)
                   }
                   value={formikOne.values.bonus_price1}
                 />
@@ -474,7 +434,7 @@ const MortgageCalculator = () => {
                   min={0}
                   type="number"
                   onChange={value =>
-                    formikOne.setFieldValue("additional_price1", value)
+                    formikOne.setFieldValue('additional_price1', value)
                   }
                   value={formikOne.values.additional_price1}
                 />
@@ -496,7 +456,7 @@ const MortgageCalculator = () => {
                   size="large"
                   min={0}
                   type="number"
-                  onChange={value => formikOne.setFieldValue("price2", value)}
+                  onChange={value => formikOne.setFieldValue('price2', value)}
                   value={formikOne.values.price2}
                 />
               </Col>
@@ -506,7 +466,7 @@ const MortgageCalculator = () => {
                   min={0}
                   type="number"
                   onChange={value =>
-                    formikOne.setFieldValue("bonus_price2", value)
+                    formikOne.setFieldValue('bonus_price2', value)
                   }
                   value={formikOne.values.bonus_price2}
                 />
@@ -517,7 +477,7 @@ const MortgageCalculator = () => {
                   min={0}
                   type="number"
                   onChange={value =>
-                    formikOne.setFieldValue("additional_price2", value)
+                    formikOne.setFieldValue('additional_price2', value)
                   }
                   value={formikOne.values.additional_price2}
                 />
@@ -539,7 +499,7 @@ const MortgageCalculator = () => {
                   size="large"
                   min={0}
                   type="number"
-                  onChange={value => formikOne.setFieldValue("price3", value)}
+                  onChange={value => formikOne.setFieldValue('price3', value)}
                   value={formikOne.values.price3}
                 />
               </Col>
@@ -549,7 +509,7 @@ const MortgageCalculator = () => {
                   min={0}
                   type="number"
                   onChange={value =>
-                    formikOne.setFieldValue("bonus_price3", value)
+                    formikOne.setFieldValue('bonus_price3', value)
                   }
                   value={formikOne.values.bonus_price3}
                 />
@@ -560,7 +520,7 @@ const MortgageCalculator = () => {
                   min={0}
                   type="number"
                   onChange={value =>
-                    formikOne.setFieldValue("additional_price3", value)
+                    formikOne.setFieldValue('additional_price3', value)
                   }
                   value={formikOne.values.additional_price3}
                 />
@@ -576,20 +536,12 @@ const MortgageCalculator = () => {
                 span={8}
               >
                 <ButtonLarge
-<<<<<<< HEAD
-                  disabled={loadingOne}
-=======
                   disabled={loadingOne  || !formikOne.isValid}
->>>>>>> 46dcae7664bbd5d819074c2de93c0b94ba92daba
                   size="large"
                   block
                   htmlType="submit"
                 >
-<<<<<<< HEAD
-                  {loadingOne ? <Spin /> : "Հաշվել"}
-=======
                   {loadingOne ? <Spin /> : 'Հաշվել'}
->>>>>>> 46dcae7664bbd5d819074c2de93c0b94ba92daba
                 </ButtonLarge>
               </Col>
             </Row>
@@ -630,15 +582,8 @@ const MortgageCalculator = () => {
                 <StyledInputNumber
                   min={0}
                   type="number"
-<<<<<<< HEAD
-                  onChange={value =>
-                    formikTwo.setFieldValue("paid_price", value)
-                  }
-                  value={formikTwo.values.paid_price}
-=======
                   onChange={value => formikTwo.setFieldValue('paid_price', value)}
                   // value={formikTwo.values.paid_price}
->>>>>>> 46dcae7664bbd5d819074c2de93c0b94ba92daba
                 />
               </Col>
             </Row>
@@ -652,20 +597,12 @@ const MortgageCalculator = () => {
                 span={8}
               >
                 <ButtonLarge
-<<<<<<< HEAD
-                  disabled={loadingTwo}
-=======
                   disabled={loadingTwo  || !formikTwo.isValid}
->>>>>>> 46dcae7664bbd5d819074c2de93c0b94ba92daba
                   size="large"
                   block
                   htmlType="submit"
                 >
-<<<<<<< HEAD
-                  {loadingTwo ? <Spin /> : "Հաշվել"}
-=======
                   {loadingTwo ? <Spin /> : 'Հաշվել'}
->>>>>>> 46dcae7664bbd5d819074c2de93c0b94ba92daba
                 </ButtonLarge>
               </Col>
             </Row>
@@ -713,7 +650,7 @@ const MortgageCalculator = () => {
         </>
       ) : null}
     </>
-  )
-}
+  );
+};
 
-export default MortgageCalculator
+export default MortgageCalculator;

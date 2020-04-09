@@ -61,8 +61,23 @@ const ButtonLarge = styled(Button)`
   padding-vertical: 0;
 `;
 
-const ButtonLabel = styled(Text)`
+const ButtonSubmit = styled(Button)`
+  height: 46px;
+  border-color: #009db8;
+  overflow: hidden;
+  padding-vertical: 0;
+`;
+
+const Label = styled(Text)`
   font-size: 14px;
+  font-family: ArialAMU;
+  font-weight: bold;
+  line-height: 20px;
+  color: ${props => props.fontColor};
+`;
+
+const Label2 = styled(Text)`
+  font-size: 16px;
   font-family: ArialAMU;
   font-weight: bold;
   line-height: 20px;
@@ -92,18 +107,18 @@ const ResultCell = styled.div`
   background-color: #21363d;
   padding-left: 16px;
   padding-right: 16px;
-  height: ${props => (props.large ? 80 : 60)}px;
+  height: ${props => (props.large ? 60 : 40)}px;
   display: flex;
   align-items: center;
   justify-content: ${props => (props.large ? 'center' : 'flex-start')};
   text-align: center;
 `;
 
-const ResultLabel = styled(Text)`
-  color: #fff;
-  font-weight: 600;
-  font-size: ${props => (props.large ? 18 : 16)}px;
-`;
+// const ResultLabel = styled(Text)`
+//   color: #fff;
+//   font-weight: 600;
+//   font-size: ${props => (props.large ? 18 : 16)}px;
+// `;
 
 const initialValues = {
   salary_type: false,
@@ -228,9 +243,9 @@ const SalaryCalculator = () => {
                   block
                   onClick={() => formik.setFieldValue('salary_type', false)}
                 >
-                  <ButtonLabel fontColor={!formik.values.salary_type ? '#fff' : '#009db8'}>
+                  <Label fontColor={!formik.values.salary_type ? '#fff' : '#009db8'}>
                     Մաքուր
-                  </ButtonLabel>
+                  </Label>
                 </ButtonBase>
               </Col>
               <Col xxl={5} xl={5} lg={6} span={7}>
@@ -240,9 +255,9 @@ const SalaryCalculator = () => {
                   block
                   onClick={() => formik.setFieldValue('salary_type', true)}
                 >
-                  <ButtonLabel fontColor={formik.values.salary_type ? '#fff' : '#009db8'}>
+                  <Label fontColor={formik.values.salary_type ? '#fff' : '#009db8'}>
                     Կեղտոտ
-                  </ButtonLabel>
+                  </Label>
                 </ButtonBase>
               </Col>
             </Row>
@@ -265,7 +280,7 @@ const SalaryCalculator = () => {
                   block
                   onClick={() => formik.setFieldValue('patent', null)}
                 >
-                  <ButtonLabel fontColor={
+                  <Label fontColor={
                     formik.values.patent !== 1 && formik.values.patent !== 0
                       ? '#fff'
                       : '#009db8'
@@ -273,7 +288,7 @@ const SalaryCalculator = () => {
                     Ընդհանուր
                     <br />
                     հարկման դաշտ
-                  </ButtonLabel>
+                  </Label>
                 </ButtonLarge>
               </Col>
               <Col xxl={4} xl={4} lg={5} span={6}>
@@ -283,7 +298,7 @@ const SalaryCalculator = () => {
                   block
                   onClick={() => formik.setFieldValue('patent', 1)}
                 >
-                  <ButtonLabel fontColor={
+                  <Label fontColor={
                     formik.values.patent === 1
                       ? '#fff'
                       : '#009db8'
@@ -291,7 +306,7 @@ const SalaryCalculator = () => {
                     Միկրոձեռնարկատիրության
                     <br />
                     սուբյեկտ
-                  </ButtonLabel>
+                  </Label>
                 </ButtonLarge>
               </Col>
               <Col xxl={3} xl={4} lg={5} span={6}>
@@ -301,7 +316,7 @@ const SalaryCalculator = () => {
                   block
                   onClick={() => formik.setFieldValue('patent', 0)}
                 >
-                  <ButtonLabel fontColor={
+                  <Label fontColor={
                     formik.values.patent === 0
                       ? '#fff'
                       : '#009db8'
@@ -309,7 +324,7 @@ const SalaryCalculator = () => {
                     ՏՏ ոլորտի
                     <br />
                     Արտոնագիր
-                  </ButtonLabel>
+                  </Label>
                 </ButtonLarge>
               </Col>
             </Row>
@@ -323,9 +338,9 @@ const SalaryCalculator = () => {
                 span={10}
               >
                 <FormLabelCell>
-                  <ButtonLabel fontColor="#000">
+                  <Label fontColor="#000">
                     Աշխատավարձ
-                  </ButtonLabel>
+                  </Label>
                 </FormLabelCell>
               </Col>
               <Col xxl={3} xl={3} lg={4} span={5}>
@@ -350,9 +365,9 @@ const SalaryCalculator = () => {
                 span={10}
               >
                 <FormLabelCell>
-                  <ButtonLabel fontColor="#000">
+                  <Label fontColor="#000">
                     Պարգևավճար
-                  </ButtonLabel>
+                  </Label>
                 </FormLabelCell>
               </Col>
               <Col xxl={3} xl={4} lg={5} span={6}>
@@ -376,9 +391,9 @@ const SalaryCalculator = () => {
                 span={16}
               >
                 <FormLabelCell>
-                  <ButtonLabel fontColor="#000">
+                  <Label fontColor="#000">
                     Մասնակցու՞մ եք կուտակային կենսաթոշակայինին
-                  </ButtonLabel>
+                  </Label>
                 </FormLabelCell>
               </Col>
               <Col>
@@ -388,13 +403,13 @@ const SalaryCalculator = () => {
                   block
                   onClick={() => formik.setFieldValue('pension', true)}
                 >
-                  <ButtonLabel fontColor={
+                  <Label fontColor={
                     formik.values.pension
                       ? '#fff'
                       : '#009db8'
                   }>
                     Այո
-                  </ButtonLabel>
+                  </Label>
                 </ButtonSmall>
               </Col>
               <Col>
@@ -404,13 +419,13 @@ const SalaryCalculator = () => {
                   block
                   onClick={() => formik.setFieldValue('pension', false)}
                 >
-                  <ButtonLabel fontColor={
+                  <Label fontColor={
                     !formik.values.pension
                       ? '#fff'
                       : '#009db8'
                   }>
                     Ոչ
-                  </ButtonLabel>
+                  </Label>
                 </ButtonSmall>
               </Col>
             </Row>
@@ -424,9 +439,9 @@ const SalaryCalculator = () => {
                 span={16}
               >
                 <FormLabelCell>
-                  <ButtonLabel fontColor="#000">
+                  <Label fontColor="#000">
                     Վճարե՞լ եք արդեն դրոշմանիշային վճարը
-                  </ButtonLabel>
+                  </Label>
                 </FormLabelCell>
               </Col>
               <Col>
@@ -436,13 +451,13 @@ const SalaryCalculator = () => {
                   block
                   onClick={() => formik.setFieldValue('bonus_stamp', true)}
                 >
-                  <ButtonLabel fontColor={
+                  <Label fontColor={
                     formik.values.bonus_stamp
                       ? '#fff'
                       : '#009db8'
                   }>
                     Այո
-                  </ButtonLabel>
+                  </Label>
                 </ButtonSmall>
               </Col>
               <Col>
@@ -452,13 +467,13 @@ const SalaryCalculator = () => {
                   block
                   onClick={() => formik.setFieldValue('bonus_stamp', false)}
                 >
-                  <ButtonLabel fontColor={
+                  <Label fontColor={
                     !formik.values.bonus_stamp
                       ? '#fff'
                       : '#009db8'
                   }>
                     Ոչ
-                  </ButtonLabel>
+                  </Label>
                 </ButtonSmall>
               </Col>
             </Row>
@@ -471,13 +486,13 @@ const SalaryCalculator = () => {
                 offset={1}
                 span={8}
               >
-                <ButtonLarge
+                <ButtonSubmit
                   disabled={loading || !formik.isValid}
                   size="large"
                   block htmlType="submit"
                 >
                   {loading ? <Spin /> : 'Հաշվել'}
-                </ButtonLarge>
+                </ButtonSubmit>
               </Col>
             </Row>
           </form>
@@ -504,53 +519,53 @@ const SalaryCalculator = () => {
                   span={20}
                 >
                   <Row gutter={[10, 10]}>
-                    <Col span={16}>
+                    <Col span={15}>
                       <ResultCell>
-                        <ResultLabel>Ընդհանուր պահում</ResultLabel>
+                        <Label fontColor="#fff">Ընդհանուր պահում</Label>
                       </ResultCell>
                     </Col>
                     <Col span={7}>
                       <ResultCell>
-                        <ResultLabel>{result.allTaxPrice}</ResultLabel>
+                        <Label fontColor="#fff">{result.allTaxPrice}</Label>
                       </ResultCell>
                     </Col>
                   </Row>
 
                   <Row gutter={[10, 10]}>
-                    <Col span={16}>
+                    <Col span={15}>
                       <ResultCell>
-                        <ResultLabel>Եկամտային հարկ</ResultLabel>
+                        <Label fontColor="#fff">Եկամտային հարկ</Label>
                       </ResultCell>
                     </Col>
                     <Col span={7}>
                       <ResultCell>
-                        <ResultLabel>{result.taxPrice}</ResultLabel>
+                        <Label fontColor="#fff">{result.taxPrice}</Label>
                       </ResultCell>
                     </Col>
                   </Row>
 
                   <Row gutter={[10, 10]}>
-                    <Col span={16}>
+                    <Col span={15}>
                       <ResultCell>
-                        <ResultLabel>Կենսաթոշակային վճար</ResultLabel>
+                        <Label fontColor="#fff">Կենսաթոշակային վճար</Label>
                       </ResultCell>
                     </Col>
                     <Col span={7}>
                       <ResultCell>
-                        <ResultLabel>{result.pensionPrice}</ResultLabel>
+                        <Label fontColor="#fff">{result.pensionPrice}</Label>
                       </ResultCell>
                     </Col>
                   </Row>
 
                   <Row gutter={[10, 10]}>
-                    <Col span={16}>
+                    <Col span={15}>
                       <ResultCell>
-                        <ResultLabel>Դրոշմանիշային վճար</ResultLabel>
+                        <Label fontColor="#fff">Դրոշմանիշային վճար</Label>
                       </ResultCell>
                     </Col>
                     <Col span={7}>
                       <ResultCell>
-                        <ResultLabel>{result.stampPrice}</ResultLabel>
+                        <Label fontColor="#fff">{result.stampPrice}</Label>
                       </ResultCell>
                     </Col>
                   </Row>
@@ -566,16 +581,18 @@ const SalaryCalculator = () => {
                   <Row gutter={[10, 10]}>
                     <Col span={9}>
                       <ResultCell large>
-                        <ResultLabel large>
+                        <Label2 fontColor="#fff">
                           {`${
                             +result.salary_type ? 'Մաքուր' : 'Կեղտոտ'
                           } աշխատավարձ`}
-                        </ResultLabel>
+                        </Label2>
                       </ResultCell>
                     </Col>
                     <Col span={9}>
                       <ResultCell large>
-                        <ResultLabel large>{result.salary}</ResultLabel>
+                        <Label2 fontColor="#fff">
+                          {result.salary}
+                        </Label2>
                       </ResultCell>
                     </Col>
                   </Row>
@@ -583,16 +600,18 @@ const SalaryCalculator = () => {
                   {result.bonusSalary ? (<Row gutter={[10, 10]}>
                     <Col span={9}>
                       <ResultCell large>
-                        <ResultLabel large>
+                        <Label2 fontColor="#fff">
                           {`${
                             +result.salary_type ? 'Մաքուր' : 'Կեղտոտ'
                           } պարգևավճար`}
-                        </ResultLabel>
+                        </Label2>
                       </ResultCell>
                     </Col>
                     <Col span={9}>
                       <ResultCell large>
-                        <ResultLabel large>{result.bonusSalary}</ResultLabel>
+                        <Label2 fontColor="#fff">
+                          {result.bonusSalary}
+                        </Label2>
                       </ResultCell>
                     </Col>
                   </Row>) : null}

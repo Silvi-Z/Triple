@@ -1,38 +1,28 @@
-import React from "react"
-import { Typography, Row, Col, Divider } from "antd"
-import styled from "styled-components"
-import Layout from "../components/layout"
-import SalaryCalculator from "../components/calcComponents/salarycalculator"
+import React from 'react';
+import { Typography, Row, Col, Divider } from 'antd';
+import styled from 'styled-components';
+import Layout from '../components/layout';
+import SalaryCalculator from '../components/calcComponents/salarycalculator';
 // import VacationCalculator from '../components/calcComponents/vacationcalculator';
-import CarCustomsCalculator from "../components/calcComponents/carCustomsCalculator"
-import CarSellCalculator from "../components/calcComponents/carSellCalculator"
-import CarPropTaxCalculator from "../components/calcComponents/carPropTaxCalculator"
-import MortgageCalculator from "../components/calcComponents/mortgageCalculator"
+import CarCustomsCalculator from '../components/calcComponents/carCustomsCalculator';
+import CarSellCalculator from '../components/calcComponents/carSellCalculator';
+import CarPropTaxCalculator from '../components/calcComponents/carPropTaxCalculator';
+import MortgageCalculator from '../components/calcComponents/mortgageCalculator';
 
-const { Text } = Typography
+const { Text } = Typography;
 
 const H1Styled = styled.h1`
-<<<<<<< HEAD
-  font-size: 26px;
-  font-weight: 900;
-`
-=======
   font-size: 18px;
   font-weight: bold;
   font-family: ArialAMU, sans-serif;
   color: #000;
 `;
->>>>>>> 46dcae7664bbd5d819074c2de93c0b94ba92daba
 
 const TextStyled = styled(Text)`
   font-size: 16px;
   font-family: ArialAMU, sans-serif;
-<<<<<<< HEAD
-`
-=======
   color: #000;
 `;
->>>>>>> 46dcae7664bbd5d819074c2de93c0b94ba92daba
 
 const Calculators = () => (
   <Layout>
@@ -71,6 +61,6 @@ const Calculators = () => (
     <Divider />
     <CarPropTaxCalculator />
   </Layout>
-)
+);
 
-export default Calculators
+export default Calculators;
