@@ -29,8 +29,9 @@ const H2Styled = styled.h2`
 `;
 
 const H3Styled = styled.h3`
-  font-size: 24px;
-  font-weight: 400;
+  font-size: 15px;
+  font-weight: 500;
+  color: #000;
 `;
 
 const ToggleButton = styled(Button)`
@@ -91,6 +92,8 @@ const StyledInputNumber = styled(InputNumber)`
   align-items: center;
   border-color: #009db8;
   font-size: 14px;
+  font-family: ArialAMU;
+  color: #000;
 `;
 
 const FormLabelCell = styled.div`
@@ -229,7 +232,7 @@ const SalaryCalculator = () => {
       {showForm ? (
         <>
           <form onSubmit={formik.handleSubmit}>
-            <Row align="middle" gutter={[13, 13]}>
+            <Row align="middle" gutter={[10, 10]}>
               <Col
                 xxl={{ span: 5, offset: 4 }}
                 xl={{ span: 5, offset: 3 }}
@@ -243,7 +246,7 @@ const SalaryCalculator = () => {
                   block
                   onClick={() => formik.setFieldValue('salary_type', false)}
                 >
-                  <Label fontColor={!formik.values.salary_type ? '#fff' : '#009db8'}>
+                  <Label fontColor={!formik.values.salary_type ? '#fff' : '#000'}>
                     Մաքուր
                   </Label>
                 </ButtonBase>
@@ -255,14 +258,14 @@ const SalaryCalculator = () => {
                   block
                   onClick={() => formik.setFieldValue('salary_type', true)}
                 >
-                  <Label fontColor={formik.values.salary_type ? '#fff' : '#009db8'}>
+                  <Label fontColor={formik.values.salary_type ? '#fff' : '#000'}>
                     Կեղտոտ
                   </Label>
                 </ButtonBase>
               </Col>
             </Row>
 
-            <Row align="middle" gutter={[13, 13]}>
+            <Row align="middle" gutter={[10, 10]}>
               <Col
                 xxl={{ span: 3, offset: 4 }}
                 xl={{ span: 4, offset: 3 }}
@@ -283,7 +286,7 @@ const SalaryCalculator = () => {
                   <Label fontColor={
                     formik.values.patent !== 1 && formik.values.patent !== 0
                       ? '#fff'
-                      : '#009db8'
+                      : '#000'
                   }>
                     Ընդհանուր
                     <br />
@@ -301,7 +304,7 @@ const SalaryCalculator = () => {
                   <Label fontColor={
                     formik.values.patent === 1
                       ? '#fff'
-                      : '#009db8'
+                      : '#000'
                   }>
                     Միկրոձեռնարկատիրության
                     <br />
@@ -319,7 +322,7 @@ const SalaryCalculator = () => {
                   <Label fontColor={
                     formik.values.patent === 0
                       ? '#fff'
-                      : '#009db8'
+                      : '#000'
                   }>
                     ՏՏ ոլորտի
                     <br />
@@ -329,7 +332,7 @@ const SalaryCalculator = () => {
               </Col>
             </Row>
 
-            <Row align="middle" gutter={[13, 13]}>
+            <Row align="middle" gutter={[10, 10]}>
               <Col
                 xxl={{ span: 7, offset: 4 }}
                 xl={{ span: 7, offset: 3 }}
@@ -356,7 +359,7 @@ const SalaryCalculator = () => {
               </Col>
             </Row>
 
-            <Row align="middle" gutter={[13, 13]}>
+            <Row align="middle" gutter={[10, 10]}>
               <Col
                 xxl={{ span: 7, offset: 4 }}
                 xl={{ span: 7, offset: 3 }}
@@ -382,7 +385,7 @@ const SalaryCalculator = () => {
               </Col>
             </Row>
 
-            <Row align="middle" gutter={[13, 13]}>
+            <Row align="middle" gutter={[10, 10]}>
               <Col
                 xxl={{ span: 8, offset: 4 }}
                 xl={{ span: 12, offset: 3 }}
@@ -406,7 +409,7 @@ const SalaryCalculator = () => {
                   <Label fontColor={
                     formik.values.pension
                       ? '#fff'
-                      : '#009db8'
+                      : '#000'
                   }>
                     Այո
                   </Label>
@@ -422,7 +425,7 @@ const SalaryCalculator = () => {
                   <Label fontColor={
                     !formik.values.pension
                       ? '#fff'
-                      : '#009db8'
+                      : '#000'
                   }>
                     Ոչ
                   </Label>
@@ -430,7 +433,7 @@ const SalaryCalculator = () => {
               </Col>
             </Row>
 
-            <Row align="middle" gutter={[13, 40]}>
+            <Row align="middle" gutter={[10, 30]}>
               <Col
                 xxl={{ span: 8, offset: 4 }}
                 xl={{ span: 12, offset: 3 }}
@@ -454,7 +457,7 @@ const SalaryCalculator = () => {
                   <Label fontColor={
                     formik.values.bonus_stamp
                       ? '#fff'
-                      : '#009db8'
+                      : '#000'
                   }>
                     Այո
                   </Label>
@@ -470,7 +473,7 @@ const SalaryCalculator = () => {
                   <Label fontColor={
                     !formik.values.bonus_stamp
                       ? '#fff'
-                      : '#009db8'
+                      : '#000'
                   }>
                     Ոչ
                   </Label>
@@ -478,7 +481,7 @@ const SalaryCalculator = () => {
               </Col>
             </Row>
 
-            <Row align="middle" gutter={[10, 40]}>
+            <Row align="middle" gutter={[10, 30]}>
               <Col
                 xxl={{ span: 4, offset: 4 }}
                 xl={{ span: 5, offset: 3 }}
@@ -498,7 +501,7 @@ const SalaryCalculator = () => {
           </form>
           {result ? (
             <>
-              <Row align="middle" gutter={[5, 30]}>
+              <Row align="middle" gutter={[5, 10]}>
                 <Col
                   xxl={{ span: 4, offset: 4 }}
                   xl={{ span: 6, offset: 3 }}
@@ -510,7 +513,7 @@ const SalaryCalculator = () => {
                 </Col>
               </Row>
 
-              <Row gutter={[1, 1]}>
+              <Row>
                 <Col
                   xxl={{ span: 9, offset: 4 }}
                   xl={{ span: 10, offset: 3 }}

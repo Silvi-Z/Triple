@@ -30,8 +30,9 @@ const H2Styled = styled.h2`
 `;
 
 const H3Styled = styled.h3`
-  font-size: 24px;
-  font-weight: 400;
+  font-size: 15px;
+  font-weight: 500;
+  color: #000;
 `;
 
 const ToggleButton = styled(Button)`
@@ -53,10 +54,13 @@ const ButtonLarge = styled(Button)`
 
 const StyledInputNumber = styled(InputNumber)`
   width: 100%;
-  height: 55px;
+  height: 40px;
   display: flex;
   align-items: center;
   border-color: #009db8;
+  font-size: 14px;
+  font-family: ArialAMU;
+  color: #000;
 `;
 
 const StyledDatePicker = styled(DatePicker)`

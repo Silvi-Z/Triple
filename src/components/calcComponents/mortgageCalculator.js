@@ -37,8 +37,9 @@ const H2Styled = styled.h2`
 `;
 
 const H3Styled = styled.h3`
-  font-size: 24px;
-  font-weight: 400;
+  font-size: 15px;
+  font-weight: 500;
+  color: #000;
 `;
 
 const ToggleButton = styled(Button)`
@@ -66,6 +67,8 @@ const StyledInputNumber = styled(InputNumber)`
   align-items: center;
   border-color: #009db8;
   font-size: 14px;
+  font-family: ArialAMU;
+  color: #000;
 `;
 
 const FormLabelCell = styled.div`
@@ -85,14 +88,6 @@ const Label = styled(Text)`
   line-height: 20px;
   color: ${props => props.fontColor};
 `;
-
-// const Label2 = styled(Text)`
-//   font-size: 16px;
-//   font-family: ArialAMU;
-//   font-weight: bold;
-//   line-height: 20px;
-//   color: ${props => props.fontColor};
-// `;
 
 const TabHeadCell = styled.div`
   padding-left: 16px;
@@ -125,18 +120,6 @@ const ResultCell = styled.div`
   justify-content: ${props => (props.large ? 'center' : 'flex-start')};
   text-align: center;
 `;
-
-// const ResultLabel = styled(Text)`
-//   color: #fff;
-//   font-weight: 600;
-//   font-size: ${props => (props.large ? 18 : 16)}px;
-// `;
-
-// const TableLabel = styled(Text)`
-//   color: #000;
-//   font-weight: 600;
-//   font-size: 16px;
-// `;
 
 const currentYear = +moment().format('YYYY');
 const years = [];
@@ -266,7 +249,7 @@ const MortgageCalculator = () => {
 
   return (
     <>
-      <Row align="middle" gutter={[10, 50]}>
+      <Row align="middle" gutter={[10, 40]}>
         <Col
           xxl={{ span: 1, offset: 3 }}
           xl={{ span: 1, offset: 2 }}
@@ -291,7 +274,7 @@ const MortgageCalculator = () => {
       {showForm ? (
         <>
           <form onSubmit={formikOne.handleSubmit}>
-            <Row align="middle" gutter={[13, 13]}>
+            <Row align="middle" gutter={[10, 10]}>
               <Col
                 xxl={{ span: 5, offset: 4 }}
                 xl={{ span: 5, offset: 3 }}
@@ -308,7 +291,7 @@ const MortgageCalculator = () => {
                   <Label fontColor={
                     !formikOne.values.price_type
                       ? '#fff'
-                      : '#009db8'
+                      : '#000'
                   }>
                     Մաքուր
                   </Label>
@@ -324,7 +307,7 @@ const MortgageCalculator = () => {
                   <Label fontColor={
                     formikOne.values.price_type
                       ? '#fff'
-                      : '#009db8'
+                      : '#000'
                   }>
                     Կեղտոտ
                   </Label>
@@ -332,7 +315,7 @@ const MortgageCalculator = () => {
               </Col>
             </Row>
 
-            <Row align="middle" gutter={[13, 13]}>
+            <Row align="middle" gutter={[10, 10]}>
               <Col
                 xxl={{ span: 5, offset: 4 }}
                 xl={{ span: 5, offset: 3 }}
@@ -349,7 +332,7 @@ const MortgageCalculator = () => {
                   <Label fontColor={
                     !formikOne.values.patent
                       ? '#fff'
-                      : '#009db8'
+                      : '#000'
                   }>
                     ՏՏ ոլորտի Արտոնագիր
                   </Label>
@@ -365,7 +348,7 @@ const MortgageCalculator = () => {
                   <Label fontColor={
                     formikOne.values.patent
                       ? '#fff'
-                      : '#009db8'
+                      : '#000'
                   }>
                     Ընդհանուր հարկման դաշտ
                   </Label>
@@ -373,7 +356,7 @@ const MortgageCalculator = () => {
               </Col>
             </Row>
 
-            <Row align="middle" gutter={[13, 20]}>
+            <Row align="middle" gutter={[10, 20]}>
               <Col
                 xxl={{ span: 6, offset: 4 }}
                 xl={{ span: 6, offset: 3 }}
@@ -418,7 +401,7 @@ const MortgageCalculator = () => {
               </Col>
             </Row>
 
-            <Row align="middle" gutter={[13, 20]}>
+            <Row align="middle" gutter={[10, 20]}>
               <Col
                 xxl={{ span: 2, offset: 4 }}
                 xl={{ span: 2, offset: 3 }}
@@ -447,7 +430,7 @@ const MortgageCalculator = () => {
               </Col>
             </Row>
 
-            <Row align="middle" gutter={[13, 13]}>
+            <Row align="middle" gutter={[10, 10]}>
               <Col
                 xxl={{ span: 2, offset: 4 }}
                 xl={{ span: 2, offset: 3 }}
@@ -494,7 +477,7 @@ const MortgageCalculator = () => {
               </Col>
             </Row>
 
-            <Row align="middle" gutter={[13, 13]}>
+            <Row align="middle" gutter={[10, 10]}>
               <Col
                 xxl={{ span: 2, offset: 4 }}
                 xl={{ span: 2, offset: 3 }}
@@ -541,7 +524,7 @@ const MortgageCalculator = () => {
               </Col>
             </Row>
 
-            <Row align="middle" gutter={[13, 55]}>
+            <Row align="middle" gutter={[10, 30]}>
               <Col
                 xxl={{ span: 2, offset: 4 }}
                 xl={{ span: 2, offset: 3 }}
@@ -588,7 +571,7 @@ const MortgageCalculator = () => {
               </Col>
             </Row>
 
-            <Row align="middle" gutter={[10, 55]}>
+            <Row align="middle" gutter={[10, 30]}>
               <Col
                 xxl={{ span: 4, offset: 4 }}
                 xl={{ span: 5, offset: 3 }}
@@ -609,7 +592,7 @@ const MortgageCalculator = () => {
           </form>
 
           <form onSubmit={formikTwo.handleSubmit}>
-            <Row align="middle" gutter={[13, 13]}>
+            <Row align="middle" gutter={[10, 10]}>
               <Col
                 xxl={{ span: 7, offset: 4 }}
                 xl={{ span: 7, offset: 3 }}
@@ -618,14 +601,20 @@ const MortgageCalculator = () => {
                 span={12}
               >
                 <FormLabelCell>
-                  <Typography>Հաշվետու եռամսյակում եկամտային հարկը</Typography>
+                  <Label fontColor="#000">
+                    Հաշվետու եռամսյակում եկամտային հարկը
+                  </Label>
                 </FormLabelCell>
               </Col>
               <Col xxl={3} xl={3} lg={4} span={4}>
-                <ResultCellLight>{resultOne}</ResultCellLight>
+                <ResultCellLight>
+                  <Label fontColor="#000">
+                    {resultOne}
+                  </Label>
+                </ResultCellLight>
               </Col>
             </Row>
-            <Row align="middle" gutter={[13, 55]}>
+            <Row align="middle" gutter={[10, 30]}>
               <Col
                 xxl={{ span: 7, offset: 4 }}
                 xl={{ span: 7, offset: 3 }}
@@ -634,9 +623,9 @@ const MortgageCalculator = () => {
                 span={12}
               >
                 <FormLabelCell>
-                  <Typography>
+                  <Label fontColor="#000">
                     Հաշվետու եռամսյակում վճարած տոկոսագումար
-                  </Typography>
+                  </Label>
                 </FormLabelCell>
               </Col>
               <Col xxl={3} xl={3} lg={4} span={4}>
@@ -644,12 +633,11 @@ const MortgageCalculator = () => {
                   min={0}
                   type="number"
                   onChange={value => formikTwo.setFieldValue('paid_price', value)}
-                  // value={formikTwo.values.paid_price}
                 />
               </Col>
             </Row>
 
-            <Row align="middle" gutter={[10, 55]}>
+            <Row align="middle" gutter={[10, 30]}>
               <Col
                 xxl={{ span: 4, offset: 4 }}
                 xl={{ span: 5, offset: 3 }}
@@ -670,7 +658,7 @@ const MortgageCalculator = () => {
           </form>
           {resultTwo && resultTwo.success ? (
             <>
-              <Row align="middle" gutter={[5, 30]}>
+              <Row align="middle" gutter={[5, 10]}>
                 <Col
                   xxl={{ span: 4, offset: 4 }}
                   xl={{ span: 6, offset: 3 }}
@@ -682,7 +670,7 @@ const MortgageCalculator = () => {
                 </Col>
               </Row>
 
-              <Row gutter={[1, 1]}>
+              <Row>
                 <Col
                   xxl={{ span: 14, offset: 4 }}
                   xl={{ span: 16, offset: 3 }}

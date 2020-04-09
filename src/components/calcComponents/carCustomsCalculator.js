@@ -39,8 +39,9 @@ const H2Styled = styled.h2`
 `;
 
 const H3Styled = styled.h3`
-  font-size: 24px;
-  font-weight: 400;
+  font-size: 15px;
+  font-weight: 500;
+  color: #000;
 `;
 
 const CustomSelect = styled(Select)`
@@ -74,12 +75,6 @@ const ButtonBase = styled(Button)`
   overflow: hidden;
 `;
 
-// const ButtonLarge = styled(Button)`
-//   height: 70px;
-//   border-color: #009db8;
-//   overflow: hidden;
-// `;
-
 const StyledInputNumber = styled(InputNumber)`
   width: 100%;
   height: 40px;
@@ -87,6 +82,8 @@ const StyledInputNumber = styled(InputNumber)`
   align-items: center;
   border-color: #009db8;
   font-size: 14px;
+  font-family: ArialAMU;
+  color: #000;
 `;
 
 const FormLabelCell = styled.div`
@@ -109,12 +106,6 @@ const ResultCell = styled.div`
   justify-content: ${props => (props.large ? 'center' : 'flex-start')};
   text-align: center;
 `;
-
-// const ResultLabel = styled(Typography)`
-//   color: #fff;
-//   font-weight: 600;
-//   font-size: ${props => (props.large ? 18 : 16)}px;
-// `;
 
 const currentYear = +moment().format('YYYY');
 const years = [];
@@ -169,7 +160,7 @@ const CarCustomsCalculator = () => {
 
   return (
     <>
-      <Row align="middle" gutter={[10, 50]}>
+      <Row align="middle" gutter={[10, 40]}>
         <Col
           xxl={{ span: 1, offset: 3 }}
           xl={{ span: 1, offset: 2 }}
@@ -194,7 +185,7 @@ const CarCustomsCalculator = () => {
       {showForm ? (
         <>
           <form onSubmit={formik.handleSubmit}>
-            <Row align="middle" gutter={[13, 13]}>
+            <Row align="middle" gutter={[10, 10]}>
               <Col
                 xxl={{ span: 5, offset: 4 }}
                 xl={{ span: 5, offset: 3 }}
@@ -235,7 +226,7 @@ const CarCustomsCalculator = () => {
               </Col>
             </Row>
 
-            <Row align="middle" gutter={[13, 13]}>
+            <Row align="middle" gutter={[10, 10]}>
               <Col
                 xxl={{ span: 5, offset: 4 }}
                 xl={{ span: 5, offset: 3 }}
@@ -276,7 +267,7 @@ const CarCustomsCalculator = () => {
               </Col>
             </Row>
 
-            <Row align="middle" gutter={[13, 13]}>
+            <Row align="middle" gutter={[10, 10]}>
               <Col
                 xxl={{ span: 8, offset: 4 }}
                 xl={{ span: 8, offset: 3 }}
@@ -296,12 +287,16 @@ const CarCustomsCalculator = () => {
                   defaultValue={formik.values.date_issue}
                   onChange={value => formik.setFieldValue('date_issue', value)}
                 >
-                  {years.map((e) => (<Option key={e} value={e}>{e}</Option>))}
+                  {years.map((e) => (
+                    <Option key={e} value={e}>
+                      <Label fontColor="#000">{e}</Label>
+                    </Option>
+                  ))}
                 </CustomSelect>
               </Col>
             </Row>
 
-            <Row align="middle" gutter={[13, 13]}>
+            <Row align="middle" gutter={[10, 10]}>
               <Col
                 xxl={{ span: 8, offset: 4 }}
                 xl={{ span: 8, offset: 3 }}
@@ -335,7 +330,7 @@ const CarCustomsCalculator = () => {
               </Col>
             </Row>
 
-            <Row align="middle" gutter={[13, 55]}>
+            <Row align="middle" gutter={[10, 30]}>
               <Col
                 xxl={{ span: 8, offset: 4 }}
                 xl={{ span: 8, offset: 3 }}
@@ -366,15 +361,23 @@ const CarCustomsCalculator = () => {
                   defaultValue={formik.values.currency}
                   onChange={value => formik.setFieldValue('currency', value)}
                 >
-                  <Option value={0}>AMD</Option>
-                  <Option value={1}>USD</Option>
-                  <Option value={2}>EUR</Option>
-                  <Option value={3}>RUB</Option>
+                  <Option value={0}>
+                    <Label fontColor="#000">AMD</Label>
+                  </Option>
+                  <Option value={1}>
+                    <Label fontColor="#000">USD</Label>
+                  </Option>
+                  <Option value={2}>
+                    <Label fontColor="#000">EUR</Label>
+                  </Option>
+                  <Option value={3}>
+                    <Label fontColor="#000">RUB</Label>
+                  </Option>
                 </CustomSelect>
               </Col>
             </Row>
             
-            <Row align="middle" gutter={[10, 40]}>
+            <Row align="middle" gutter={[10, 30]}>
               <Col
                 xxl={{ span: 4, offset: 4 }}
                 xl={{ span: 5, offset: 3 }}

@@ -38,8 +38,9 @@ const H2Styled = styled.h2`
 `;
 
 const H3Styled = styled.h3`
-  font-size: 24px;
-  font-weight: 400;
+  font-size: 15px;
+  font-weight: 500;
+  color: #000;
 `;
 
 const ToggleButton = styled(Button)`
@@ -54,12 +55,6 @@ const ButtonSubmit = styled(Button)`
   padding-vertical: 0;
 `;
 
-// const ButtonLarge = styled(Button)`
-//   height: 70px;
-//   border-color: #009db8;
-//   overflow: hidden;
-// `;
-
 const StyledInputNumber = styled(InputNumber)`
   width: 100%;
   height: 40px;
@@ -67,6 +62,8 @@ const StyledInputNumber = styled(InputNumber)`
   align-items: center;
   border-color: #009db8;
   font-size: 14px;
+  font-family: ArialAMU;
+  color: #000;
 `;
 
 const FormLabelCell = styled.div`
@@ -97,12 +94,6 @@ const Label = styled(Text)`
   line-height: 20px;
   color: ${props => props.fontColor};
 `;
-
-// const ResultLabel = styled(Typography)`
-//   color: #fff;
-//   font-weight: 600;
-//   font-size: ${props => (props.large ? 18 : 16)}px;
-// `;
 
 const StyledDatePicker = styled(DatePicker)`
   width: 100%;
@@ -148,7 +139,7 @@ const CarSellCalculator = () => {
 
   return (
     <>
-      <Row align="middle" gutter={[10, 50]}>
+      <Row align="middle" gutter={[10, 40]}>
         <Col
           xxl={{ span: 1, offset: 3 }}
           xl={{ span: 1, offset: 2 }}
@@ -172,7 +163,7 @@ const CarSellCalculator = () => {
       {showForm ? (
         <>
           <form onSubmit={formik.handleSubmit}>
-            <Row align="middle" gutter={[13, 13]}>
+            <Row align="middle" gutter={[10, 10]}>
               <Col
                 xxl={{span: 3, offset: 4}}
                 xl={{span: 3, offset: 3}}
@@ -218,7 +209,7 @@ const CarSellCalculator = () => {
               </Col>
             </Row>
 
-            <Row align="middle" gutter={[13, 13]}>
+            <Row align="middle" gutter={[10, 10]}>
               <Col
                 xxl={{ span: 8, offset: 4 }}
                 xl={{ span: 8, offset: 3 }}
@@ -245,7 +236,7 @@ const CarSellCalculator = () => {
               </Col>
             </Row>
 
-            <Row align="middle" gutter={[13, 55]}>
+            <Row align="middle" gutter={[10, 30]}>
               <Col
                 xxl={{ span: 8, offset: 4 }}
                 xl={{ span: 8, offset: 3 }}
@@ -272,7 +263,7 @@ const CarSellCalculator = () => {
               </Col>
             </Row>
 
-            <Row align="middle" gutter={[10, 40]}>
+            <Row align="middle" gutter={[10, 30]}>
               <Col
                 xxl={{ span: 4, offset: 4 }}
                 xl={{ span: 5, offset: 3 }}

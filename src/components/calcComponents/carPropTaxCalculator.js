@@ -39,8 +39,9 @@ const H2Styled = styled.h2`
 `;
 
 const H3Styled = styled.h3`
-  font-size: 24px;
-  font-weight: 400;
+  font-size: 15px;
+  font-weight: 500;
+  color: #000;
 `;
 
 const CustomSelect = styled(Select)`
@@ -52,12 +53,6 @@ const ToggleButton = styled(Button)`
   height: 60px;
   width: 60px;
 `;
-
-// const ButtonLarge = styled(Button)`
-//   height: 70px;
-//   border-color: #009db8;
-//   overflow: hidden;
-// `;
 
 const ButtonSubmit = styled(Button)`
   height: 46px;
@@ -73,6 +68,8 @@ const StyledInputNumber = styled(InputNumber)`
   align-items: center;
   border-color: #009db8;
   font-size: 14px;
+  font-family: ArialAMU;
+  color: #000;
 `;
 
 const FormLabelCell = styled.div`
@@ -102,12 +99,6 @@ const Label = styled(Text)`
   font-weight: 600;
   line-height: 20px;
   color: ${props => props.fontColor};
-`;
-
-const ResultLabel = styled(Typography)`
-  color: #fff;
-  font-weight: 600;
-  font-size: ${props => (props.large ? 18 : 16)}px;
 `;
 
 const currentYear = +moment().format('YYYY');
