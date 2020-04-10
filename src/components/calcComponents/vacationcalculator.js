@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Typography, Row, Col, Button, InputNumber, DatePicker } from 'antd';
-import { PlusOutlined, MinusOutlined } from '@ant-design/icons';
+import { PlusOutlined, MinusOutlined, CaretDownFilled } from '@ant-design/icons';
 import styled from 'styled-components';
 import { useFormik } from 'formik';
 // import * as Yup from 'yup';
@@ -54,6 +54,10 @@ const H3Styled = styled.h3`
 const ToggleButton = styled(Button)`
   height: 60px;
   width: 60px;
+`;
+
+const CustomCaret = styled(CaretDownFilled)`
+  color: #009db8;
 `;
 
 const ButtonBase = styled(Button)`
@@ -154,6 +158,7 @@ const VacationCalculator = () => {
             </Col>
             <Col xxl={3} xl={4} lg={5} span={6}>
               <StyledDatePicker
+                suffixIcon={<CustomCaret />}
                 size="large"
                 format="DD.MM.YYYY"
               />
@@ -170,6 +175,7 @@ const VacationCalculator = () => {
             </Col>
             <Col xxl={3} xl={4} lg={5} span={6}>
               <StyledDatePicker
+                suffixIcon={<CustomCaret />}
                 size="large"
                 format="DD.MM.YYYY"
               />

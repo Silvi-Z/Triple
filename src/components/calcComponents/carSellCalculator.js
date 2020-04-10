@@ -8,7 +8,7 @@ import {
   DatePicker,
   Spin,
 } from 'antd';
-import { PlusOutlined, MinusOutlined } from '@ant-design/icons';
+import { PlusOutlined, MinusOutlined, CaretDownFilled } from '@ant-design/icons';
 import styled from 'styled-components';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
@@ -114,6 +114,10 @@ const StyledDatePicker = styled(DatePicker)`
   border-color: #009db8;
 `;
 
+const CustomCaret = styled(CaretDownFilled)`
+  color: #009db8;
+`;
+
 const initialValues = {
   'date_from': moment().format('YYYY-MM-DD'),
   'date_to': moment().format('YYYY-MM-DD'),
@@ -189,6 +193,7 @@ const CarSellCalculator = () => {
               </Col>
               <Col xxl={3} xl={3} lg={4} span={6}>
                 <StyledDatePicker
+                  suffixIcon={<CustomCaret />}
                   size="large"
                   format="DD.MM.YYYY"
                   defaultValue={moment()}
@@ -210,6 +215,7 @@ const CarSellCalculator = () => {
               </Col>
               <Col xxl={3} xl={3} lg={4} span={6}>
                 <StyledDatePicker
+                  suffixIcon={<CustomCaret />}
                   size="large"
                   format="DD.MM.YYYY"
                   defaultValue={moment()}
