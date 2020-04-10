@@ -76,9 +76,6 @@ const Label = styled(Text)`
   line-height: 20px;
   color: ${props => props.fontColor};
   @media (min-width: 1200px) {
-    font-size: 13px;
-  }
-  @media (min-width: 1600px) {
     font-size: 14px;
   }
 `;
@@ -235,7 +232,7 @@ const SalaryCalculator = () => {
             <Row align="middle" gutter={[10, 10]}>
               <Col
                 xxl={{ span: 5, offset: 5 }}
-                xl={{ span: 5, offset: 4 }}
+                xl={{ span: 6, offset: 4 }}
                 lg={{ span: 6, offset: 2 }}
                 offset={1}
                 span={7}
@@ -251,7 +248,7 @@ const SalaryCalculator = () => {
                   </Label>
                 </ButtonBase>
               </Col>
-              <Col xxl={5} xl={5} lg={6} span={7}>
+              <Col xxl={5} xl={6} lg={6} span={7}>
                 <ButtonBase
                   type={formik.values.salary_type ? 'primary' : 'default'}
                   size="large"
@@ -294,7 +291,7 @@ const SalaryCalculator = () => {
                   </Label>
                 </ButtonLarge>
               </Col>
-              <Col xxl={4} xl={4} lg={5} span={6}>
+              <Col xxl={4} xl={6} lg={5} span={6}>
                 <ButtonLarge
                   type={formik.values.patent === 1 ? 'primary' : 'default'}
                   size="large"
@@ -335,7 +332,7 @@ const SalaryCalculator = () => {
             <Row align="middle" gutter={[10, 10]}>
               <Col
                 xxl={{ span: 7, offset: 5 }}
-                xl={{ span: 7, offset: 4 }}
+                xl={{ span: 9, offset: 4 }}
                 lg={{ span: 8, offset: 2 }}
                 offset={1}
                 span={10}
@@ -362,7 +359,7 @@ const SalaryCalculator = () => {
             <Row align="middle" gutter={[10, 10]}>
               <Col
                 xxl={{ span: 7, offset: 5 }}
-                xl={{ span: 7, offset: 4 }}
+                xl={{ span: 9, offset: 4 }}
                 lg={{ span: 8, offset: 2 }}
                 offset={1}
                 span={10}
@@ -388,7 +385,7 @@ const SalaryCalculator = () => {
             <Row align="middle" gutter={[10, 10]}>
               <Col
                 xxl={{ span: 8, offset: 5 }}
-                xl={{ span: 8, offset: 4 }}
+                xl={{ span: 10, offset: 4 }}
                 lg={{ span: 12, offset: 2 }}
                 offset={1}
                 span={16}
@@ -436,7 +433,7 @@ const SalaryCalculator = () => {
             <Row align="middle" gutter={[10, 30]}>
               <Col
                 xxl={{ span: 8, offset: 5 }}
-                xl={{ span: 8, offset: 4 }}
+                xl={{ span: 10, offset: 4 }}
                 lg={{ span: 12, offset: 2 }}
                 offset={1}
                 span={16}

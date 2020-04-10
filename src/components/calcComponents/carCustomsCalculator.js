@@ -168,10 +168,10 @@ const CarCustomsCalculator = () => {
         >
           <HeadIcon src={CarImg} alt={'icon'} />
         </Col>
-        <Col xxl={13} xl={13} lg={15} md={16} span={17}>
+        <Col xxl={13} xl={14} lg={15} md={16} span={17}>
           <H2Styled>Ավտոմեքենայի մաքսազերծման վճարի հաշվիչ</H2Styled>
         </Col>
-        <Col span={2}>
+        <Col>
           <ToggleButton block onClick={() => toggleForm(!showForm)}>
             {showForm ? (
               <MinusOutlined style={{ fontSize: '20px' }} />
@@ -188,7 +188,7 @@ const CarCustomsCalculator = () => {
             <Row align="middle" gutter={[10, 10]}>
               <Col
                 xxl={{ span: 5, offset: 5 }}
-                xl={{ span: 5, offset: 4 }}
+                xl={{ span: 6, offset: 4 }}
                 lg={{ span: 6, offset: 2 }}
                 offset={1}
                 span={7}
@@ -208,7 +208,7 @@ const CarCustomsCalculator = () => {
                   </Label>
                 </ButtonBase>
               </Col>
-              <Col xxl={5} xl={5} lg={6} span={7}>
+              <Col xxl={5} xl={6} lg={6} span={7}>
                 <ButtonBase
                   type={!formik.values.person ? 'primary' : 'default'}
                   size="large"
@@ -229,7 +229,7 @@ const CarCustomsCalculator = () => {
             <Row align="middle" gutter={[10, 10]}>
               <Col
                 xxl={{ span: 5, offset: 5 }}
-                xl={{ span: 5, offset: 4 }}
+                xl={{ span: 6, offset: 4 }}
                 lg={{ span: 6, offset: 2 }}
                 offset={1}
                 span={7}
@@ -249,7 +249,7 @@ const CarCustomsCalculator = () => {
                   </Label>
                 </ButtonBase>
               </Col>
-              <Col xxl={5} xl={5} lg={6} span={7}>
+              <Col xxl={5} xl={6} lg={6} span={7}>
                 <ButtonBase
                   type={!formik.values.country ? 'primary' : 'default'}
                   size="large"
@@ -270,7 +270,7 @@ const CarCustomsCalculator = () => {
             <Row align="middle" gutter={[10, 10]}>
               <Col
                 xxl={{ span: 8, offset: 5 }}
-                xl={{ span: 8, offset: 4 }}
+                xl={{ span: 9, offset: 4 }}
                 lg={{ span: 12, offset: 2 }}
                 offset={1}
                 span={14}
@@ -281,7 +281,7 @@ const CarCustomsCalculator = () => {
                   </Label>
                 </FormLabelCell>
               </Col>
-              <Col xxl={2} xl={2} lg={3} span={4}>
+              <Col xxl={2} xl={3} lg={3} span={4}>
                 <CustomSelect
                   size="large"
                   defaultValue={formik.values.date_issue}
@@ -299,7 +299,7 @@ const CarCustomsCalculator = () => {
             <Row align="middle" gutter={[10, 10]}>
               <Col
                 xxl={{ span: 8, offset: 5 }}
-                xl={{ span: 8, offset: 4 }}
+                xl={{ span: 9, offset: 4 }}
                 lg={{ span: 12, offset: 2 }}
                 offset={1}
                 span={14}
@@ -310,7 +310,7 @@ const CarCustomsCalculator = () => {
                   </Label>
                 </FormLabelCell>
               </Col>
-              <Col xxl={2} xl={2} lg={3} span={4}>
+              <Col xxl={2} xl={3} lg={3} span={4}>
                 <StyledInputNumber
                   size="large"
                   min={51}
@@ -333,7 +333,7 @@ const CarCustomsCalculator = () => {
             <Row align="middle" gutter={[10, 30]}>
               <Col
                 xxl={{ span: 8, offset: 5 }}
-                xl={{ span: 8, offset: 4 }}
+                xl={{ span: 9, offset: 4 }}
                 lg={{ span: 12, offset: 2 }}
                 offset={1}
                 span={14}
@@ -344,7 +344,7 @@ const CarCustomsCalculator = () => {
                   </Label>
                 </FormLabelCell>
               </Col>
-              <Col xxl={2} xl={2} lg={3} span={4}>
+              <Col xxl={2} xl={3} lg={3} span={4}>
                 <StyledInputNumber
                   size="large"
                   min={0}
@@ -401,7 +401,7 @@ const CarCustomsCalculator = () => {
               <Row align="middle" gutter={[5, 30]}>
                 <Col
                   xxl={{ span: 4, offset: 5 }}
-                  xl={{ span: 4, offset: 4 }}
+                  xl={{ span: 5, offset: 4 }}
                   lg={{ span: 8, offset: 2 }}
                   offset={1}
                   span={10}
@@ -412,7 +412,7 @@ const CarCustomsCalculator = () => {
               <Row gutter={[1, 1]}>
                 <Col
                   xxl={{ span: 14, offset: 5 }}
-                  xl={{ span: 14, offset: 4 }}
+                  xl={{ span: 17, offset: 4 }}
                   lg={{ span: 17, offset: 2 }}
                   offset={1}
                   span={20}
