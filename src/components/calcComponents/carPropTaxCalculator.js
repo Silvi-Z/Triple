@@ -148,7 +148,7 @@ const CarPropTaxCalculator = () => {
         <Col
           xxl={{ span: 1, offset: 4 }}
           xl={{ span: 1, offset: 3 }}
-          lg={{ span: 1, offset: 1 }}
+          lg={{ span: 1, offset: 2 }}
         >
           <HeadIcon src={CarImg} alt={'icon'} />
         </Col>
@@ -173,7 +173,7 @@ const CarPropTaxCalculator = () => {
               <Col
                 xxl={{ span: 2, offset: 5 }}
                 xl={{ span: 3, offset: 4 }}
-                lg={{ span: 4, offset: 2 }}
+                lg={{ span: 3, offset: 3 }}
                 offset={1}
                 span={5}
               >
@@ -183,7 +183,7 @@ const CarPropTaxCalculator = () => {
                   </Label>
                 </FormLabelCell>
               </Col>
-              <Col xxl={8} xl={9} lg={10} span={13}>
+              <Col xxl={8} xl={9} lg={11} span={13}>
                 <CustomSelect
                   size="large"
                   defaultValue={0}
@@ -222,7 +222,7 @@ const CarPropTaxCalculator = () => {
               <Col
                 xxl={{ span: 8, offset: 5 }}
                 xl={{ span: 9, offset: 4 }}
-                lg={{ span: 12, offset: 2 }}
+                lg={{ span: 11, offset: 3 }}
                 offset={1}
                 span={14}
               >
@@ -250,7 +250,7 @@ const CarPropTaxCalculator = () => {
               <Col
                 xxl={{ span: 8, offset: 5 }}
                 xl={{ span: 9, offset: 4 }}
-                lg={{ span: 12, offset: 2 }}
+                lg={{ span: 11, offset: 3 }}
                 offset={1}
                 span={14}
               >
@@ -277,7 +277,7 @@ const CarPropTaxCalculator = () => {
               <Col
                 xxl={{ span: 4, offset: 5 }}
                 xl={{ span: 4, offset: 4 }}
-                lg={{ span: 5, offset: 2 }}
+                lg={{ span: 5, offset: 3 }}
                 offset={1}
                 span={8}
               >
@@ -298,7 +298,7 @@ const CarPropTaxCalculator = () => {
                 <Col
                   xxl={{ span: 4, offset: 5 }}
                   xl={{ span: 5, offset: 4 }}
-                  lg={{ span: 8, offset: 2 }}
+                  lg={{ span: 8, offset: 3 }}
                   offset={1}
                   span={10}
                 >
@@ -309,7 +309,7 @@ const CarPropTaxCalculator = () => {
                 <Col
                   xxl={{ span: 13, offset: 5 }}
                   xl={{ span: 17, offset: 4 }}
-                  lg={{ span: 17, offset: 2 }}
+                  lg={{ span: 19, offset: 3 }}
                   offset={1}
                   span={20}
                 >

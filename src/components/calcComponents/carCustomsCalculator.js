@@ -164,7 +164,7 @@ const CarCustomsCalculator = () => {
         <Col
           xxl={{ span: 1, offset: 4 }}
           xl={{ span: 1, offset: 3 }}
-          lg={{ span: 1, offset: 1 }}
+          lg={{ span: 1, offset: 2 }}
         >
           <HeadIcon src={CarImg} alt={'icon'} />
         </Col>
@@ -189,7 +189,7 @@ const CarCustomsCalculator = () => {
               <Col
                 xxl={{ span: 5, offset: 5 }}
                 xl={{ span: 6, offset: 4 }}
-                lg={{ span: 6, offset: 2 }}
+                lg={{ span: 7, offset: 3 }}
                 offset={1}
                 span={7}
               >
@@ -208,7 +208,7 @@ const CarCustomsCalculator = () => {
                   </Label>
                 </ButtonBase>
               </Col>
-              <Col xxl={5} xl={6} lg={6} span={7}>
+              <Col xxl={5} xl={6} lg={7} span={7}>
                 <ButtonBase
                   type={!formik.values.person ? 'primary' : 'default'}
                   size="large"
@@ -230,7 +230,7 @@ const CarCustomsCalculator = () => {
               <Col
                 xxl={{ span: 5, offset: 5 }}
                 xl={{ span: 6, offset: 4 }}
-                lg={{ span: 6, offset: 2 }}
+                lg={{ span: 7, offset: 3 }}
                 offset={1}
                 span={7}
               >
@@ -249,7 +249,7 @@ const CarCustomsCalculator = () => {
                   </Label>
                 </ButtonBase>
               </Col>
-              <Col xxl={5} xl={6} lg={6} span={7}>
+              <Col xxl={5} xl={6} lg={7} span={7}>
                 <ButtonBase
                   type={!formik.values.country ? 'primary' : 'default'}
                   size="large"
@@ -271,7 +271,7 @@ const CarCustomsCalculator = () => {
               <Col
                 xxl={{ span: 8, offset: 5 }}
                 xl={{ span: 9, offset: 4 }}
-                lg={{ span: 12, offset: 2 }}
+                lg={{ span: 11, offset: 3 }}
                 offset={1}
                 span={14}
               >
@@ -300,7 +300,7 @@ const CarCustomsCalculator = () => {
               <Col
                 xxl={{ span: 8, offset: 5 }}
                 xl={{ span: 9, offset: 4 }}
-                lg={{ span: 12, offset: 2 }}
+                lg={{ span: 11, offset: 3 }}
                 offset={1}
                 span={14}
               >
@@ -321,7 +321,7 @@ const CarCustomsCalculator = () => {
                   value={formik.values.engine_working_volume}
                 />
               </Col>
-              <Col xxl={2} xl={2} lg={2} span={3}>
+              <Col xxl={2} xl={2} lg={3} span={3}>
                 <FormLabelCell>
                   <Label fontColor="#000">
                     սմ<sup>3</sup>
@@ -334,7 +334,7 @@ const CarCustomsCalculator = () => {
               <Col
                 xxl={{ span: 8, offset: 5 }}
                 xl={{ span: 9, offset: 4 }}
-                lg={{ span: 12, offset: 2 }}
+                lg={{ span: 11, offset: 3 }}
                 offset={1}
                 span={14}
               >
@@ -355,7 +355,7 @@ const CarCustomsCalculator = () => {
                   value={formik.values.car_price}
                 />
               </Col>
-              <Col xxl={2} xl={2} lg={2} span={4}>
+              <Col xxl={2} xl={2} lg={3} span={4}>
                 <CustomSelect
                   size="large"
                   defaultValue={formik.values.currency}
@@ -381,7 +381,7 @@ const CarCustomsCalculator = () => {
               <Col
                 xxl={{ span: 4, offset: 5 }}
                 xl={{ span: 4, offset: 4 }}
-                lg={{ span: 5, offset: 2 }}
+                lg={{ span: 5, offset: 3 }}
                 offset={1}
                 span={8}
               >
@@ -402,7 +402,7 @@ const CarCustomsCalculator = () => {
                 <Col
                   xxl={{ span: 4, offset: 5 }}
                   xl={{ span: 5, offset: 4 }}
-                  lg={{ span: 8, offset: 2 }}
+                  lg={{ span: 8, offset: 3 }}
                   offset={1}
                   span={10}
                 >
@@ -413,7 +413,7 @@ const CarCustomsCalculator = () => {
                 <Col
                   xxl={{ span: 14, offset: 5 }}
                   xl={{ span: 17, offset: 4 }}
-                  lg={{ span: 17, offset: 2 }}
+                  lg={{ span: 19, offset: 3 }}
                   offset={1}
                   span={20}
                 >

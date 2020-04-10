@@ -143,7 +143,7 @@ const CarSellCalculator = () => {
         <Col
           xxl={{ span: 1, offset: 4 }}
           xl={{ span: 1, offset: 3 }}
-          lg={{ span: 1, offset: 1 }}
+          lg={{ span: 1, offset: 2 }}
         >
           <HeadIcon src={CarImg} alt={'icon'} />
         </Col>
@@ -167,7 +167,7 @@ const CarSellCalculator = () => {
               <Col
                 xxl={{span: 3, offset: 5}}
                 xl={{span: 4, offset: 4}}
-                lg={{span: 5, offset: 2}}
+                lg={{span: 4, offset: 3}}
                 span={6}
                 offset={1}
               >
@@ -175,7 +175,7 @@ const CarSellCalculator = () => {
                   <Label fontColor="#000">Գնման ամսաթիվ</Label>
                 </FormLabelCell>
               </Col>
-              <Col xxl={3} xl={3} lg={5} span={6}>
+              <Col xxl={3} xl={3} lg={4} span={6}>
                 <StyledDatePicker
                   size="large"
                   format="DD.MM.YYYY"
@@ -196,7 +196,7 @@ const CarSellCalculator = () => {
                   <Label fontColor="#000">Վաճառքի ամսաթիվ</Label>
                 </FormLabelCell>
               </Col>
-              <Col xxl={3} xl={3} lg={5} span={6}>
+              <Col xxl={3} xl={3} lg={4} span={6}>
                 <StyledDatePicker
                   size="large"
                   format="DD.MM.YYYY"
@@ -213,7 +213,7 @@ const CarSellCalculator = () => {
               <Col
                 xxl={{ span: 8, offset: 5 }}
                 xl={{ span: 9, offset: 4 }}
-                lg={{ span: 11, offset: 2 }}
+                lg={{ span: 11, offset: 3 }}
                 offset={1}
                 span={14}
               >
@@ -240,7 +240,7 @@ const CarSellCalculator = () => {
               <Col
                 xxl={{ span: 8, offset: 5 }}
                 xl={{ span: 9, offset: 4 }}
-                lg={{ span: 11, offset: 2 }}
+                lg={{ span: 11, offset: 3 }}
                 offset={1}
                 span={14}
               >
@@ -267,7 +267,7 @@ const CarSellCalculator = () => {
               <Col
                 xxl={{ span: 4, offset: 5 }}
                 xl={{ span: 4, offset: 4 }}
-                lg={{ span: 5, offset: 2 }}
+                lg={{ span: 5, offset: 3 }}
                 offset={1}
                 span={8}
               >
@@ -288,7 +288,7 @@ const CarSellCalculator = () => {
                 <Col
                   xxl={{ span: 4, offset: 5 }}
                   xl={{ span: 5, offset: 4 }}
-                  lg={{ span: 8, offset: 2 }}
+                  lg={{ span: 8, offset: 3 }}
                   offset={1}
                   span={10}
                 >
@@ -299,7 +299,7 @@ const CarSellCalculator = () => {
                 <Col
                   xxl={{ span: 13, offset: 5 }}
                   xl={{ span: 17, offset: 4 }}
-                  lg={{ span: 16, offset: 2 }}
+                  lg={{ span: 19, offset: 3 }}
                   offset={1}
                   span={19}
                 >

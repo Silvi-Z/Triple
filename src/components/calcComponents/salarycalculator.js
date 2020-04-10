@@ -208,7 +208,7 @@ const SalaryCalculator = () => {
         <Col
           xxl={{ span: 1, offset: 4 }}
           xl={{ span: 1, offset: 3 }}
-          lg={{ span: 1, offset: 1 }}
+          lg={{ span: 1, offset: 2 }}
         >
           <HeadIcon src={SalaryImg} alt={'icon'} />
         </Col>
@@ -233,7 +233,7 @@ const SalaryCalculator = () => {
               <Col
                 xxl={{ span: 5, offset: 5 }}
                 xl={{ span: 6, offset: 4 }}
-                lg={{ span: 6, offset: 2 }}
+                lg={{ span: 7, offset: 3 }}
                 offset={1}
                 span={7}
               >
@@ -248,7 +248,7 @@ const SalaryCalculator = () => {
                   </Label>
                 </ButtonBase>
               </Col>
-              <Col xxl={5} xl={6} lg={6} span={7}>
+              <Col xxl={5} xl={6} lg={7} span={7}>
                 <ButtonBase
                   type={formik.values.salary_type ? 'primary' : 'default'}
                   size="large"
@@ -266,7 +266,7 @@ const SalaryCalculator = () => {
               <Col
                 xxl={{ span: 3, offset: 5 }}
                 xl={{ span: 3, offset: 4 }}
-                lg={{ span: 5, offset: 2 }}
+                lg={{ span: 4, offset: 3 }}
                 offset={1}
                 span={6}
               >
@@ -291,7 +291,7 @@ const SalaryCalculator = () => {
                   </Label>
                 </ButtonLarge>
               </Col>
-              <Col xxl={4} xl={6} lg={5} span={6}>
+              <Col xxl={4} xl={6} lg={6} span={6}>
                 <ButtonLarge
                   type={formik.values.patent === 1 ? 'primary' : 'default'}
                   size="large"
@@ -309,7 +309,7 @@ const SalaryCalculator = () => {
                   </Label>
                 </ButtonLarge>
               </Col>
-              <Col xxl={3} xl={3} lg={5} span={6}>
+              <Col xxl={3} xl={3} lg={4} span={6}>
                 <ButtonLarge
                   type={formik.values.patent === 0 ? 'primary' : 'default'}
                   size="large"
@@ -333,7 +333,7 @@ const SalaryCalculator = () => {
               <Col
                 xxl={{ span: 7, offset: 5 }}
                 xl={{ span: 9, offset: 4 }}
-                lg={{ span: 8, offset: 2 }}
+                lg={{ span: 10, offset: 3 }}
                 offset={1}
                 span={10}
               >
@@ -360,7 +360,7 @@ const SalaryCalculator = () => {
               <Col
                 xxl={{ span: 7, offset: 5 }}
                 xl={{ span: 9, offset: 4 }}
-                lg={{ span: 8, offset: 2 }}
+                lg={{ span: 10, offset: 3 }}
                 offset={1}
                 span={10}
               >
@@ -370,7 +370,7 @@ const SalaryCalculator = () => {
                   </Label>
                 </FormLabelCell>
               </Col>
-              <Col xxl={3} xl={3} lg={5} span={6}>
+              <Col xxl={3} xl={3} lg={4} span={6}>
                 <StyledInputNumber
                   min={0}
                   id="bonus_price"
@@ -386,7 +386,7 @@ const SalaryCalculator = () => {
               <Col
                 xxl={{ span: 8, offset: 5 }}
                 xl={{ span: 10, offset: 4 }}
-                lg={{ span: 12, offset: 2 }}
+                lg={{ span: 11, offset: 3 }}
                 offset={1}
                 span={16}
               >
@@ -434,7 +434,7 @@ const SalaryCalculator = () => {
               <Col
                 xxl={{ span: 8, offset: 5 }}
                 xl={{ span: 10, offset: 4 }}
-                lg={{ span: 12, offset: 2 }}
+                lg={{ span: 11, offset: 3 }}
                 offset={1}
                 span={16}
               >
@@ -482,7 +482,7 @@ const SalaryCalculator = () => {
               <Col
                 xxl={{ span: 4, offset: 5 }}
                 xl={{ span: 4, offset: 4 }}
-                lg={{ span: 5, offset: 2 }}
+                lg={{ span: 5, offset: 3 }}
                 offset={1}
                 span={8}
               >
@@ -502,7 +502,7 @@ const SalaryCalculator = () => {
                 <Col
                   xxl={{ span: 4, offset: 5 }}
                   xl={{ span: 4, offset: 4 }}
-                  lg={{ span: 8, offset: 2 }}
+                  lg={{ span: 5, offset: 3 }}
                   offset={1}
                   span={10}
                 >
@@ -514,7 +514,7 @@ const SalaryCalculator = () => {
                 <Col
                   xxl={{ span: 9, offset: 5 }}
                   xl={{ span: 9, offset: 4 }}
-                  lg={{ span: 11, offset: 2 }}
+                  lg={{ span: 10, offset: 3 }}
                   offset={1}
                   span={20}
                 >

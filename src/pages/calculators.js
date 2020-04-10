@@ -30,7 +30,7 @@ const Calculators = () => (
       <Col
         xxl={{ span: 8, offset: 4 }}
         xl={{ span: 9, offset: 3 }}
-        lg={{ span: 8, offset: 1 }}
+        lg={{ span: 8, offset: 2 }}
         span={16}
       >
         <H1Styled>Հաշվիչ</H1Styled>
@@ -40,7 +40,7 @@ const Calculators = () => (
       <Col
         xxl={{ span: 13, offset: 4 }}
         xl={{ span: 14, offset: 3 }}
-        lg={{ span: 15, offset: 1 }}
+        lg={{ span: 15, offset: 2 }}
         span={16}
       >
         <TextStyled>

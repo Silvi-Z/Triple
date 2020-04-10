@@ -260,7 +260,7 @@ const MortgageCalculator = () => {
         <Col
           xxl={{ span: 1, offset: 4 }}
           xl={{ span: 1, offset: 3 }}
-          lg={{ span: 1, offset: 1 }}
+          lg={{ span: 1, offset: 2 }}
         >
           <HeadIcon src={ContractImg} alt={'icon'} />
         </Col>
@@ -285,7 +285,7 @@ const MortgageCalculator = () => {
               <Col
                 xxl={{ span: 5, offset: 5 }}
                 xl={{ span: 6, offset: 4 }}
-                lg={{ span: 6, offset: 2 }}
+                lg={{ span: 7, offset: 3 }}
                 offset={1}
                 span={7}
               >
@@ -304,7 +304,7 @@ const MortgageCalculator = () => {
                   </Label>
                 </ButtonBase>
               </Col>
-              <Col xxl={5} xl={6} lg={6} span={7}>
+              <Col xxl={5} xl={6} lg={7} span={7}>
                 <ButtonBase
                   type={formikOne.values.price_type ? 'primary' : 'default'}
                   size="large"
@@ -326,7 +326,7 @@ const MortgageCalculator = () => {
               <Col
                 xxl={{ span: 5, offset: 5 }}
                 xl={{ span: 6, offset: 4 }}
-                lg={{ span: 6, offset: 2 }}
+                lg={{ span: 7, offset: 3 }}
                 offset={1}
                 span={7}
               >
@@ -345,7 +345,7 @@ const MortgageCalculator = () => {
                   </Label>
                 </ButtonBase>
               </Col>
-              <Col xxl={5} xl={6} lg={6} span={7}>
+              <Col xxl={5} xl={6} lg={7} span={7}>
                 <ButtonBase
                   type={formikOne.values.patent ? 'primary' : 'default'}
                   size="large"
@@ -367,7 +367,7 @@ const MortgageCalculator = () => {
               <Col
                 xxl={{ span: 6, offset: 5 }}
                 xl={{ span: 7, offset: 4 }}
-                lg={{ span: 7, offset: 2 }}
+                lg={{ span: 8, offset: 3 }}
                 offset={1}
                 span={10}
               >
@@ -377,7 +377,7 @@ const MortgageCalculator = () => {
                   </Label>
                 </FormLabelCell>
               </Col>
-              <Col xxl={3} xl={3} lg={5} span={6}>
+              <Col xxl={3} xl={3} lg={4} span={6}>
                 <StyledInputNumber
                   size="large"
                   min={0}
@@ -413,7 +413,7 @@ const MortgageCalculator = () => {
               <Col
                 xxl={{ span: 2, offset: 5 }}
                 xl={{ span: 3, offset: 4 }}
-                lg={{ span: 3, offset: 2 }}
+                lg={{ span: 3, offset: 3 }}
                 offset={1}
                 span={4}
               >
@@ -421,17 +421,17 @@ const MortgageCalculator = () => {
                   <Label fontColor="#000">Ամիս</Label>
                 </TabHeadCell>
               </Col>
-              <Col xxl={3} xl={4} lg={5} span={6}>
+              <Col xxl={3} xl={4} lg={4} span={6}>
                 <TabHeadCell>
                   <Label fontColor="#000">Համախառն աշխատավարձ</Label>
                 </TabHeadCell>
               </Col>
-              <Col xxl={3} xl={3} lg={5} span={6}>
+              <Col xxl={3} xl={3} lg={4} span={6}>
                 <TabHeadCell>
                   <Label fontColor="#000">Պարգևավճար</Label>
                 </TabHeadCell>
               </Col>
-              <Col xxl={3} xl={3} lg={5} span={6}>
+              <Col xxl={3} xl={3} lg={4} span={6}>
                 <TabHeadCell>
                   <Label fontColor="#000">Հավելավճար</Label>
                 </TabHeadCell>
@@ -442,7 +442,7 @@ const MortgageCalculator = () => {
               <Col
                 xxl={{ span: 2, offset: 5 }}
                 xl={{ span: 3, offset: 4 }}
-                lg={{ span: 3, offset: 2 }}
+                lg={{ span: 3, offset: 3 }}
                 offset={1}
                 span={4}
               >
@@ -452,7 +452,7 @@ const MortgageCalculator = () => {
                   </Label>
                 </FormLabelCell>
               </Col>
-              <Col xxl={3} xl={4} lg={5} span={6}>
+              <Col xxl={3} xl={4} lg={4} span={6}>
                 <StyledInputNumber
                   size="large"
                   min={0}
@@ -462,7 +462,7 @@ const MortgageCalculator = () => {
                   ref={monthOne}
                 />
               </Col>
-              <Col xxl={3} xl={3} lg={5} span={6}>
+              <Col xxl={3} xl={3} lg={4} span={6}>
                 <StyledInputNumber
                   size="large"
                   min={0}
@@ -473,7 +473,7 @@ const MortgageCalculator = () => {
                   value={formikOne.values.bonus_price1}
                 />
               </Col>
-              <Col xxl={3} xl={3} lg={5} span={6}>
+              <Col xxl={3} xl={3} lg={4} span={6}>
                 <StyledInputNumber
                   size="large"
                   min={0}
@@ -490,7 +490,7 @@ const MortgageCalculator = () => {
               <Col
                 xxl={{ span: 2, offset: 5 }}
                 xl={{ span: 3, offset: 4 }}
-                lg={{ span: 3, offset: 2 }}
+                lg={{ span: 3, offset: 3 }}
                 offset={1}
                 span={4}
               >
@@ -500,7 +500,7 @@ const MortgageCalculator = () => {
                   </Label>
                 </FormLabelCell>
               </Col>
-              <Col xxl={3} xl={4} lg={5} span={6}>
+              <Col xxl={3} xl={4} lg={4} span={6}>
                 <StyledInputNumber
                   size="large"
                   min={0}
@@ -510,7 +510,7 @@ const MortgageCalculator = () => {
                   ref={monthTwo}
                 />
               </Col>
-              <Col xxl={3} xl={3} lg={5} span={6}>
+              <Col xxl={3} xl={3} lg={4} span={6}>
                 <StyledInputNumber
                   size="large"
                   min={0}
@@ -521,7 +521,7 @@ const MortgageCalculator = () => {
                   value={formikOne.values.bonus_price2}
                 />
               </Col>
-              <Col xxl={3} xl={3} lg={5} span={6}>
+              <Col xxl={3} xl={3} lg={4} span={6}>
                 <StyledInputNumber
                   size="large"
                   min={0}
@@ -538,7 +538,7 @@ const MortgageCalculator = () => {
               <Col
                 xxl={{ span: 2, offset: 5 }}
                 xl={{ span: 3, offset: 4 }}
-                lg={{ span: 3, offset: 2 }}
+                lg={{ span: 3, offset: 3 }}
                 offset={1}
                 span={4}
               >
@@ -548,7 +548,7 @@ const MortgageCalculator = () => {
                   </Label>
                 </FormLabelCell>
               </Col>
-              <Col xxl={3} xl={4} lg={5} span={6}>
+              <Col xxl={3} xl={4} lg={4} span={6}>
                 <StyledInputNumber
                   size="large"
                   min={0}
@@ -558,7 +558,7 @@ const MortgageCalculator = () => {
                   ref={monthThree}
                 />
               </Col>
-              <Col xxl={3} xl={3} lg={5} span={6}>
+              <Col xxl={3} xl={3} lg={4} span={6}>
                 <StyledInputNumber
                   size="large"
                   min={0}
@@ -569,7 +569,7 @@ const MortgageCalculator = () => {
                   value={formikOne.values.bonus_price3}
                 />
               </Col>
-              <Col xxl={3} xl={3} lg={5} span={6}>
+              <Col xxl={3} xl={3} lg={4} span={6}>
                 <StyledInputNumber
                   size="large"
                   min={0}
@@ -586,7 +586,7 @@ const MortgageCalculator = () => {
               <Col
                 xxl={{ span: 4, offset: 5 }}
                 xl={{ span: 4, offset: 4 }}
-                lg={{ span: 5, offset: 2 }}
+                lg={{ span: 5, offset: 3 }}
                 offset={1}
                 span={8}
               >
@@ -607,7 +607,7 @@ const MortgageCalculator = () => {
               <Col
                 xxl={{ span: 7, offset: 5 }}
                 xl={{ span: 8, offset: 4 }}
-                lg={{ span: 9, offset: 2 }}
+                lg={{ span: 10, offset: 3 }}
                 offset={1}
                 span={12}
               >
@@ -629,7 +629,7 @@ const MortgageCalculator = () => {
               <Col
                 xxl={{ span: 7, offset: 5 }}
                 xl={{ span: 8, offset: 4 }}
-                lg={{ span: 9, offset: 2 }}
+                lg={{ span: 10, offset: 3 }}
                 offset={1}
                 span={12}
               >
@@ -652,7 +652,7 @@ const MortgageCalculator = () => {
               <Col
                 xxl={{ span: 4, offset: 5 }}
                 xl={{ span: 4, offset: 4 }}
-                lg={{ span: 5, offset: 2 }}
+                lg={{ span: 5, offset: 3 }}
                 offset={1}
                 span={8}
               >
@@ -673,7 +673,7 @@ const MortgageCalculator = () => {
                 <Col
                   xxl={{ span: 4, offset: 5 }}
                   xl={{ span: 5, offset: 4 }}
-                  lg={{ span: 8, offset: 2 }}
+                  lg={{ span: 8, offset: 3 }}
                   offset={1}
                   span={10}
                 >
@@ -685,7 +685,7 @@ const MortgageCalculator = () => {
                 <Col
                   xxl={{ span: 14, offset: 5 }}
                   xl={{ span: 17, offset: 4 }}
-                  lg={{ span: 17, offset: 2 }}
+                  lg={{ span: 19, offset: 3 }}
                   offset={1}
                   span={20}
                 >
