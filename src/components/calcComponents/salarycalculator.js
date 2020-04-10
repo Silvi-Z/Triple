@@ -75,6 +75,12 @@ const Label = styled(Text)`
   font-weight: bold;
   line-height: 20px;
   color: ${props => props.fontColor};
+  @media (min-width: 1200px) {
+    font-size: 13px;
+  }
+  @media (min-width: 1600px) {
+    font-size: 14px;
+  }
 `;
 
 const Label2 = styled(Text)`
@@ -116,12 +122,6 @@ const ResultCell = styled.div`
   justify-content: ${props => (props.large ? 'center' : 'flex-start')};
   text-align: center;
 `;
-
-// const ResultLabel = styled(Text)`
-//   color: #fff;
-//   font-weight: 600;
-//   font-size: ${props => (props.large ? 18 : 16)}px;
-// `;
 
 const initialValues = {
   salary_type: false,
@@ -209,8 +209,8 @@ const SalaryCalculator = () => {
     <>
       <Row align="middle" gutter={[10, 40]}>
         <Col
-          xxl={{ span: 1, offset: 3 }}
-          xl={{ span: 1, offset: 2 }}
+          xxl={{ span: 1, offset: 4 }}
+          xl={{ span: 1, offset: 3 }}
           lg={{ span: 1, offset: 1 }}
         >
           <HeadIcon src={SalaryImg} alt={'icon'} />
@@ -218,7 +218,7 @@ const SalaryCalculator = () => {
         <Col xxl={13} xl={14} lg={15} md={16} span={17}>
           <H2Styled>Աշխատավարձի հաշվիչ</H2Styled>
         </Col>
-        <Col span={2}>
+        <Col>
           <ToggleButton block onClick={() => toggleForm(!showForm)}>
             {showForm ? (
               <MinusOutlined style={{ fontSize: '20px' }} />
@@ -234,8 +234,8 @@ const SalaryCalculator = () => {
           <form onSubmit={formik.handleSubmit}>
             <Row align="middle" gutter={[10, 10]}>
               <Col
-                xxl={{ span: 5, offset: 4 }}
-                xl={{ span: 5, offset: 3 }}
+                xxl={{ span: 5, offset: 5 }}
+                xl={{ span: 5, offset: 4 }}
                 lg={{ span: 6, offset: 2 }}
                 offset={1}
                 span={7}
@@ -267,8 +267,8 @@ const SalaryCalculator = () => {
 
             <Row align="middle" gutter={[10, 10]}>
               <Col
-                xxl={{ span: 3, offset: 4 }}
-                xl={{ span: 4, offset: 3 }}
+                xxl={{ span: 3, offset: 5 }}
+                xl={{ span: 3, offset: 4 }}
                 lg={{ span: 5, offset: 2 }}
                 offset={1}
                 span={6}
@@ -312,7 +312,7 @@ const SalaryCalculator = () => {
                   </Label>
                 </ButtonLarge>
               </Col>
-              <Col xxl={3} xl={4} lg={5} span={6}>
+              <Col xxl={3} xl={3} lg={5} span={6}>
                 <ButtonLarge
                   type={formik.values.patent === 0 ? 'primary' : 'default'}
                   size="large"
@@ -334,8 +334,8 @@ const SalaryCalculator = () => {
 
             <Row align="middle" gutter={[10, 10]}>
               <Col
-                xxl={{ span: 7, offset: 4 }}
-                xl={{ span: 7, offset: 3 }}
+                xxl={{ span: 7, offset: 5 }}
+                xl={{ span: 7, offset: 4 }}
                 lg={{ span: 8, offset: 2 }}
                 offset={1}
                 span={10}
@@ -361,8 +361,8 @@ const SalaryCalculator = () => {
 
             <Row align="middle" gutter={[10, 10]}>
               <Col
-                xxl={{ span: 7, offset: 4 }}
-                xl={{ span: 7, offset: 3 }}
+                xxl={{ span: 7, offset: 5 }}
+                xl={{ span: 7, offset: 4 }}
                 lg={{ span: 8, offset: 2 }}
                 offset={1}
                 span={10}
@@ -373,7 +373,7 @@ const SalaryCalculator = () => {
                   </Label>
                 </FormLabelCell>
               </Col>
-              <Col xxl={3} xl={4} lg={5} span={6}>
+              <Col xxl={3} xl={3} lg={5} span={6}>
                 <StyledInputNumber
                   min={0}
                   id="bonus_price"
@@ -387,8 +387,8 @@ const SalaryCalculator = () => {
 
             <Row align="middle" gutter={[10, 10]}>
               <Col
-                xxl={{ span: 8, offset: 4 }}
-                xl={{ span: 12, offset: 3 }}
+                xxl={{ span: 8, offset: 5 }}
+                xl={{ span: 8, offset: 4 }}
                 lg={{ span: 12, offset: 2 }}
                 offset={1}
                 span={16}
@@ -435,8 +435,8 @@ const SalaryCalculator = () => {
 
             <Row align="middle" gutter={[10, 30]}>
               <Col
-                xxl={{ span: 8, offset: 4 }}
-                xl={{ span: 12, offset: 3 }}
+                xxl={{ span: 8, offset: 5 }}
+                xl={{ span: 8, offset: 4 }}
                 lg={{ span: 12, offset: 2 }}
                 offset={1}
                 span={16}
@@ -483,8 +483,8 @@ const SalaryCalculator = () => {
 
             <Row align="middle" gutter={[10, 30]}>
               <Col
-                xxl={{ span: 4, offset: 4 }}
-                xl={{ span: 5, offset: 3 }}
+                xxl={{ span: 4, offset: 5 }}
+                xl={{ span: 4, offset: 4 }}
                 lg={{ span: 5, offset: 2 }}
                 offset={1}
                 span={8}
@@ -503,8 +503,8 @@ const SalaryCalculator = () => {
             <>
               <Row align="middle" gutter={[5, 10]}>
                 <Col
-                  xxl={{ span: 4, offset: 4 }}
-                  xl={{ span: 6, offset: 3 }}
+                  xxl={{ span: 4, offset: 5 }}
+                  xl={{ span: 4, offset: 4 }}
                   lg={{ span: 8, offset: 2 }}
                   offset={1}
                   span={10}
@@ -515,8 +515,8 @@ const SalaryCalculator = () => {
 
               <Row>
                 <Col
-                  xxl={{ span: 9, offset: 4 }}
-                  xl={{ span: 10, offset: 3 }}
+                  xxl={{ span: 9, offset: 5 }}
+                  xl={{ span: 9, offset: 4 }}
                   lg={{ span: 11, offset: 2 }}
                   offset={1}
                   span={20}
@@ -576,7 +576,7 @@ const SalaryCalculator = () => {
 
                 <Col
                   xxl={{ span: 9, offset: 0 }}
-                  xl={{ span: 10, offset: 0 }}
+                  xl={{ span: 9, offset: 0 }}
                   lg={{ span: 11, offset: 0 }}
                   span={20}
                   offset={1}

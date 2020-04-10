@@ -28,8 +28,8 @@ const Calculators = () => (
   <Layout>
     <Row>
       <Col
-        xxl={{ span: 8, offset: 3 }}
-        xl={{ span: 8, offset: 2 }}
+        xxl={{ span: 8, offset: 4 }}
+        xl={{ span: 8, offset: 3 }}
         lg={{ span: 8, offset: 1 }}
         span={16}
       >
@@ -38,8 +38,8 @@ const Calculators = () => (
     </Row>
     <Row gutter={[1, 30]}>
       <Col
-        xxl={{ span: 13, offset: 3 }}
-        xl={{ span: 14, offset: 2 }}
+        xxl={{ span: 13, offset: 4 }}
+        xl={{ span: 13, offset: 3 }}
         lg={{ span: 15, offset: 1 }}
         span={16}
       >
