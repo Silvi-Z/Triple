@@ -22,13 +22,26 @@ const { Text } = Typography;
 const HeadIcon = styled.img`
   width: 25px;
   height: 25px;
-  @media (min-width: 1200px) {
+  margin-right: 5px;
+  @media (min-width: 768px) {
+    width: 30px;
+    height: 30px;
+    margin-right: 6px;
+  }
+  @media (min-width: 992px) {
     width: 35px;
     height: 35px;
+    margin-right: 7px;
+  }
+  @media (min-width: 1200px) {
+    width: 40px;
+    height: 40px;
+    margin-right: 8px;
   }
   @media (min-width: 1600px) {
-    width: 35px;
-    height: 35px;
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
   }
 `;
 
@@ -162,12 +175,11 @@ const CarCustomsCalculator = () => {
     <>
       <Row align="middle" gutter={[10, 40]}>
         <Col
-          xxl={{ span: 1, offset: 4 }}
-          xl={{ span: 1, offset: 3 }}
+          xxl={{ span: 1, offset: 3 }}
+          xl={{ span: 1, offset: 2 }}
           lg={{ span: 1, offset: 2 }}
-        >
-          <HeadIcon src={CarImg} alt={'icon'} />
-        </Col>
+        />
+        <HeadIcon src={CarImg} alt={'icon'} />
         <Col xxl={13} xl={14} lg={15} md={16} span={17}>
           <H2Styled>Ավտոմեքենայի մաքսազերծման վճարի հաշվիչ</H2Styled>
         </Col>
@@ -189,7 +201,7 @@ const CarCustomsCalculator = () => {
               <Col
                 xxl={{ span: 5, offset: 5 }}
                 xl={{ span: 6, offset: 4 }}
-                lg={{ span: 7, offset: 3 }}
+                lg={{ span: 7, offset: 4 }}
                 offset={1}
                 span={7}
               >
@@ -230,7 +242,7 @@ const CarCustomsCalculator = () => {
               <Col
                 xxl={{ span: 5, offset: 5 }}
                 xl={{ span: 6, offset: 4 }}
-                lg={{ span: 7, offset: 3 }}
+                lg={{ span: 7, offset: 4 }}
                 offset={1}
                 span={7}
               >
@@ -271,7 +283,7 @@ const CarCustomsCalculator = () => {
               <Col
                 xxl={{ span: 8, offset: 5 }}
                 xl={{ span: 9, offset: 4 }}
-                lg={{ span: 11, offset: 3 }}
+                lg={{ span: 11, offset: 4 }}
                 offset={1}
                 span={14}
               >
@@ -300,7 +312,7 @@ const CarCustomsCalculator = () => {
               <Col
                 xxl={{ span: 8, offset: 5 }}
                 xl={{ span: 9, offset: 4 }}
-                lg={{ span: 11, offset: 3 }}
+                lg={{ span: 11, offset: 4 }}
                 offset={1}
                 span={14}
               >
@@ -334,7 +346,7 @@ const CarCustomsCalculator = () => {
               <Col
                 xxl={{ span: 8, offset: 5 }}
                 xl={{ span: 9, offset: 4 }}
-                lg={{ span: 11, offset: 3 }}
+                lg={{ span: 11, offset: 4 }}
                 offset={1}
                 span={14}
               >
@@ -381,7 +393,7 @@ const CarCustomsCalculator = () => {
               <Col
                 xxl={{ span: 4, offset: 5 }}
                 xl={{ span: 4, offset: 4 }}
-                lg={{ span: 5, offset: 3 }}
+                lg={{ span: 5, offset: 4 }}
                 offset={1}
                 span={8}
               >
@@ -402,7 +414,7 @@ const CarCustomsCalculator = () => {
                 <Col
                   xxl={{ span: 4, offset: 5 }}
                   xl={{ span: 5, offset: 4 }}
-                  lg={{ span: 8, offset: 3 }}
+                  lg={{ span: 8, offset: 4 }}
                   offset={1}
                   span={10}
                 >
@@ -413,7 +425,7 @@ const CarCustomsCalculator = () => {
                 <Col
                   xxl={{ span: 14, offset: 5 }}
                   xl={{ span: 17, offset: 4 }}
-                  lg={{ span: 19, offset: 3 }}
+                  lg={{ span: 19, offset: 4 }}
                   offset={1}
                   span={20}
                 >

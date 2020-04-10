@@ -21,6 +21,7 @@ const H1Styled = styled.h1`
 const TextStyled = styled(Text)`
   font-size: 16px;
   font-family: ArialAMU, sans-serif;
+  line-height: 36px;
   color: #000;
 `;
 
@@ -30,17 +31,17 @@ const Calculators = () => (
       <Col
         xxl={{ span: 8, offset: 4 }}
         xl={{ span: 9, offset: 3 }}
-        lg={{ span: 8, offset: 2 }}
+        lg={{ span: 8, offset: 3 }}
         span={16}
       >
         <H1Styled>Հաշվիչ</H1Styled>
       </Col>
     </Row>
-    <Row gutter={[1, 30]}>
+    <Row gutter={[1, 60]}>
       <Col
         xxl={{ span: 13, offset: 4 }}
         xl={{ span: 14, offset: 3 }}
-        lg={{ span: 15, offset: 2 }}
+        lg={{ span: 15, offset: 3 }}
         span={16}
       >
         <TextStyled>

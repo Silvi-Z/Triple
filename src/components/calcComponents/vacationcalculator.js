@@ -11,15 +11,31 @@ import VacationImg from '../../assets/calcImages/vacation.png';
 const { Title, Text } = Typography;
 
 const HeadIcon = styled.img`
-  width: 25px;
-  height: 25px;
+  width: 30px;
+  height: 30px;
+  margin-top: 80%;
   @media (min-width: 1200px) {
-    width: 35px;
-    height: 35px;
+    width: 40px;
+    height: 40px;
+  }
+  @media (min-width: 768px) {
+    width: 40px;
+    height: 40px;
+    margin-top: 30%;
+  }
+  @media (min-width: 375px) {
+    width: 40px;
+    height: 40px;
+    margin-top: 10%;
+  }
+  @media (min-width: 320px) {
+    width: 40px;
+    height: 40px;
+    margin-top: 10%;
   }
   @media (min-width: 1600px) {
-    width: 35px;
-    height: 35px;
+    width: 50px;
+    height: 50px;
   }
 `;
 
