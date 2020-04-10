@@ -158,6 +158,7 @@ const VacationCalculator = () => {
             </Col>
             <Col xxl={3} xl={4} lg={5} span={6}>
               <StyledDatePicker
+                allowClear={false}
                 suffixIcon={<CustomCaret />}
                 size="large"
                 format="DD.MM.YYYY"
@@ -175,6 +176,7 @@ const VacationCalculator = () => {
             </Col>
             <Col xxl={3} xl={4} lg={5} span={6}>
               <StyledDatePicker
+                allowClear={false}
                 suffixIcon={<CustomCaret />}
                 size="large"
                 format="DD.MM.YYYY"

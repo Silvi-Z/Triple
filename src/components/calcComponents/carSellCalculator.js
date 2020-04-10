@@ -193,6 +193,7 @@ const CarSellCalculator = () => {
               </Col>
               <Col xxl={3} xl={3} lg={4} span={6}>
                 <StyledDatePicker
+                  allowClear={false}
                   suffixIcon={<CustomCaret />}
                   size="large"
                   format="DD.MM.YYYY"
@@ -215,6 +216,7 @@ const CarSellCalculator = () => {
               </Col>
               <Col xxl={3} xl={3} lg={4} span={6}>
                 <StyledDatePicker
+                  allowClear={false}
                   suffixIcon={<CustomCaret />}
                   size="large"
                   format="DD.MM.YYYY"
