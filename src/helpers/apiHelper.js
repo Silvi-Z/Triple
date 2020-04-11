@@ -5,9 +5,8 @@ const baseURL = "http://triple-c-api.algorithm.am"
 const apiHelper = axios.create({
   baseURL,
   headers: {
-    // 'Content-Type': 'application/x-www-form-urlencoded',
+    // Content-Type: 'application/x-www-form-urlencoded',
     Accept: "application/json",
-    // "Content-Type": "application/json",
   },
 })
 

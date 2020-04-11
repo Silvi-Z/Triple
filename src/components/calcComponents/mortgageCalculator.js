@@ -1,36 +1,15 @@
-<<<<<<< HEAD
 import React, { useState } from "react"
 import { Typography, Row, Col, Button, InputNumber, Select, Spin } from "antd"
 import { PlusOutlined, MinusOutlined } from "@ant-design/icons"
 import styled from "styled-components"
 import { useFormik } from "formik"
-// import * as Yup from 'yup';
+import * as Yup from "yup"
 import moment from "moment"
 import { apiHelper } from "../../helpers/apiHelper"
 import ContractImg from "../../assets/calcImages/contract.png"
 
 const { Text } = Typography
 const { Option } = Select
-=======
-import React, { useState } from 'react';
-import {
-  Typography,
-  Row,
-  Col,
-  Button,
-  InputNumber,
-  Spin,
-} from 'antd';
-import { PlusOutlined, MinusOutlined } from '@ant-design/icons';
-import styled from 'styled-components';
-import { useFormik } from 'formik';
-import * as Yup from 'yup';
-import moment from 'moment';
-import { apiHelper } from '../../helpers/apiHelper';
-import ContractImg from '../../assets/calcImages/contract.png';
-
-const { Text } = Typography;
->>>>>>> 46dcae7664bbd5d819074c2de93c0b94ba92daba
 
 const HeadIcon = styled.img`
   width: 25px;
@@ -46,23 +25,15 @@ const HeadIcon = styled.img`
 `
 
 const H2Styled = styled.h2`
-<<<<<<< HEAD
   font-size: 25px;
   font-weight: 400;
 `
-=======
-  font-size: 18px;
-  font-weight: normal;
-  margin-left: 10px;
-`;
->>>>>>> 46dcae7664bbd5d819074c2de93c0b94ba92daba
 
 const H3Styled = styled.h3`
   font-size: 24px;
   font-weight: 400;
 `
 
-<<<<<<< HEAD
 const CustomSelect = styled(Select)`
   width: 100%;
   ${"" /* height: 55px; */}
@@ -73,12 +44,6 @@ const ToggleButton = styled(Button)`
   height: 80px;
   width: 80px;
 `
-=======
-const ToggleButton = styled(Button)`
-  height: 60px;
-  width: 60px;
-`;
->>>>>>> 46dcae7664bbd5d819074c2de93c0b94ba92daba
 
 const ButtonBase = styled(Button)`
   height: 55px;
@@ -193,18 +158,32 @@ const initialValuesOne = {
   additional_price3: 0,
 }
 
-const schemaOne =  Yup.object().shape({
-  'price1': Yup.number().required().min(40000),
-  'price2': Yup.number().required().min(40000),
-  'price3': Yup.number().required().min(40000),
-});
+const schemaOne = Yup.object().shape({
+  price1: Yup.number()
+    .required()
+    .min(40000),
+  price2: Yup.number()
+    .required()
+    .min(40000),
+  price3: Yup.number()
+    .required()
+    .min(40000),
+})
 
-const schemaTwo =  Yup.object().shape({
-  'price1': Yup.number().required().min(40000),
-  'price2': Yup.number().required().min(40000),
-  'price3': Yup.number().required().min(40000),
-  'paid_price': Yup.number().required().min(1),
-});
+const schemaTwo = Yup.object().shape({
+  price1: Yup.number()
+    .required()
+    .min(40000),
+  price2: Yup.number()
+    .required()
+    .min(40000),
+  price3: Yup.number()
+    .required()
+    .min(40000),
+  paid_price: Yup.number()
+    .required()
+    .min(1),
+})
 
 const MortgageCalculator = () => {
   const [showForm, toggleForm] = useState(false)
@@ -389,19 +368,9 @@ const MortgageCalculator = () => {
                   size="large"
                   block
                   onClick={() => {
-<<<<<<< HEAD
                     formikOne.setFieldValue("price1", salary)
                     formikOne.setFieldValue("price2", salary)
                     formikOne.setFieldValue("price3", salary)
-=======
-                    formikOne.setFieldValue('price1', salary);
-                    formikOne.setFieldValue('price2', salary);
-                    formikOne.setFieldValue('price3', salary);
-                    formikOne.validateForm().then(res => {
-                      console.log('Validation fired: ', res);
-                      console.log(formikOne.values);
-                    });
->>>>>>> 46dcae7664bbd5d819074c2de93c0b94ba92daba
                   }}
                 >
                   Լրացնել
@@ -576,20 +545,12 @@ const MortgageCalculator = () => {
                 span={8}
               >
                 <ButtonLarge
-<<<<<<< HEAD
                   disabled={loadingOne}
-=======
-                  disabled={loadingOne  || !formikOne.isValid}
->>>>>>> 46dcae7664bbd5d819074c2de93c0b94ba92daba
                   size="large"
                   block
                   htmlType="submit"
                 >
-<<<<<<< HEAD
                   {loadingOne ? <Spin /> : "Հաշվել"}
-=======
-                  {loadingOne ? <Spin /> : 'Հաշվել'}
->>>>>>> 46dcae7664bbd5d819074c2de93c0b94ba92daba
                 </ButtonLarge>
               </Col>
             </Row>
@@ -630,15 +591,10 @@ const MortgageCalculator = () => {
                 <StyledInputNumber
                   min={0}
                   type="number"
-<<<<<<< HEAD
                   onChange={value =>
                     formikTwo.setFieldValue("paid_price", value)
                   }
                   value={formikTwo.values.paid_price}
-=======
-                  onChange={value => formikTwo.setFieldValue('paid_price', value)}
-                  // value={formikTwo.values.paid_price}
->>>>>>> 46dcae7664bbd5d819074c2de93c0b94ba92daba
                 />
               </Col>
             </Row>
@@ -652,20 +608,12 @@ const MortgageCalculator = () => {
                 span={8}
               >
                 <ButtonLarge
-<<<<<<< HEAD
                   disabled={loadingTwo}
-=======
-                  disabled={loadingTwo  || !formikTwo.isValid}
->>>>>>> 46dcae7664bbd5d819074c2de93c0b94ba92daba
                   size="large"
                   block
                   htmlType="submit"
                 >
-<<<<<<< HEAD
                   {loadingTwo ? <Spin /> : "Հաշվել"}
-=======
-                  {loadingTwo ? <Spin /> : 'Հաշվել'}
->>>>>>> 46dcae7664bbd5d819074c2de93c0b94ba92daba
                 </ButtonLarge>
               </Col>
             </Row>

@@ -1,3 +1,4 @@
+/*eslint-disable */
 import React, { useState, useEffect } from "react"
 import Layout from "../components/layout"
 import styled from "styled-components"
@@ -147,8 +148,8 @@ const Career = () => {
       d.data.id === current.data.id && d.open === false
         ? { ...d, open: true }
         : d.data.id !== current.data.id && d.open === true
-        ? { ...d, open: false }
-        : { ...d, open: false }
+          ? { ...d, open: false }
+          : { ...d, open: false }
     )
     setcareerdata(data)
   }

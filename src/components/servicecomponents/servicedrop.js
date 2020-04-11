@@ -1,3 +1,4 @@
+/*eslint-disable */
 import React, { useState } from "react"
 import { Typography, CareerDropRow, Col, Button, Row, InputNumber } from "antd"
 import { PlusOutlined, MinusOutlined } from "@ant-design/icons"
@@ -147,23 +148,23 @@ const Servicedrop = ({ data, showServiceForm }) => {
   return (
     <ServiceDropRow align="middle" gutter={[10, 30]}>
       <DropHeadingIconCol
-        xxl={{ span: 1, offset: 3 }}
+        xxl={{ span: 2, offset: 2 }}
         xl={{ span: 2, offset: 2 }}
         lg={{ span: 2, offset: 1 }}
         xs={{ span: 3, offset: 0 }}
       >
         <HeadIcon src={data.data.image} alt={"icon"} />
       </DropHeadingIconCol>
-      <DropHeadingParagraphCol xxl={17} xl={16} lg={18} xs={17}>
+      <DropHeadingParagraphCol xxl={16} xl={16} lg={18} xs={17}>
         <ToggleH2Styled>{data.data.paragraph}</ToggleH2Styled>
       </DropHeadingParagraphCol>
-      <DropButtonCol lg={2} xl={2} md={2} xs={4}>
+      <DropButtonCol lg={2} xl={2} xxl={2} md={2} xs={4}>
         <ToggleButton block onClick={() => showServiceForm(data)}>
           {data.open ? (
             <MinusOutlined style={{ fontSize: "20px" }} />
           ) : (
-            <PlusOutlined style={{ fontSize: "20px" }} />
-          )}
+              <PlusOutlined style={{ fontSize: "20px" }} />
+            )}
         </ToggleButton>
       </DropButtonCol>
       {data.open ? (

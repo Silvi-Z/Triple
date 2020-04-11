@@ -1,3 +1,4 @@
+/*eslint-disable */
 import React from "react"
 import { Row, Col } from "antd"
 import styled from "styled-components"
@@ -114,10 +115,10 @@ const FacebookWrapper = styled.img``
 
 const FooterNumberColumn = styled(Col)`
   display: flex;
-  padding-left: 5%;
+  /* padding-left: 5%; */
   justify-content: space-around;
   @media only screen and (max-width: 1170px) {
-    padding-left: 1%;
+    /* padding-left: 1%; */
   }
   @media only screen and (max-width: 768px) {
     padding-left: 1%;
@@ -130,7 +131,8 @@ const FooterNumberColumn = styled(Col)`
 `
 const FooterAdressColumn = styled(Col)`
   display: flex;
-  padding-left: 12%;
+  justify-content: center;
+  /* padding-left: 12%; */
   @media only screen and (max-width: 768px) {
     padding-left: 0%;
     justify-content: center;
@@ -138,8 +140,8 @@ const FooterAdressColumn = styled(Col)`
 `
 const FooterFollowUsColumn = styled(Col)`
   display: flex;
-  justify-content: space-evenly;
-  padding-left: 15%;
+  justify-content: space-between;
+  padding: 0 5%;
   @media only screen and (max-width: 768px) {
     padding-right: 0%;
   }
@@ -155,7 +157,7 @@ const FooterBlack = () => {
   return (
     <React.Fragment>
       <Row id="footerfirstrow">
-        <FooterNumberColumn xs={24} sm={24} md={8} lg={8} xl={8}>
+        <FooterNumberColumn xs={24} sm={24} md={8} lg={{ span: 8, offset: 3 }} xl={{ span: 8, offset: 3 }} xxl={{ span: 8, offset: 3 }}>
           <WhatsAppOutlined style={{ fontSize: "20px", color: "white" }} />
           <PhoneOutlined style={{ fontSize: "20px", color: "white" }} />
           <i
@@ -170,14 +172,14 @@ const FooterBlack = () => {
             <span>+374 93706010,+374 93706010</span>
           </FooterNumberWrap>
         </FooterNumberColumn>
-        <FooterAdressColumn xs={24} sm={24} md={8} lg={8} xl={8}>
+        <FooterAdressColumn xs={24} sm={24} md={8} lg={6} xl={6} xxl={6}>
           {/* <EnvironmentOutlined style={{ fontSize: "20px", color: "white" }} /> */}
           <EnvironmentWrapper src={EnvironmentImg} />
           <FooterAdressWrap>
             <span>Հր, Քոչար 44</span>
           </FooterAdressWrap>
         </FooterAdressColumn>
-        <FooterFollowUsColumn xs={24} sm={24} md={8} lg={8} xl={8}>
+        <FooterFollowUsColumn xs={24} sm={24} md={8} lg={6} xl={6} xxl={6}>
           <FooterFollowUsWrap>
             <span>Հետևեք մեզ</span>
           </FooterFollowUsWrap>

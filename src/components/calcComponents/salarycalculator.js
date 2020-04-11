@@ -205,8 +205,8 @@ const SalaryCalculator = () => {
             {showForm ? (
               <MinusOutlined style={{ fontSize: '20px' }} />
             ) : (
-              <PlusOutlined style={{ fontSize: '20px' }} />
-            )}
+                <PlusOutlined style={{ fontSize: '20px' }} />
+              )}
           </ToggleButton>
         </Col>
       </Row>
@@ -569,7 +569,7 @@ const SalaryCalculator = () => {
                         <ResultLabel large>
                           {`${
                             +result.salary_type ? 'Մաքուր' : 'Կեղտոտ'
-                          } աշխատավարձ`}
+                            } աշխատավարձ`}
                         </ResultLabel>
                       </ResultCell>
                     </Col>
@@ -586,7 +586,7 @@ const SalaryCalculator = () => {
                         <ResultLabel large>
                           {`${
                             +result.salary_type ? 'Մաքուր' : 'Կեղտոտ'
-                          } պարգևավճար`}
+                            } պարգևավճար`}
                         </ResultLabel>
                       </ResultCell>
                     </Col>

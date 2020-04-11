@@ -1,3 +1,4 @@
+/*eslint-disable */
 import React, { useState } from "react"
 import Layout from "../components/layout"
 import styled from "styled-components"
@@ -93,6 +94,9 @@ const NumberCol = styled(Col)`
   justify-content: center;
   margin-top: 1.4%;
 
+  @media (min-width: 1600px) {
+    padding-top: 1%;
+  }
   @media only screen and (max-width: 1170px) {
     max-width: 602px;
     max-height: 54px;
@@ -186,21 +190,17 @@ const AddressSpan = styled.span`
     }
   }
 `
-const ContactAdressWrap = styled.div`
-  height: 15px;
-  font-family: ArialAMU;
-  font-size: 16px;
-  font-weight: normal;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: normal;
-  letter-spacing: normal;
-  text-align: center;
-  margin-left: 11px;
-  color: #000000;
-  margin-top: 0.4%;
+const ContactAdressWrap = styled(Col)`
+  height:40px;
   display: flex;
   justify-content: center;
+  padding-top: 2%;
+  @media only screen and (max-width: 1170px) {
+    height:40px;
+    font-family: ArialAMU;
+    font-size: 15px;
+    padding-top: 2.5%;
+  }
   @media only screen and (max-width: 375px) {
     width: 290px;
     height: 15px;
@@ -235,8 +235,9 @@ const Mapiframe = styled.iframe`
   }
 `
 const EnvironmentWrapper = styled.img`
-  width: 14px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
+  margin-bottom: 0%;
 `
 const HeadingParagrCol = styled(Col)`
   @media only screen and (max-width: 1170px) {
@@ -579,7 +580,7 @@ const Contact = () => {
         ) : null}
       </FormRow>
       <ContactMapRow>
-        <NumberCol xl={19} lg={{ span: 19 }} md={{ span: 19 }} offset={2}>
+        <NumberCol xxl={{ span: 19 }} xl={{ span: 19 }} lg={{ span: 19 }} md={{ span: 19 }} offset={2}>
           <CallIconWrapper src={CallPhoneImg} alt={"icon"} />
           <ContactNumberWrap>
             <span>+374 93706010,+374 93706010</span>
@@ -587,17 +588,15 @@ const Contact = () => {
         </NumberCol>
         <AdressMapCol xl={19} lg={{ span: 19 }} md={{ span: 19 }} offset={2}>
           <Row>
-            <Col span={24}>
-              <ContactAdressWrap>
-                <EnvironmentWrapper src={EnvironmentImg} />
-                <AddressSpan>Հր Քոչար 44/54 </AddressSpan>
-              </ContactAdressWrap>
-            </Col>
+            <ContactAdressWrap span={24}>
+              <EnvironmentWrapper src={EnvironmentImg} />
+              <AddressSpan>Հր Քոչար 44/54 </AddressSpan>
+            </ContactAdressWrap>
             <MapCol span={24}>
               <Mapiframe
                 frameborder="0"
                 src="https://maps.google.com/maps?q=Armenia%2C%20Yerevan%20Hrachya%20Qochar%2044%2F54&t=&z=17&ie=UTF8&iwloc=&output=embed"
-              ></Mapiframe>
+              />
             </MapCol>
           </Row>
         </AdressMapCol>

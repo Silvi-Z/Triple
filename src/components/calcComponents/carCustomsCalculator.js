@@ -168,8 +168,8 @@ const CarCustomsCalculator = () => {
             {showForm ? (
               <MinusOutlined style={{ fontSize: '20px' }} />
             ) : (
-              <PlusOutlined style={{ fontSize: '20px' }} />
-            )}
+                <PlusOutlined style={{ fontSize: '20px' }} />
+              )}
           </ToggleButton>
         </Col>
       </Row>
@@ -324,7 +324,7 @@ const CarCustomsCalculator = () => {
                 </CustomSelect>
               </Col>
             </Row>
-            
+
             <Row align="middle" gutter={[10, 40]}>
               <Col
                 xxl={{ span: 4, offset: 4 }}

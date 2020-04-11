@@ -83,6 +83,7 @@ const DocTemplateInform = ({ usedata }) => {
       href={lin.link}
       target="_blank
     "
+      key={lin.id}
     >
       <li>{lin.label}</li>
     </a>

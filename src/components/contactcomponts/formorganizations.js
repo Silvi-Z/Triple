@@ -197,7 +197,7 @@ const Formfield = () => {
           },
         ]}
       >
-        <Input.TextArea />
+        <Input.TextArea autoSize={{ minRows: 3, maxRows: 4 }} />
       </Form.Item>
 
       <Form.Item {...tailLayout}>

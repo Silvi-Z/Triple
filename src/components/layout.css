@@ -747,6 +747,7 @@ pre tt:after {
   }
   #formcontact div {
     width: 518px;
+    height: auto;
     margin-top: 0px;
   }
   #formcontact div {
@@ -768,7 +769,7 @@ pre tt:after {
 
 #basic_career {
   width: 540px;
-  margin-left: 4%;
+  margin-left: 5%;
 }
 #basic_career_textarea {
   height: 80px;
@@ -896,12 +897,14 @@ pre tt:after {
   color: #000000;
 }
 .languagedrop {
-  width: 43px;
+  width: 63px;
   height: 52px;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
   border: solid 1px #ebebeb;
   background-color: #ffffff;
   cursor: pointer;
+  margin-left: -15px;
+  text-align: center;
 }
 
 .languagetext:hover {
@@ -950,6 +953,7 @@ pre tt:after {
     margin-right: 6%;
   }
 }
+
 @media only screen and (min-width: 1170px) {
   .slick-slider {
     margin-top: -50px;
@@ -961,5 +965,28 @@ pre tt:after {
   .slick-slider {
     margin-left: -20px;
     margin-right: -20px;
+  }
+}
+@media only screen and (min-width: 1366px) {
+  .slick-slider {
+    margin-top: -50px;
+    margin-left: -50px;
+    margin-right: -50px;
+  }
+}
+
+@media (min-width: 1600px) {
+  #basic_username {
+    width: 252px;
+    height: 38px;
+  }
+  #basic_textarea {
+    max-width: 109%;
+    margin-bottom: 20px;
+  }
+  .slick-slider {
+    margin-top: -50px;
+    margin-left: -100px;
+    margin-right: -100px;
   }
 }

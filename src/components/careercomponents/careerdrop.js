@@ -1,3 +1,4 @@
+/*eslint-disable */
 import React, { useState } from "react"
 import { Typography, CareerDropRow, Col, Button, Row, InputNumber } from "antd"
 import { PlusOutlined, MinusOutlined } from "@ant-design/icons"
@@ -29,7 +30,7 @@ const H2Styled = styled.h2`
   line-height: 1.88;
   letter-spacing: normal;
   text-align: left;
-  margin-left: 4.3%;
+  margin-left: 5.3%;
   color: #000000;
   @media only screen and (max-width: 768px) {
     width: 211px;
@@ -70,7 +71,7 @@ const FormWrapperCol = styled(Col)`
 `
 const OrderList = styled.ul`
   list-style-type: none;
-  margin-left: 4.3%;
+  margin-left: 5.3%;
   li {
     text-indent: -5px;
   }
@@ -154,17 +155,15 @@ const CareerDropWrapper = ({ showCareerForm, data }) => {
           {data.open ? (
             <MinusOutlined style={{ fontSize: "20px" }} />
           ) : (
-            <PlusOutlined style={{ fontSize: "20px" }} />
-          )}
+              <PlusOutlined style={{ fontSize: "20px" }} />
+            )}
         </ToggleButton>
       </DropHeadingButtonCol>
       {data.open ? (
         <FormWrapperCol
-          span={15}
-          offset={3}
-          xl={{ span: 24, offset: 4 }}
-          lg={{ span: 24, offset: 3 }}
-          md={{ span: 24, offset: 0 }}
+          xl={{ span: 18, offset: 4 }}
+          lg={{ span: 18, offset: 3 }}
+          md={{ span: 23, offset: 1 }}
           sm={{ span: 24, offset: 0 }}
           xs={{ span: 24, offset: 0 }}
         >

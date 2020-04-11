@@ -115,6 +115,19 @@ const PhoneSpan = styled.span`
   text-align: center;
   color: #000000;
 `
+const LangSpan = styled.span`
+  width: 19px;
+  height: 12px;
+  font-family: ArialAMU;
+  font-size: 12px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: #000000;
+`
 
 const GridWrapper = styled.nav`
   padding: 1px;
@@ -157,12 +170,15 @@ const HeadMainIcon = styled.img`
   border-bottom: 1px solid;
   border-color: #ebebeb;
   padding-top: 7%;
-
+  @media (min-width: 1600px) {
+    border-left: 0px solid;
+    border-right: 0px solid;
+    padding-top: 5%;
+  }
   @media only screen and (max-width: 1524px) {
     border-left: 0px solid;
     border-right: 0px solid;
   }
-
   @media only screen and (max-width: 968px) {
     height: 500%;
     padding-top: 0%;
@@ -202,9 +218,13 @@ const Label = styled.label`
 `
 const EnvironmentWrapper = styled.img`
   width: 14px;
-  height: 20px;
+  height: 19px;
   margin-right: 5%;
-  margin-top: 20%;
+  margin-top: 19%;
+  @media (min-width: 1600px) {
+    margin-top: 13%;
+  }
+
 `
 const GridLang = styled.div`
   grid-area: lang;
@@ -242,12 +262,11 @@ const GridJoin = styled.div`
 const GridContact = styled.div`
   grid-area: cont;
 `
-
 const activeStyle = {
   color: "#009db8",
   height: "100%",
   border: "1px solid #009db8",
-}
+};
 
 const Navbar = ({ open, responswrapper }) => {
   return (
@@ -267,10 +286,10 @@ const Navbar = ({ open, responswrapper }) => {
               &#x2573;
             </Label>
           ) : (
-            <Label htmlFor="toggle" onClick={() => open()}>
-              &#9776;
-            </Label>
-          )}
+              <Label htmlFor="toggle" onClick={() => open()}>
+                &#9776;
+              </Label>
+            )}
         </Col>
       </ResponsiveNavWrapper>
 
@@ -339,17 +358,17 @@ const Navbar = ({ open, responswrapper }) => {
       ) : null}
 
       <GridWrapper>
-        <GridLang>
-          <Dropdown overlay={language} trigger={["click"]}>
-            <GridPhone>
+        <GridLang >
+          <Dropdown overlay={language} trigger={["click"]} style={{ marginBottom: "10%" }}>
+            <GridLang>
               <a
                 onClick={e => e.preventDefault()}
                 style={{ width: "100%", color: "black" }}
               >
-                <PhoneSpan>Հայ</PhoneSpan>{" "}
-                <CaretDownOutlined style={{ fontSize: "11px" }} />
+                <LangSpan>Հայ</LangSpan>{" "}
+                <CaretDownOutlined style={{ fontSize: "10px" }} />
               </a>
-            </GridPhone>
+            </GridLang>
           </Dropdown>
         </GridLang>
         <GridAddress>
