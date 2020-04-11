@@ -1,43 +1,57 @@
-import React from "react"
-import { Typography, Row, Col, Divider } from "antd"
-import styled from "styled-components"
-import Layout from "../components/layout"
-import SalaryCalculator from "../components/calcComponents/salarycalculator"
+import React from 'react';
+import { Typography, Row, Col, Divider } from 'antd';
+import styled from 'styled-components';
+import Layout from '../components/layout';
+import SalaryCalculator from '../components/calcComponents/salarycalculator';
 // import VacationCalculator from '../components/calcComponents/vacationcalculator';
-import CarCustomsCalculator from "../components/calcComponents/carCustomsCalculator"
-import CarSellCalculator from "../components/calcComponents/carSellCalculator"
-import CarPropTaxCalculator from "../components/calcComponents/carPropTaxCalculator"
-import MortgageCalculator from "../components/calcComponents/mortgageCalculator"
+import CarCustomsCalculator from '../components/calcComponents/carCustomsCalculator';
+import CarSellCalculator from '../components/calcComponents/carSellCalculator';
+import CarPropTaxCalculator from '../components/calcComponents/carPropTaxCalculator';
+import MortgageCalculator from '../components/calcComponents/mortgageCalculator';
 
-const { Text } = Typography
+const { Text } = Typography;
 
 const H1Styled = styled.h1`
+<<<<<<< HEAD
   font-size: 26px;
   font-weight: 900;
 `
+=======
+  font-size: 18px;
+  font-weight: bold;
+  font-family: ArialAMU, sans-serif;
+  color: #000;
+`;
+>>>>>>> 942029ab08f91a5079f3dc42eccb757e352555ff
 
 const TextStyled = styled(Text)`
   font-size: 16px;
   font-family: ArialAMU, sans-serif;
+<<<<<<< HEAD
 `
+=======
+  line-height: 36px;
+  color: #000;
+`;
+>>>>>>> 942029ab08f91a5079f3dc42eccb757e352555ff
 
 const Calculators = () => (
   <Layout>
     <Row>
       <Col
-        xxl={{ span: 8, offset: 3 }}
-        xl={{ span: 8, offset: 2 }}
-        lg={{ span: 8, offset: 1 }}
+        xxl={{ span: 8, offset: 4 }}
+        xl={{ span: 9, offset: 3 }}
+        lg={{ span: 8, offset: 3 }}
         span={16}
       >
         <H1Styled>Հաշվիչ</H1Styled>
       </Col>
     </Row>
-    <Row gutter={[1, 30]}>
+    <Row gutter={[1, 60]}>
       <Col
-        xxl={{ span: 13, offset: 3 }}
-        xl={{ span: 14, offset: 2 }}
-        lg={{ span: 15, offset: 1 }}
+        xxl={{ span: 13, offset: 4 }}
+        xl={{ span: 14, offset: 3 }}
+        lg={{ span: 15, offset: 3 }}
         span={16}
       >
         <TextStyled>
@@ -58,6 +72,6 @@ const Calculators = () => (
     <Divider />
     <CarPropTaxCalculator />
   </Layout>
-)
+);
 
-export default Calculators
+export default Calculators;

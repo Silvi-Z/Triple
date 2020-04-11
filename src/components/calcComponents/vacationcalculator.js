@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Typography, Row, Col, Button, InputNumber, DatePicker } from 'antd';
-import { PlusOutlined, MinusOutlined } from '@ant-design/icons';
+import { PlusOutlined, MinusOutlined, CaretDownFilled } from '@ant-design/icons';
 import styled from 'styled-components';
 import { useFormik } from 'formik';
 // import * as Yup from 'yup';
@@ -11,15 +11,31 @@ import VacationImg from '../../assets/calcImages/vacation.png';
 const { Title, Text } = Typography;
 
 const HeadIcon = styled.img`
-  width: 25px;
-  height: 25px;
+  width: 30px;
+  height: 30px;
+  margin-top: 80%;
   @media (min-width: 1200px) {
-    width: 35px;
-    height: 35px;
+    width: 40px;
+    height: 40px;
+  }
+  @media (min-width: 768px) {
+    width: 40px;
+    height: 40px;
+    margin-top: 30%;
+  }
+  @media (min-width: 375px) {
+    width: 40px;
+    height: 40px;
+    margin-top: 10%;
+  }
+  @media (min-width: 320px) {
+    width: 40px;
+    height: 40px;
+    margin-top: 10%;
   }
   @media (min-width: 1600px) {
-    width: 35px;
-    height: 35px;
+    width: 50px;
+    height: 50px;
   }
 `;
 
@@ -30,13 +46,18 @@ const H2Styled = styled.h2`
 `;
 
 const H3Styled = styled.h3`
-  font-size: 24px;
-  font-weight: 400;
+  font-size: 15px;
+  font-weight: 500;
+  color: #000;
 `;
 
 const ToggleButton = styled(Button)`
   height: 60px;
   width: 60px;
+`;
+
+const CustomCaret = styled(CaretDownFilled)`
+  color: #009db8;
 `;
 
 const ButtonBase = styled(Button)`
@@ -53,10 +74,13 @@ const ButtonLarge = styled(Button)`
 
 const StyledInputNumber = styled(InputNumber)`
   width: 100%;
-  height: 55px;
+  height: 40px;
   display: flex;
   align-items: center;
   border-color: #009db8;
+  font-size: 14px;
+  font-family: ArialAMU;
+  color: #000;
 `;
 
 const StyledDatePicker = styled(DatePicker)`
@@ -66,8 +90,8 @@ const StyledDatePicker = styled(DatePicker)`
 `;
 
 const FormLabelCell = styled.div`
-  padding-left: 16px;
-  padding-right: 16px;
+  padding-left: 12px;
+  padding-right: 12px;
   height: 55px;
   display: flex;
   align-items: center;
@@ -134,6 +158,8 @@ const VacationCalculator = () => {
             </Col>
             <Col xxl={3} xl={4} lg={5} span={6}>
               <StyledDatePicker
+                allowClear={false}
+                suffixIcon={<CustomCaret />}
                 size="large"
                 format="DD.MM.YYYY"
               />
@@ -150,6 +176,8 @@ const VacationCalculator = () => {
             </Col>
             <Col xxl={3} xl={4} lg={5} span={6}>
               <StyledDatePicker
+                allowClear={false}
+                suffixIcon={<CustomCaret />}
                 size="large"
                 format="DD.MM.YYYY"
               />
