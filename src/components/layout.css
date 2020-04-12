@@ -627,7 +627,14 @@ pre tt:before,
 pre tt:after {
   content: "";
 }
-
+#register_nickname {
+  width: 448px;
+  height: 40px;
+}
+#register_email {
+  width: 448px;
+  height: 40px;
+}
 .phonebox {
   margin-right: 10%;
 }

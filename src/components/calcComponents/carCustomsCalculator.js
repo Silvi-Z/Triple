@@ -388,13 +388,8 @@ const CarCustomsCalculator = () => {
                 </CustomSelect>
               </Col>
             </Row>
-<<<<<<< HEAD
-
-            <Row align="middle" gutter={[10, 40]}>
-=======
             
             <Row align="middle" gutter={[10, 30]}>
->>>>>>> 942029ab08f91a5079f3dc42eccb757e352555ff
               <Col
                 xxl={{ span: 4, offset: 5 }}
                 xl={{ span: 4, offset: 4 }}

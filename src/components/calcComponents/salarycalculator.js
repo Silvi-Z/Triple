@@ -596,13 +596,8 @@ const SalaryCalculator = () => {
                         <Label2 fontColor="#fff">
                           {`${
                             +result.salary_type ? 'Մաքուր' : 'Կեղտոտ'
-<<<<<<< HEAD
                             } աշխատավարձ`}
-                        </ResultLabel>
-=======
-                          } աշխատավարձ`}
                         </Label2>
->>>>>>> 942029ab08f91a5079f3dc42eccb757e352555ff
                       </ResultCell>
                     </Col>
                     <Col span={9}>
@@ -620,13 +615,8 @@ const SalaryCalculator = () => {
                         <Label2 fontColor="#fff">
                           {`${
                             +result.salary_type ? 'Մաքուր' : 'Կեղտոտ'
-<<<<<<< HEAD
                             } պարգևավճար`}
-                        </ResultLabel>
-=======
-                          } պարգևավճար`}
                         </Label2>
->>>>>>> 942029ab08f91a5079f3dc42eccb757e352555ff
                       </ResultCell>
                     </Col>
                     <Col span={9}>

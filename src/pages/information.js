@@ -14,6 +14,12 @@ import News1 from '../components/informationcomponents/secondnewspage';
 const InformationParagraphRow = styled(Row)`
   padding: 0 13.5%;
   margin-bottom: 2.8%;
+  @media (min-width: 1600px) {
+    padding: 0 27%;
+  }
+  @media (min-width: 1200px) {
+    padding: 0 19%;
+  }
   @media only screen and (max-width: 768px) {
     margin-top: 49px;
     padding: 0 3.5%;
@@ -72,8 +78,14 @@ const PStyled = styled.p`
   }
 `;
 const InformationNavRow = styled(Row)`
-  padding: 0 16%;
+  padding: 0 18.2%;
   margin-bottom: 3%;
+  @media (min-width: 1600px) {
+    padding: 0 20%;
+  }
+  @media (min-width: 1200px) {
+    padding: 0 21.6%;
+  }
   @media only screen and (max-width: 1024px) {
     padding: 0 14%;
   }
@@ -175,10 +187,10 @@ const InformationDocumentCol = styled(Col)`
   }
 `;
 const InformSectionRow = styled(Row)`
-  padding: 0 12%;
+  padding: 0 14.5%;
   margin-bottom: 2.8%;
-  @media (min-width: 1600px) {
-    padding: 0 13%;
+  @media (min-width: 1200px) {
+    padding: 0 19%;
   }
   @media only screen and (max-width: 768px) {
     padding: 0 0%;

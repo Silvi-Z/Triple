@@ -1,17 +1,5 @@
-<<<<<<< HEAD
-import React, { useState } from "react"
-import { Typography, Row, Col, Button, InputNumber, Select, Spin } from "antd"
-import { PlusOutlined, MinusOutlined } from "@ant-design/icons"
-import styled from "styled-components"
-import { useFormik } from "formik"
-import * as Yup from "yup"
-import moment from "moment"
-import { apiHelper } from "../../helpers/apiHelper"
-import ContractImg from "../../assets/calcImages/contract.png"
-
-const { Text } = Typography
+import { Select } from "antd"
 const { Option } = Select
-=======
 import React, { useState, useRef } from 'react';
 import {
   Typography,
@@ -30,7 +18,7 @@ import { apiHelper } from '../../helpers/apiHelper';
 import ContractImg from '../../assets/calcImages/contract.png';
 
 const { Text } = Typography;
->>>>>>> 942029ab08f91a5079f3dc42eccb757e352555ff
+
 
 const HeadIcon = styled.img`
   width: 25px;
@@ -59,31 +47,30 @@ const HeadIcon = styled.img`
 `;
 
 const H2Styled = styled.h2`
-<<<<<<< HEAD
+
   font-size: 25px;
   font-weight: 400;
 `
 
-const H3Styled = styled.h3`
-  font-size: 24px;
-  font-weight: 400;
-`
+// const H3Styled = styled.h3`
+//   font-size: 24px;
+//   font-weight: 400;
+// `
 
-const CustomSelect = styled(Select)`
-  width: 100%;
-  ${"" /* height: 55px; */}
-  border-color: #009db8;
-`
+// const CustomSelect = styled(Select)`
+//   width: 100%;
+//   ${"" /* height: 55px; */}
+//   border-color: #009db8;
+// `
 
-const ToggleButton = styled(Button)`
-  height: 80px;
-  width: 80px;
-`
-=======
-  font-size: 18px;
-  font-weight: normal;
-  margin-left: 10px;
-`;
+// const ToggleButton = styled(Button)`
+//   height: 80px;
+//   width: 80px;
+// `
+//   font-size: 18px;
+//   font-weight: normal;
+//   margin-left: 10px;
+// `;
 
 const H3Styled = styled.h3`
   font-size: 15px;
@@ -95,7 +82,6 @@ const ToggleButton = styled(Button)`
   height: 60px;
   width: 60px;
 `;
->>>>>>> 942029ab08f91a5079f3dc42eccb757e352555ff
 
 const ButtonBase = styled(Button)`
   height: 40px;
@@ -335,8 +321,8 @@ const MortgageCalculator = () => {
             {showForm ? (
               <MinusOutlined style={{ fontSize: '20px' }} />
             ) : (
-              <PlusOutlined style={{ fontSize: '20px' }} />
-            )}
+                <PlusOutlined style={{ fontSize: '20px' }} />
+              )}
           </ToggleButton>
         </Col>
       </Row>
@@ -455,11 +441,6 @@ const MortgageCalculator = () => {
                   size="large"
                   block
                   onClick={() => {
-<<<<<<< HEAD
-                    formikOne.setFieldValue("price1", salary)
-                    formikOne.setFieldValue("price2", salary)
-                    formikOne.setFieldValue("price3", salary)
-=======
                     formikOne.setFieldValue('price1', salary);
                     formikOne.setFieldValue('price2', salary);
                     formikOne.setFieldValue('price3', salary);
@@ -468,7 +449,6 @@ const MortgageCalculator = () => {
                       console.log(formikOne.values);
                     });
                     console.log('Ref test', monthOne.current);
->>>>>>> 942029ab08f91a5079f3dc42eccb757e352555ff
                   }}
                 >
                   <Label fontColor="#fff">
@@ -659,24 +639,14 @@ const MortgageCalculator = () => {
                 offset={1}
                 span={8}
               >
-<<<<<<< HEAD
-                <ButtonLarge
-                  disabled={loadingOne}
-=======
                 <ButtonSubmit
-                  disabled={loadingOne  || !formikOne.isValid}
->>>>>>> 942029ab08f91a5079f3dc42eccb757e352555ff
+                  disabled={loadingOne || !formikOne.isValid}
                   size="large"
                   block
                   htmlType="submit"
                 >
-<<<<<<< HEAD
-                  {loadingOne ? <Spin /> : "Հաշվել"}
-                </ButtonLarge>
-=======
                   {loadingOne ? <Spin /> : 'Հաշվել'}
                 </ButtonSubmit>
->>>>>>> 942029ab08f91a5079f3dc42eccb757e352555ff
               </Col>
             </Row>
           </form>
@@ -722,14 +692,7 @@ const MortgageCalculator = () => {
                 <StyledInputNumber
                   min={0}
                   type="number"
-<<<<<<< HEAD
-                  onChange={value =>
-                    formikTwo.setFieldValue("paid_price", value)
-                  }
-                  value={formikTwo.values.paid_price}
-=======
                   onChange={value => formikTwo.setFieldValue('paid_price', value)}
->>>>>>> 942029ab08f91a5079f3dc42eccb757e352555ff
                 />
               </Col>
             </Row>
@@ -742,24 +705,14 @@ const MortgageCalculator = () => {
                 offset={1}
                 span={8}
               >
-<<<<<<< HEAD
-                <ButtonLarge
-                  disabled={loadingTwo}
-=======
                 <ButtonSubmit
-                  disabled={loadingTwo  || !formikTwo.isValid}
->>>>>>> 942029ab08f91a5079f3dc42eccb757e352555ff
+                  disabled={loadingTwo || !formikTwo.isValid}
                   size="large"
                   block
                   htmlType="submit"
                 >
-<<<<<<< HEAD
-                  {loadingTwo ? <Spin /> : "Հաշվել"}
-                </ButtonLarge>
-=======
                   {loadingTwo ? <Spin /> : 'Հաշվել'}
                 </ButtonSubmit>
->>>>>>> 942029ab08f91a5079f3dc42eccb757e352555ff
               </Col>
             </Row>
           </form>

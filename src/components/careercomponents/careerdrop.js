@@ -18,7 +18,7 @@ const ToggleH2Styled = styled.h2`
   letter-spacing: normal;
   text-align: left;
   color: #000000;
-  margin-top: 0.7%;
+  margin-top: 1%;
 `
 const H2Styled = styled.h2`
   height: 16px;
@@ -68,6 +68,7 @@ const DropHeadingTitleCol = styled(Col)``
 const DropHeadingButtonCol = styled(Col)``
 const FormWrapperCol = styled(Col)`
   padding: 0 18%;
+  margin-top: -1%;
 `
 const OrderList = styled.ul`
   list-style-type: none;

@@ -12,28 +12,14 @@ import MortgageCalculator from '../components/calcComponents/mortgageCalculator'
 const { Text } = Typography;
 
 const H1Styled = styled.h1`
-<<<<<<< HEAD
   font-size: 26px;
   font-weight: 900;
 `
-=======
-  font-size: 18px;
-  font-weight: bold;
-  font-family: ArialAMU, sans-serif;
-  color: #000;
-`;
->>>>>>> 942029ab08f91a5079f3dc42eccb757e352555ff
 
 const TextStyled = styled(Text)`
   font-size: 16px;
   font-family: ArialAMU, sans-serif;
-<<<<<<< HEAD
 `
-=======
-  line-height: 36px;
-  color: #000;
-`;
->>>>>>> 942029ab08f91a5079f3dc42eccb757e352555ff
 
 const Calculators = () => (
   <Layout>
