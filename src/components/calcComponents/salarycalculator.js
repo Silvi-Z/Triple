@@ -120,6 +120,7 @@ const FormLabelCell = styled.div`
   align-items: center;
   text-align: center;
   border: 1px solid #d7d7d7;
+  background-color: #fff;
 `;
 
 const ResultCell = styled.div`

@@ -87,6 +87,7 @@ const FormLabelCell = styled.div`
   align-items: center;
   text-align: center;
   border: 1px solid #d7d7d7;
+  background-color: #fff;
 `;
 
 const ResultCell = styled.div`
@@ -111,6 +112,7 @@ const Label = styled(Text)`
 const StyledDatePicker = styled(DatePicker)`
   width: 100%;
   height: 40px;
+  width: 130px;
   border-color: #009db8;
 `;
 
@@ -191,19 +193,17 @@ const CarSellCalculator = () => {
                   <Label fontColor="#000">Գնման ամսաթիվ</Label>
                 </FormLabelCell>
               </Col>
-              <Col xxl={3} xl={3} lg={4} span={6}>
-                <StyledDatePicker
-                  allowClear={false}
-                  suffixIcon={<CustomCaret />}
-                  size="large"
-                  format="DD.MM.YYYY"
-                  defaultValue={moment()}
-                  onChange={date => {
-                    console.log(date.format('YYYY-MM-DD'));
-                    formik.setFieldValue('date_from', date.format('YYYY-MM-DD'));
-                  }}
-                />
-              </Col>
+              <StyledDatePicker
+                allowClear={false}
+                suffixIcon={<CustomCaret />}
+                size="large"
+                format="DD.MM.YYYY"
+                defaultValue={moment()}
+                onChange={date => {
+                  console.log(date.format('YYYY-MM-DD'));
+                  formik.setFieldValue('date_from', date.format('YYYY-MM-DD'));
+                }}
+              />
               <Col
                 xxl={3}
                 xl={4}
@@ -214,19 +214,17 @@ const CarSellCalculator = () => {
                   <Label fontColor="#000">Վաճառքի ամսաթիվ</Label>
                 </FormLabelCell>
               </Col>
-              <Col xxl={3} xl={3} lg={4} span={6}>
-                <StyledDatePicker
-                  allowClear={false}
-                  suffixIcon={<CustomCaret />}
-                  size="large"
-                  format="DD.MM.YYYY"
-                  defaultValue={moment()}
-                  onChange={date => {
-                    console.log(date.format('YYYY-MM-DD'));
-                    formik.setFieldValue('date_to', date.format('YYYY-MM-DD'));
-                  }}
-                />
-              </Col>
+              <StyledDatePicker
+                allowClear={false}
+                suffixIcon={<CustomCaret />}
+                size="large"
+                format="DD.MM.YYYY"
+                defaultValue={moment()}
+                onChange={date => {
+                  console.log(date.format('YYYY-MM-DD'));
+                  formik.setFieldValue('date_to', date.format('YYYY-MM-DD'));
+                }}
+              />
             </Row>
 
             <Row align="middle" gutter={[10, 10]}>
