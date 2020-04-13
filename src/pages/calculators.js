@@ -32,6 +32,7 @@ const Calculators = () => (
         xxl={{ span: 8, offset: 4 }}
         xl={{ span: 9, offset: 3 }}
         lg={{ span: 8, offset: 3 }}
+        md={{ span: 15, offset: 1 }}
         span={16}
       >
         <H1Styled>Հաշվիչ</H1Styled>
@@ -42,6 +43,7 @@ const Calculators = () => (
         xxl={{ span: 13, offset: 4 }}
         xl={{ span: 14, offset: 3 }}
         lg={{ span: 15, offset: 3 }}
+        md={{ span: 22, offset: 1 }}
         span={16}
       >
         <TextStyled>

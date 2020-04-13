@@ -163,9 +163,10 @@ const CarSellCalculator = () => {
           xxl={{ span: 1, offset: 3 }}
           xl={{ span: 1, offset: 2 }}
           lg={{ span: 1, offset: 2 }}
+          md={{ span: 1 }}
         />
         <HeadIcon src={CarImg} alt={'icon'} />
-        <Col xxl={13} xl={14} lg={15} md={16} span={17}>
+        <Col xxl={13} xl={14} lg={15} md={19} span={17}>
           <H2Styled>Ավտոմեքենայի վաճառքի հաշվիչ</H2Styled>
         </Col>
         <Col>
@@ -186,6 +187,7 @@ const CarSellCalculator = () => {
                 xxl={{span: 3, offset: 5}}
                 xl={{span: 4, offset: 4}}
                 lg={{span: 4, offset: 4}}
+                md={{ span: 5, offset: 2 }}
                 span={6}
                 offset={1}
               >
@@ -193,38 +195,43 @@ const CarSellCalculator = () => {
                   <Label fontColor="#000">Գնման ամսաթիվ</Label>
                 </FormLabelCell>
               </Col>
-              <StyledDatePicker
-                allowClear={false}
-                suffixIcon={<CustomCaret />}
-                size="large"
-                format="DD.MM.YYYY"
-                defaultValue={moment()}
-                onChange={date => {
-                  console.log(date.format('YYYY-MM-DD'));
-                  formik.setFieldValue('date_from', date.format('YYYY-MM-DD'));
-                }}
-              />
+              <Col>
+                <StyledDatePicker
+                  allowClear={false}
+                  suffixIcon={<CustomCaret />}
+                  size="large"
+                  format="DD.MM.YYYY"
+                  defaultValue={moment()}
+                  onChange={date => {
+                    console.log(date.format('YYYY-MM-DD'));
+                    formik.setFieldValue('date_from', date.format('YYYY-MM-DD'));
+                  }}
+                />
+              </Col>
               <Col
                 xxl={3}
                 xl={4}
                 lg={5}
+                md={6}
                 span={6}
               >
                 <FormLabelCell>
                   <Label fontColor="#000">Վաճառքի ամսաթիվ</Label>
                 </FormLabelCell>
               </Col>
-              <StyledDatePicker
-                allowClear={false}
-                suffixIcon={<CustomCaret />}
-                size="large"
-                format="DD.MM.YYYY"
-                defaultValue={moment()}
-                onChange={date => {
-                  console.log(date.format('YYYY-MM-DD'));
-                  formik.setFieldValue('date_to', date.format('YYYY-MM-DD'));
-                }}
-              />
+              <Col>
+                <StyledDatePicker
+                  allowClear={false}
+                  suffixIcon={<CustomCaret />}
+                  size="large"
+                  format="DD.MM.YYYY"
+                  defaultValue={moment()}
+                  onChange={date => {
+                    console.log(date.format('YYYY-MM-DD'));
+                    formik.setFieldValue('date_to', date.format('YYYY-MM-DD'));
+                  }}
+                />
+              </Col>
             </Row>
 
             <Row align="middle" gutter={[10, 10]}>
@@ -232,6 +239,7 @@ const CarSellCalculator = () => {
                 xxl={{ span: 8, offset: 5 }}
                 xl={{ span: 9, offset: 4 }}
                 lg={{ span: 11, offset: 4 }}
+                md={{ span: 15, offset: 2 }}
                 offset={1}
                 span={14}
               >
@@ -241,7 +249,7 @@ const CarSellCalculator = () => {
                   </Label>
                 </FormLabelCell>
               </Col>
-              <Col xxl={2} xl={3} lg={3} span={4}>
+              <Col xxl={2} xl={3} lg={3} md={4} span={4}>
                 <StyledInputNumber
                   size="large"
                   min={0}
@@ -259,6 +267,7 @@ const CarSellCalculator = () => {
                 xxl={{ span: 8, offset: 5 }}
                 xl={{ span: 9, offset: 4 }}
                 lg={{ span: 11, offset: 4 }}
+                md={{ span: 15, offset: 2 }}
                 offset={1}
                 span={14}
               >
@@ -268,7 +277,7 @@ const CarSellCalculator = () => {
                   </Label>
                 </FormLabelCell>
               </Col>
-              <Col xxl={2} xl={3} lg={3} span={4}>
+              <Col xxl={2} xl={3} lg={3} md={4} span={4}>
                 <StyledInputNumber
                   size="large"
                   min={0}
@@ -286,6 +295,7 @@ const CarSellCalculator = () => {
                 xxl={{ span: 4, offset: 5 }}
                 xl={{ span: 4, offset: 4 }}
                 lg={{ span: 5, offset: 4 }}
+                md={{ span: 7, offset: 2 }}
                 offset={1}
                 span={8}
               >
@@ -307,6 +317,7 @@ const CarSellCalculator = () => {
                   xxl={{ span: 4, offset: 5 }}
                   xl={{ span: 5, offset: 4 }}
                   lg={{ span: 8, offset: 4 }}
+                  md={{span: 6, offset: 2}}
                   offset={1}
                   span={10}
                 >
@@ -318,6 +329,7 @@ const CarSellCalculator = () => {
                   xxl={{ span: 13, offset: 5 }}
                   xl={{ span: 17, offset: 4 }}
                   lg={{ span: 19, offset: 4 }}
+                  md={{ span: 24, offset: 2 }}
                   offset={1}
                   span={19}
                 >

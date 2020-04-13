@@ -223,9 +223,10 @@ const SalaryCalculator = () => {
           xxl={{ span: 1, offset: 3 }}
           xl={{ span: 1, offset: 2 }}
           lg={{ span: 1, offset: 2 }}
+          md={{ span: 1 }}
         />
         <HeadIcon src={SalaryImg} alt={'icon'} />
-        <Col xxl={13} xl={14} lg={15} md={16} span={17}>
+        <Col xxl={13} xl={14} lg={15} md={19} span={17}>
           <H2Styled>Աշխատավարձի հաշվիչ</H2Styled>
         </Col>
         <Col>
@@ -247,6 +248,7 @@ const SalaryCalculator = () => {
                 xxl={{ span: 5, offset: 5 }}
                 xl={{ span: 6, offset: 4 }}
                 lg={{ span: 7, offset: 4 }}
+                md={{ span: 9, offset: 2 }}
                 offset={1}
                 span={7}
               >
@@ -261,7 +263,7 @@ const SalaryCalculator = () => {
                   </Label>
                 </ButtonBase>
               </Col>
-              <Col xxl={5} xl={6} lg={7} span={7}>
+              <Col xxl={5} xl={6} lg={7} md={9} span={7}>
                 <ButtonBase
                   type={formik.values.salary_type ? 'primary' : 'default'}
                   size="large"
@@ -280,6 +282,7 @@ const SalaryCalculator = () => {
                 xxl={{ span: 3, offset: 5 }}
                 xl={{ span: 3, offset: 4 }}
                 lg={{ span: 4, offset: 4 }}
+                md={{ span: 5, offset: 2 }}
                 offset={1}
                 span={6}
               >
@@ -304,7 +307,7 @@ const SalaryCalculator = () => {
                   </Label>
                 </ButtonLarge>
               </Col>
-              <Col xxl={4} xl={6} lg={6} span={6}>
+              <Col xxl={4} xl={6} lg={6} md={8} span={6}>
                 <ButtonLarge
                   type={formik.values.patent === 1 ? 'primary' : 'default'}
                   size="large"
@@ -322,7 +325,7 @@ const SalaryCalculator = () => {
                   </Label>
                 </ButtonLarge>
               </Col>
-              <Col xxl={3} xl={3} lg={4} span={6}>
+              <Col xxl={3} xl={3} lg={4} md={5} span={6}>
                 <ButtonLarge
                   type={formik.values.patent === 0 ? 'primary' : 'default'}
                   size="large"
@@ -347,6 +350,7 @@ const SalaryCalculator = () => {
                 xxl={{ span: 7, offset: 5 }}
                 xl={{ span: 9, offset: 4 }}
                 lg={{ span: 10, offset: 4 }}
+                md={{ span: 13, offset: 2 }}
                 offset={1}
                 span={10}
               >
@@ -356,7 +360,7 @@ const SalaryCalculator = () => {
                   </Label>
                 </FormLabelCell>
               </Col>
-              <Col xxl={3} xl={3} lg={4} span={5}>
+              <Col xxl={3} xl={3} lg={4} md={5} span={5}>
                 <StyledInputNumber
                   size="large"
                   min={0}
@@ -374,6 +378,7 @@ const SalaryCalculator = () => {
                 xxl={{ span: 7, offset: 5 }}
                 xl={{ span: 9, offset: 4 }}
                 lg={{ span: 10, offset: 4 }}
+                md={{ span: 13, offset: 2 }}
                 offset={1}
                 span={10}
               >
@@ -383,7 +388,7 @@ const SalaryCalculator = () => {
                   </Label>
                 </FormLabelCell>
               </Col>
-              <Col xxl={3} xl={3} lg={4} span={6}>
+              <Col xxl={3} xl={3} lg={4} md={5} span={5}>
                 <StyledInputNumber
                   min={0}
                   id="bonus_price"
@@ -400,6 +405,7 @@ const SalaryCalculator = () => {
                 xxl={{ span: 8, offset: 5 }}
                 xl={{ span: 10, offset: 4 }}
                 lg={{ span: 11, offset: 4 }}
+                md={{ span: 13, offset: 2 }}
                 offset={1}
                 span={16}
               >
@@ -448,6 +454,7 @@ const SalaryCalculator = () => {
                 xxl={{ span: 8, offset: 5 }}
                 xl={{ span: 10, offset: 4 }}
                 lg={{ span: 11, offset: 4 }}
+                md={{ span: 13, offset: 2 }}
                 offset={1}
                 span={16}
               >
@@ -496,6 +503,7 @@ const SalaryCalculator = () => {
                 xxl={{ span: 4, offset: 5 }}
                 xl={{ span: 4, offset: 4 }}
                 lg={{ span: 5, offset: 4 }}
+                md={{ span: 7, offset: 2 }}
                 offset={1}
                 span={8}
               >
@@ -516,6 +524,7 @@ const SalaryCalculator = () => {
                   xxl={{ span: 4, offset: 5 }}
                   xl={{ span: 4, offset: 4 }}
                   lg={{ span: 5, offset: 4 }}
+                  md={{span: 6, offset: 2}}
                   offset={1}
                   span={10}
                 >
@@ -528,6 +537,7 @@ const SalaryCalculator = () => {
                   xxl={{ span: 9, offset: 5 }}
                   xl={{ span: 9, offset: 4 }}
                   lg={{ span: 9, offset: 4 }}
+                  md={{ span: 21, offset: 2 }}
                   offset={1}
                   span={20}
                 >
@@ -588,6 +598,7 @@ const SalaryCalculator = () => {
                   xxl={{ span: 9, offset: 0 }}
                   xl={{ span: 9, offset: 0 }}
                   lg={{ span: 11, offset: 0 }}
+                  md={{span: 20, offset: 2}}
                   span={20}
                   offset={1}
                 >

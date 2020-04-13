@@ -163,9 +163,10 @@ const CarPropTaxCalculator = () => {
           xxl={{ span: 1, offset: 3 }}
           xl={{ span: 1, offset: 2 }}
           lg={{ span: 1, offset: 2 }}
+          md={{ span: 1 }}
         />
         <HeadIcon src={CarImg} alt={'icon'} />
-        <Col xxl={13} xl={14} lg={15} md={16} span={17}>
+        <Col xxl={13} xl={14} lg={15} md={19} span={17}>
           <H2Styled>Ավտոմեքենայի գույքահարկի հաշվիչ</H2Styled>
         </Col>
         <Col>
@@ -187,6 +188,7 @@ const CarPropTaxCalculator = () => {
                 xxl={{ span: 2, offset: 5 }}
                 xl={{ span: 3, offset: 4 }}
                 lg={{ span: 3, offset: 4 }}
+                md={{ span: 4, offset: 2 }}
                 offset={1}
                 span={5}
               >
@@ -196,7 +198,7 @@ const CarPropTaxCalculator = () => {
                   </Label>
                 </FormLabelCell>
               </Col>
-              <Col xxl={8} xl={9} lg={11} span={13}>
+              <Col xxl={8} xl={9} lg={11} md={14} span={13}>
                 <CustomSelect
                   size="large"
                   defaultValue={0}
@@ -236,6 +238,7 @@ const CarPropTaxCalculator = () => {
                 xxl={{ span: 8, offset: 5 }}
                 xl={{ span: 9, offset: 4 }}
                 lg={{ span: 11, offset: 4 }}
+                md={{ span: 14, offset: 2 }}
                 offset={1}
                 span={14}
               >
@@ -264,6 +267,7 @@ const CarPropTaxCalculator = () => {
                 xxl={{ span: 8, offset: 5 }}
                 xl={{ span: 9, offset: 4 }}
                 lg={{ span: 11, offset: 4 }}
+                md={{ span: 14, offset: 2 }}
                 offset={1}
                 span={14}
               >
@@ -291,6 +295,7 @@ const CarPropTaxCalculator = () => {
                 xxl={{ span: 4, offset: 5 }}
                 xl={{ span: 4, offset: 4 }}
                 lg={{ span: 5, offset: 4 }}
+                md={{ span: 7, offset: 2 }}
                 offset={1}
                 span={8}
               >
@@ -312,6 +317,7 @@ const CarPropTaxCalculator = () => {
                   xxl={{ span: 4, offset: 5 }}
                   xl={{ span: 5, offset: 4 }}
                   lg={{ span: 8, offset: 4 }}
+                  md={{span: 6, offset: 2}}
                   offset={1}
                   span={10}
                 >
@@ -323,6 +329,7 @@ const CarPropTaxCalculator = () => {
                   xxl={{ span: 13, offset: 5 }}
                   xl={{ span: 17, offset: 4 }}
                   lg={{ span: 19, offset: 4 }}
+                  md={{ span: 24, offset: 2 }}
                   offset={1}
                   span={20}
                 >
