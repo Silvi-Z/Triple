@@ -77,9 +77,12 @@ const StyledInputNumber = styled(InputNumber)`
   display: flex;
   align-items: center;
   border-color: #009db8;
-  font-size: 14px;
+  font-size: 13px;
   font-family: ArialAMU;
   color: #000;
+  @media (min-width: 768px) {
+    font-size: 14px;
+  }
 `;
 
 const FormLabelCell = styled.div`
@@ -105,11 +108,14 @@ const ResultCell = styled.div`
 `;
 
 const Label = styled(Text)`
-  font-size: 14px;
   font-family: ArialAMU;
-  font-weight: 600;
+  font-weight: bold;
   line-height: 20px;
   color: ${props => props.fontColor};
+  font-size: 13px;
+  @media (min-width: 768px) {
+    font-size: 14px;
+  }
 `;
 
 const StyledDatePicker = styled(DatePicker)`

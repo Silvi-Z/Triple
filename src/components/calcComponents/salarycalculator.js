@@ -86,22 +86,25 @@ const ButtonSubmit = styled(Button)`
 `;
 
 const Label = styled(Text)`
-  font-size: 14px;
   font-family: ArialAMU;
   font-weight: bold;
   line-height: 20px;
   color: ${props => props.fontColor};
-  @media (min-width: 1200px) {
+  font-size: 13px;
+  @media (min-width: 768px) {
     font-size: 14px;
   }
 `;
 
 const Label2 = styled(Text)`
-  font-size: 16px;
   font-family: ArialAMU;
   font-weight: bold;
   line-height: 20px;
   color: ${props => props.fontColor};
+  font-size: 15px;
+  @media (min-width: 768px) {
+    font-size: 16px;
+  }
 `;
 
 const StyledInputNumber = styled(InputNumber)`
@@ -110,9 +113,12 @@ const StyledInputNumber = styled(InputNumber)`
   display: flex;
   align-items: center;
   border-color: #009db8;
-  font-size: 14px;
+  font-size: 13px;
   font-family: ArialAMU;
   color: #000;
+  @media (min-width: 768px) {
+    font-size: 14px;
+  }
 `;
 
 const FormLabelCell = styled.div`

@@ -83,9 +83,12 @@ const StyledInputNumber = styled(InputNumber)`
   display: flex;
   align-items: center;
   border-color: #009db8;
-  font-size: 14px;
+  font-size: 13px;
   font-family: ArialAMU;
   color: #000;
+  @media (min-width: 768px) {
+    font-size: 14px;
+  }
 `;
 
 const FormLabelCell = styled.div`
@@ -111,11 +114,14 @@ const ResultCell = styled.div`
 `;
 
 const Label = styled(Text)`
-  font-size: 14px;
   font-family: ArialAMU;
-  font-weight: 600;
+  font-weight: bold;
   line-height: 20px;
   color: ${props => props.fontColor};
+  font-size: 13px;
+  @media (min-width: 768px) {
+    font-size: 14px;
+  }
 `;
 
 const currentYear = +moment().format('YYYY');
@@ -202,7 +208,7 @@ const CarPropTaxCalculator = () => {
                   </Label>
                 </FormLabelCell>
               </Col>
-              <Col xxl={8} xl={9} lg={11} md={14} sm={16} span={13}>
+              <Col xxl={8} xl={9} lg={11} md={14} sm={17} span={13}>
                 <CustomSelect
                   size="large"
                   defaultValue={0}
@@ -243,7 +249,7 @@ const CarPropTaxCalculator = () => {
                 xl={{ span: 9, offset: 4 }}
                 lg={{ span: 11, offset: 4 }}
                 md={{ span: 14, offset: 2 }}
-                sm={16}
+                sm={17}
                 offset={1}
                 span={14}
               >
@@ -273,7 +279,7 @@ const CarPropTaxCalculator = () => {
                 xl={{ span: 9, offset: 4 }}
                 lg={{ span: 11, offset: 4 }}
                 md={{ span: 14, offset: 2 }}
-                sm={16}
+                sm={17}
                 offset={1}
                 span={14}
               >

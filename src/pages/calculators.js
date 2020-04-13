@@ -11,6 +11,12 @@ import MortgageCalculator from '../components/calcComponents/mortgageCalculator'
 
 const { Text } = Typography;
 
+const HeaderRow = styled(Row)`
+  @media only screen and (max-width: 768px) {
+    padding-top: 49px;
+  }
+`;
+
 const H1Styled = styled.h1`
   font-size: 18px;
   font-weight: bold;
@@ -26,7 +32,7 @@ const TextStyled = styled(Text)`
 
 const Calculators = () => (
   <Layout>
-    <Row>
+    <HeaderRow>
       <Col
         xxl={{ span: 8, offset: 4 }}
         xl={{ span: 9, offset: 3 }}
@@ -37,7 +43,7 @@ const Calculators = () => (
       >
         <H1Styled>Հաշվիչ</H1Styled>
       </Col>
-    </Row>
+    </HeaderRow>
     <Row gutter={[1, 60]}>
       <Col
         xxl={{ span: 13, offset: 4 }}
