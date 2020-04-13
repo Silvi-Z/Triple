@@ -49,11 +49,14 @@ const H2Styled = styled.h2`
   font-size: 18px;
   font-weight: normal;
   margin-left: 10px;
+  font-family: ArialAMU;
+  color: #000;
 `;
 
 const H3Styled = styled.h3`
   font-size: 15px;
   font-weight: 500;
+  font-family: ArialAMU;
   color: #000;
 `;
 
@@ -68,11 +71,14 @@ const ToggleButton = styled(Button)`
 `;
 
 const Label = styled(Text)`
-  font-size: 14px;
   font-family: ArialAMU;
-  font-weight: 600;
+  font-weight: bold;
   line-height: 20px;
   color: ${props => props.fontColor};
+  font-size: 13px;
+  @media (min-width: 768px) {
+    font-size: 14px;
+  }
 `;
 
 const ButtonSubmit = styled(Button)`
@@ -94,9 +100,12 @@ const StyledInputNumber = styled(InputNumber)`
   display: flex;
   align-items: center;
   border-color: #009db8;
-  font-size: 14px;
+  font-size: 13px;
   font-family: ArialAMU;
   color: #000;
+  @media (min-width: 768px) {
+    font-size: 14px;
+  }
 `;
 
 const FormLabelCell = styled.div`
@@ -107,6 +116,7 @@ const FormLabelCell = styled.div`
   align-items: center;
   text-align: center;
   border: 1px solid #d7d7d7;
+  background-color: #fff;
 `;
 
 const ResultCell = styled.div`
@@ -176,20 +186,21 @@ const CarCustomsCalculator = () => {
       <Row align="middle" gutter={[10, 40]}>
         <Col
           xxl={{ span: 1, offset: 3 }}
-          xl={{ span: 1, offset: 2 }}
+          xl={{ span: 1, offset: 3 }}
           lg={{ span: 1, offset: 2 }}
+          md={{ span: 1 }}
         />
         <HeadIcon src={CarImg} alt={'icon'} />
-        <Col xxl={13} xl={14} lg={15} md={16} span={17}>
+        <Col xxl={14} xl={14} lg={15} md={19} sm={19} span={17}>
           <H2Styled>Ավտոմեքենայի մաքսազերծման վճարի հաշվիչ</H2Styled>
         </Col>
         <Col>
           <ToggleButton block onClick={() => toggleForm(!showForm)}>
             {showForm ? (
-              <MinusOutlined style={{ fontSize: '20px' }} />
+              <MinusOutlined style={{ color: '#009db8',  fontSize: '20px' }} />
             ) : (
-                <PlusOutlined style={{ fontSize: '20px' }} />
-              )}
+              <PlusOutlined style={{ color: '#009db8',  fontSize: '20px' }} />
+            )}
           </ToggleButton>
         </Col>
       </Row>
@@ -199,9 +210,11 @@ const CarCustomsCalculator = () => {
           <form onSubmit={formik.handleSubmit}>
             <Row align="middle" gutter={[10, 10]}>
               <Col
-                xxl={{ span: 5, offset: 5 }}
-                xl={{ span: 6, offset: 4 }}
+                xxl={{ span: 5, offset: 6 }}
+                xl={{ span: 6, offset: 5 }}
                 lg={{ span: 7, offset: 4 }}
+                md={{ span: 9, offset: 2 }}
+                sm={11}
                 offset={1}
                 span={7}
               >
@@ -220,7 +233,7 @@ const CarCustomsCalculator = () => {
                   </Label>
                 </ButtonBase>
               </Col>
-              <Col xxl={5} xl={6} lg={7} span={7}>
+              <Col xxl={5} xl={6} lg={7} md={9} sm={11} span={7}>
                 <ButtonBase
                   type={!formik.values.person ? 'primary' : 'default'}
                   size="large"
@@ -240,9 +253,11 @@ const CarCustomsCalculator = () => {
 
             <Row align="middle" gutter={[10, 10]}>
               <Col
-                xxl={{ span: 5, offset: 5 }}
-                xl={{ span: 6, offset: 4 }}
+                xxl={{ span: 5, offset: 6 }}
+                xl={{ span: 6, offset: 5 }}
                 lg={{ span: 7, offset: 4 }}
+                md={{ span: 9, offset: 2 }}
+                sm={11}
                 offset={1}
                 span={7}
               >
@@ -261,7 +276,7 @@ const CarCustomsCalculator = () => {
                   </Label>
                 </ButtonBase>
               </Col>
-              <Col xxl={5} xl={6} lg={7} span={7}>
+              <Col xxl={5} xl={6} lg={7} md={9} sm={11} span={7}>
                 <ButtonBase
                   type={!formik.values.country ? 'primary' : 'default'}
                   size="large"
@@ -281,9 +296,11 @@ const CarCustomsCalculator = () => {
 
             <Row align="middle" gutter={[10, 10]}>
               <Col
-                xxl={{ span: 8, offset: 5 }}
-                xl={{ span: 9, offset: 4 }}
+                xxl={{ span: 8, offset: 6 }}
+                xl={{ span: 9, offset: 5 }}
                 lg={{ span: 11, offset: 4 }}
+                md={{ span: 14, offset: 2 }}
+                sm={17}
                 offset={1}
                 span={14}
               >
@@ -293,7 +310,7 @@ const CarCustomsCalculator = () => {
                   </Label>
                 </FormLabelCell>
               </Col>
-              <Col xxl={2} xl={3} lg={3} span={4}>
+              <Col xxl={2} xl={3} lg={3} sm={5} span={4}>
                 <CustomSelect
                   size="large"
                   defaultValue={formik.values.date_issue}
@@ -310,9 +327,11 @@ const CarCustomsCalculator = () => {
 
             <Row align="middle" gutter={[10, 10]}>
               <Col
-                xxl={{ span: 8, offset: 5 }}
-                xl={{ span: 9, offset: 4 }}
+                xxl={{ span: 8, offset: 6 }}
+                xl={{ span: 9, offset: 5 }}
                 lg={{ span: 11, offset: 4 }}
+                md={{ span: 11, offset: 2 }}
+                sm={13}
                 offset={1}
                 span={14}
               >
@@ -322,7 +341,7 @@ const CarCustomsCalculator = () => {
                   </Label>
                 </FormLabelCell>
               </Col>
-              <Col xxl={2} xl={3} lg={3} span={4}>
+              <Col xxl={2} xl={3} lg={3} md={4} sm={5} span={4}>
                 <StyledInputNumber
                   size="large"
                   min={51}
@@ -333,7 +352,7 @@ const CarCustomsCalculator = () => {
                   value={formik.values.engine_working_volume}
                 />
               </Col>
-              <Col xxl={2} xl={2} lg={3} span={3}>
+              <Col xxl={2} xl={2} lg={3} md={3} sm={4} span={3}>
                 <FormLabelCell>
                   <Label fontColor="#000">
                     սմ<sup>3</sup>
@@ -344,9 +363,11 @@ const CarCustomsCalculator = () => {
 
             <Row align="middle" gutter={[10, 30]}>
               <Col
-                xxl={{ span: 8, offset: 5 }}
-                xl={{ span: 9, offset: 4 }}
+                xxl={{ span: 8, offset: 6 }}
+                xl={{ span: 9, offset: 5 }}
                 lg={{ span: 11, offset: 4 }}
+                md={{ span: 11, offset: 2 }}
+                sm={13}
                 offset={1}
                 span={14}
               >
@@ -356,7 +377,7 @@ const CarCustomsCalculator = () => {
                   </Label>
                 </FormLabelCell>
               </Col>
-              <Col xxl={2} xl={3} lg={3} span={4}>
+              <Col xxl={2} xl={3} lg={3} md={4} sm={5} span={4}>
                 <StyledInputNumber
                   size="large"
                   min={0}
@@ -367,7 +388,7 @@ const CarCustomsCalculator = () => {
                   value={formik.values.car_price}
                 />
               </Col>
-              <Col xxl={2} xl={2} lg={3} span={4}>
+              <Col xxl={2} xl={2} lg={3} md={3} span={4}>
                 <CustomSelect
                   size="large"
                   defaultValue={formik.values.currency}
@@ -391,9 +412,10 @@ const CarCustomsCalculator = () => {
             
             <Row align="middle" gutter={[10, 30]}>
               <Col
-                xxl={{ span: 4, offset: 5 }}
-                xl={{ span: 4, offset: 4 }}
+                xxl={{ span: 4, offset: 6 }}
+                xl={{ span: 4, offset: 5 }}
                 lg={{ span: 5, offset: 4 }}
+                md={{ span: 7, offset: 2 }}
                 offset={1}
                 span={8}
               >
@@ -412,30 +434,34 @@ const CarCustomsCalculator = () => {
             <>
               <Row align="middle" gutter={[5, 30]}>
                 <Col
-                  xxl={{ span: 4, offset: 5 }}
-                  xl={{ span: 5, offset: 4 }}
+                  xxl={{ span: 4, offset: 6 }}
+                  xl={{ span: 5, offset: 5 }}
                   lg={{ span: 8, offset: 4 }}
+                  md={{span: 6, offset: 2}}
                   offset={1}
                   span={10}
                 >
                   <H3Styled>Արդյունք</H3Styled>
                 </Col>
               </Row>
+
               <Row gutter={[1, 1]}>
                 <Col
-                  xxl={{ span: 14, offset: 5 }}
-                  xl={{ span: 17, offset: 4 }}
+                  xxl={{ span: 14, offset: 6 }}
+                  xl={{ span: 17, offset: 5 }}
                   lg={{ span: 19, offset: 4 }}
+                  md={{ span: 24, offset: 2 }}
+                  sm={24}
                   offset={1}
                   span={20}
                 >
                   <Row gutter={[10, 10]}>
-                    <Col span={14}>
+                    <Col sm={15} span={14}>
                       <ResultCell>
                         <Label fontColor="#fff">Վճարման ենթակա գումար AMD</Label>
                       </ResultCell>
                     </Col>
-                    <Col span={4}>
+                    <Col sm={5} span={4}>
                       <ResultCell>
                         <Label fontColor="#fff">{result.data.AMD}</Label>
                       </ResultCell>
@@ -443,12 +469,12 @@ const CarCustomsCalculator = () => {
                   </Row>
 
                   <Row gutter={[10, 10]}>
-                    <Col span={14}>
+                    <Col sm={15} span={14}>
                       <ResultCell>
                         <Label fontColor="#fff">Վճարման ենթակա գումար USD</Label>
                       </ResultCell>
                     </Col>
-                    <Col span={4}>
+                    <Col sm={5} span={4}>
                       <ResultCell>
                         <Label fontColor="#fff">{result.data.USD}</Label>
                       </ResultCell>
@@ -456,12 +482,12 @@ const CarCustomsCalculator = () => {
                   </Row>
 
                   <Row gutter={[10, 10]}>
-                    <Col span={14}>
+                    <Col sm={15} span={14}>
                       <ResultCell>
                         <Label fontColor="#fff">Վճարման ենթակա գումար EUR</Label>
                       </ResultCell>
                     </Col>
-                    <Col span={4}>
+                    <Col sm={5} span={4}>
                       <ResultCell>
                         <Label fontColor="#fff">{result.data.EUR}</Label>
                       </ResultCell>
@@ -469,12 +495,12 @@ const CarCustomsCalculator = () => {
                   </Row>
 
                   <Row gutter={[10, 10]}>
-                    <Col span={14}>
+                    <Col sm={15} span={14}>
                       <ResultCell>
                         <Label fontColor="#fff">Վճարման ենթակա գումար RUB</Label>
                       </ResultCell>
                     </Col>
-                    <Col span={4}>
+                    <Col sm={5} span={4}>
                       <ResultCell>
                         <Label fontColor="#fff">{result.data.RUB}</Label>
                       </ResultCell>
