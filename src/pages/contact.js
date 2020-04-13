@@ -309,7 +309,7 @@ const FormColumn = styled(Col)`
   max-height: 513px;
   box-shadow: 0px 5px 40px 0 rgba(0, 0, 0, 0.05);
   background-color: #ffffff;
-  padding: 4.8% 5%;
+  padding: 0.8% 5%;
   @media only screen and (max-width: 1170px) {
     margin-left: 16.5%;
     /* max-width: 562px;

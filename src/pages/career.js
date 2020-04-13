@@ -112,7 +112,7 @@ const Career = () => {
           description_ru: "string",
           description_en: "string",
         },
-        open: false,
+        open: true,
       },
       // {
       //   status: true,

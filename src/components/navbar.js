@@ -222,7 +222,7 @@ const EnvironmentWrapper = styled.img`
   margin-right: 5%;
   margin-top: 19%;
   @media (min-width: 1600px) {
-    margin-top: 13%;
+    margin-top: 11%;
   }
 
 `
