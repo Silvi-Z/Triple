@@ -185,7 +185,7 @@ const CarCustomsCalculator = () => {
           md={{ span: 1 }}
         />
         <HeadIcon src={CarImg} alt={'icon'} />
-        <Col xxl={13} xl={14} lg={15} md={19} span={17}>
+        <Col xxl={13} xl={14} lg={15} md={19} sm={19} span={17}>
           <H2Styled>Ավտոմեքենայի մաքսազերծման վճարի հաշվիչ</H2Styled>
         </Col>
         <Col>
@@ -208,6 +208,7 @@ const CarCustomsCalculator = () => {
                 xl={{ span: 6, offset: 4 }}
                 lg={{ span: 7, offset: 4 }}
                 md={{ span: 9, offset: 2 }}
+                sm={11}
                 offset={1}
                 span={7}
               >
@@ -226,7 +227,7 @@ const CarCustomsCalculator = () => {
                   </Label>
                 </ButtonBase>
               </Col>
-              <Col xxl={5} xl={6} lg={7} md={9} span={7}>
+              <Col xxl={5} xl={6} lg={7} md={9} sm={11} span={7}>
                 <ButtonBase
                   type={!formik.values.person ? 'primary' : 'default'}
                   size="large"
@@ -250,6 +251,7 @@ const CarCustomsCalculator = () => {
                 xl={{ span: 6, offset: 4 }}
                 lg={{ span: 7, offset: 4 }}
                 md={{ span: 9, offset: 2 }}
+                sm={11}
                 offset={1}
                 span={7}
               >
@@ -268,7 +270,7 @@ const CarCustomsCalculator = () => {
                   </Label>
                 </ButtonBase>
               </Col>
-              <Col xxl={5} xl={6} lg={7} md={9} span={7}>
+              <Col xxl={5} xl={6} lg={7} md={9} sm={11} span={7}>
                 <ButtonBase
                   type={!formik.values.country ? 'primary' : 'default'}
                   size="large"
@@ -292,6 +294,7 @@ const CarCustomsCalculator = () => {
                 xl={{ span: 9, offset: 4 }}
                 lg={{ span: 11, offset: 4 }}
                 md={{ span: 14, offset: 2 }}
+                sm={17}
                 offset={1}
                 span={14}
               >
@@ -301,7 +304,7 @@ const CarCustomsCalculator = () => {
                   </Label>
                 </FormLabelCell>
               </Col>
-              <Col xxl={2} xl={3} lg={3} span={4}>
+              <Col xxl={2} xl={3} lg={3} sm={5} span={4}>
                 <CustomSelect
                   size="large"
                   defaultValue={formik.values.date_issue}
@@ -322,6 +325,7 @@ const CarCustomsCalculator = () => {
                 xl={{ span: 9, offset: 4 }}
                 lg={{ span: 11, offset: 4 }}
                 md={{ span: 11, offset: 2 }}
+                sm={13}
                 offset={1}
                 span={14}
               >
@@ -331,7 +335,7 @@ const CarCustomsCalculator = () => {
                   </Label>
                 </FormLabelCell>
               </Col>
-              <Col xxl={2} xl={3} lg={3} md={4} span={4}>
+              <Col xxl={2} xl={3} lg={3} md={4} sm={5} span={4}>
                 <StyledInputNumber
                   size="large"
                   min={51}
@@ -342,7 +346,7 @@ const CarCustomsCalculator = () => {
                   value={formik.values.engine_working_volume}
                 />
               </Col>
-              <Col xxl={2} xl={2} lg={3} md={3} span={3}>
+              <Col xxl={2} xl={2} lg={3} md={3} sm={4} span={3}>
                 <FormLabelCell>
                   <Label fontColor="#000">
                     սմ<sup>3</sup>
@@ -357,6 +361,7 @@ const CarCustomsCalculator = () => {
                 xl={{ span: 9, offset: 4 }}
                 lg={{ span: 11, offset: 4 }}
                 md={{ span: 11, offset: 2 }}
+                sm={13}
                 offset={1}
                 span={14}
               >
@@ -366,7 +371,7 @@ const CarCustomsCalculator = () => {
                   </Label>
                 </FormLabelCell>
               </Col>
-              <Col xxl={2} xl={3} lg={3} md={4} span={4}>
+              <Col xxl={2} xl={3} lg={3} md={4} sm={5} span={4}>
                 <StyledInputNumber
                   size="large"
                   min={0}
@@ -433,22 +438,24 @@ const CarCustomsCalculator = () => {
                   <H3Styled>Արդյունք</H3Styled>
                 </Col>
               </Row>
+
               <Row gutter={[1, 1]}>
                 <Col
                   xxl={{ span: 14, offset: 5 }}
                   xl={{ span: 17, offset: 4 }}
                   lg={{ span: 19, offset: 4 }}
                   md={{ span: 24, offset: 2 }}
+                  sm={24}
                   offset={1}
                   span={20}
                 >
                   <Row gutter={[10, 10]}>
-                    <Col span={14}>
+                    <Col sm={15} span={14}>
                       <ResultCell>
                         <Label fontColor="#fff">Վճարման ենթակա գումար AMD</Label>
                       </ResultCell>
                     </Col>
-                    <Col span={4}>
+                    <Col sm={5} span={4}>
                       <ResultCell>
                         <Label fontColor="#fff">{result.data.AMD}</Label>
                       </ResultCell>
@@ -456,12 +463,12 @@ const CarCustomsCalculator = () => {
                   </Row>
 
                   <Row gutter={[10, 10]}>
-                    <Col span={14}>
+                    <Col sm={15} span={14}>
                       <ResultCell>
                         <Label fontColor="#fff">Վճարման ենթակա գումար USD</Label>
                       </ResultCell>
                     </Col>
-                    <Col span={4}>
+                    <Col sm={5} span={4}>
                       <ResultCell>
                         <Label fontColor="#fff">{result.data.USD}</Label>
                       </ResultCell>
@@ -469,12 +476,12 @@ const CarCustomsCalculator = () => {
                   </Row>
 
                   <Row gutter={[10, 10]}>
-                    <Col span={14}>
+                    <Col sm={15} span={14}>
                       <ResultCell>
                         <Label fontColor="#fff">Վճարման ենթակա գումար EUR</Label>
                       </ResultCell>
                     </Col>
-                    <Col span={4}>
+                    <Col sm={5} span={4}>
                       <ResultCell>
                         <Label fontColor="#fff">{result.data.EUR}</Label>
                       </ResultCell>
@@ -482,12 +489,12 @@ const CarCustomsCalculator = () => {
                   </Row>
 
                   <Row gutter={[10, 10]}>
-                    <Col span={14}>
+                    <Col sm={15} span={14}>
                       <ResultCell>
                         <Label fontColor="#fff">Վճարման ենթակա գումար RUB</Label>
                       </ResultCell>
                     </Col>
-                    <Col span={4}>
+                    <Col sm={5} span={4}>
                       <ResultCell>
                         <Label fontColor="#fff">{result.data.RUB}</Label>
                       </ResultCell>

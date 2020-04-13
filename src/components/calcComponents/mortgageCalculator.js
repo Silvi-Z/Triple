@@ -296,7 +296,7 @@ const MortgageCalculator = () => {
           md={{ span: 1 }}
         />
         <HeadIcon src={ContractImg} alt={'icon'} />
-        <Col xxl={13} xl={14} lg={15} md={19} span={17}>
+        <Col xxl={13} xl={14} lg={15} md={19} sm={19} span={17}>
           <H2Styled>Հիփոթեքի տոկոսագումարի ետ վերադարձի հաշվիչ</H2Styled>
         </Col>
         <Col>
@@ -319,6 +319,7 @@ const MortgageCalculator = () => {
                 xl={{ span: 6, offset: 4 }}
                 lg={{ span: 7, offset: 4 }}
                 md={{ span: 9, offset: 2 }}
+                sm={11}
                 offset={1}
                 span={7}
               >
@@ -337,7 +338,7 @@ const MortgageCalculator = () => {
                   </Label>
                 </ButtonBase>
               </Col>
-              <Col xxl={5} xl={6} lg={7} md={9} span={7}>
+              <Col xxl={5} xl={6} lg={7} md={9} sm={11} span={7}>
                 <ButtonBase
                   type={formikOne.values.price_type ? 'primary' : 'default'}
                   size="large"
@@ -361,6 +362,7 @@ const MortgageCalculator = () => {
                 xl={{ span: 6, offset: 4 }}
                 lg={{ span: 7, offset: 4 }}
                 md={{ span: 9, offset: 2 }}
+                sm={11}
                 offset={1}
                 span={7}
               >
@@ -379,7 +381,7 @@ const MortgageCalculator = () => {
                   </Label>
                 </ButtonBase>
               </Col>
-              <Col xxl={5} xl={6} lg={7} md={9} span={7}>
+              <Col xxl={5} xl={6} lg={7} md={9} sm={11} span={7}>
                 <ButtonBase
                   type={formikOne.values.patent ? 'primary' : 'default'}
                   size="large"
@@ -403,6 +405,7 @@ const MortgageCalculator = () => {
                 xl={{ span: 7, offset: 4 }}
                 lg={{ span: 8, offset: 4 }}
                 md={{ span: 10, offset: 2 }}
+                sm={13}
                 offset={1}
                 span={10}
               >
@@ -412,7 +415,7 @@ const MortgageCalculator = () => {
                   </Label>
                 </FormLabelCell>
               </Col>
-              <Col xxl={3} xl={3} lg={4} md={4} span={6}>
+              <Col xxl={3} xl={3} lg={4} md={4} sm={4} span={6}>
                 <StyledInputNumber
                   size="large"
                   min={0}
@@ -421,7 +424,7 @@ const MortgageCalculator = () => {
                   value={salary}
                 />
               </Col>
-              <Col xxl={3} xl={3} lg={4} md={4} span={5}>
+              <Col xxl={3} xl={3} lg={4} md={4} sm={5} span={5}>
                 <ButtonBase
                   type="primary"
                   size="large"
@@ -450,6 +453,7 @@ const MortgageCalculator = () => {
                 xl={{ span: 3, offset: 4 }}
                 lg={{ span: 3, offset: 4 }}
                 md={{span: 4, offset: 2}}
+                sm={5}
                 offset={1}
                 span={4}
               >
@@ -457,17 +461,17 @@ const MortgageCalculator = () => {
                   <Label fontColor="#000">Ամիս</Label>
                 </TabHeadCell>
               </Col>
-              <Col xxl={3} xl={4} lg={4} md={5} span={6}>
+              <Col xxl={3} xl={4} lg={4} md={5} sm={5} span={6}>
                 <TabHeadCell>
                   <Label fontColor="#000">Համախառն աշխատավարձ</Label>
                 </TabHeadCell>
               </Col>
-              <Col xxl={3} xl={3} lg={4} md={5} span={6}>
+              <Col xxl={3} xl={3} lg={4} md={5} sm={5} span={6}>
                 <TabHeadCell>
                   <Label fontColor="#000">Պարգևավճար</Label>
                 </TabHeadCell>
               </Col>
-              <Col xxl={3} xl={3} lg={4} md={5} span={6}>
+              <Col xxl={3} xl={3} lg={4} md={5} sm={5} span={6}>
                 <TabHeadCell>
                   <Label fontColor="#000">Հավելավճար</Label>
                 </TabHeadCell>
@@ -480,6 +484,7 @@ const MortgageCalculator = () => {
                 xl={{ span: 3, offset: 4 }}
                 lg={{ span: 3, offset: 4 }}
                 md={{span: 4, offset: 2}}
+                sm={5}
                 offset={1}
                 span={4}
               >
@@ -489,7 +494,7 @@ const MortgageCalculator = () => {
                   </Label>
                 </FormLabelCell>
               </Col>
-              <Col xxl={3} xl={4} lg={4} md={5} span={6}>
+              <Col xxl={3} xl={4} lg={4} md={5} sm={5} span={6}>
                 <StyledInputNumber
                   size="large"
                   min={0}
@@ -499,7 +504,7 @@ const MortgageCalculator = () => {
                   ref={monthOne}
                 />
               </Col>
-              <Col xxl={3} xl={3} lg={4} md={5} span={6}>
+              <Col xxl={3} xl={3} lg={4} md={5} sm={5} span={6}>
                 <StyledInputNumber
                   size="large"
                   min={0}
@@ -510,7 +515,7 @@ const MortgageCalculator = () => {
                   value={formikOne.values.bonus_price1}
                 />
               </Col>
-              <Col xxl={3} xl={3} lg={4} md={5} span={6}>
+              <Col xxl={3} xl={3} lg={4} md={5} sm={5} span={6}>
                 <StyledInputNumber
                   size="large"
                   min={0}
@@ -529,6 +534,7 @@ const MortgageCalculator = () => {
                 xl={{ span: 3, offset: 4 }}
                 lg={{ span: 3, offset: 4 }}
                 md={{ span: 4, offset: 2 }}
+                sm={5}
                 offset={1}
                 span={4}
               >
@@ -538,7 +544,7 @@ const MortgageCalculator = () => {
                   </Label>
                 </FormLabelCell>
               </Col>
-              <Col xxl={3} xl={4} lg={4} md={5} span={6}>
+              <Col xxl={3} xl={4} lg={4} md={5} sm={5} span={6}>
                 <StyledInputNumber
                   size="large"
                   min={0}
@@ -548,7 +554,7 @@ const MortgageCalculator = () => {
                   ref={monthTwo}
                 />
               </Col>
-              <Col xxl={3} xl={3} lg={4} md={5} span={6}>
+              <Col xxl={3} xl={3} lg={4} md={5} sm={5} span={6}>
                 <StyledInputNumber
                   size="large"
                   min={0}
@@ -559,7 +565,7 @@ const MortgageCalculator = () => {
                   value={formikOne.values.bonus_price2}
                 />
               </Col>
-              <Col xxl={3} xl={3} lg={4} md={5} span={6}>
+              <Col xxl={3} xl={3} lg={4} md={5} sm={5} span={6}>
                 <StyledInputNumber
                   size="large"
                   min={0}
@@ -578,6 +584,7 @@ const MortgageCalculator = () => {
                 xl={{ span: 3, offset: 4 }}
                 lg={{ span: 3, offset: 4 }}
                 md={{ span: 4, offset: 2 }}
+                sm={5}
                 offset={1}
                 span={4}
               >
@@ -587,7 +594,7 @@ const MortgageCalculator = () => {
                   </Label>
                 </FormLabelCell>
               </Col>
-              <Col xxl={3} xl={4} lg={4} md={5} span={6}>
+              <Col xxl={3} xl={4} lg={4} md={5} sm={5} span={6}>
                 <StyledInputNumber
                   size="large"
                   min={0}
@@ -597,7 +604,7 @@ const MortgageCalculator = () => {
                   ref={monthThree}
                 />
               </Col>
-              <Col xxl={3} xl={3} lg={4} md={5} span={6}>
+              <Col xxl={3} xl={3} lg={4} md={5} sm={5} span={6}>
                 <StyledInputNumber
                   size="large"
                   min={0}
@@ -608,7 +615,7 @@ const MortgageCalculator = () => {
                   value={formikOne.values.bonus_price3}
                 />
               </Col>
-              <Col xxl={3} xl={3} lg={4} md={5} span={6}>
+              <Col xxl={3} xl={3} lg={4} md={5} sm={5} span={6}>
                 <StyledInputNumber
                   size="large"
                   min={0}
@@ -649,6 +656,7 @@ const MortgageCalculator = () => {
                 xl={{ span: 8, offset: 4 }}
                 lg={{ span: 10, offset: 4 }}
                 md={{ span: 14, offset: 2 }}
+                sm={16}
                 offset={1}
                 span={12}
               >
@@ -658,7 +666,7 @@ const MortgageCalculator = () => {
                   </Label>
                 </FormLabelCell>
               </Col>
-              <Col xxl={3} xl={3} lg={4} md={5} span={4}>
+              <Col xxl={3} xl={3} lg={4} md={5} sm={4} span={4}>
                 <ResultCellLight>
                   <Label fontColor="#000">
                     {resultOne}
@@ -672,6 +680,7 @@ const MortgageCalculator = () => {
                 xl={{ span: 8, offset: 4 }}
                 lg={{ span: 10, offset: 4 }}
                 md={{ span: 14, offset: 2 }}
+                sm={16}
                 offset={1}
                 span={12}
               >
@@ -681,7 +690,7 @@ const MortgageCalculator = () => {
                   </Label>
                 </FormLabelCell>
               </Col>
-              <Col xxl={3} xl={3} lg={4} md={5} span={4}>
+              <Col xxl={3} xl={3} lg={4} md={5} sm={4} span={4}>
                 <StyledInputNumber
                   min={0}
                   type="number"
@@ -731,18 +740,19 @@ const MortgageCalculator = () => {
                   xl={{ span: 17, offset: 4 }}
                   lg={{ span: 19, offset: 4 }}
                   md={{ span: 24, offset: 2 }}
+                  sm={24}
                   offset={1}
                   span={20}
                 >
                   <Row gutter={[10, 10]}>
-                    <Col span={14}>
+                    <Col sm={15} span={14}>
                       <ResultCell>
                         <Label fontColor="#fff">
                           Ետ վերադարձվող եկամտային հարկ
                         </Label>
                       </ResultCell>
                     </Col>
-                    <Col span={4}>
+                    <Col sm={5} span={4}>
                       <ResultCell>
                         <Label fontColor="#fff">
                           {resultTwo.data.returnedTaxPrice}

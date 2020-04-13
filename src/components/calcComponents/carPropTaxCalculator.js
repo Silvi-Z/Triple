@@ -169,7 +169,7 @@ const CarPropTaxCalculator = () => {
           md={{ span: 1 }}
         />
         <HeadIcon src={CarImg} alt={'icon'} />
-        <Col xxl={13} xl={14} lg={15} md={19} span={17}>
+        <Col xxl={13} xl={14} lg={15} md={19} sm={19} span={17}>
           <H2Styled>Ավտոմեքենայի գույքահարկի հաշվիչ</H2Styled>
         </Col>
         <Col>
@@ -192,6 +192,7 @@ const CarPropTaxCalculator = () => {
                 xl={{ span: 3, offset: 4 }}
                 lg={{ span: 3, offset: 4 }}
                 md={{ span: 4, offset: 2 }}
+                sm={5}
                 offset={1}
                 span={5}
               >
@@ -201,7 +202,7 @@ const CarPropTaxCalculator = () => {
                   </Label>
                 </FormLabelCell>
               </Col>
-              <Col xxl={8} xl={9} lg={11} md={14} span={13}>
+              <Col xxl={8} xl={9} lg={11} md={14} sm={16} span={13}>
                 <CustomSelect
                   size="large"
                   defaultValue={0}
@@ -242,6 +243,7 @@ const CarPropTaxCalculator = () => {
                 xl={{ span: 9, offset: 4 }}
                 lg={{ span: 11, offset: 4 }}
                 md={{ span: 14, offset: 2 }}
+                sm={16}
                 offset={1}
                 span={14}
               >
@@ -251,7 +253,7 @@ const CarPropTaxCalculator = () => {
                   </Label>
                 </FormLabelCell>
               </Col>
-              <Col xxl={2} xl={3} lg={3} span={4}>
+              <Col xxl={2} xl={3} lg={3} sm={5} span={4}>
                 <CustomSelect
                   size="large"
                   defaultValue={formik.values.date_issue}
@@ -271,6 +273,7 @@ const CarPropTaxCalculator = () => {
                 xl={{ span: 9, offset: 4 }}
                 lg={{ span: 11, offset: 4 }}
                 md={{ span: 14, offset: 2 }}
+                sm={16}
                 offset={1}
                 span={14}
               >
@@ -280,7 +283,7 @@ const CarPropTaxCalculator = () => {
                   </Label>
                 </FormLabelCell>
               </Col>
-              <Col xxl={2} xl={3} lg={3} span={4}>
+              <Col xxl={2} xl={3} lg={3} sm={5} span={4}>
                 <StyledInputNumber
                   size="large"
                   min={0}
@@ -333,16 +336,17 @@ const CarPropTaxCalculator = () => {
                   xl={{ span: 17, offset: 4 }}
                   lg={{ span: 19, offset: 4 }}
                   md={{ span: 24, offset: 2 }}
+                  sm={24}
                   offset={1}
                   span={20}
                 >
                   <Row gutter={[10, 10]}>
-                    <Col span={14}>
+                    <Col sm={15} span={14}>
                       <ResultCell>
                         <Label fontColor="#fff">Վճարման ենթակա գույքահարկ</Label>
                       </ResultCell>
                     </Col>
-                    <Col span={4}>
+                    <Col sm={5} span={4}>
                       <ResultCell>
                         <Label fontColor="#fff">{result.data.result}</Label>
                       </ResultCell>
