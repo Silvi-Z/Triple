@@ -1,3 +1,4 @@
+/*eslint-disable */
 import React from "react"
 import { Form, Input, Button, Checkbox } from "antd"
 import { Col, Row } from "antd"
@@ -61,21 +62,36 @@ const tailLayout = {
 const SharedWrapperCol = styled(Col)`
   padding: 0 1%;
   display: flex;
-  &:hover {
-    cursor: pointer;
-    color: red;
-    a {
-      fill: #da4567;
-    }
-  }
-  @media (min-width: 375px) {
+  justify-content: end;
+ 
+  /* @media (min-width: 375px) {
     a {
       display: contents;
-      fill: #da4567;
+      color: #da4567;
     }
+  } */
+  
+`
+const FaceLink = styled.a`
+  color: black;
+  font-size: 32px;
+  margin-left: 19px;
+  margin-top: -4%;
+  &:hover {
+    cursor: pointer;
+    color: #009db8;
   }
 `
-
+const LinkedinLink = styled.a`
+  color: black;
+  font-size: 32px;
+  margin-left: 19px;
+  margin-top: -4%;
+  &:hover {
+    cursor: pointer;
+    color: #009db8;
+  }
+`
 const Image = styled.img`
   height: 32px;
   width: 32px;
@@ -110,7 +126,7 @@ const Formfield = () => {
       }}
       onFinish={onFinish}
       onFinishFailed={onFinishFailed}
-      noStyle="true"
+      nostyle="true"
     >
       <Form.Item
         label="Ձեր հաղորդագրությունը"
@@ -168,29 +184,34 @@ const Formfield = () => {
         </Col>
         <SharedWrapperCol span={10}>
           <ShareLabel>Կիսվել</ShareLabel>
-          <a
+          <FaceLink
             href="https://www.facebook.com/sharer/sharer.php?u=https://www.facebook.com/TripleCArmenia/"
             target="_blank"
             rel="noopener"
           >
-            {/* <FacebookOutlined
-              style={{
-                color: "#000000",
-                fontSize: "32px",
-                marginLeft: "19px",
-              }}
-            /> */}
-            <Image src={facebookImg} />
-          </a>
-          <Image src={linkedinImg} />
-
-          {/* <LinkedinOutlined
-            style={{
-              color: "#000000",
-              fontSize: "32px",
-              marginLeft: "19px",
-            }}
-          /> */}
+            <FacebookOutlined
+            // style={{
+            //   color: "#000000",
+            //   fontSize: "32px",
+            //   marginLeft: "19px",
+            // }}
+            />
+            {/* <Image src={facebookImg} /> */}
+          </FaceLink>
+          {/* <Image src={linkedinImg} /> */}
+          <LinkedinLink
+            href="https://www.facebook.com/sharer/sharer.php?u=https://www.facebook.com/TripleCArmenia/"
+            target="_blank"
+            rel="noopener"
+          >
+            <LinkedinOutlined
+            // style={{
+            //   color: "#000000",
+            //   fontSize: "32px",
+            //   marginLeft: "19px",
+            // }}
+            />
+          </LinkedinLink>
         </SharedWrapperCol>
       </Row>
     </Form>

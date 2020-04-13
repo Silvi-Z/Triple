@@ -101,9 +101,8 @@ const ListWrapper = styled(Col)`
   }
 `
 const UsefulInform = ({ usedata }) => {
-  console.log(usedata)
   const linklist = usedata.data.links.map(lin => (
-    <a href={lin.link} download={lin.link} target="_blank">
+    <a href={lin.link} download={lin.link} target="_blank" key={lin.id}>
       <li>{lin.label}</li>
     </a>
   ))

@@ -1,3 +1,5 @@
+import { Select } from "antd"
+const { Option } = Select
 import React, { useState, useRef } from 'react';
 import {
   Typography,
@@ -16,6 +18,7 @@ import { apiHelper } from '../../helpers/apiHelper';
 import ContractImg from '../../assets/calcImages/contract.png';
 
 const { Text } = Typography;
+
 
 const HeadIcon = styled.img`
   width: 25px;
@@ -44,10 +47,30 @@ const HeadIcon = styled.img`
 `;
 
 const H2Styled = styled.h2`
-  font-size: 18px;
-  font-weight: normal;
-  margin-left: 10px;
-`;
+
+  font-size: 25px;
+  font-weight: 400;
+`
+
+// const H3Styled = styled.h3`
+//   font-size: 24px;
+//   font-weight: 400;
+// `
+
+// const CustomSelect = styled(Select)`
+//   width: 100%;
+//   ${"" /* height: 55px; */}
+//   border-color: #009db8;
+// `
+
+// const ToggleButton = styled(Button)`
+//   height: 80px;
+//   width: 80px;
+// `
+//   font-size: 18px;
+//   font-weight: normal;
+//   margin-left: 10px;
+// `;
 
 const H3Styled = styled.h3`
   font-size: 15px;
@@ -179,18 +202,32 @@ const initialValuesOne = {
   additional_price3: 0,
 };
 
-const schemaOne =  Yup.object().shape({
-  'price1': Yup.number().required().min(40000),
-  'price2': Yup.number().required().min(40000),
-  'price3': Yup.number().required().min(40000),
-});
+const schemaOne = Yup.object().shape({
+  price1: Yup.number()
+    .required()
+    .min(40000),
+  price2: Yup.number()
+    .required()
+    .min(40000),
+  price3: Yup.number()
+    .required()
+    .min(40000),
+})
 
-const schemaTwo =  Yup.object().shape({
-  'price1': Yup.number().required().min(40000),
-  'price2': Yup.number().required().min(40000),
-  'price3': Yup.number().required().min(40000),
-  'paid_price': Yup.number().required().min(1),
-});
+const schemaTwo = Yup.object().shape({
+  price1: Yup.number()
+    .required()
+    .min(40000),
+  price2: Yup.number()
+    .required()
+    .min(40000),
+  price3: Yup.number()
+    .required()
+    .min(40000),
+  paid_price: Yup.number()
+    .required()
+    .min(1),
+})
 
 const MortgageCalculator = () => {
   const monthOne = useRef(1);
@@ -286,8 +323,8 @@ const MortgageCalculator = () => {
             {showForm ? (
               <MinusOutlined style={{ fontSize: '20px' }} />
             ) : (
-              <PlusOutlined style={{ fontSize: '20px' }} />
-            )}
+                <PlusOutlined style={{ fontSize: '20px' }} />
+              )}
           </ToggleButton>
         </Col>
       </Row>
@@ -613,7 +650,7 @@ const MortgageCalculator = () => {
                 span={8}
               >
                 <ButtonSubmit
-                  disabled={loadingOne  || !formikOne.isValid}
+                  disabled={loadingOne || !formikOne.isValid}
                   size="large"
                   block
                   htmlType="submit"
@@ -682,7 +719,7 @@ const MortgageCalculator = () => {
                 span={8}
               >
                 <ButtonSubmit
-                  disabled={loadingTwo  || !formikTwo.isValid}
+                  disabled={loadingTwo || !formikTwo.isValid}
                   size="large"
                   block
                   htmlType="submit"

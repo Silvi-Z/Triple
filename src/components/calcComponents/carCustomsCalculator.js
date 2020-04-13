@@ -190,8 +190,8 @@ const CarCustomsCalculator = () => {
             {showForm ? (
               <MinusOutlined style={{ fontSize: '20px' }} />
             ) : (
-              <PlusOutlined style={{ fontSize: '20px' }} />
-            )}
+                <PlusOutlined style={{ fontSize: '20px' }} />
+              )}
           </ToggleButton>
         </Col>
       </Row>
