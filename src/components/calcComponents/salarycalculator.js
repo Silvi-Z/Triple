@@ -39,11 +39,14 @@ const H2Styled = styled.h2`
   font-size: 18px;
   font-weight: normal;
   margin-left: 10px;
+  font-family: ArialAMU;
+  color: #000;
 `;
 
 const H3Styled = styled.h3`
   font-size: 15px;
   font-weight: 500;
+  font-family: ArialAMU;
   color: #000;
 `;
 
@@ -234,8 +237,8 @@ const SalaryCalculator = () => {
             {showForm ? (
               <MinusOutlined style={{ fontSize: '20px' }} />
             ) : (
-                <PlusOutlined style={{ fontSize: '20px' }} />
-              )}
+              <PlusOutlined style={{ fontSize: '20px' }} />
+            )}
           </ToggleButton>
         </Col>
       </Row>
@@ -608,7 +611,7 @@ const SalaryCalculator = () => {
                         <Label2 fontColor="#fff">
                           {`${
                             +result.salary_type ? 'Մաքուր' : 'Կեղտոտ'
-                            } աշխատավարձ`}
+                          } աշխատավարձ`}
                         </Label2>
                       </ResultCell>
                     </Col>
@@ -627,7 +630,7 @@ const SalaryCalculator = () => {
                         <Label2 fontColor="#fff">
                           {`${
                             +result.salary_type ? 'Մաքուր' : 'Կեղտոտ'
-                            } պարգևավճար`}
+                          } պարգևավճար`}
                         </Label2>
                       </ResultCell>
                     </Col>

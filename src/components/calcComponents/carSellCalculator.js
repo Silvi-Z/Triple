@@ -48,11 +48,14 @@ const H2Styled = styled.h2`
   font-size: 18px;
   font-weight: normal;
   margin-left: 10px;
+  font-family: ArialAMU;
+  color: #000;
 `;
 
 const H3Styled = styled.h3`
   font-size: 15px;
   font-weight: 500;
+  font-family: ArialAMU;
   color: #000;
 `;
 
