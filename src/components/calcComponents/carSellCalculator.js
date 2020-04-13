@@ -170,7 +170,7 @@ const CarSellCalculator = () => {
       <Row align="middle" gutter={[10, 40]}>
         <Col
           xxl={{ span: 1, offset: 3 }}
-          xl={{ span: 1, offset: 2 }}
+          xl={{ span: 1, offset: 3 }}
           lg={{ span: 1, offset: 2 }}
           md={{ span: 1 }}
         />
@@ -181,9 +181,9 @@ const CarSellCalculator = () => {
         <Col>
           <ToggleButton block onClick={() => toggleForm(!showForm)}>
             {showForm ? (
-              <MinusOutlined style={{ fontSize: '20px' }} />
+              <MinusOutlined style={{ color: '#009db8',  fontSize: '20px' }} />
             ) : (
-              <PlusOutlined style={{ fontSize: '20px' }} />
+              <PlusOutlined style={{ color: '#009db8',  fontSize: '20px' }} />
             )}
           </ToggleButton>
         </Col>
@@ -194,7 +194,7 @@ const CarSellCalculator = () => {
             <Row align="middle" gutter={[10, 10]}>
               <Col
                 xxl={{span: 3, offset: 6}}
-                xl={{span: 4, offset: 4}}
+                xl={{span: 4, offset: 5}}
                 lg={{span: 4, offset: 4}}
                 md={{ span: 5, offset: 2 }}
                 sm={14}
@@ -248,7 +248,7 @@ const CarSellCalculator = () => {
             <Row align="middle" gutter={[10, 10]}>
               <Col
                 xxl={{ span: 8, offset: 6 }}
-                xl={{ span: 9, offset: 4 }}
+                xl={{ span: 9, offset: 5 }}
                 lg={{ span: 11, offset: 4 }}
                 md={{ span: 15, offset: 2 }}
                 sm={14}
@@ -277,7 +277,7 @@ const CarSellCalculator = () => {
             <Row align="middle" gutter={[10, 30]}>
               <Col
                 xxl={{ span: 8, offset: 6 }}
-                xl={{ span: 9, offset: 4 }}
+                xl={{ span: 9, offset: 5 }}
                 lg={{ span: 11, offset: 4 }}
                 md={{ span: 15, offset: 2 }}
                 sm={14}
@@ -306,7 +306,7 @@ const CarSellCalculator = () => {
             <Row align="middle" gutter={[10, 30]}>
               <Col
                 xxl={{ span: 4, offset: 6 }}
-                xl={{ span: 4, offset: 4 }}
+                xl={{ span: 4, offset: 5 }}
                 lg={{ span: 5, offset: 4 }}
                 md={{ span: 7, offset: 2 }}
                 offset={1}
@@ -328,7 +328,7 @@ const CarSellCalculator = () => {
               <Row align="middle" gutter={[5, 30]}>
                 <Col
                   xxl={{ span: 4, offset: 6 }}
-                  xl={{ span: 5, offset: 4 }}
+                  xl={{ span: 5, offset: 5 }}
                   lg={{ span: 8, offset: 4 }}
                   md={{span: 6, offset: 2}}
                   offset={1}
@@ -340,7 +340,7 @@ const CarSellCalculator = () => {
               <Row gutter={[1, 1]}>
                 <Col
                   xxl={{ span: 13, offset: 6 }}
-                  xl={{ span: 17, offset: 4 }}
+                  xl={{ span: 17, offset: 5 }}
                   lg={{ span: 19, offset: 4 }}
                   md={{ span: 24, offset: 2 }}
                   sm={24}

@@ -294,7 +294,7 @@ const MortgageCalculator = () => {
       <Row align="middle" gutter={[10, 40]}>
         <Col
           xxl={{ span: 1, offset: 3 }}
-          xl={{ span: 1, offset: 2 }}
+          xl={{ span: 1, offset: 3 }}
           lg={{ span: 1, offset: 2 }}
           md={{ span: 1 }}
         />
@@ -305,9 +305,9 @@ const MortgageCalculator = () => {
         <Col>
           <ToggleButton block onClick={() => toggleForm(!showForm)}>
             {showForm ? (
-              <MinusOutlined style={{ fontSize: '20px' }} />
+              <MinusOutlined style={{ color: '#009db8',  fontSize: '20px' }} />
             ) : (
-              <PlusOutlined style={{ fontSize: '20px' }} />
+              <PlusOutlined style={{ color: '#009db8',  fontSize: '20px' }} />
             )}
           </ToggleButton>
         </Col>
@@ -319,7 +319,7 @@ const MortgageCalculator = () => {
             <Row align="middle" gutter={[10, 10]}>
               <Col
                 xxl={{ span: 5, offset: 6 }}
-                xl={{ span: 6, offset: 4 }}
+                xl={{ span: 6, offset: 5 }}
                 lg={{ span: 7, offset: 4 }}
                 md={{ span: 9, offset: 2 }}
                 sm={11}
@@ -362,7 +362,7 @@ const MortgageCalculator = () => {
             <Row align="middle" gutter={[10, 10]}>
               <Col
                 xxl={{ span: 5, offset: 6 }}
-                xl={{ span: 6, offset: 4 }}
+                xl={{ span: 6, offset: 5 }}
                 lg={{ span: 7, offset: 4 }}
                 md={{ span: 9, offset: 2 }}
                 sm={11}
@@ -405,7 +405,7 @@ const MortgageCalculator = () => {
             <Row align="middle" gutter={[10, 20]}>
               <Col
                 xxl={{ span: 6, offset: 6 }}
-                xl={{ span: 7, offset: 4 }}
+                xl={{ span: 7, offset: 5 }}
                 lg={{ span: 8, offset: 4 }}
                 md={{ span: 10, offset: 2 }}
                 sm={13}
@@ -453,7 +453,7 @@ const MortgageCalculator = () => {
             <Row align="middle" gutter={[10, 20]}>
               <Col
                 xxl={{ span: 2, offset: 6 }}
-                xl={{ span: 3, offset: 4 }}
+                xl={{ span: 3, offset: 5 }}
                 lg={{ span: 3, offset: 4 }}
                 md={{span: 4, offset: 2}}
                 sm={5}
@@ -484,7 +484,7 @@ const MortgageCalculator = () => {
             <Row align="middle" gutter={[10, 10]}>
               <Col
                 xxl={{ span: 2, offset: 6 }}
-                xl={{ span: 3, offset: 4 }}
+                xl={{ span: 3, offset: 5 }}
                 lg={{ span: 3, offset: 4 }}
                 md={{span: 4, offset: 2}}
                 sm={5}
@@ -534,7 +534,7 @@ const MortgageCalculator = () => {
             <Row align="middle" gutter={[10, 10]}>
               <Col
                 xxl={{ span: 2, offset: 6 }}
-                xl={{ span: 3, offset: 4 }}
+                xl={{ span: 3, offset: 5 }}
                 lg={{ span: 3, offset: 4 }}
                 md={{ span: 4, offset: 2 }}
                 sm={5}
@@ -584,7 +584,7 @@ const MortgageCalculator = () => {
             <Row align="middle" gutter={[10, 30]}>
               <Col
                 xxl={{ span: 2, offset: 6 }}
-                xl={{ span: 3, offset: 4 }}
+                xl={{ span: 3, offset: 5 }}
                 lg={{ span: 3, offset: 4 }}
                 md={{ span: 4, offset: 2 }}
                 sm={5}
@@ -634,7 +634,7 @@ const MortgageCalculator = () => {
             <Row align="middle" gutter={[10, 30]}>
               <Col
                 xxl={{ span: 4, offset: 6 }}
-                xl={{ span: 4, offset: 4 }}
+                xl={{ span: 4, offset: 5 }}
                 lg={{ span: 5, offset: 4 }}
                 md={{ span: 7, offset: 2 }}
                 offset={1}
@@ -656,7 +656,7 @@ const MortgageCalculator = () => {
             <Row align="middle" gutter={[10, 10]}>
               <Col
                 xxl={{ span: 7, offset: 6 }}
-                xl={{ span: 8, offset: 4 }}
+                xl={{ span: 8, offset: 5 }}
                 lg={{ span: 10, offset: 4 }}
                 md={{ span: 14, offset: 2 }}
                 sm={16}
@@ -680,7 +680,7 @@ const MortgageCalculator = () => {
             <Row align="middle" gutter={[10, 30]}>
               <Col
                 xxl={{ span: 7, offset: 6 }}
-                xl={{ span: 8, offset: 4 }}
+                xl={{ span: 8, offset: 5 }}
                 lg={{ span: 10, offset: 4 }}
                 md={{ span: 14, offset: 2 }}
                 sm={16}
@@ -705,7 +705,7 @@ const MortgageCalculator = () => {
             <Row align="middle" gutter={[10, 30]}>
               <Col
                 xxl={{ span: 4, offset: 6 }}
-                xl={{ span: 4, offset: 4 }}
+                xl={{ span: 4, offset: 5 }}
                 lg={{ span: 5, offset: 4 }}
                 md={{ span: 7, offset: 2 }}
                 offset={1}
@@ -727,7 +727,7 @@ const MortgageCalculator = () => {
               <Row align="middle" gutter={[5, 10]}>
                 <Col
                   xxl={{ span: 4, offset: 6 }}
-                  xl={{ span: 5, offset: 4 }}
+                  xl={{ span: 5, offset: 5 }}
                   lg={{ span: 8, offset: 4 }}
                   md={{span: 6, offset: 2}}
                   offset={1}
@@ -739,8 +739,8 @@ const MortgageCalculator = () => {
 
               <Row>
                 <Col
-                  xxl={{ span: 14, offset: 5 }}
-                  xl={{ span: 17, offset: 4 }}
+                  xxl={{ span: 14, offset: 6 }}
+                  xl={{ span: 17, offset: 5 }}
                   lg={{ span: 19, offset: 4 }}
                   md={{ span: 24, offset: 2 }}
                   sm={24}

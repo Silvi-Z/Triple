@@ -230,7 +230,7 @@ const SalaryCalculator = () => {
       <Row align="middle" gutter={[10, 40]}>
         <Col
           xxl={{ span: 1, offset: 3 }}
-          xl={{ span: 1, offset: 2 }}
+          xl={{ span: 1, offset: 3 }}
           lg={{ span: 1, offset: 2 }}
           md={{ span: 1 }}
         />
@@ -241,9 +241,9 @@ const SalaryCalculator = () => {
         <Col>
           <ToggleButton block onClick={() => toggleForm(!showForm)}>
             {showForm ? (
-              <MinusOutlined style={{ fontSize: '20px' }} />
+              <MinusOutlined style={{ color: '#009db8',  fontSize: '20px' }} />
             ) : (
-              <PlusOutlined style={{ fontSize: '20px' }} />
+              <PlusOutlined style={{ color: '#009db8',  fontSize: '20px' }} />
             )}
           </ToggleButton>
         </Col>
@@ -255,7 +255,7 @@ const SalaryCalculator = () => {
             <Row align="middle" gutter={[10, 10]}>
               <Col
                 xxl={{ span: 5, offset: 6 }}
-                xl={{ span: 6, offset: 4 }}
+                xl={{ span: 6, offset: 5 }}
                 lg={{ span: 7, offset: 4 }}
                 md={{ span: 9, offset: 2 }}
                 sm={11}
@@ -290,7 +290,7 @@ const SalaryCalculator = () => {
             <Row align="middle" gutter={[10, 10]}>
               <Col
                 xxl={{ span: 3, offset: 6 }}
-                xl={{ span: 3, offset: 4 }}
+                xl={{ span: 3, offset: 5 }}
                 lg={{ span: 4, offset: 4 }}
                 md={{ span: 5, offset: 2 }}
                 sm={7}
@@ -359,7 +359,7 @@ const SalaryCalculator = () => {
             <Row align="middle" gutter={[10, 10]}>
               <Col
                 xxl={{ span: 7, offset: 6 }}
-                xl={{ span: 9, offset: 4 }}
+                xl={{ span: 9, offset: 5 }}
                 lg={{ span: 10, offset: 4 }}
                 md={{ span: 13, offset: 2 }}
                 sm={17}
@@ -388,7 +388,7 @@ const SalaryCalculator = () => {
             <Row align="middle" gutter={[10, 10]}>
               <Col
                 xxl={{ span: 7, offset: 6 }}
-                xl={{ span: 9, offset: 4 }}
+                xl={{ span: 9, offset: 5 }}
                 lg={{ span: 10, offset: 4 }}
                 md={{ span: 13, offset: 2 }}
                 sm={17}
@@ -416,7 +416,7 @@ const SalaryCalculator = () => {
             <Row align="middle" gutter={[10, 10]}>
               <Col
                 xxl={{ span: 8, offset: 6 }}
-                xl={{ span: 10, offset: 4 }}
+                xl={{ span: 10, offset: 5 }}
                 lg={{ span: 11, offset: 4 }}
                 md={{ span: 13, offset: 2 }}
                 sm={17}
@@ -466,7 +466,7 @@ const SalaryCalculator = () => {
             <Row align="middle" gutter={[10, 30]}>
               <Col
                 xxl={{ span: 8, offset: 6 }}
-                xl={{ span: 10, offset: 4 }}
+                xl={{ span: 10, offset: 5 }}
                 lg={{ span: 11, offset: 4 }}
                 md={{ span: 13, offset: 2 }}
                 sm={17}
@@ -516,7 +516,7 @@ const SalaryCalculator = () => {
             <Row align="middle" gutter={[10, 30]}>
               <Col
                 xxl={{ span: 4, offset: 6 }}
-                xl={{ span: 4, offset: 4 }}
+                xl={{ span: 4, offset: 5 }}
                 lg={{ span: 5, offset: 4 }}
                 md={{ span: 7, offset: 2 }}
                 offset={1}
@@ -537,7 +537,7 @@ const SalaryCalculator = () => {
               <Row align="middle" gutter={[5, 10]}>
                 <Col
                   xxl={{ span: 4, offset: 6 }}
-                  xl={{ span: 4, offset: 4 }}
+                  xl={{ span: 4, offset: 5 }}
                   lg={{ span: 5, offset: 4 }}
                   md={{span: 6, offset: 2}}
                   offset={1}
@@ -550,7 +550,7 @@ const SalaryCalculator = () => {
               <Row>
                 <Col
                   xxl={{ span: 7, offset: 6 }}
-                  xl={{ span: 9, offset: 4 }}
+                  xl={{ span: 9, offset: 5 }}
                   lg={{ span: 9, offset: 4 }}
                   md={{ span: 21, offset: 2 }}
                   offset={1}

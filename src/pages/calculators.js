@@ -35,7 +35,7 @@ const Calculators = () => (
     <HeaderRow>
       <Col
         xxl={{ span: 8, offset: 4 }}
-        xl={{ span: 9, offset: 3 }}
+        xl={{ span: 9, offset: 4 }}
         lg={{ span: 8, offset: 3 }}
         md={{ span: 15, offset: 1 }}
         sm={16}
@@ -47,7 +47,7 @@ const Calculators = () => (
     <Row gutter={[1, 60]}>
       <Col
         xxl={{ span: 16, offset: 4 }}
-        xl={{ span: 14, offset: 3 }}
+        xl={{ span: 14, offset: 4 }}
         lg={{ span: 15, offset: 3 }}
         md={{ span: 22, offset: 1 }}
         sm={24}
