@@ -235,7 +235,7 @@ const SalaryCalculator = () => {
           md={{ span: 1 }}
         />
         <HeadIcon src={SalaryImg} alt={'icon'} />
-        <Col xxl={13} xl={14} lg={15} md={19} sm={19} span={17}>
+        <Col xxl={14} xl={14} lg={15} md={19} sm={19} span={17}>
           <H2Styled>Աշխատավարձի հաշվիչ</H2Styled>
         </Col>
         <Col>
@@ -254,7 +254,7 @@ const SalaryCalculator = () => {
           <form onSubmit={formik.handleSubmit}>
             <Row align="middle" gutter={[10, 10]}>
               <Col
-                xxl={{ span: 5, offset: 5 }}
+                xxl={{ span: 5, offset: 6 }}
                 xl={{ span: 6, offset: 4 }}
                 lg={{ span: 7, offset: 4 }}
                 md={{ span: 9, offset: 2 }}
@@ -289,7 +289,7 @@ const SalaryCalculator = () => {
 
             <Row align="middle" gutter={[10, 10]}>
               <Col
-                xxl={{ span: 3, offset: 5 }}
+                xxl={{ span: 3, offset: 6 }}
                 xl={{ span: 3, offset: 4 }}
                 lg={{ span: 4, offset: 4 }}
                 md={{ span: 5, offset: 2 }}
@@ -358,7 +358,7 @@ const SalaryCalculator = () => {
 
             <Row align="middle" gutter={[10, 10]}>
               <Col
-                xxl={{ span: 7, offset: 5 }}
+                xxl={{ span: 7, offset: 6 }}
                 xl={{ span: 9, offset: 4 }}
                 lg={{ span: 10, offset: 4 }}
                 md={{ span: 13, offset: 2 }}
@@ -387,7 +387,7 @@ const SalaryCalculator = () => {
 
             <Row align="middle" gutter={[10, 10]}>
               <Col
-                xxl={{ span: 7, offset: 5 }}
+                xxl={{ span: 7, offset: 6 }}
                 xl={{ span: 9, offset: 4 }}
                 lg={{ span: 10, offset: 4 }}
                 md={{ span: 13, offset: 2 }}
@@ -415,7 +415,7 @@ const SalaryCalculator = () => {
 
             <Row align="middle" gutter={[10, 10]}>
               <Col
-                xxl={{ span: 8, offset: 5 }}
+                xxl={{ span: 8, offset: 6 }}
                 xl={{ span: 10, offset: 4 }}
                 lg={{ span: 11, offset: 4 }}
                 md={{ span: 13, offset: 2 }}
@@ -465,7 +465,7 @@ const SalaryCalculator = () => {
 
             <Row align="middle" gutter={[10, 30]}>
               <Col
-                xxl={{ span: 8, offset: 5 }}
+                xxl={{ span: 8, offset: 6 }}
                 xl={{ span: 10, offset: 4 }}
                 lg={{ span: 11, offset: 4 }}
                 md={{ span: 13, offset: 2 }}
@@ -515,7 +515,7 @@ const SalaryCalculator = () => {
 
             <Row align="middle" gutter={[10, 30]}>
               <Col
-                xxl={{ span: 4, offset: 5 }}
+                xxl={{ span: 4, offset: 6 }}
                 xl={{ span: 4, offset: 4 }}
                 lg={{ span: 5, offset: 4 }}
                 md={{ span: 7, offset: 2 }}
@@ -536,7 +536,7 @@ const SalaryCalculator = () => {
             <>
               <Row align="middle" gutter={[5, 10]}>
                 <Col
-                  xxl={{ span: 4, offset: 5 }}
+                  xxl={{ span: 4, offset: 6 }}
                   xl={{ span: 4, offset: 4 }}
                   lg={{ span: 5, offset: 4 }}
                   md={{span: 6, offset: 2}}
@@ -549,7 +549,7 @@ const SalaryCalculator = () => {
 
               <Row>
                 <Col
-                  xxl={{ span: 9, offset: 5 }}
+                  xxl={{ span: 7, offset: 6 }}
                   xl={{ span: 9, offset: 4 }}
                   lg={{ span: 9, offset: 4 }}
                   md={{ span: 21, offset: 2 }}
@@ -557,7 +557,7 @@ const SalaryCalculator = () => {
                   span={20}
                 >
                   <Row gutter={[10, 10]}>
-                    <Col span={15}>
+                    <Col span={16}>
                       <ResultCell>
                         <Label fontColor="#fff">Ընդհանուր պահում</Label>
                       </ResultCell>
@@ -570,7 +570,7 @@ const SalaryCalculator = () => {
                   </Row>
 
                   <Row gutter={[10, 10]}>
-                    <Col span={15}>
+                    <Col span={16}>
                       <ResultCell>
                         <Label fontColor="#fff">Եկամտային հարկ</Label>
                       </ResultCell>
@@ -583,7 +583,7 @@ const SalaryCalculator = () => {
                   </Row>
 
                   <Row gutter={[10, 10]}>
-                    <Col span={15}>
+                    <Col span={16}>
                       <ResultCell>
                         <Label fontColor="#fff">Կենսաթոշակային վճար</Label>
                       </ResultCell>
@@ -596,7 +596,7 @@ const SalaryCalculator = () => {
                   </Row>
 
                   <Row gutter={[10, 10]}>
-                    <Col span={15}>
+                    <Col span={16}>
                       <ResultCell>
                         <Label fontColor="#fff">Դրոշմանիշային վճար</Label>
                       </ResultCell>
@@ -627,7 +627,7 @@ const SalaryCalculator = () => {
                         </Label2>
                       </ResultCell>
                     </Col>
-                    <Col span={9}>
+                    <Col span={7}>
                       <ResultCell large>
                         <Label2 fontColor="#fff">
                           {result.salary}
@@ -646,7 +646,7 @@ const SalaryCalculator = () => {
                         </Label2>
                       </ResultCell>
                     </Col>
-                    <Col span={9}>
+                    <Col span={7}>
                       <ResultCell large>
                         <Label2 fontColor="#fff">
                           {result.bonusSalary}

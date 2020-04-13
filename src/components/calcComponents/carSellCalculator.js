@@ -175,7 +175,7 @@ const CarSellCalculator = () => {
           md={{ span: 1 }}
         />
         <HeadIcon src={CarImg} alt={'icon'} />
-        <Col xxl={13} xl={14} lg={15} md={19} sm={19} span={17}>
+        <Col xxl={14} xl={14} lg={15} md={19} sm={19} span={17}>
           <H2Styled>Ավտոմեքենայի վաճառքի հաշվիչ</H2Styled>
         </Col>
         <Col>
@@ -193,7 +193,7 @@ const CarSellCalculator = () => {
           <form onSubmit={formik.handleSubmit}>
             <Row align="middle" gutter={[10, 10]}>
               <Col
-                xxl={{span: 3, offset: 5}}
+                xxl={{span: 3, offset: 6}}
                 xl={{span: 4, offset: 4}}
                 lg={{span: 4, offset: 4}}
                 md={{ span: 5, offset: 2 }}
@@ -247,7 +247,7 @@ const CarSellCalculator = () => {
 
             <Row align="middle" gutter={[10, 10]}>
               <Col
-                xxl={{ span: 8, offset: 5 }}
+                xxl={{ span: 8, offset: 6 }}
                 xl={{ span: 9, offset: 4 }}
                 lg={{ span: 11, offset: 4 }}
                 md={{ span: 15, offset: 2 }}
@@ -276,7 +276,7 @@ const CarSellCalculator = () => {
 
             <Row align="middle" gutter={[10, 30]}>
               <Col
-                xxl={{ span: 8, offset: 5 }}
+                xxl={{ span: 8, offset: 6 }}
                 xl={{ span: 9, offset: 4 }}
                 lg={{ span: 11, offset: 4 }}
                 md={{ span: 15, offset: 2 }}
@@ -305,7 +305,7 @@ const CarSellCalculator = () => {
 
             <Row align="middle" gutter={[10, 30]}>
               <Col
-                xxl={{ span: 4, offset: 5 }}
+                xxl={{ span: 4, offset: 6 }}
                 xl={{ span: 4, offset: 4 }}
                 lg={{ span: 5, offset: 4 }}
                 md={{ span: 7, offset: 2 }}
@@ -327,7 +327,7 @@ const CarSellCalculator = () => {
             <>
               <Row align="middle" gutter={[5, 30]}>
                 <Col
-                  xxl={{ span: 4, offset: 5 }}
+                  xxl={{ span: 4, offset: 6 }}
                   xl={{ span: 5, offset: 4 }}
                   lg={{ span: 8, offset: 4 }}
                   md={{span: 6, offset: 2}}
@@ -339,7 +339,7 @@ const CarSellCalculator = () => {
               </Row>
               <Row gutter={[1, 1]}>
                 <Col
-                  xxl={{ span: 13, offset: 5 }}
+                  xxl={{ span: 13, offset: 6 }}
                   xl={{ span: 17, offset: 4 }}
                   lg={{ span: 19, offset: 4 }}
                   md={{ span: 24, offset: 2 }}
