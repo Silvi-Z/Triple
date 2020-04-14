@@ -51,7 +51,7 @@ const Calculators = () => (
         lg={{ span: 15, offset: 3 }}
         md={{ span: 22, offset: 1 }}
         sm={24}
-        span={16}
+        span={24}
       >
         <TextStyled>
           “Թրիփլ Քնսալթինգ” ընկերությունը տրամադրում է “Հաշվիչ” ծառայություն,

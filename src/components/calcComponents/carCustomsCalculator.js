@@ -19,38 +19,58 @@ import CarImg from '../../assets/calcImages/carCustoms.png';
 const { Option } = Select;
 const { Text } = Typography;
 
-const HeadIcon = styled.img`
+const HeadIconWrapper = styled.div`
   width: 25px;
   height: 25px;
-  margin-right: 5px;
   @media (min-width: 768px) {
     width: 30px;
     height: 30px;
-    margin-right: 6px;
   }
   @media (min-width: 992px) {
     width: 35px;
     height: 35px;
-    margin-right: 7px;
   }
   @media (min-width: 1200px) {
     width: 40px;
     height: 40px;
-    margin-right: 8px;
   }
   @media (min-width: 1600px) {
     width: 50px;
     height: 50px;
-    margin-right: 10px;
+  }
+`;
+
+const HeadIcon = styled.img`
+  width: 25px;
+  height: 25px;
+  @media (min-width: 768px) {
+    width: 30px;
+    height: 30px;
+  }
+  @media (min-width: 992px) {
+    width: 35px;
+    height: 35px;
+  }
+  @media (min-width: 1200px) {
+    width: 40px;
+    height: 40px;
+  }
+  @media (min-width: 1600px) {
+    width: 50px;
+    height: 50px;
   }
 `;
 
 const H2Styled = styled.h2`
-  font-size: 18px;
   font-weight: normal;
+  margin-bottom: 0;
   margin-left: 10px;
   font-family: ArialAMU;
   color: #000;
+  font-size: 17px;
+  @media (min-width: 768px) {
+    font-size: 18px;
+  }
 `;
 
 const H3Styled = styled.h3`
@@ -66,8 +86,28 @@ const CustomSelect = styled(Select)`
 `;
 
 const ToggleButton = styled(Button)`
-  height: 60px;
-  width: 60px;
+  height: 48px;
+  width: 48px;
+  @media (min-width: 992px) {
+    height: 60px;
+    width: 60px;
+  }
+`;
+
+const StyledMinus = styled(MinusOutlined)`
+  color: #009db8;
+  font-size: 16px;
+  @media (min-width: 992px) {
+    font-size: 20px;
+  }
+`;
+
+const StyledPlus = styled(PlusOutlined)`
+  color: #009db8;
+  font-size: 16px;
+  @media (min-width: 992px) {
+    font-size: 20px;
+  }
 `;
 
 const Label = styled(Text)`
@@ -75,7 +115,10 @@ const Label = styled(Text)`
   font-weight: bold;
   line-height: 20px;
   color: ${props => props.fontColor};
-  font-size: 13px;
+  font-size: 12px;
+  @media (min-width: 576px) {
+    font-size: 13px;
+  }
   @media (min-width: 768px) {
     font-size: 14px;
   }
@@ -185,22 +228,21 @@ const CarCustomsCalculator = () => {
     <>
       <Row align="middle" gutter={[10, 40]}>
         <Col
-          xxl={{ span: 1, offset: 3 }}
-          xl={{ span: 1, offset: 3 }}
-          lg={{ span: 1, offset: 2 }}
-          md={{ span: 1 }}
-        />
-        <HeadIcon src={CarImg} alt={'icon'} />
-        <Col xxl={14} xl={14} lg={15} md={19} sm={19} span={17}>
+          xxl={{ offset: 4 }}
+          xl={{ offset: 4 }}
+          lg={{ offset: 3 }}
+          md={{ offset: 1 }}
+        >
+          <HeadIconWrapper>
+            <HeadIcon src={CarImg} alt={'icon'} />
+          </HeadIconWrapper>
+        </Col>
+        <Col xxl={14} xl={14} lg={15} md={19} sm={19} span={18}>
           <H2Styled>Ավտոմեքենայի մաքսազերծման վճարի հաշվիչ</H2Styled>
         </Col>
         <Col>
           <ToggleButton block onClick={() => toggleForm(!showForm)}>
-            {showForm ? (
-              <MinusOutlined style={{ color: '#009db8',  fontSize: '20px' }} />
-            ) : (
-              <PlusOutlined style={{ color: '#009db8',  fontSize: '20px' }} />
-            )}
+            {showForm ? <StyledMinus /> : <StyledPlus />}
           </ToggleButton>
         </Col>
       </Row>
@@ -214,9 +256,8 @@ const CarCustomsCalculator = () => {
                 xl={{ span: 6, offset: 5 }}
                 lg={{ span: 7, offset: 4 }}
                 md={{ span: 9, offset: 2 }}
-                sm={11}
-                offset={1}
-                span={7}
+                sm={{ span: 11, offset: 1 }}
+                span={11}
               >
                 <ButtonBase
                   type={formik.values.person ? 'primary' : 'default'}
@@ -233,7 +274,7 @@ const CarCustomsCalculator = () => {
                   </Label>
                 </ButtonBase>
               </Col>
-              <Col xxl={5} xl={6} lg={7} md={9} sm={11} span={7}>
+              <Col xxl={5} xl={6} lg={7} md={9} sm={11} span={11}>
                 <ButtonBase
                   type={!formik.values.person ? 'primary' : 'default'}
                   size="large"
@@ -257,9 +298,8 @@ const CarCustomsCalculator = () => {
                 xl={{ span: 6, offset: 5 }}
                 lg={{ span: 7, offset: 4 }}
                 md={{ span: 9, offset: 2 }}
-                sm={11}
-                offset={1}
-                span={7}
+                sm={{ span: 11, offset: 1 }}
+                span={11}
               >
                 <ButtonBase
                   type={formik.values.country ? 'primary' : 'default'}
@@ -276,7 +316,7 @@ const CarCustomsCalculator = () => {
                   </Label>
                 </ButtonBase>
               </Col>
-              <Col xxl={5} xl={6} lg={7} md={9} sm={11} span={7}>
+              <Col xxl={5} xl={6} lg={7} md={9} sm={11} span={11}>
                 <ButtonBase
                   type={!formik.values.country ? 'primary' : 'default'}
                   size="large"
@@ -300,9 +340,8 @@ const CarCustomsCalculator = () => {
                 xl={{ span: 9, offset: 5 }}
                 lg={{ span: 11, offset: 4 }}
                 md={{ span: 14, offset: 2 }}
-                sm={17}
-                offset={1}
-                span={14}
+                sm={{ span: 17, offset: 1 }}
+                span={17}
               >
                 <FormLabelCell>
                   <Label fontColor="#000">
@@ -310,7 +349,7 @@ const CarCustomsCalculator = () => {
                   </Label>
                 </FormLabelCell>
               </Col>
-              <Col xxl={2} xl={3} lg={3} sm={5} span={4}>
+              <Col xxl={2} xl={3} lg={3} sm={5} span={5}>
                 <CustomSelect
                   size="large"
                   defaultValue={formik.values.date_issue}
@@ -331,9 +370,8 @@ const CarCustomsCalculator = () => {
                 xl={{ span: 9, offset: 5 }}
                 lg={{ span: 11, offset: 4 }}
                 md={{ span: 11, offset: 2 }}
-                sm={13}
-                offset={1}
-                span={14}
+                sm={{ span: 13, offset: 1 }}
+                span={13}
               >
                 <FormLabelCell>
                   <Label fontColor="#000">
@@ -341,7 +379,7 @@ const CarCustomsCalculator = () => {
                   </Label>
                 </FormLabelCell>
               </Col>
-              <Col xxl={2} xl={3} lg={3} md={4} sm={5} span={4}>
+              <Col xxl={2} xl={3} lg={3} md={4} sm={5} span={6}>
                 <StyledInputNumber
                   size="large"
                   min={51}
@@ -367,9 +405,8 @@ const CarCustomsCalculator = () => {
                 xl={{ span: 9, offset: 5 }}
                 lg={{ span: 11, offset: 4 }}
                 md={{ span: 11, offset: 2 }}
-                sm={13}
-                offset={1}
-                span={14}
+                sm={{ span: 13, offset: 1 }}
+                span={11}
               >
                 <FormLabelCell>
                   <Label fontColor="#000">
@@ -377,7 +414,7 @@ const CarCustomsCalculator = () => {
                   </Label>
                 </FormLabelCell>
               </Col>
-              <Col xxl={2} xl={3} lg={3} md={4} sm={5} span={4}>
+              <Col xxl={2} xl={3} lg={3} md={4} sm={5} span={6}>
                 <StyledInputNumber
                   size="large"
                   min={0}
@@ -388,7 +425,7 @@ const CarCustomsCalculator = () => {
                   value={formik.values.car_price}
                 />
               </Col>
-              <Col xxl={2} xl={2} lg={3} md={3} span={4}>
+              <Col xxl={2} xl={2} lg={3} md={3} span={5}>
                 <CustomSelect
                   size="large"
                   defaultValue={formik.values.currency}
@@ -416,7 +453,7 @@ const CarCustomsCalculator = () => {
                 xl={{ span: 4, offset: 5 }}
                 lg={{ span: 5, offset: 4 }}
                 md={{ span: 7, offset: 2 }}
-                offset={1}
+                sm={{ span: 7, offset: 2 }}
                 span={8}
               >
                 <ButtonSubmit
@@ -453,7 +490,7 @@ const CarCustomsCalculator = () => {
                   md={{ span: 24, offset: 2 }}
                   sm={24}
                   offset={1}
-                  span={20}
+                  span={24}
                 >
                   <Row gutter={[10, 10]}>
                     <Col sm={15} span={14}>
@@ -461,7 +498,7 @@ const CarCustomsCalculator = () => {
                         <Label fontColor="#fff">Վճարման ենթակա գումար AMD</Label>
                       </ResultCell>
                     </Col>
-                    <Col sm={5} span={4}>
+                    <Col xs={6} sm={5} span={4}>
                       <ResultCell>
                         <Label fontColor="#fff">{result.data.AMD}</Label>
                       </ResultCell>
@@ -474,7 +511,7 @@ const CarCustomsCalculator = () => {
                         <Label fontColor="#fff">Վճարման ենթակա գումար USD</Label>
                       </ResultCell>
                     </Col>
-                    <Col sm={5} span={4}>
+                    <Col xs={6} sm={5} span={4}>
                       <ResultCell>
                         <Label fontColor="#fff">{result.data.USD}</Label>
                       </ResultCell>
@@ -487,7 +524,7 @@ const CarCustomsCalculator = () => {
                         <Label fontColor="#fff">Վճարման ենթակա գումար EUR</Label>
                       </ResultCell>
                     </Col>
-                    <Col sm={5} span={4}>
+                    <Col xs={6} sm={5} span={4}>
                       <ResultCell>
                         <Label fontColor="#fff">{result.data.EUR}</Label>
                       </ResultCell>
@@ -500,7 +537,7 @@ const CarCustomsCalculator = () => {
                         <Label fontColor="#fff">Վճարման ենթակա գումար RUB</Label>
                       </ResultCell>
                     </Col>
-                    <Col sm={5} span={4}>
+                    <Col xs={6} sm={5} span={4}>
                       <ResultCell>
                         <Label fontColor="#fff">{result.data.RUB}</Label>
                       </ResultCell>
