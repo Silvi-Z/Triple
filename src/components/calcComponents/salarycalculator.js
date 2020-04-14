@@ -9,38 +9,58 @@ import SalaryImg from '../../assets/calcImages/salary.png';
 
 const { Text } = Typography;
 
-const HeadIcon = styled.img`
+const HeadIconWrapper = styled.div`
   width: 25px;
   height: 25px;
-  margin-right: 5px;
   @media (min-width: 768px) {
     width: 30px;
     height: 30px;
-    margin-right: 6px;
   }
   @media (min-width: 992px) {
     width: 35px;
     height: 35px;
-    margin-right: 7px;
   }
   @media (min-width: 1200px) {
     width: 40px;
     height: 40px;
-    margin-right: 8px;
   }
   @media (min-width: 1600px) {
     width: 50px;
     height: 50px;
-    margin-right: 10px;
+  }
+`;
+
+const HeadIcon = styled.img`
+  width: 25px;
+  height: 25px;
+  @media (min-width: 768px) {
+    width: 30px;
+    height: 30px;
+  }
+  @media (min-width: 992px) {
+    width: 35px;
+    height: 35px;
+  }
+  @media (min-width: 1200px) {
+    width: 40px;
+    height: 40px;
+  }
+  @media (min-width: 1600px) {
+    width: 50px;
+    height: 50px;
   }
 `;
 
 const H2Styled = styled.h2`
-  font-size: 18px;
   font-weight: normal;
+  margin-bottom: 0;
   margin-left: 10px;
   font-family: ArialAMU;
   color: #000;
+  font-size: 17px;
+  @media (min-width: 768px) {
+    font-size: 18px;
+  }
 `;
 
 const H3Styled = styled.h3`
@@ -51,8 +71,28 @@ const H3Styled = styled.h3`
 `;
 
 const ToggleButton = styled(Button)`
-  height: 60px;
-  width: 60px;
+  height: 48px;
+  width: 48px;
+  @media (min-width: 992px) {
+    height: 60px;
+    width: 60px;
+  }
+`;
+
+const StyledMinus = styled(MinusOutlined)`
+  color: #009db8;
+  font-size: 16px;
+  @media (min-width: 992px) {
+    font-size: 20px;
+  }
+`;
+
+const StyledPlus = styled(PlusOutlined)`
+  color: #009db8;
+  font-size: 16px;
+  @media (min-width: 992px) {
+    font-size: 20px;
+  }
 `;
 
 const ButtonBase = styled(Button)`
@@ -90,7 +130,10 @@ const Label = styled(Text)`
   font-weight: bold;
   line-height: 20px;
   color: ${props => props.fontColor};
-  font-size: 13px;
+  font-size: 12px;
+  @media (min-width: 576px) {
+    font-size: 13px;
+  }
   @media (min-width: 768px) {
     font-size: 14px;
   }
@@ -101,7 +144,10 @@ const Label2 = styled(Text)`
   font-weight: bold;
   line-height: 20px;
   color: ${props => props.fontColor};
-  font-size: 15px;
+  font-size: 14px;
+  @media (min-width: 576px) {
+    font-size: 15px;
+  }
   @media (min-width: 768px) {
     font-size: 16px;
   }
@@ -234,17 +280,17 @@ const SalaryCalculator = () => {
           lg={{ span: 1, offset: 2 }}
           md={{ span: 1 }}
         />
-        <HeadIcon src={SalaryImg} alt={'icon'} />
+        <Col>
+          <HeadIconWrapper>
+            <HeadIcon src={SalaryImg} alt={'icon'} />
+          </HeadIconWrapper>
+        </Col>
         <Col xxl={14} xl={14} lg={15} md={19} sm={19} span={17}>
           <H2Styled>Աշխատավարձի հաշվիչ</H2Styled>
         </Col>
         <Col>
           <ToggleButton block onClick={() => toggleForm(!showForm)}>
-            {showForm ? (
-              <MinusOutlined style={{ color: '#009db8',  fontSize: '20px' }} />
-            ) : (
-              <PlusOutlined style={{ color: '#009db8',  fontSize: '20px' }} />
-            )}
+            {showForm ? <StyledMinus /> : <StyledPlus />}
           </ToggleButton>
         </Col>
       </Row>
