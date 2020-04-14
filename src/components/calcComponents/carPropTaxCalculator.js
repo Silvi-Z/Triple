@@ -212,17 +212,16 @@ const CarPropTaxCalculator = () => {
     <>
       <Row align="middle" gutter={[10, 50]}>
         <Col
-          xxl={{ span: 1, offset: 3 }}
-          xl={{ span: 1, offset: 3 }}
-          lg={{ span: 1, offset: 2 }}
-          md={{ span: 1 }}
-        />
-        <Col>
+          xxl={{ offset: 4 }}
+          xl={{ offset: 4 }}
+          lg={{ offset: 3 }}
+          md={{ offset: 1 }}
+        >
           <HeadIconWrapper>
             <HeadIcon src={CarImg} alt={'icon'} />
           </HeadIconWrapper>
         </Col>
-        <Col xxl={14} xl={14} lg={15} md={19} sm={19} span={17}>
+        <Col xxl={14} xl={14} lg={15} md={19} sm={19} span={18}>
           <H2Styled>Ավտոմեքենայի գույքահարկի հաշվիչ</H2Styled>
         </Col>
         <Col>
@@ -241,9 +240,8 @@ const CarPropTaxCalculator = () => {
                 xl={{ span: 3, offset: 5 }}
                 lg={{ span: 3, offset: 4 }}
                 md={{ span: 4, offset: 2 }}
-                sm={5}
-                offset={1}
-                span={5}
+                sm={{ span: 5, offset: 1 }}
+                span={6}
               >
                 <FormLabelCell>
                   <Label fontColor="#000">
@@ -251,7 +249,7 @@ const CarPropTaxCalculator = () => {
                   </Label>
                 </FormLabelCell>
               </Col>
-              <Col xxl={8} xl={9} lg={11} md={14} sm={17} span={13}>
+              <Col xxl={8} xl={9} lg={11} md={14} sm={17} span={17}>
                 <CustomSelect
                   size="large"
                   defaultValue={0}
@@ -292,9 +290,8 @@ const CarPropTaxCalculator = () => {
                 xl={{ span: 9, offset: 5 }}
                 lg={{ span: 11, offset: 4 }}
                 md={{ span: 14, offset: 2 }}
-                sm={17}
-                offset={1}
-                span={14}
+                sm={{ span: 17, offset: 1 }}
+                span={17}
               >
                 <FormLabelCell>
                   <Label fontColor="#000">
@@ -302,7 +299,7 @@ const CarPropTaxCalculator = () => {
                   </Label>
                 </FormLabelCell>
               </Col>
-              <Col xxl={2} xl={3} lg={3} sm={5} span={4}>
+              <Col xxl={2} xl={3} lg={3} sm={5} span={6}>
                 <CustomSelect
                   size="large"
                   defaultValue={formik.values.date_issue}
@@ -322,9 +319,8 @@ const CarPropTaxCalculator = () => {
                 xl={{ span: 9, offset: 5 }}
                 lg={{ span: 11, offset: 4 }}
                 md={{ span: 14, offset: 2 }}
-                sm={17}
-                offset={1}
-                span={14}
+                sm={{ span: 17, offset: 1 }}
+                span={17}
               >
                 <FormLabelCell>
                   <Label fontColor="#000">
@@ -332,7 +328,7 @@ const CarPropTaxCalculator = () => {
                   </Label>
                 </FormLabelCell>
               </Col>
-              <Col xxl={2} xl={3} lg={3} sm={5} span={4}>
+              <Col xxl={2} xl={3} lg={3} sm={5} span={6}>
                 <StyledInputNumber
                   size="large"
                   min={0}
@@ -351,7 +347,7 @@ const CarPropTaxCalculator = () => {
                 xl={{ span: 4, offset: 5 }}
                 lg={{ span: 5, offset: 4 }}
                 md={{ span: 7, offset: 2 }}
-                offset={1}
+                sm={{ span: 7, offset: 2 }}
                 span={8}
               >
                 <ButtonSubmit
@@ -387,7 +383,7 @@ const CarPropTaxCalculator = () => {
                   md={{ span: 24, offset: 2 }}
                   sm={24}
                   offset={1}
-                  span={20}
+                  span={24}
                 >
                   <Row gutter={[10, 10]}>
                     <Col sm={15} span={14}>
@@ -395,7 +391,7 @@ const CarPropTaxCalculator = () => {
                         <Label fontColor="#fff">Վճարման ենթակա գույքահարկ</Label>
                       </ResultCell>
                     </Col>
-                    <Col sm={5} span={4}>
+                    <Col xs={6} sm={5} span={4}>
                       <ResultCell>
                         <Label fontColor="#fff">{result.data.result}</Label>
                       </ResultCell>
