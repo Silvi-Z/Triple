@@ -105,11 +105,13 @@ const tailFormButtonLayout = {
     },
 }
 
-const RegistrationForm = () => {
+const RegistrationForm = ({ closeForm1, setConfirm }) => {
     const [form] = Form.useForm()
 
     const onFinish = values => {
         console.log("Received values of form: ", values)
+        setConfirm(true)
+        closeForm1(false)
     }
 
     const prefixSelector = (
@@ -467,7 +469,7 @@ const RegistrationForm = () => {
                 </Checkbox>
             </Form.Item> */}
             <Form.Item {...tailFormItemLayout}>
-                <Button type="primary" htmlType="submit" id="registerSubmit">
+                <Button type="primary" htmlType="submit" id="registerSubmit" >
                     Հաստատել
                 </Button>
             </Form.Item>
