@@ -3,7 +3,12 @@ import React from "react"
 import { Row, Col } from "antd"
 import styled from "styled-components"
 import EnvironmentImg from "../../assets/footericons/location.png"
-import FacebookImg from "../../assets/footericons/facebook-4.png"
+import PhoneImg from "../../assets/footericons/brandIcons/phone (footer).svg"
+import WhatsappImg from "../../assets/footericons/brandIcons/whatsapp (footer).svg"
+import ViberImg from "../../assets/footericons/brandIcons/viber(footer).svg"
+import TelegramImg from "../../assets/footericons/brandIcons/telegram (footer).svg"
+import FacebookImg from "../../assets/footericons/brandIcons/facebook (footer).svg"
+import LinkedinImg from "../../assets/footericons/brandIcons/linkedin(footer).svg"
 import {
   WhatsAppOutlined,
   PhoneOutlined,
@@ -111,7 +116,30 @@ const EnvironmentWrapper = styled.img`
   width: 14px;
   height: 20px;
 `
-const FacebookWrapper = styled.img``
+const PhoneWrapper = styled.img`
+  width: 20px;
+  height: 20px;
+`
+const WhatsappWrapper = styled.img`
+  width: 20px;
+  height: 20px;
+`
+const ViberWrapper = styled.img`
+  width: 20px;
+  height: 20px;
+`
+const TelegramWrapper = styled.img`
+  width: 20px;
+  height: 20px;
+`
+const FacebookWrapper = styled.img`
+  width: 20px;
+  height: 20px;
+`
+const LinkedinWrapper = styled.img`
+  width: 20px;
+  height: 20px;
+`
 
 const FooterNumberColumn = styled(Col)`
   display: flex;
@@ -158,7 +186,7 @@ const FooterBlack = () => {
     <React.Fragment>
       <Row id="footerfirstrow">
         <FooterNumberColumn xs={24} sm={24} md={8} lg={{ span: 8, offset: 3 }} xl={{ span: 8, offset: 3 }} xxl={{ span: 8, offset: 3 }}>
-          <WhatsAppOutlined style={{ fontSize: "20px", color: "white" }} />
+          {/* <WhatsAppOutlined style={{ fontSize: "20px", color: "white" }} />
           <PhoneOutlined style={{ fontSize: "20px", color: "white" }} />
           <i
             className="fab fa-viber"
@@ -167,7 +195,11 @@ const FooterBlack = () => {
           <i
             className="fab fa-telegram-plane"
             style={{ fontSize: "20px", color: "white" }}
-          ></i>
+          ></i> */}
+          <PhoneWrapper src={PhoneImg} />
+          <WhatsappWrapper src={WhatsappImg} />
+          <ViberWrapper src={ViberImg} />
+          <TelegramWrapper src={TelegramImg} />
           <FooterNumberWrap>
             <span>+374 93706010,+374 93706010</span>
           </FooterNumberWrap>
@@ -183,9 +215,11 @@ const FooterBlack = () => {
           <FooterFollowUsWrap>
             <span>Հետևեք մեզ</span>
           </FooterFollowUsWrap>
-          <LinkedinOutlined style={{ fontSize: "20px", color: "white" }} />
+          {/* <LinkedinOutlined style={{ fontSize: "20px", color: "white" }} /> */}
+          <LinkedinWrapper src={LinkedinImg} />
           <a href="https://www.facebook.com/TripleCArmenia/" target="_blank">
-            <FacebookOutlined style={{ fontSize: "20px", color: "white" }} />
+            {/* <FacebookOutlined style={{ fontSize: "20px", color: "white" }} /> */}
+            <FacebookWrapper src={FacebookImg} />
           </a>
         </FooterFollowUsColumn>
       </Row>

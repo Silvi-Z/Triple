@@ -703,6 +703,7 @@ pre tt:after {
   width: 161px;
   height: 69px;
   text-align: center;
+  margin-left: 7%;
 }
 .phonenumber {
   width: 91px;
