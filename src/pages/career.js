@@ -8,6 +8,10 @@ import CareerWrap from "../components/careercomponents/careerdrop"
 const CareerParagraphRow = styled(Row)`
   padding: 0 12%;
   margin-bottom: 3.8%;
+  @media (min-width: 1600px) {
+    padding: 0 0%;
+    margin-bottom: 2.8%;
+  }
   @media only screen and (max-width: 1024px) {
     padding-top: 49px;
     padding-left: 8.8%;
@@ -156,7 +160,7 @@ const Career = () => {
   return (
     <Layout>
       <CareerParagraphRow>
-        <Col lg={{ span: 24 }}>
+        <Col lg={{ span: 24 }} xxl={{ span: 8, offset: 4 }}>
           <H2Styled>Միացիր մեր թիմին</H2Styled>
           <PStyled>
             “Թրիփլ Քնսալթինգ” ընկերությունում աշխատանքը միջոց է մշտապես ակտիվ

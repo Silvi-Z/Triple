@@ -227,7 +227,7 @@ const RegistrationForm = () => {
                 <Cascader options={residences} />
             </Form.Item> */}
             <Row gutter={[0, 0]}>
-                <Col lg={3}>
+                <Col lg={3} xxl={{ span: 2, offset: 0 }}>
                     <Form.Item
                         name="adress"
                         label="Բնակության վայրի հասցե"
@@ -235,13 +235,13 @@ const RegistrationForm = () => {
                             { required: true, message: "Please input your phone number!" },
                         ]}
                     >
-                        <Select style={{ width: "116px" }}>
+                        <Select style={{ width: "116px", border: "solid 1px #009db8" }} size="large" placeholder="Երևան">
                             <Option value="Երևան" style={{ height: "40px" }}>Երևան</Option>
                             <Option value="Կենտրոն">Կենտրոն</Option>
                         </Select>
                     </Form.Item>
                 </Col>
-                <Col lg={3} offset={1}>
+                <Col xxl={{ span: 2, offset: 1 }} lg={3} offset={1}>
                     <Form.Item
                         name="city"
                         label=" "
@@ -249,16 +249,16 @@ const RegistrationForm = () => {
                             { required: true, message: "Please input your Adress!" },
                         ]}
                     >
-                        <Select style={{ width: 116 }}>
+                        <Select style={{ width: 116, border: "solid 1px #009db8" }} size="large" placeholder="Կենտրոն" >
                             <Option value="Երևան">Երևան</Option>
                             <Option value="Կենտրոն">Կենտրոն</Option>
                         </Select>
                     </Form.Item>
                 </Col>
-                <Col lg={5} offset={1}>
+                <Col xxl={{ span: 4, offset: 1 }} lg={5} offset={1}>
                     <Form.Item
                         name="phone"
-                        label="  "
+                        label=" "
                         rules={[
                             { required: true, message: "Please input your phone number!" },
                         ]}
@@ -277,7 +277,7 @@ const RegistrationForm = () => {
             </Form.Item>
             {checkPassport ?
                 <Row style={{ width: "48.6%" }}>
-                    <Col lg={8}>
+                    <Col lg={8} xxl={6}>
                         <Form.Item
                             name="passportSeria"
                             label={<span>Անձնագրի սերիա</span>}
@@ -292,7 +292,7 @@ const RegistrationForm = () => {
                             <Input />
                         </Form.Item>
                     </Col>
-                    <Col lg={8}>
+                    <Col lg={8} xxl={6}>
                         <Form.Item
                             name="givenby"
                             label={<span>Տրված է ում կողմից</span>}
@@ -307,7 +307,7 @@ const RegistrationForm = () => {
                             <Input />
                         </Form.Item>
                     </Col>
-                    <Col lg={8}>
+                    <Col lg={8} xxl={6}>
                         <Form.Item
                             name="givedata"
                             label={<span>Երբ</span>}

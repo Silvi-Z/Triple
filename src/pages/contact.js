@@ -13,6 +13,10 @@ import CallPhoneImg from "../assets/footericons/phone-call.svg"
 const ParagraphRow = styled(Row)`
   padding: 0 15%;
   margin-bottom: 2.8%;
+  @media (min-width: 1600px) {
+    padding: 0 0%;
+    margin-bottom: 2.8%;
+  }
   @media only screen and (max-width: 1170px) {
     padding: 0 10.5%;
   }
@@ -93,9 +97,10 @@ const NumberCol = styled(Col)`
   display: flex;
   justify-content: center;
   margin-top: 1.4%;
-
   @media (min-width: 1600px) {
-    padding-top: 1%;
+    max-width: 618px;
+    padding-top: 1.3%;
+    margin-left: 18.4%;
   }
   @media only screen and (max-width: 1170px) {
     max-width: 602px;
@@ -130,7 +135,10 @@ const AdressMapCol = styled(Col)`
   justify-content: center;
   margin-top: 1.4%;
   padding-bottom: 18px;
-
+  @media (min-width: 1600px) {
+    max-width: 618px;
+    margin-left: 18.4%;
+  }
   @media only screen and (max-width: 1170px) {
     max-width: 602px;
     max-height: 410px;
@@ -290,6 +298,9 @@ const ContactNumberWrap = styled.div`
 
 const FormRow = styled(Row)`
   padding: 0 12%;
+  @media (min-width: 1600px) {
+    padding: 0 0%;
+  }
   @media only screen and (max-width: 1024px) {
     padding: 0 8%;
   }
@@ -310,6 +321,10 @@ const FormColumn = styled(Col)`
   box-shadow: 0px 5px 40px 0 rgba(0, 0, 0, 0.05);
   background-color: #ffffff;
   padding: 0.8% 5%;
+  @media (min-width: 1600px) {
+    margin-left: 33%;
+    max-width: 618px;
+  }
   @media only screen and (max-width: 1170px) {
     margin-left: 16.5%;
     /* max-width: 562px;
@@ -336,6 +351,10 @@ const FormColumn = styled(Col)`
 const ContactNavRow = styled(Row)`
   padding: 0 20%;
   margin-bottom: 3%;
+  @media (min-width: 1600px) {
+    padding: 0 0%;
+    margin-bottom: 3%;
+  }
   @media only screen and (max-width: 1170px) {
     padding: 0 13.6%;
   }
@@ -393,6 +412,9 @@ const IndividCol = styled(Col)`
     span {
       color: white;
     }
+  }
+  @media (min-width: 1600px) {
+    padding-top: 0.9%;
   }
   @media only screen and (max-width: 1170px) {
     margin-left: 15%;
@@ -465,6 +487,9 @@ const CompanyCol = styled(Col)`
       color: white;
     }
   }
+  @media (min-width: 1600px) {
+    padding-top: 0.9%;
+  }
   @media only screen and (max-width: 1170px) {
     margin-left: 1.5%;
     max-width: 294px;
@@ -532,7 +557,7 @@ const Contact = () => {
   return (
     <Layout>
       <ParagraphRow>
-        <HeadingParagrCol lg={{ span: 24 }}>
+        <HeadingParagrCol lg={{ span: 24 }} xxl={{ span: 8, offset: 5 }}>
           <H2Styled>Կապ մեզ հետ</H2Styled>
           <PStyled>
             “Թրիփլ Քնսալթինգ” ընկերությունը պատրաստակամ է համագործակցելու ինչպես
@@ -544,6 +569,7 @@ const Contact = () => {
       </ParagraphRow>
       <ContactNavRow>
         <IndividCol
+          xxl={{ span: 10, offset: 8 }}
           xl={11}
           lg={9}
           md={9}
@@ -556,6 +582,7 @@ const Contact = () => {
           <span>Անհատների համար</span>
         </IndividCol>
         <CompanyCol
+          xxl={{ span: 10, offset: 8 }}
           xl={11}
           lg={9}
           md={9}
@@ -568,19 +595,19 @@ const Contact = () => {
           <span>Կազմակերպությունների համար</span>
         </CompanyCol>
       </ContactNavRow>
-      <FormRow>
+      <FormRow align="middle">
         {openIndivid ? (
-          <FormColumn lg={{ span: 17 }} xs={{ span: 17 }} offset={3}>
+          <FormColumn lg={{ span: 17, offset: 3 }} xs={{ span: 17, offset: 3 }} >
             <FormindIviduals />
           </FormColumn>
         ) : openComp ? (
-          <FormColumn lg={{ span: 17 }} offset={3}>
+          <FormColumn lg={{ span: 17 }} offset={3} >
             <FormOrganizations />
           </FormColumn>
         ) : null}
       </FormRow>
-      <ContactMapRow>
-        <NumberCol xxl={{ span: 19 }} xl={{ span: 19 }} lg={{ span: 19 }} md={{ span: 19 }} offset={2}>
+      <ContactMapRow align="middle">
+        <NumberCol xxl={{ span: 19, offset: 4 }} xl={{ span: 19 }} lg={{ span: 19 }} md={{ span: 19 }} offset={2}>
           <CallIconWrapper src={CallPhoneImg} alt={"icon"} />
           <ContactNumberWrap>
             <span>+374 93706010,+374 93706010</span>

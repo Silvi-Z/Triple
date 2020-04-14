@@ -12,6 +12,9 @@ const ServiceDropRow = styled(Row)`
   padding-left: 4.5%;
   border-bottom: 1px solid;
   border-color: #d7d7d7;
+  @media (min-width: 1600px) {
+    padding: 0 0%;
+  }
   @media only screen and (max-width: 1170px) {
     padding-left: 8.8%;
     padding-right: 9%;
@@ -119,7 +122,7 @@ const SubParagStyled = styled.div`
   color: #000000;
   margin-left: 17%;
   @media (min-width: 1600px) {
-    margin-left: 38%;
+    margin-left: 25%;
   }
   @media only screen and (max-width: 1170px) {
     margin-left: 13%;
@@ -152,14 +155,14 @@ const Servicedrop = ({ data, showServiceForm }) => {
   return (
     <ServiceDropRow align="middle" gutter={[10, 30]}>
       <DropHeadingIconCol
-        xxl={{ span: 2, offset: 7 }}
+        xxl={{ span: 2, offset: 4 }}
         xl={{ span: 2, offset: 2 }}
         lg={{ span: 2, offset: 1 }}
         xs={{ span: 3, offset: 0 }}
       >
         <HeadIcon src={data.data.image} alt={"icon"} />
       </DropHeadingIconCol>
-      <DropHeadingParagraphCol xxl={10} xl={18} lg={18} xs={17}>
+      <DropHeadingParagraphCol xxl={9} xl={18} lg={18} xs={17}>
         <ToggleH2Styled>{data.data.paragraph}</ToggleH2Styled>
       </DropHeadingParagraphCol>
       <DropButtonCol lg={2} xl={2} xxl={2} md={2} xs={4}>

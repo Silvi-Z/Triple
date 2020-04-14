@@ -16,7 +16,7 @@ const HeadingParagraphRow = styled(Row)`
   padding: 0 12%;
   margin-bottom: 2.8%;
   @media (min-width: 1600px) {
-    padding: 0 30%;
+    padding: 0 0%;
     margin-bottom: 2.8%;
   }
   @media only screen and (max-width: 768px) {
@@ -218,7 +218,7 @@ const Services = ({ location, ...props }) => {
   return (
     <Layout>
       <HeadingParagraphRow>
-        <Col lg={{ span: 12 }}>
+        <Col lg={{ span: 12 }} xxl={{ span: 8, offset: 4 }}>
           <H2Styled>Ծառայություններ</H2Styled>
           <PStyled>
             “Թրիփլ Քնսալթինգ” ընկերության բոլոր հիմնական ծառայությունները կապված

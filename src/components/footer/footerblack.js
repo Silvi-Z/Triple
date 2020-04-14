@@ -185,7 +185,7 @@ const FooterBlack = () => {
   return (
     <React.Fragment>
       <Row id="footerfirstrow">
-        <FooterNumberColumn xs={24} sm={24} md={8} lg={{ span: 8, offset: 3 }} xl={{ span: 8, offset: 3 }} xxl={{ span: 8, offset: 3 }}>
+        <FooterNumberColumn xs={24} sm={24} md={8} lg={{ span: 8, offset: 3 }} xl={{ span: 8, offset: 3 }} xxl={{ span: 8, offset: 2 }}>
           {/* <WhatsAppOutlined style={{ fontSize: "20px", color: "white" }} />
           <PhoneOutlined style={{ fontSize: "20px", color: "white" }} />
           <i

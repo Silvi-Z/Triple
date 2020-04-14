@@ -141,14 +141,14 @@ const CareerDropWrapper = ({ showCareerForm, data }) => {
   return (
     <DropCareerRow gutter={[10, 30]}>
       <DropHeadingIconCol
-        xxl={{ span: 1, offset: 3 }}
+        xxl={{ span: 2, offset: 4 }}
         xl={{ span: 2, offset: 3 }}
         lg={{ span: 2, offset: 2 }}
         md={{ span: 2, offset: 0 }}
       >
         <HeadIcon src={CalcImg} alt={"icon"} />
       </DropHeadingIconCol>
-      <DropHeadingTitleCol xxl={13} xl={12} lg={17} span={17}>
+      <DropHeadingTitleCol xxl={9} xl={12} lg={17} span={17}>
         <ToggleH2Styled>{data.data.title_arm}</ToggleH2Styled>
       </DropHeadingTitleCol>
       <DropHeadingButtonCol xl={6} span={2}>
