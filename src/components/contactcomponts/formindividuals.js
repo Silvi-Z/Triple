@@ -155,7 +155,7 @@ const Formfield = () => {
           <Form.Item
             name={["user", "email"]}
             label="Էլ․ հասցե"
-            rules={[{ type: "email", required: true }]}
+            rules={[{ type: "email", required: true, message: "Խնդրում եմ լրացրեք այս դաշտը!", }]}
             style={{ marginBottom: "3px" }}
           >
             <Input size="large" />

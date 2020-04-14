@@ -13,9 +13,15 @@ import {
     AutoComplete,
 } from "antd"
 import { QuestionCircleOutlined } from "@ant-design/icons"
+import { DatePicker } from 'antd';
+
+const { MonthPicker, RangePicker, WeekPicker } = DatePicker;
 //styled inputs with layout.css
 import "../layout.css"
 
+function onChange(date, dateString) {
+    console.log(date, dateString);
+}
 const { Option } = Select
 const AutoCompleteOption = AutoComplete.Option
 
@@ -82,6 +88,22 @@ const tailFormItemLayout = {
         },
     },
 }
+const tailFormButtonLayout = {
+    wrapperCol: {
+        lg: {
+            span: 24,
+            offset: 0,
+        },
+        xs: {
+            span: 24,
+            offset: 0,
+        },
+        sm: {
+            span: 24,
+            offset: 8,
+        },
+    },
+}
 
 const RegistrationForm = () => {
     const [form] = Form.useForm()
@@ -100,6 +122,17 @@ const RegistrationForm = () => {
     )
 
     const [autoCompleteResult, setAutoCompleteResult] = useState([])
+    const [checkPassport, setcheckPassport] = useState(true)
+    const [checkId, setcheckId] = useState(false)
+
+    const openPassport = () => {
+        setcheckPassport(true)
+        setcheckId(false)
+    }
+    const openId = () => {
+        setcheckPassport(false)
+        setcheckId(true)
+    }
 
     const onWebsiteChange = value => {
         if (!value) {
@@ -141,30 +174,6 @@ const RegistrationForm = () => {
             >
                 <Input />
             </Form.Item>
-            <Form.Item
-                name="email"
-                label={
-                    <span>
-                        Email&nbsp;
-            <Tooltip title="Why do you give  us your email?">
-                            <QuestionCircleOutlined />
-                        </Tooltip>
-                    </span>
-                }
-                rules={[
-                    {
-                        type: "email",
-                        message: "The input is not valid E-mail!",
-                    },
-                    {
-                        required: true,
-                        message: "Please input your E-mail!",
-                    },
-                ]}
-            >
-                <Input />
-            </Form.Item>
-
             {/* <Form.Item
                 name="password"
                 label="Password"
@@ -218,12 +227,26 @@ const RegistrationForm = () => {
                 <Cascader options={residences} />
             </Form.Item> */}
             <Row gutter={[0, 0]}>
-                <Col lg={4}>
+                <Col lg={3}>
                     <Form.Item
-                        name="country"
-                        label="Բնակության վայրի հասցե *"
+                        name="adress"
+                        label="Բնակության վայրի հասցե"
                         rules={[
                             { required: true, message: "Please input your phone number!" },
+                        ]}
+                    >
+                        <Select style={{ width: "116px" }}>
+                            <Option value="Երևան" style={{ height: "40px" }}>Երևան</Option>
+                            <Option value="Կենտրոն">Կենտրոն</Option>
+                        </Select>
+                    </Form.Item>
+                </Col>
+                <Col lg={3} offset={1}>
+                    <Form.Item
+                        name="city"
+                        label=" "
+                        rules={[
+                            { required: true, message: "Please input your Adress!" },
                         ]}
                     >
                         <Select style={{ width: 116 }}>
@@ -232,21 +255,7 @@ const RegistrationForm = () => {
                         </Select>
                     </Form.Item>
                 </Col>
-                <Col lg={4}>
-                    <Form.Item
-                        name="city"
-                        label="   "
-                        rules={[
-                            { required: true, message: "Please input your Adress!" },
-                        ]}
-                    >
-                        <Select style={{ width: 116, height: 40 }}>
-                            <Option value="Երևան">Երևան</Option>
-                            <Option value="Կենտրոն">Կենտրոն</Option>
-                        </Select>
-                    </Form.Item>
-                </Col>
-                <Col lg={8}>
+                <Col lg={5} offset={1}>
                     <Form.Item
                         name="phone"
                         label="  "
@@ -258,6 +267,149 @@ const RegistrationForm = () => {
                     </Form.Item>
                 </Col>
             </Row>
+            <Form.Item {...tailFormButtonLayout} style={{ Maxwidth: "53.6%", display: "flex" }}>
+                <Button type={checkPassport ? "primary" : "default"} style={{ width: "216px", height: "40px" }} onClick={() => openPassport()}>
+                    Անձնագիր
+                </Button>
+                <Button type={checkId ? "primary" : "default"} style={{ width: "216px", height: "40px", marginLeft: "2%" }} onClick={() => openId()}>
+                    Նույնականացման քարտ
+                </Button>
+            </Form.Item>
+            {checkPassport ?
+                <Row style={{ width: "48.6%" }}>
+                    <Col lg={8}>
+                        <Form.Item
+                            name="passportSeria"
+                            label={<span>Անձնագրի սերիա</span>}
+                            rules={[
+                                {
+                                    required: true,
+                                    message: "Please input your right number!",
+                                    whitespace: true,
+                                },
+                            ]}
+                        >
+                            <Input />
+                        </Form.Item>
+                    </Col>
+                    <Col lg={8}>
+                        <Form.Item
+                            name="givenby"
+                            label={<span>Տրված է ում կողմից</span>}
+                            rules={[
+                                {
+                                    required: true,
+                                    message: "Please input your right number!",
+                                    whitespace: true,
+                                },
+                            ]}
+                        >
+                            <Input />
+                        </Form.Item>
+                    </Col>
+                    <Col lg={8}>
+                        <Form.Item
+                            name="givedata"
+                            label={<span>Երբ</span>}
+                            rules={[
+                                {
+                                    required: true,
+                                    message: "Please input your right number!",
+                                    whitespace: true,
+                                },
+                            ]}
+                        >
+                            <Input />
+                        </Form.Item>
+                    </Col>
+                </Row>
+
+                : <Row>
+                    <Col lg={8}>
+                        <Form.Item
+                            name="passportSeria"
+                            label={<span>Նույնականացման քարտ թվեր</span>}
+                            rules={[
+                                {
+                                    required: true,
+                                    message: "Please input your right number!",
+                                    whitespace: true,
+                                },
+                            ]}
+                        >
+                            <Input />
+                        </Form.Item>
+                    </Col>
+                </Row>
+            }
+            <Form.Item
+                name="birthday"
+                label="Ծննդյան օր/ամսի/տարեթիվ"
+                rules={[
+                    { required: true, message: "Please input your Adress!" },
+                ]}
+            >
+                <DatePicker onChange={onChange} placeholder={new Date('December 25, 1995 23:15:30')} style={{ width: "116px", height: "40px", border: "solid 1px #009db8" }} />
+
+            </Form.Item>
+            <Form.Item
+                name="IPN"
+                label={<span>ՀԾՀ</span>}
+                rules={[
+                    {
+                        required: true,
+                        message: "Please input your ՀԾՀ!",
+                        whitespace: true,
+                    },
+                ]}
+            >
+                <Input />
+            </Form.Item>
+            <Form.Item
+                name="IPN"
+                label={<span>ՀՎՀՀ</span>}
+                rules={[
+                    {
+                        required: true,
+                        message: "Please input your ՀԾՀ!",
+                        whitespace: true,
+                    },
+                ]}
+            >
+                <Input />
+            </Form.Item>
+            <Form.Item
+                name="phone"
+                label="Հեռախոսահամար"
+                rules={[
+                    { required: true, message: "Please input your phone number!" },
+                ]}
+            >
+                <Input />
+            </Form.Item>
+            <Form.Item
+                name="email"
+                label={
+                    <span>
+                        Email&nbsp;
+            <Tooltip title="Why do you give  us your email?">
+                            <QuestionCircleOutlined />
+                        </Tooltip>
+                    </span>
+                }
+                rules={[
+                    {
+                        type: "email",
+                        message: "The input is not valid E-mail!",
+                    },
+                    {
+                        required: true,
+                        message: "Please input your E-mail!",
+                    },
+                ]}
+            >
+                <Input />
+            </Form.Item>
             {/* <Form.Item
                 name="website"
                 label="Website"
@@ -315,11 +467,11 @@ const RegistrationForm = () => {
                 </Checkbox>
             </Form.Item> */}
             <Form.Item {...tailFormItemLayout}>
-                <Button type="primary" htmlType="submit">
+                <Button type="primary" htmlType="submit" id="registerSubmit">
                     Հաստատել
                 </Button>
             </Form.Item>
-        </Form>
+        </Form >
     )
 }
 

@@ -627,13 +627,73 @@ pre tt:before,
 pre tt:after {
   content: "";
 }
+
+#register_adress > div {
+  width: 146px;
+  height: 40px;
+  border: solid 1px #009db8;
+  background-color: #ffffff;
+}
 #register_nickname {
   width: 448px;
   height: 40px;
+  border: solid 1px #009db8;
+  background-color: #ffffff;
 }
 #register_email {
   width: 448px;
   height: 40px;
+  border: solid 1px #009db8;
+  background-color: #ffffff;
+}
+#register_passportSeria {
+  width: 146px;
+  height: 40px;
+  border: solid 1px #009db8;
+  background-color: #ffffff;
+}
+#register_givenby {
+  width: 146px;
+  height: 40px;
+  border: solid 1px #009db8;
+  background-color: #ffffff;
+}
+#register_givedata {
+  width: 146px;
+  height: 40px;
+  border: solid 1px #009db8;
+  background-color: #ffffff;
+}
+#register_birthday {
+  width: 185px;
+  height: 14px;
+  font-family: ArialAMU;
+  font-size: 14px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: left;
+  color: #000000;
+}
+#register_IPN {
+  width: 448px;
+  height: 40px;
+  border: solid 1px #009db8;
+  background-color: #ffffff;
+}
+#register_phone {
+  width: 448px;
+  height: 40px;
+  border: solid 1px #009db8;
+  background-color: #ffffff;
+}
+#registerSubmit {
+  width: 180px;
+  height: 46px;
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
+  background-color: #009db8;
 }
 .phonebox {
   margin-right: 10%;
@@ -643,6 +703,7 @@ pre tt:after {
   width: 161px;
   height: 69px;
   text-align: center;
+  margin-left: 7%;
 }
 .phonenumber {
   width: 91px;
@@ -995,5 +1056,12 @@ pre tt:after {
     margin-top: -50px;
     margin-left: -100px;
     margin-right: -100px;
+  }
+  .phonedrop {
+    background: white;
+    width: 161px;
+    height: 69px;
+    text-align: center;
+    margin-left: 20%;
   }
 }

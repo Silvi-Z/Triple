@@ -15,6 +15,10 @@ import TeamImg from '../assets/homeImages/icons/teamwork.svg';
 const HeadingParagraphRow = styled(Row)`
   padding: 0 12%;
   margin-bottom: 2.8%;
+  @media (min-width: 1600px) {
+    padding: 0 30%;
+    margin-bottom: 2.8%;
+  }
   @media only screen and (max-width: 768px) {
     padding-top: 49px;
     padding-left: 8.8%;

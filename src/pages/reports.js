@@ -86,9 +86,12 @@ const HeadIcon = styled.img`
   }
 `;
 const ToggleButton = styled(Button)`
-  height: 60px;
   width: 60px;
-  margin-top: -16%;
+  height: 60px;
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+  color: #009db8;
+  margin-top:-16%;
 `;
 const ReportDropRow = styled(Row)``;
 const ReportFormRow = styled(Row)``;
@@ -107,7 +110,7 @@ const H3StyledForm = styled.h3`
 `;
 
 const Reports = () => {
-  const [showForm, toggleForm] = useState(false);
+  const [showForm, toggleForm] = useState(true);
   return (
     <Layout>
       <ReportParagraphRow>

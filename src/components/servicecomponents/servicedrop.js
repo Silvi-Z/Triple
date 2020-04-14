@@ -97,6 +97,7 @@ const ToggleButton = styled(Button)`
   height: 60px;
   box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
   background-color: #ffffff;
+  margin-top: -17%;
   color: #009db8;
   &:hover {
     .button {
@@ -117,6 +118,9 @@ const SubParagStyled = styled.div`
   text-align: left;
   color: #000000;
   margin-left: 17%;
+  @media (min-width: 1600px) {
+    margin-left: 38%;
+  }
   @media only screen and (max-width: 1170px) {
     margin-left: 13%;
   }
@@ -148,14 +152,14 @@ const Servicedrop = ({ data, showServiceForm }) => {
   return (
     <ServiceDropRow align="middle" gutter={[10, 30]}>
       <DropHeadingIconCol
-        xxl={{ span: 2, offset: 2 }}
+        xxl={{ span: 2, offset: 7 }}
         xl={{ span: 2, offset: 2 }}
         lg={{ span: 2, offset: 1 }}
         xs={{ span: 3, offset: 0 }}
       >
         <HeadIcon src={data.data.image} alt={"icon"} />
       </DropHeadingIconCol>
-      <DropHeadingParagraphCol xxl={16} xl={16} lg={18} xs={17}>
+      <DropHeadingParagraphCol xxl={10} xl={18} lg={18} xs={17}>
         <ToggleH2Styled>{data.data.paragraph}</ToggleH2Styled>
       </DropHeadingParagraphCol>
       <DropButtonCol lg={2} xl={2} xxl={2} md={2} xs={4}>
