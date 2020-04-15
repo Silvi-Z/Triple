@@ -105,12 +105,12 @@ const tailFormButtonLayout = {
     },
 }
 
-const RegistrationForm = ({ closeForm1, setConfirm }) => {
+const RegistrationForm = ({ closeForm1, setConfirm2 }) => {
     const [form] = Form.useForm()
 
     const onFinish = values => {
         console.log("Received values of form: ", values)
-        setConfirm(true)
+        setConfirm2(true)
         closeForm1(false)
     }
 

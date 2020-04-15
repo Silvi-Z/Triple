@@ -5,6 +5,7 @@ import styled from "styled-components"
 import { Row, Col, Button } from "antd"
 import ReportForm from "../components/reportComponents/reportForm"
 import ReportForm2 from "../components/reportComponents/reportForm2"
+import ReportForm3 from "../components/reportComponents/reportForm3"
 import { PlusOutlined, MinusOutlined } from "@ant-design/icons"
 import CarImg from "../assets/calcImages/carSell.png"
 
@@ -112,7 +113,8 @@ const H3StyledForm = styled.h3`
 
 const Reports = () => {
   const [showForm, toggleForm] = useState(true)
-  const [confirm, setConfirm] = useState(false)
+  const [confirm2, setConfirm2] = useState(false)
+  const [confirm3, setConfirm3] = useState(false)
   return (
     <Layout>
       <ReportParagraphRow>
@@ -156,18 +158,29 @@ const Reports = () => {
             lg={{ span: 18, offset: 4 }}
           >
             <H3StyledForm>Պահանջվող տեղեկատվություն</H3StyledForm>
-            <ReportForm setConfirm={setConfirm} closeForm1={toggleForm} />
+            <ReportForm setConfirm2={setConfirm2} closeForm1={toggleForm} />
           </Col>
-        ) : confirm ? (
-          <Col
-            xxl={{ span: 18, offset: 4 }}
-            xl={{ span: 18, offset: 4 }}
-            lg={{ span: 18, offset: 4 }}
-          >
-            <H3StyledForm>Պահանջվող տեղեկատվություն</H3StyledForm>
-            <ReportForm2 />
-          </Col>
-        ) : null}
+        ) :
+          confirm2 ? (
+            <Col
+              xxl={{ span: 18, offset: 4 }}
+              xl={{ span: 18, offset: 4 }}
+              lg={{ span: 18, offset: 4 }}
+            >
+              <H3StyledForm>Պահանջվող տեղեկատվություն</H3StyledForm>
+              <ReportForm2 setConfirm3={setConfirm3} setConfirm2={setConfirm2} />
+            </Col>
+          ) :
+            confirm3 ? (
+              <Col
+                xxl={{ span: 18, offset: 4 }}
+                xl={{ span: 18, offset: 4 }}
+                lg={{ span: 18, offset: 4 }}
+              >
+                <H3StyledForm>Պահանջվող տեղեկատվություն</H3StyledForm>
+                <ReportForm3 />
+              </Col>
+            ) : null}
       </ReportFormRow>
     </Layout>
   )
