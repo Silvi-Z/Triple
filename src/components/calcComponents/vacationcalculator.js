@@ -4,7 +4,7 @@ import {
   PlusOutlined,
   MinusOutlined,
   CaretDownFilled,
-  QuestionCircleOutlined,
+  // QuestionCircleOutlined,
 } from '@ant-design/icons';
 import styled from 'styled-components';
 import moment from 'moment';
