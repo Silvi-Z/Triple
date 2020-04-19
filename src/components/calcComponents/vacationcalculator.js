@@ -95,14 +95,14 @@ const StyledMinus = styled(MinusOutlined)`
   }
 `;
 
-const StyledQuestion = styled(QuestionCircleOutlined)`
-  color: #009db8;
-  font-size: 16px;
-  @media (min-width: 992px) {
-    font-size: 20px;
-    margin-right: 15px;
-  }
-`;
+// const StyledQuestion = styled(QuestionCircleOutlined)`
+//   color: #009db8;
+//   font-size: 16px;
+//   @media (min-width: 992px) {
+//     font-size: 20px;
+//     margin-right: 15px;
+//   }
+// `;
 
 const StyledPlus = styled(PlusOutlined)`
   color: #009db8;
@@ -560,9 +560,9 @@ const VacationCalculator = () => {
                 }}
               />
             </Col>
-            <Col>
+            {/* <Col>
               <StyledQuestion />
-            </Col>
+            </Col> */}
             {workingDays ? (
               <>
                 <Col>
