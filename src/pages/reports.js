@@ -46,6 +46,51 @@ const H2Styled = styled.h2`
     font-weight: normal;
   }
 `
+const H3Styled = styled.h2`
+  width: 439px;
+  height: 18px;
+  font-family: ArialAMU;
+  font-size: 18px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: left;
+  color: #000000;
+  span {
+    color: #009db8;
+    font-family: ArialAMU;
+    font-size: 18px;
+    font-weight: normal;
+  }
+  @media only screen and (max-width: 375px) {
+    width: 118px;
+    height: 73px;
+    font-family: ArialAMU;
+    font-size: 15px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: left;
+    color: #000000;
+  }
+  @media only screen and (max-width: 320px) {
+    width: 118px;
+    height: 73px;
+    font-family: ArialAMU;
+    font-size: 15px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: left;
+    color: #000000;
+  }
+`
 const PStyled = styled.p`
   width: 769px;
   height: 76px;
@@ -76,16 +121,8 @@ const PStyled = styled.p`
   }
 `
 const HeadIcon = styled.img`
-  width: 25px;
-  height: 25px;
-  @media (min-width: 1200px) {
-    width: 35px;
-    height: 35px;
-  }
-  @media (min-width: 1600px) {
-    width: 35px;
-    height: 35px;
-  }
+  width: 35px;
+  height: 35px;
 `
 const ToggleButton = styled(Button)`
   width: 60px;
@@ -132,13 +169,16 @@ const Reports = () => {
           xxl={{ span: 1, offset: 3 }}
           xl={{ span: 1, offset: 3 }}
           lg={{ span: 1, offset: 3 }}
+          md={{ span: 1, offset: 3 }}
+          sm={{ span: 6, offset: 0 }}
+          xs={{ span: 5, offset: 0 }}
         >
           <HeadIcon src={CarImg} alt={"icon"} />
         </Col>
-        <Col xxl={15} xl={15} lg={15} md={16} span={17}>
-          <H2Styled>
+        <Col xxl={15} xl={15} lg={15} md={16} sm={10} xs={14} span={17}>
+          <H3Styled>
             Ավտոմեքենայի վաճառքի հաշվետվություն <span>( 5000 դր )</span>
-          </H2Styled>
+          </H3Styled>
         </Col>
         <Col span={2}>
           <ToggleButton block onClick={() => toggleForm(!showForm)}>
@@ -156,31 +196,43 @@ const Reports = () => {
             xxl={{ span: 18, offset: 4 }}
             xl={{ span: 18, offset: 4 }}
             lg={{ span: 18, offset: 4 }}
+            md={{ span: 18, offset: 4 }}
+            sm={{ span: 24, offset: 0 }}
+            xs={{ span: 24, offset: 0 }}
           >
             <H3StyledForm>Պահանջվող տեղեկատվություն</H3StyledForm>
             <ReportForm setConfirm2={setConfirm2} closeForm1={toggleForm} />
           </Col>
-        ) :
-          confirm2 ? (
-            <Col
-              xxl={{ span: 18, offset: 4 }}
-              xl={{ span: 18, offset: 4 }}
-              lg={{ span: 18, offset: 4 }}
-            >
-              <H3StyledForm>Պահանջվող տեղեկատվություն</H3StyledForm>
-              <ReportForm2 setConfirm3={setConfirm3} setConfirm2={setConfirm2} />
-            </Col>
-          ) :
-            confirm3 ? (
-              <Col
-                xxl={{ span: 18, offset: 4 }}
-                xl={{ span: 18, offset: 4 }}
-                lg={{ span: 18, offset: 4 }}
-              >
-                <H3StyledForm>Պահանջվող տեղեկատվություն</H3StyledForm>
-                <ReportForm3 />
-              </Col>
-            ) : null}
+        ) : confirm2 ? (
+          <Col
+            xxl={{ span: 18, offset: 4 }}
+            xl={{ span: 18, offset: 4 }}
+            lg={{ span: 18, offset: 4 }}
+            md={{ span: 18, offset: 4 }}
+            sm={{ span: 3, offset: 0 }}
+            xs={{ span: 3, offset: 0 }}
+          >
+            <H3StyledForm>Պահանջվող տեղեկատվություն</H3StyledForm>
+            <ReportForm2
+              setConfirm3={setConfirm3}
+              setConfirm2={setConfirm2}
+              backButton={toggleForm}
+              forwardButton={setConfirm3}
+            />
+          </Col>
+        ) : confirm3 ? (
+          <Col
+            xxl={{ span: 18, offset: 4 }}
+            xl={{ span: 18, offset: 4 }}
+            lg={{ span: 18, offset: 4 }}
+            md={{ span: 18, offset: 4 }}
+            sm={{ span: 3, offset: 0 }}
+            xs={{ span: 3, offset: 0 }}
+          >
+            <H3StyledForm>Պահանջվող տեղեկատվություն</H3StyledForm>
+            <ReportForm3 forwardButton={setConfirm3} backButton={setConfirm2} />
+          </Col>
+        ) : null}
       </ReportFormRow>
     </Layout>
   )

@@ -627,14 +627,14 @@ pre tt:before,
 pre tt:after {
   content: "";
 }
-
-#register_adress > div {
-  width: 146px;
-  height: 40px;
+/*register*/
+#register_address > div {
+  width: 145px;
+  height: 43px;
   border: solid 1px #009db8;
   background-color: #ffffff;
 }
-#register_nickname {
+#register_full_name {
   width: 448px;
   height: 40px;
   border: solid 1px #009db8;
@@ -646,19 +646,25 @@ pre tt:after {
   border: solid 1px #009db8;
   background-color: #ffffff;
 }
-#register_passportSeria {
+#register_passport_series {
   width: 146px;
   height: 40px;
   border: solid 1px #009db8;
   background-color: #ffffff;
 }
-#register_givenby {
+#register_ID_card_number {
   width: 146px;
   height: 40px;
   border: solid 1px #009db8;
   background-color: #ffffff;
 }
-#register_givedata {
+#register_given {
+  width: 146px;
+  height: 40px;
+  border: solid 1px #009db8;
+  background-color: #ffffff;
+}
+#register_when {
   width: 146px;
   height: 40px;
   border: solid 1px #009db8;
@@ -677,7 +683,13 @@ pre tt:after {
   text-align: left;
   color: #000000;
 }
-#register_IPN {
+#register_psn {
+  width: 448px;
+  height: 40px;
+  border: solid 1px #009db8;
+  background-color: #ffffff;
+}
+#register_tin {
   width: 448px;
   height: 40px;
   border: solid 1px #009db8;
@@ -689,12 +701,19 @@ pre tt:after {
   border: solid 1px #009db8;
   background-color: #ffffff;
 }
+#register_address {
+  width: 290px;
+  height: 43px;
+  border: solid 1px #009db8;
+  background-color: #ffffff;
+}
 #registerSubmit {
   width: 180px;
   height: 46px;
   box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
   background-color: #009db8;
 }
+/*response*/
 .phonebox {
   margin-right: 10%;
 }
@@ -832,6 +851,79 @@ pre tt:after {
     height: 46px;
     margin-left: -20%;
     margin-top: 0px;
+  }
+  /*register*/
+  #register_full_name {
+    width: 290px;
+    height: 40px;
+    border: solid 1px #009db8;
+    background-color: #ffffff;
+  }
+  #register_email {
+    width: 290px;
+    height: 40px;
+    border: solid 1px #009db8;
+    background-color: #ffffff;
+  }
+  #register_psn {
+    width: 290px;
+    height: 40px;
+    border: solid 1px #009db8;
+    background-color: #ffffff;
+  }
+  #register_tin {
+    width: 290px;
+    height: 40px;
+    border: solid 1px #009db8;
+    background-color: #ffffff;
+  }
+  #register_phone {
+    width: 290px;
+    height: 40px;
+    border: solid 1px #009db8;
+    background-color: #ffffff;
+  }
+  #register_address {
+    width: 290px;
+    height: 40px;
+    border: solid 1px #009db8;
+    background-color: #ffffff;
+  }
+  #register_passport_series {
+    width: 290px;
+    height: 40px;
+    border: solid 1px #009db8;
+    background-color: #ffffff;
+  }
+  #register_ID_card_number {
+    width: 290px;
+    height: 40px;
+    border: solid 1px #009db8;
+    background-color: #ffffff;
+  }
+  #register_given {
+    width: 290px;
+    height: 40px;
+    border: solid 1px #009db8;
+    background-color: #ffffff;
+  }
+  #register_when {
+    width: 290px;
+    height: 40px;
+    border: solid 1px #009db8;
+    background-color: #ffffff;
+  }
+  #register_given {
+    width: 290px;
+    height: 40px;
+    border: solid 1px #009db8;
+    background-color: #ffffff;
+  }
+  #register_when {
+    width: 290px;
+    height: 40px;
+    border: solid 1px #009db8;
+    background-color: #ffffff;
   }
 }
 
@@ -998,7 +1090,7 @@ pre tt:after {
   color: #e8e8e8;
 }
 .footerlinkweb {
-  width: 155px;
+  /* width: 155px; */
   height: 13px;
   font-family: ArialAMU;
   font-size: 12px;
