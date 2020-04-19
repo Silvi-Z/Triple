@@ -114,7 +114,7 @@ const Label = styled(Text)`
   font-family: ArialAMU;
   font-weight: bold;
   line-height: 20px;
-  color: ${props => props.fontColor};
+  color: ${props => props.fontcolor};
   font-size: 12px;
   @media (min-width: 576px) {
     font-size: 13px;
@@ -265,7 +265,7 @@ const CarCustomsCalculator = () => {
                   block
                   onClick={() => formik.setFieldValue('person', true)}
                 >
-                  <Label fontColor={
+                  <Label fontcolor={
                     formik.values.person
                       ? '#fff'
                       : '#000'
@@ -281,7 +281,7 @@ const CarCustomsCalculator = () => {
                   block
                   onClick={() => formik.setFieldValue('person', false)}
                 >
-                  <Label fontColor={
+                  <Label fontcolor={
                     !formik.values.person
                       ? '#fff'
                       : '#000'
@@ -307,7 +307,7 @@ const CarCustomsCalculator = () => {
                   block
                   onClick={() => formik.setFieldValue('country', true)}
                 >
-                  <Label fontColor={
+                  <Label fontcolor={
                     formik.values.country
                       ? '#fff'
                       : '#000'
@@ -323,7 +323,7 @@ const CarCustomsCalculator = () => {
                   block
                   onClick={() => formik.setFieldValue('country', false)}
                 >
-                  <Label fontColor={
+                  <Label fontcolor={
                     !formik.values.country
                       ? '#fff'
                       : '#000'
@@ -344,7 +344,7 @@ const CarCustomsCalculator = () => {
                 span={17}
               >
                 <FormLabelCell>
-                  <Label fontColor="#000">
+                  <Label fontcolor="#000">
                     Թողարկման տարեթիվը
                   </Label>
                 </FormLabelCell>
@@ -357,7 +357,7 @@ const CarCustomsCalculator = () => {
                 >
                   {years.map((e) => (
                     <Option key={e} value={e}>
-                      <Label fontColor="#000">{e}</Label>
+                      <Label fontcolor="#000">{e}</Label>
                     </Option>
                   ))}
                 </CustomSelect>
@@ -374,7 +374,7 @@ const CarCustomsCalculator = () => {
                 span={13}
               >
                 <FormLabelCell>
-                  <Label fontColor="#000">
+                  <Label fontcolor="#000">
                     Շարժիչի աշխատանքային ծավալ
                   </Label>
                 </FormLabelCell>
@@ -392,7 +392,7 @@ const CarCustomsCalculator = () => {
               </Col>
               <Col xxl={2} xl={2} lg={3} md={3} sm={4} span={3}>
                 <FormLabelCell>
-                  <Label fontColor="#000">
+                  <Label fontcolor="#000">
                     սմ<sup>3</sup>
                   </Label>
                 </FormLabelCell>
@@ -409,7 +409,7 @@ const CarCustomsCalculator = () => {
                 span={11}
               >
                 <FormLabelCell>
-                  <Label fontColor="#000">
+                  <Label fontcolor="#000">
                     Ավտոմեքենայի գինը
                   </Label>
                 </FormLabelCell>
@@ -432,16 +432,16 @@ const CarCustomsCalculator = () => {
                   onChange={value => formik.setFieldValue('currency', value)}
                 >
                   <Option value={0}>
-                    <Label fontColor="#000">AMD</Label>
+                    <Label fontcolor="#000">AMD</Label>
                   </Option>
                   <Option value={1}>
-                    <Label fontColor="#000">USD</Label>
+                    <Label fontcolor="#000">USD</Label>
                   </Option>
                   <Option value={2}>
-                    <Label fontColor="#000">EUR</Label>
+                    <Label fontcolor="#000">EUR</Label>
                   </Option>
                   <Option value={3}>
-                    <Label fontColor="#000">RUB</Label>
+                    <Label fontcolor="#000">RUB</Label>
                   </Option>
                 </CustomSelect>
               </Col>
@@ -495,12 +495,12 @@ const CarCustomsCalculator = () => {
                   <Row gutter={[10, 10]}>
                     <Col sm={15} span={14}>
                       <ResultCell>
-                        <Label fontColor="#fff">Վճարման ենթակա գումար AMD</Label>
+                        <Label fontcolor="#fff">Վճարման ենթակա գումար AMD</Label>
                       </ResultCell>
                     </Col>
                     <Col xs={6} sm={5} span={4}>
                       <ResultCell>
-                        <Label fontColor="#fff">{result.data.AMD}</Label>
+                        <Label fontcolor="#fff">{result.data.AMD}</Label>
                       </ResultCell>
                     </Col>
                   </Row>
@@ -508,12 +508,12 @@ const CarCustomsCalculator = () => {
                   <Row gutter={[10, 10]}>
                     <Col sm={15} span={14}>
                       <ResultCell>
-                        <Label fontColor="#fff">Վճարման ենթակա գումար USD</Label>
+                        <Label fontcolor="#fff">Վճարման ենթակա գումար USD</Label>
                       </ResultCell>
                     </Col>
                     <Col xs={6} sm={5} span={4}>
                       <ResultCell>
-                        <Label fontColor="#fff">{result.data.USD}</Label>
+                        <Label fontcolor="#fff">{result.data.USD}</Label>
                       </ResultCell>
                     </Col>
                   </Row>
@@ -521,12 +521,12 @@ const CarCustomsCalculator = () => {
                   <Row gutter={[10, 10]}>
                     <Col sm={15} span={14}>
                       <ResultCell>
-                        <Label fontColor="#fff">Վճարման ենթակա գումար EUR</Label>
+                        <Label fontcolor="#fff">Վճարման ենթակա գումար EUR</Label>
                       </ResultCell>
                     </Col>
                     <Col xs={6} sm={5} span={4}>
                       <ResultCell>
-                        <Label fontColor="#fff">{result.data.EUR}</Label>
+                        <Label fontcolor="#fff">{result.data.EUR}</Label>
                       </ResultCell>
                     </Col>
                   </Row>
@@ -534,12 +534,12 @@ const CarCustomsCalculator = () => {
                   <Row gutter={[10, 10]}>
                     <Col sm={15} span={14}>
                       <ResultCell>
-                        <Label fontColor="#fff">Վճարման ենթակա գումար RUB</Label>
+                        <Label fontcolor="#fff">Վճարման ենթակա գումար RUB</Label>
                       </ResultCell>
                     </Col>
                     <Col xs={6} sm={5} span={4}>
                       <ResultCell>
-                        <Label fontColor="#fff">{result.data.RUB}</Label>
+                        <Label fontcolor="#fff">{result.data.RUB}</Label>
                       </ResultCell>
                     </Col>
                   </Row>

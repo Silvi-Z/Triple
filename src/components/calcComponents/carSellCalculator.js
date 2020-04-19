@@ -151,7 +151,7 @@ const Label = styled(Text)`
   font-family: ArialAMU;
   font-weight: bold;
   line-height: 20px;
-  color: ${props => props.fontColor};
+  color: ${props => props.fontcolor};
   font-size: 12px;
   @media (min-width: 576px) {
     font-size: 13px;
@@ -243,7 +243,7 @@ const CarSellCalculator = () => {
                 span={14}
               >
                 <FormLabelCell>
-                  <Label fontColor="#000">Գնման ամսաթիվ</Label>
+                  <Label fontcolor="#000">Գնման ամսաթիվ</Label>
                 </FormLabelCell>
               </Col>
               <Col>
@@ -268,7 +268,7 @@ const CarSellCalculator = () => {
                 span={14}
               >
                 <FormLabelCell>
-                  <Label fontColor="#000">Վաճառքի ամսաթիվ</Label>
+                  <Label fontcolor="#000">Վաճառքի ամսաթիվ</Label>
                 </FormLabelCell>
               </Col>
               <Col>
@@ -296,7 +296,7 @@ const CarSellCalculator = () => {
                 span={14}
               >
                 <FormLabelCell>
-                  <Label fontColor="#000">
+                  <Label fontcolor="#000">
                     Մեքենայի ձիաուժ
                   </Label>
                 </FormLabelCell>
@@ -324,7 +324,7 @@ const CarSellCalculator = () => {
                 span={14}
               >
                 <FormLabelCell>
-                  <Label fontColor="#000">
+                  <Label fontcolor="#000">
                     Վաճառքի գին
                   </Label>
                 </FormLabelCell>
@@ -389,12 +389,12 @@ const CarSellCalculator = () => {
                   <Row gutter={[10, 10]}>
                     <Col sm={15} span={14}>
                       <ResultCell>
-                        <Label fontColor="#fff">Վճարման ենթակա եկամտային հարկ</Label>
+                        <Label fontcolor="#fff">Վճարման ենթակա եկամտային հարկ</Label>
                       </ResultCell>
                     </Col>
                     <Col xs={6} sm={5} span={4}>
                       <ResultCell>
-                        <Label fontColor="#fff">{result.data.price}</Label>
+                        <Label fontcolor="#fff">{result.data.price}</Label>
                       </ResultCell>
                     </Col>
                   </Row>

@@ -145,7 +145,7 @@ const Label = styled(Text)`
   font-family: ArialAMU;
   font-weight: bold;
   line-height: 20px;
-  color: ${props => props.fontColor};
+  color: ${props => props.fontcolor};
   font-size: 12px;
   @media (min-width: 576px) {
     font-size: 13px;
@@ -372,7 +372,7 @@ const MortgageCalculator = () => {
                   block
                   onClick={() => formikOne.setFieldValue('price_type', false)}
                 >
-                  <Label fontColor={
+                  <Label fontcolor={
                     !formikOne.values.price_type
                       ? '#fff'
                       : '#000'
@@ -388,7 +388,7 @@ const MortgageCalculator = () => {
                   block
                   onClick={() => formikOne.setFieldValue('price_type', true)}
                 >
-                  <Label fontColor={
+                  <Label fontcolor={
                     formikOne.values.price_type
                       ? '#fff'
                       : '#000'
@@ -414,7 +414,7 @@ const MortgageCalculator = () => {
                   block
                   onClick={() => formikOne.setFieldValue('patent', false)}
                 >
-                  <Label fontColor={
+                  <Label fontcolor={
                     !formikOne.values.patent
                       ? '#fff'
                       : '#000'
@@ -430,7 +430,7 @@ const MortgageCalculator = () => {
                   block
                   onClick={() => formikOne.setFieldValue('patent', true)}
                 >
-                  <Label fontColor={
+                  <Label fontcolor={
                     formikOne.values.patent
                       ? '#fff'
                       : '#000'
@@ -451,7 +451,7 @@ const MortgageCalculator = () => {
                 span={12}
               >
                 <FormLabelCell>
-                  <Label fontColor="#000">
+                  <Label fontcolor="#000">
                     Աշխատողի ամսական աշխատավարձ
                   </Label>
                 </FormLabelCell>
@@ -481,7 +481,7 @@ const MortgageCalculator = () => {
                     console.log('Ref test', monthOne.current);
                   }}
                 >
-                  <Label fontColor="#fff">
+                  <Label fontcolor="#fff">
                     Լրացնել
                   </Label>
                 </ButtonBase>
@@ -498,22 +498,22 @@ const MortgageCalculator = () => {
                 span={5}
               >
                 <TabHeadCell>
-                  <Label fontColor="#000">Ամիս</Label>
+                  <Label fontcolor="#000">Ամիս</Label>
                 </TabHeadCell>
               </Col>
               <Col xxl={3} xl={4} lg={4} md={5} sm={5} span={6}>
                 <TabHeadCell>
-                  <Label fontColor="#000">Համախառն աշխատավարձ</Label>
+                  <Label fontcolor="#000">Համախառն աշխատավարձ</Label>
                 </TabHeadCell>
               </Col>
               <Col xxl={3} xl={3} lg={4} md={5} sm={5} span={6}>
                 <TabHeadCell>
-                  <Label fontColor="#000">Պարգևավճար</Label>
+                  <Label fontcolor="#000">Պարգևավճար</Label>
                 </TabHeadCell>
               </Col>
               <Col xxl={3} xl={3} lg={4} md={5} sm={5} span={6}>
                 <TabHeadCell>
-                  <Label fontColor="#000">Հավելավճար</Label>
+                  <Label fontcolor="#000">Հավելավճար</Label>
                 </TabHeadCell>
               </Col>
             </Row>
@@ -528,7 +528,7 @@ const MortgageCalculator = () => {
                 span={5}
               >
                 <FormLabelCell>
-                  <Label fontColor="#000">
+                  <Label fontcolor="#000">
                     {months[monthPrev2]}
                   </Label>
                 </FormLabelCell>
@@ -577,7 +577,7 @@ const MortgageCalculator = () => {
                 span={5}
               >
                 <FormLabelCell>
-                  <Label fontColor="#000">
+                  <Label fontcolor="#000">
                     {months[monthPrev1]}
                   </Label>
                 </FormLabelCell>
@@ -626,7 +626,7 @@ const MortgageCalculator = () => {
                 span={5}
               >
                 <FormLabelCell>
-                  <Label fontColor="#000">
+                  <Label fontcolor="#000">
                     {months[monthCurrent]}
                   </Label>
                 </FormLabelCell>
@@ -697,14 +697,14 @@ const MortgageCalculator = () => {
                 span={17}
               >
                 <FormLabelCell>
-                  <Label fontColor="#000">
+                  <Label fontcolor="#000">
                     Հաշվետու եռամսյակում եկամտային հարկը
                   </Label>
                 </FormLabelCell>
               </Col>
               <Col xxl={3} xl={3} lg={4} md={5} sm={4} span={6}>
                 <ResultCellLight>
-                  <Label fontColor="#000">
+                  <Label fontcolor="#000">
                     {resultOne}
                   </Label>
                 </ResultCellLight>
@@ -720,7 +720,7 @@ const MortgageCalculator = () => {
                 span={17}
               >
                 <FormLabelCell>
-                  <Label fontColor="#000">
+                  <Label fontcolor="#000">
                     Հաշվետու եռամսյակում վճարած տոկոսագումար
                   </Label>
                 </FormLabelCell>
@@ -782,14 +782,14 @@ const MortgageCalculator = () => {
                   <Row gutter={[10, 10]}>
                     <Col sm={15} span={14}>
                       <ResultCell>
-                        <Label fontColor="#fff">
+                        <Label fontcolor="#fff">
                           Ետ վերադարձվող եկամտային հարկ
                         </Label>
                       </ResultCell>
                     </Col>
                     <Col xs={6} sm={5} span={4}>
                       <ResultCell>
-                        <Label fontColor="#fff">
+                        <Label fontcolor="#fff">
                           {resultTwo.data.returnedTaxPrice}
                         </Label>
                       </ResultCell>

@@ -129,7 +129,7 @@ const Label = styled(Text)`
   font-family: ArialAMU;
   font-weight: bold;
   line-height: 20px;
-  color: ${props => props.fontColor};
+  color: ${props => props.fontcolor};
   font-size: 12px;
   @media (min-width: 576px) {
     font-size: 13px;
@@ -143,7 +143,7 @@ const Label2 = styled(Text)`
   font-family: ArialAMU;
   font-weight: bold;
   line-height: 20px;
-  color: ${props => props.fontColor};
+  color: ${props => props.fontcolor};
   font-size: 14px;
   @media (min-width: 576px) {
     font-size: 15px;
@@ -234,10 +234,7 @@ const SalaryCalculator = () => {
           pension: values.pension,
           bonus_stamp: values.bonus_stamp,
         };
-      } else if (
-        (values.patent || values.patent === 0) &&
-        !values.bonus_price
-      ) {
+      } else if ((values.patent || values.patent === 0) && !values.bonus_price) {
         body = {
           salary_type: values.salary_type,
           price: values.price,
@@ -312,7 +309,7 @@ const SalaryCalculator = () => {
                   block
                   onClick={() => formik.setFieldValue('salary_type', false)}
                 >
-                  <Label fontColor={!formik.values.salary_type ? '#fff' : '#000'}>
+                  <Label fontcolor={!formik.values.salary_type ? '#fff' : '#000'}>
                     Մաքուր
                   </Label>
                 </ButtonBase>
@@ -324,7 +321,7 @@ const SalaryCalculator = () => {
                   block
                   onClick={() => formik.setFieldValue('salary_type', true)}
                 >
-                  <Label fontColor={formik.values.salary_type ? '#fff' : '#000'}>
+                  <Label fontcolor={formik.values.salary_type ? '#fff' : '#000'}>
                     Կեղտոտ
                   </Label>
                 </ButtonBase>
@@ -350,7 +347,7 @@ const SalaryCalculator = () => {
                   block
                   onClick={() => formik.setFieldValue('patent', null)}
                 >
-                  <Label fontColor={
+                  <Label fontcolor={
                     formik.values.patent !== 1 && formik.values.patent !== 0
                       ? '#fff'
                       : '#000'
@@ -368,7 +365,7 @@ const SalaryCalculator = () => {
                   block
                   onClick={() => formik.setFieldValue('patent', 1)}
                 >
-                  <Label fontColor={
+                  <Label fontcolor={
                     formik.values.patent === 1
                       ? '#fff'
                       : '#000'
@@ -386,7 +383,7 @@ const SalaryCalculator = () => {
                   block
                   onClick={() => formik.setFieldValue('patent', 0)}
                 >
-                  <Label fontColor={
+                  <Label fontcolor={
                     formik.values.patent === 0
                       ? '#fff'
                       : '#000'
@@ -409,7 +406,7 @@ const SalaryCalculator = () => {
                 span={17}
               >
                 <FormLabelCell>
-                  <Label fontColor="#000">
+                  <Label fontcolor="#000">
                     Աշխատավարձ
                   </Label>
                 </FormLabelCell>
@@ -437,7 +434,7 @@ const SalaryCalculator = () => {
                 span={17}
               >
                 <FormLabelCell>
-                  <Label fontColor="#000">
+                  <Label fontcolor="#000">
                     Պարգևավճար
                   </Label>
                 </FormLabelCell>
@@ -464,7 +461,7 @@ const SalaryCalculator = () => {
                 span={17}
               >
                 <FormLabelCell>
-                  <Label fontColor="#000">
+                  <Label fontcolor="#000">
                     Մասնակցու՞մ եք կուտակային կենսաթոշակայինին
                   </Label>
                 </FormLabelCell>
@@ -476,7 +473,7 @@ const SalaryCalculator = () => {
                   block
                   onClick={() => formik.setFieldValue('pension', true)}
                 >
-                  <Label fontColor={
+                  <Label fontcolor={
                     formik.values.pension
                       ? '#fff'
                       : '#000'
@@ -492,7 +489,7 @@ const SalaryCalculator = () => {
                   block
                   onClick={() => formik.setFieldValue('pension', false)}
                 >
-                  <Label fontColor={
+                  <Label fontcolor={
                     !formik.values.pension
                       ? '#fff'
                       : '#000'
@@ -513,7 +510,7 @@ const SalaryCalculator = () => {
                 span={17}
               >
                 <FormLabelCell>
-                  <Label fontColor="#000">
+                  <Label fontcolor="#000">
                     Վճարե՞լ եք արդեն դրոշմանիշային վճարը
                   </Label>
                 </FormLabelCell>
@@ -525,7 +522,7 @@ const SalaryCalculator = () => {
                   block
                   onClick={() => formik.setFieldValue('bonus_stamp', true)}
                 >
-                  <Label fontColor={
+                  <Label fontcolor={
                     formik.values.bonus_stamp
                       ? '#fff'
                       : '#000'
@@ -541,7 +538,7 @@ const SalaryCalculator = () => {
                   block
                   onClick={() => formik.setFieldValue('bonus_stamp', false)}
                 >
-                  <Label fontColor={
+                  <Label fontcolor={
                     !formik.values.bonus_stamp
                       ? '#fff'
                       : '#000'
@@ -564,7 +561,8 @@ const SalaryCalculator = () => {
                 <ButtonSubmit
                   disabled={loading || !formik.isValid}
                   size="large"
-                  block htmlType="submit"
+                  block
+                  htmlType="submit"
                 >
                   {loading ? <Spin /> : 'Հաշվել'}
                 </ButtonSubmit>
@@ -598,12 +596,12 @@ const SalaryCalculator = () => {
                   <Row gutter={[10, 10]}>
                     <Col span={16}>
                       <ResultCell>
-                        <Label fontColor="#fff">Ընդհանուր պահում</Label>
+                        <Label fontcolor="#fff">Ընդհանուր պահում</Label>
                       </ResultCell>
                     </Col>
                     <Col span={7}>
                       <ResultCell>
-                        <Label fontColor="#fff">{result.allTaxPrice}</Label>
+                        <Label fontcolor="#fff">{result.allTaxPrice}</Label>
                       </ResultCell>
                     </Col>
                   </Row>
@@ -611,12 +609,12 @@ const SalaryCalculator = () => {
                   <Row gutter={[10, 10]}>
                     <Col span={16}>
                       <ResultCell>
-                        <Label fontColor="#fff">Եկամտային հարկ</Label>
+                        <Label fontcolor="#fff">Եկամտային հարկ</Label>
                       </ResultCell>
                     </Col>
                     <Col span={7}>
                       <ResultCell>
-                        <Label fontColor="#fff">{result.taxPrice}</Label>
+                        <Label fontcolor="#fff">{result.taxPrice}</Label>
                       </ResultCell>
                     </Col>
                   </Row>
@@ -624,12 +622,12 @@ const SalaryCalculator = () => {
                   <Row gutter={[10, 10]}>
                     <Col span={16}>
                       <ResultCell>
-                        <Label fontColor="#fff">Կենսաթոշակային վճար</Label>
+                        <Label fontcolor="#fff">Կենսաթոշակային վճար</Label>
                       </ResultCell>
                     </Col>
                     <Col span={7}>
                       <ResultCell>
-                        <Label fontColor="#fff">{result.pensionPrice}</Label>
+                        <Label fontcolor="#fff">{result.pensionPrice}</Label>
                       </ResultCell>
                     </Col>
                   </Row>
@@ -637,12 +635,12 @@ const SalaryCalculator = () => {
                   <Row gutter={[10, 10]}>
                     <Col span={16}>
                       <ResultCell>
-                        <Label fontColor="#fff">Դրոշմանիշային վճար</Label>
+                        <Label fontcolor="#fff">Դրոշմանիշային վճար</Label>
                       </ResultCell>
                     </Col>
                     <Col span={7}>
                       <ResultCell>
-                        <Label fontColor="#fff">{result.stampPrice}</Label>
+                        <Label fontcolor="#fff">{result.stampPrice}</Label>
                       </ResultCell>
                     </Col>
                   </Row>
@@ -659,7 +657,7 @@ const SalaryCalculator = () => {
                   <Row gutter={[10, 10]}>
                     <Col span={9}>
                       <ResultCell large>
-                        <Label2 fontColor="#fff">
+                        <Label2 fontcolor="#fff">
                           {`${
                             +result.salary_type ? 'Մաքուր' : 'Կեղտոտ'
                           } աշխատավարձ`}
@@ -668,7 +666,7 @@ const SalaryCalculator = () => {
                     </Col>
                     <Col span={7}>
                       <ResultCell large>
-                        <Label2 fontColor="#fff">
+                        <Label2 fontcolor="#fff">
                           {result.salary}
                         </Label2>
                       </ResultCell>
@@ -678,7 +676,7 @@ const SalaryCalculator = () => {
                   {result.bonusSalary ? (<Row gutter={[10, 10]}>
                     <Col span={9}>
                       <ResultCell large>
-                        <Label2 fontColor="#fff">
+                        <Label2 fontcolor="#fff">
                           {`${
                             +result.salary_type ? 'Մաքուր' : 'Կեղտոտ'
                           } պարգևավճար`}
@@ -687,7 +685,7 @@ const SalaryCalculator = () => {
                     </Col>
                     <Col span={7}>
                       <ResultCell large>
-                        <Label2 fontColor="#fff">
+                        <Label2 fontcolor="#fff">
                           {result.bonusSalary}
                         </Label2>
                       </ResultCell>

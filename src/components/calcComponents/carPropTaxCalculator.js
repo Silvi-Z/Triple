@@ -157,7 +157,7 @@ const Label = styled(Text)`
   font-family: ArialAMU;
   font-weight: bold;
   line-height: 20px;
-  color: ${props => props.fontColor};
+  color: ${props => props.fontcolor};
   font-size: 12px;
   @media (min-width: 576px) {
     font-size: 13px;
@@ -244,7 +244,7 @@ const CarPropTaxCalculator = () => {
                 span={6}
               >
                 <FormLabelCell>
-                  <Label fontColor="#000">
+                  <Label fontcolor="#000">
                     ՏՄ տեսակը
                   </Label>
                 </FormLabelCell>
@@ -256,27 +256,27 @@ const CarPropTaxCalculator = () => {
                   onChange={value => formik.setFieldValue('car_type', value)}
                 >
                   <Option value={0}>
-                    <Label fontColor="#000">
+                    <Label fontcolor="#000">
                       Մինչև 10 նստատեղ ունեցող մարդատար ավտոմեքենա
                     </Label>
                   </Option>
                   <Option value={1}>
-                    <Label fontColor="#000">
+                    <Label fontcolor="#000">
                       10 և ավել նստատեղ ունեցող մարդատար ավտոմեքենա
                     </Label>
                   </Option>
                   <Option value={2}>
-                    <Label fontColor="#000">
+                    <Label fontcolor="#000">
                       Բեռնատար ավտոմեքենա
                     </Label>
                   </Option>
                   <Option value={3}>
-                    <Label fontColor="#000">
+                    <Label fontcolor="#000">
                       Մոտոցիկլետ
                     </Label>
                   </Option>
                   <Option value={4}>
-                    <Label fontColor="#000">
+                    <Label fontcolor="#000">
                       Ջրային փոխադրամիջոց
                     </Label>
                   </Option>
@@ -294,7 +294,7 @@ const CarPropTaxCalculator = () => {
                 span={17}
               >
                 <FormLabelCell>
-                  <Label fontColor="#000">
+                  <Label fontcolor="#000">
                     Թողարկման տարեթիվը
                   </Label>
                 </FormLabelCell>
@@ -307,7 +307,7 @@ const CarPropTaxCalculator = () => {
                 >
                   {years.map((e) => (
                     <Option key={e} value={e}>
-                      <Label fontColor="#000">{e}</Label>
+                      <Label fontcolor="#000">{e}</Label>
                     </Option>))}
                 </CustomSelect>
               </Col>
@@ -323,7 +323,7 @@ const CarPropTaxCalculator = () => {
                 span={17}
               >
                 <FormLabelCell>
-                  <Label fontColor="#000">
+                  <Label fontcolor="#000">
                     Շարժիչի հզորությունը (ձիաուժ)
                   </Label>
                 </FormLabelCell>
@@ -388,12 +388,12 @@ const CarPropTaxCalculator = () => {
                   <Row gutter={[10, 10]}>
                     <Col sm={15} span={14}>
                       <ResultCell>
-                        <Label fontColor="#fff">Վճարման ենթակա գույքահարկ</Label>
+                        <Label fontcolor="#fff">Վճարման ենթակա գույքահարկ</Label>
                       </ResultCell>
                     </Col>
                     <Col xs={6} sm={5} span={4}>
                       <ResultCell>
-                        <Label fontColor="#fff">{result.data.result}</Label>
+                        <Label fontcolor="#fff">{result.data.result}</Label>
                       </ResultCell>
                     </Col>
                   </Row>
