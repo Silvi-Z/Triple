@@ -293,6 +293,11 @@ const VacationCalculator = () => {
   const [vacDays, setVacDays] = useState(vacEnd.diff(vacStart, 'days'));
   const [workingDays, setWorkingDays] = useState(null);
 
+  const [result2, setResult2] = useState(null);
+  const [loading2, setLoading2] = useState(false);
+  const [vacStart2, setVacStart2] = useState(moment());
+  const [vacEnd2, setVacEnd2] = useState(moment().add(1, 'days'));
+
   const handleVacDays = async () => {
     const body = {
       'work_day_type': sixDayWeek,
@@ -446,6 +451,36 @@ const VacationCalculator = () => {
       }
 
       setLoading(false);
+    },
+  });
+
+  const initialValues2 = {
+    'work_day_type': 0,
+    'date_from': moment(vacStart2).format('YYYY-MM-DD'),
+    'date_to': moment(vacEnd2).format('YYYY-MM-DD'),
+    'total_vacation_days': 0,
+    'used_days': 0,
+  };
+
+  const formik2 = useFormik({
+    initialValues: initialValues2,
+    enableReinitialize: true,
+    // validationSchema,
+    // validateOnMount: true,
+    onSubmit: async values => {
+      setLoading2(true);
+      setResult2(null);
+
+      try {
+        const res = await apiHelper.post('/api/counter/vacation_days', values);
+        console.log('Available vac days: ', res);
+        setResult2(res.data.data);
+      } catch (e) {
+        console.log('Available vac days error:', e);
+        setLoading2(false);
+      }
+
+      setLoading2(false);
     },
   });
 
@@ -1137,7 +1172,7 @@ const VacationCalculator = () => {
                     </Col>
                     <Col span={6}>
                       <ResultCell>
-                        <Label fontcolor="#fff">{' '}</Label>
+                        <Label fontcolor="#fff">{result.totalInfo.stampPrice}</Label>
                       </ResultCell>
                     </Col>
                   </Row>
@@ -1186,6 +1221,22 @@ const VacationCalculator = () => {
                   </Row>
                 </Col>
               </Row>
+
+              <Row align="middle" gutter={[10, 20]}>
+                <Col
+                  xxl={{span: 10, offset: 6}}
+                  xl={{span: 13, offset: 5}}
+                  lg={{span: 15, offset: 4}}
+                  md={{span: 19, offset: 2}}
+                  sm={{span: 19, offset: 1}}
+                  span={24}
+                >
+                  <H3Styled>
+                    Արձակուրդայինի հաշվարկը ըստ ամիսների և աշխատավարձի հետ գումարային
+                  </H3Styled>
+                </Col>
+              </Row>
+
               {result.monthInfo.map((month, i) => (
                 <React.Fragment key={i}>
                   <Row align="middle" gutter={[5, 0]}>
@@ -1317,6 +1368,211 @@ const VacationCalculator = () => {
                   </Row>
                 </React.Fragment>
               ))}
+            </>
+          ) : null}
+
+          <Row align="middle" gutter={[10, 20]}>
+            <Col
+              xxl={{span: 10, offset: 6}}
+              xl={{span: 13, offset: 5}}
+              lg={{span: 15, offset: 4}}
+              md={{span: 19, offset: 2}}
+              sm={{span: 19, offset: 1}}
+              span={24}
+            >
+              <H3Styled>
+                Հասանելիք արձակուրդային օրերի հաշվարկում
+              </H3Styled>
+            </Col>
+          </Row>
+
+          <form onSubmit={formik2.handleSubmit}>
+            <Row align="middle" gutter={[10, 10]}>
+              <Col
+                xxl={{span: 2, offset: 6}}
+                xl={{span: 2, offset: 5}}
+                lg={{span: 3, offset: 4}}
+                md={{span: 3, offset: 2}}
+                sm={{span: 4, offset: 1}}
+                span={4}
+              >
+                <FormLabelCell>
+                  <Label fontcolor="#000">Ընդունում</Label>
+                </FormLabelCell>
+              </Col>
+              <Col>
+                <StyledDatePicker
+                  value={vacStart2}
+                  onChange={date => {
+                    setVacStart2(date);
+                    formik2.setFieldValue('date_from', moment(date).format('YYYY-MM-DD'));
+                  }}
+                  allowClear={false}
+                  suffixIcon={<CustomCaret />}
+                  size="large"
+                  format="DD.MM.YYYY"
+                />
+              </Col>
+              <Col xxl={2} xl={2} lg={3} md={3} sm={4} span={4}>
+                <FormLabelCell>
+                  <Label fontcolor="#000">Մինչև</Label>
+                </FormLabelCell>
+              </Col>
+              <Col>
+                <StyledDatePicker
+                  value={vacEnd2}
+                  onChange={date => {
+                    setVacEnd2(date);
+                    formik2.setFieldValue('date_to', moment(date).format('YYYY-MM-DD'));
+                  }}
+                  allowClear={false}
+                  suffixIcon={<CustomCaret />}
+                  size="large"
+                  format="DD.MM.YYYY"
+                  disabledDate={d => !d || d.isBefore(vacStart2)}
+                />
+              </Col>
+            </Row>
+
+            <Row align="middle" gutter={[10, 10]}>
+              <Col
+                xxl={{ span: 5, offset: 6 }}
+                xl={{ span: 6, offset: 5 }}
+                lg={{ span: 7, offset: 4 }}
+                md={{ span: 9, offset: 2 }}
+                sm={{ span: 11, offset: 1 }}
+                span={12}
+              >
+                <ButtonLarge
+                  block
+                  type={formik2.values.work_day_type ? 'default' : 'primary'}
+                  onClick={() => formik2.setFieldValue('work_day_type', 0)}
+                >
+                  <Label fontcolor={formik2.values.work_day_type ? '#000' : '#fff'}>
+                    Հնգօրյա աշխատանքային շաբաթ
+                  </Label>
+                </ButtonLarge>
+              </Col>
+              <Col xxl={5} xl={6} lg={7} md={9} sm={11} span={12}>
+                <ButtonLarge
+                  block
+                  type={!formik2.values.work_day_type ? 'default' : 'primary'}
+                  onClick={() => formik2.setFieldValue('work_day_type', 1)}
+                >
+                  <Label fontcolor={!formik2.values.work_day_type ? '#000' : '#fff'}>
+                    Վեցօրյա աշխատանքային շաբաթ	
+                  </Label>
+                </ButtonLarge>
+              </Col>
+            </Row>
+            <Row align="middle" gutter={[10, 10]}>
+              <Col
+                xxl={{ span: 7, offset: 6 }}
+                xl={{ span: 9, offset: 5 }}
+                lg={{ span: 10, offset: 4 }}
+                md={{ span: 13, offset: 2 }}
+                sm={{ span: 17, offset: 1 }}
+                span={17}
+              >
+                <FormLabelCell>
+                  <Label fontcolor="#000">
+                    Ընդհանուր արձակուրդային օրեր
+                  </Label>
+                </FormLabelCell>
+              </Col>
+
+              <Col xxl={1} xl={2} lg={2} md={2} sm={3} span={3}>
+                <StyledInputNumber
+                  value={formik2.values.total_vacation_days}
+                  min={1}
+                  onChange={val => {
+                    formik2.setFieldValue('total_vacation_days', val);
+                  }}
+                />
+              </Col>
+            </Row>
+            <Row align="middle" gutter={[10, 30]}>
+              <Col
+                xxl={{ span: 7, offset: 6 }}
+                xl={{ span: 9, offset: 5 }}
+                lg={{ span: 10, offset: 4 }}
+                md={{ span: 13, offset: 2 }}
+                sm={{ span: 17, offset: 1 }}
+                span={17}
+              >
+                <FormLabelCell>
+                  <Label fontcolor="#000">
+                    Օգտագործված արձակուրդային օրեր
+                  </Label>
+                </FormLabelCell>
+              </Col>
+
+              <Col xxl={1} xl={2} lg={2} md={2} sm={3} span={3}>
+                <StyledInputNumber
+                  value={formik2.values.used_days}
+                  min={0}
+                  onChange={val => {
+                    formik2.setFieldValue('used_days', val);
+                  }}
+                />
+              </Col>
+            </Row>
+            <Row align="middle" gutter={[10, 30]}>
+              <Col
+                xxl={{ span: 4, offset: 6 }}
+                xl={{ span: 4, offset: 5 }}
+                lg={{ span: 5, offset: 4 }}
+                md={{ span: 7, offset: 2 }}
+                sm={{ span: 7, offset: 2 }}
+                span={8}
+              >
+                <ButtonSubmit
+                  disabled={loading2 /* || !formik2.isValid */}
+                  size="large"
+                  block
+                  htmlType="submit"
+                >
+                  {loading2 ? <Spin /> : 'Հաշվել'}
+                </ButtonSubmit>
+              </Col>
+            </Row>
+          </form>
+          {result2 ? (
+            <>
+              <Row align="middle" gutter={[5, 10]}>
+                <Col
+                  xxl={{ span: 4, offset: 6 }}
+                  xl={{ span: 4, offset: 5 }}
+                  lg={{ span: 5, offset: 4 }}
+                  md={{span: 6, offset: 2}}
+                  offset={1}
+                  span={10}
+                >
+                  <H3Styled>Արդյունք</H3Styled>
+                </Col>
+              </Row>
+              <Row gutter={[10, 30]}>
+                <Col
+                  xxl={{ offset: 6 }}
+                  xl={{ offset: 5 }}
+                  lg={{ offset: 4 }}
+                  md={{ offset: 2}}
+                  offset={1}
+                >
+                  <ResultCell>
+                    <Label fontcolor="#fff">
+                      Հասանելիք արձակուրդային օրեր
+                    </Label>
+                  </ResultCell>
+                </Col>
+                <Col>
+                  <ResultCell>
+                    <Label fontcolor="#fff">
+                      {result2.available}
+                    </Label>
+                  </ResultCell>
+                </Col>
+              </Row>
             </>
           ) : null}
         </>
