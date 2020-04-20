@@ -12,19 +12,23 @@ import CarImg from "../assets/calcImages/carSell.png"
 const ReportParagraphRow = styled(Row)`
   padding: 0 12.5%;
   margin-bottom: 2.8%;
-  @media only screen and (max-width: 768px) {
-    margin-top: 49px;
+  @media only screen and (max-width: 320px) {
+    margin-bottom: 70px;
     padding: 0 3.5%;
+    margin-top: 39px;
   }
   @media only screen and (max-width: 375px) {
     margin-bottom: 70px;
     padding: 0 3.5%;
     margin-top: 39px;
   }
-  @media only screen and (max-width: 320px) {
-    margin-bottom: 70px;
+  @media only screen and (max-width: 768px) {
+    margin-top: 49px;
     padding: 0 3.5%;
-    margin-top: 39px;
+  }
+  @media only screen and (max-width: 1600px) {
+    margin-top: 49px;
+    padding: 0 12.5%;
   }
 `
 const H2Styled = styled.h2`
@@ -155,7 +159,7 @@ const Reports = () => {
   return (
     <Layout>
       <ReportParagraphRow>
-        <Col lg={{ span: 24 }}>
+        <Col lg={{ span: 24 }} xxl={{ span: 24, offset: 2 }}>
           <H2Styled>Հաշվետվության տրամադրում</H2Styled>
           <PStyled>
             “Թրիփլ Քնսալթինգ” ընկերության “Հաշվետվության տրամադրում” ծառայության
@@ -166,16 +170,16 @@ const Reports = () => {
       </ReportParagraphRow>
       <ReportDropRow align="middle" gutter={[10, 25]}>
         <Col
-          xxl={{ span: 1, offset: 3 }}
+          xxl={{ span: 1, offset: 6 }}
           xl={{ span: 1, offset: 3 }}
           lg={{ span: 1, offset: 3 }}
-          md={{ span: 1, offset: 3 }}
+          md={{ span: 2, offset: 3 }}
           sm={{ span: 6, offset: 0 }}
           xs={{ span: 5, offset: 0 }}
         >
           <HeadIcon src={CarImg} alt={"icon"} />
         </Col>
-        <Col xxl={15} xl={15} lg={15} md={16} sm={10} xs={14} span={17}>
+        <Col xxl={10} xl={15} lg={15} md={16} sm={10} xs={14} span={17}>
           <H3Styled>
             Ավտոմեքենայի վաճառքի հաշվետվություն <span>( 5000 դր )</span>
           </H3Styled>
@@ -193,10 +197,10 @@ const Reports = () => {
       <ReportFormRow align="middle">
         {showForm ? (
           <Col
-            xxl={{ span: 18, offset: 4 }}
-            xl={{ span: 18, offset: 4 }}
-            lg={{ span: 18, offset: 4 }}
-            md={{ span: 18, offset: 4 }}
+            xxl={{ span: 24, offset: 6 }}
+            xl={{ span: 24, offset: 4 }}
+            lg={{ span: 24, offset: 4 }}
+            md={{ span: 24, offset: 4 }}
             sm={{ span: 24, offset: 0 }}
             xs={{ span: 24, offset: 0 }}
           >

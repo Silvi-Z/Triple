@@ -145,55 +145,65 @@ const ColDistrict = styled(Col)`
     margin-top: 12%;
   }
   @media (min-width: 768px) {
-    margin-top: 7.4%;
-    margin-left: -10%;
+    margin-top: 5.5%;
+    margin-left: 1%;
   }
-  @media (min-width: 1024px) {
-    margin-top: 5.4%;
-    margin-left: 2.5%;
+  @media (max-width: 1024px) {
+    margin-top: 4%;
+    margin-left: 1%;
+  }
+  @media (min-width: 1170px) {
+    margin-top: 3.7%;
+    margin-left: 1%;
   }
   @media (min-width: 1300px) {
-    margin-top: 4.3%;
-    margin-left: -3%;
+    margin-top: 3.3%;
+    margin-left: 1%;
   }
   @media (min-width: 1600px) {
-    margin-top: 3.1%;
-    margin-left: -7%;
+    margin-top: 2.3%;
+    margin-left: 0.5%;
   }
 `
 const ColAddress = styled(Col)`
   margin-top: 3.1%;
   @media (min-width: 768px) {
-    margin-top: 7.4%;
-    margin-left: 6.5%;
+    margin-top: 5.5%;
+    margin-left: 3%;
   }
   @media (min-width: 1024px) {
-    margin-top: 5.4%;
-    margin-left: 9.5%;
+    margin-top: 4%;
+    margin-left: 3%;
+  }
+  @media (min-width: 1170px) {
+    margin-top: 3.7%;
+    margin-left: 1%;
   }
   @media (min-width: 1300px) {
-    margin-top: 4.3%;
+    margin-top: 3.3%;
     margin-left: 6%;
   }
   @media (min-width: 1600px) {
-    margin-top: 3.1%;
-    margin-left: 1.2%;
+    margin-top: 2.3%;
+    margin-left: 3.2%;
   }
 `
-
 const ReportPassportRow = styled(Row)`
   width: 48.6%;
   @media (min-width: 768px) {
-    width: 85.5%;
+    width: 82.5%;
   }
   @media (min-width: 1024px) {
-    width: 63%;
+    width: 62%;
+  }
+  @media (min-width: 1170px) {
+    width: 54%;
   }
   @media (min-width: 1366px) {
     width: 48.6%;
   }
   @media (min-width: 1600px) {
-    width: 48.6%;
+    width: 44%;
   }
 `
 const DatePickerCustom = styled(DatePicker)`
@@ -208,6 +218,10 @@ const DatePickerCustom = styled(DatePicker)`
     width: 290px;
     border: solid 1px #009db8;
   }
+  @media (min-width: 768px) {
+    width:  142px;
+    border: solid 1px #009db8;
+  }
 `
 const SelectCustom = styled(Select)`
   width: 116px;
@@ -220,29 +234,46 @@ const SelectCustom = styled(Select)`
     width: 138px;
     border: solid 1px #009db8;
   }
+  @media (min-width: 1300px) {
+    width: 116px;
+    border: solid 1px #009db8;
+  }
+  @media (min-width: 1600px) {
+    width: 116px;
+    border: solid 1px #009db8;
+  }
 `
 const PassportButton = styled(Button)`
-  width: 216px;
   height: 40px;
+  
   @media (min-width: 320px) {
     width: 290px;
     border: solid 1px #009db8;
   }
   @media (min-width: 375px) {
     width: 290px;
+    border: solid 1px #009db8;
+  }
+  @media (min-width: 768px) {
+    width: 216px;
     border: solid 1px #009db8;
   }
 `
 const IdButton = styled(Button)`
   width: 216px;
   height: 40px;
-  margin-top: 3.3%;
+  margin-top: 0.3%;
+  margin-left: 1.1%;
   @media (min-width: 320px) {
     width: 290px;
     border: solid 1px #009db8;
   }
   @media (min-width: 375px) {
     width: 290px;
+    border: solid 1px #009db8;
+  }
+  @media (min-width: 768px) {
+    width: 216px;
     border: solid 1px #009db8;
   }
 `
@@ -338,7 +369,6 @@ const RegistrationForm = ({ closeForm1, setConfirm2 }) => {
         prefix: "86",
       }}
       scrollToFirstError
-      // onSubmit={formik.handleSubmit}
     >
       <Form.Item
         name="full_name"
@@ -357,13 +387,14 @@ const RegistrationForm = ({ closeForm1, setConfirm2 }) => {
         <Col
           xs={{ span: 12, offset: 0 }}
           sm={{ span: 10, offset: 0 }}
-          md={{ span: 8, offset: 0 }}
-          lg={{ span: 4, offset: 0 }}
-          xxl={{ span: 4, offset: 0 }}
+          md={{ span: 5, offset: 0 }}
+          lg={{ span: 3, offset: 0 }}
+          xl={{ span: 3, offset: 0 }}
+          xxl={{ span: 2, offset: 0 }}
         >
           <Form.Item
             name="city"
-            label="Բնակության վայրի հասցե"
+            label="Բնակության հասցե"
             rules={[
               { required: true, message: "Խնդրում ենք լրացնել նշված դաշտերը" },
             ]}
@@ -378,8 +409,9 @@ const RegistrationForm = ({ closeForm1, setConfirm2 }) => {
           xs={{ span: 10, offset: 1 }}
           sm={{ span: 10, offset: 0 }}
           md={{ span: 4, offset: 0 }}
-          lg={{ span: 2, offset: 0 }}
-          xxl={{ span: 2, offset: 0 }}
+          lg={{ span: 3, offset: 0 }}
+          xl={{ span: 1, offset: 0 }}
+          xxl={{ span: 1, offset: 0 }}
         >
           <Form.Item
             name="district"
@@ -394,11 +426,12 @@ const RegistrationForm = ({ closeForm1, setConfirm2 }) => {
           </Form.Item>
         </ColDistrict>
         <ColAddress
-          xs={{ span: 24, offset: 0 }}
-          sm={{ span: 22, offset: 0 }}
-          md={{ span: 9, offset: 0 }}
-          lg={{ span: 5, offset: 0 }}
-          xxl={{ span: 4, offset: 0 }}
+          xs={{ span: 24 }}
+          sm={{ span: 22 }}
+          md={{ span: 6 }}
+          lg={{ span: 4 }}
+          xl={{ span: 4 }}
+          xxl={{ span: 3 }}
         >
           <Form.Item
             name="address"
@@ -408,13 +441,13 @@ const RegistrationForm = ({ closeForm1, setConfirm2 }) => {
             ]}
             noStyle
           >
-            <Input style={{ width: "96%" }} size="large" />
+            <Input style={{ width: "80%" }} size="large" />
           </Form.Item>
         </ColAddress>
       </Row>
       <Form.Item
         {...tailFormButtonLayout}
-        style={{ Maxwidth: "53.6%", display: "flex" }}
+        style={{ display: "flex" }}
         label="Ընտրել անձը հաստատող փաստաթղթի տեսակը"
       >
         <PassportButton
@@ -432,7 +465,7 @@ const RegistrationForm = ({ closeForm1, setConfirm2 }) => {
       </Form.Item>
       {checkPassport === "0" ? (
         <ReportPassportRow>
-          <Col xs={18} sm={18} md={8} lg={8} xxl={6}>
+          <Col xs={18} sm={18} md={6} lg={6} xl={6} xxl={5}>
             <Form.Item
               name="passport_series"
               label={<span>Անձնագրի սերիա</span>}
@@ -447,7 +480,7 @@ const RegistrationForm = ({ closeForm1, setConfirm2 }) => {
               <Input />
             </Form.Item>
           </Col>
-          <Col xs={24} sm={24} md={8} lg={8} xxl={6}>
+          <Col xs={24} sm={24} md={6} lg={6} xl={6} xxl={5}>
             <Form.Item
               name="given"
               label={<span>Տրված է ում կողմից</span>}
@@ -462,7 +495,7 @@ const RegistrationForm = ({ closeForm1, setConfirm2 }) => {
               <Input />
             </Form.Item>
           </Col>
-          <Col xs={24} sm={24} md={8} lg={8} xxl={6}>
+          <Col xs={24} sm={24} md={8} lg={6} xl={6} xxl={5}>
             <Form.Item
               name="when"
               label="Երբ"
@@ -482,24 +515,24 @@ const RegistrationForm = ({ closeForm1, setConfirm2 }) => {
           </Col>
         </ReportPassportRow>
       ) : (
-        <Row>
-          <Col lg={8}>
-            <Form.Item
-              name="ID_card_number"
-              label={<span>Նույնականացման քարտ թվեր</span>}
-              rules={[
-                {
-                  required: true,
-                  message: "Խնդրում ենք լրացնել նշված դաշտերը",
-                  whitespace: true,
-                },
-              ]}
-            >
-              <Input />
-            </Form.Item>
-          </Col>
-        </Row>
-      )}
+          <Row>
+            <Col lg={8}>
+              <Form.Item
+                name="ID_card_number"
+                label={<span>Նույնականացման քարտ թվեր</span>}
+                rules={[
+                  {
+                    required: true,
+                    message: "Խնդրում ենք լրացնել նշված դաշտերը",
+                    whitespace: true,
+                  },
+                ]}
+              >
+                <Input />
+              </Form.Item>
+            </Col>
+          </Row>
+        )}
       <Form.Item
         name="birthday"
         label="Ծննդյան օր/ամսի/տարեթիվ"

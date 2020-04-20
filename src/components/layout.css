@@ -1156,4 +1156,7 @@ pre tt:after {
     text-align: center;
     margin-left: 20%;
   }
+  #register_city > div {
+    width: 146px;
+  }
 }
