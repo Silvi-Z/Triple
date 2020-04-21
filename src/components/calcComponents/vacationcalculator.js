@@ -291,7 +291,8 @@ const VacationCalculator = () => {
   const [vacEnd, setVacEnd] = useState(moment().add(1, 'days'));
   const [sixDayWeek, setSixDayWeek] = useState(0);
   const [daysLoading, setDaysLoading] = useState(false);
-  const [vacDays, setVacDays] = useState(vacEnd.diff(vacStart, 'days'));
+  // const [vacDays, setVacDays] = useState(vacEnd.diff(vacStart, 'days'));
+  const [vacDays, setVacDays] = useState(0);
   const [workingDays, setWorkingDays] = useState(null);
 
   const [result2, setResult2] = useState(null);
@@ -546,12 +547,14 @@ const VacationCalculator = () => {
                 onChange={date => {
                   console.log('Start date changed');
                   setVacStart(date);
+                  setVacEnd(date);
+                  setVacDays(0);
                 }}
                 allowClear={false}
                 suffixIcon={<CustomCaret />}
                 size="large"
                 format="DD.MM.YYYY"
-                disabledDate={d => !d || d.isAfter(vacEnd)}
+                // disabledDate={d => !d || d.isAfter(vacEnd)}
               />
             </Col>
             <Col xxl={2} xl={2} lg={3} md={3} sm={4} span={4}>
@@ -612,7 +615,7 @@ const VacationCalculator = () => {
               <StyledInputNumber
                 disabled={formDisable}
                 value={vacDays}
-                min={1}
+                min={0}
                 onChange={async val => {
                   setFormDisable(true);
                   setVacDays(val);
