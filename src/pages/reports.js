@@ -4,7 +4,7 @@ import Layout from "../components/layout"
 import styled from "styled-components"
 import { Row, Col, Button } from "antd"
 import ReportForm from "../components/reportComponents/reportForm"
-import ReportForm2 from "../components/reportComponents/reportForm2"
+import ReportForm4 from "../components/reportComponents/reportForm2"
 import ReportForm3 from "../components/reportComponents/reportForm3"
 import { PlusOutlined, MinusOutlined } from "@ant-design/icons"
 import CarImg from "../assets/calcImages/carSell.png"
@@ -36,7 +36,7 @@ const H2Styled = styled.h2`
   height: 18px;
   font-family: ArialAMU;
   font-size: 18px;
-  font-weight: normal;
+  font-weight: bold;
   font-stretch: normal;
   font-style: normal;
   line-height: normal;
@@ -156,6 +156,28 @@ const Reports = () => {
   const [showForm, toggleForm] = useState(true)
   const [confirm2, setConfirm2] = useState(false)
   const [confirm3, setConfirm3] = useState(false)
+
+  const [AllFieldsValues, setAllFieldsValues] = useState({
+    full_name: "string",
+    city: "string",
+    district: "string",
+    address: "string",
+    identity_document_type: "string",
+    passport_series: "string",
+    when: "2020-04-20",
+    given: 0,
+    psn: 0,
+    birthday: "2020-04-20",
+    tin: 0,
+    phone: 0,
+    email: "user@example.com",
+    passport_file: "string",
+    car_purchase_file: [
+      "file1",
+      "file2"
+    ],
+    credentials_file: "string"
+  })
   return (
     <Layout>
       <ReportParagraphRow>
@@ -205,36 +227,44 @@ const Reports = () => {
             xs={{ span: 24, offset: 0 }}
           >
             <H3StyledForm>Պահանջվող տեղեկատվություն</H3StyledForm>
-            <ReportForm setConfirm2={setConfirm2} closeForm1={toggleForm} />
+            <ReportForm
+              setConfirm2={setConfirm2}
+              closeForm1={toggleForm}
+              SetAllFieldsValues={setAllFieldsValues}
+              allFieldsValues={AllFieldsValues}
+            />
           </Col>
         ) : confirm2 ? (
           <Col
-            xxl={{ span: 18, offset: 4 }}
-            xl={{ span: 18, offset: 4 }}
-            lg={{ span: 18, offset: 4 }}
-            md={{ span: 18, offset: 4 }}
+          xxl={{ span: 18, offset: 7 }}
+          xl={{ span: 18, offset: 4 }}
+          lg={{ span: 18, offset: 4 }}
+          md={{ span: 18, offset: 5 }}
             sm={{ span: 3, offset: 0 }}
             xs={{ span: 3, offset: 0 }}
           >
             <H3StyledForm>Պահանջվող տեղեկատվություն</H3StyledForm>
-            <ReportForm2
+            <ReportForm3
               setConfirm3={setConfirm3}
               setConfirm2={setConfirm2}
               backButton={toggleForm}
               forwardButton={setConfirm3}
+              AllFieldsValues={AllFieldsValues}
             />
           </Col>
         ) : confirm3 ? (
           <Col
-            xxl={{ span: 18, offset: 4 }}
+            xxl={{ span: 18, offset: 7 }}
             xl={{ span: 18, offset: 4 }}
             lg={{ span: 18, offset: 4 }}
-            md={{ span: 18, offset: 4 }}
+            md={{ span: 18, offset: 5 }}
             sm={{ span: 3, offset: 0 }}
             xs={{ span: 3, offset: 0 }}
           >
-            <H3StyledForm>Պահանջվող տեղեկատվություն</H3StyledForm>
-            <ReportForm3 forwardButton={setConfirm3} backButton={setConfirm2} />
+            <ReportForm4
+              forwardButton={setConfirm3}
+              backButton={setConfirm2}
+            />
           </Col>
         ) : null}
       </ReportFormRow>

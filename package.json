@@ -10,6 +10,7 @@
     "antd": "^4.1.1",
     "axios": "^0.19.2",
     "babel-plugin-styled-components": "^1.10.7",
+    "file-saver": "^2.0.2",
     "formik": "^2.1.4",
     "gatsby": "^2.20.13",
     "gatsby-image": "^2.3.2",

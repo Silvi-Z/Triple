@@ -7,6 +7,7 @@ const apiHelper = axios.create({
   headers: {
     // Content-Type: 'application/x-www-form-urlencoded',
     Accept: 'application/json',
+    // responseType: "blob"
   },
 });
 

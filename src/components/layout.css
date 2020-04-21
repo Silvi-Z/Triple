@@ -702,8 +702,8 @@ pre tt:after {
   background-color: #ffffff;
 }
 #register_address {
-  width: 290px;
-  height: 43px;
+  width: 110%;
+  height: 42px;
   border: solid 1px #009db8;
   background-color: #ffffff;
 }
@@ -853,6 +853,19 @@ pre tt:after {
     margin-top: 0px;
   }
   /*register*/
+  label[title] {
+    width: 400px;
+    height: 31px;
+    font-family: ArialAMU;
+    font-size: 14px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: left;
+    color: #000000;
+  }
   #register_full_name {
     width: 290px;
     height: 40px;
@@ -884,8 +897,6 @@ pre tt:after {
     background-color: #ffffff;
   }
   #register_address {
-    width: 290px;
-    height: 40px;
     border: solid 1px #009db8;
     background-color: #ffffff;
   }
@@ -1028,6 +1039,12 @@ pre tt:after {
     height: 46px;
     text-align: right;
   }
+  #register_address {
+    width: 290px;
+    height: 42px;
+    border: solid 1px #009db8;
+    background-color: #ffffff;
+  }
 }
 @media only screen and (max-width: 320px) {
   #basic_career {
@@ -1108,12 +1125,14 @@ pre tt:after {
     font-size: 100%;
   }
 }
-@media only screen and (max-width: 1200px) {
-  .phonebox {
-    margin-right: 6%;
+@media only screen and (min-width: 375px) {
+  #register_address {
+    width: 90%;
+    height: 42px;
+    border: solid 1px #009db8;
+    background-color: #ffffff;
   }
 }
-
 @media only screen and (min-width: 1170px) {
   .slick-slider {
     margin-top: -50px;
@@ -1127,11 +1146,30 @@ pre tt:after {
     margin-right: -20px;
   }
 }
+@media only screen and (max-width: 1024px) {
+  .phonebox {
+    margin-right: 6%;
+  }
+}
+@media only screen and (max-width: 1200px) {
+  #register_address {
+    width: 100%;
+    height: 42px;
+    border: solid 1px #009db8;
+    background-color: #ffffff;
+  }
+}
 @media only screen and (min-width: 1366px) {
   .slick-slider {
     margin-top: -50px;
     margin-left: -50px;
     margin-right: -50px;
+  }
+  #register_address {
+    width: 89%;
+    height: 42px;
+    border: solid 1px #009db8;
+    background-color: #ffffff;
   }
 }
 
@@ -1158,5 +1196,11 @@ pre tt:after {
   }
   #register_city > div {
     width: 146px;
+  }
+  #register_address {
+    width: 77%;
+    height: 42px;
+    border: solid 1px #009db8;
+    background-color: #ffffff;
   }
 }

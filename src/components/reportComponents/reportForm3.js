@@ -5,6 +5,7 @@ import {
     UploadOutlined,
 } from "@ant-design/icons"
 import styled from "styled-components"
+import { apiHelper } from "../../helpers/apiHelper"
 import { Form, Button, Upload, Row, Col } from "antd"
 import UploadImage from "../../assets/upload2.svg"
 import PropTypes from "prop-types"
@@ -35,18 +36,18 @@ const CustomButton = styled(Button)`
   display: flex;
   justify-content: space-between;
   span {
-      width: 208px;
-      height: 31px;
-      font-family: ArialAMU;
-      font-size: 14px;
-      font-weight: normal;
-      font-stretch: normal;
-      font-style: normal;
-      line-height: normal;
-      letter-spacing: normal;
-      text-align: left;
-      color: #000000;
-    }
+    width: 208px;
+    height: 31px;
+    font-family: ArialAMU;
+    font-size: 14px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: left;
+    color: #000000;
+  }
   @media (min-width: 320px) {
     width: 290px;
     border: solid 1px #009db8;
@@ -153,11 +154,41 @@ const ForwardSpan = styled.span`
   text-align: center;
   color: #009db8;
 `
-function ReportForm3({ forwardButton, backButton }) {
-    const onFinish = values => {
-        console.log("Received values of form: ", values)
-        setConfirm2(false)
-        setConfirm3(true)
+function ReportForm3({ AllFieldsValues, setConfirm2, setConfirm3 }) {
+    console.log(AllFieldsValues)
+    // const onFinish = values => {
+    //     console.log("Received values of form: ", values)
+    //     setConfirm2(false)
+    //     setConfirm3(true)
+    // }
+    const onFinish = async values => {
+        let body = {
+            ...AllFieldsValues,
+            passport_file: values.passport_file[0],
+            car_purchase_file: values.car_purchase_file[0],
+            credentials_file: values.credentials_file[0]
+        }
+        console.log("Received values of form: ", body)
+        try {
+            const res = await apiHelper.post(
+                "/api/reports/car_sales_credential",
+                body,
+                {
+                    headers: {
+                        Accept: "application/pdf",
+                        "Content-Type": 'multipart/form-data',
+                    }
+                }
+            ).then(response => {
+                console.log(response)
+                setConfirm2(false)
+                setConfirm3(true)
+            });
+            // setConfirm2(true)
+            // closeForm1(false)
+        } catch (e) {
+            console.log("Error: ", e)
+        }
     }
 
     const goBack = () => {
@@ -184,7 +215,7 @@ function ReportForm3({ forwardButton, backButton }) {
                     }}
                 >
                     <Form.Item
-                        name="upload"
+                        name="passport_file"
                         valuePropName="fileList"
                         getValueFromEvent={normFile}
                     // extra="longgggggggggggggggggggggggggggggggggg"
@@ -197,12 +228,12 @@ function ReportForm3({ forwardButton, backButton }) {
                         </Upload>
                     </Form.Item>
                     <Form.Item
-                        name="upload"
+                        name="car_purchase_file"
                         valuePropName="fileList"
                         getValueFromEvent={normFile}
                     // extra="longgggggggggggggggggggggggggggggggggg"
                     >
-                        <Upload name="carconract" action="/upload.do" listType="picture">
+                        <Upload name="car_purchase_file" action="/upload.do" listType="picture">
                             <CustomButton>
                                 <span>Ավտոմեքենայի առք ու վաճառքի պայմանագիր</span>
                                 <UploadWrapper src={UploadImage} />
@@ -210,12 +241,12 @@ function ReportForm3({ forwardButton, backButton }) {
                         </Upload>
                     </Form.Item>
                     <Form.Item
-                        name="upload"
+                        name="credentials_file"
                         valuePropName="fileList"
                         getValueFromEvent={normFile}
                     // extra="longgggggggggggggggggggggggggggggggggg"
                     >
-                        <Upload name="authorize" action="/upload.do" listType="picture">
+                        <Upload name="credentials_file" action="/upload.do" listType="picture">
                             <CustomButton>
                                 <span>Լիազորագիր</span>
                                 <UploadWrapper src={UploadImage} />

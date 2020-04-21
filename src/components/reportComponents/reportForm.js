@@ -11,53 +11,20 @@ import {
   Checkbox,
   Button,
   AutoComplete,
+  Spin,
   InputNumber,
 } from "antd"
 import { QuestionCircleOutlined } from "@ant-design/icons"
 import { DatePicker } from "antd"
 import * as Yup from "yup"
 import { apiHelper } from "../../helpers/apiHelper"
+import axios from "axios"
+import FileSaver from "file-saver"
 //styled inputs with layout.css
 import "../layout.css"
 import styled from "styled-components"
 
 const { Option } = Select
-const AutoCompleteOption = AutoComplete.Option
-
-const residences = [
-  {
-    value: "zhejiang",
-    label: "Zhejiang",
-    children: [
-      {
-        value: "hangzhou",
-        label: "Hangzhou",
-        children: [
-          {
-            value: "xihu",
-            label: "West Lake",
-          },
-        ],
-      },
-    ],
-  },
-  {
-    value: "jiangsu",
-    label: "Jiangsu",
-    children: [
-      {
-        value: "nanjing",
-        label: "Nanjing",
-        children: [
-          {
-            value: "zhonghuamen",
-            label: "Zhong Hua Men",
-          },
-        ],
-      },
-    ],
-  },
-]
 
 const formItemLayout = {
   labelCol: {
@@ -121,50 +88,11 @@ const tailFormButtonLayout = {
     },
   },
 }
-const validationSchema = Yup.object().shape({
-  price: Yup.number()
-    .required()
-    .min(40000),
-  bonus_price: Yup.number().transform(value => {
-    if (value === 0 || value >= 1000) {
-      return value
-    } else {
-      return null
-    }
-  }),
-})
+
 function getDate(date, dateString) {
   console.log(dateString)
 }
-const ColDistrict = styled(Col)`
-  margin-top: 3.1%;
-  @media (min-width: 320px) {
-    margin-top: 14%;
-  }
-  @media (min-width: 375px) {
-    margin-top: 12%;
-  }
-  @media (min-width: 768px) {
-    margin-top: 5.5%;
-    margin-left: 1%;
-  }
-  @media (max-width: 1024px) {
-    margin-top: 4%;
-    margin-left: 1%;
-  }
-  @media (min-width: 1170px) {
-    margin-top: 3.7%;
-    margin-left: 1%;
-  }
-  @media (min-width: 1300px) {
-    margin-top: 3.3%;
-    margin-left: 1%;
-  }
-  @media (min-width: 1600px) {
-    margin-top: 2.3%;
-    margin-left: 0.5%;
-  }
-`
+
 const ColAddress = styled(Col)`
   margin-top: 3.1%;
   @media (min-width: 768px) {
@@ -173,19 +101,23 @@ const ColAddress = styled(Col)`
   }
   @media (min-width: 1024px) {
     margin-top: 4%;
-    margin-left: 3%;
-  }
-  @media (min-width: 1170px) {
-    margin-top: 3.7%;
     margin-left: 1%;
   }
+  @media (min-width: 1170px) {
+    margin-top: 3.6%;
+    margin-left: 2.5%;
+  }
   @media (min-width: 1300px) {
-    margin-top: 3.3%;
-    margin-left: 6%;
+    margin-top: 3.2%;
+    margin-left: 1%;
+  }
+  @media (min-width: 1500px) {
+    margin-top: 3%;
+    margin-left: 1%;
   }
   @media (min-width: 1600px) {
     margin-top: 2.3%;
-    margin-left: 3.2%;
+    margin-left: 1%;
   }
 `
 const ReportPassportRow = styled(Row)`
@@ -201,6 +133,9 @@ const ReportPassportRow = styled(Row)`
   }
   @media (min-width: 1366px) {
     width: 48.6%;
+  }
+  @media (min-width: 1500px) {
+    width: 44.6%;
   }
   @media (min-width: 1600px) {
     width: 44%;
@@ -219,13 +154,14 @@ const DatePickerCustom = styled(DatePicker)`
     border: solid 1px #009db8;
   }
   @media (min-width: 768px) {
-    width:  142px;
+    width: 142px;
     border: solid 1px #009db8;
   }
 `
 const SelectCustom = styled(Select)`
   width: 116px;
   border: solid 1px #009db8;
+  background: white;
   @media (min-width: 320px) {
     width: 138px;
     border: solid 1px #009db8;
@@ -245,7 +181,6 @@ const SelectCustom = styled(Select)`
 `
 const PassportButton = styled(Button)`
   height: 40px;
-  
   @media (min-width: 320px) {
     width: 290px;
     border: solid 1px #009db8;
@@ -262,40 +197,92 @@ const PassportButton = styled(Button)`
 const IdButton = styled(Button)`
   width: 216px;
   height: 40px;
-  margin-top: 0.3%;
   margin-left: 1.1%;
   @media (min-width: 320px) {
     width: 290px;
     border: solid 1px #009db8;
+    margin-top: 3%;
   }
   @media (min-width: 375px) {
     width: 290px;
     border: solid 1px #009db8;
+    margin-top: 3%;
   }
   @media (min-width: 768px) {
     width: 216px;
     border: solid 1px #009db8;
   }
 `
-const RegistrationForm = ({ closeForm1, setConfirm2 }) => {
+const SubmitSpan = styled.span`
+  width: 408px;
+  height: 31px;
+  font-family: ArialAMU;
+  font-size: 14px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: left;
+  color: #000000;
+  @media (min-width: 320px) {
+    margin-bottom: 5%;
+  }
+  @media (min-width: 375px) {
+    width: 400px;
+    margin-bottom: 5%;
+  }
+`
+const LabelSpan = styled.span`
+  height: 14px;
+  font-family: ArialAMU;
+  font-size: 14px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: left;
+  color: #000000;
+`
+const RegistrationForm = ({
+  closeForm1,
+  setConfirm2,
+  SetAllFieldsValues,
+  allFieldsValues,
+}) => {
   const [form] = Form.useForm()
+  const [loading, toggleLoading] = useState(false)
+  const [checkPassport, setcheckPassport] = useState("0")
+  const [checkId, setcheckId] = useState("1")
+  const [identity_document_type, setidentity_document_type] = useState("0")
+  const [tin, setTin] = useState(" ")
+
+  /*Updating parent state*/
+  const updateFieldsState = obj => {
+    SetAllFieldsValues({ ...allFieldsValues, ...obj })
+  }
+  /*get Tin from Api according to Psn*/
   const CheckPsn = async e => {
     let body = {
       psn: e.target.value,
     }
     try {
       let res = await apiHelper.post("/api/getTin", body)
-      console.log("Response: ", res.data.data.tin)
-      setTin(res.data.data.tin)
-      let a = document.getElementById("register_tin")
-      a.value = res.data.data.tin
-      console.log(a)
+      console.log("Response: ", res)
+      res.data.data.length === 0 ? setTin(null) : setTin(res.data.data.tin)
+      let tinInput = document.getElementById("register_tin")
+      res.data.data.length === 0
+        ? (tinInput.value = null)
+        : (tinInput.value = res.data.data.tin)
+      console.log(tinInput.value)
     } catch (e) {
       console.log("Calculation error: ", e)
     }
   }
-
+  /*onSubmiting === OnFinish => values === fieldsValues*/
   const onFinish = async values => {
+    console.log("hjbjhbhj")
     let body = {
       ...values,
       birthday: values["birthday"].format("YYYY-MM-DD"),
@@ -304,33 +291,29 @@ const RegistrationForm = ({ closeForm1, setConfirm2 }) => {
       identity_document_type,
     }
     console.log("Received values of form: ", body)
+    updateFieldsState(body)
     try {
-      const res = await apiHelper.post(
-        "/api/reports/car_sales_credential_pdf_download",
-        body
-      )
-      setConfirm2(true)
-      closeForm1(false)
-      console.log("Response: ", res)
+      toggleLoading(true)
+      const res = await apiHelper
+        .post("/api/reports/car_sales_credential_pdf_download", body, {
+          responseType: "arraybuffer",
+          headers: {
+            Accept: "application/pdf",
+          },
+        })
+        .then(response => {
+          const blob = new Blob([response.data], {
+            type: "application/pdf",
+          })
+          FileSaver.saveAs(blob, "լիազորագիր.pdf")
+          setConfirm2(true)
+          closeForm1(false)
+          toggleLoading(false)
+        })
     } catch (e) {
       console.log("Error: ", e)
     }
   }
-
-  const prefixSelector = (
-    <Form.Item name="prefix" noStyle>
-      <Select style={{ width: 70 }}>
-        <Option value="86">Երևան</Option>
-        <Option value="87">Կենտրոն</Option>
-      </Select>
-    </Form.Item>
-  )
-
-  const [autoCompleteResult, setAutoCompleteResult] = useState([])
-  const [checkPassport, setcheckPassport] = useState("0")
-  const [checkId, setcheckId] = useState("1")
-  const [identity_document_type, setidentity_document_type] = useState("0")
-  const [tin, setTin] = useState("0")
 
   const openPassport = () => {
     setcheckPassport("0")
@@ -343,21 +326,6 @@ const RegistrationForm = ({ closeForm1, setConfirm2 }) => {
     setidentity_document_type("1")
   }
 
-  const onWebsiteChange = value => {
-    if (!value) {
-      setAutoCompleteResult([])
-    } else {
-      setAutoCompleteResult(
-        [".com", ".org", ".net"].map(domain => `${value}${domain}`)
-      )
-    }
-  }
-
-  const websiteOptions = autoCompleteResult.map(website => ({
-    label: website,
-    value: website,
-  }))
-
   return (
     <Form
       {...formItemLayout}
@@ -366,13 +334,12 @@ const RegistrationForm = ({ closeForm1, setConfirm2 }) => {
       onFinish={onFinish}
       initialValues={{
         tin: tin,
-        prefix: "86",
       }}
       scrollToFirstError
     >
       <Form.Item
         name="full_name"
-        label="Անուն / Ազգանուն"
+        label={<LabelSpan>Անուն / Ազգանուն</LabelSpan>}
         rules={[
           {
             required: true,
@@ -385,53 +352,41 @@ const RegistrationForm = ({ closeForm1, setConfirm2 }) => {
       </Form.Item>
       <Row>
         <Col
-          xs={{ span: 12, offset: 0 }}
-          sm={{ span: 10, offset: 0 }}
-          md={{ span: 5, offset: 0 }}
-          lg={{ span: 3, offset: 0 }}
-          xl={{ span: 3, offset: 0 }}
-          xxl={{ span: 2, offset: 0 }}
+          xs={{ span: 21, offset: 0 }}
+          sm={{ span: 22, offset: 0 }}
+          md={{ span: 6, offset: 0 }}
+          lg={{ span: 4, offset: 0 }}
+          xl={{ span: 4, offset: 0 }}
+          xxl={{ span: 3, offset: 0 }}
         >
           <Form.Item
             name="city"
-            label="Բնակության հասցե"
+            label={<LabelSpan>Բնակության վայրի հասցե</LabelSpan>}
             rules={[
               { required: true, message: "Խնդրում ենք լրացնել նշված դաշտերը" },
             ]}
           >
-            <SelectCustom size="large" placeholder="Երևան">
+            <SelectCustom size="large" placeholder="Երևան" bordered={false}>
               <Option value="Երևան">Երևան</Option>
-              <Option value="Կենտրոն">Կենտրոն</Option>
+              <Option value="Շիրակ">Շիրակ</Option>
+              <Option value="Արագածոտն">Արագածոտն</Option>
+              <Option value="Արարատ">Արարատ</Option>
+              <Option value="Գեղարքունիք">Գեղարքունիք</Option>
+              <Option value="Լոռի">Լոռի</Option>
+              <Option value="Կոտայք">Կոտայք</Option>
+              <Option value="Սյունիք">Սյունիք</Option>
+              <Option value="Վայոց ձոր">Վայոց ձոր</Option>
+              <Option value="Տավուշ">Տավուշ</Option>
             </SelectCustom>
           </Form.Item>
         </Col>
-        <ColDistrict
-          xs={{ span: 10, offset: 1 }}
-          sm={{ span: 10, offset: 0 }}
-          md={{ span: 4, offset: 0 }}
-          lg={{ span: 3, offset: 0 }}
-          xl={{ span: 1, offset: 0 }}
-          xxl={{ span: 1, offset: 0 }}
-        >
-          <Form.Item
-            name="district"
-            label=" "
-            rules={[{ required: true, message: "Please input your Adress!" }]}
-            noStyle
-          >
-            <SelectCustom size="large" placeholder="Կենտրոն">
-              <Option value="Երևան">Երևան</Option>
-              <Option value="Կենտրոն">Կենտրոն</Option>
-            </SelectCustom>
-          </Form.Item>
-        </ColDistrict>
         <ColAddress
-          xs={{ span: 24 }}
+          xs={{ span: 21 }}
           sm={{ span: 22 }}
           md={{ span: 6 }}
-          lg={{ span: 4 }}
-          xl={{ span: 4 }}
-          xxl={{ span: 3 }}
+          lg={{ span: 5 }}
+          xl={{ span: 5 }}
+          xxl={{ span: 4 }}
         >
           <Form.Item
             name="address"
@@ -441,14 +396,14 @@ const RegistrationForm = ({ closeForm1, setConfirm2 }) => {
             ]}
             noStyle
           >
-            <Input style={{ width: "80%" }} size="large" />
+            <Input />
           </Form.Item>
         </ColAddress>
       </Row>
       <Form.Item
         {...tailFormButtonLayout}
         style={{ display: "flex" }}
-        label="Ընտրել անձը հաստատող փաստաթղթի տեսակը"
+        label={<LabelSpan>Ընտրել անձը հաստատող փաստաթղթի տեսակը</LabelSpan>}
       >
         <PassportButton
           type={checkPassport === "0" ? "primary" : "default"}
@@ -468,11 +423,11 @@ const RegistrationForm = ({ closeForm1, setConfirm2 }) => {
           <Col xs={18} sm={18} md={6} lg={6} xl={6} xxl={5}>
             <Form.Item
               name="passport_series"
-              label={<span>Անձնագրի սերիա</span>}
+              label={<LabelSpan>Անձնագրի սերիա</LabelSpan>}
               rules={[
                 {
                   required: true,
-                  message: "Please input your right number!",
+                  message: "Խնդրում ենք լրացնել նշված դաշտերը",
                   whitespace: true,
                 },
               ]}
@@ -483,7 +438,7 @@ const RegistrationForm = ({ closeForm1, setConfirm2 }) => {
           <Col xs={24} sm={24} md={6} lg={6} xl={6} xxl={5}>
             <Form.Item
               name="given"
-              label={<span>Տրված է ում կողմից</span>}
+              label={<LabelSpan>Տրված է ում կողմից</LabelSpan>}
               rules={[
                 {
                   required: true,
@@ -498,7 +453,7 @@ const RegistrationForm = ({ closeForm1, setConfirm2 }) => {
           <Col xs={24} sm={24} md={8} lg={6} xl={6} xxl={5}>
             <Form.Item
               name="when"
-              label="Երբ"
+              label={<LabelSpan>Երբ</LabelSpan>}
               rules={[
                 {
                   required: true,
@@ -508,47 +463,47 @@ const RegistrationForm = ({ closeForm1, setConfirm2 }) => {
             >
               <DatePickerCustom
                 onChange={getDate}
-                placeholder={new Date("December 25, 1995 23:15:30")}
+                placeholder="Դեկտեմբեր 25, 1995 23:15:30"
                 format="DD-MM-YYYY"
               />
             </Form.Item>
           </Col>
         </ReportPassportRow>
       ) : (
-          <Row>
-            <Col lg={8}>
-              <Form.Item
-                name="ID_card_number"
-                label={<span>Նույնականացման քարտ թվեր</span>}
-                rules={[
-                  {
-                    required: true,
-                    message: "Խնդրում ենք լրացնել նշված դաշտերը",
-                    whitespace: true,
-                  },
-                ]}
-              >
-                <Input />
-              </Form.Item>
-            </Col>
-          </Row>
-        )}
+        <Row>
+          <Col lg={8}>
+            <Form.Item
+              name="ID_card_number"
+              label={<LabelSpan>Նույնականացման քարտ</LabelSpan>}
+              rules={[
+                {
+                  required: true,
+                  message: "Խնդրում ենք լրացնել նշված դաշտերը",
+                  whitespace: true,
+                },
+              ]}
+            >
+              <Input />
+            </Form.Item>
+          </Col>
+        </Row>
+      )}
       <Form.Item
         name="birthday"
-        label="Ծննդյան օր/ամսի/տարեթիվ"
+        label={<LabelSpan>Ծննդյան օր/ամսի/տարեթիվ</LabelSpan>}
         rules={[
           { required: true, message: "Խնդրում ենք լրացնել նշված դաշտերը" },
         ]}
       >
         <DatePickerCustom
           onChange={getDate}
-          placeholder={new Date("December 25, 1995 23:15:30")}
+          placeholder="Դեկտեմբեր 25, 1995 23:15:30"
           format="DD-MM-YYYY"
         />
       </Form.Item>
       <Form.Item
         name="psn"
-        label={<span>ՀԾՀ</span>}
+        label={<LabelSpan>ՀԾՀ</LabelSpan>}
         rules={[
           {
             required: true,
@@ -561,20 +516,22 @@ const RegistrationForm = ({ closeForm1, setConfirm2 }) => {
       </Form.Item>
       <Form.Item
         name="tin"
-        label={<span>ՀՎՀՀ</span>}
+        label={<LabelSpan>ՀՎՀՀ *</LabelSpan>}
         rules={[
           {
-            required: true,
-            message: "Խնդրում ենք լրացնել նշված դաշտերը",
-            whitespace: true,
+            required: tin === null ? true : false,
+            message:
+              "Ձեր նշած ՀԾՀին համապատասխան ՀՎՀՀ չի գտնվել, խնդրում ենք լրացնել այն",
+            whitespace: tin === null ? true : false,
           },
         ]}
       >
         <Input />
       </Form.Item>
+
       <Form.Item
         name="phone"
-        label="Հեռախոսահամար"
+        label={<LabelSpan>Հեռախոսահամար</LabelSpan>}
         rules={[
           {
             required: true,
@@ -582,15 +539,15 @@ const RegistrationForm = ({ closeForm1, setConfirm2 }) => {
           },
         ]}
       >
-        <Input />
+        <Input placeholder="+374 93 00 00 00" />
       </Form.Item>
       <Form.Item
         name="email"
         label={
           <span>
-            Email&nbsp;
+            Էլ. Հասցե &nbsp;
             <Tooltip title="Խնդրում ենք լրացնել ակտիվ էլ․ հասցե։ Հետագա զարգացումների մասին տեղեկացվելու եք էլ․ հասցեի միջոցով։">
-              <QuestionCircleOutlined />
+              <QuestionCircleOutlined style={{ color: "#009db8" }} />
             </Tooltip>
           </span>
         }
@@ -607,119 +564,24 @@ const RegistrationForm = ({ closeForm1, setConfirm2 }) => {
       >
         <Input />
       </Form.Item>
-      <Form.Item {...tailFormItemLayout}>
-        <Button type="primary" htmlType="submit" id="registerSubmit">
-          Հաստատել
+      <Form.Item
+        label={
+          <SubmitSpan>
+            Հաստատել կոճակը սեղմելուց հետո լիազորագիրը կներբեռնվի։ Խնդրում ենք
+            ստորագրել և վերբեռնել հաջորդ քայլում։
+          </SubmitSpan>
+        }
+        {...tailFormItemLayout}
+      >
+        <Button
+          disabled={loading || tin === " "}
+          type="primary"
+          htmlType="submit"
+          id="registerSubmit"
+        >
+          {loading ? <Spin /> : "Հաստատել"}
         </Button>
       </Form.Item>
-      {/* <Form.Item
-                name="password"
-                label="Password"
-                rules={[
-                    {
-                        required: true,
-                        message: "Please input your password!",
-                    },
-                ]}
-                hasFeedback
-            >
-                <Input.Password />
-            </Form.Item>
-
-            <Form.Item
-                name="confirm"
-                label="Confirm Password"
-                dependencies={["password"]}
-                hasFeedback
-                rules={[
-                    {
-                        required: true,
-                        message: "Please confirm your password!",
-                    },
-                    ({ getFieldValue }) => ({
-                        validator(rule, value) {
-                            if (!value || getFieldValue("password") === value) {
-                                return Promise.resolve()
-                            }
-                            return Promise.reject(
-                                "The two passwords that you entered do not match!"
-                            )
-                        },
-                    }),
-                ]}
-            >
-                <Input.Password />
-            </Form.Item> */}
-
-      {/* <Form.Item
-                name="residence"
-                label="Habitual Residence"
-                rules={[
-                    {
-                        type: "array",
-                        required: true,
-                        message: "Please select your habitual residence!",
-                    },
-                ]}
-            >
-                <Cascader options={residences} />
-            </Form.Item> */}
-      {/* <Form.Item
-                name="website"
-                label="Website"
-                rules={[{ required: true, message: "Please input website!" }]}
-            >
-                <AutoComplete
-                    options={websiteOptions}
-                    onChange={onWebsiteChange}
-                    placeholder="website"
-                >
-                    <Input />
-                </AutoComplete>
-            </Form.Item> */}
-
-      {/* <Form.Item
-                label="Captcha"
-                extra="We must make sure that your are a human."
-            >
-                <Row gutter={8}>
-                    <Col span={12}>
-                        <Form.Item
-                            name="captcha"
-                            noStyle
-                            rules={[
-                                {
-                                    required: true,
-                                    message: "Please input the captcha you got!",
-                                },
-                            ]}
-                        >
-                            <Input />
-                        </Form.Item>
-                    </Col>
-                    <Col span={12}>
-                        <Button>Get captcha</Button>
-                    </Col>
-                </Row>
-            </Form.Item> */}
-
-      {/* <Form.Item
-                name="agreement"
-                valuePropName="checked"
-                rules={[
-                    {
-                        validator: (_, value) =>
-                            value
-                                ? Promise.resolve()
-                                : Promise.reject("Should accept agreement"),
-                    },
-                ]}
-                {...tailFormItemLayout}
-            >
-                <Checkbox>
-                    I have read the <a href="">agreement</a>
-                </Checkbox>
-            </Form.Item> */}
     </Form>
   )
 }
