@@ -283,6 +283,7 @@ const year12 = moment(currentDate).subtract(12, 'months').year();
 
 const VacationCalculator = () => {
   const [showForm, toggleForm] = useState(false);
+  const [formDisable, setFormDisable] = useState(false);
   const [result, setResult] = useState(null);
   const [loading, setLoading] = useState(false);
   const [salary, setSalary] = useState(0); // autofill salary
@@ -326,7 +327,7 @@ const VacationCalculator = () => {
     work_day_type: sixDayWeek,
     date_from: moment(vacStart).format('YYYY-MM-DD'),
     date_to: moment(vacEnd).format('YYYY-MM-DD'),
-    pension: 1,
+    pension: 0,
     patent: null,
     bonus_stamp: 1,
     month1_price: 0,
@@ -540,15 +541,17 @@ const VacationCalculator = () => {
             </Col>
             <Col>
               <StyledDatePicker
+                disabled={formDisable}
                 value={vacStart}
                 onChange={date => {
+                  console.log('Start date changed');
                   setVacStart(date);
-                  setVacDays(vacEnd.diff(date, 'days'));
                 }}
                 allowClear={false}
                 suffixIcon={<CustomCaret />}
                 size="large"
                 format="DD.MM.YYYY"
+                disabledDate={d => !d || d.isAfter(vacEnd)}
               />
             </Col>
             <Col xxl={2} xl={2} lg={3} md={3} sm={4} span={4}>
@@ -558,10 +561,31 @@ const VacationCalculator = () => {
             </Col>
             <Col>
               <StyledDatePicker
+                disabled={formDisable}
                 value={vacEnd}
-                onChange={date => {
+                onChange={async date => {
+                  console.log('End date changed!!!!!!!');
+                  setFormDisable(true);
                   setVacEnd(date);
-                  setVacDays(date.diff(vacStart, 'days'));
+                  const body = {
+                    'work_day_type': sixDayWeek,
+                    'date_from': moment(vacStart).format('YYYY-MM-DD'),
+                    'date_to': moment(date).format('YYYY-MM-DD'),
+                  };
+                  console.log('Body: ', body);
+                  try {
+                    const res = await apiHelper.post(
+                      '/api/counter/vacationDayUsingFromToDate', body
+                    );
+                    console.log('Vac days response: ', res.data);
+                    if (res.data.success) {
+                      setVacDays(res.data.data.day_count);
+                    }
+                  } catch (e) {
+                    setFormDisable(false);
+                    console.log('Vac days error: ', e);
+                  }
+                  setFormDisable(false);
                 }}
                 allowClear={false}
                 suffixIcon={<CustomCaret />}
@@ -586,12 +610,32 @@ const VacationCalculator = () => {
             </Col>
             <Col xxl={1} xl={2} lg={2} md={2} sm={3} span={3}>
               <StyledInputNumber
+                disabled={formDisable}
                 value={vacDays}
                 min={1}
-                onChange={val => {
-                  console.log(val, typeof val);
+                onChange={async val => {
+                  setFormDisable(true);
                   setVacDays(val);
-                  setVacEnd(moment(vacStart).add(val, 'd'));
+                  console.log('Vac days changed!!!!!!!');
+                  const body = {
+                    'work_day_type': sixDayWeek,
+                    'date_from': moment(vacStart).format('YYYY-MM-DD'),
+                    'vacation_day_count': val,
+                  };
+
+                  try {
+                    const res = await apiHelper.post(
+                      '/api/counter/vacation_date_to', body
+                    );
+                    console.log('Vac end date response: ', res.data);
+                    if (res.data.success) {
+                      setVacEnd(moment(res.data.data.date_to));
+                    }
+                  } catch (e) {
+                    console.log('Vac end date error: ', e);
+                    setFormDisable(false);
+                  }
+                  setFormDisable(false);
                 }}
               />
             </Col>
@@ -791,13 +835,13 @@ const VacationCalculator = () => {
               </Col>
               <Col>
                 <ButtonSmall
-                  type={formik.values.pension ? 'primary' : 'default'}
+                  type={!formik.values.pension ? 'primary' : 'default'}
                   size="large"
                   block
-                  onClick={() => formik.setFieldValue('pension', 1)}
+                  onClick={() => formik.setFieldValue('pension', 0)}
                 >
                   <Label fontcolor={
-                    formik.values.pension
+                    !formik.values.pension
                       ? '#fff'
                       : '#000'
                   }>
@@ -807,13 +851,13 @@ const VacationCalculator = () => {
               </Col>
               <Col>
                 <ButtonSmall
-                  type={!formik.values.pension ? 'primary' : 'default'}
+                  type={formik.values.pension ? 'primary' : 'default'}
                   size="large"
                   block
-                  onClick={() => formik.setFieldValue('pension', 0)}
+                  onClick={() => formik.setFieldValue('pension', 1)}
                 >
                   <Label fontcolor={
-                    !formik.values.pension
+                    formik.values.pension
                       ? '#fff'
                       : '#000'
                   }>
@@ -1411,6 +1455,7 @@ const VacationCalculator = () => {
                   suffixIcon={<CustomCaret />}
                   size="large"
                   format="DD.MM.YYYY"
+                  disabledDate={d => !d || d.isAfter(vacEnd2)}
                 />
               </Col>
               <Col xxl={2} xl={2} lg={3} md={3} sm={4} span={4}>
