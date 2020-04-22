@@ -67,11 +67,15 @@ const tailFormItemLayout = {
 const tailFormButtonLayout = {
   wrapperCol: {
     xxl: {
-      span: 24,
+      span: 8,
+      offset: 0,
+    },
+    xl: {
+      span: 12,
       offset: 0,
     },
     lg: {
-      span: 24,
+      span: 10,
       offset: 0,
     },
     md: {
@@ -159,7 +163,7 @@ const DatePickerCustom = styled(DatePicker)`
   }
 `
 const SelectCustom = styled(Select)`
-  width: 116px;
+  width: 216px;
   border: solid 1px #009db8;
   background: white;
   @media (min-width: 320px) {
@@ -171,11 +175,11 @@ const SelectCustom = styled(Select)`
     border: solid 1px #009db8;
   }
   @media (min-width: 1300px) {
-    width: 116px;
+    width: 200px;
     border: solid 1px #009db8;
   }
   @media (min-width: 1600px) {
-    width: 116px;
+    width: 216px;
     border: solid 1px #009db8;
   }
 `
@@ -197,7 +201,7 @@ const PassportButton = styled(Button)`
 const IdButton = styled(Button)`
   width: 216px;
   height: 40px;
-  margin-left: 1.1%;
+  margin-left: 2.7%;
   @media (min-width: 320px) {
     width: 290px;
     border: solid 1px #009db8;
@@ -211,6 +215,12 @@ const IdButton = styled(Button)`
   @media (min-width: 768px) {
     width: 216px;
     border: solid 1px #009db8;
+  }
+  @media (min-width: 1366px) {
+    margin-left: 2.6%;
+  }
+  @media (min-width: 1900px) {
+    margin-left: 2.6%;
   }
 `
 const SubmitSpan = styled.span`
@@ -230,8 +240,9 @@ const SubmitSpan = styled.span`
   }
   @media (min-width: 375px) {
     width: 400px;
-    margin-bottom: 5%;
+    margin-bottom: 10%;
   }
+
 `
 const LabelSpan = styled.span`
   height: 14px;
@@ -350,7 +361,7 @@ const RegistrationForm = ({
       >
         <Input />
       </Form.Item>
-      <Row>
+      <Row style={{width: "100%"}}>
         <Col
           xs={{ span: 21, offset: 0 }}
           sm={{ span: 22, offset: 0 }}
@@ -402,7 +413,6 @@ const RegistrationForm = ({
       </Row>
       <Form.Item
         {...tailFormButtonLayout}
-        style={{ display: "flex" }}
         label={<LabelSpan>Ընտրել անձը հաստատող փաստաթղթի տեսակը</LabelSpan>}
       >
         <PassportButton
@@ -470,24 +480,24 @@ const RegistrationForm = ({
           </Col>
         </ReportPassportRow>
       ) : (
-        <Row>
-          <Col lg={8}>
-            <Form.Item
-              name="ID_card_number"
-              label={<LabelSpan>Նույնականացման քարտ</LabelSpan>}
-              rules={[
-                {
-                  required: true,
-                  message: "Խնդրում ենք լրացնել նշված դաշտերը",
-                  whitespace: true,
-                },
-              ]}
-            >
-              <Input />
-            </Form.Item>
-          </Col>
-        </Row>
-      )}
+          <Row>
+            <Col lg={8}>
+              <Form.Item
+                name="ID_card_number"
+                label={<LabelSpan>Նույնականացման քարտ</LabelSpan>}
+                rules={[
+                  {
+                    required: true,
+                    message: "Խնդրում ենք լրացնել նշված դաշտերը",
+                    whitespace: true,
+                  },
+                ]}
+              >
+                <Input />
+              </Form.Item>
+            </Col>
+          </Row>
+        )}
       <Form.Item
         name="birthday"
         label={<LabelSpan>Ծննդյան օր/ամսի/տարեթիվ</LabelSpan>}

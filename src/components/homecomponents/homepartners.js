@@ -92,6 +92,9 @@ const SeemoreWrapper = styled.div`
 `
 const SeemoreColumn = styled(Col)`
   padding-left: 32%;
+  @media only screen and (max-width: 1920px) {
+    padding-left: 37%;
+  }
   @media only screen and (max-width: 1170px) {
     padding-left: 30%;
   }
