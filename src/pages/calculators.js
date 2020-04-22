@@ -2,12 +2,12 @@ import React from 'react';
 import { Typography, Row, Col, Divider } from 'antd';
 import styled from 'styled-components';
 import Layout from '../components/layout';
-import SalaryCalculator from '../components/calcComponents/salarycalculator';
-import VacationCalculator from '../components/calcComponents/vacationcalculator';
-import CarCustomsCalculator from '../components/calcComponents/carCustomsCalculator';
-import CarSellCalculator from '../components/calcComponents/carSellCalculator';
-import CarPropTaxCalculator from '../components/calcComponents/carPropTaxCalculator';
-import MortgageCalculator from '../components/calcComponents/mortgageCalculator';
+import SalaryCalculator from '../components/calculators/salarycalculator';
+import VacationCalculator from '../components/calculators/vacationcalculator';
+import CarCustomsCalculator from '../components/calculators/carCustomsCalculator';
+import CarSellCalculator from '../components/calculators/carSellCalculator';
+import CarPropTaxCalculator from '../components/calculators/carPropTaxCalculator';
+import MortgageCalculator from '../components/calculators/mortgageCalculator';
 
 const { Text } = Typography;
 

@@ -13,50 +13,9 @@ import * as Yup from 'yup';
 import { apiHelper } from '../../helpers/apiHelper';
 import VacationImg from '../../assets/calcImages/vacation.png';
 import CalcTableRow from './calcTableRow';
+import { FormIcon } from './calcComponents';
 
 const { Text } = Typography;
-
-const HeadIconWrapper = styled.div`
-  width: 25px;
-  height: 25px;
-  @media (min-width: 768px) {
-    width: 30px;
-    height: 30px;
-  }
-  @media (min-width: 992px) {
-    width: 35px;
-    height: 35px;
-  }
-  @media (min-width: 1200px) {
-    width: 40px;
-    height: 40px;
-  }
-  @media (min-width: 1600px) {
-    width: 50px;
-    height: 50px;
-  }
-`;
-
-const HeadIcon = styled.img`
-  width: 25px;
-  height: 25px;
-  @media (min-width: 768px) {
-    width: 30px;
-    height: 30px;
-  }
-  @media (min-width: 992px) {
-    width: 35px;
-    height: 35px;
-  }
-  @media (min-width: 1200px) {
-    width: 40px;
-    height: 40px;
-  }
-  @media (min-width: 1600px) {
-    width: 50px;
-    height: 50px;
-  }
-`;
 
 const H2Styled = styled.h2`
   font-weight: normal;
@@ -489,16 +448,7 @@ const VacationCalculator = () => {
   return (
     <>
       <Row align="middle" gutter={[10, 40]}>
-        <Col
-          xxl={{ offset: 4 }}
-          xl={{ offset: 4 }}
-          lg={{ offset: 3 }}
-          md={{ offset: 1 }}
-        >
-          <HeadIconWrapper>
-            <HeadIcon src={VacationImg} alt={'icon'} />
-          </HeadIconWrapper>
-        </Col>
+        <FormIcon iconImg={VacationImg} />
         <Col xxl={14} xl={14} lg={15} md={19} sm={19} span={18}>
           <H2Styled>Արձակուրդայինի հաշվիչ</H2Styled>
         </Col>
