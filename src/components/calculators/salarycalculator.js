@@ -1,57 +1,23 @@
 import React, { useState } from 'react';
 import { Typography, Row, Col, Button, InputNumber, Spin } from 'antd';
-import { PlusOutlined, MinusOutlined } from '@ant-design/icons';
 import styled from 'styled-components';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { apiHelper } from '../../helpers/apiHelper';
 import SalaryImg from '../../assets/calcImages/salary.png';
-import { FormIcon } from './calcComponents';
+import {
+  FormIcon,
+  FormHeader,
+  FormToggle,
+} from './calcComponents';
 
 const { Text } = Typography;
-
-const H2Styled = styled.h2`
-  font-weight: normal;
-  margin-bottom: 0;
-  margin-left: 10px;
-  font-family: ArialAMU;
-  color: #000;
-  font-size: 17px;
-  @media (min-width: 768px) {
-    font-size: 18px;
-  }
-`;
 
 const H3Styled = styled.h3`
   font-size: 15px;
   font-weight: 500;
   font-family: ArialAMU;
   color: #000;
-`;
-
-const ToggleButton = styled(Button)`
-  height: 48px;
-  width: 48px;
-  @media (min-width: 992px) {
-    height: 60px;
-    width: 60px;
-  }
-`;
-
-const StyledMinus = styled(MinusOutlined)`
-  color: #009db8;
-  font-size: 16px;
-  @media (min-width: 992px) {
-    font-size: 20px;
-  }
-`;
-
-const StyledPlus = styled(PlusOutlined)`
-  color: #009db8;
-  font-size: 16px;
-  @media (min-width: 992px) {
-    font-size: 20px;
-  }
 `;
 
 const ButtonBase = styled(Button)`
@@ -231,14 +197,11 @@ const SalaryCalculator = () => {
     <>
       <Row align="middle" gutter={[10, 40]}>
         <FormIcon iconImg={SalaryImg} />
-        <Col xxl={14} xl={14} lg={15} md={19} sm={19} span={18}>
-          <H2Styled>Աշխատավարձի հաշվիչ</H2Styled>
-        </Col>
-        <Col>
-          <ToggleButton block onClick={() => toggleForm(!showForm)}>
-            {showForm ? <StyledMinus /> : <StyledPlus />}
-          </ToggleButton>
-        </Col>
+        <FormHeader headerText={'Աշխատավարձի հաշվիչ'} />
+        <FormToggle
+          showForm={showForm}
+          onClick={() => toggleForm(!showForm)}
+        />
       </Row>
 
       {showForm ? (

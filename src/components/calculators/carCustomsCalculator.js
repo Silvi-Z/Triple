@@ -8,29 +8,20 @@ import {
   Select,
   Spin,
 } from 'antd';
-import { PlusOutlined, MinusOutlined } from '@ant-design/icons';
 import styled from 'styled-components';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import moment from 'moment';
 import { apiHelper } from '../../helpers/apiHelper';
 import CarImg from '../../assets/calcImages/carCustoms.png';
-import { FormIcon } from './calcComponents';
+import {
+  FormIcon,
+  FormHeader,
+  FormToggle,
+} from './calcComponents';
 
 const { Option } = Select;
 const { Text } = Typography;
-
-const H2Styled = styled.h2`
-  font-weight: normal;
-  margin-bottom: 0;
-  margin-left: 10px;
-  font-family: ArialAMU;
-  color: #000;
-  font-size: 17px;
-  @media (min-width: 768px) {
-    font-size: 18px;
-  }
-`;
 
 const H3Styled = styled.h3`
   font-size: 15px;
@@ -42,31 +33,6 @@ const H3Styled = styled.h3`
 const CustomSelect = styled(Select)`
   width: 100%;
   border-color: #009db8;
-`;
-
-const ToggleButton = styled(Button)`
-  height: 48px;
-  width: 48px;
-  @media (min-width: 992px) {
-    height: 60px;
-    width: 60px;
-  }
-`;
-
-const StyledMinus = styled(MinusOutlined)`
-  color: #009db8;
-  font-size: 16px;
-  @media (min-width: 992px) {
-    font-size: 20px;
-  }
-`;
-
-const StyledPlus = styled(PlusOutlined)`
-  color: #009db8;
-  font-size: 16px;
-  @media (min-width: 992px) {
-    font-size: 20px;
-  }
 `;
 
 const Label = styled(Text)`
@@ -187,14 +153,11 @@ const CarCustomsCalculator = () => {
     <>
       <Row align="middle" gutter={[10, 40]}>
         <FormIcon iconImg={CarImg} />
-        <Col xxl={14} xl={14} lg={15} md={19} sm={19} span={18}>
-          <H2Styled>Ավտոմեքենայի մաքսազերծման վճարի հաշվիչ</H2Styled>
-        </Col>
-        <Col>
-          <ToggleButton block onClick={() => toggleForm(!showForm)}>
-            {showForm ? <StyledMinus /> : <StyledPlus />}
-          </ToggleButton>
-        </Col>
+        <FormHeader headerText={'Ավտոմեքենայի մաքսազերծման վճարի հաշվիչ'} />
+        <FormToggle
+          showForm={showForm}
+          onClick={() => toggleForm(!showForm)}
+        />
       </Row>
 
       {showForm ? (

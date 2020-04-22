@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { Typography, Row, Col, Button, InputNumber, DatePicker, Spin } from 'antd';
 import {
-  PlusOutlined,
-  MinusOutlined,
   CaretDownFilled,
   // QuestionCircleOutlined,
 } from '@ant-design/icons';
@@ -13,21 +11,13 @@ import * as Yup from 'yup';
 import { apiHelper } from '../../helpers/apiHelper';
 import VacationImg from '../../assets/calcImages/vacation.png';
 import CalcTableRow from './calcTableRow';
-import { FormIcon } from './calcComponents';
+import {
+  FormIcon,
+  FormHeader,
+  FormToggle,
+} from './calcComponents';
 
 const { Text } = Typography;
-
-const H2Styled = styled.h2`
-  font-weight: normal;
-  margin-bottom: 0;
-  margin-left: 10px;
-  font-family: ArialAMU;
-  color: #000;
-  font-size: 17px;
-  @media (min-width: 768px) {
-    font-size: 18px;
-  }
-`;
 
 const H3Styled = styled.h3`
   font-size: 14px;
@@ -35,23 +25,6 @@ const H3Styled = styled.h3`
   font-weight: bold;
   font-family: ArialAMU;
   color: #000;
-`;
-
-const ToggleButton = styled(Button)`
-  height: 48px;
-  width: 48px;
-  @media (min-width: 992px) {
-    height: 60px;
-    width: 60px;
-  }
-`;
-
-const StyledMinus = styled(MinusOutlined)`
-  color: #009db8;
-  font-size: 16px;
-  @media (min-width: 992px) {
-    font-size: 20px;
-  }
 `;
 
 // const StyledQuestion = styled(QuestionCircleOutlined)`
@@ -62,14 +35,6 @@ const StyledMinus = styled(MinusOutlined)`
 //     margin-right: 15px;
 //   }
 // `;
-
-const StyledPlus = styled(PlusOutlined)`
-  color: #009db8;
-  font-size: 16px;
-  @media (min-width: 992px) {
-    font-size: 20px;
-  }
-`;
 
 const CustomCaret = styled(CaretDownFilled)`
   color: #009db8;
@@ -449,17 +414,11 @@ const VacationCalculator = () => {
     <>
       <Row align="middle" gutter={[10, 40]}>
         <FormIcon iconImg={VacationImg} />
-        <Col xxl={14} xl={14} lg={15} md={19} sm={19} span={18}>
-          <H2Styled>Արձակուրդայինի հաշվիչ</H2Styled>
-        </Col>
-        <Col span={2}>
-          <ToggleButton
-            block
-            onClick={() => toggleForm(!showForm)}
-          >
-            {showForm ? <StyledMinus /> : <StyledPlus />}
-          </ToggleButton>
-        </Col>
+        <FormHeader headerText={'Արձակուրդայինի հաշվիչ'} />
+        <FormToggle
+          showForm={showForm}
+          onClick={() => toggleForm(!showForm)}
+        />
       </Row>
       {showForm ? (
         <>
