@@ -81,11 +81,9 @@ const SeemoreWrapper = styled.div`
   text-align: center;
   padding: 16px 45px;
   display: flex;
-
   @media only screen and (max-width: 1170px) {
     padding: 17px 40px;
   }
-
   @media only screen and (max-width: 768px) {
     width: 208px;
     height: 56px;
@@ -191,7 +189,9 @@ const ResponsWrapper = styled.div`
 `
 const SeemoreColumn = styled(Col)`
   padding-left: 32%;
-
+  @media only screen and (max-width: 1920px) {
+    padding-left: 37%;
+  }
   @media only screen and (max-width: 1170px) {
     padding-left: 29.5%;
   }
@@ -254,7 +254,7 @@ const Homeservices = () => {
             կապված հաշվախահության և աւդիտի հետ։
           </PStyled>
         </Col>
-        <SeemoreColumn ls={12} sm={24} md={12} lg={12}>
+        <SeemoreColumn ls={12} sm={24} md={12} lg={12} xxl={12}>
           <SeemoreWrapper>
             <NavLink to="/services/">
               <SeemoreSpan>Տեսնել ավելին</SeemoreSpan>
