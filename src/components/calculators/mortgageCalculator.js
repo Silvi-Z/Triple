@@ -17,6 +17,7 @@ import {
   FormIcon,
   FormHeader,
   FormToggle,
+  FormLabelLong,
 } from './calcComponents';
 
 const { Text } = Typography;
@@ -601,20 +602,7 @@ const MortgageCalculator = () => {
 
           <form onSubmit={formikTwo.handleSubmit}>
             <Row align="middle" gutter={[10, 10]}>
-              <Col
-                xxl={{ span: 7, offset: 6 }}
-                xl={{ span: 8, offset: 5 }}
-                lg={{ span: 10, offset: 4 }}
-                md={{ span: 14, offset: 2 }}
-                sm={{ span: 16, offset: 1 }}
-                span={17}
-              >
-                <FormLabelCell>
-                  <Label fontcolor="#000">
-                    Հաշվետու եռամսյակում եկամտային հարկը
-                  </Label>
-                </FormLabelCell>
-              </Col>
+              <FormLabelLong text={'Հաշվետու եռամսյակում եկամտային հարկը'} />
               <Col xxl={3} xl={3} lg={4} md={5} sm={4} span={6}>
                 <ResultCellLight>
                   <Label fontcolor="#000">
@@ -624,20 +612,7 @@ const MortgageCalculator = () => {
               </Col>
             </Row>
             <Row align="middle" gutter={[10, 30]}>
-              <Col
-                xxl={{ span: 7, offset: 6 }}
-                xl={{ span: 8, offset: 5 }}
-                lg={{ span: 10, offset: 4 }}
-                md={{ span: 14, offset: 2 }}
-                sm={{ span: 16, offset: 1 }}
-                span={17}
-              >
-                <FormLabelCell>
-                  <Label fontcolor="#000">
-                    Հաշվետու եռամսյակում վճարած տոկոսագումար
-                  </Label>
-                </FormLabelCell>
-              </Col>
+              <FormLabelLong text={'Հաշվետու եռամսյակում վճարած տոկոսագումար'} />
               <Col xxl={3} xl={3} lg={4} md={5} sm={4} span={6}>
                 <StyledInputNumber
                   min={0}

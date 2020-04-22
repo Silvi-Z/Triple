@@ -18,6 +18,7 @@ import {
   FormIcon,
   FormHeader,
   FormToggle,
+  FormLabelLong,
 } from './calcComponents';
 
 const { Option } = Select;
@@ -248,20 +249,7 @@ const CarCustomsCalculator = () => {
             </Row>
 
             <Row align="middle" gutter={[10, 10]}>
-              <Col
-                xxl={{ span: 8, offset: 6 }}
-                xl={{ span: 9, offset: 5 }}
-                lg={{ span: 11, offset: 4 }}
-                md={{ span: 14, offset: 2 }}
-                sm={{ span: 17, offset: 1 }}
-                span={17}
-              >
-                <FormLabelCell>
-                  <Label fontcolor="#000">
-                    Թողարկման տարեթիվը
-                  </Label>
-                </FormLabelCell>
-              </Col>
+              <FormLabelLong text={'Թողարկման տարեթիվը'} />
               <Col xxl={2} xl={3} lg={3} sm={5} span={5}>
                 <CustomSelect
                   size="large"

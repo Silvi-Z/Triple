@@ -10,11 +10,13 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { apiHelper } from '../../helpers/apiHelper';
 import VacationImg from '../../assets/calcImages/vacation.png';
-import CalcTableRow from './calcTableRow';
 import {
   FormIcon,
   FormHeader,
   FormToggle,
+  Description,
+  FormLabelLong,
+  CalcTableRow,
 } from './calcComponents';
 
 const { Text } = Typography;
@@ -254,7 +256,7 @@ const VacationCalculator = () => {
     date_to: moment(vacEnd).format('YYYY-MM-DD'),
     pension: 0,
     patent: null,
-    bonus_stamp: 1,
+    bonus_stamp: 0,
     month1_price: 0,
     month1_additional_price: 0,
     month1_bonus_price: 0,
@@ -338,7 +340,7 @@ const VacationCalculator = () => {
     validationSchema,
     validateOnMount: true,
     onSubmit: async values => {
-      console.log(values);
+      console.log('Big form values', values);
       let bodyFormData = new FormData();
       const json_data = {};
       for (let i = 1; i < 13; i++) {
@@ -422,20 +424,7 @@ const VacationCalculator = () => {
       </Row>
       {showForm ? (
         <>
-          <Row align="middle" gutter={[10, 10]}>
-            <Col
-              xxl={{span: 9, offset: 6}}
-              xl={{span: 10, offset: 5}}
-              lg={{span: 12, offset: 4}}
-              md={{span: 18, offset: 2}}
-              sm={{span: 19, offset: 1}}
-              span={24}
-            >
-              <H3Styled>
-                Ժամանակահատված, որի ընթացքում աշխատողը գտնվել(ու) է արձակուրդի մեջ
-              </H3Styled>
-            </Col>
-          </Row>
+          <Description text={'Ժամանակահատված, որի ընթացքում աշխատողը գտնվել(ու) է արձակուրդի մեջ'} />
           <Row align="middle" gutter={[10, 10]}>
             <Col
               xxl={{span: 2, offset: 6}}
@@ -731,20 +720,7 @@ const VacationCalculator = () => {
               </Col>
             </Row>
             <Row align="middle" gutter={[10, 10]}>
-              <Col
-                xxl={{ span: 7, offset: 6 }}
-                xl={{ span: 9, offset: 5 }}
-                lg={{ span: 10, offset: 4 }}
-                md={{ span: 13, offset: 2 }}
-                sm={{ span: 17, offset: 1 }}
-                span={17}
-              >
-                <FormLabelCell>
-                  <Label fontcolor="#000">
-                    Մասնակցու՞մ եք կուտակային կենսաթոշակայինին
-                  </Label>
-                </FormLabelCell>
-              </Col>
+              <FormLabelLong text={'Մասնակցու՞մ եք կուտակային կենսաթոշակայինին'} />
               <Col>
                 <ButtonSmall
                   type={!formik.values.pension ? 'primary' : 'default'}
@@ -778,20 +754,23 @@ const VacationCalculator = () => {
                 </ButtonSmall>
               </Col>
             </Row>
-            <Row align="middle" gutter={[10, 30]}>
-              <Col
-                xxl={{ span: 7, offset: 6 }}
-                xl={{ span: 9, offset: 5 }}
-                lg={{ span: 10, offset: 4 }}
-                md={{ span: 13, offset: 2 }}
-                sm={{ span: 17, offset: 1 }}
-                span={17}
-              >
-                <FormLabelCell>
-                  <Label fontcolor="#000">
-                    Վճարե՞լ եք արդեն դրոշմանիշային վճարը
+            <Row align="middle" gutter={[10, 10]}>
+              <FormLabelLong text={'Վճարե՞լ եք արդեն դրոշմանիշային վճարը'} />
+              <Col>
+                <ButtonSmall
+                  type={!formik.values.bonus_stamp ? 'primary' : 'default'}
+                  size="large"
+                  block
+                  onClick={() => formik.setFieldValue('bonus_stamp', 0)}
+                >
+                  <Label fontcolor={
+                    !formik.values.bonus_stamp
+                      ? '#fff'
+                      : '#000'
+                  }>
+                    Այո
                   </Label>
-                </FormLabelCell>
+                </ButtonSmall>
               </Col>
               <Col>
                 <ButtonSmall
@@ -802,22 +781,6 @@ const VacationCalculator = () => {
                 >
                   <Label fontcolor={
                     formik.values.bonus_stamp
-                      ? '#fff'
-                      : '#000'
-                  }>
-                    Այո
-                  </Label>
-                </ButtonSmall>
-              </Col>
-              <Col>
-                <ButtonSmall
-                  type={!formik.values.bonus_stamp ? 'primary' : 'default'}
-                  size="large"
-                  block
-                  onClick={() => formik.setFieldValue('bonus_stamp', 0)}
-                >
-                  <Label fontcolor={
-                    !formik.values.bonus_stamp
                       ? '#fff'
                       : '#000'
                   }>
@@ -880,20 +843,8 @@ const VacationCalculator = () => {
                 </ButtonBase>
               </Col>
             </Row>
-            <Row align="middle" gutter={[10, 20]}>
-              <Col
-                xxl={{span: 10, offset: 6}}
-                xl={{span: 13, offset: 5}}
-                lg={{span: 15, offset: 4}}
-                md={{span: 19, offset: 2}}
-                sm={{span: 19, offset: 1}}
-                span={24}
-              >
-                <H3Styled>
-                  Այն ամիս(ներ)ը, երբ աշխատակիցը գտնվել է արձակուրդում, անաշխատունակության մեջ կամ այլ պատճառով բացակայել է աշխատանքից` չլրացնել
-                </H3Styled>
-              </Col>
-            </Row>
+
+            <Description text={'Այն ամիս(ներ)ը, երբ աշխատակիցը գտնվել է արձակուրդում, անաշխատունակության մեջ կամ այլ պատճառով բացակայել է աշխատանքից` չլրացնել'} />
 
             <Row align="middle" gutter={[10, 20]}>
               <Col
@@ -1178,20 +1129,7 @@ const VacationCalculator = () => {
                 </Col>
               </Row>
 
-              <Row align="middle" gutter={[10, 20]}>
-                <Col
-                  xxl={{span: 10, offset: 6}}
-                  xl={{span: 13, offset: 5}}
-                  lg={{span: 15, offset: 4}}
-                  md={{span: 19, offset: 2}}
-                  sm={{span: 19, offset: 1}}
-                  span={24}
-                >
-                  <H3Styled>
-                    Արձակուրդայինի հաշվարկը ըստ ամիսների և աշխատավարձի հետ գումարային
-                  </H3Styled>
-                </Col>
-              </Row>
+              <Description text={'Արձակուրդայինի հաշվարկը ըստ ամիսների և աշխատավարձի հետ գումարային'} />
 
               {result.monthInfo.map((month, i) => (
                 <React.Fragment key={i}>
@@ -1327,20 +1265,7 @@ const VacationCalculator = () => {
             </>
           ) : null}
 
-          <Row align="middle" gutter={[10, 20]}>
-            <Col
-              xxl={{span: 10, offset: 6}}
-              xl={{span: 13, offset: 5}}
-              lg={{span: 15, offset: 4}}
-              md={{span: 19, offset: 2}}
-              sm={{span: 19, offset: 1}}
-              span={24}
-            >
-              <H3Styled>
-                Հասանելիք արձակուրդային օրերի հաշվարկում
-              </H3Styled>
-            </Col>
-          </Row>
+          <Description text={'Հասանելիք արձակուրդային օրերի հաշվարկում'} />
 
           <form onSubmit={formik2.handleSubmit}>
             <Row align="middle" gutter={[10, 10]}>
@@ -1348,7 +1273,7 @@ const VacationCalculator = () => {
                 xxl={{span: 2, offset: 6}}
                 xl={{span: 2, offset: 5}}
                 lg={{span: 3, offset: 4}}
-                md={{span: 3, offset: 2}}
+                md={{span: 4, offset: 2}}
                 sm={{span: 4, offset: 1}}
                 span={4}
               >
@@ -1423,20 +1348,7 @@ const VacationCalculator = () => {
               </Col>
             </Row>
             <Row align="middle" gutter={[10, 10]}>
-              <Col
-                xxl={{ span: 7, offset: 6 }}
-                xl={{ span: 9, offset: 5 }}
-                lg={{ span: 10, offset: 4 }}
-                md={{ span: 13, offset: 2 }}
-                sm={{ span: 17, offset: 1 }}
-                span={17}
-              >
-                <FormLabelCell>
-                  <Label fontcolor="#000">
-                    Ընդհանուր արձակուրդային օրեր
-                  </Label>
-                </FormLabelCell>
-              </Col>
+              <FormLabelLong text={'Ընդհանուր արձակուրդային օրեր'} />
 
               <Col xxl={1} xl={2} lg={2} md={2} sm={3} span={3}>
                 <StyledInputNumber
@@ -1449,20 +1361,7 @@ const VacationCalculator = () => {
               </Col>
             </Row>
             <Row align="middle" gutter={[10, 30]}>
-              <Col
-                xxl={{ span: 7, offset: 6 }}
-                xl={{ span: 9, offset: 5 }}
-                lg={{ span: 10, offset: 4 }}
-                md={{ span: 13, offset: 2 }}
-                sm={{ span: 17, offset: 1 }}
-                span={17}
-              >
-                <FormLabelCell>
-                  <Label fontcolor="#000">
-                    Օգտագործված արձակուրդային օրեր
-                  </Label>
-                </FormLabelCell>
-              </Col>
+              <FormLabelLong text={'Օգտագործված արձակուրդային օրեր'} />
 
               <Col xxl={1} xl={2} lg={2} md={2} sm={3} span={3}>
                 <StyledInputNumber

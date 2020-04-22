@@ -8,6 +8,7 @@ import CarCustomsCalculator from '../components/calculators/carCustomsCalculator
 import CarSellCalculator from '../components/calculators/carSellCalculator';
 import CarPropTaxCalculator from '../components/calculators/carPropTaxCalculator';
 import MortgageCalculator from '../components/calculators/mortgageCalculator';
+import FinalCalculator from '../components/calculators/finalCalculator';
 
 const { Text } = Typography;
 
@@ -62,6 +63,8 @@ const Calculators = () => (
     <SalaryCalculator />
     <Divider />
     <VacationCalculator />
+    <Divider />
+    <FinalCalculator />
     <Divider />
     <MortgageCalculator />
     <Divider />

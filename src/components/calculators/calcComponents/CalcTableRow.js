@@ -43,7 +43,7 @@ const Label = styled(Text)`
   }
 `;
 
-const CalcTableRow = ({
+export const CalcTableRow = ({
   month,
   year,
   value1,
@@ -109,5 +109,3 @@ const CalcTableRow = ({
     </>
   );
 };
-
-export default CalcTableRow;

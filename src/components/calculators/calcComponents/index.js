@@ -1,3 +1,9 @@
 export { FormIcon } from './FormIcon';
 export { FormHeader } from './FormHeader';
 export { FormToggle } from './FormToggle';
+export { Description } from './Description';
+export { FormLabelLong } from './FormLabelLong';
+export { ToggleLarge } from './ToggleLarge';
+export { ToggleRegular } from './ToggleRegular';
+export { SubmitButton } from './SubmitButton';
+export { CalcTableRow } from './CalcTableRow';

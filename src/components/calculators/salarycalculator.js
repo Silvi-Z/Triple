@@ -9,6 +9,7 @@ import {
   FormIcon,
   FormHeader,
   FormToggle,
+  FormLabelLong,
 } from './calcComponents';
 
 const { Text } = Typography;
@@ -90,17 +91,6 @@ const StyledInputNumber = styled(InputNumber)`
   @media (min-width: 768px) {
     font-size: 14px;
   }
-`;
-
-const FormLabelCell = styled.div`
-  padding-left: 12px;
-  padding-right: 12px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  text-align: center;
-  border: 1px solid #d7d7d7;
-  background-color: #fff;
 `;
 
 const ResultCell = styled.div`
@@ -310,20 +300,7 @@ const SalaryCalculator = () => {
             </Row>
 
             <Row align="middle" gutter={[10, 10]}>
-              <Col
-                xxl={{ span: 7, offset: 6 }}
-                xl={{ span: 9, offset: 5 }}
-                lg={{ span: 10, offset: 4 }}
-                md={{ span: 13, offset: 2 }}
-                sm={{ span: 17, offset: 1 }}
-                span={17}
-              >
-                <FormLabelCell>
-                  <Label fontcolor="#000">
-                    Աշխատավարձ
-                  </Label>
-                </FormLabelCell>
-              </Col>
+              <FormLabelLong text={'Աշխատավարձ'} />
               <Col xxl={3} xl={3} lg={4} md={5} sm={5} span={6}>
                 <StyledInputNumber
                   size="large"
@@ -338,20 +315,7 @@ const SalaryCalculator = () => {
             </Row>
 
             <Row align="middle" gutter={[10, 10]}>
-              <Col
-                xxl={{ span: 7, offset: 6 }}
-                xl={{ span: 9, offset: 5 }}
-                lg={{ span: 10, offset: 4 }}
-                md={{ span: 13, offset: 2 }}
-                sm={{ span: 17, offset: 1 }}
-                span={17}
-              >
-                <FormLabelCell>
-                  <Label fontcolor="#000">
-                    Պարգևավճար
-                  </Label>
-                </FormLabelCell>
-              </Col>
+              <FormLabelLong text={'Պարգևավճար'} />
               <Col xxl={3} xl={3} lg={4} md={5} sm={5} span={6}>
                 <StyledInputNumber
                   min={0}
@@ -365,20 +329,7 @@ const SalaryCalculator = () => {
             </Row>
 
             <Row align="middle" gutter={[10, 10]}>
-              <Col
-                xxl={{ span: 7, offset: 6 }}
-                xl={{ span: 9, offset: 5 }}
-                lg={{ span: 10, offset: 4 }}
-                md={{ span: 13, offset: 2 }}
-                sm={{ span: 17, offset: 1 }}
-                span={17}
-              >
-                <FormLabelCell>
-                  <Label fontcolor="#000">
-                    Մասնակցու՞մ եք կուտակային կենսաթոշակայինին
-                  </Label>
-                </FormLabelCell>
-              </Col>
+              <FormLabelLong text={'Մասնակցու՞մ եք կուտակային կենսաթոշակայինին'} />
               <Col>
                 <ButtonSmall
                   type={formik.values.pension ? 'primary' : 'default'}
@@ -414,20 +365,7 @@ const SalaryCalculator = () => {
             </Row>
 
             <Row align="middle" gutter={[10, 30]}>
-              <Col
-                xxl={{ span: 7, offset: 6 }}
-                xl={{ span: 9, offset: 5 }}
-                lg={{ span: 10, offset: 4 }}
-                md={{ span: 13, offset: 2 }}
-                sm={{ span: 17, offset: 1 }}
-                span={17}
-              >
-                <FormLabelCell>
-                  <Label fontcolor="#000">
-                    Վճարե՞լ եք արդեն դրոշմանիշային վճարը
-                  </Label>
-                </FormLabelCell>
-              </Col>
+              <FormLabelLong text={'Վճարե՞լ եք արդեն դրոշմանիշային վճարը'} />
               <Col>
                 <ButtonSmall
                   type={formik.values.bonus_stamp ? 'primary' : 'default'}
