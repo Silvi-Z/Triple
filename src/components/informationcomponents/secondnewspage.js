@@ -11,6 +11,7 @@ const ContainerNews = styled.div`
   margin-top: 39px;
   margin-left: 13.5%;
   background-color: #f7f7f7;
+  margin: 0 auto;
 `
 
 const NewsCol = styled(Col)`
@@ -181,7 +182,7 @@ const UsefulNews = () => {
   return (
     <ContainerNews>
       <Row>
-        <NewsCol xl={16} lg={16} md={16}>
+        <NewsCol xxl={15} xl={16} lg={16} md={16}>
           <H2Styled>
             ՀԱՅԱՍՏԱՆԻ ՀԱՆՐԱՊԵՏՈՒԹՅԱՆ ՕՐԵՆՔԸ ՀԱՇՎԱՊԱՀԱԿԱՆ ՀԱՇՎԱՌՄԱՆ ՄԱՍԻՆ
           </H2Styled>

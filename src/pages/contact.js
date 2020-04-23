@@ -15,7 +15,7 @@ const ParagraphRow = styled(Row)`
   margin-bottom: 2.8%;
   @media (min-width: 1600px) {
     padding: 0 0%;
-    margin-bottom: 2.8%;
+    margin-bottom: 1%;
   }
   @media only screen and (max-width: 1170px) {
     padding: 0 10.5%;
@@ -58,6 +58,19 @@ const PStyled = styled.p`
   letter-spacing: normal;
   text-align: left;
   color: #000000;
+  @media only screen and (max-width: 1920px) {
+    width: 968px;
+    height: 76px;
+    font-family: ArialAMU;
+    font-size: 16px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.88;
+    letter-spacing: normal;
+    text-align: left;
+    color: #000000;
+  }
   @media only screen and (max-width: 1170px) {
     width: 768px;
     height: 76px;
@@ -323,6 +336,7 @@ const FormColumn = styled(Col)`
   padding: 0.8% 5%;
   @media (min-width: 1600px) {
     margin-left: 33%;
+    padding: 0.8% 4%;
     max-width: 618px;
   }
   @media only screen and (max-width: 1170px) {
@@ -557,7 +571,7 @@ const Contact = () => {
   return (
     <Layout>
       <ParagraphRow>
-        <HeadingParagrCol lg={{ span: 24 }} xxl={{ span: 8, offset: 5 }}>
+        <HeadingParagrCol lg={{ span: 24 }} xxl={{ span: 8, offset: 4 }}>
           <H2Styled>Կապ մեզ հետ</H2Styled>
           <PStyled>
             “Թրիփլ Քնսալթինգ” ընկերությունը պատրաստակամ է համագործակցելու ինչպես
@@ -597,17 +611,25 @@ const Contact = () => {
       </ContactNavRow>
       <FormRow align="middle">
         {openIndivid ? (
-          <FormColumn lg={{ span: 17, offset: 3 }} xs={{ span: 17, offset: 3 }} >
+          <FormColumn
+            lg={{ span: 17, offset: 3 }}
+            xs={{ span: 17, offset: 3 }} >
             <FormindIviduals />
           </FormColumn>
         ) : openComp ? (
-          <FormColumn lg={{ span: 17 }} offset={3} >
+          <FormColumn
+            lg={{ span: 17 }} offset={3} >
             <FormOrganizations />
           </FormColumn>
         ) : null}
       </FormRow>
       <ContactMapRow align="middle">
-        <NumberCol xxl={{ span: 19, offset: 4 }} xl={{ span: 19 }} lg={{ span: 19 }} md={{ span: 19 }} offset={2}>
+        <NumberCol
+          xxl={{ span: 19, offset: 4 }}
+          xl={{ span: 19 }}
+          lg={{ span: 19 }}
+          md={{ span: 19 }}
+          offset={2}>
           <CallIconWrapper src={CallPhoneImg} alt={"icon"} />
           <ContactNumberWrap>
             <span>+374 93706010,+374 93706010</span>

@@ -42,7 +42,7 @@ const layout = {
     span: 24,
   },
   wrapperCol: {
-    span: 16,
+    span: 24,
   },
 }
 const tailLayout = {
@@ -83,7 +83,12 @@ const Formfield = () => {
       id="formcontact"
     >
       <Row>
-        <Col lg={{ span: 11 }} xl={{ span: 11 }} md={{ span: 11 }} xs={24}>
+        <Col
+          lg={{ span: 11 }}
+          xxl={{ span: 11 }}
+          xl={{ span: 11 }}
+          md={{ span: 11 }}
+          xs={24}>
           <Form.Item
             label="Կազմակերպության անվանում"
             name="username"
@@ -100,6 +105,7 @@ const Formfield = () => {
         </Col>
         <Col
           span={11}
+          xxl={{ span: 11, offset: 2 }}
           lg={{ span: 11, offset: 1 }}
           xl={{ span: 11, offset: 1 }}
           md={{ span: 11, offset: 1 }}
@@ -117,7 +123,12 @@ const Formfield = () => {
         </Col>
       </Row>
       <Row>
-        <Col lg={{ span: 11 }} xl={{ span: 11 }} md={{ span: 11 }} xs={24}>
+        <Col
+          lg={{ span: 11 }}
+          xxl={{ span: 11 }}
+          xl={{ span: 11 }}
+          md={{ span: 11 }}
+          xs={24}>
           <Form.Item
             label="Էլ հասցե"
             name="username"
@@ -129,6 +140,7 @@ const Formfield = () => {
         </Col>
         <Col
           span={11}
+          xxl={{ span: 11, offset: 2 }}
           lg={{ span: 11, offset: 1 }}
           xl={{ span: 11, offset: 1 }}
           md={{ span: 11, offset: 1 }}

@@ -361,7 +361,7 @@ const RegistrationForm = ({
       >
         <Input />
       </Form.Item>
-      <Row style={{width: "100%"}}>
+      <Row style={{ width: "100%" }}>
         <Col
           xs={{ span: 21, offset: 0 }}
           sm={{ span: 22, offset: 0 }}
@@ -526,7 +526,7 @@ const RegistrationForm = ({
       </Form.Item>
       <Form.Item
         name="tin"
-        label={<LabelSpan>ՀՎՀՀ *</LabelSpan>}
+        label={<LabelSpan>ՀՎՀՀ</LabelSpan>}
         rules={[
           {
             required: tin === null ? true : false,

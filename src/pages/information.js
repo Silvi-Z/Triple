@@ -14,11 +14,11 @@ import News1 from '../components/informationcomponents/secondnewspage';
 const InformationParagraphRow = styled(Row)`
   padding: 0 13.5%;
   margin-bottom: 2.8%;
-  @media (min-width: 1600px) {
-    padding: 0 27%;
-  }
   @media (min-width: 1200px) {
     padding: 0 19%;
+  }
+  @media (min-width: 1600px) {
+    padding: 0 17%;
   }
   @media only screen and (max-width: 768px) {
     margin-top: 49px;
@@ -60,6 +60,12 @@ const PStyled = styled.p`
   letter-spacing: normal;
   text-align: left;
   color: #000000;
+  @media only screen and (max-width: 1920px) {
+    max-width: 800px;
+    max-height: 90px;
+    margin-left: 0%;
+    margin-bottom: 30px;
+  }
   @media only screen and (max-width: 768px) {
     max-width: 509px;
     max-height: 106px;
@@ -79,12 +85,12 @@ const PStyled = styled.p`
 `;
 const InformationNavRow = styled(Row)`
   padding: 0 18.2%;
-  margin-bottom: 3%;
-  @media (min-width: 1600px) {
-    padding: 0 20%;
-  }
+  margin-bottom: 3%;  
   @media (min-width: 1200px) {
     padding: 0 21.6%;
+  }
+  @media (min-width: 1600px) {
+    padding: 0 29%;
   }
   @media only screen and (max-width: 1024px) {
     padding: 0 14%;
@@ -192,6 +198,9 @@ const InformSectionRow = styled(Row)`
   @media (min-width: 1200px) {
     padding: 0 19%;
   }
+  @media (min-width: 1600px) {
+    padding: 0 27%;
+  }
   @media only screen and (max-width: 768px) {
     padding: 0 0%;
   };
@@ -208,7 +217,7 @@ const InformationNewsCol = styled(Col)`
   text-align: center;
   padding-top: 1.8%;
   box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
-  background-color: ${props => (props.open ? '#009db8' : '#ffffff')}; 
+  background-color: ${props => (props.open || props.openSecondNews ? '#009db8' : '#ffffff')}; 
   > span {
     width: 105px;
     height: 15px;
@@ -220,7 +229,7 @@ const InformationNewsCol = styled(Col)`
     line-height: normal;
     letter-spacing: normal;
     text-align: center;
-    color: ${props => (props.open ? '#ffffff' : '#009db8')};
+    color: ${props => (props.open || props.openSecondNews ? '#ffffff' : '#009db8')};
   };
   &:hover {
     background-color: #009db8;
@@ -557,11 +566,13 @@ const Information = () => {
     setOpenUseful(true);
     setOpenNews(false);
     setOpenDocTemp(false);
+    setopenSecondNews(false)
   };
   const ChangePageDoc = () => {
     setOpenDocTemp(true);
     setOpenUseful(false);
     setOpenNews(false);
+    setopenSecondNews(false)
   };
 
   const openPage = () => {
@@ -585,7 +596,7 @@ const Information = () => {
         </Col>
       </InformationParagraphRow>
       <InformationNavRow>
-        <InformationNewsCol onClick={ChangePageNews} open={openNews} xs={24}>
+        <InformationNewsCol onClick={ChangePageNews} open={openNews} openSecondNews={openSecondNews} xs={24}>
           <span>Նորություններ</span>
         </InformationNewsCol>
         <InformationUsfulCol

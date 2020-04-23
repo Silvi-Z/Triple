@@ -31,6 +31,7 @@ const ReportParagraphRow = styled(Row)`
     padding: 0 12.5%;
   }
   @media only screen and (max-width: 1920px) {
+    padding: 0 13.5%;
     margin-bottom: 0.8%;
   }
 `
