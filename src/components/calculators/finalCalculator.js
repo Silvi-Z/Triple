@@ -344,6 +344,7 @@ const FinalCalculator = () => {
     validateOnMount: true,
     onSubmit: async values => {
       console.log('Big form values', values);
+      setResult2(null);
       let bodyFormData = new FormData();
       const json_data = {};
       for (let i = 1; i < 13; i++) {
@@ -364,6 +365,20 @@ const FinalCalculator = () => {
       bodyFormData.append('bonus_stamp', values.bonus_stamp);
 
       // TODO: complete form handler
+      setLoading2(true);
+
+      try {
+        const res = await apiHelper.post('/api/counter/final', bodyFormData);
+        console.log('Final calc response: ', res.data.data);
+        if (res.data.success) {
+          setResult2(res.data.data);
+        }
+      } catch (e) {
+        console.log('Final calc error: ', e);
+        setLoading2(false);
+      }
+
+      setLoading2(false);
     },
   });
 
@@ -381,7 +396,7 @@ const FinalCalculator = () => {
         <>
           <Description text={'Չօգտագործված ամենամյա արձակուրդի համար դրամական հատուցուման հաշվարկ (Վերջնահաշվարկ)'} />
 
-          <form  onSubmit={formik1.handleSubmit}>
+          <form onSubmit={formik1.handleSubmit}>
             <Row align="middle" gutter={[10, 10]}>
               <Col
                 xxl={{offset: 6, span: 4}}
@@ -534,7 +549,7 @@ const FinalCalculator = () => {
               </Row>
             </>
           )}
-          <form>
+          <form onSubmit={formik2.handleSubmit}>
             <Row align="middle" gutter={[10, 10]}>
               <ToggleRegular
                 label={'Մաքուր'}
@@ -627,13 +642,13 @@ const FinalCalculator = () => {
               <FormLabelLong text={'Մասնակցու՞մ եք կուտակային կենսաթոշակայինին'} />
               <Col>
                 <ButtonSmall
-                  type={!formik2.values.pension ? 'primary' : 'default'}
+                  type={formik2.values.pension ? 'primary' : 'default'}
                   size="large"
                   block
-                  onClick={() => formik2.setFieldValue('pension', 0)}
+                  onClick={() => formik2.setFieldValue('pension', 1)}
                 >
                   <Label fontcolor={
-                    !formik2.values.pension
+                    formik2.values.pension
                       ? '#fff'
                       : '#000'
                   }>
@@ -643,13 +658,13 @@ const FinalCalculator = () => {
               </Col>
               <Col>
                 <ButtonSmall
-                  type={formik2.values.pension ? 'primary' : 'default'}
+                  type={!formik2.values.pension ? 'primary' : 'default'}
                   size="large"
                   block
-                  onClick={() => formik2.setFieldValue('pension', 1)}
+                  onClick={() => formik2.setFieldValue('pension', 0)}
                 >
                   <Label fontcolor={
-                    formik2.values.pension
+                    !formik2.values.pension
                       ? '#fff'
                       : '#000'
                   }>
@@ -663,13 +678,13 @@ const FinalCalculator = () => {
               <FormLabelLong text={'Վճարե՞լ եք արդեն դրոշմանիշային վճարը'} />
               <Col>
                 <ButtonSmall
-                  type={!formik2.values.bonus_stamp ? 'primary' : 'default'}
+                  type={formik2.values.bonus_stamp ? 'primary' : 'default'}
                   size="large"
                   block
-                  onClick={() => formik2.setFieldValue('bonus_stamp', 0)}
+                  onClick={() => formik2.setFieldValue('bonus_stamp', 1)}
                 >
                   <Label fontcolor={
-                    !formik2.values.bonus_stamp
+                    formik2.values.bonus_stamp
                       ? '#fff'
                       : '#000'
                   }>
@@ -679,13 +694,13 @@ const FinalCalculator = () => {
               </Col>
               <Col>
                 <ButtonSmall
-                  type={formik2.values.bonus_stamp ? 'primary' : 'default'}
+                  type={!formik2.values.bonus_stamp ? 'primary' : 'default'}
                   size="large"
                   block
-                  onClick={() => formik2.setFieldValue('bonus_stamp', 1)}
+                  onClick={() => formik2.setFieldValue('bonus_stamp', 0)}
                 >
                   <Label fontcolor={
-                    formik2.values.bonus_stamp
+                    !formik2.values.bonus_stamp
                       ? '#fff'
                       : '#000'
                   }>
@@ -908,12 +923,107 @@ const FinalCalculator = () => {
             />
 
             <SubmitButton
-              disabled={loading2}
+              disabled={loading2 || !formik2.isValid}
               loading={loading2}
               submitter
-              // onClick={() => console.log('Formik obj 1: ', formik1)}
             />
           </form>
+          {!!result2 && (
+            <>
+              <Row align="middle" gutter={[5, 10]}>
+                <Col
+                  xxl={{ span: 4, offset: 6 }}
+                  xl={{ span: 4, offset: 5 }}
+                  lg={{ span: 5, offset: 4 }}
+                  md={{span: 6, offset: 2}}
+                  offset={1}
+                  span={10}
+                >
+                  <H3Styled>Արդյունք</H3Styled>
+                </Col>
+              </Row>
+              <Description text={'Վերջնահաշվարկի հաշվարկը գումարային աշխատավարձի հետ միասին'} />
+
+              <Row align="middle" gutter={[10, 10]}>
+                <Col
+                  xxl={{ span: 8, offset: 6 }}
+                  xl={{ span: 10, offset: 5 }}
+                  lg={{ span: 12, offset: 4 }}
+                  md={{span: 15, offset: 2}}
+                  sm={{span: 19, offset: 1}}
+                  xs={{span: 20, offset: 0}}
+                >
+                  <ResultCell>
+                    <Label fontcolor="#fff">
+                      Վերջնահաշվարկ հաշվարկելու ամսվա աշխատանքային օրեր
+                    </Label>
+                  </ResultCell>
+                </Col>
+                <Col xxl={2} xl={2} lg={2} md={2} sm={3}>
+                  <ResultCell>
+                    <Label fontcolor="#fff">
+                      {result2.finalInfo.monthWorksDays}
+                    </Label>
+                  </ResultCell>
+                </Col>
+              </Row>
+
+              <Row align="middle" gutter={[10, 10]}>
+                <Col
+                  xxl={{ span: 8, offset: 6 }}
+                  xl={{ span: 10, offset: 5 }}
+                  lg={{ span: 12, offset: 4 }}
+                  md={{span: 15, offset: 2}}
+                  sm={{span: 19, offset: 1}}
+                  xs={{span: 20, offset: 0}}
+                >
+                  <ResultCell>
+                    <Label fontcolor="#fff">
+                      Վերջնահաշվարկ հաշվարկելու ամսվա աշխատած օրեր
+                    </Label>
+                  </ResultCell>
+                </Col>
+                <Col xxl={2} xl={2} lg={2} md={2} sm={3}>
+                  <ResultCell>
+                    <Label fontcolor="#fff">
+                      {result2.finalInfo.worksDays}
+                    </Label>
+                  </ResultCell>
+                </Col>
+              </Row>
+
+              <Row align="middle" gutter={[10, 10]}>
+                <Col
+                  xxl={{ span: 3, offset: 6 }}
+                  xl={{ span: 4, offset: 5 }}
+                  lg={{ span: 4, offset: 4 }}
+                  md={{span: 5, offset: 2}}
+                  sm={{span: 6, offset: 1}}
+                  xs={{span: 7, offset: 0}}
+                >
+                  <ResultCell>
+                    <Label fontcolor="#fff">
+                      Աշխատավարձ
+                    </Label>
+                  </ResultCell>
+                </Col>
+                <Col xxl={2} xl={2} lg={3} md={3} sm={4} xs={4}>
+                  <ResultCell>
+                    <Label fontcolor="#fff">
+                      {result2.finalInfo.salary_pure}
+                    </Label>
+                  </ResultCell>
+                </Col>
+                <Col xxl={2} xl={2} lg={3} md={3} sm={4} xs={4}>
+                  <ResultCell>
+                    <Label fontcolor="#fff">
+                      {result2.finalInfo.salary_pure}
+                    </Label>
+                  </ResultCell>
+                </Col>
+              </Row>
+            </>
+          )}
         </>
       )}
     </>

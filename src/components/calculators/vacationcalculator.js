@@ -341,6 +341,7 @@ const VacationCalculator = () => {
     validateOnMount: true,
     onSubmit: async values => {
       console.log('Big form values', values);
+      setResult(null);
       let bodyFormData = new FormData();
       const json_data = {};
       for (let i = 1; i < 13; i++) {
@@ -366,7 +367,6 @@ const VacationCalculator = () => {
         const res = await apiHelper.post('/api/counter/vacation', bodyFormData);
         console.log('Vacation calc response: ', res);
         if (res.data.success) {
-          console.log('burp');
           const resultReduced = {};
           resultReduced.totalInfo = res.data.data.totalInfo;
           resultReduced.monthInfo = Object.values(res.data.data.monthInfo);
@@ -723,13 +723,13 @@ const VacationCalculator = () => {
               <FormLabelLong text={'Մասնակցու՞մ եք կուտակային կենսաթոշակայինին'} />
               <Col>
                 <ButtonSmall
-                  type={!formik.values.pension ? 'primary' : 'default'}
+                  type={formik.values.pension ? 'primary' : 'default'}
                   size="large"
                   block
-                  onClick={() => formik.setFieldValue('pension', 0)}
+                  onClick={() => formik.setFieldValue('pension', 1)}
                 >
                   <Label fontcolor={
-                    !formik.values.pension
+                    formik.values.pension
                       ? '#fff'
                       : '#000'
                   }>
@@ -739,13 +739,13 @@ const VacationCalculator = () => {
               </Col>
               <Col>
                 <ButtonSmall
-                  type={formik.values.pension ? 'primary' : 'default'}
+                  type={!formik.values.pension ? 'primary' : 'default'}
                   size="large"
                   block
-                  onClick={() => formik.setFieldValue('pension', 1)}
+                  onClick={() => formik.setFieldValue('pension', 0)}
                 >
                   <Label fontcolor={
-                    formik.values.pension
+                    !formik.values.pension
                       ? '#fff'
                       : '#000'
                   }>
