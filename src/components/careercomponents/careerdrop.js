@@ -148,10 +148,10 @@ const CareerDropWrapper = ({ showCareerForm, data }) => {
       >
         <HeadIcon src={CalcImg} alt={"icon"} />
       </DropHeadingIconCol>
-      <DropHeadingTitleCol xxl={9} xl={12} lg={17} span={17}>
+      <DropHeadingTitleCol xxl={13} xl={12} lg={17} span={17}>
         <ToggleH2Styled>{data.data.title_arm}</ToggleH2Styled>
       </DropHeadingTitleCol>
-      <DropHeadingButtonCol xl={6} span={2}>
+      <DropHeadingButtonCol xl={5} span={2}>
         <ToggleButton block onClick={() => showCareerForm(data)}>
           {data.open ? (
             <MinusOutlined style={{ fontSize: "20px" }} />
@@ -162,6 +162,7 @@ const CareerDropWrapper = ({ showCareerForm, data }) => {
       </DropHeadingButtonCol>
       {data.open ? (
         <FormWrapperCol
+          xxl={{ span: 18, offset: 5 }}
           xl={{ span: 18, offset: 4 }}
           lg={{ span: 18, offset: 3 }}
           md={{ span: 23, offset: 1 }}

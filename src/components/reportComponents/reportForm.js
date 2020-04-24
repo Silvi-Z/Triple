@@ -242,7 +242,6 @@ const SubmitSpan = styled.span`
     width: 400px;
     margin-bottom: 10%;
   }
-
 `
 const LabelSpan = styled.span`
   height: 14px;
@@ -261,6 +260,7 @@ const RegistrationForm = ({
   setConfirm2,
   SetAllFieldsValues,
   allFieldsValues,
+  fillform,
 }) => {
   const [form] = Form.useForm()
   const [loading, toggleLoading] = useState(false)
@@ -268,6 +268,10 @@ const RegistrationForm = ({
   const [checkId, setcheckId] = useState("1")
   const [identity_document_type, setidentity_document_type] = useState("0")
   const [tin, setTin] = useState(" ")
+
+  {
+    fillform ? onFill(body) : null
+  }
 
   /*Updating parent state*/
   const updateFieldsState = obj => {
@@ -280,20 +284,20 @@ const RegistrationForm = ({
     }
     try {
       let res = await apiHelper.post("/api/getTin", body)
-      console.log("Response: ", res)
       res.data.data.length === 0 ? setTin(null) : setTin(res.data.data.tin)
-      let tinInput = document.getElementById("register_tin")
       res.data.data.length === 0
-        ? (tinInput.value = null)
-        : (tinInput.value = res.data.data.tin)
-      console.log(tinInput.value)
+        ? (form.setFieldsValue({
+          tin: null,
+        }))
+        : form.setFieldsValue({
+          tin: res.data.data.tin,
+        })
     } catch (e) {
       console.log("Calculation error: ", e)
     }
   }
   /*onSubmiting === OnFinish => values === fieldsValues*/
   const onFinish = async values => {
-    console.log("hjbjhbhj")
     let body = {
       ...values,
       birthday: values["birthday"].format("YYYY-MM-DD"),
@@ -310,6 +314,7 @@ const RegistrationForm = ({
           responseType: "arraybuffer",
           headers: {
             Accept: "application/pdf",
+            "Content-Type": "multipart/form-data",
           },
         })
         .then(response => {
@@ -335,6 +340,23 @@ const RegistrationForm = ({
     setcheckPassport("1")
     setcheckId("0")
     setidentity_document_type("1")
+  }
+  const onFill = obj => {
+    form.setFieldsValue({
+      full_name: obj.full_name,
+      city: obj.city,
+      address: obj.address,
+      identity_document_type: obj.identity_document_type,
+      passport_series: obj.passport_series,
+      when: obj.when,
+      given: obj.given,
+      ID_card_number: obj.ID_card_number,
+      psn: obj.psn,
+      birthday: obj.birthday,
+      tin: obj.tin,
+      phone: obj.phone,
+      email: obj.email,
+    })
   }
 
   return (

@@ -122,8 +122,12 @@ const Seemoreimg = styled.img`
 const IconWrapper = styled.img`
   width: 35px;
   height: 35px;
-  margin-top: 18.6%;
+  margin-top: 11.6%;
   margin-left: 45%;
+  @media (min-width: 1600px) {
+    width: 40px;
+    height: 40px;
+  }
 `
 const TextWrapperSmall = styled.p`
   width: 143px;

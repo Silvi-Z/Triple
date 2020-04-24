@@ -167,6 +167,7 @@ const Reports = () => {
   const [confirm2, setConfirm2] = useState(false)
   const [confirm3, setConfirm3] = useState(false)
   const [current_tracking_number, setCurrent_tracking_number] = useState(0)
+  const [fillform, setfillform] = useState(false)
   const [AllFieldsValues, setAllFieldsValues] = useState({
     full_name: "string",
     city: "string",
@@ -242,6 +243,7 @@ const Reports = () => {
               closeForm1={toggleForm}
               SetAllFieldsValues={setAllFieldsValues}
               allFieldsValues={AllFieldsValues}
+              fillform={fillform}
             />
           </Col>
         ) : confirm2 ? (
@@ -258,6 +260,7 @@ const Reports = () => {
               setConfirm3={setConfirm3}
               setConfirm2={setConfirm2}
               backButton={toggleForm}
+              setfillform={setfillform}
               forwardButton={setConfirm3}
               AllFieldsValues={AllFieldsValues}
               setCurrent_tracking_number={setCurrent_tracking_number}

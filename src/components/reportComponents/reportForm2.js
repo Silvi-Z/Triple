@@ -158,33 +158,39 @@ function ReportForm3({
     AllFieldsValues,
     setConfirm2,
     setConfirm3,
+    backButton,
+    setfillform,
     setCurrent_tracking_number,
-    current_tracking_number
+    current_tracking_number,
 }) {
-
-
     const onFinish = async values => {
-
-        const UploadFormData = new FormData();
-        UploadFormData.append("full_name", AllFieldsValues.full_name);
-        UploadFormData.append("city", AllFieldsValues.city);
-        UploadFormData.append("district", AllFieldsValues.district);
-        UploadFormData.append("address", AllFieldsValues.address);
-        UploadFormData.append("identity_document_type", AllFieldsValues.identity_document_type);
-        UploadFormData.append("passport_series", AllFieldsValues.passport_series);
-        UploadFormData.append("when", AllFieldsValues.when);
-        UploadFormData.append("given", AllFieldsValues.given);
-        UploadFormData.append("birthday", AllFieldsValues.birthday);
-        UploadFormData.append("tin", AllFieldsValues.tin);
-        UploadFormData.append("psn", AllFieldsValues.psn);
-        UploadFormData.append("phone", AllFieldsValues.phone);
-        UploadFormData.append("email", AllFieldsValues.email);
+        const UploadFormData = new FormData()
+        UploadFormData.append("full_name", AllFieldsValues.full_name)
+        UploadFormData.append("city", AllFieldsValues.city)
+        UploadFormData.append("district", AllFieldsValues.district)
+        UploadFormData.append("address", AllFieldsValues.address)
+        UploadFormData.append(
+            "identity_document_type",
+            AllFieldsValues.identity_document_type
+        )
+        UploadFormData.append("passport_series", AllFieldsValues.passport_series)
+        UploadFormData.append("when", AllFieldsValues.when)
+        UploadFormData.append("given", AllFieldsValues.given)
+        UploadFormData.append("birthday", AllFieldsValues.birthday)
+        UploadFormData.append("tin", AllFieldsValues.tin)
+        UploadFormData.append("psn", AllFieldsValues.psn)
+        UploadFormData.append("phone", AllFieldsValues.phone)
+        UploadFormData.append("email", AllFieldsValues.email)
         let passport = new Blob([values.passport_file[0]], { type: "text/xml" })
-        UploadFormData.append("passport_file", passport);
-        let car_purchase = new Blob([values.car_purchase_file[0]], { type: "text/xml" })
-        UploadFormData.append("car_purchase_file", car_purchase);
-        let credentials = new Blob([values.credentials_file[0]], { type: "text/xml" })
-        UploadFormData.append("credentials_file", credentials);
+        UploadFormData.append("passport_file", passport)
+        let car_purchase = new Blob([values.car_purchase_file[0]], {
+            type: "text/xml",
+        })
+        UploadFormData.append("car_purchase_file", car_purchase)
+        let credentials = new Blob([values.credentials_file[0]], {
+            type: "text/xml",
+        })
+        UploadFormData.append("credentials_file", credentials)
 
         console.log("Received values of form: ", UploadFormData)
         try {
@@ -198,7 +204,9 @@ function ReportForm3({
                     console.log(res)
                     setConfirm2(false)
                     setConfirm3(true)
-                    setCurrent_tracking_number(current_tracking_number = res.data.data.order_number)
+                    setCurrent_tracking_number(
+                        (current_tracking_number = res.data.data.order_number)
+                    )
                 })
         } catch (e) {
             console.log("Error: ", e)
@@ -207,28 +215,32 @@ function ReportForm3({
 
     const goBack = () => {
         backButton(true)
+        setfillform(true)
     }
     const goForward = () => {
         setConfirm2(false)
         setConfirm3(true)
     }
+
     return (
         <Row gutter={[10, 25]}>
             <Col span={24}>
                 <H6Styled>Խնդրում ենք վերբեռնել համապատասխան փաստաթղթերը</H6Styled>
             </Col>
             <Col span={24}>
-                <Form
-                    name="validate_other"
-                    {...formItemLayout}
-                    onFinish={onFinish}
-                >
+                <Form name="validate_other" {...formItemLayout} onFinish={onFinish}>
                     <Form.Item
                         name="passport_file"
                         valuePropName="fileList"
                         getValueFromEvent={normFile}
+                        rules={[
+                            {
+                                required: true,
+                                message: "Խնդրում ենք լրացնել նշված դաշտերը",
+                            },
+                        ]}
                     >
-                        <Upload name="passport_file" listType="picture">
+                        <Upload name="passport_file" listType="picture" accept="MIME-type">
                             <CustomButton>
                                 <span>Անձնագիր</span>
                                 <UploadWrapper src={UploadImage} />
@@ -239,6 +251,12 @@ function ReportForm3({
                         name="car_purchase_file"
                         valuePropName="fileList"
                         getValueFromEvent={normFile}
+                        rules={[
+                            {
+                                required: true,
+                                message: "Խնդրում ենք լրացնել նշված դաշտերը",
+                            },
+                        ]}
                     >
                         <Upload name="car_purchase_file" listType="picture">
                             <CustomButton>
@@ -251,6 +269,12 @@ function ReportForm3({
                         name="credentials_file"
                         valuePropName="fileList"
                         getValueFromEvent={normFile}
+                        rules={[
+                            {
+                                required: true,
+                                message: "Խնդրում ենք լրացնել նշված դաշտերը",
+                            },
+                        ]}
                     >
                         <Upload name="credentials_file" listType="picture">
                             <CustomButton>
@@ -273,7 +297,7 @@ function ReportForm3({
                         <ArrowLeftOutlined style={{ color: "#009db8", fontSize: "15px" }} />
                         <BackSpan>Հետ</BackSpan>
                     </NavigateBackButton>
-                    <NavigateForwardButton onClick={goForward}>
+                    <NavigateForwardButton>
                         <ForwardSpan>Առաջ</ForwardSpan>
                         <ArrowRightOutlined
                             style={{ color: "#009db8", fontSize: "15px" }}
