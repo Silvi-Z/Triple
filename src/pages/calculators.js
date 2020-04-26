@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import Layout from '../components/layout';
 import SalaryCalculator from '../components/calculators/salarycalculator';
 import VacationCalculator from '../components/calculators/vacationcalculator';
+import NonWorkingCalculator from '../components/calculators/nonWorkingCalculator';
 import CarCustomsCalculator from '../components/calculators/carCustomsCalculator';
 import CarSellCalculator from '../components/calculators/carSellCalculator';
 import CarPropTaxCalculator from '../components/calculators/carPropTaxCalculator';
@@ -63,6 +64,8 @@ const Calculators = () => (
     <SalaryCalculator />
     <Divider />
     <VacationCalculator />
+    <Divider />
+    <NonWorkingCalculator />
     <Divider />
     <FinalCalculator />
     <Divider />
