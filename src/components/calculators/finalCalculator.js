@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Typography, Row, Col, Button, InputNumber, DatePicker, Spin } from 'antd';
+import { Typography, Row, Col, Button, InputNumber, DatePicker } from 'antd';
 import {
   CaretDownFilled,
   // QuestionCircleOutlined,
@@ -68,13 +68,6 @@ const ButtonLarge = styled(Button)`
   padding-vertical: 0;
 `;
 
-const ButtonSubmit = styled(Button)`
-  height: 46px;
-  border-color: #009db8;
-  overflow: hidden;
-  padding-vertical: 0;
-`;
-
 const StyledInputNumber = styled(InputNumber)`
   width: 100%;
   height: 40px;
@@ -122,20 +115,6 @@ const Label = styled(Text)`
   }
 `;
 
-const Label2 = styled(Text)`
-  font-family: ArialAMU;
-  font-weight: bold;
-  line-height: 20px;
-  color: ${props => props.fontcolor};
-  font-size: 14px;
-  @media (min-width: 576px) {
-    font-size: 15px;
-  }
-  @media (min-width: 768px) {
-    font-size: 16px;
-  }
-`;
-
 const TabHeadCell = styled.div`
   padding-left: 16px;
   padding-top: 4px;
@@ -155,16 +134,6 @@ const ResultCell = styled.div`
   display: flex;
   align-items: center;
   justify-content: ${props => (props.large ? 'center' : 'flex-start')};
-  text-align: center;
-`;
-
-const ResultCellSmall = styled.div`
-  background-color: #21363d;
-  height: 40px;
-  width: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   text-align: center;
 `;
 
@@ -508,7 +477,6 @@ const FinalCalculator = () => {
               disabled={loading1}
               loading={loading1}
               submitter
-              // onClick={() => console.log('Formik obj 1: ', formik1)}
             />
           </form>
           {!!result1 && (
@@ -962,13 +930,13 @@ const FinalCalculator = () => {
                 <Col xxl={2} xl={2} lg={2} md={2} sm={3}>
                   <ResultCell>
                     <Label fontcolor="#fff">
-                      {result2.finalInfo.monthWorksDays}
+                      {result2.monthWorksDays}
                     </Label>
                   </ResultCell>
                 </Col>
               </Row>
 
-              <Row align="middle" gutter={[10, 10]}>
+              <Row align="middle" gutter={[10, 20]}>
                 <Col
                   xxl={{ span: 8, offset: 6 }}
                   xl={{ span: 10, offset: 5 }}
@@ -986,9 +954,48 @@ const FinalCalculator = () => {
                 <Col xxl={2} xl={2} lg={2} md={2} sm={3}>
                   <ResultCell>
                     <Label fontcolor="#fff">
-                      {result2.finalInfo.worksDays}
+                      {result2.worksDays}
                     </Label>
                   </ResultCell>
+                </Col>
+              </Row>
+
+              <Row align="middle" gutter={[10, 0]}>
+                <Col
+                  xxl={{ span: 3, offset: 6 }}
+                  xl={{ span: 4, offset: 5 }}
+                  lg={{ span: 4, offset: 4 }}
+                  md={{span: 5, offset: 2}}
+                  sm={{span: 6, offset: 1}}
+                  xs={{span: 7, offset: 0}}
+                />
+                <Col xxl={2} xl={2} lg={3} md={3} sm={4} xs={4}>
+                  <TabHeadCell>
+                    <Label fontcolor="#000">
+                      Կեղտոտ
+                    </Label>
+                  </TabHeadCell>
+                </Col>
+                <Col xxl={2} xl={2} lg={3} md={3} sm={4} xs={4}>
+                  <TabHeadCell>
+                    <Label fontcolor="#000">
+                      Մաքուր
+                    </Label>
+                  </TabHeadCell>
+                </Col>
+                <Col xxl={2} xl={2} lg={3} md={3} sm={4} xs={4}>
+                  <TabHeadCell>
+                    <Label fontcolor="#000">
+                      Եկամ/հարկ
+                    </Label>
+                  </TabHeadCell>
+                </Col>
+                <Col xxl={2} xl={2} lg={3} md={3} sm={4} xs={4}>
+                  <TabHeadCell>
+                    <Label fontcolor="#000">
+                      ՊԿԿ
+                    </Label>
+                  </TabHeadCell>
                 </Col>
               </Row>
 
@@ -1010,14 +1017,118 @@ const FinalCalculator = () => {
                 <Col xxl={2} xl={2} lg={3} md={3} sm={4} xs={4}>
                   <ResultCell>
                     <Label fontcolor="#fff">
-                      {result2.finalInfo.salary_pure}
+                      {result2.salary_registered}
                     </Label>
                   </ResultCell>
                 </Col>
                 <Col xxl={2} xl={2} lg={3} md={3} sm={4} xs={4}>
                   <ResultCell>
                     <Label fontcolor="#fff">
-                      {result2.finalInfo.salary_pure}
+                      {result2.salary_pure}
+                    </Label>
+                  </ResultCell>
+                </Col>
+                <Col xxl={2} xl={2} lg={3} md={3} sm={4} xs={4}>
+                  <ResultCell>
+                    <Label fontcolor="#fff">
+                      {result2.salary_taxPrice}
+                    </Label>
+                  </ResultCell>
+                </Col>
+                <Col xxl={2} xl={2} lg={3} md={3} sm={4} xs={4}>
+                  <ResultCell>
+                    <Label fontcolor="#fff">
+                      {result2.salary_pensionPrice}
+                    </Label>
+                  </ResultCell>
+                </Col>
+              </Row>
+
+              <Row align="middle" gutter={[10, 10]}>
+                <Col
+                  xxl={{ span: 3, offset: 6 }}
+                  xl={{ span: 4, offset: 5 }}
+                  lg={{ span: 4, offset: 4 }}
+                  md={{span: 5, offset: 2}}
+                  sm={{span: 6, offset: 1}}
+                  xs={{span: 7, offset: 0}}
+                >
+                  <ResultCell>
+                    <Label fontcolor="#fff">
+                      Արձակուրդային
+                    </Label>
+                  </ResultCell>
+                </Col>
+                <Col xxl={2} xl={2} lg={3} md={3} sm={4} xs={4}>
+                  <ResultCell>
+                    <Label fontcolor="#fff">
+                      {result2.vacation_registered}
+                    </Label>
+                  </ResultCell>
+                </Col>
+                <Col xxl={2} xl={2} lg={3} md={3} sm={4} xs={4}>
+                  <ResultCell>
+                    <Label fontcolor="#fff">
+                      {result2.vacation_pure}
+                    </Label>
+                  </ResultCell>
+                </Col>
+                <Col xxl={2} xl={2} lg={3} md={3} sm={4} xs={4}>
+                  <ResultCell>
+                    <Label fontcolor="#fff">
+                      {result2.vacation_taxPrice}
+                    </Label>
+                  </ResultCell>
+                </Col>
+                <Col xxl={2} xl={2} lg={3} md={3} sm={4} xs={4}>
+                  <ResultCell>
+                    <Label fontcolor="#fff">
+                      {result2.vacation_pensionPrice}
+                    </Label>
+                  </ResultCell>
+                </Col>
+              </Row>
+
+              <Row align="middle" gutter={[10, 10]}>
+                <Col
+                  xxl={{ span: 3, offset: 6 }}
+                  xl={{ span: 4, offset: 5 }}
+                  lg={{ span: 4, offset: 4 }}
+                  md={{span: 5, offset: 2}}
+                  sm={{span: 6, offset: 1}}
+                  xs={{span: 7, offset: 0}}
+                >
+                  <ResultCell>
+                    <Label fontcolor="#fff">
+                      Վերջնահաշվարկ
+                    </Label>
+                  </ResultCell>
+                </Col>
+                <Col xxl={2} xl={2} lg={3} md={3} sm={4} xs={4}>
+                  <ResultCell>
+                    <Label fontcolor="#fff">
+                      {result2.final_salary_registered}
+                    </Label>
+                  </ResultCell>
+                </Col>
+                <Col xxl={2} xl={2} lg={3} md={3} sm={4} xs={4}>
+                  <ResultCell>
+                    <Label fontcolor="#fff">
+                      {result2.final_salary_pure}
+                    </Label>
+                  </ResultCell>
+                </Col>
+                <Col xxl={2} xl={2} lg={3} md={3} sm={4} xs={4}>
+                  <ResultCell>
+                    <Label fontcolor="#fff">
+                      {result2.final_taxPrice}
+                    </Label>
+                  </ResultCell>
+                </Col>
+                <Col xxl={2} xl={2} lg={3} md={3} sm={4} xs={4}>
+                  <ResultCell>
+                    <Label fontcolor="#fff">
+                      {result2.final_pensionPrice}
                     </Label>
                   </ResultCell>
                 </Col>
