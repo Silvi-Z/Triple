@@ -47,11 +47,8 @@ const H2Styled = styled.h2`
   letter-spacing: normal;
   text-align: left;
   color: #000000;
-  span {
-    color: #009db8;
-    font-family: ArialAMU;
-    font-size: 18px;
-    font-weight: normal;
+  @media only screen and (max-width: 375px) {
+    width: 250px;
   }
 `
 const H3Styled = styled.h2`
@@ -124,15 +121,19 @@ const PStyled = styled.p`
     margin-bottom: 40px;
   }
   @media only screen and (max-width: 375px) {
-    width: 288px;
+    width: 260px;
     height: 226px;
+    font-size: 15px;
     font-family: ArialAMU;
+    margin-bottom: 60px;
   }
   @media only screen and (max-width: 320px) {
-    width: 288px;
+    width: 260px;
     height: 226px;
+    font-size: 15px;
     font-family: ArialAMU;
   }
+  
 `
 const HeadIcon = styled.img`
   width: 35px;
@@ -192,7 +193,7 @@ const Reports = () => {
   return (
     <Layout>
       <ReportParagraphRow>
-        <Col lg={{ span: 24 }} xxl={{ span: 24, offset: 1 }}>
+        <Col xs={{ span: 9 }} sm={{ span: 9 }} lg={{ span: 24 }} xxl={{ span: 24, offset: 1 }}>
           <H2Styled>Հաշվետվության տրամադրում</H2Styled>
           <PStyled>
             “Թրիփլ Քնսալթինգ” ընկերության “Հաշվետվության տրամադրում” ծառայության
@@ -230,12 +231,12 @@ const Reports = () => {
       <ReportFormRow align="middle">
         {showForm ? (
           <Col
-            xxl={{ span: 24, offset: 5 }}
-            xl={{ span: 24, offset: 4 }}
-            lg={{ span: 24, offset: 4 }}
-            md={{ span: 24, offset: 4 }}
-            sm={{ span: 24, offset: 0 }}
-            xs={{ span: 24, offset: 0 }}
+            xxl={{ span: 20, offset: 5 }}
+            xl={{ span: 20, offset: 4 }}
+            lg={{ span: 20, offset: 4 }}
+            md={{ span: 20, offset: 4 }}
+            xs={{ span: 22, offset: 0 }}
+            sm={{ span: 21, offset: 0 }}
           >
             <H3StyledForm>Պահանջվող տեղեկատվություն</H3StyledForm>
             <ReportForm

@@ -1,5 +1,5 @@
 /*eslint-disable */
-import React, { useState } from "react"
+import React, { useState, useEffect, useRef } from "react"
 import {
   Form,
   Input,
@@ -60,7 +60,7 @@ const tailFormItemLayout = {
     },
     sm: {
       span: 24,
-      offset: 8,
+      offset: 0,
     },
   },
 }
@@ -71,15 +71,15 @@ const tailFormButtonLayout = {
       offset: 0,
     },
     xl: {
-      span: 12,
+      span: 14,
       offset: 0,
     },
     lg: {
-      span: 10,
+      span: 16,
       offset: 0,
     },
     md: {
-      span: 24,
+      span: 18,
       offset: 0,
     },
     xs: {
@@ -98,51 +98,40 @@ function getDate(date, dateString) {
 }
 
 const ColAddress = styled(Col)`
-  margin-top: 3.1%;
+  /* margin-top: 3.1%;
   @media (min-width: 768px) {
     margin-top: 5.5%;
     margin-left: 3%;
-  }
+  }*/
   @media (min-width: 1024px) {
-    margin-top: 4%;
-    margin-left: 1%;
+    margin-left: 9%;
   }
   @media (min-width: 1170px) {
-    margin-top: 3.6%;
     margin-left: 2.5%;
   }
   @media (min-width: 1300px) {
-    margin-top: 3.2%;
-    margin-left: 1%;
-  }
-  @media (min-width: 1500px) {
-    margin-top: 3%;
-    margin-left: 1%;
+    margin-left: 0.2%;
   }
   @media (min-width: 1600px) {
-    margin-top: 2.3%;
-    margin-left: 1%;
-  }
+    margin-left: 0.2%;
+  } 
 `
 const ReportPassportRow = styled(Row)`
   width: 48.6%;
   @media (min-width: 768px) {
-    width: 82.5%;
+    width: 100%;
   }
   @media (min-width: 1024px) {
-    width: 62%;
+    width: 75%;
   }
   @media (min-width: 1170px) {
-    width: 54%;
+    width: 66%;
   }
   @media (min-width: 1366px) {
-    width: 48.6%;
-  }
-  @media (min-width: 1500px) {
-    width: 44.6%;
+    width: 59%;
   }
   @media (min-width: 1600px) {
-    width: 44%;
+    width: 51%;
   }
 `
 const DatePickerCustom = styled(DatePicker)`
@@ -186,10 +175,12 @@ const SelectCustom = styled(Select)`
 const PassportButton = styled(Button)`
   height: 40px;
   @media (min-width: 320px) {
+    margin-top: 10px;
     width: 290px;
     border: solid 1px #009db8;
   }
   @media (min-width: 375px) {
+    margin-top: 10px;
     width: 290px;
     border: solid 1px #009db8;
   }
@@ -206,18 +197,21 @@ const IdButton = styled(Button)`
     width: 290px;
     border: solid 1px #009db8;
     margin-top: 3%;
+    margin-left: 0%;
   }
   @media (min-width: 375px) {
     width: 290px;
     border: solid 1px #009db8;
     margin-top: 3%;
+    margin-left: 0%;
   }
   @media (min-width: 768px) {
     width: 216px;
     border: solid 1px #009db8;
+    margin-left: 3%;
   }
   @media (min-width: 1366px) {
-    margin-left: 2.6%;
+    margin-left: 2.9%;
   }
   @media (min-width: 1900px) {
     margin-left: 2.6%;
@@ -236,14 +230,16 @@ const SubmitSpan = styled.span`
   text-align: left;
   color: #000000;
   @media (min-width: 320px) {
-    margin-bottom: 5%;
+    width: 290px;
+    margin-bottom: 20px;
   }
   @media (min-width: 375px) {
-    width: 400px;
-    margin-bottom: 10%;
+    width: 290px;
+    margin-bottom: 20px;
   }
 `
 const LabelSpan = styled.span`
+  width: auto;
   height: 14px;
   font-family: ArialAMU;
   font-size: 14px;
@@ -254,7 +250,17 @@ const LabelSpan = styled.span`
   letter-spacing: normal;
   text-align: left;
   color: #000000;
+  @media (min-width: 320px) {
+    width: 290px;
+  }
+  @media (min-width: 375px) {
+    width: 290px;
+  }
+  @media (min-width: 1170px) {
+    width: 390px;
+  }
 `
+let FormsLastVAluesObj = {}
 const RegistrationForm = ({
   closeForm1,
   setConfirm2,
@@ -263,15 +269,11 @@ const RegistrationForm = ({
   fillform,
 }) => {
   const [form] = Form.useForm()
-  const [loading, toggleLoading] = useState(false)
+  const [loading, toggleLoading] = useState(true)
   const [checkPassport, setcheckPassport] = useState("0")
   const [checkId, setcheckId] = useState("1")
   const [identity_document_type, setidentity_document_type] = useState("0")
   const [tin, setTin] = useState(" ")
-
-  {
-    fillform ? onFill(body) : null
-  }
 
   /*Updating parent state*/
   const updateFieldsState = obj => {
@@ -292,6 +294,8 @@ const RegistrationForm = ({
         : form.setFieldsValue({
           tin: res.data.data.tin,
         })
+      toggleLoading(false)
+
     } catch (e) {
       console.log("Calculation error: ", e)
     }
@@ -305,6 +309,7 @@ const RegistrationForm = ({
       tin: tin,
       identity_document_type,
     }
+    FormsLastVAluesObj = values
     console.log("Received values of form: ", body)
     updateFieldsState(body)
     try {
@@ -331,6 +336,13 @@ const RegistrationForm = ({
     }
   }
 
+  /*calls onfill func after clicking in form2js back button,and gives as a parapmetr FormsLastVAluesObj*/
+  useEffect(() => {
+    {
+      fillform ? onFill(FormsLastVAluesObj) : null
+    }
+  }, []);
+
   const openPassport = () => {
     setcheckPassport("0")
     setcheckId("1")
@@ -341,6 +353,7 @@ const RegistrationForm = ({
     setcheckId("0")
     setidentity_document_type("1")
   }
+
   const onFill = obj => {
     form.setFieldsValue({
       full_name: obj.full_name,
@@ -357,6 +370,7 @@ const RegistrationForm = ({
       phone: obj.phone,
       email: obj.email,
     })
+    toggleLoading(false)
   }
 
   return (
@@ -367,6 +381,19 @@ const RegistrationForm = ({
       onFinish={onFinish}
       initialValues={{
         tin: tin,
+        full_name: FormsLastVAluesObj.full_name,
+        city: FormsLastVAluesObj.city,
+        address: FormsLastVAluesObj.address,
+        identity_document_type: FormsLastVAluesObj.identity_document_type,
+        passport_series: FormsLastVAluesObj.passport_series,
+        when: FormsLastVAluesObj.when,
+        given: FormsLastVAluesObj.given,
+        ID_card_number: FormsLastVAluesObj.ID_card_number,
+        psn: FormsLastVAluesObj.psn,
+        birthday: FormsLastVAluesObj.birthday,
+        tin: FormsLastVAluesObj.tin,
+        phone: FormsLastVAluesObj.phone,
+        email: FormsLastVAluesObj.email,
       }}
       scrollToFirstError
     >
@@ -383,13 +410,13 @@ const RegistrationForm = ({
       >
         <Input />
       </Form.Item>
-      <Row style={{ width: "100%" }}>
+      <Row>
         <Col
-          xs={{ span: 21, offset: 0 }}
-          sm={{ span: 22, offset: 0 }}
-          md={{ span: 6, offset: 0 }}
-          lg={{ span: 4, offset: 0 }}
-          xl={{ span: 4, offset: 0 }}
+          xs={{ span: 24, offset: 0 }}
+          sm={{ span: 24, offset: 0 }}
+          md={{ span: 8, offset: 0 }}
+          lg={{ span: 5, offset: 0 }}
+          xl={{ span: 5, offset: 0 }}
           xxl={{ span: 3, offset: 0 }}
         >
           <Form.Item
@@ -414,20 +441,19 @@ const RegistrationForm = ({
           </Form.Item>
         </Col>
         <ColAddress
-          xs={{ span: 21 }}
-          sm={{ span: 22 }}
-          md={{ span: 6 }}
-          lg={{ span: 5 }}
-          xl={{ span: 5 }}
-          xxl={{ span: 4 }}
+          xs={{ span: 24 }}
+          sm={{ span: 24 }}
+          md={{ span: 9, offset: 1 }}
+          lg={{ span: 6 }}
+          xl={{ span: 6 }}
+          xxl={{ span: 6 }}
         >
           <Form.Item
             name="address"
-            label=" "
+            label={<LabelSpan> </LabelSpan>}
             rules={[
-              { required: true, message: "Խնդրում ենք լրացնել նշված դաշտերը" },
+              { required: false, message: "Խնդրում ենք լրացնել նշված դաշտերը" },
             ]}
-            noStyle
           >
             <Input />
           </Form.Item>
@@ -606,7 +632,7 @@ const RegistrationForm = ({
         {...tailFormItemLayout}
       >
         <Button
-          disabled={loading || tin === " "}
+          disabled={loading}
           type="primary"
           htmlType="submit"
           id="registerSubmit"

@@ -196,6 +196,9 @@ const SeemoreColumn = styled(Col)`
   @media only screen and (max-width: 1920px) {
     padding-left: 37%;
   }
+  @media only screen and (max-width: 1366px) {
+    padding-left: 32%;
+  }
   @media only screen and (max-width: 1170px) {
     padding-left: 29.5%;
   }
@@ -258,7 +261,7 @@ const Homeservices = () => {
             կապված հաշվախահության և աւդիտի հետ։
           </PStyled>
         </Col>
-        <SeemoreColumn ls={12} sm={24} md={12} lg={12} xxl={12}>
+        <SeemoreColumn ls={12} sm={24} md={12} lg={12} xl={12} xxl={12}>
           <SeemoreWrapper>
             <NavLink to="/services/">
               <SeemoreSpan>Տեսնել ավելին</SeemoreSpan>

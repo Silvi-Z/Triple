@@ -153,7 +153,7 @@ const FooterNumberColumn = styled(Col)`
   }
   @media only screen and (max-width: 375px) {
     justify-content: space-evenly;
-    padding-left: 10%;
+    padding-left: 5%;
     margin-bottom: 20px;
   }
 `

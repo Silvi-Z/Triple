@@ -95,6 +95,9 @@ const SeemoreColumn = styled(Col)`
   @media only screen and (max-width: 1920px) {
     padding-left: 37%;
   }
+  @media only screen and (max-width: 1366px) {
+    padding-left: 32%;
+  }
   @media only screen and (max-width: 1170px) {
     padding-left: 30%;
   }
