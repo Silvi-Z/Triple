@@ -330,10 +330,10 @@ const FormRow = styled(Row)`
 const FormColumn = styled(Col)`
   margin-left: 17%;
   max-width: 602px;
-  max-height: 513px;
+  max-height: 620px;
   box-shadow: 0px 5px 40px 0 rgba(0, 0, 0, 0.05);
   background-color: #ffffff;
-  padding: 0.8% 5%;
+  padding: 1% 5%;
   @media (min-width: 1600px) {
     margin-left: 33%;
     padding: 0.8% 4%;
@@ -341,6 +341,7 @@ const FormColumn = styled(Col)`
   }
   @media only screen and (max-width: 1170px) {
     margin-left: 16.5%;
+    padding: 1% 4%;
     /* max-width: 562px;
     max-height: 700px; */
   }
@@ -581,7 +582,7 @@ const Contact = () => {
           </PStyled>
         </HeadingParagrCol>
       </ParagraphRow>
-      <ContactNavRow>
+      {/* <ContactNavRow>
         <IndividCol
           xxl={{ span: 10, offset: 8 }}
           xl={11}
@@ -608,12 +609,14 @@ const Contact = () => {
         >
           <span>Կազմակերպությունների համար</span>
         </CompanyCol>
-      </ContactNavRow>
+      </ContactNavRow> */}
       <FormRow align="middle">
         {openIndivid ? (
           <FormColumn
             lg={{ span: 17, offset: 3 }}
-            xs={{ span: 17, offset: 3 }} >
+            xs={{ span: 17, offset: 3 }}
+            xxl={{ span: 17, offset: 3 }}
+          >
             <FormindIviduals />
           </FormColumn>
         ) : openComp ? (

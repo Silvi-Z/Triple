@@ -739,7 +739,7 @@ pre tt:after {
   color: #000000;
 }
 #basic_username {
-  width: 252px;
+  width: 514px;
   height: 38px;
 }
 #basic_username label {
@@ -760,10 +760,9 @@ pre tt:after {
   width: 252px;
   height: 38px;
 }
-#basic_user_email {
-  width: 252px;
+#basic_email {
+  width: 514px;
   height: 38px;
-  margin-left: 2%;
 }
 #uploadbuttoncompany {
   width: 252px;
@@ -773,11 +772,11 @@ pre tt:after {
 }
 
 #basic_title {
-  width: 514px;
+  width: 484px;
   height: 38px;
 }
 #basic_textarea {
-  width: 514px;
+  width: 484px;
   height: 80px;
   margin-bottom: 20px;
 }
@@ -786,7 +785,7 @@ pre tt:after {
   height: 80px;
 }
 #uploadbutton {
-  width: 514px;
+  width: 484px;
   height: 38px;
   text-align: right;
 }
@@ -832,11 +831,6 @@ pre tt:after {
   #basic_textarea {
     width: 270px;
     height: 80px;
-  }
-  #formcontact div {
-    width: 518px;
-    height: auto;
-    margin-top: 0px;
   }
   #formcontact div {
     margin-top: 0%;
@@ -970,7 +964,6 @@ pre tt:after {
   #basic_user_email {
     width: 245px;
     height: 38px;
-    margin-left: 6%;
   }
   #uploadbuttoncompany {
     width: 245px;
@@ -1172,11 +1165,49 @@ pre tt:after {
     border: solid 1px #009db8;
     background-color: #ffffff;
   }
+  #basic_title {
+    width: 510px;
+    height: 38px;
+  }
+  #uploadbutton {
+    width: 510px;
+    height: 38px;
+    text-align: right;
+  }
+  #basic_textarea {
+    max-width: 510px;
+    margin-bottom: 20px;
+  }
+}
+@media only screen and (min-width: 1170x) {
+  #basic_username {
+    width: 252px;
+    height: 38px;
+  }
+  #basic_title {
+    width: 500px;
+    height: 38px;
+  }
+  #uploadbutton {
+    width: 500px;
+    height: 38px;
+    text-align: right;
+  }
+  #basic_textarea {
+    max-width: 500px;
+    margin-bottom: 20px;
+  }
+  #uploadbutton {
+    width: 252px;
+    height: 38px;
+    margin-left: 2%;
+    text-align: right;
+  }
 }
 
 @media (min-width: 1600px) {
   #basic_username {
-    width: 252px;
+    width: 510px;
     height: 38px;
   }
   #basic_textarea {
@@ -1203,5 +1234,14 @@ pre tt:after {
     height: 42px;
     border: solid 1px #009db8;
     background-color: #ffffff;
+  }
+  #basic_title {
+    width: 484px;
+    height: 38px;
+  }
+  #uploadbutton {
+    width: 484px;
+    height: 38px;
+    text-align: right;
   }
 }
