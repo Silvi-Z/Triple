@@ -128,9 +128,15 @@ const Formfield = () => {
     // onSubmit={formik.handleSubmit}
     >
       <Row>
-        <Col lg={{ span: 11 }} xl={{ span: 11 }} xxl={{ span: 11 }} md={{ span: 11 }} xs={24}>
+        <Col
+          lg={{ span: 22 }}
+          xl={{ span: 24 }}
+          xxl={{ span: 24 }}
+          md={{ span: 11 }}
+          sm={{ span: 23 }}
+          xs={{ span: 23 }}>
           <Form.Item
-            label="Անուն / Ազգանուն"
+            label="Անուն / Ազգանուն ( Կազմակերպության անվանում )"
             name="username"
             rules={[
               {
@@ -140,87 +146,102 @@ const Formfield = () => {
             ]}
             style={{ marginBottom: "3px" }}
           >
-            <Input />
+            <Input style={{ width: "100%" }} />
           </Form.Item>
         </Col>
         <Col
-          span={11}
-          lg={{ span: 11, offset: 1 }}
-          xl={{ span: 11, offset: 1 }}
-          xxl={{ span: 11, offset: 2 }}
+          lg={{ span: 22, offset: 0 }}
+          xl={{ span: 24, offset: 0 }}
+          xxl={{ span: 24, offset: 0 }}
           md={{ span: 11, offset: 1 }}
-          xs={{ span: 11, offset: 0 }}
-          offset={1}
+          sm={{ span: 23 }}
+          xs={{ span: 23 }}
         >
           <Form.Item
-            name={["user", "email"]}
+            name="email"
             label="Էլ․ հասցե"
             rules={[{ type: "email", required: true, message: "Խնդրում եմ լրացրեք այս դաշտը!", }]}
             style={{ marginBottom: "3px" }}
           >
-            <Input size="large" />
+            <Input size="large" style={{ width: "100%" }} />
           </Form.Item>
         </Col>
-      </Row>
-      <Form.Item
-        label="Կցել ֆայլը"
-        name="facebook_icon"
-        rules={[
-          {
-            required: true,
-            message: "Խնդրում եմ լրացրեք այս դաշտը!",
-          },
-        ]}
-        style={{ marginBottom: "3px" }}
-      >
-        <Upload {...fileprops}>
-          <Button size="large" id="uploadbutton">
-            {/* <UploadOutlined
+        <Col
+          xxl={{ span: 24 }}
+          xl={{ span: 24 }}
+          lg={{ span: 22 }}
+        >
+          <Form.Item
+            label="Կցել ֆայլը"
+            name="facebook_icon"
+            rules={[
+              {
+                required: true,
+                message: "Խնդրում եմ լրացրեք այս դաշտը!",
+              },
+            ]}
+            style={{ marginBottom: "3px" }}
+          >
+            <Upload {...fileprops} >
+              <Button size="large" id="uploadbutton" >
+                {/* <UploadOutlined
               style={{
                 color: "#009db8",
                 fontSize: "20px",
                 margin: "20px";
               }}
             /> */}
-            <UploadImg src={uploadImage} />
-          </Button>
-        </Upload>
-      </Form.Item>
+                <UploadImg src={uploadImage} />
+              </Button>
+            </Upload>
+          </Form.Item>
+        </Col>
+        <Col
+          xxl={{ span: 24 }}
+          xl={{ span: 24, offset: 0 }}
+          lg={{ span: 19 }}>
+          <Form.Item
+            label="Վերնագիր"
+            name="title"
+            rules={[
+              {
+                required: true,
+                message: "Խնդրում եմ լրացրեք այս դաշտը!",
+              },
+            ]}
+            style={{ marginBottom: "3px" }}
+          >
+            <Input size="large" />
+          </Form.Item>
+        </Col>
+        <Col
+          xxl={{ span: 24 }}
+          xl={{ span: 24 }}
+          lg={{ span: 22 }}>
+          <Arealabel>Ձեր հաղորդագրությունը</Arealabel>
+          <Form.Item
+            label="Ձեր հաղորդագրությունը"
+            name="textarea"
+            noStyle="false"
+            rules={[
+              {
+                required: false,
+                message: "",
+              },
+            ]}
+          >
+            <Input.TextArea autoSize={{ minRows: 4, maxRows: 8 }} />
+          </Form.Item>
+        </Col>
+      </Row>
 
-      <Form.Item
-        label="Վերնագիր"
-        name="title"
-        rules={[
-          {
-            required: true,
-            message: "Խնդրում եմ լրացրեք այս դաշտը!",
-          },
-        ]}
-        style={{ marginBottom: "3px" }}
-      >
-        <Input size="large" />
-      </Form.Item>
-      <Arealabel>Ձեր հաղորդագրությունը</Arealabel>
-      <Form.Item
-        label="Ձեր հաղորդագրությունը"
-        name="textarea"
-        noStyle="false"
-        rules={[
-          {
-            required: false,
-            message: "",
-          },
-        ]}
-      >
-        <Input.TextArea autoSize={{ minRows: 3, maxRows: 4 }} />
-      </Form.Item>
 
       <Form.Item {...tailLayout}>
         <Button type="primary" htmlType="submit" id="submitbotton">
           Ուղարկել
         </Button>
       </Form.Item>
-    </Form>
+    </Form >
   )
 }
 

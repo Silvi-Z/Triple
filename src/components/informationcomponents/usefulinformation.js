@@ -1,14 +1,14 @@
 import React from "react"
 import styled from "styled-components"
-import { Link } from "gatsby"
-import { Typography, Row, Col, Button, InputNumber } from "antd"
+import { Row, Col } from "antd"
+import RightArrowImg from "../../assets/informimages/rightarrow.svg"
 
 const ContainerUseful = styled(Row)`
   width: 85%;
   margin-top: 3%;
   padding: 2%;
-  box-shadow: 0px 5px 40px 0 rgba(0, 0, 0, 0.05);
-  background-color: #ffffff;
+  box-shadow: 0px 5px 40px 0 rgba(0, 0, 0, 0.01);
+  background-color: #f7f7f7;
   @media only screen and (max-width: 1170px) {
     width: 94%;
   }
@@ -18,29 +18,18 @@ const ContainerUseful = styled(Row)`
 `
 
 const TextWrapper = styled(Col)`
-  padding: 1% 1%;
+  padding: 0 1%;
+  width: 20%;
+  display: flex;
+
   h2 {
-    width: 417px;
-    height: 16px;
+    height: 18px;
     font-family: ArialAMU;
-    font-size: 16px;
-    font-weight: bold;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: normal;
-    letter-spacing: normal;
-    text-align: left;
-    color: #000000;
-  }
-  h3 {
-    width: 199px;
-    height: 12px;
-    font-family: ArialAMU;
-    font-size: 13px;
+    font-size: 18px;
     font-weight: normal;
     font-stretch: normal;
     font-style: normal;
-    line-height: 2;
+    line-height: normal;
     letter-spacing: normal;
     text-align: left;
     color: #000000;
@@ -58,9 +47,6 @@ const TextWrapper = styled(Col)`
       letter-spacing: normal;
       text-align: left;
       color: #000000;
-    }
-    h3 {
-      font-size: 12px;
     }
   }
   @media only screen and (max-width: 320px) {
@@ -85,6 +71,7 @@ const TextWrapper = styled(Col)`
 const ListWrapper = styled(Col)`
   ul {
     list-style: none;
+    margin-left: 0;
   }
   @media only screen and (max-width: 320px) {
     ul {
@@ -100,6 +87,20 @@ const ListWrapper = styled(Col)`
     }
   }
 `
+const Img = styled.img`
+  width: 20px;
+  height: 15px;
+  margin-left: 1.5%;
+  margin-top: 0.5%;
+  cursor: pointer;
+  object-fit: contain;
+  font-weight: bold;
+`
+const Hr = styled.hr`
+  width: 150%;
+  height: 1px;
+  background-color: #d7d7d7;
+`
 const UsefulInform = ({ usedata }) => {
   const linklist = usedata.data.links.map(lin => (
     <a href={lin.link} download={lin.link} target="_blank" key={lin.id}>
@@ -109,9 +110,12 @@ const UsefulInform = ({ usedata }) => {
 
   return (
     <ContainerUseful>
+      <Hr />
       <TextWrapper span={24}>
-        <h2>{usedata.data.first_heading}</h2>
-        <h3> {usedata.data.second_heading}</h3>
+        <a href={usedata.data.href} target="_blank">
+          <h2>{usedata.data.first_heading}</h2>
+        </a>
+        <Img src={RightArrowImg} />
       </TextWrapper>
       <ListWrapper>
         <ul>{linklist}</ul>

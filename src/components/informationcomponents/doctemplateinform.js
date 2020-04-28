@@ -49,6 +49,7 @@ const TextWrapper = styled(Col)`
 const ListWrapper = styled(Col)`
   ul {
     list-style: none;
+    margin-left: 0;
   }
   @media only screen and (max-width: 320px) {
     ol {
@@ -77,6 +78,11 @@ const ListWrapper = styled(Col)`
     }
   }
 `
+const Hr = styled.hr`
+  width: 20%;
+  height: 1px;
+  background-color: black;
+`
 const DocTemplateInform = ({ usedata }) => {
   const linklist = usedata.data.links.map(lin => (
     <a
@@ -93,8 +99,8 @@ const DocTemplateInform = ({ usedata }) => {
     <ContainerUseful>
       <TextWrapper span={24}>
         <h2>{usedata.data.first_heading}</h2>
-        <h3> {usedata.data.second_heading}</h3>
       </TextWrapper>
+      <Hr />
       <ListWrapper>
         <ul>{linklist}</ul>
       </ListWrapper>
