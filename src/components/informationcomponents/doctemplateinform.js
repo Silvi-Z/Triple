@@ -9,6 +9,10 @@ const ContainerUseful = styled(Row)`
   padding: 2%;
   box-shadow: 0px 5px 40px 0 rgba(0, 0, 0, 0.05);
   background-color: #ffffff;
+  @media only screen and (max-width: 1920px) {
+    width: 94%;
+    margin-left: 3%;
+  }
   @media only screen and (max-width: 1170px) {
     width: 94%;
   }

@@ -110,7 +110,6 @@ const ToggleButton = styled(Button)`
 `
 const SubParagStyled = styled.div`
   width: 517px;
-  height: 46px;
   font-family: ArialAMU;
   font-size: 16px;
   font-weight: normal;

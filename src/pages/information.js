@@ -231,7 +231,7 @@ const InformationNewsCol = styled(Col)`
     letter-spacing: normal;
     text-align: center;
     color: ${props =>
-      props.open || props.openSecondNews ? "#ffffff" : "#009db8"};
+    props.open || props.openSecondNews ? "#ffffff" : "#009db8"};
   }
   &:hover {
     background-color: #009db8;
@@ -589,10 +589,7 @@ const Information = () => {
         <Col lg={{ span: 24 }}>
           <H2Styled>Օգտակար տեղեկություններ</H2Styled>
           <PStyled>
-            “Թրիփլ Քնսալթինգ” ընկերությունն իր պարտքն է համարում կիսվել իր
-            հաճախորդների հետ այն տեղեկատվությամբ, որին տիրապետում է,այդպիսով իր
-            լուման ներդնելով հաճախորդների տեղեկացված և պատրաստված լինելու կարևոր
-            գործառույթին։
+            Մեր ընկերությունն իր պարտքն է համարում կիսվել իր հաճախորդների հետ այն օգտակար տեղեկատվությամբ, որին տիրապետում է՝ այդպիսով իր լուման ներդնելով հաճախորդների տեղեկացված և պատրաստված լինելու կարևոր գործառույթին։
           </PStyled>
         </Col>
       </InformationParagraphRow>
