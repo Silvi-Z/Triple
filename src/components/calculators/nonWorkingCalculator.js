@@ -188,10 +188,10 @@ const initialValues1 = {
   other_employer_income: 0,
   previous_year_number_months: 0,
   work_days_count: 0,
-  salary_type: true,
-  work_day_type: true,
+  salary_type: 0,
+  work_day_type: 0,
   pension: true,
-  patent: true,
+  patent: null,
   bonus_stamp: true,
   salary: 0,
   last_year_tax_base: 0,
@@ -238,6 +238,10 @@ const initialValues1 = {
 const NonWorkingCalculator = () => {
   const [showForm, toggleForm] = useState(false);
   const [vacationDays, setVacationDays] = useState(140);
+  const [salary, setSalary] = useState(0);
+
+  const [loading2, setLoading2] = useState(false);
+  const [result2, setResult2] = useState(null);
 
   const formik1 = useFormik({
     initialValues: initialValues1,
@@ -301,6 +305,26 @@ const NonWorkingCalculator = () => {
                 label={'Հարկման ընդհանուր դաշտ'}
                 toggleState={formik1.values.turnover_tax}
                 onClick={() => formik1.setFieldValue('turnover_tax', 1)}
+              />
+            </Row>
+          )}
+
+          {formik1.values.employment && (
+            <Row align="middle" gutter={[10, 10]}>
+              <ToggleLarge
+                label={'Հնգօրյա աշխատանքային շաբաթ'}
+                toggleState={formik1.values.work_day_type}
+                onClick={() => {
+                  formik1.setFieldValue('work_day_type', 0);
+                }}
+                start
+              />
+              <ToggleLarge
+                label={'Վեցօրյա աշխատանքային շաբաթ'}
+                toggleState={!formik1.values.work_day_type}
+                onClick={() => {
+                  formik1.setFieldValue('work_day_type', 1);
+                }}
               />
             </Row>
           )}
@@ -405,7 +429,7 @@ const NonWorkingCalculator = () => {
               >
                 <FormLabelCell>
                   <Label fontcolor="#000">
-                  Այլ գործատուների կողմից վճարված եկամուտ
+                    Այլ գործատուների կողմից վճարված եկամուտ
                   </Label>
                 </FormLabelCell>
               </Col>
@@ -433,7 +457,7 @@ const NonWorkingCalculator = () => {
               >
                 <FormLabelCell large>
                   <Label left fontcolor="#000">
-                  Նախորդ մեկ տարվա ընթացքում աշխատած ամիսների քանակ
+                    Նախորդ մեկ տարվա ընթացքում աշխատած ամիսների քանակ
                   </Label>
                 </FormLabelCell>
               </Col>
@@ -448,6 +472,384 @@ const NonWorkingCalculator = () => {
                 />
               </Col>
             </Row>
+          )}
+          
+          <Row gutter={[10, 30]}><Col /></Row>
+          <SubmitButton
+            disabled={false}
+            loading={false}
+            onClick={() => null}
+          />
+
+          {!!formik1.values.employment && (
+            <>
+              <Row align="middle" gutter={[10, 10]}>
+                <Col
+                  xxl={{offset: 6, span: 6}}
+                  xl={{offset: 5, span: 7}}
+                  lg={{offset: 4, span: 8}}
+                  md={{offset: 2, span: 10}}
+                  sm={{offset: 1, span: 14}}
+                  offset={0}
+                  span={16}
+                >
+                  <FormLabelCell>
+                    <Label fontcolor="#000">
+                      Աշխատանքային օրերը
+                    </Label>
+                  </FormLabelCell>
+                </Col>
+                <Col xxl={2} xl={3} lg={3} md={4} sm={5} span={6}>
+                  <StyledInputNumber
+                    value={formik1.values.work_days_count}
+                    min={0}
+                    onChange={val => {
+                      formik1.setFieldValue('work_days_count', val);
+                    }}
+                  />
+                </Col>
+              </Row>
+
+              <Row align="middle" gutter={[10, 10]}>
+                <Col
+                  xxl={{ span: 5, offset: 6 }}
+                  xl={{ span: 6, offset: 5 }}
+                  lg={{ span: 7, offset: 4 }}
+                  md={{ span: 9, offset: 2 }}
+                  sm={{ span: 11, offset: 1 }}
+                  span={12}
+                >
+                  <ButtonLarge
+                    block
+                    type={formik1.values.patent !== 0 ? 'primary' : 'default'}
+                    onClick={() => {
+                      formik1.setFieldValue('patent', null);
+                    }}
+                  >
+                    <Label fontcolor={formik1.values.patent !== 0 ? '#FFF' : '#000'}>
+                      Ընդհանուր հարկման դաշտ
+                    </Label>
+                  </ButtonLarge>
+                </Col>
+                <Col xxl={5} xl={6} lg={7} md={9} sm={11} span={12}>
+                  <ButtonLarge
+                    block
+                    type={formik1.values.patent !== 0 ? 'default' : 'primary'}
+                    onClick={() => {
+                      formik1.setFieldValue('patent', 0);
+                    }}
+                  >
+                    <Label fontcolor={formik1.values.patent !== 0 ? '#000' : '#fff'}>
+                      ՏՏ ոլորտի արտոնագիր
+                    </Label>
+                  </ButtonLarge>
+                </Col>
+              </Row>
+
+              <Row align="middle" gutter={[10, 10]}>
+                <ToggleRegular
+                  label={'Մաքուր'}
+                  toggleState={!formik1.values.salary_type}
+                  onClick={() => formik1.setFieldValue('salary_type', 0)}
+                  start
+                />
+                <ToggleRegular
+                  label={'Կեղտոտ'}
+                  toggleState={formik1.values.salary_type}
+                  onClick={() => formik1.setFieldValue('salary_type', 1)}
+                />
+              </Row>
+            </>
+          )}
+          {!formik1.values.benefit_type && !!formik1.values.employment && (
+            <>
+              <Row align="middle" gutter={[10, 10]}>
+                <FormLabelLong text={'Մասնակցու՞մ եք կուտակային կենսաթոշակայինին'} />
+                <Col>
+                  <ButtonSmall
+                    type={formik1.values.pension ? 'primary' : 'default'}
+                    size="large"
+                    block
+                    onClick={() => formik1.setFieldValue('pension', 1)}
+                  >
+                    <Label fontcolor={
+                      formik1.values.pension
+                        ? '#fff'
+                        : '#000'
+                    }>
+                      Այո
+                    </Label>
+                  </ButtonSmall>
+                </Col>
+                <Col>
+                  <ButtonSmall
+                    type={!formik1.values.pension ? 'primary' : 'default'}
+                    size="large"
+                    block
+                    onClick={() => formik1.setFieldValue('pension', 0)}
+                  >
+                    <Label fontcolor={
+                      !formik1.values.pension
+                        ? '#fff'
+                        : '#000'
+                    }>
+                      Ոչ
+                    </Label>
+                  </ButtonSmall>
+                </Col>
+              </Row>
+
+              <Row align="middle" gutter={[10, 10]}>
+                <FormLabelLong text={'Վճարե՞լ եք արդեն դրոշմանիշային վճարը'} />
+                <Col>
+                  <ButtonSmall
+                    type={formik1.values.bonus_stamp ? 'primary' : 'default'}
+                    size="large"
+                    block
+                    onClick={() => formik1.setFieldValue('bonus_stamp', 1)}
+                  >
+                    <Label fontcolor={
+                      formik1.values.bonus_stamp
+                        ? '#fff'
+                        : '#000'
+                    }>
+                      Այո
+                    </Label>
+                  </ButtonSmall>
+                </Col>
+                <Col>
+                  <ButtonSmall
+                    type={!formik1.values.bonus_stamp ? 'primary' : 'default'}
+                    size="large"
+                    block
+                    onClick={() => formik1.setFieldValue('bonus_stamp', 0)}
+                  >
+                    <Label fontcolor={
+                      !formik1.values.bonus_stamp
+                        ? '#fff'
+                        : '#000'
+                    }>
+                      Ոչ
+                    </Label>
+                  </ButtonSmall>
+                </Col>
+              </Row>
+            </>
+          )}
+          {!!formik1.values.employment && (
+            <>
+              <Row align="middle" gutter={[10, 30]}>
+                <Col
+                  xxl={{ span: 6, offset: 6 }}
+                  xl={{ span: 7, offset: 5 }}
+                  lg={{ span: 8, offset: 4 }}
+                  md={{ span: 10, offset: 2 }}
+                  sm={{ span: 13, offset: 1 }}
+                  span={13}
+                >
+                  <FormLabelCell>
+                    <Label fontcolor="#000">
+                      Աշխատողի ամսական աշխատավարձ
+                    </Label>
+                  </FormLabelCell>
+                </Col>
+                <Col xxl={3} xl={3} lg={3} md={4} sm={4} span={5}>
+                  <StyledInputNumber
+                    size="large"
+                    min={0}
+                    type="number"
+                    onChange={value => setSalary(value)}
+                    value={salary}
+                  />
+                </Col>
+                <Col xxl={3} xl={3} lg={4} md={4} sm={5} span={5}>
+                  <ButtonBase
+                    type="primary"
+                    size="large"
+                    block
+                    onClick={() => {
+                      formik1.setFieldValue('month1_price', salary);
+                      formik1.setFieldValue('month2_price', salary);
+                      formik1.setFieldValue('month3_price', salary);
+                      formik1.setFieldValue('month4_price', salary);
+                      formik1.setFieldValue('month5_price', salary);
+                      formik1.setFieldValue('month6_price', salary);
+                      formik1.setFieldValue('month7_price', salary);
+                      formik1.setFieldValue('month8_price', salary);
+                      formik1.setFieldValue('month9_price', salary);
+                      formik1.setFieldValue('month10_price', salary);
+                      formik1.setFieldValue('month11_price', salary);
+                      formik1.setFieldValue('month12_price', salary);
+                      // formik1.validateForm().then(res => {
+                      //   console.log('Validation fired: ', res);
+                      //   console.log(formikOne.values);
+                      // });
+                    }}
+                  >
+                    <Label fontcolor="#fff">
+                      Լրացնել
+                    </Label>
+                  </ButtonBase>
+                </Col>
+              </Row>
+
+              <Row align="middle" gutter={[10, 20]}>
+                <Col
+                  xxl={{ span: 2, offset: 6 }}
+                  xl={{ span: 3, offset: 5 }}
+                  lg={{ span: 3, offset: 4 }}
+                  md={{ span: 4, offset: 2 }}
+                  sm={{ span: 5, offset: 1 }}
+                  span={5}
+                >
+                  <TabHeadCell>
+                    <Label fontcolor="#000">Ամիս</Label>
+                  </TabHeadCell>
+                </Col>
+                <Col xxl={2} xl={2} lg={2} md={3} sm={3} span={4}>
+                  <TabHeadCell>
+                    <Label fontcolor="#000">Տարի</Label>
+                  </TabHeadCell>
+                </Col>
+                <Col xxl={3} xl={3} lg={3} md={4} sm={5} span={5}>
+                  <TabHeadCell>
+                    <Label fontcolor="#000">Համախառն աշխատավարձ</Label>
+                  </TabHeadCell>
+                </Col>
+                <Col xxl={3} xl={3} lg={3} md={4} sm={5} span={5}>
+                  <TabHeadCell>
+                    <Label fontcolor="#000">Պարգևավճար</Label>
+                  </TabHeadCell>
+                </Col>
+                <Col xxl={3} xl={3} lg={3} md={4} sm={5} span={5}>
+                  <TabHeadCell>
+                    <Label fontcolor="#000">Հավելավճար</Label>
+                  </TabHeadCell>
+                </Col>
+              </Row>
+
+              <CalcTableRow
+                month={months[month1]}
+                year={year1}
+                value1={formik1.values.month1_price}
+                value2={formik1.values.month1_additional_price}
+                value3={formik1.values.month1_bonus_price}
+                handler1={value => formik1.setFieldValue('month1_price', value)}
+                handler2={value => formik1.setFieldValue('month1_additional_price', value)}
+                handler3={value => formik1.setFieldValue('month1_bonus_price', value)}
+              />
+              <CalcTableRow
+                month={months[month2]}
+                year={year2}
+                value1={formik1.values.month2_price}
+                value2={formik1.values.month2_additional_price}
+                value3={formik1.values.month2_bonus_price}
+                handler1={value => formik1.setFieldValue('month2_price', value)}
+                handler2={value => formik1.setFieldValue('month2_additional_price', value)}
+                handler3={value => formik1.setFieldValue('month2_bonus_price', value)}
+              />
+              <CalcTableRow
+                month={months[month3]}
+                year={year3}
+                value1={formik1.values.month3_price}
+                value2={formik1.values.month3_additional_price}
+                value3={formik1.values.month3_bonus_price}
+                handler1={value => formik1.setFieldValue('month3_price', value)}
+                handler2={value => formik1.setFieldValue('month3_additional_price', value)}
+                handler3={value => formik1.setFieldValue('month3_bonus_price', value)}
+              />
+              <CalcTableRow
+                month={months[month4]}
+                year={year4}
+                value1={formik1.values.month4_price}
+                value2={formik1.values.month4_additional_price}
+                value3={formik1.values.month4_bonus_price}
+                handler1={value => formik1.setFieldValue('month4_price', value)}
+                handler2={value => formik1.setFieldValue('month4_additional_price', value)}
+                handler3={value => formik1.setFieldValue('month4_bonus_price', value)}
+              />
+              <CalcTableRow
+                month={months[month5]}
+                year={year5}
+                value1={formik1.values.month5_price}
+                value2={formik1.values.month5_additional_price}
+                value3={formik1.values.month5_bonus_price}
+                handler1={value => formik1.setFieldValue('month5_price', value)}
+                handler2={value => formik1.setFieldValue('month5_additional_price', value)}
+                handler3={value => formik1.setFieldValue('month5_bonus_price', value)}
+              />
+              <CalcTableRow
+                month={months[month6]}
+                year={year6}
+                value1={formik1.values.month6_price}
+                value2={formik1.values.month6_additional_price}
+                value3={formik1.values.month6_bonus_price}
+                handler1={value => formik1.setFieldValue('month6_price', value)}
+                handler2={value => formik1.setFieldValue('month6_additional_price', value)}
+                handler3={value => formik1.setFieldValue('month6_bonus_price', value)}
+              />
+              <CalcTableRow
+                month={months[month7]}
+                year={year7}
+                value1={formik1.values.month7_price}
+                value2={formik1.values.month7_additional_price}
+                value3={formik1.values.month7_bonus_price}
+                handler1={value => formik1.setFieldValue('month7_price', value)}
+                handler2={value => formik1.setFieldValue('month7_additional_price', value)}
+                handler3={value => formik1.setFieldValue('month7_bonus_price', value)}
+              />
+              <CalcTableRow
+                month={months[month8]}
+                year={year8}
+                value1={formik1.values.month8_price}
+                value2={formik1.values.month8_additional_price}
+                value3={formik1.values.month8_bonus_price}
+                handler1={value => formik1.setFieldValue('month8_price', value)}
+                handler2={value => formik1.setFieldValue('month8_additional_price', value)}
+                handler3={value => formik1.setFieldValue('month8_bonus_price', value)}
+              />
+              <CalcTableRow
+                month={months[month9]}
+                year={year9}
+                value1={formik1.values.month9_price}
+                value2={formik1.values.month9_additional_price}
+                value3={formik1.values.month9_bonus_price}
+                handler1={value => formik1.setFieldValue('month9_price', value)}
+                handler2={value => formik1.setFieldValue('month9_additional_price', value)}
+                handler3={value => formik1.setFieldValue('month9_bonus_price', value)}
+              />
+              <CalcTableRow
+                month={months[month10]}
+                year={year10}
+                value1={formik1.values.month10_price}
+                value2={formik1.values.month10_additional_price}
+                value3={formik1.values.month10_bonus_price}
+                handler1={value => formik1.setFieldValue('month10_price', value)}
+                handler2={value => formik1.setFieldValue('month10_additional_price', value)}
+                handler3={value => formik1.setFieldValue('month10_bonus_price', value)}
+              />
+              <CalcTableRow
+                month={months[month11]}
+                year={year11}
+                value1={formik1.values.month11_price}
+                value2={formik1.values.month11_additional_price}
+                value3={formik1.values.month11_bonus_price}
+                handler1={value => formik1.setFieldValue('month11_price', value)}
+                handler2={value => formik1.setFieldValue('month11_additional_price', value)}
+                handler3={value => formik1.setFieldValue('month11_bonus_price', value)}
+              />
+              <CalcTableRow
+                month={months[month12]}
+                year={year12}
+                value1={formik1.values.month12_price}
+                value2={formik1.values.month12_additional_price}
+                value3={formik1.values.month12_bonus_price}
+                handler1={value => formik1.setFieldValue('month12_price', value)}
+                handler2={value => formik1.setFieldValue('month12_additional_price', value)}
+                handler3={value => formik1.setFieldValue('month12_bonus_price', value)}
+                gutter
+              />
+            </>
           )}
         </form>
       )}
