@@ -4,15 +4,11 @@ import {
   Form,
   Input,
   Tooltip,
-  Cascader,
   Select,
   Row,
   Col,
-  Checkbox,
   Button,
-  AutoComplete,
-  Spin,
-  InputNumber,
+  Spin
 } from "antd"
 import { QuestionCircleOutlined } from "@ant-design/icons"
 import { DatePicker } from "antd"
@@ -94,7 +90,7 @@ const tailFormButtonLayout = {
 }
 
 function getDate(date, dateString) {
-  console.log(dateString)
+  return dateString
 }
 
 const ColAddress = styled(Col)`
@@ -301,35 +297,37 @@ const RegistrationForm = ({
     }
   }
   /*onSubmiting === OnFinish => values === fieldsValues*/
-  const onFinish = async values => {
+  const onFinish = values => {
     let body = {
       ...values,
       birthday: values["birthday"].format("YYYY-MM-DD"),
       when: values["when"].format("YYYY-MM-DD"),
-      tin: tin,
+      tin: tin === null ? form.getFieldValue('tin') : tin,
       identity_document_type,
     }
-    FormsLastVAluesObj = values
+    FormsLastVAluesObj = body
     console.log("Received values of form: ", body)
+    console.log("ldkfksldmfksdmf", FormsLastVAluesObj)
     updateFieldsState(body)
     try {
       toggleLoading(true)
-      const res = await apiHelper
+      const res = apiHelper
         .post("/api/reports/car_sales_credential_pdf_download", body, {
-          responseType: "arraybuffer",
+          // responseType: "arraybuffer",
           headers: {
-            Accept: "application/pdf",
+            Accept: 'application/pdf',
             "Content-Type": "multipart/form-data",
           },
         })
         .then(response => {
-          const blob = new Blob([response.data], {
-            type: "application/pdf",
-          })
-          FileSaver.saveAs(blob, "լիազորագիր.pdf")
-          setConfirm2(true)
-          closeForm1(false)
-          toggleLoading(false)
+
+          // const blob = new Blob([response.data], {
+          //   type: "application/pdf",
+          // })
+          // FileSaver.saveAs(blob, "լիազորագիր.pdf")
+          // setConfirm2(true)
+          // closeForm1(false)
+          // toggleLoading(false)
         })
     } catch (e) {
       console.log("Error: ", e)
@@ -355,6 +353,7 @@ const RegistrationForm = ({
   }
 
   const onFill = obj => {
+    console.log(obj)
     form.setFieldsValue({
       full_name: obj.full_name,
       city: obj.city,
@@ -380,7 +379,7 @@ const RegistrationForm = ({
       name="register"
       onFinish={onFinish}
       initialValues={{
-        tin: tin,
+        tin: FormsLastVAluesObj.tin,
         full_name: FormsLastVAluesObj.full_name,
         city: FormsLastVAluesObj.city,
         address: FormsLastVAluesObj.address,
@@ -631,6 +630,7 @@ const RegistrationForm = ({
         }
         {...tailFormItemLayout}
       >
+
         <Button
           disabled={loading}
           type="primary"
@@ -639,8 +639,11 @@ const RegistrationForm = ({
         >
           {loading ? <Spin /> : "Հաստատել"}
         </Button>
+        {/* <a download href={`http://triple-c-api.algorithm.am/api/carSalesCredentialPdfDownload/${FormsLastVAluesObj.full_name}${"/"}${FormsLastVAluesObj.city}${"/"}${FormsLastVAluesObj.address}${"/"}${FormsLastVAluesObj.passport_series}${"/"}${FormsLastVAluesObj.given}${"/"}${FormsLastVAluesObj.when}${"/"}${FormsLastVAluesObj.birthday}${"/"}${FormsLastVAluesObj.psn}${"/"}${FormsLastVAluesObj.tin}${"/"}${FormsLastVAluesObj.phone}${"/"}${FormsLastVAluesObj.email}`}>
+          dfdsfsdf
+        </a> */}
       </Form.Item>
-    </Form>
+    </Form >
   )
 }
 
