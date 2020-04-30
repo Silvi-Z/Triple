@@ -182,7 +182,7 @@ const year12 = moment(currentDate).subtract(12, 'months').year();
 const initialValues1 = {
   benefit_type: 0,
   employment: 0,
-  turnover_tax: 0,
+  turnover_tax: 1,
   date_from: moment(),
   date_to: moment().add('d', 140),
   other_employer_income: 0,
@@ -239,6 +239,8 @@ const NonWorkingCalculator = () => {
   const [showForm, toggleForm] = useState(false);
   const [vacationDays, setVacationDays] = useState(140);
   const [salary, setSalary] = useState(0);
+  const [loading1, setLoading1] = useState(false);
+  const [result1, setResult1] = useState(null);
 
   const [loading2, setLoading2] = useState(false);
   const [result2, setResult2] = useState(null);
@@ -248,8 +250,51 @@ const NonWorkingCalculator = () => {
     enableReinitialize: true,
     // validationSchema: validationSchema1,
     // validateOnMount: true,
-    onSubmit: values => {
+    onSubmit: async values => {
       console.log('Values', values);
+      console.log(moment(values.date_from).format('YYYY-MM-DD'));
+      console.log(moment(values.date_to).format('YYYY-MM-DD'));
+      let bodyFormData = new FormData();
+      bodyFormData.append('benefit_type', values.benefit_type);
+      bodyFormData.append('employment', values.employment);
+      bodyFormData.append('date_from', moment(values.date_from).format('YYYY-MM-DD'));
+      bodyFormData.append('date_to', moment(values.date_to).format('YYYY-MM-DD'));
+      bodyFormData.append('download', 0);
+
+      if (!values.employment) {
+        bodyFormData.append('turnover_tax', values.turnover_tax);
+      } else {
+        bodyFormData.append('work_day_type', values.work_day_type);
+      }
+
+      if (!values.employment && values.turnover_tax) {
+        bodyFormData.append(
+          'previous_year_number_months', values.previous_year_number_months
+        );
+      }
+
+      if (
+        !formik1.values.benefit_type
+          && !values.employment
+          && formik1.values.turnover_tax
+      ) {
+        bodyFormData.append('other_employer_income', values.other_employer_income);
+      }
+
+      setResult1(null);
+      setLoading1(true);
+
+      try {
+        const res = await apiHelper.post('/api/counter/benefit', bodyFormData);
+        console.log('Non working calc response', res.data);
+        if (res.data.success) {
+          setResult1(res.data.data);
+        }
+      } catch (e) {
+        console.log('Non working calc error: ', e);
+        setLoading1(false);
+      }
+      setLoading1(false);
     },
   });
 
@@ -297,19 +342,19 @@ const NonWorkingCalculator = () => {
             <Row align="middle" gutter={[10, 10]}>
               <ToggleRegular
                 label={'Շրջանառության հարկ վճարող'}
-                toggleState={!formik1.values.turnover_tax}
-                onClick={() => formik1.setFieldValue('turnover_tax', 0)}
+                toggleState={formik1.values.turnover_tax}
+                onClick={() => formik1.setFieldValue('turnover_tax', 1)}
                 start
               />
               <ToggleRegular
                 label={'Հարկման ընդհանուր դաշտ'}
-                toggleState={formik1.values.turnover_tax}
-                onClick={() => formik1.setFieldValue('turnover_tax', 1)}
+                toggleState={!formik1.values.turnover_tax}
+                onClick={() => formik1.setFieldValue('turnover_tax', 0)}
               />
             </Row>
           )}
 
-          {formik1.values.employment && (
+          {!!formik1.values.employment && (
             <Row align="middle" gutter={[10, 10]}>
               <ToggleLarge
                 label={'Հնգօրյա աշխատանքային շաբաթ'}
@@ -416,7 +461,7 @@ const NonWorkingCalculator = () => {
 
           {!formik1.values.benefit_type
             && !formik1.values.employment
-            && !formik1.values.turnover_tax
+            && !!formik1.values.turnover_tax
             && (<Row align="middle" gutter={[10, 10]}>
               <Col
                 xxl={{offset: 6, span: 7}}
@@ -444,7 +489,7 @@ const NonWorkingCalculator = () => {
               </Col>
             </Row>)}
 
-          {!formik1.values.employment && (
+          {!formik1.values.employment && !!formik1.values.turnover_tax && (
             <Row align="middle" gutter={[10, 10]}>
               <Col
                 xxl={{offset: 6, span: 7}}
@@ -473,13 +518,47 @@ const NonWorkingCalculator = () => {
               </Col>
             </Row>
           )}
-          
-          <Row gutter={[10, 30]}><Col /></Row>
-          <SubmitButton
-            disabled={false}
-            loading={false}
-            onClick={() => null}
-          />
+
+          {!formik1.values.employment && !formik1.values.turnover_tax && (
+            <Row align="middle" gutter={[10, 10]}>
+              <Col
+                xxl={{offset: 6, span: 7}}
+                xl={{offset: 5, span: 8}}
+                lg={{offset: 4, span: 9}}
+                md={{offset: 2, span: 11}}
+                sm={{offset: 1, span: 15}}
+                offset={0}
+                span={16}
+              >
+                <FormLabelCell large>
+                  <Label left fontcolor="#000">
+                    Նախորդ տարվա ընթացքում շահութահարկով հարկման բազա
+                  </Label>
+                </FormLabelCell>
+              </Col>
+              <Col xxl={2} xl={3} lg={3} md={4} sm={5} span={6}>
+                <StyledInputNumber
+                  large
+                  value={formik1.values.last_year_tax_base}
+                  min={0}
+                  onChange={val => {
+                    formik1.setFieldValue('last_year_tax_base', val);
+                  }}
+                />
+              </Col>
+            </Row>
+          )}
+
+          {!!formik1.values.employment && ( 
+            <>
+              <Row gutter={[10, 30]}><Col /></Row>
+              <SubmitButton
+                disabled={false}
+                loading={false}
+                onClick={() => null}
+              />
+            </>
+          )}
 
           {!!formik1.values.employment && (
             <>
@@ -851,6 +930,11 @@ const NonWorkingCalculator = () => {
               />
             </>
           )}
+          <SubmitButton
+            disabled={loading1 /* || !formik1.isValid */}
+            loading={loading1}
+            submitter
+          />
         </form>
       )}
     </>
