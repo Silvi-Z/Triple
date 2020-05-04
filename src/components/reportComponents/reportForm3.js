@@ -48,7 +48,7 @@ const ConfirmSpan = styled.span`
   text-align: center;
   color: white;
 `
-const ReportForm2 = ({ setConfirm2, setConfirm3, toggleForm, current_tracking_number }) => {
+const ReportForm3 = ({ setConfirm2, setConfirm3, toggleForm, current_tracking_number }) => {
   const onFinish = () => {
     setConfirm2(false)
     setConfirm3(false)
@@ -75,4 +75,4 @@ const ReportForm2 = ({ setConfirm2, setConfirm3, toggleForm, current_tracking_nu
   )
 }
 
-export default ReportForm2
+export default ReportForm3
