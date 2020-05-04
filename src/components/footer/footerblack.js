@@ -9,12 +9,6 @@ import ViberImg from "../../assets/footericons/brandIcons/viber(footer).svg"
 import TelegramImg from "../../assets/footericons/brandIcons/telegram (footer).svg"
 import FacebookImg from "../../assets/footericons/brandIcons/facebook (footer).svg"
 import LinkedinImg from "../../assets/footericons/brandIcons/linkedin(footer).svg"
-import {
-  WhatsAppOutlined,
-  PhoneOutlined,
-  LinkedinOutlined,
-  FacebookOutlined,
-} from "@ant-design/icons"
 import "@fortawesome/fontawesome-free/css/all.css"
 import "@fortawesome/fontawesome-free/js/all.js"
 import "../layout.css"
@@ -72,19 +66,6 @@ const FooterAdressWrap = styled.div`
   color: #ffffff;
   margin-left: 17px;
   text-align: center;
-  /* @media only screen and (max-width: 768px) {
-    width: 89px;
-    height: 16px;
-    font-family: Sylfaen;
-    font-size: 16px;
-    font-weight: normal;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: normal;
-    letter-spacing: normal;
-    text-align: center;
-    color: #009db8;
-  } */
 `
 const FooterFollowUsWrap = styled.div`
   width: 90px;
@@ -108,9 +89,6 @@ const FooterCopyRightWrap = styled.div`
   color: #e8e8e8;
   display: flex;
   justify-content: space-between;
-  /* @media only screen and (min-width: 768px) {
-    display: none;
-  } */
 `
 const EnvironmentWrapper = styled.img`
   width: 14px;
@@ -185,17 +163,14 @@ const FooterBlack = () => {
   return (
     <React.Fragment>
       <Row id="footerfirstrow">
-        <FooterNumberColumn xs={24} sm={24} md={8} lg={{ span: 8, offset: 3 }} xl={{ span: 8, offset: 3 }} xxl={{ span: 8, offset: 2 }}>
-          {/* <WhatsAppOutlined style={{ fontSize: "20px", color: "white" }} />
-          <PhoneOutlined style={{ fontSize: "20px", color: "white" }} />
-          <i
-            className="fab fa-viber"
-            style={{ fontSize: "20px", color: "white" }}
-          ></i>
-          <i
-            className="fab fa-telegram-plane"
-            style={{ fontSize: "20px", color: "white" }}
-          ></i> */}
+        <FooterNumberColumn
+          xs={24}
+          sm={24}
+          md={8}
+          lg={{ span: 8, offset: 3 }}
+          xl={{ span: 8, offset: 3 }}
+          xxl={{ span: 8, offset: 2 }}
+        >
           <PhoneWrapper src={PhoneImg} />
           <WhatsappWrapper src={WhatsappImg} />
           <ViberWrapper src={ViberImg} />
@@ -205,7 +180,6 @@ const FooterBlack = () => {
           </FooterNumberWrap>
         </FooterNumberColumn>
         <FooterAdressColumn xs={24} sm={24} md={8} lg={6} xl={6} xxl={6}>
-          {/* <EnvironmentOutlined style={{ fontSize: "20px", color: "white" }} /> */}
           <EnvironmentWrapper src={EnvironmentImg} />
           <FooterAdressWrap>
             <span>Հր, Քոչար 44</span>
@@ -215,10 +189,8 @@ const FooterBlack = () => {
           <FooterFollowUsWrap>
             <span>Հետևեք մեզ</span>
           </FooterFollowUsWrap>
-          {/* <LinkedinOutlined style={{ fontSize: "20px", color: "white" }} /> */}
           <LinkedinWrapper src={LinkedinImg} />
           <a href="https://www.facebook.com/TripleCArmenia/" target="_blank">
-            {/* <FacebookOutlined style={{ fontSize: "20px", color: "white" }} /> */}
             <FacebookWrapper src={FacebookImg} />
           </a>
         </FooterFollowUsColumn>

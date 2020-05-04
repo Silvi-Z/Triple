@@ -35,7 +35,6 @@ const ContentStyled = styled(Content)`
     padding-right: 100px;
   }
 `
-
 const FooterCust = styled(Footer)`
   height: ${props => (props.backcolor === "true" ? "130px" : "208px")};
   background-color: ${props =>
@@ -53,7 +52,7 @@ const FooterCust = styled(Footer)`
 `
 const Main = styled.div`
   margin: 0 auto;
-  min-height:${props => (props.setheight === true ? "100vh" : "0vh")};
+  min-height: ${props => (props.setheight === true ? "100vh" : "0vh")};
 `
 
 const Layout = ({ children }) => {

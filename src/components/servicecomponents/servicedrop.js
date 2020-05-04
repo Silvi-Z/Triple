@@ -29,7 +29,7 @@ const ServiceDropRow = styled(Row)`
   }
 `
 const ToggleH2Styled = styled.h2`
-  width: 265px;
+  width: 270px;
   height: 18px;
   font-family: ArialAMU;
   font-size: 18px;
