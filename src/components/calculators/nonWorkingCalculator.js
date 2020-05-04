@@ -190,9 +190,9 @@ const initialValues1 = {
   work_days_count: 0,
   salary_type: 0,
   work_day_type: 0,
-  pension: true,
+  pension: 0,
+  bonus_stamp: 0,
   patent: null,
-  bonus_stamp: true,
   salary: 0,
   last_year_tax_base: 0,
   download: true,
@@ -279,6 +279,11 @@ const NonWorkingCalculator = () => {
           && formik1.values.turnover_tax
       ) {
         bodyFormData.append('other_employer_income', values.other_employer_income);
+      }
+
+      if (!formik1.values.benefit_type && !!values.employment) {
+        bodyFormData.append('pension', values.pension);
+        bodyFormData.append('bonus_stamp', values.bonus_stamp);
       }
 
       setResult1(null);
@@ -551,7 +556,7 @@ const NonWorkingCalculator = () => {
 
           {!!formik1.values.employment && ( 
             <>
-              <Row gutter={[10, 30]}><Col /></Row>
+              <Row gutter={[10, 15]}><Col /></Row>
               <SubmitButton
                 disabled={false}
                 loading={false}
@@ -930,6 +935,7 @@ const NonWorkingCalculator = () => {
               />
             </>
           )}
+          <Row gutter={[10, 15]}><Col /></Row>
           <SubmitButton
             disabled={loading1 /* || !formik1.isValid */}
             loading={loading1}
