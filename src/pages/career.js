@@ -5,6 +5,7 @@ import styled from "styled-components"
 import { Typography, Row, Col, Button, InputNumber } from "antd"
 import CareerWrap from "../components/careercomponents/careerdrop"
 
+
 const CareerParagraphRow = styled(Row)`
   padding: 0 12%;
   margin-bottom: 3.8%;
@@ -24,7 +25,7 @@ const CareerParagraphRow = styled(Row)`
   }
 `
 
-const H2Styled = styled.h2`
+ const H2Styled = styled.h2`
   width: 244px;
   height: 18px;
   font-family: ArialAMU;

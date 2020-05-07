@@ -8,6 +8,7 @@ import {
   FacebookOutlined,
   LinkedinOutlined,
 } from "@ant-design/icons"
+import { apiHelper } from "../../helpers/apiHelper"
 import styled from "styled-components"
 import facebookImg from "../../assets/career/facebook.png"
 import linkedinImg from "../../assets/career/linkedin.png"
@@ -109,8 +110,30 @@ const validateMessages = {
   },
 }
 const Formfield = () => {
-  const onFinish = values => {
+  const onFinish = async values => {
+    const UploadFormData = new FormData()
+    UploadFormData.append("message", values.textarea)
+    let passport = new Blob([values.file[0]], { type: "text/xml" })
+    UploadFormData.append("file", passport)
     console.log("Success:", values)
+    try {
+      const res = await apiHelper
+        .post("api/send_email/senior_accountant", UploadFormData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        })
+        .then(res => {
+          console.log(res)
+          setConfirm2(false)
+          setConfirm3(true)
+          setCurrent_tracking_number(
+            (current_tracking_number = res.data.data.order_number)
+          )
+        })
+    } catch (e) {
+      console.log("Error: ", e)
+    }
   }
 
   const onFinishFailed = errorInfo => {
@@ -152,7 +175,7 @@ const Formfield = () => {
               },
             ]}
           >
-            <Upload {...fileprops}>
+            <Upload>
               <Button id="careeruploadbutton">
                 <UploadOutlined
                   style={{

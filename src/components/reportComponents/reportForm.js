@@ -2,10 +2,11 @@
 import React, { useState, useEffect, useRef } from "react"
 import { Form, Input, Tooltip, Select, Row, Col, Button, Spin } from "antd"
 import { QuestionCircleOutlined } from "@ant-design/icons"
-import { DatePicker } from "antd"
+import { DatePicker, InputNumber } from "antd"
 import { apiHelper } from "../../helpers/apiHelper"
 import axios from "axios"
 import FileSaver from "file-saver"
+import * as Yup from 'yup';
 //styled inputs with layout.css
 import "../layout.css"
 import styled from "styled-components"
@@ -256,16 +257,18 @@ const RegistrationForm = ({
 }) => {
   const [form] = Form.useForm()
   const [loading, toggleLoading] = useState(true)
-  const [checkPassport, setcheckPassport] = useState("0")
-  const [checkId, setcheckId] = useState("1")
-  const [identity_document_type, setidentity_document_type] = useState("0")
+  const [checkPassport, setcheckPassport] = useState(0)
+  const [checkId, setcheckId] = useState(1)
+  const [identity_document_type, setidentity_document_type] = useState(0)
   const [tin, setTin] = useState(" ")
-  const [testObj, setTestObj] = useState({})
+  const [FieldValuesObj, setFieldValuesObj] = useState({})
+  const [validated, setValidated] = useState(false)
 
   /*Updating parent state*/
   const updateFieldsState = obj => {
     SetAllFieldsValues({ ...allFieldsValues, ...obj })
   }
+
   /*get Tin from Api according to Psn*/
   const CheckPsn = async e => {
     let body = {
@@ -289,16 +292,28 @@ const RegistrationForm = ({
   /*onSubmiting === OnFinish => values === fieldsValues*/
   const onFinish = c => {
     let values = form.getFieldsValue("register")
-    let body = {
-      ...values,
-      birthday: values["birthday"].format("YYYY-MM-DD"),
-      when: values["when"].format("YYYY-MM-DD"),
-      tin: tin === null ? form.getFieldValue("tin") : tin,
-      identity_document_type,
-    }
-    FormsLastVAluesObj = body
-    setTestObj({ ...body })
+    let body
+    values.hasOwnProperty("when")
+      ? (body = {
+        ...values,
+        birthday: values["birthday"].format("YYYY-MM-DD"),
+        when: values["when"].format("YYYY-MM-DD"),
+        tin: tin === null ? form.getFieldValue("tin") : tin,
+        phone: "+" + values["phone"],
+        identity_document_type,
+      })
+      : (body = {
+        ...values,
+        birthday: values["birthday"].format("YYYY-MM-DD"),
+        tin: tin === null ? form.getFieldValue("tin") : tin,
+        phone: "+" + values["phone"],
+        identity_document_type,
+      })
+
+    setFieldValuesObj({ ...body })
+    setValidated(true)
     console.log("Received values of form: ", body)
+    FormsLastVAluesObj = body
     updateFieldsState(body)
     // try {
     //   toggleLoading(true)
@@ -322,31 +337,31 @@ const RegistrationForm = ({
     // } catch (e) {
     //   console.log("Error: ", e)
     // }
-    console.log("ldkfksldmfksdmf", testObj)
+    console.log("ldkfksldmfksdmf", FieldValuesObj)
   }
 
   const goNextPage = () => {
     setConfirm2(true)
-    closeForm1(false)
+    closeForm1()
     toggleLoading(false)
   }
 
   /*calls onfill func after clicking in form2js back button,and gives as a parapmetr FormsLastVAluesObj*/
   useEffect(() => {
     {
-      fillform ? onFill(FormsLastVAluesObj) : null
+      fillform ? onFill(FieldValuesObj) : null
     }
   }, [])
 
   const openPassport = () => {
-    setcheckPassport("0")
-    setcheckId("1")
-    setidentity_document_type("0")
+    setcheckPassport(0)
+    setcheckId(1)
+    setidentity_document_type(0)
   }
   const openId = () => {
-    setcheckPassport("1")
-    setcheckId("0")
-    setidentity_document_type("1")
+    setcheckPassport(1)
+    setcheckId(0)
+    setidentity_document_type(1)
   }
 
   const onFill = obj => {
@@ -391,6 +406,7 @@ const RegistrationForm = ({
           tin: FormsLastVAluesObj.tin,
           phone: FormsLastVAluesObj.phone,
           email: FormsLastVAluesObj.email,
+          prefix: "+374",
         }}
         scrollToFirstError
       >
@@ -467,19 +483,19 @@ const RegistrationForm = ({
           label={<LabelSpan>Ընտրել անձը հաստատող փաստաթղթի տեսակը</LabelSpan>}
         >
           <PassportButton
-            type={checkPassport === "0" ? "primary" : "default"}
+            type={checkPassport === 0 ? "primary" : "default"}
             onClick={() => openPassport()}
           >
             Անձնագիր
           </PassportButton>
           <IdButton
-            type={checkId === "1" ? "default" : "primary"}
+            type={checkId === 1 ? "default" : "primary"}
             onClick={() => openId()}
           >
             Նույնականացման քարտ
           </IdButton>
         </Form.Item>
-        {checkPassport === "0" ? (
+        {checkPassport === 0 ? (
           <ReportPassportRow>
             <Col xs={18} sm={18} md={6} lg={6} xl={6} xxl={5}>
               <Form.Item
@@ -488,8 +504,11 @@ const RegistrationForm = ({
                 rules={[
                   {
                     required: true,
-                    message: "Խնդրում ենք լրացնել նշված դաշտերը",
+                    message: "Խնդրում ենք լրացնել նշված դաշտերը այն պետք է պարունակի 9 նիշ",
                     whitespace: true,
+                    max: 9,
+                    len: 9,
+                    min: 9
                   },
                 ]}
               >
@@ -503,8 +522,11 @@ const RegistrationForm = ({
                 rules={[
                   {
                     required: true,
-                    message: "Խնդրում ենք լրացնել նշված դաշտերը",
+                    message: "Խնդրում ենք լրացնել նշված դաշտը, այն պետք է պարունակի 3 թիվ",
                     whitespace: true,
+                    max: 3,
+                    len: 3,
+                    min: 3
                   },
                 ]}
               >
@@ -539,12 +561,14 @@ const RegistrationForm = ({
                   rules={[
                     {
                       required: true,
-                      message: "Խնդրում ենք լրացնել նշված դաշտերը",
+                      message: "Խնդրում ենք լրացնել նշված դաշտերը, այն պետք է պարունակի 9 նիշ",
                       whitespace: true,
+                      max: 9,
+                      len: 9,
                     },
                   ]}
                 >
-                  <Input />
+                  <Input type="number" />
                 </Form.Item>
               </Col>
             </Row>
@@ -568,12 +592,14 @@ const RegistrationForm = ({
           rules={[
             {
               required: true,
-              message: "Խնդրում ենք լրացնել նշված դաշտերը",
+              message: "Խնդրում ենք լրացնել նշված դաշտը, այն պետք է պարունակի 8 նիշ",
               whitespace: true,
+              max: 10,
+              len: 10,
             },
           ]}
         >
-          <Input onChange={CheckPsn} />
+          <Input type="number" onChange={CheckPsn} />
         </Form.Item>
         <Form.Item
           name="tin"
@@ -582,12 +608,15 @@ const RegistrationForm = ({
             {
               required: tin === null ? true : false,
               message:
-                "Ձեր նշած ՀԾՀին համապատասխան ՀՎՀՀ չի գտնվել, խնդրում ենք լրացնել այն",
+                "Ձեր նշած ՀԾՀ–ին համապատասխան ՀՎՀՀ չի գտնվել, խնդրում ենք լրացնել այն մուտքագրելով 8 նիշ",
               whitespace: tin === null ? true : false,
+              max: 8,
+              len: 8,
+              min: 8
             },
           ]}
         >
-          <Input />
+          <Input type="number" />
         </Form.Item>
 
         <Form.Item
@@ -596,11 +625,15 @@ const RegistrationForm = ({
           rules={[
             {
               required: true,
-              message: "Խնդրում ենք լրացնել նշված դաշտերը",
+              message: "Խնդրում ենք լրացնել նշված դաշտը համարը պետք է սկսվի +374 թվային կոդով",
+              pattern: /^(\+|374)[0-9]{1,3}[0-9]{4,14}(?:x.+)?$/
             },
           ]}
         >
-          <Input placeholder="+374 93 00 00 00" />
+          <Input
+            placeholder=" +374 000000"
+            type="number"
+          />
         </Form.Item>
         <Form.Item
           name="email"
@@ -634,44 +667,55 @@ const RegistrationForm = ({
           }
           {...tailFormItemLayout}
         >
-          <a
-            href={
-              "http://triple-c-api.algorithm.am/api/carSalesCredentialPdfDownload?full_name=" +
-              testObj.full_name +
-              "&city=" +
-              testObj.city +
-              "&address=" +
-              testObj.address +
-              "&passport_series=" +
-              testObj.passport_series +
-              "&given=" +
-              testObj.given +
-              "&when=" +
-              testObj.when +
-              "&birthday=" +
-              testObj.birthday +
-              "&psn=" +
-              testObj.psn +
-              "&tin=" +
-              testObj.tin +
-              "&phone=" +
-              testObj.phone +
-              "&email=" +
-              testObj.email +
-              "&identity_document_type=" +
-              testObj.identity_document_type
-            }
-          >
-            <Button
-              disabled={loading}
-              type="primary"
-              htmlType="button"
-              id="registerSubmit"
-              onClick={goNextPage}
+          {validated ? (
+            <a
+              href={
+                "http://triple-c-api.algorithm.am/api/carSalesCredentialPdfDownload?full_name=" +
+                FieldValuesObj.full_name +
+                "&city=" +
+                FieldValuesObj.city +
+                "&address=" +
+                FieldValuesObj.address +
+                "&passport_series=" +
+                FieldValuesObj.passport_series +
+                "&given=" +
+                FieldValuesObj.given +
+                "&when=" +
+                FieldValuesObj.when +
+                "&birthday=" +
+                FieldValuesObj.birthday +
+                "&psn=" +
+                FieldValuesObj.psn +
+                "&tin=" +
+                FieldValuesObj.tin +
+                "&phone=" +
+                FieldValuesObj.phone +
+                "&email=" +
+                FieldValuesObj.email +
+                "&identity_document_type=" +
+                FieldValuesObj.identity_document_type
+              }
             >
-              {loading ? <Spin /> : "Հաստատել"}
-            </Button>
-          </a>
+              <Button
+                // disabled={loading}
+                type="primary"
+                htmlType="button"
+                id="registerSubmit"
+                onClick={goNextPage}
+              >
+                {loading ? <Spin /> : "Հաստատել"}
+              </Button>
+            </a>
+          ) : (
+              <Button
+                // disabled={loading}
+                type="primary"
+                htmlType="submit"
+                id="registerSubmit"
+              >
+                Հաստատել
+              </Button>
+            )}
         </Form.Item>
       </Form>
     </React.Fragment>

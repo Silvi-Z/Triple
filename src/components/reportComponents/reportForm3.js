@@ -50,9 +50,9 @@ const ConfirmSpan = styled.span`
 `
 const ReportForm3 = ({ setConfirm2, setConfirm3, toggleForm, current_tracking_number }) => {
   const onFinish = () => {
-    setConfirm2(false)
-    setConfirm3(false)
-    toggleForm(true)
+    // setConfirm2()
+    // setConfirm3()
+    toggleForm()
   }
   return (
     <Row gutter={[10, 25]}>
@@ -67,7 +67,7 @@ const ReportForm3 = ({ setConfirm2, setConfirm3, toggleForm, current_tracking_nu
         </H6Styled>
       </Col>
       <Col span={24}>
-        <Button type="primary" id="registerSubmit" onClick={() => onFinish()}>
+        <Button type="primary" id="registerSubmit" onClick={onFinish}>
           <ConfirmSpan>Փակել</ConfirmSpan>
         </Button>
       </Col>

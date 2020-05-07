@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react"
 import Layout from "../components/layout"
 import styled from "styled-components"
-import { Row, Col, Button } from "antd"
+import { Row, Col, Button, Dropdown } from "antd"
 import ReportForm from "../components/reportComponents/reportForm"
 import ReportForm3 from "../components/reportComponents/reportForm3"
 import ReportForm2 from "../components/reportComponents/reportForm2"
@@ -190,6 +190,10 @@ const Reports = () => {
     ],
     credentials_file: "string"
   })
+
+  const DropdownForm = () => {
+    toggleForm(!showForm)
+  }
   return (
     <Layout>
       <ReportParagraphRow>
@@ -217,7 +221,7 @@ const Reports = () => {
           </H3Styled>
         </Col>
         <Col span={2}>
-          <ToggleButton block onClick={() => toggleForm(!showForm)}>
+          <ToggleButton block onClick={DropdownForm}>
             {showForm ? (
               <MinusOutlined style={{ fontSize: "20px" }} />
             ) : (
@@ -239,7 +243,7 @@ const Reports = () => {
             <H3StyledForm>Պահանջվող տեղեկատվություն</H3StyledForm>
             <ReportForm
               setConfirm2={setConfirm2}
-              closeForm1={toggleForm}
+              closeForm1={DropdownForm}
               SetAllFieldsValues={setAllFieldsValues}
               allFieldsValues={AllFieldsValues}
               fillform={fillform}
@@ -258,7 +262,7 @@ const Reports = () => {
             <ReportForm2
               setConfirm3={setConfirm3}
               setConfirm2={setConfirm2}
-              backButton={toggleForm}
+              backButton={DropdownForm}
               setfillform={setfillform}
               forwardButton={setConfirm3}
               AllFieldsValues={AllFieldsValues}
@@ -279,7 +283,7 @@ const Reports = () => {
               setConfirm3={setConfirm3}
               setConfirm2={setConfirm2}
               current_tracking_number={current_tracking_number}
-              toggleForm={toggleForm}
+              toggleForm={DropdownForm}
             />
           </Col>
         ) : null}

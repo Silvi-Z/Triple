@@ -78,11 +78,18 @@ const validateMessages = {
 }
 
 const Formfield = () => {
+
   const onFinish = async values => {
+    const UploadFormData = new FormData()
+    UploadFormData.append("full_name", values.username)
+    UploadFormData.append("email", values.email)
+    UploadFormData.append("message", values.textarea)
+    UploadFormData.append("title", values.title)
+    let upoadfile = new Blob([values.file[0]], { type: "text/xml" })
+    UploadFormData.append("file", upoadfile)
     console.log("Success:", values)
     try {
-      const res = await apiHelper.post('/api/contacts/1', values);
-      setResult(res.data);
+      const res = await apiHelper.post('/api/send_email/contact_us', UploadFormData);
       console.log('Response: ', res.data);
     } catch (e) {
       console.log('Error: ', e);
@@ -173,7 +180,7 @@ const Formfield = () => {
         >
           <Form.Item
             label="Կցել ֆայլը"
-            name="facebook_icon"
+            name="file"
             rules={[
               {
                 required: true,

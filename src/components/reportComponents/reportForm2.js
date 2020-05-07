@@ -205,7 +205,7 @@ function ReportForm3({
                     setConfirm2(false)
                     setConfirm3(true)
                     setCurrent_tracking_number(
-                        (current_tracking_number = res.data.data.order_number)
+                        (res.data.data.order_number)
                     )
                 })
         } catch (e) {
@@ -214,7 +214,7 @@ function ReportForm3({
     }
 
     const goBack = () => {
-        backButton(true)
+        backButton()
         setfillform(true)
     }
     const goForward = () => {

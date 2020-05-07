@@ -283,7 +283,7 @@ const CarSellCalculator = () => {
                   xxl={{ span: 4, offset: 6 }}
                   xl={{ span: 5, offset: 5 }}
                   lg={{ span: 8, offset: 4 }}
-                  md={{span: 6, offset: 2}}
+                  md={{ span: 6, offset: 2 }}
                   offset={1}
                   span={10}
                 >
