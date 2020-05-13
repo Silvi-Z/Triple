@@ -1,5 +1,5 @@
 /*eslint-disable */
-import React from 'react';
+import React, { useState } from 'react';
 import { Form, Input, Button, Row, Col } from 'antd';
 import { Upload, message } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
@@ -7,6 +7,7 @@ import { useFormik } from 'formik';
 import { apiHelper } from '../../helpers/apiHelper';
 import styled from 'styled-components';
 import uploadImage from '../../assets/upload2.svg';
+import CareerModal from "./contactModal";
 //input styled custom with id in layout css #basic_username*/
 import '../layout.css';
 const Arealabel = styled.label`
@@ -23,7 +24,6 @@ const UploadImg = styled.img`
   color: "#009db8";
   margin-top: 2px;
 `
-
 const layout = {
   labelCol: {
     span: 24,
@@ -57,15 +57,6 @@ const fileprops = {
   },
 };
 
-const initialValues = {
-  // salary_type: false,
-  // patent: null,
-  // price: 0,
-  // bonus_price: 0,
-  // pension: true,
-  // bonus_stamp: true,
-};
-
 const validateMessages = {
   required: "This field is required!",
   types: {
@@ -78,6 +69,22 @@ const validateMessages = {
 }
 
 const Formfield = () => {
+  const [form] = Form.useForm();
+  const [modalVisible, setmodalVisible] = useState(false)
+
+  const showModal = () => {
+    setmodalVisible(true)
+  };
+
+  const handleOk = e => {
+    console.log(e);
+    setmodalVisible(false)
+    form.resetFields();
+  };
+
+  const handleCancel = e => {
+    setmodalVisible(false)
+  };
 
   const onFinish = async values => {
     const UploadFormData = new FormData()
@@ -91,6 +98,7 @@ const Formfield = () => {
     try {
       const res = await apiHelper.post('/api/send_email/contact_us', UploadFormData);
       console.log('Response: ', res.data);
+      setmodalVisible(true)
     } catch (e) {
       console.log('Error: ', e);
     }
@@ -128,11 +136,11 @@ const Formfield = () => {
       initialValues={{
         remember: true,
       }}
+      form={form}
       encType="multipart/form-data"
       onFinish={onFinish}
       onFinishFailed={onFinishFailed}
       id="formcontact"
-    // onSubmit={formik.handleSubmit}
     >
       <Row>
         <Col
@@ -248,6 +256,8 @@ const Formfield = () => {
           Ուղարկել
         </Button>
       </Form.Item>
+      <CareerModal
+        handleOk={handleOk} modalVisible={modalVisible} />
     </Form >
   )
 }

@@ -49,7 +49,7 @@ const ConfirmSpan = styled.span`
   color: white;
 `
 const ReportForm3 = ({ setConfirm2, setConfirm3, toggleForm, current_tracking_number }) => {
-  const onFinish = () => {
+  const onClose = () => {
     // setConfirm2()
     // setConfirm3()
     toggleForm()
@@ -67,7 +67,7 @@ const ReportForm3 = ({ setConfirm2, setConfirm3, toggleForm, current_tracking_nu
         </H6Styled>
       </Col>
       <Col span={24}>
-        <Button type="primary" id="registerSubmit" onClick={onFinish}>
+        <Button type="primary" id="registerSubmit" onClick={onClose}>
           <ConfirmSpan>Փակել</ConfirmSpan>
         </Button>
       </Col>

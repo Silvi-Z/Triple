@@ -1,8 +1,15 @@
 /*eslint-disable */
-import React from "react"
-import { Form, Input, Button, Checkbox } from "antd"
-import { Col, Row } from "antd"
-import { Upload, message } from "antd"
+import React, { useState } from "react"
+import {
+  Form,
+  Input,
+  Button,
+  Checkbox,
+  Col,
+  Row,
+  Upload,
+  message,
+} from "antd"
 import {
   UploadOutlined,
   FacebookOutlined,
@@ -10,8 +17,7 @@ import {
 } from "@ant-design/icons"
 import { apiHelper } from "../../helpers/apiHelper"
 import styled from "styled-components"
-import facebookImg from "../../assets/career/facebook.png"
-import linkedinImg from "../../assets/career/linkedin.png"
+import CareerModal from "./careerModal"
 import "../layout.css"
 
 const fileprops = {
@@ -64,14 +70,13 @@ const SharedWrapperCol = styled(Col)`
   padding: 0 1%;
   display: flex;
   justify-content: end;
- 
+
   /* @media (min-width: 375px) {
     a {
       display: contents;
       color: #da4567;
     }
   } */
-  
 `
 const FaceLink = styled.a`
   color: black;
@@ -110,6 +115,23 @@ const validateMessages = {
   },
 }
 const Formfield = () => {
+  const [form] = Form.useForm();
+  const [modalVisible, setmodalVisible] = useState(false)
+
+  const showModal = () => {
+    setmodalVisible(true)
+  };
+
+  const handleOk = e => {
+    console.log(e);
+    setmodalVisible(false)
+    form.resetFields();
+  };
+
+  const handleCancel = e => {
+    setmodalVisible(false)
+  };
+
   const onFinish = async values => {
     const UploadFormData = new FormData()
     UploadFormData.append("message", values.textarea)
@@ -125,11 +147,7 @@ const Formfield = () => {
         })
         .then(res => {
           console.log(res)
-          setConfirm2(false)
-          setConfirm3(true)
-          setCurrent_tracking_number(
-            (current_tracking_number = res.data.data.order_number)
-          )
+          setmodalVisible(true)
         })
     } catch (e) {
       console.log("Error: ", e)
@@ -147,6 +165,7 @@ const Formfield = () => {
       initialValues={{
         remember: true,
       }}
+      form={form}
       onFinish={onFinish}
       onFinishFailed={onFinishFailed}
       nostyle="true"
@@ -212,31 +231,19 @@ const Formfield = () => {
             target="_blank"
             rel="noopener"
           >
-            <FacebookOutlined
-            // style={{
-            //   color: "#000000",
-            //   fontSize: "32px",
-            //   marginLeft: "19px",
-            // }}
-            />
-            {/* <Image src={facebookImg} /> */}
+            <FacebookOutlined />
           </FaceLink>
-          {/* <Image src={linkedinImg} /> */}
           <LinkedinLink
             href="https://www.facebook.com/sharer/sharer.php?u=https://www.facebook.com/TripleCArmenia/"
             target="_blank"
             rel="noopener"
           >
-            <LinkedinOutlined
-            // style={{
-            //   color: "#000000",
-            //   fontSize: "32px",
-            //   marginLeft: "19px",
-            // }}
-            />
+            <LinkedinOutlined />
           </LinkedinLink>
         </SharedWrapperCol>
       </Row>
+      <CareerModal
+        handleOk={handleOk} modalVisible={modalVisible} />
     </Form>
   )
 }

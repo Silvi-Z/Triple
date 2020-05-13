@@ -6,13 +6,22 @@ import { DatePicker, InputNumber } from "antd"
 import { apiHelper } from "../../helpers/apiHelper"
 import axios from "axios"
 import FileSaver from "file-saver"
-import * as Yup from 'yup';
+import * as Yup from "yup"
+import moment from 'moment';
 //styled inputs with layout.css
 import "../layout.css"
 import styled from "styled-components"
-
+import {
+  ColAddress,
+  ReportPassportRow,
+  DatePickerCustom,
+  SelectCustom,
+  PassportButton,
+  IdButton,
+  SubmitSpan,
+  LabelSpan,
+} from "./reportFormStyle.js"
 const { Option } = Select
-
 const formItemLayout = {
   labelCol: {
     xxl: { span: 24 },
@@ -79,175 +88,10 @@ const tailFormButtonLayout = {
     },
   },
 }
-
 function getDate(date, dateString) {
   return dateString
 }
 
-const ColAddress = styled(Col)`
-  /* margin-top: 3.1%;
-  @media (min-width: 768px) {
-    margin-top: 5.5%;
-    margin-left: 3%;
-  }*/
-  @media (min-width: 1024px) {
-    margin-left: 9%;
-  }
-  @media (min-width: 1170px) {
-    margin-left: 2.5%;
-  }
-  @media (min-width: 1300px) {
-    margin-left: 0.2%;
-  }
-  @media (min-width: 1600px) {
-    margin-left: 0.2%;
-  }
-`
-const ReportPassportRow = styled(Row)`
-  width: 48.6%;
-  @media (min-width: 768px) {
-    width: 100%;
-  }
-  @media (min-width: 1024px) {
-    width: 75%;
-  }
-  @media (min-width: 1170px) {
-    width: 66%;
-  }
-  @media (min-width: 1366px) {
-    width: 59%;
-  }
-  @media (min-width: 1600px) {
-    width: 51%;
-  }
-`
-const DatePickerCustom = styled(DatePicker)`
-  width: 142px;
-  height: 40px;
-  border: solid 1px #009db8;
-  @media (min-width: 320px) {
-    width: 290px;
-    border: solid 1px #009db8;
-  }
-  @media (min-width: 375px) {
-    width: 290px;
-    border: solid 1px #009db8;
-  }
-  @media (min-width: 768px) {
-    width: 142px;
-    border: solid 1px #009db8;
-  }
-`
-const SelectCustom = styled(Select)`
-  width: 216px;
-  border: solid 1px #009db8;
-  background: white;
-  @media (min-width: 320px) {
-    width: 138px;
-    border: solid 1px #009db8;
-  }
-  @media (min-width: 375px) {
-    width: 138px;
-    border: solid 1px #009db8;
-  }
-  @media (min-width: 1300px) {
-    width: 200px;
-    border: solid 1px #009db8;
-  }
-  @media (min-width: 1600px) {
-    width: 216px;
-    border: solid 1px #009db8;
-  }
-`
-const PassportButton = styled(Button)`
-  height: 40px;
-  @media (min-width: 320px) {
-    margin-top: 10px;
-    width: 290px;
-    border: solid 1px #009db8;
-  }
-  @media (min-width: 375px) {
-    margin-top: 10px;
-    width: 290px;
-    border: solid 1px #009db8;
-  }
-  @media (min-width: 768px) {
-    width: 216px;
-    border: solid 1px #009db8;
-  }
-`
-const IdButton = styled(Button)`
-  width: 216px;
-  height: 40px;
-  margin-left: 2.7%;
-  @media (min-width: 320px) {
-    width: 290px;
-    border: solid 1px #009db8;
-    margin-top: 3%;
-    margin-left: 0%;
-  }
-  @media (min-width: 375px) {
-    width: 290px;
-    border: solid 1px #009db8;
-    margin-top: 3%;
-    margin-left: 0%;
-  }
-  @media (min-width: 768px) {
-    width: 216px;
-    border: solid 1px #009db8;
-    margin-left: 3%;
-  }
-  @media (min-width: 1366px) {
-    margin-left: 2.9%;
-  }
-  @media (min-width: 1900px) {
-    margin-left: 2.6%;
-  }
-`
-const SubmitSpan = styled.span`
-  width: 408px;
-  height: 31px;
-  font-family: ArialAMU;
-  font-size: 14px;
-  font-weight: normal;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: normal;
-  letter-spacing: normal;
-  text-align: left;
-  color: #000000;
-  @media (min-width: 320px) {
-    width: 290px;
-    margin-bottom: 20px;
-  }
-  @media (min-width: 375px) {
-    width: 290px;
-    margin-bottom: 20px;
-  }
-`
-const LabelSpan = styled.span`
-  width: auto;
-  height: 14px;
-  font-family: ArialAMU;
-  font-size: 14px;
-  font-weight: normal;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: normal;
-  letter-spacing: normal;
-  text-align: left;
-  color: #000000;
-  @media (min-width: 320px) {
-    width: 290px;
-  }
-  @media (min-width: 375px) {
-    width: 290px;
-  }
-  @media (min-width: 1170px) {
-    width: 390px;
-  }
-`
-let FormsLastVAluesObj = {}
 const RegistrationForm = ({
   closeForm1,
   setConfirm2,
@@ -291,6 +135,7 @@ const RegistrationForm = ({
   }
   /*onSubmiting === OnFinish => values === fieldsValues*/
   const onFinish = c => {
+    alert("gbrsh")
     let values = form.getFieldsValue("register")
     let body
     values.hasOwnProperty("when")
@@ -309,34 +154,52 @@ const RegistrationForm = ({
         phone: "+" + values["phone"],
         identity_document_type,
       })
-
     setFieldValuesObj({ ...body })
-    setValidated(true)
     console.log("Received values of form: ", body)
-    FormsLastVAluesObj = body
-    updateFieldsState(body)
-    // try {
-    //   toggleLoading(true)
-    //   const res = apiHelper
-    // .post("/api/reports/car_sales_credential_pdf_download", body, {
-    //   // responseType: "arraybuffer",
-    //   headers: {
-    //     Accept: "application/pdf",
-    //     "Content-Type": "multipart/form-data",
-    //   },
-    // })
-    // .then(response => {
-    // const blob = new Blob([response.data], {
-    //   type: "application/pdf",
-    // })
-    // FileSaver.saveAs(blob, "լիազորագիր.pdf")
-    // setConfirm2(true)
-    // closeForm1(false)
-    // toggleLoading(false)
-    //     })
-    // } catch (e) {
-    //   console.log("Error: ", e)
-    // }
+    // FieldValuesObj = body
+    try {
+      toggleLoading(true)
+      const res = apiHelper
+        .get("http://triple-c-api.algorithm.am/api/carSalesCredentialPdfDownload?full_name=" +
+          body.full_name +
+          "&city=" +
+          body.city +
+          "&address=" +
+          body.address +
+          "&passport_series=" +
+          body.passport_series +
+          "&given=" +
+          body.given +
+          "&when=" +
+          body.when +
+          "&birthday=" +
+          body.birthday +
+          "&psn=" +
+          body.psn +
+          "&tin=" +
+          body.tin +
+          "&phone=" +
+          body.phone +
+          "&email=" +
+          body.email +
+          "&identity_document_type=" +
+          body.identity_document_type, {
+        })
+        .then(response => {
+          console.log(response)
+          setValidated(true)
+          updateFieldsState(body)
+          // form.resetFields()
+        })
+      // FileSaver.saveAs(blob, "լիազորագիր.pdf")
+      // setConfirm2(true)
+      // closeForm1(false)
+      // toggleLoading(false)
+    } catch (e) {
+      console.log("Sxal info ka")
+      form.resetFields();
+      console.log("Error: ", e)
+    }
     console.log("ldkfksldmfksdmf", FieldValuesObj)
   }
 
@@ -344,13 +207,13 @@ const RegistrationForm = ({
     setConfirm2(true)
     closeForm1()
     toggleLoading(false)
+    form.resetFields();
   }
 
-  /*calls onfill func after clicking in form2js back button,and gives as a parapmetr FormsLastVAluesObj*/
+
+  /*calls onfill func after clicking in form2js back button,and gives as a parapmetr FieldValuesObj*/
   useEffect(() => {
-    {
-      fillform ? onFill(FieldValuesObj) : null
-    }
+    fillform ? onFill(FieldValuesObj) : null
   }, [])
 
   const openPassport = () => {
@@ -392,20 +255,20 @@ const RegistrationForm = ({
         name="register"
         onFinish={onFinish}
         initialValues={{
-          tin: FormsLastVAluesObj.tin,
-          full_name: FormsLastVAluesObj.full_name,
-          city: FormsLastVAluesObj.city,
-          address: FormsLastVAluesObj.address,
-          identity_document_type: FormsLastVAluesObj.identity_document_type,
-          passport_series: FormsLastVAluesObj.passport_series,
-          when: FormsLastVAluesObj.when,
-          given: FormsLastVAluesObj.given,
-          ID_card_number: FormsLastVAluesObj.ID_card_number,
-          psn: FormsLastVAluesObj.psn,
-          birthday: FormsLastVAluesObj.birthday,
-          tin: FormsLastVAluesObj.tin,
-          phone: FormsLastVAluesObj.phone,
-          email: FormsLastVAluesObj.email,
+          tin: FieldValuesObj.tin,
+          full_name: FieldValuesObj.full_name,
+          city: FieldValuesObj.city,
+          address: FieldValuesObj.address,
+          identity_document_type: FieldValuesObj.identity_document_type,
+          passport_series: FieldValuesObj.passport_series,
+          when: FieldValuesObj.when,
+          given: FieldValuesObj.given,
+          ID_card_number: FieldValuesObj.ID_card_number,
+          psn: FieldValuesObj.psn,
+          birthday: FieldValuesObj.birthday,
+          tin: FieldValuesObj.tin,
+          phone: FieldValuesObj.phone,
+          email: FieldValuesObj.email,
           prefix: "+374",
         }}
         scrollToFirstError
@@ -504,11 +367,12 @@ const RegistrationForm = ({
                 rules={[
                   {
                     required: true,
-                    message: "Խնդրում ենք լրացնել նշված դաշտերը այն պետք է պարունակի 9 նիշ",
+                    message:
+                      "Խնդրում ենք լրացնել նշված դաշտերը այն պետք է պարունակի 9 նիշ",
                     whitespace: true,
                     max: 9,
                     len: 9,
-                    min: 9
+                    min: 9,
                   },
                 ]}
               >
@@ -522,11 +386,12 @@ const RegistrationForm = ({
                 rules={[
                   {
                     required: true,
-                    message: "Խնդրում ենք լրացնել նշված դաշտը, այն պետք է պարունակի 3 թիվ",
+                    message:
+                      "Խնդրում ենք լրացնել նշված դաշտը, այն պետք է պարունակի 3 թիվ",
                     whitespace: true,
                     max: 3,
                     len: 3,
-                    min: 3
+                    min: 3,
                   },
                 ]}
               >
@@ -561,7 +426,8 @@ const RegistrationForm = ({
                   rules={[
                     {
                       required: true,
-                      message: "Խնդրում ենք լրացնել նշված դաշտերը, այն պետք է պարունակի 9 նիշ",
+                      message:
+                        "Խնդրում ենք լրացնել նշված դաշտերը, այն պետք է պարունակի 9 նիշ",
                       whitespace: true,
                       max: 9,
                       len: 9,
@@ -592,7 +458,8 @@ const RegistrationForm = ({
           rules={[
             {
               required: true,
-              message: "Խնդրում ենք լրացնել նշված դաշտը, այն պետք է պարունակի 8 նիշ",
+              message:
+                "Խնդրում ենք լրացնել նշված դաշտը, այն պետք է պարունակի 10 նիշ",
               whitespace: true,
               max: 10,
               len: 10,
@@ -612,7 +479,7 @@ const RegistrationForm = ({
               whitespace: tin === null ? true : false,
               max: 8,
               len: 8,
-              min: 8
+              min: 8,
             },
           ]}
         >
@@ -625,15 +492,13 @@ const RegistrationForm = ({
           rules={[
             {
               required: true,
-              message: "Խնդրում ենք լրացնել նշված դաշտը համարը պետք է սկսվի +374 թվային կոդով",
-              pattern: /^(\+|374)[0-9]{1,3}[0-9]{4,14}(?:x.+)?$/
+              message:
+                "Խնդրում ենք լրացնել նշված դաշտը համարը պետք է սկսվի +374 թվային կոդով",
+              pattern: /^(\+|374)[0-9]{1,3}[0-9]{4,14}(?:x.+)?$/,
             },
           ]}
         >
-          <Input
-            placeholder=" +374 000000"
-            type="number"
-          />
+          <Input placeholder=" +374 000000" type="number" />
         </Form.Item>
         <Form.Item
           name="email"
