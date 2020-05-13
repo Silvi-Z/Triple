@@ -110,7 +110,10 @@ const RegistrationForm = ({
 
   /*Updating parent state*/
   const updateFieldsState = obj => {
-    SetAllFieldsValues({ ...allFieldsValues, ...obj })
+    obj.hasOwnProperty("when")
+      ?
+      SetAllFieldsValues({ ...allFieldsValues, ...obj })
+      : null
   }
 
   /*get Tin from Api according to Psn*/
@@ -153,44 +156,84 @@ const RegistrationForm = ({
         tin: tin === null ? form.getFieldValue("tin") : tin,
         phone: "+" + values["phone"],
         identity_document_type,
-      })
+      },
+        delete body["passport_serie"],
+        delete body["given"],
+        delete body["when"]
+      )
     setFieldValuesObj({ ...body })
     console.log("Received values of form: ", body)
     // FieldValuesObj = body
     try {
       toggleLoading(true)
-      const res = apiHelper
-        .get("http://triple-c-api.algorithm.am/api/carSalesCredentialPdfDownload?full_name=" +
-          body.full_name +
-          "&city=" +
-          body.city +
-          "&address=" +
-          body.address +
-          "&passport_series=" +
-          body.passport_series +
-          "&given=" +
-          body.given +
-          "&when=" +
-          body.when +
-          "&birthday=" +
-          body.birthday +
-          "&psn=" +
-          body.psn +
-          "&tin=" +
-          body.tin +
-          "&phone=" +
-          body.phone +
-          "&email=" +
-          body.email +
-          "&identity_document_type=" +
-          body.identity_document_type, {
-        })
-        .then(response => {
-          console.log(response)
-          setValidated(true)
-          updateFieldsState(body)
-          // form.resetFields()
-        })
+      if (body.when) {
+        const res = apiHelper
+          .get("http://triple-c-api.algorithm.am/api/carSalesCredentialPdfDownload?full_name=" +
+            body.full_name +
+            "&city=" +
+            body.city +
+            "&address=" +
+            body.address +
+            "&passport_series=" +
+            body.passport_series +
+            "&given=" +
+            body.given +
+            "&when=" +
+            body.when +
+            "&birthday=" +
+            body.birthday +
+            "&psn=" +
+            body.psn +
+            "&tin=" +
+            body.tin +
+            "&phone=" +
+            body.phone +
+            "&email=" +
+            body.email +
+            "&identity_document_type=" +
+            body.identity_document_type, {
+          })
+          .then(response => {
+            console.log(response)
+            setValidated(true)
+            updateFieldsState(body)
+            // form.resetFields()
+          })
+      } else {
+        const res = apiHelper
+          .get("http://triple-c-api.algorithm.am/api/carSalesCredentialPdfDownload?full_name=" +
+            body.full_name +
+            "&city=" +
+            body.city +
+            "&address=" +
+            body.address +
+            "&passport_series=" +
+            body.passport_series +
+            "&given=" +
+            body.given +
+            "&when=" +
+            body.when +
+            "&birthday=" +
+            body.birthday +
+            "&psn=" +
+            body.psn +
+            "&tin=" +
+            body.tin +
+            "&phone=" +
+            body.phone +
+            "&email=" +
+            body.email +
+            "&identity_document_type=" +
+            body.identity_document_type, {
+          })
+          .then(response => {
+            console.log(response)
+            setValidated(true)
+            updateFieldsState(body)
+            // form.resetFields()
+          })
+      }
+
       // FileSaver.saveAs(blob, "լիազորագիր.pdf")
       // setConfirm2(true)
       // closeForm1(false)
@@ -568,7 +611,7 @@ const RegistrationForm = ({
                 id="registerSubmit"
                 onClick={goNextPage}
               >
-                {loading ? <Spin /> : "Հաստատել"}
+                Հաստատել
               </Button>
             </a>
           ) : (
