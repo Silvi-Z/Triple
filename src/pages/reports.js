@@ -3,9 +3,9 @@ import React, { useState, useEffect } from "react"
 import Layout from "../components/layout"
 import styled from "styled-components"
 import { Row, Col, Button, Dropdown } from "antd"
-import ReportForm from "../components/reportComponents/reportForm"
-import ReportForm3 from "../components/reportComponents/reportForm3"
-import ReportForm2 from "../components/reportComponents/reportForm2"
+import ReportForm from "../components/reportComponents/reportForm/reportForm"
+import ReportForm3 from "../components/reportComponents/reportForm3/reportForm3"
+import ReportForm2 from "../components/reportComponents/reportForm2/reportForm2"
 import { PlusOutlined, MinusOutlined } from "@ant-design/icons"
 import CarImg from "../assets/calcImages/carSell.png"
 import moment from 'moment';
@@ -171,29 +171,11 @@ const Reports = () => {
   const [current_tracking_number, setCurrent_tracking_number] = useState(0)
   const [fillform, setfillform] = useState(false)
   const [AllFieldsValues, setAllFieldsValues] = useState({
-    full_name: "string",
-    city: "string",
-    district: "string",
-    address: "string",
-    identity_document_type: 0,
-    passport_series: "string",
-    when: moment().format('YYYY-MM-DD'),
-    given: 0,
-    psn: 0,
-    birthday: moment().format('YYYY-MM-DD'),
-    tin: 0,
-    phone: 0,
-    email: "user@example.com",
-    passport_file: "string",
-    car_purchase_file: [
-      "file1",
-      "file2"
-    ],
-    credentials_file: "string"
   })
 
   const DropdownForm = () => {
     toggleForm(!showForm)
+    setConfirm3(false)
   }
   return (
     <Layout>

@@ -5,9 +5,9 @@ import {
     UploadOutlined,
 } from "@ant-design/icons"
 import styled from "styled-components"
-import { apiHelper } from "../../helpers/apiHelper"
+import { apiHelper } from "../../../helpers/apiHelper"
 import { Form, Button, Upload, Row, Col } from "antd"
-import UploadImage from "../../assets/upload2.svg"
+import UploadImage from "../../../assets/upload2.svg"
 import PropTypes from "prop-types"
 import {
     UploadWrapper,
@@ -43,33 +43,58 @@ function ReportForm3({
 }) {
     const onFinish = async values => {
         const UploadFormData = new FormData()
-        UploadFormData.append("full_name", AllFieldsValues.full_name)
-        UploadFormData.append("city", AllFieldsValues.city)
-        // UploadFormData.append("district", AllFieldsValues.district)
-        UploadFormData.append("address", AllFieldsValues.address)
-        UploadFormData.append(
-            "identity_document_type",
-            AllFieldsValues.identity_document_type
-        )
-        UploadFormData.append("passport_series", AllFieldsValues.passport_series)
-        UploadFormData.append("when", AllFieldsValues.when)
-        UploadFormData.append("given", AllFieldsValues.given)
-        UploadFormData.append("birthday", AllFieldsValues.birthday)
-        UploadFormData.append("tin", AllFieldsValues.tin)
-        UploadFormData.append("psn", AllFieldsValues.psn)
-        UploadFormData.append("phone", AllFieldsValues.phone)
-        UploadFormData.append("email", AllFieldsValues.email)
-        let passport = new Blob([values.passport_file[0]], { type: "text/xml" })
-        UploadFormData.append("passport_file", passport)
-        let car_purchase = new Blob([values.car_purchase_file[0]], {
-            type: "text/xml",
-        })
-        UploadFormData.append("car_purchase_file", car_purchase)
-        let credentials = new Blob([values.credentials_file[0]], {
-            type: "text/xml",
-        })
-        UploadFormData.append("credentials_file", credentials)
-
+        if (AllFieldsValues.hasOwnProperty("when")) {
+            UploadFormData.append("full_name", AllFieldsValues.full_name)
+            UploadFormData.append("city", AllFieldsValues.city)
+            UploadFormData.append("address", AllFieldsValues.address)
+            UploadFormData.append(
+                "identity_document_type",
+                AllFieldsValues.identity_document_type
+            )
+            UploadFormData.append("passport_series", AllFieldsValues.passport_series)
+            UploadFormData.append("when", AllFieldsValues.when)
+            UploadFormData.append("given", AllFieldsValues.given)
+            UploadFormData.append("birthday", AllFieldsValues.birthday)
+            UploadFormData.append("tin", AllFieldsValues.tin)
+            UploadFormData.append("psn", AllFieldsValues.psn)
+            UploadFormData.append("phone", AllFieldsValues.phone)
+            UploadFormData.append("email", AllFieldsValues.email)
+            let passport = new Blob([values.passport_file[0]], { type: "text/xml" })
+            UploadFormData.append("passport_file", passport)
+            let car_purchase = new Blob([values.car_purchase_file[0]], {
+                type: "text/xml",
+            })
+            UploadFormData.append("car_purchase_file", car_purchase)
+            let credentials = new Blob([values.credentials_file[0]], {
+                type: "text/xml",
+            })
+            UploadFormData.append("credentials_file", credentials)
+        } else {
+            UploadFormData.append("full_name", AllFieldsValues.full_name)
+            UploadFormData.append("city", AllFieldsValues.city)
+            // UploadFormData.append("district", AllFieldsValues.district)
+            UploadFormData.append("address", AllFieldsValues.address)
+            UploadFormData.append(
+                "identity_document_type",
+                AllFieldsValues.identity_document_type
+            )
+            UploadFormData.append("ID_card_number", AllFieldsValues.ID_card_number)
+            UploadFormData.append("birthday", AllFieldsValues.birthday)
+            UploadFormData.append("tin", AllFieldsValues.tin)
+            UploadFormData.append("psn", AllFieldsValues.psn)
+            UploadFormData.append("phone", AllFieldsValues.phone)
+            UploadFormData.append("email", AllFieldsValues.email)
+            let passport = new Blob([values.passport_file[0]], { type: "text/xml" })
+            UploadFormData.append("passport_file", passport)
+            let car_purchase = new Blob([values.car_purchase_file[0]], {
+                type: "text/xml",
+            })
+            UploadFormData.append("car_purchase_file", car_purchase)
+            let credentials = new Blob([values.credentials_file[0]], {
+                type: "text/xml",
+            })
+            UploadFormData.append("credentials_file", credentials)
+        }
         console.log("Received values of form: ", UploadFormData)
         try {
             const res = await apiHelper

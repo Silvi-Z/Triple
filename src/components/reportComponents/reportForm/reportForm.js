@@ -3,13 +3,13 @@ import React, { useState, useEffect, useRef } from "react"
 import { Form, Input, Tooltip, Select, Row, Col, Button, Spin } from "antd"
 import { QuestionCircleOutlined } from "@ant-design/icons"
 import { DatePicker, InputNumber } from "antd"
-import { apiHelper } from "../../helpers/apiHelper"
+import { apiHelper } from "../../../helpers/apiHelper"
 import axios from "axios"
 import FileSaver from "file-saver"
 import * as Yup from "yup"
 import moment from 'moment';
 //styled inputs with layout.css
-import "../layout.css"
+import "../../layout.css"
 import styled from "styled-components"
 import {
   ColAddress,
@@ -107,13 +107,15 @@ const RegistrationForm = ({
   const [tin, setTin] = useState(" ")
   const [FieldValuesObj, setFieldValuesObj] = useState({})
   const [validated, setValidated] = useState(false)
-
+  let prevState = {}
   /*Updating parent state*/
   const updateFieldsState = obj => {
-    obj.hasOwnProperty("when")
-      ?
-      SetAllFieldsValues({ ...allFieldsValues, ...obj })
-      : null
+    // if (obj.hasOwnProperty("when")) {
+
+    SetAllFieldsValues({ ...allFieldsValues, ...obj })
+    // } else {
+    //   SetAllFieldsValues({ ...allFieldsValues, ...obj })
+    // }
   }
 
   /*get Tin from Api according to Psn*/
@@ -138,7 +140,6 @@ const RegistrationForm = ({
   }
   /*onSubmiting === OnFinish => values === fieldsValues*/
   const onFinish = c => {
-    alert("gbrsh")
     let values = form.getFieldsValue("register")
     let body
     values.hasOwnProperty("when")
@@ -149,7 +150,9 @@ const RegistrationForm = ({
         tin: tin === null ? form.getFieldValue("tin") : tin,
         phone: "+" + values["phone"],
         identity_document_type,
-      })
+      },
+        setFieldValuesObj({ ...body })
+      )
       : (body = {
         ...values,
         birthday: values["birthday"].format("YYYY-MM-DD"),
@@ -157,16 +160,17 @@ const RegistrationForm = ({
         phone: "+" + values["phone"],
         identity_document_type,
       },
-        delete body["passport_serie"],
+        delete body["passport_series"],
         delete body["given"],
-        delete body["when"]
+        delete body["when"],
+        setFieldValuesObj({ ...body })
       )
-    setFieldValuesObj({ ...body })
+
     console.log("Received values of form: ", body)
-    // FieldValuesObj = body
+    prevState = body
     try {
       toggleLoading(true)
-      if (body.when) {
+      if (body.hasOwnProperty("when")) {
         const res = apiHelper
           .get("http://triple-c-api.algorithm.am/api/carSalesCredentialPdfDownload?full_name=" +
             body.full_name +
@@ -207,12 +211,8 @@ const RegistrationForm = ({
             body.city +
             "&address=" +
             body.address +
-            "&passport_series=" +
-            body.passport_series +
-            "&given=" +
-            body.given +
-            "&when=" +
-            body.when +
+            "&ID_card_number=" +
+            body.ID_card_number +
             "&birthday=" +
             body.birthday +
             "&psn=" +
@@ -227,7 +227,7 @@ const RegistrationForm = ({
             body.identity_document_type, {
           })
           .then(response => {
-            console.log(response)
+            console.log("PROMISE ", response)
             setValidated(true)
             updateFieldsState(body)
             // form.resetFields()
@@ -253,10 +253,10 @@ const RegistrationForm = ({
     form.resetFields();
   }
 
-
   /*calls onfill func after clicking in form2js back button,and gives as a parapmetr FieldValuesObj*/
   useEffect(() => {
-    fillform ? onFill(FieldValuesObj) : null
+    console.log(prevState)
+    fillform ? onFill(prevState) : null
   }, [])
 
   const openPassport = () => {
@@ -538,6 +538,9 @@ const RegistrationForm = ({
               message:
                 "Խնդրում ենք լրացնել նշված դաշտը համարը պետք է սկսվի +374 թվային կոդով",
               pattern: /^(\+|374)[0-9]{1,3}[0-9]{4,14}(?:x.+)?$/,
+              max: 11,
+              len: 11,
+              min: 11,
             },
           ]}
         >
@@ -578,30 +581,52 @@ const RegistrationForm = ({
           {validated ? (
             <a
               href={
-                "http://triple-c-api.algorithm.am/api/carSalesCredentialPdfDownload?full_name=" +
-                FieldValuesObj.full_name +
-                "&city=" +
-                FieldValuesObj.city +
-                "&address=" +
-                FieldValuesObj.address +
-                "&passport_series=" +
-                FieldValuesObj.passport_series +
-                "&given=" +
-                FieldValuesObj.given +
-                "&when=" +
-                FieldValuesObj.when +
-                "&birthday=" +
-                FieldValuesObj.birthday +
-                "&psn=" +
-                FieldValuesObj.psn +
-                "&tin=" +
-                FieldValuesObj.tin +
-                "&phone=" +
-                FieldValuesObj.phone +
-                "&email=" +
-                FieldValuesObj.email +
-                "&identity_document_type=" +
-                FieldValuesObj.identity_document_type
+                FieldValuesObj.when ?
+                  "http://triple-c-api.algorithm.am/api/carSalesCredentialPdfDownload?full_name=" +
+                  FieldValuesObj.full_name +
+                  "&city=" +
+                  FieldValuesObj.city +
+                  "&address=" +
+                  FieldValuesObj.address +
+                  "&passport_series=" +
+                  FieldValuesObj.passport_series +
+                  "&given=" +
+                  FieldValuesObj.given +
+                  "&when=" +
+                  FieldValuesObj.when +
+                  "&birthday=" +
+                  FieldValuesObj.birthday +
+                  "&psn=" +
+                  FieldValuesObj.psn +
+                  "&tin=" +
+                  FieldValuesObj.tin +
+                  "&phone=" +
+                  FieldValuesObj.phone +
+                  "&email=" +
+                  FieldValuesObj.email +
+                  "&identity_document_type=" +
+                  FieldValuesObj.identity_document_type
+                  :
+                  "http://triple-c-api.algorithm.am/api/carSalesCredentialPdfDownload?full_name=" +
+                  FieldValuesObj.full_name +
+                  "&city=" +
+                  FieldValuesObj.city +
+                  "&address=" +
+                  FieldValuesObj.address +
+                  "&ID_card_number=" +
+                  FieldValuesObj.ID_card_number +
+                  "&birthday=" +
+                  FieldValuesObj.birthday +
+                  "&psn=" +
+                  FieldValuesObj.psn +
+                  "&tin=" +
+                  FieldValuesObj.tin +
+                  "&phone=" +
+                  FieldValuesObj.phone +
+                  "&email=" +
+                  FieldValuesObj.email +
+                  "&identity_document_type=" +
+                  FieldValuesObj.identity_document_type
               }
             >
               <Button
@@ -626,7 +651,7 @@ const RegistrationForm = ({
             )}
         </Form.Item>
       </Form>
-    </React.Fragment>
+    </React.Fragment >
   )
 }
 

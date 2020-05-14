@@ -18,6 +18,10 @@ import {
 import { apiHelper } from "../../helpers/apiHelper"
 import styled from "styled-components"
 import CareerModal from "./careerModal"
+import FbIcon from "../../assets/career/facebook.png"
+import FbBlackIcon from "../../assets/career/facebookBlack.svg"
+import LinkdinIcon from "../../assets/career/linkedin.png"
+import LinkedinBlueIcon from "../../assets/career/linkedinBlue.svg"
 import "../layout.css"
 
 const fileprops = {
@@ -102,6 +106,11 @@ const Image = styled.img`
   height: 32px;
   width: 32px;
   margin-left: 19px;
+  &:hover {
+    cursor: pointer;
+    height: 52px;
+    width: 52px;
+  }
 `
 
 const validateMessages = {
@@ -231,14 +240,14 @@ const Formfield = () => {
             target="_blank"
             rel="noopener"
           >
-            <FacebookOutlined />
+            <Image src={FbIcon} />
           </FaceLink>
           <LinkedinLink
             href="https://www.facebook.com/sharer/sharer.php?u=https://www.facebook.com/TripleCArmenia/"
             target="_blank"
             rel="noopener"
           >
-            <LinkedinOutlined />
+            <Image src={LinkdinIcon} />
           </LinkedinLink>
         </SharedWrapperCol>
       </Row>

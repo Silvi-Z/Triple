@@ -1,7 +1,6 @@
 import React from "react"
 import { Button, Row, Col } from "antd"
 import { ArrowLeftOutlined, ArrowRightOutlined } from "@ant-design/icons"
-import DownloadImage from "../../assets/download.svg"
 import styled from "styled-components"
 
 const H5Styled = styled.h5`
@@ -34,8 +33,6 @@ const H6Styled = styled.h6`
     color: #009db8;
   }
 `
-
-
 const ConfirmSpan = styled.span`
   height: 12px;
   font-family: ArialAMU;
