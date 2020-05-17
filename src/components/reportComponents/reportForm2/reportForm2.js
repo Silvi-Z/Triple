@@ -1,14 +1,11 @@
-import React from "react"
+import React, { useState } from "react"
 import {
     ArrowLeftOutlined,
     ArrowRightOutlined,
-    UploadOutlined,
 } from "@ant-design/icons"
-import styled from "styled-components"
 import { apiHelper } from "../../../helpers/apiHelper"
 import { Form, Button, Upload, Row, Col } from "antd"
 import UploadImage from "../../../assets/upload2.svg"
-import PropTypes from "prop-types"
 import {
     UploadWrapper,
     CustomButton,
@@ -41,6 +38,8 @@ function ReportForm3({
     setCurrent_tracking_number,
     current_tracking_number,
 }) {
+    const [loading, toggleLoading] = useState(false)
+
     const onFinish = async values => {
         const UploadFormData = new FormData()
         if (AllFieldsValues.hasOwnProperty("when")) {
@@ -97,6 +96,7 @@ function ReportForm3({
         }
         console.log("Received values of form: ", UploadFormData)
         try {
+            toggleLoading(true)
             const res = await apiHelper
                 .post("/api/reports/car_sales_credential", UploadFormData, {
                     headers: {
@@ -108,6 +108,7 @@ function ReportForm3({
                     setConfirm2(false)
                     setConfirm3(true)
                     setCurrent_tracking_number(res.data.data.order_number)
+                    toggleLoading(false)
                 })
         } catch (e) {
             console.log("Error: ", e)
@@ -186,7 +187,12 @@ function ReportForm3({
                     </Form.Item>
 
                     <Form.Item wrapperCol={{ span: 12, offset: 0 }}>
-                        <Button type="primary" htmlType="submit" id="registerSubmit">
+                        <Button
+                            type="primary"
+                            htmlType="submit"
+                            id="registerSubmit"
+                            loading={loading}
+                        >
                             Հաստատել
             </Button>
                     </Form.Item>

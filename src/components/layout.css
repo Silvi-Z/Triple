@@ -1226,9 +1226,6 @@ pre tt:after {
     text-align: center;
     margin-left: 20%;
   }
-  #register_city > div {
-    width: 146px;
-  }
   #register_address {
     width: 77%;
     height: 42px;

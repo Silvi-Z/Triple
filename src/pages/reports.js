@@ -1,168 +1,24 @@
 /*eslint-disable */
 import React, { useState, useEffect } from "react"
 import Layout from "../components/layout"
-import styled from "styled-components"
-import { Row, Col, Button, Dropdown } from "antd"
+import { Row, Col } from "antd"
 import ReportForm from "../components/reportComponents/reportForm/reportForm"
 import ReportForm3 from "../components/reportComponents/reportForm3/reportForm3"
 import ReportForm2 from "../components/reportComponents/reportForm2/reportForm2"
 import { PlusOutlined, MinusOutlined } from "@ant-design/icons"
 import CarImg from "../assets/calcImages/carSell.png"
 import moment from 'moment';
-
-const ReportParagraphRow = styled(Row)`
-  padding: 0 12.5%;
-  margin-bottom: 2.8%;
-  @media only screen and (max-width: 320px) {
-    margin-bottom: 70px;
-    padding: 0 3.5%;
-    margin-top: 39px;
-  }
-  @media only screen and (max-width: 375px) {
-    margin-bottom: 70px;
-    padding: 0 3.5%;
-    margin-top: 39px;
-  }
-  @media only screen and (max-width: 768px) {
-    margin-top: 49px;
-    padding: 0 3.5%;
-  }
-  @media only screen and (max-width: 1600px) {
-    margin-top: 49px;
-    padding: 0 12.5%;
-  }
-  @media only screen and (max-width: 1920px) {
-    padding: 0 13.5%;
-    margin-bottom: 0.8%;
-  }
-`
-const H2Styled = styled.h2`
-  width: 439px;
-  height: 18px;
-  font-family: ArialAMU;
-  font-size: 18px;
-  font-weight: bold;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: normal;
-  letter-spacing: normal;
-  text-align: left;
-  color: #000000;
-  @media only screen and (max-width: 375px) {
-    width: 250px;
-  }
-`
-const H3Styled = styled.h2`
-  width: 439px;
-  height: 18px;
-  font-family: ArialAMU;
-  font-size: 18px;
-  font-weight: normal;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: normal;
-  letter-spacing: normal;
-  text-align: left;
-  color: #000000;
-  span {
-    color: #009db8;
-    font-family: ArialAMU;
-    font-size: 18px;
-    font-weight: normal;
-  }
-  @media only screen and (max-width: 375px) {
-    width: 118px;
-    height: 73px;
-    font-family: ArialAMU;
-    font-size: 15px;
-    font-weight: normal;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: normal;
-    letter-spacing: normal;
-    text-align: left;
-    color: #000000;
-  }
-  @media only screen and (max-width: 320px) {
-    width: 118px;
-    height: 73px;
-    font-family: ArialAMU;
-    font-size: 15px;
-    font-weight: normal;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: normal;
-    letter-spacing: normal;
-    text-align: left;
-    color: #000000;
-  }
-`
-const PStyled = styled.p`
-  width: 769px;
-  height: 76px;
-  font-family: ArialAMU;
-  font-size: 16px;
-  font-weight: normal;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: 1.88;
-  letter-spacing: normal;
-  text-align: left;
-  color: #000000;
-  @media only screen and (max-width: 1920px) {
-    max-width: 900px;
-    max-height: 106px;
-    margin-left: 0%;
-    margin-bottom: 40px;
-  }
-  @media only screen and (max-width: 768px) {
-    max-width: 509px;
-    max-height: 106px;
-    margin-left: 0%;
-    margin-bottom: 40px;
-  }
-  @media only screen and (max-width: 375px) {
-    width: 260px;
-    height: 226px;
-    font-size: 15px;
-    font-family: ArialAMU;
-    margin-bottom: 60px;
-  }
-  @media only screen and (max-width: 320px) {
-    width: 260px;
-    height: 226px;
-    font-size: 15px;
-    font-family: ArialAMU;
-  }
-  
-`
-const HeadIcon = styled.img`
-  width: 35px;
-  height: 35px;
-`
-const ToggleButton = styled(Button)`
-  width: 60px;
-  height: 60px;
-  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
-  background-color: #ffffff;
-  color: #009db8;
-  margin-top: -16%;
-`
-const ReportDropRow = styled(Row)``
-const ReportFormRow = styled(Row)``
-const H3StyledForm = styled.h3`
-  width: 239px;
-  height: 16px;
-  font-family: ArialAMU;
-  font-size: 16px;
-  font-weight: bold;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: 1.88;
-  letter-spacing: normal;
-  text-align: left;
-  color: #000000;
-`
+import {
+  ReportParagraphRow,
+  H2Styled,
+  H3Styled,
+  PStyled,
+  HeadIcon,
+  ToggleButton,
+  ReportDropRow,
+  ReportFormRow,
+  H3StyledForm
+} from "../components/reportComponents/reportStyle"
 
 const Reports = () => {
   const [showForm, toggleForm] = useState(true)
@@ -220,8 +76,8 @@ const Reports = () => {
             xl={{ span: 20, offset: 4 }}
             lg={{ span: 20, offset: 4 }}
             md={{ span: 20, offset: 4 }}
-            xs={{ span: 22, offset: 0 }}
-            sm={{ span: 21, offset: 0 }}
+            sm={{ span: 22, offset: 0 }}
+            xs={{ span: 24, offset: 0 }}
           >
             <H3StyledForm>Պահանջվող տեղեկատվություն</H3StyledForm>
             <ReportForm

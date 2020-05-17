@@ -60,10 +60,6 @@ export const SelectCustom = styled(Select)`
   width: 216px;
   border: solid 1px #009db8;
   background: white;
-  @media (min-width: 320px) {
-    width: 138px;
-    border: solid 1px #009db8;
-  }
   @media (min-width: 375px) {
     width: 138px;
     border: solid 1px #009db8;
@@ -74,6 +70,10 @@ export const SelectCustom = styled(Select)`
   }
   @media (min-width: 1600px) {
     width: 216px;
+    border: solid 1px #009db8;
+  }
+  @media (min-width: 320px) {
+    width: 87%;
     border: solid 1px #009db8;
   }
 `
