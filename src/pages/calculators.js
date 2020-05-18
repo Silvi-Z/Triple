@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Typography, Row, Col, Divider } from 'antd';
 import styled from 'styled-components';
 import Layout from '../components/layout';
@@ -32,51 +32,53 @@ const TextStyled = styled(Text)`
   color: #000;
 `;
 
-const Calculators = () => (
-  <Layout>
-    <HeaderRow>
-      <Col
-        xxl={{ span: 8, offset: 4 }}
-        xl={{ span: 9, offset: 4 }}
-        lg={{ span: 8, offset: 3 }}
-        md={{ span: 15, offset: 1 }}
-        sm={16}
-        span={16}
-      >
-        <H1Styled>Հաշվիչ</H1Styled>
-      </Col>
-    </HeaderRow>
-    <Row gutter={[1, 60]}>
-      <Col
-        xxl={{ span: 16, offset: 4 }}
-        xl={{ span: 14, offset: 4 }}
-        lg={{ span: 15, offset: 3 }}
-        md={{ span: 22, offset: 1 }}
-        sm={24}
-        span={24}
-      >
-        <TextStyled>
+const Calculators = () => {
+  return (
+    <Layout>
+      <HeaderRow>
+        <Col
+          xxl={{ span: 8, offset: 4 }}
+          xl={{ span: 9, offset: 4 }}
+          lg={{ span: 8, offset: 3 }}
+          md={{ span: 15, offset: 1 }}
+          sm={16}
+          span={16}
+        >
+          <H1Styled>Հաշվիչ</H1Styled>
+        </Col>
+      </HeaderRow>
+      <Row gutter={[1, 60]}>
+        <Col
+          xxl={{ span: 16, offset: 4 }}
+          xl={{ span: 14, offset: 4 }}
+          lg={{ span: 15, offset: 3 }}
+          md={{ span: 22, offset: 1 }}
+          sm={24}
+          span={24}
+        >
+          <TextStyled>
           “Թրիփլ Քնսալթինգ” ընկերությունը տրամադրում է “Հաշվիչ” ծառայություն,
           որի միջոցով դուք կարող եք կատարել առցանց հաշվարկում։
-        </TextStyled>
-      </Col>
-    </Row>
-    <SalaryCalculator />
-    <Divider />
-    <VacationCalculator />
-    <Divider />
-    <NonWorkingCalculator />
-    <Divider />
-    <FinalCalculator />
-    <Divider />
-    <MortgageCalculator />
-    <Divider />
-    <CarCustomsCalculator />
-    <Divider />
-    <CarSellCalculator />
-    <Divider />
-    <CarPropTaxCalculator />
-  </Layout>
-);
+          </TextStyled>
+        </Col>
+      </Row>
+      <SalaryCalculator />
+      <Divider />
+      <VacationCalculator />
+      <Divider />
+      <NonWorkingCalculator />
+      <Divider />
+      <FinalCalculator />
+      <Divider />
+      <MortgageCalculator />
+      <Divider />
+      <CarCustomsCalculator />
+      <Divider />
+      <CarSellCalculator />
+      <Divider />
+      <CarPropTaxCalculator />
+    </Layout>
+  );
+};
 
 export default Calculators;

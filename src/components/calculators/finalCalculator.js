@@ -547,7 +547,7 @@ const FinalCalculator = () => {
                       ? 'primary'
                       : 'default'
                   }
-                  size="large"
+                  // size="large"
                   block
                   onClick={() => formik2.setFieldValue('patent', null)}
                 >
@@ -567,7 +567,7 @@ const FinalCalculator = () => {
               <Col xxl={4} xl={6} lg={6} md={8} sm={10} span={11}>
                 <ButtonLarge
                   type={formik2.values.patent === 1 ? 'primary' : 'default'}
-                  size="large"
+                  // size="large"
                   block
                   onClick={() => formik2.setFieldValue('patent', 1)}
                 >
@@ -587,7 +587,7 @@ const FinalCalculator = () => {
               <Col xxl={3} xl={3} lg={4} md={5} sm={5} span={6}>
                 <ButtonLarge
                   type={formik2.values.patent === 0 ? 'primary' : 'default'}
-                  size="large"
+                  // size="large"
                   block
                   onClick={() => formik2.setFieldValue('patent', 0)}
                 >
