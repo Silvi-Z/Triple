@@ -7,7 +7,7 @@ import {
 import styled from 'styled-components';
 import moment from 'moment';
 import { useFormik } from 'formik';
-import * as Yup from 'yup';
+// import * as Yup from 'yup';
 import { apiHelper } from '../../helpers/apiHelper';
 import CalcImg from '../../assets/calcImages/nonworking.png';
 import {
@@ -24,13 +24,13 @@ import {
 
 const { Text } = Typography;
 
-const H3Styled = styled.h3`
-  font-size: 14px;
-  line-height: 20px;
-  font-weight: bold;
-  font-family: ArialAMU;
-  color: #000;
-`;
+// const H3Styled = styled.h3`
+//   font-size: 14px;
+//   line-height: 20px;
+//   font-weight: bold;
+//   font-family: ArialAMU;
+//   color: #000;
+// `;
 
 // const StyledQuestion = styled(QuestionCircleOutlined)`
 //   color: #009db8;
@@ -126,16 +126,16 @@ const TabHeadCell = styled.div`
   text-align: center;
 `;
 
-const ResultCell = styled.div`
-  background-color: #21363d;
-  padding-left: 16px;
-  padding-right: 16px;
-  height: ${props => (props.large ? 60 : 40)}px;
-  display: flex;
-  align-items: center;
-  justify-content: ${props => (props.large ? 'center' : 'flex-start')};
-  text-align: center;
-`;
+// const ResultCell = styled.div`
+//   background-color: #21363d;
+//   padding-left: 16px;
+//   padding-right: 16px;
+//   height: ${props => (props.large ? 60 : 40)}px;
+//   display: flex;
+//   align-items: center;
+//   justify-content: ${props => (props.large ? 'center' : 'flex-start')};
+//   text-align: center;
+// `;
 
 const months = [
   'Հունվար',
@@ -235,15 +235,14 @@ const initialValues1 = {
   month12_bonus_price: 0,
 };
 
-const NonWorkingCalculator = () => {
-  const [showForm, toggleForm] = useState(false);
+const NonWorkingCalculator = ({ toggleForm, showForm }) => {
   const [vacationDays, setVacationDays] = useState(140);
   const [salary, setSalary] = useState(0);
   const [loading1, setLoading1] = useState(false);
-  const [result1, setResult1] = useState(null);
+  // const [result1, setResult1] = useState(null);
 
-  const [loading2, setLoading2] = useState(false);
-  const [result2, setResult2] = useState(null);
+  // const [loading2, setLoading2] = useState(false);
+  // const [result2, setResult2] = useState(null);
 
   const formik1 = useFormik({
     initialValues: initialValues1,
@@ -286,14 +285,14 @@ const NonWorkingCalculator = () => {
         bodyFormData.append('bonus_stamp', values.bonus_stamp);
       }
 
-      setResult1(null);
+      // setResult1(null);
       setLoading1(true);
 
       try {
         const res = await apiHelper.post('/api/counter/benefit', bodyFormData);
         console.log('Non working calc response', res.data);
         if (res.data.success) {
-          setResult1(res.data.data);
+          // setResult1(res.data.data);
         }
       } catch (e) {
         console.log('Non working calc error: ', e);
@@ -308,10 +307,7 @@ const NonWorkingCalculator = () => {
       <Row align="middle" gutter={[10, 40]}>
         <FormIcon iconImg={CalcImg} />
         <FormHeader headerText={'Անաշխատունակության նպաստի հաշվիչ'} />
-        <FormToggle
-          showForm={showForm}
-          onClick={() => toggleForm(!showForm)}
-        />
+        <FormToggle showForm={showForm} onClick={toggleForm} />
       </Row>
       {showForm && (
         <form onSubmit={formik1.handleSubmit}>

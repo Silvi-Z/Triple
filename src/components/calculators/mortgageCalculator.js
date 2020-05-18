@@ -181,11 +181,10 @@ const schemaTwo = Yup.object().shape({
     .min(1),
 });
 
-const MortgageCalculator = () => {
+const MortgageCalculator = ({ toggleForm, showForm }) => {
   const monthOne = useRef(1);
   const monthTwo = useRef(2);
   const monthThree = useRef(3);
-  const [showForm, toggleForm] = useState(false);
   const [salary, setSalary] = useState(0); // autofill salary
   const [loadingOne, toggleLoadingOne] = useState(false);
   const [loadingTwo, toggleLoadingTwo] = useState(false);
@@ -262,10 +261,7 @@ const MortgageCalculator = () => {
       <Row align="middle" gutter={[10, 40]}>
         <FormIcon iconImg={ContractImg} />
         <FormHeader headerText={'Հիփոթեքի տոկոսագումարի ետ վերադարձի հաշվիչ'} />
-        <FormToggle
-          showForm={showForm}
-          onClick={() => toggleForm(!showForm)}
-        />
+        <FormToggle showForm={showForm} onClick={toggleForm} />
       </Row>
 
       {showForm ? (

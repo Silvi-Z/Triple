@@ -110,10 +110,9 @@ const validationSchema = Yup.object().shape({
   carPrice: Yup.number().required().min(100000),
 });
 
-const CarSellCalculator = () => {
+const CarSellCalculator = ({ toggleForm, showForm }) => {
   const [loading, toggleLoading] = useState(false);
   const [result, setResult] = useState(null);
-  const [showForm, toggleForm] = useState(false);
 
   const formik = useFormik({
     initialValues,
@@ -139,10 +138,7 @@ const CarSellCalculator = () => {
       <Row align="middle" gutter={[10, 40]}>
         <FormIcon iconImg={CarImg} />
         <FormHeader headerText={'Ավտոմեքենայի վաճառքի հաշվիչ'} />
-        <FormToggle
-          showForm={showForm}
-          onClick={() => toggleForm(!showForm)}
-        />
+        <FormToggle showForm={showForm} onClick={toggleForm} />
       </Row>
       {showForm ? (
         <>

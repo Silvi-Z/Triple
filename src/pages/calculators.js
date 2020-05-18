@@ -33,6 +33,29 @@ const TextStyled = styled(Text)`
 `;
 
 const Calculators = () => {
+  const [display, setDisplay] = useState({
+    salary: false,
+    vacation: false,
+    nonWorking: false,
+    final: false,
+    mortgage: false,
+    carCustoms: false,
+    carSell: false,
+    carPropTax: false,
+  });
+
+  const toggleDisplay = name => {
+    const data = {...display};
+
+    for (let property in data) {
+      data[property] = false;
+    }
+
+    data[name] = !display[name];
+
+    setDisplay(data);
+  };
+
   return (
     <Layout>
       <HeaderRow>
@@ -57,26 +80,26 @@ const Calculators = () => {
           span={24}
         >
           <TextStyled>
-          “Թրիփլ Քնսալթինգ” ընկերությունը տրամադրում է “Հաշվիչ” ծառայություն,
-          որի միջոցով դուք կարող եք կատարել առցանց հաշվարկում։
+            “Թրիփլ Քնսալթինգ” ընկերությունը տրամադրում է “Հաշվիչ” ծառայություն,
+            որի միջոցով դուք կարող եք կատարել առցանց հաշվարկում։
           </TextStyled>
         </Col>
       </Row>
-      <SalaryCalculator />
+      <SalaryCalculator toggleForm={() => toggleDisplay('salary')} showForm={display.salary} />
       <Divider />
-      <VacationCalculator />
+      <VacationCalculator toggleForm={() => toggleDisplay('vacation')} showForm={display.vacation} />
       <Divider />
-      <NonWorkingCalculator />
+      <NonWorkingCalculator toggleForm={() => toggleDisplay('nonWorking')} showForm={display.nonWorking} />
       <Divider />
-      <FinalCalculator />
+      <FinalCalculator toggleForm={() => toggleDisplay('final')} showForm={display.final} />
       <Divider />
-      <MortgageCalculator />
+      <MortgageCalculator toggleForm={() => toggleDisplay('mortgage')} showForm={display.mortgage} />
       <Divider />
-      <CarCustomsCalculator />
+      <CarCustomsCalculator toggleForm={() => toggleDisplay('carCustoms')} showForm={display.carCustoms} />
       <Divider />
-      <CarSellCalculator />
+      <CarSellCalculator toggleForm={() => toggleDisplay('carSell')} showForm={display.carSell} />
       <Divider />
-      <CarPropTaxCalculator />
+      <CarPropTaxCalculator toggleForm={() => toggleDisplay('carPropTax')} showForm={display.carPropTax} />
     </Layout>
   );
 };

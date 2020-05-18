@@ -126,10 +126,9 @@ const validationSchema = Yup.object().shape({
   }),
 });
 
-const CarCustomsCalculator = () => {
+const CarCustomsCalculator = ({ toggleForm, showForm }) => {
   const [loading, toggleLoading] = useState(false);
   const [result, setResult] = useState(null);
-  const [showForm, toggleForm] = useState(false);
 
   const formik = useFormik({
     initialValues,
@@ -155,10 +154,7 @@ const CarCustomsCalculator = () => {
       <Row align="middle" gutter={[10, 40]}>
         <FormIcon iconImg={CarImg} />
         <FormHeader headerText={'Ավտոմեքենայի մաքսազերծման վճարի հաշվիչ'} />
-        <FormToggle
-          showForm={showForm}
-          onClick={() => toggleForm(!showForm)}
-        />
+        <FormToggle showForm={showForm} onClick={toggleForm} />
       </Row>
 
       {showForm ? (

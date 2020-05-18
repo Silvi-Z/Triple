@@ -124,10 +124,9 @@ const validationSchema = Yup.object().shape({
   }),
 });
 
-const SalaryCalculator = () => {
+const SalaryCalculator = ({ toggleForm, showForm }) => {
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState(null);
-  const [showForm, toggleForm] = useState(false);
 
   const formik = useFormik({
     initialValues,
@@ -188,10 +187,7 @@ const SalaryCalculator = () => {
       <Row align="middle" gutter={[10, 40]}>
         <FormIcon iconImg={SalaryImg} />
         <FormHeader headerText={'Աշխատավարձի հաշվիչ'} />
-        <FormToggle
-          showForm={showForm}
-          onClick={() => toggleForm(!showForm)}
-        />
+        <FormToggle showForm={showForm} onClick={toggleForm} />
       </Row>
 
       {showForm ? (

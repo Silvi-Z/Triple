@@ -109,10 +109,9 @@ const validationSchema = Yup.object().shape({
   horsepower: Yup.number().required().min(1),
 });
 
-const CarPropTaxCalculator = () => {
+const CarPropTaxCalculator = ({ toggleForm, showForm }) => {
   const [loading, toggleLoading] = useState(false);
   const [result, setResult] = useState(null);
-  const [showForm, toggleForm] = useState(false);
 
   const formik = useFormik({
     initialValues,
@@ -138,10 +137,7 @@ const CarPropTaxCalculator = () => {
       <Row align="middle" gutter={[10, 50]}>
         <FormIcon iconImg={CarImg} />
         <FormHeader headerText={'Ավտոմեքենայի գույքահարկի հաշվիչ'} />
-        <FormToggle
-          showForm={showForm}
-          onClick={() => toggleForm(!showForm)}
-        />
+        <FormToggle showForm={showForm} onClick={toggleForm} />
       </Row>
 
       {showForm ? (

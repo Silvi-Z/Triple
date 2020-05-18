@@ -207,8 +207,7 @@ const year11 = moment(currentDate).subtract(11, 'months').year();
 const month12 = !month11 ? 11 : month11 - 1;
 const year12 = moment(currentDate).subtract(12, 'months').year();
 
-const VacationCalculator = () => {
-  const [showForm, toggleForm] = useState(false);
+const VacationCalculator = ({ toggleForm, showForm }) => {
   const [formDisable, setFormDisable] = useState(false);
   const [result, setResult] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -417,10 +416,7 @@ const VacationCalculator = () => {
       <Row align="middle" gutter={[10, 40]}>
         <FormIcon iconImg={VacationImg} />
         <FormHeader headerText={'Արձակուրդայինի հաշվիչ'} />
-        <FormToggle
-          showForm={showForm}
-          onClick={() => toggleForm(!showForm)}
-        />
+        <FormToggle showForm={showForm} onClick={toggleForm} />
       </Row>
       {showForm ? (
         <>

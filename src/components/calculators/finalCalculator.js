@@ -179,8 +179,7 @@ const year11 = moment(currentDate).subtract(11, 'months').year();
 const month12 = !month11 ? 11 : month11 - 1;
 const year12 = moment(currentDate).subtract(12, 'months').year();
 
-const FinalCalculator = () => {
-  const [showForm, toggleForm] = useState(false);
+const FinalCalculator = ({ toggleForm, showForm }) => {
   const [result1, setResult1] = useState(0);
   const [result2, setResult2] = useState(null);
   const [loading1, setLoading1] = useState(false);
@@ -356,10 +355,7 @@ const FinalCalculator = () => {
       <Row align="middle" gutter={[10, 40]}>
         <FormIcon iconImg={CalcImg} />
         <FormHeader headerText={'Վերջնահաշվարկի հաշվիչ'} />
-        <FormToggle
-          showForm={showForm}
-          onClick={() => toggleForm(!showForm)}
-        />
+        <FormToggle showForm={showForm} onClick={toggleForm} />
       </Row>
       {showForm && (
         <>
