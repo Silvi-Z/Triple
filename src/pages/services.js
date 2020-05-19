@@ -213,9 +213,9 @@ const Services = ({ location, ...props }) => {
   useEffect(() => {
     if (location.state.clickedItems > 4) {
       console.log(window)
-      window.scrollTo({
-        top: 100
-      })
+      setTimeout(function () {
+        window.scrollTo(0, 500);
+      }, 2);
     }
     toggleFromHomePage(location.state)
   }, [])
