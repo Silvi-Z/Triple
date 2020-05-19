@@ -45,10 +45,9 @@ const ConfirmSpan = styled.span`
   text-align: center;
   color: white;
 `
-const ReportForm3 = ({ setConfirm2, setConfirm3, toggleForm, current_tracking_number }) => {
+const ReportForm3 = ({ toggleForm, current_tracking_number, setresetForm }) => {
   const onClose = () => {
-    // setConfirm2()
-    // setConfirm3()
+    setresetForm(true)
     toggleForm()
   }
   return (

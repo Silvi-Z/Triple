@@ -3,8 +3,8 @@ import Layout from '../components/layout';
 // import Image from '../components/image';
 import SEO from '../components/seo';
 import Slideshow from '../components/slideshow';
-import Homeservices from '../components/homecomponents/homeservices';
-import Homepartners from '../components/homecomponents/homepartners';
+import Homeservices from '../components/homecomponents/homeServices/homeservices';
+import Homepartners from '../components/homecomponents/homePartners/homepartners';
 
 const siteMetada = [
   {

@@ -26,8 +26,8 @@ const Reports = () => {
   const [confirm3, setConfirm3] = useState(false)
   const [current_tracking_number, setCurrent_tracking_number] = useState(0)
   const [fillform, setfillform] = useState(false)
-  const [AllFieldsValues, setAllFieldsValues] = useState({
-  })
+  const [resetForm, setResetForm] = useState(false)
+  const [AllFieldsValues, setAllFieldsValues] = useState({})
 
   const DropdownForm = () => {
     toggleForm(!showForm)
@@ -86,6 +86,7 @@ const Reports = () => {
               SetAllFieldsValues={setAllFieldsValues}
               allFieldsValues={AllFieldsValues}
               fillform={fillform}
+              resetForm={resetForm}
             />
           </Col>
         ) : confirm2 ? (
@@ -119,8 +120,7 @@ const Reports = () => {
             xs={{ span: 3, offset: 0 }}
           >
             <ReportForm3
-              setConfirm3={setConfirm3}
-              setConfirm2={setConfirm2}
+              setresetForm={setResetForm}
               current_tracking_number={current_tracking_number}
               toggleForm={DropdownForm}
             />

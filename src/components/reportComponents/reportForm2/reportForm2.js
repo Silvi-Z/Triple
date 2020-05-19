@@ -142,7 +142,7 @@ function ReportForm3({
                             },
                         ]}
                     >
-                        <Upload name="passport_file" listType="picture" accept="MIME-type">
+                        <Upload name="passport_file" accept="MIME-type">
                             <CustomButton>
                                 <span>Անձնագիր</span>
                                 <UploadWrapper src={UploadImage} />
@@ -160,7 +160,7 @@ function ReportForm3({
                             },
                         ]}
                     >
-                        <Upload name="car_purchase_file" listType="picture">
+                        <Upload name="car_purchase_file" >
                             <CustomButton>
                                 <span>Ավտոմեքենայի առք ու վաճառքի պայմանագիր</span>
                                 <UploadWrapper src={UploadImage} />
@@ -178,7 +178,7 @@ function ReportForm3({
                             },
                         ]}
                     >
-                        <Upload name="credentials_file" listType="picture">
+                        <Upload name="credentials_file" >
                             <CustomButton>
                                 <span>Լիազորագիր</span>
                                 <UploadWrapper src={UploadImage} />

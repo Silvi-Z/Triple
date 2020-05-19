@@ -1,28 +1,21 @@
-import React, { useState, useEffect } from "react"
+import styled from "styled-components"
 import { Typography, Row, Col } from "antd"
 import { Link } from "gatsby"
-import styled from "styled-components"
-//import { apiHelper } from "../helpers/apiHelper"
-import AlgorithmImg from "../../assets/homeImages/partners/algorithm-logo.png"
-import KochonImg from "../../assets/homeImages/partners/kochon.png"
-import AbcImg from "../../assets/homeImages/partners/abc.png"
-import RightArrowImg from "../../assets/homeImages/right-arrow.png"
 
-const NavLink = styled(Link)`
+export const NavLink = styled(Link)`
   text-decoration: none;
   display: flex;
   @media (max-width: 375px) {
     margin-top: auto;
   }
 `
-const PartnerspHeadingColumn = styled(Col)`
+export const PartnerspHeadingColumn = styled(Col)`
   @media (max-width: 375px) {
     margin-top: 88px;
     margin-bottom: 28px;
   }
 `
-
-const H2Styled = styled.section`
+export const H2Styled = styled.section`
   width: 166px;
   height: 18px;
   font-family: ArialAMU;
@@ -34,7 +27,7 @@ const H2Styled = styled.section`
   letter-spacing: normal;
   color: #000000;
 `
-const PStyled = styled.section`
+export const PStyled = styled.section`
   width: 519px;
   height: 46px;
   font-family: ArialAMU;
@@ -66,7 +59,7 @@ const PStyled = styled.section`
     height: 107px;
   }
 `
-const SeemoreWrapper = styled.div`
+export const SeemoreWrapper = styled.div`
   width: 226px;
   height: 50px;
   box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
@@ -90,7 +83,7 @@ const SeemoreWrapper = styled.div`
     display: flex;
   }
 `
-const SeemoreColumn = styled(Col)`
+export const SeemoreColumn = styled(Col)`
   padding-left: 32%;
   @media only screen and (max-width: 1920px) {
     padding-left: 37%;
@@ -111,7 +104,7 @@ const SeemoreColumn = styled(Col)`
     padding-left: 0%;
   }
 `
-const SeemoreSpan = styled.span`
+export const SeemoreSpan = styled.span`
   width: 162px;
   height: 16px;
   font-family: ArialAMU;
@@ -142,11 +135,11 @@ const SeemoreSpan = styled.span`
     box-shadow: none;
   }
 `
-const PartnersLogosFirstRow = styled(Row)`
+export const PartnersLogosFirstRow = styled(Row)`
   width: 100%;
   height: 100%;
 `
-const Seemoreimg = styled.img`
+export const Seemoreimg = styled.img`
   width: 22px;
   height: 17px;
   margin-left: 20px;
@@ -159,7 +152,7 @@ const Seemoreimg = styled.img`
     margin-top: 23px;
   }
 `
-const IconWrapper = styled.img`
+export const IconWrapper = styled.img`
   width: 171px;
   height: 50px;
   margin-top: 18.7%;
@@ -170,13 +163,13 @@ const IconWrapper = styled.img`
   }
 `
 
-const ResponsWrapper = styled.div`
+export const ResponsWrapper = styled.div`
   @media only screen and (max-width: 768px) {
     display: block;
     height: 838px;
   }
 `
-const IconWrapperCol = styled(Col)`
+export const IconWrapperCol = styled(Col)`
   width: 250px;
   height: 180px;
   border-bottom: 1px solid;
@@ -185,7 +178,7 @@ const IconWrapperCol = styled(Col)`
   background-color: #ffffff;
   text-align: center;
 `
-const IconWrapperColLast = styled(Col)`
+export const IconWrapperColLast = styled(Col)`
   width: 250px;
   height: 180px;
   border-bottom: 1px solid;
@@ -193,14 +186,14 @@ const IconWrapperColLast = styled(Col)`
   background-color: #ffffff;
   text-align: center;
 `
-const IconWrapperSecondLastCol = styled(Col)`
+export const IconWrapperSecondLastCol = styled(Col)`
   width: 250px;
   height: 180px;
   border-color: #d7d7d7;
   background-color: #ffffff;
   text-align: center;
 `
-const IconWrapperSecondCol = styled(Col)`
+export const IconWrapperSecondCol = styled(Col)`
   width: 250px;
   height: 180px;
   border-right: 1px solid;
@@ -208,7 +201,7 @@ const IconWrapperSecondCol = styled(Col)`
   background-color: #ffffff;
   text-align: center;
 `
-const ContainerRow = styled(Row)`
+export const ContainerRow = styled(Row)`
   margin-top: 37px;
   width: 100%;
   height: auto;
@@ -216,73 +209,3 @@ const ContainerRow = styled(Row)`
   background-color: #ffffff;
   margin: 37 auto;
 `
-
-const Homepartners = () => {
-  // const [hasError, setErrors] = useState(false)
-  // const [images, setImages] = useState({})
-
-  // async function fetchData() {
-  //   res = await apiHelper.get("/api/partner")
-  //   console.log("Response: ", res.json())
-  // }
-  // useEffect(() => fetchData())
-  return (
-    <>
-      <Row style={{ marginTop: "59px" }}>
-        <PartnerspHeadingColumn lg={12} ls={12} sm={24} md={12} xs={24}>
-          <H2Styled>ՄԵր Գործընկերը</H2Styled>
-          <PStyled>
-            “Թրիփլ Քնսալթինգ” ընկերությունն իր գործունեության երկու տարվա
-            ընթացքում հասցրել է համագործակցել մի շարք ընկերությունների հետ:
-          </PStyled>
-        </PartnerspHeadingColumn>
-        <SeemoreColumn ls={12} sm={24} md={12} lg={12} xs={24}>
-          <SeemoreWrapper>
-            <NavLink to="/contact/">
-              <SeemoreSpan>Դառնալ գործընկեր</SeemoreSpan>
-              <Seemoreimg src={RightArrowImg} alt={"icon"}></Seemoreimg>
-            </NavLink>
-          </SeemoreWrapper>
-        </SeemoreColumn>
-      </Row>
-      <ResponsWrapper>
-        <ContainerRow>
-          <Col span={24}>
-            <PartnersLogosFirstRow>
-              <IconWrapperCol lg={6} xl={6} sm={12} md={12} xs={12}>
-                <IconWrapper src={AlgorithmImg} alt={"icon"}></IconWrapper>
-              </IconWrapperCol>
-              <IconWrapperCol lg={6} xl={6} sm={12} md={12} xs={12}>
-                <IconWrapper src={AbcImg} alt={"icon"}></IconWrapper>
-              </IconWrapperCol>
-              <IconWrapperCol lg={6} xl={6} sm={12} md={12} xs={12}>
-                <IconWrapper src={AlgorithmImg} alt={"icon"}></IconWrapper>
-              </IconWrapperCol>
-              <IconWrapperColLast lg={6} xl={6} sm={12} md={12} xs={12}>
-                <IconWrapper src={AbcImg} alt={"icon"}></IconWrapper>
-              </IconWrapperColLast>
-            </PartnersLogosFirstRow>
-          </Col>
-          <Col span={24}>
-            <PartnersLogosFirstRow>
-              <IconWrapperSecondCol lg={6} sm={12} md={12} xs={12}>
-                <IconWrapper src={KochonImg} alt={"icon"}></IconWrapper>
-              </IconWrapperSecondCol>
-              <IconWrapperSecondCol lg={6} sm={12} md={12} xs={12}>
-                <IconWrapper src={AbcImg} alt={"icon"}></IconWrapper>
-              </IconWrapperSecondCol>
-              <IconWrapperSecondCol lg={6} sm={12} md={12} xs={12}>
-                <IconWrapper src={KochonImg} alt={"icon"}></IconWrapper>
-              </IconWrapperSecondCol>
-              <IconWrapperSecondLastCol lg={6} sm={12} md={12} xs={12}>
-                <IconWrapper src={AbcImg} alt={"icon"}></IconWrapper>
-              </IconWrapperSecondLastCol>
-            </PartnersLogosFirstRow>
-          </Col>
-        </ContainerRow>
-      </ResponsWrapper>
-    </>
-  )
-}
-
-export default Homepartners
