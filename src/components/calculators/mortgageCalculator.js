@@ -45,8 +45,6 @@ const ButtonSubmit = styled(Button)`
 const StyledInputNumber = styled(InputNumber)`
   width: 100%;
   height: 40px;
-  display: flex;
-  align-items: center;
   border-color: #009db8;
   font-size: 13px;
   font-family: ArialAMU;
@@ -611,6 +609,7 @@ const MortgageCalculator = ({ toggleForm, showForm }) => {
               <FormLabelLong text={'Հաշվետու եռամսյակում վճարած տոկոսագումար'} />
               <Col xxl={3} xl={3} lg={4} md={5} sm={4} span={6}>
                 <StyledInputNumber
+                  size="large"
                   min={0}
                   type="number"
                   onChange={value => formikTwo.setFieldValue('paid_price', value)}

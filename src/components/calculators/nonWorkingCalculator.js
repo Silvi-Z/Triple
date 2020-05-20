@@ -71,8 +71,6 @@ const ButtonLarge = styled(Button)`
 const StyledInputNumber = styled(InputNumber)`
   width: 100%;
   height: ${props => props.large ? 56 : 40}px;
-  display: flex;
-  align-items: center;
   border-color: #009db8;
   font-size: 13px;
   font-family: ArialAMU;
@@ -448,6 +446,7 @@ const NonWorkingCalculator = ({ toggleForm, showForm }) => {
             </Col>
             <Col xxl={2} xl={3} lg={3} md={4} sm={5} span={6}>
               <StyledInputNumber
+                size="large"
                 value={vacationDays}
                 min={140}
                 onChange={val => {
@@ -481,6 +480,7 @@ const NonWorkingCalculator = ({ toggleForm, showForm }) => {
               </Col>
               <Col xxl={2} xl={3} lg={3} md={4} sm={5} span={6}>
                 <StyledInputNumber
+                  size="large"
                   value={formik1.values.other_employer_income}
                   min={0}
                   onChange={val => {
@@ -509,6 +509,7 @@ const NonWorkingCalculator = ({ toggleForm, showForm }) => {
               </Col>
               <Col xxl={2} xl={3} lg={3} md={4} sm={5} span={6}>
                 <StyledInputNumber
+                  size="large"
                   large
                   value={formik1.values.previous_year_number_months}
                   min={0}

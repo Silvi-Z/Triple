@@ -71,8 +71,6 @@ const ButtonLarge = styled(Button)`
 const StyledInputNumber = styled(InputNumber)`
   width: 100%;
   height: 40px;
-  display: flex;
-  align-items: center;
   border-color: #009db8;
   font-size: 13px;
   font-family: ArialAMU;
@@ -447,6 +445,7 @@ const FinalCalculator = ({ toggleForm, showForm }) => {
               <FormLabelLong text={'Ընդհանուր արձակուրդային օրեր'} />
               <Col xxl={1} xl={2} lg={2} md={2} sm={3} span={3}>
                 <StyledInputNumber
+                  size="large"
                   value={formik1.values.total_vacation_days}
                   min={0}
                   onChange={val => {
@@ -460,6 +459,7 @@ const FinalCalculator = ({ toggleForm, showForm }) => {
               <FormLabelLong text={'Օգտագործված արձակուրդային օրեր'} />
               <Col xxl={1} xl={2} lg={2} md={2} sm={3} span={3}>
                 <StyledInputNumber
+                  size="large"
                   value={formik1.values.used_days}
                   min={0}
                   onChange={val => {

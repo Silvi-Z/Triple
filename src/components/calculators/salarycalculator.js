@@ -82,8 +82,6 @@ const Label2 = styled(Text)`
 const StyledInputNumber = styled(InputNumber)`
   width: 100%;
   height: 40px;
-  display: flex;
-  align-items: center;
   border-color: #009db8;
   font-size: 13px;
   font-family: ArialAMU;
@@ -314,6 +312,7 @@ const SalaryCalculator = ({ toggleForm, showForm }) => {
               <FormLabelLong text={'Պարգևավճար'} />
               <Col xxl={3} xl={3} lg={4} md={5} sm={5} span={6}>
                 <StyledInputNumber
+                  size="large"
                   min={0}
                   id="bonus_price"
                   name="bonus_price"

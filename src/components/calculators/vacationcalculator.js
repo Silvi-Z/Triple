@@ -75,8 +75,6 @@ const ButtonSubmit = styled(Button)`
 const StyledInputNumber = styled(InputNumber)`
   width: 100%;
   height: 40px;
-  display: flex;
-  align-items: center;
   border-color: #009db8;
   font-size: 13px;
   font-family: ArialAMU;
@@ -507,6 +505,7 @@ const VacationCalculator = ({ toggleForm, showForm }) => {
             </Col>
             <Col xxl={1} xl={2} lg={2} md={2} sm={3} span={3}>
               <StyledInputNumber
+                size="large"
                 disabled={formDisable}
                 value={vacDays}
                 min={0}
@@ -1348,6 +1347,7 @@ const VacationCalculator = ({ toggleForm, showForm }) => {
 
               <Col xxl={1} xl={2} lg={2} md={2} sm={3} span={3}>
                 <StyledInputNumber
+                  size="large"
                   value={formik2.values.total_vacation_days}
                   min={1}
                   onChange={val => {
@@ -1361,6 +1361,7 @@ const VacationCalculator = ({ toggleForm, showForm }) => {
 
               <Col xxl={1} xl={2} lg={2} md={2} sm={3} span={3}>
                 <StyledInputNumber
+                  size="large"
                   value={formik2.values.used_days}
                   min={0}
                   onChange={val => {

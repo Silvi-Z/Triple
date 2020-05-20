@@ -7,8 +7,6 @@ const { Text } = Typography;
 const StyledInputNumber = styled(InputNumber)`
   width: 100%;
   height: 40px;
-  display: flex;
-  align-items: center;
   border-color: #009db8;
   font-size: 13px;
   font-family: ArialAMU;
