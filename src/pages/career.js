@@ -5,7 +5,6 @@ import styled from "styled-components"
 import { Typography, Row, Col, Button, InputNumber } from "antd"
 import CareerWrap from "../components/careercomponents/careerdrop"
 
-
 const CareerParagraphRow = styled(Row)`
   padding: 0 12%;
   margin-bottom: 3.8%;
@@ -25,7 +24,7 @@ const CareerParagraphRow = styled(Row)`
   }
 `
 
- const H2Styled = styled.h2`
+const H2Styled = styled.h2`
   width: 244px;
   height: 18px;
   font-family: ArialAMU;
@@ -119,28 +118,6 @@ const Career = () => {
         },
         open: true,
       },
-      // {
-      //   status: true,
-      //   data: {
-      //     id: 1,
-      //     title_arm: "ԳԼԽԱՎՈՐ",
-      //     title_ru: "string",
-      //     title_en: "string",
-      //     description_arm_1:
-      //       "Հաշվապահական կամ ֆինանսական ոլորտում աշխատանքային փորձ (առնվազն 3 տարի)",
-      //     description_arm_2: "Հաշվապահական ստանդարտների իմացություն,",
-      //     description_arm_3:
-      //       "ՀԾ, 1 C, E-invoicing և այլ հարակից հաշվապահական ծրագրերի իմացություն,",
-      //     description_arm_4: "Microsoft Office փաթեթի իմացություն",
-      //     description_arm_5:
-      //       "Հաշվապահական հաշվառման ստանդարտների լավ տիրապետում",
-      //     description_arm_6:
-      //       "Հաշվապահական հաշվառման ստանդարտների լավ տիրապետում",
-      //     description_ru: "string",
-      //     description_en: "string",
-      //   },
-      //   open: false,
-      // },
     ])
   }
 
@@ -153,8 +130,8 @@ const Career = () => {
       d.data.id === current.data.id && d.open === false
         ? { ...d, open: true }
         : d.data.id !== current.data.id && d.open === true
-          ? { ...d, open: false }
-          : { ...d, open: false }
+        ? { ...d, open: false }
+        : { ...d, open: false }
     )
     setcareerdata(data)
   }
@@ -164,7 +141,10 @@ const Career = () => {
         <Col lg={{ span: 24 }} xxl={{ span: 8, offset: 4 }}>
           <H2Styled>Միացիր մեր թիմին</H2Styled>
           <PStyled>
-            Մենք միշտ ուրախ ենք ընդլայնել մեր թիմը լավագույն մասնագետներով։ Եթե ունեք ցանկություն միանալու մեզ, ապա ուղարկեք Ձեր ինքնակենսագրականը, մենք ուրախ ենք տեսնել լավագույններին մեր կազմում։Ստորեւ կարող եք ծանոթանալ թափուր աշխատատեղերին։
+            Մենք միշտ ուրախ ենք ընդլայնել մեր թիմը լավագույն մասնագետներով։ Եթե
+            ունեք ցանկություն միանալու մեզ, ապա ուղարկեք Ձեր ինքնակենսագրականը,
+            մենք ուրախ ենք տեսնել լավագույններին մեր կազմում։Ստորեւ կարող եք
+            ծանոթանալ թափուր աշխատատեղերին։
           </PStyled>
         </Col>
       </CareerParagraphRow>

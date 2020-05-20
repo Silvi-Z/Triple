@@ -103,7 +103,7 @@ const RegistrationForm = ({
   const [checkId, setcheckId] = useState(1)
   const [identity_document_type, setidentity_document_type] = useState(0)
   const [tin, setTin] = useState(" ")
- 
+
   /*Updating parent state*/
   const updateFieldsState = obj => {
     SetAllFieldsValues({ ...allFieldsValues, ...obj })
@@ -114,7 +114,6 @@ const RegistrationForm = ({
       psn: e.target.value,
     }
     try {
-      toggleLoading(true)
       let res = await apiHelper.post("/api/getTin", body)
       res.data.data.length === 0 ? setTin(null) : setTin(res.data.data.tin)
       res.data.data.length === 0
@@ -124,7 +123,6 @@ const RegistrationForm = ({
         : form.setFieldsValue({
           tin: res.data.data.tin,
         })
-      toggleLoading(false)
     } catch (e) {
       console.log("Calculation error: ", e)
     }
@@ -436,18 +434,18 @@ const RegistrationForm = ({
 
   /*calls onfill func after clicking in form2js back button,and gives as a parapmetr FieldValuesObj*/
   useEffect(() => {
-    let prev
+    let previousFieldsValues
     if (allFieldsValues.hasOwnProperty("when")) {
-      prev = {
+      previousFieldsValues = {
         ...allFieldsValues,
         when: moment(allFieldsValues.when).clone(),
         birthday: moment(allFieldsValues.birthday).clone(),
         phone: parseInt(allFieldsValues.phone),
-        psn: parseInt(allFieldsValues.psn),
-        tin: parseInt(allFieldsValues.tin),
+        psn: allFieldsValues.psn,
+        tin: allFieldsValues.tin,
       }
     } else {
-      prev = {
+      previousFieldsValues = {
         ...allFieldsValues,
         birthday: moment(allFieldsValues.birthday).clone(),
         phone: parseInt(allFieldsValues.phone),
@@ -455,9 +453,8 @@ const RegistrationForm = ({
         tin: parseInt(allFieldsValues.tin),
       }
     }
-    console.log(prev)
     resetForm ? form.resetFields() : null
-    fillform ? onFill(prev) : null
+    fillform ? onFill(previousFieldsValues) : null
   }, [])
 
   return (

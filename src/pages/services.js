@@ -211,7 +211,7 @@ const Services = ({ location, ...props }) => {
     setservicedata()
   }
   useEffect(() => {
-    if (location.state.clickedItems > 4) {
+    if (location.state.clickedItems > 3) {
       console.log(window)
       setTimeout(function () {
         window.scrollTo(0, 500);
@@ -232,7 +232,6 @@ const Services = ({ location, ...props }) => {
   }
 
   const toggleFromHomePage = state => {
-
     const data = servicedata.map(d =>
       d.data.id === state.clickedItems ? { ...d, open: true } : { ...d }
     )
