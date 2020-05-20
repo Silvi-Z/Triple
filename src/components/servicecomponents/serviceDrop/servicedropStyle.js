@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import { Typography, CareerDropRow, Col, Button, Row, InputNumber } from "antd"
+import { Col, Button, Row } from "antd"
 
 export const ServiceDropRow = styled(Row)`
   height: ${data => (data.open ? "auto" : "auto")};

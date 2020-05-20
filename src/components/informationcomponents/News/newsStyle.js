@@ -1,9 +1,7 @@
-/*eslint-disable */
-import React, { useState } from "react"
 import styled from "styled-components"
-import { Typography, Row, Col, Button, InputNumber } from "antd"
+import { Col } from "antd"
 
-const ContainerNews = styled(Col)`
+export const ContainerNews = styled(Col)`
   max-width: 790px;
   height: 150px;
   overflow: hidden;
@@ -22,10 +20,10 @@ const ContainerNews = styled(Col)`
     height: 365px;
   }
 `
-const ImgWrapper = styled(Col)`
+export const ImgWrapper = styled(Col)`
   height: -webkit-fill-available;
 `
-const TextWrapper = styled(Col)`
+export const TextWrapper = styled(Col)`
   padding: 2.2% 1%;
   &:hover {
     color: #009db8;
@@ -38,7 +36,7 @@ const TextWrapper = styled(Col)`
     }
   }
 `
-const Ptext = styled.p`
+export const Ptext = styled.p`
   height: auto;
   font-family: ArialAMU;
   font-size: 12px;
@@ -76,7 +74,7 @@ const Ptext = styled.p`
     color: #000000;
   }
 `
-const WrapperImg = styled.img`
+export const WrapperImg = styled.img`
   height: -webkit-fill-available;
   cursor: pointer;
   @media only screen and (max-width: 375px) {
@@ -88,7 +86,7 @@ const WrapperImg = styled.img`
     height: 150px;
   }
 `
-const H2text = styled.h2`
+export const H2text = styled.h2`
   font-family: ArialAMU;
   font-size: 16px;
   font-weight: normal;
@@ -100,21 +98,3 @@ const H2text = styled.h2`
   color: #000000;
   margin-bottom: 8px;
 `
-const News = ({ data, openpage }) => {
-  return (
-    <ContainerNews ls={24} onClick={openpage}>
-      <Row>
-        <ImgWrapper xl={6} lg={6} md={6} xs={24}>
-          <WrapperImg src={data.Imgurl} alt={"img"} />
-        </ImgWrapper>
-        <TextWrapper xl={18} lg={18} md={18} xs={24}>
-          <H2text>{data.heading}</H2text>
-          <hr width="10%" style={{ marginBottom: "9px" }} />
-          <Ptext>{data.paragraph}</Ptext>
-        </TextWrapper>
-      </Row>
-    </ContainerNews>
-  )
-}
-
-export default News

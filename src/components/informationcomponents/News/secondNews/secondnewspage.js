@@ -1,183 +1,24 @@
 import React from "react"
-import styled from "styled-components"
 import { Row, Col } from "antd"
-import Img1 from "../../assets/informimages/src6821.jpg"
-import BottomImg from "../../assets/informimages/newsimage.png"
-
-const ContainerNews = styled.div`
-  max-width: 883px;
-  height: auto;
-  overflow: hidden;
-  margin-top: 39px;
-  margin-left: 13.5%;
-  background-color: #f7f7f7;
-  margin: 0 auto;
-`
-
-const NewsCol = styled(Col)`
-  max-width: 576px;
-  height: 955px;
-  @media only screen and (max-width: 768px) {
-    max-width: 439px;
-  }
-`
-const ImagesCol = styled(Col)`
-  max-width: 208px;
-  margin-left: 99px;
-`
-const H2Styled = styled.h2`
-  width: 323px;
-  height: 33px;
-  font-family: ArialAMU;
-  font-size: 16px;
-  font-weight: bold;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: normal;
-  letter-spacing: normal;
-  text-align: left;
-  color: #000000;
-  margin-bottom: 8px;
-`
-const ImagesH2Styled = styled.h2`
-  width: 323px;
-  height: 33px;
-  font-family: ArialAMU;
-  font-size: 16px;
-  font-weight: bold;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: normal;
-  letter-spacing: normal;
-  text-align: left;
-  color: #000000;
-  margin-bottom: 19px;
-`
-const H3Styled = styled.h2`
-  width: 137px;
-  height: 14px;
-  font-family: ArialAMU;
-  font-size: 14px;
-  font-weight: normal;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: normal;
-  letter-spacing: normal;
-  text-align: left;
-  color: #9d9d9d;
-  margin-bottom: 38px;
-`
-const RowArticle = styled(Row)`
-  max-width: 571px;
-  max-height: 590px;
-  @media only screen and (max-width: 768px) {
-    max-width: 439px;
-    max-height: 590px;
-  }
-`
-const ArtCol1 = styled(Col)`
-  margin-bottom: 2px;
-  h2 {
-    font-size: 14px;
-    font-weight: bold;
-    color: #000000;
-    margin-bottom: 0px;
-  }
-
-  p {
-    width: 571px;
-    height: 139px;
-    font-family: ArialAMU;
-    font-size: 14px;
-    font-weight: normal;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: 1.71;
-    letter-spacing: normal;
-    text-align: left;
-    color: #000000;
-    margin-bottom: 0px;
-  }
-  @media only screen and (max-width: 768px) {
-    max-width: 439px;
-  }
-`
-const ArtCol2 = styled(Col)`
-  h2 {
-    font-size: 14px;
-    font-weight: bold;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: 1.71;
-    letter-spacing: normal;
-    text-align: left;
-    color: #000000;
-    margin-bottom: 0px;
-  }
-
-  p {
-    width: 571px;
-    height: 398px;
-    font-family: ArialAMU;
-    font-size: 14px;
-    font-weight: normal;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: 1.71;
-    letter-spacing: normal;
-    text-align: left;
-    color: #000000;
-    margin-bottom: 0px;
-  }
-  @media only screen and (max-width: 768px) {
-    width: 439px;
-  }
-`
-const ArtCol3 = styled(Col)`
-  margin-top: 32px;
-`
-const BottomImgWrapper = styled.img``
-
-const WrapperImg = styled(Col)`
-  height: 224px;
-  margin-bottom: 15px;
-`
-
-const Image = styled.img`
-  width: 100%;
-  height: 140px;
-  margin-bottom: 14px;
-`
-const RightImgTextH4 = styled.h4`
-  width: 207px;
-  height: 46px;
-  font-family: ArialAMU;
-  font-size: 14px;
-  font-weight: bold;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: normal;
-  letter-spacing: normal;
-  text-align: left;
-  color: #009db8;
-  margin-bottom: 0px;
-`
-const RightImgTextSpan = styled.span`
-  width: 117px;
-  height: 12px;
-  font-family: ArialAMU;
-  font-size: 12px;
-  font-weight: normal;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: normal;
-  letter-spacing: normal;
-  text-align: left;
-  color: #9d9d9d;
-  margin-bottom: 1%;
-  display: block;
-`
-
+import Img1 from "../../../../assets/informimages/src6821.jpg"
+import BottomImg from "../../../../assets/informimages/newsimage.png"
+import {
+  ContainerNews,
+  NewsCol,
+  ImagesCol,
+  H2Styled,
+  ImagesH2Styled,
+  H3Styled,
+  RowArticle,
+  ArtCol1,
+  ArtCol2,
+  ArtCol3,
+  BottomImgWrapper,
+  WrapperImg,
+  Image,
+  RightImgTextH4,
+  RightImgTextSpan,
+} from "./secondnewsStyle"
 const UsefulNews = () => {
   return (
     <ContainerNews>

@@ -1,9 +1,7 @@
-import React from "react"
 import styled from "styled-components"
-import { Link } from "gatsby"
-import { Typography, Row, Col, Button, InputNumber } from "antd"
+import { Row, Col } from "antd"
 
-const ContainerUseful = styled(Row)`
+export const ContainerUseful = styled(Row)`
   width: 85%;
   margin-top: 3%;
   padding: 2%;
@@ -20,8 +18,7 @@ const ContainerUseful = styled(Row)`
     width: 97%;
   }
 `
-
-const TextWrapper = styled(Col)`
+export const TextWrapper = styled(Col)`
   padding: 1% 1%;
   h2 {
     width: 417px;
@@ -50,7 +47,7 @@ const TextWrapper = styled(Col)`
     color: #000000;
   }
 `
-const ListWrapper = styled(Col)`
+export const ListWrapper = styled(Col)`
   ul {
     list-style: none;
     margin-left: 0;
@@ -82,34 +79,8 @@ const ListWrapper = styled(Col)`
     }
   }
 `
-const Hr = styled.hr`
+export const Hr = styled.hr`
   width: 20%;
   height: 1px;
   background-color: black;
 `
-const DocTemplateInform = ({ usedata }) => {
-  const linklist = usedata.data.links.map(lin => (
-    <a
-      href={lin.link}
-      target="_blank
-    "
-      key={lin.id}
-    >
-      <li>{lin.label}</li>
-    </a>
-  ))
-
-  return (
-    <ContainerUseful>
-      <TextWrapper span={24}>
-        <h2>{usedata.data.first_heading}</h2>
-      </TextWrapper>
-      <Hr />
-      <ListWrapper>
-        <ul>{linklist}</ul>
-      </ListWrapper>
-    </ContainerUseful>
-  )
-}
-
-export default DocTemplateInform

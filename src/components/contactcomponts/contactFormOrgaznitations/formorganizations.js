@@ -3,7 +3,7 @@ import { Form, Input, Button, Checkbox, Row, Col } from "antd"
 import { Upload, message } from "antd"
 import { UploadOutlined } from "@ant-design/icons"
 import styled from "styled-components"
-import uploadImage from "../../assets/upload2.svg"
+import uploadImage from "../../../assets/upload2.svg"
 
 const fileprops = {
   name: "file",

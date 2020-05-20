@@ -1,8 +1,7 @@
 import React, { useState, useEffect, useRef } from "react"
 import Layout from "../components/layout"
-import { Row, Col } from "antd"
-import styled from "styled-components"
-import ServiceDropWrap from "../components/servicecomponents/servicedrop"
+import { Col } from "antd"
+import ServiceDropWrap from "../components/servicecomponents/serviceDrop/servicedrop"
 import CalcImg from "../assets/homeImages/icons/calculator.svg"
 import TaxImg from "../assets/homeImages/icons/tax.svg"
 import AuditImg from "../assets/homeImages/icons/audit.svg"
@@ -11,85 +10,11 @@ import BrowserImg from "../assets/homeImages/icons/browser.svg"
 import UserImg from "../assets/homeImages/icons/user.svg"
 import LawImg from "../assets/homeImages/icons/law.svg"
 import TeamImg from "../assets/homeImages/icons/teamwork.svg"
-
-const HeadingParagraphRow = styled(Row)`
-  padding: 0 12%;
-  margin-bottom: 2.8%;
-  @media (min-width: 1600px) {
-    padding: 0 0%;
-    margin-bottom: 2.8%;
-  }
-  @media only screen and (max-width: 1366px) {
-    padding: 0 4%;
-    margin-bottom: 2.8%;
-  }
-  @media only screen and (max-width: 1170px) {
-    padding: 0 0%;
-    margin-bottom: 2.8%;
-  }
-  @media only screen and (max-width: 768px) {
-    padding-top: 49px;
-    padding-left: 8.8%;
-    padding-right: 0%;
-    margin-bottom: 100px;
-  }
-`
-const H2Styled = styled.h2`
-  width: 155px;
-  height: 18px;
-  font-family: ArialAMU;
-  font-size: 18px;
-  font-weight: bold;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: normal;
-  letter-spacing: normal;
-  text-align: center;
-  color: #000000;
-  text-align: left;
-`
-const PStyled = styled.p`
-  height: 46px;
-  font-family: ArialAMU;
-  font-size: 16px;
-  font-weight: normal;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: 1.88;
-  letter-spacing: normal;
-  text-align: left;
-  color: #000000;
-  margin-top: 20px;
-  margin-bottom: 50px;
-  @media only screen and (max-width: 375px) {
-    width: 289px;
-    height: 103px;
-    font-family: ArialAMU;
-    font-size: 16px;
-    font-weight: normal;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: 1.88;
-    letter-spacing: normal;
-    text-align: left;
-    color: #000000;
-    margin-bottom: 200px;
-  }
-  @media only screen and (max-width: 320px) {
-    width: 289px;
-    height: 103px;
-    font-family: ArialAMU;
-    font-size: 16px;
-    font-weight: normal;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: 1.88;
-    letter-spacing: normal;
-    text-align: left;
-    color: #000000;
-    margin-bottom: 200px;
-  }
-`
+import {
+  HeadingParagraphRow,
+  H2Styled,
+  PStyled
+} from "../components/servicecomponents/serviceMainStyle"
 
 const Services = ({ location, ...props }) => {
   const [servicedata, setservicedata] = useState([
@@ -206,20 +131,17 @@ const Services = ({ location, ...props }) => {
       open: false,
     },
   ])
-
   const getServiceData = () => {
     setservicedata()
   }
   useEffect(() => {
-    if (location.state.clickedItems > 3) {
-      console.log(window)
+    if (location.state.clickedItems >= 2) {
       setTimeout(function () {
         window.scrollTo(0, 500);
       }, 2);
     }
     toggleFromHomePage(location.state)
   }, [])
-
   const toggle = current => {
     const data = servicedata.map(d =>
       d.data.id === current.data.id && d.open === false
@@ -230,14 +152,12 @@ const Services = ({ location, ...props }) => {
     )
     setservicedata(data)
   }
-
   const toggleFromHomePage = state => {
     const data = servicedata.map(d =>
       d.data.id === state.clickedItems ? { ...d, open: true } : { ...d }
     )
     setservicedata(data)
   }
-
   return (
     <Layout>
       <HeadingParagraphRow>
