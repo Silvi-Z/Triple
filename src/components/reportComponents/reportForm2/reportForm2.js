@@ -39,6 +39,7 @@ function ReportForm2({
   const [loading, toggleLoading] = useState(false)
 
   const onFinish = async values => {
+    console.log(values.credentials_file[0])
     let UploadFormData = new FormData()
     UploadFormData.append("full_name", AllFieldsValues.full_name)
     UploadFormData.append("city", AllFieldsValues.city)
@@ -88,6 +89,7 @@ function ReportForm2({
             setResetForm(true)
           },
           reject => {
+            console.log(reject.response)
             toggleLoading(false)
           }
         )

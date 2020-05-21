@@ -745,12 +745,12 @@ pre tt:after {
   width: 514px;
   height: 38px;
 }
-#basic_username:focus {
+/* #basic_username:focus {
   border-color: yellow;
   outline: 0;
   -webkit-box-shadow: 0 0 0 2px rgba(87, 168, 233, 0.2);
   box-shadow: 0 0 0 2px rgba(87, 168, 233, 0.2);
-}
+} */
 #basic_username label {
   width: 122px;
   height: 14px;

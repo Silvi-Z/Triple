@@ -80,10 +80,16 @@ const Formfield = () => {
           },
         })
         .then(res => {
+          console.log(res)
           toggleLoading(false)
           setmodalVisible(true)
-        })
+        },
+          reject => {
+            console.log(reject.response)
+            toggleLoading(false)
+          })
     } catch (e) {
+      console.log(e.response)
       toggleLoading(false)
     }
   }
