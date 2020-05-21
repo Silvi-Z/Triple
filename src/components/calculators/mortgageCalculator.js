@@ -140,7 +140,7 @@ const monthPrev2 = !monthPrev1 ? 12 : monthPrev1 - 1;
 
 const initialValuesOne = {
   price_type: false,
-  patent: false,
+  patent: true,
   price1: 0,
   price2: 0,
   price3: 0,
@@ -176,7 +176,7 @@ const MortgageCalculator = ({ toggleForm, showForm }) => {
   const [loadingTwo, toggleLoadingTwo] = useState(false);
   const [initialValuesTwo, setInitialValuesTwo] = useState({
     price_type: false,
-    patent: false,
+    patent: true,
     price1: 0,
     price2: 0,
     price3: 0,
@@ -305,22 +305,6 @@ const MortgageCalculator = ({ toggleForm, showForm }) => {
                 span={11}
               >
                 <ButtonBase
-                  type={!formikOne.values.patent ? 'primary' : 'default'}
-                  size="large"
-                  block
-                  onClick={() => formikOne.setFieldValue('patent', false)}
-                >
-                  <Label fontcolor={
-                    !formikOne.values.patent
-                      ? '#fff'
-                      : '#000'
-                  }>
-                    ՏՏ ոլորտի Արտոնագիր
-                  </Label>
-                </ButtonBase>
-              </Col>
-              <Col xxl={5} xl={6} lg={7} md={9} sm={11} span={11}>
-                <ButtonBase
                   type={formikOne.values.patent ? 'primary' : 'default'}
                   size="large"
                   block
@@ -332,6 +316,23 @@ const MortgageCalculator = ({ toggleForm, showForm }) => {
                       : '#000'
                   }>
                     Ընդհանուր հարկման դաշտ
+                  </Label>
+                </ButtonBase>
+              </Col>
+              
+              <Col xxl={5} xl={6} lg={7} md={9} sm={11} span={11}>
+                <ButtonBase
+                  type={!formikOne.values.patent ? 'primary' : 'default'}
+                  size="large"
+                  block
+                  onClick={() => formikOne.setFieldValue('patent', false)}
+                >
+                  <Label fontcolor={
+                    !formikOne.values.patent
+                      ? '#fff'
+                      : '#000'
+                  }>
+                    ՏՏ ոլորտի Արտոնագիր
                   </Label>
                 </ButtonBase>
               </Col>
