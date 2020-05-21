@@ -8,6 +8,7 @@ import moment from "moment"
 //styled inputs with layout.css
 import "../../layout.css"
 import {
+  StyledForm,
   ColAddress,
   ReportPassportRow,
   DatePickerCustom,
@@ -368,7 +369,7 @@ const RegistrationForm = ({
 
   return (
     <React.Fragment>
-      <Form
+      <StyledForm
         {...formItemLayout}
         form={form}
         name="register"
@@ -378,7 +379,7 @@ const RegistrationForm = ({
         }}
         scrollToFirstError
       >
-        <Form.Item
+        <StyledForm.Item
           name="full_name"
           label={<LabelSpan>Անուն / Ազգանուն</LabelSpan>}
           rules={[
@@ -390,23 +391,24 @@ const RegistrationForm = ({
           ]}
         >
           <Input />
-        </Form.Item>
+        </StyledForm.Item>
         <Row>
           <Col
-            xs={{ span: 21, offset: 0 }}
-            sm={{ span: 20, offset: 0 }}
+            xs={{ span: 24, offset: 0 }}
+            sm={{ span: 24, offset: 0 }}
             md={{ span: 8, offset: 0 }}
             lg={{ span: 5, offset: 0 }}
             xl={{ span: 5, offset: 0 }}
             xxl={{ span: 3, offset: 0 }}
           >
-            <Form.Item
+            <StyledForm.Item
               name="city"
               label={<LabelSpan>Բնակության վայրի հասցե</LabelSpan>}
               rules={[
                 {
                   required: true,
                   message: "Խնդրում ենք լրացնել նշված դաշտերը",
+                  whitespace: true,
                 },
               ]}
             >
@@ -422,17 +424,17 @@ const RegistrationForm = ({
                 <Option value="Վայոց ձոր">Վայոց ձոր</Option>
                 <Option value="Տավուշ">Տավուշ</Option>
               </SelectCustom>
-            </Form.Item>
+            </StyledForm.Item>
           </Col>
           <ColAddress
-            xs={{ span: 21 }}
-            sm={{ span: 23 }}
+            xs={{ span: 24 }}
+            sm={{ span: 24 }}
             md={{ span: 9, offset: 1 }}
             lg={{ span: 6 }}
             xl={{ span: 6 }}
             xxl={{ span: 6 }}
           >
-            <Form.Item
+            <StyledForm.Item
               name="address"
               label={<LabelSpan> </LabelSpan>}
               rules={[
@@ -443,10 +445,10 @@ const RegistrationForm = ({
               ]}
             >
               <Input />
-            </Form.Item>
+            </StyledForm.Item>
           </ColAddress>
         </Row>
-        <Form.Item
+        <StyledForm.Item
           {...tailFormButtonLayout}
           label={<LabelSpan>Ընտրել անձը հաստատող փաստաթղթի տեսակը</LabelSpan>}
         >
@@ -462,11 +464,17 @@ const RegistrationForm = ({
           >
             Նույնականացման քարտ
           </IdButton>
-        </Form.Item>
+        </StyledForm.Item>
         {checkPassport === 0 ? (
           <ReportPassportRow>
-            <Col xs={18} sm={18} md={6} lg={6} xl={6} xxl={5}>
-              <Form.Item
+            <Col
+              xs={24}
+              sm={24}
+              md={6}
+              lg={6}
+              xl={6}
+              xxl={5}>
+              <StyledForm.Item
                 name="passport_series"
                 label={<LabelSpan>Անձնագրի սերիա</LabelSpan>}
                 rules={[
@@ -482,10 +490,16 @@ const RegistrationForm = ({
                 ]}
               >
                 <Input />
-              </Form.Item>
+              </StyledForm.Item>
             </Col>
-            <Col xs={24} sm={24} md={6} lg={6} xl={6} xxl={5}>
-              <Form.Item
+            <Col
+              xs={24}
+              sm={24}
+              md={6}
+              lg={6}
+              xl={6}
+              xxl={5}>
+              <StyledForm.Item
                 name="given"
                 label={<LabelSpan>Տրված է ում կողմից</LabelSpan>}
                 rules={[
@@ -501,10 +515,16 @@ const RegistrationForm = ({
                 ]}
               >
                 <Input />
-              </Form.Item>
+              </StyledForm.Item>
             </Col>
-            <Col xs={24} sm={24} md={8} lg={6} xl={6} xxl={5}>
-              <Form.Item
+            <Col
+              xs={24}
+              sm={24}
+              md={8}
+              lg={6}
+              xl={6}
+              xxl={5}>
+              <StyledForm.Item
                 name="when"
                 label={<LabelSpan>Երբ</LabelSpan>}
                 rules={[
@@ -519,13 +539,13 @@ const RegistrationForm = ({
                   placeholder="Դեկտեմբեր 25, 1995 23:15:30"
                   format="DD-MM-YYYY"
                 />
-              </Form.Item>
+              </StyledForm.Item>
             </Col>
           </ReportPassportRow>
         ) : (
             <Row>
               <Col lg={8}>
-                <Form.Item
+                <StyledForm.Item
                   name="ID_card_number"
                   label={<LabelSpan>Նույնականացման քարտ</LabelSpan>}
                   rules={[
@@ -540,11 +560,11 @@ const RegistrationForm = ({
                   ]}
                 >
                   <Input type="number" />
-                </Form.Item>
+                </StyledForm.Item>
               </Col>
             </Row>
           )}
-        <Form.Item
+        <StyledForm.Item
           name="birthday"
           label={<LabelSpan>Ծննդյան օր/ամիս/տարեթիվ</LabelSpan>}
           rules={[
@@ -556,8 +576,8 @@ const RegistrationForm = ({
             placeholder="Դեկտեմբեր 25, 1995 23:15:30"
             format="DD-MM-YYYY"
           />
-        </Form.Item>
-        <Form.Item
+        </StyledForm.Item>
+        <StyledForm.Item
           name="psn"
           label={<LabelSpan>ՀԾՀ</LabelSpan>}
           rules={[
@@ -572,8 +592,8 @@ const RegistrationForm = ({
           ]}
         >
           <Input type="number" onChange={CheckPsn} />
-        </Form.Item>
-        <Form.Item
+        </StyledForm.Item>
+        <StyledForm.Item
           name="tin"
           label={<LabelSpan>ՀՎՀՀ</LabelSpan>}
           rules={[
@@ -589,9 +609,9 @@ const RegistrationForm = ({
           ]}
         >
           <Input type="number" />
-        </Form.Item>
+        </StyledForm.Item>
 
-        <Form.Item
+        <StyledForm.Item
           name="phone"
           label={<LabelSpan>Հեռախոսահամար</LabelSpan>}
           rules={[
@@ -607,8 +627,8 @@ const RegistrationForm = ({
           ]}
         >
           <Input placeholder=" +374 000000" type="number" />
-        </Form.Item>
-        <Form.Item
+        </StyledForm.Item>
+        <StyledForm.Item
           name="email"
           label={
             <span>
@@ -630,8 +650,8 @@ const RegistrationForm = ({
           ]}
         >
           <Input />
-        </Form.Item>
-        <Form.Item
+        </StyledForm.Item>
+        <StyledForm.Item
           label={
             <SubmitSpan>
               Հաստատել կոճակը սեղմելուց հետո լիազորագիրը կներբեռնվի։ Խնդրում ենք
@@ -649,8 +669,8 @@ const RegistrationForm = ({
           >
             Հաստատել
           </Button>
-        </Form.Item>
-      </Form>
+        </StyledForm.Item>
+      </StyledForm>
     </React.Fragment>
   )
 }

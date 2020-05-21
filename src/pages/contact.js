@@ -100,6 +100,7 @@ const Contact = () => {
           xl={{ span: 19 }}
           lg={{ span: 19 }}
           md={{ span: 19 }}
+          xs={{ span: 24 }}
           offset={2}
         >
           <CallIconWrapper src={CallPhoneImg} alt={"icon"} />

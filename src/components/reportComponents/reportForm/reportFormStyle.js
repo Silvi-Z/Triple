@@ -1,7 +1,15 @@
-import styled from "styled-components"
-import { Form, Input, Tooltip, Select, Row, Col, Button, Spin } from "antd"
-import { DatePicker, InputNumber } from "antd"
+import styled from 'styled-components';
+import { Form, Input, Tooltip, Select, Row, Col, Button, Spin } from 'antd';
+import { DatePicker, InputNumber } from 'antd';
 
+export const StyledForm = styled(Form)`
+  .ant-form-item-has-error .ant-select .ant-select-selector {
+    border-color: white !important;
+  }
+  .ant-form-item-has-error .ant-picker {
+    border-color: #009db8 !important;
+  }
+`;
 export const ColAddress = styled(Col)`
   /* margin-top: 3.1%;
 @media (min-width: 768px) {
@@ -20,9 +28,15 @@ export const ColAddress = styled(Col)`
   @media (min-width: 1600px) {
     margin-left: 0.2%;
   }
-`
+`;
 export const ReportPassportRow = styled(Row)`
-  width: 48.6%;
+  /* width: 48.6%; */
+  @media (min-width: 320) {
+    width: 100%;
+  }
+  @media (min-width: 375) {
+    width: 100%;
+  }
   @media (min-width: 768px) {
     width: 100%;
   }
@@ -38,24 +52,24 @@ export const ReportPassportRow = styled(Row)`
   @media (min-width: 1600px) {
     width: 51%;
   }
-`
+`;
 export const DatePickerCustom = styled(DatePicker)`
   width: 142px;
   height: 40px;
   border: solid 1px #009db8;
   @media (min-width: 320px) {
-    width: 290px;
+    width: 100%;
     border: solid 1px #009db8;
   }
   @media (min-width: 375px) {
-    width: 290px;
+    width: 100%;
     border: solid 1px #009db8;
   }
   @media (min-width: 768px) {
     width: 142px;
     border: solid 1px #009db8;
   }
-`
+`;
 export const SelectCustom = styled(Select)`
   width: 216px;
   border: solid 1px #009db8;
@@ -76,36 +90,36 @@ export const SelectCustom = styled(Select)`
     width: 87%;
     border: solid 1px #009db8;
   }
-`
+`;
 export const PassportButton = styled(Button)`
   height: 40px;
   @media (min-width: 320px) {
     margin-top: 10px;
-    width: 290px;
+    width: 100%;
     border: solid 1px #009db8;
   }
   @media (min-width: 375px) {
     margin-top: 10px;
-    width: 290px;
+    width: 100%;
     border: solid 1px #009db8;
   }
   @media (min-width: 768px) {
     width: 216px;
     border: solid 1px #009db8;
   }
-`
+`;
 export const IdButton = styled(Button)`
   width: 216px;
   height: 40px;
   margin-left: 2.7%;
   @media (min-width: 320px) {
-    width: 290px;
+    width: 100%;
     border: solid 1px #009db8;
     margin-top: 3%;
     margin-left: 0%;
   }
   @media (min-width: 375px) {
-    width: 290px;
+    width: 100%;
     border: solid 1px #009db8;
     margin-top: 3%;
     margin-left: 0%;
@@ -121,7 +135,7 @@ export const IdButton = styled(Button)`
   @media (min-width: 1900px) {
     margin-left: 2.6%;
   }
-`
+`;
 export const SubmitSpan = styled.span`
   width: 408px;
   height: 31px;
@@ -142,7 +156,7 @@ export const SubmitSpan = styled.span`
     width: 290px;
     margin-bottom: 20px;
   }
-`
+`;
 export const LabelSpan = styled.span`
   width: auto;
   height: 14px;
@@ -164,4 +178,4 @@ export const LabelSpan = styled.span`
   @media (min-width: 1170px) {
     width: 390px;
   }
-`
+`;

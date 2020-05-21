@@ -21,6 +21,12 @@ export const HeadingParagraphRow = styled(Row)`
     padding-right: 0%;
     margin-bottom: 100px;
   }
+  @media only screen and (max-width: 375px) {
+    padding-top: 49px;
+    padding-left: 0%;
+    padding-right: 0%;
+    margin-bottom: 100px;
+  }
 `
 export const H2Styled = styled.h2`
   width: 155px;

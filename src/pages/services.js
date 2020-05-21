@@ -162,6 +162,7 @@ const Services = ({ location, ...props }) => {
     <Layout>
       <HeadingParagraphRow>
         <Col
+          xs={{ span: 24, offset: 0 }}
           lg={{ span: 22, offset: 2 }}
           xl={{ span: 24, offset: 2 }}
           xxl={{ span: 18, offset: 4 }}
