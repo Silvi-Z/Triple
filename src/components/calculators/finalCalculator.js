@@ -182,6 +182,7 @@ const FinalCalculator = ({ toggleForm, showForm }) => {
   const [result2, setResult2] = useState(null);
   const [loading1, setLoading1] = useState(false);
   const [loading2, setLoading2] = useState(false);
+  const [loading3, setLoading3] = useState(false);
   const [release_date, set_release_date] = useState(moment().format('YYYY-MM-DD'));
   const [work_day_type, set_work_day_type] = useState(0);
   const [salary, setSalary] = useState(0);
@@ -351,6 +352,7 @@ const FinalCalculator = ({ toggleForm, showForm }) => {
               </Col>
               <Col>
                 <StyledDatePicker
+                  disabled={loading3}
                   value={moment(formik1.values.date_from)}
                   onChange={date => {
                     const date_string1 = moment(date).
@@ -360,6 +362,7 @@ const FinalCalculator = ({ toggleForm, showForm }) => {
                       format('YYYY-MM-DD');
                     formik1.setFieldValue('date_from', date_string1);
                     formik1.setFieldValue('date_to', date_string2);
+                    formik1.setFieldValue('total_vacation_days', 0);
                     set_release_date(date_string2);
                   }}
                   allowClear={false}
@@ -382,11 +385,31 @@ const FinalCalculator = ({ toggleForm, showForm }) => {
               </Col>
               <Col>
                 <StyledDatePicker
+                  disabled={loading3}
                   value={moment(formik1.values.date_to)}
-                  onChange={date => {
+                  onChange={async date => {
                     const date_string = moment(date).format('YYYY-MM-DD');
                     formik1.setFieldValue('date_to', date_string);
                     set_release_date(date_string);
+
+                    const body = {
+                      'work_day_type': formik1.values.work_day_type,
+                      'date_from': formik1.values.date_from,
+                      'date_to': date_string,
+                    };
+
+                    setLoading3(true);
+
+                    try {
+                      const res = await apiHelper.post('/api/counter/vacation_days', body);
+                      formik1.setFieldValue('total_vacation_days', res.data.data.available);
+                      console.log(res.data.data);
+                    } catch (e) {
+                      console.log('Error 3: ', e);
+                      setLoading3(false);
+                    }
+
+                    setLoading3(false);
                   }}
                   allowClear={false}
                   suffixIcon={<CustomCaret />}
@@ -399,20 +422,60 @@ const FinalCalculator = ({ toggleForm, showForm }) => {
 
             <Row align="middle" gutter={[10, 10]}>
               <ToggleLarge
+                disabled={loading3}
                 label={'Հնգօրյա աշխատանքային շաբաթ'}
                 toggleState={formik1.values.work_day_type}
-                onClick={() => {
+                onClick={async () => {
                   formik1.setFieldValue('work_day_type', 0);
                   set_work_day_type(0);
+
+                  const body = {
+                    'work_day_type': 0,
+                    'date_from': formik1.values.date_from,
+                    'date_to': formik1.values.date_to,
+                  };
+
+                  setLoading3(true);
+
+                  try {
+                    const res = await apiHelper.post('/api/counter/vacation_days', body);
+                    formik1.setFieldValue('total_vacation_days', res.data.data.available);
+                    console.log(res.data.data);
+                  } catch (e) {
+                    console.log('Error 3: ', e);
+                    setLoading3(false);
+                  }
+
+                  setLoading3(false);
                 }}
                 start
               />
               <ToggleLarge
+                disabled={loading3}
                 label={'Վեցօրյա աշխատանքային շաբաթ'}
                 toggleState={!formik1.values.work_day_type}
-                onClick={() => {
+                onClick={async () => {
                   formik1.setFieldValue('work_day_type', 1);
                   set_work_day_type(1);
+
+                  const body = {
+                    'work_day_type': 1,
+                    'date_from': formik1.values.date_from,
+                    'date_to': formik1.values.date_to,
+                  };
+
+                  setLoading3(true);
+
+                  try {
+                    const res = await apiHelper.post('/api/counter/vacation_days', body);
+                    formik1.setFieldValue('total_vacation_days', res.data.data.available);
+                    console.log(res.data.data);
+                  } catch (e) {
+                    console.log('Error 3: ', e);
+                    setLoading3(false);
+                  }
+
+                  setLoading3(false);
                 }}
               />
             </Row>
@@ -420,14 +483,11 @@ const FinalCalculator = ({ toggleForm, showForm }) => {
             <Row align="middle" gutter={[10, 10]}>
               <FormLabelLong text={'Ընդհանուր արձակուրդային օրեր'} />
               <Col xxl={1} xl={2} lg={2} md={2} sm={3} span={3}>
-                <StyledInputNumber
-                  size="large"
-                  value={formik1.values.total_vacation_days}
-                  min={0}
-                  onChange={val => {
-                    formik1.setFieldValue('total_vacation_days', val);
-                  }}
-                />
+                <FormLabelCell>
+                  <Label fontcolor="#000">
+                    {formik1.values.total_vacation_days}
+                  </Label>
+                </FormLabelCell>
               </Col>
             </Row>
 
@@ -435,6 +495,7 @@ const FinalCalculator = ({ toggleForm, showForm }) => {
               <FormLabelLong text={'Օգտագործված արձակուրդային օրեր'} />
               <Col xxl={1} xl={2} lg={2} md={2} sm={3} span={3}>
                 <StyledInputNumber
+                  disabled={loading3}
                   size="large"
                   value={formik1.values.used_days}
                   min={0}
@@ -446,7 +507,7 @@ const FinalCalculator = ({ toggleForm, showForm }) => {
             </Row>
 
             <SubmitButton
-              disabled={loading1}
+              disabled={loading1 || loading3}
               loading={loading1}
               submitter
             />

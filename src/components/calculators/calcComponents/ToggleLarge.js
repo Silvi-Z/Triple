@@ -25,7 +25,7 @@ const Label = styled(Text)`
   }
 `;
 
-export const ToggleLarge = ({ label, toggleState, onClick, start }) => {
+export const ToggleLarge = ({ label, toggleState, onClick, start, disabled }) => {
   return (
     <Col
       xxl={{ span: 5, offset: start ? 6 : 0 }}
@@ -39,6 +39,7 @@ export const ToggleLarge = ({ label, toggleState, onClick, start }) => {
         block
         type={toggleState ? 'default' : 'primary'}
         onClick={onClick}
+        disabled={disabled}
       >
         <Label fontcolor={toggleState ? '#000' : '#fff'}>
           {label}
