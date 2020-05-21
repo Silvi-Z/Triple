@@ -103,6 +103,7 @@ const Reports = () => {
               setConfirm3={setConfirm3}
               setConfirm2={setConfirm2}
               backButton={DropdownForm}
+              setResetForm={setResetForm}
               setfillform={setfillform}
               forwardButton={setConfirm3}
               AllFieldsValues={AllFieldsValues}

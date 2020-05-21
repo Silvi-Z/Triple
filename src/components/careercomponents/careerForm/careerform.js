@@ -1,41 +1,21 @@
 /*eslint-disable */
 import React, { useState } from "react"
+import { Form, Input, Button, Col, Row, Upload, message } from "antd"
+import { UploadOutlined } from "@ant-design/icons"
+import { apiHelper } from "../../../helpers/apiHelper"
+import CareerModal from "../careerModal/careerModal"
+import FbIcon from "../../../assets/career/facebook.png"
+import FbBlackIcon from "../../../assets/career/facebookBlack.svg"
+import LinkdinIcon from "../../../assets/career/linkedin.png"
+import LinkedinBlueIcon from "../../../assets/career/linkedinBlue.svg"
+import "../../layout.css"
 import {
-  Form,
-  Input,
-  Button,
-  Checkbox,
-  Col,
-  Row,
-  Upload,
-  message,
-} from "antd"
-import {
-  UploadOutlined,
-  FacebookOutlined,
-  LinkedinOutlined,
-} from "@ant-design/icons"
-import { apiHelper } from "../../helpers/apiHelper"
-import styled from "styled-components"
-import CareerModal from "./careerModal"
-import FbIcon from "../../assets/career/facebook.png"
-import FbBlackIcon from "../../assets/career/facebookBlack.svg"
-import LinkdinIcon from "../../assets/career/linkedin.png"
-import LinkedinBlueIcon from "../../assets/career/linkedinBlue.svg"
-import "../layout.css"
-const ShareLabel = styled.h3`
-  width: 50px;
-  height: 15px;
-  font-family: ArialAMU;
-  font-size: 16px;
-  font-weight: normal;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: 1.88;
-  letter-spacing: normal;
-  text-align: right;
-  color: #000000;
-`
+  ShareLabel,
+  SharedWrapperCol,
+  FaceLink,
+  LinkedinLink,
+  Image
+} from "./formStyle"
 const layout = {
   labelCol: {
     span: 24,
@@ -51,76 +31,12 @@ const tailLayout = {
   },
 }
 
-const SharedWrapperCol = styled(Col)`
-  padding: 0 1%;
-  display: flex;
-  justify-content: end;
-
-  /* @media (min-width: 375px) {
-    a {
-      display: contents;
-      color: #da4567;
-    }
-  } */
-`
-const FaceLink = styled.a`
-  color: black;
-  font-size: 32px;
-  margin-left: 19px;
-  margin-top: -4%;
-  &:hover {
-    cursor: pointer;
-    color: #009db8;
-  }
-`
-const LinkedinLink = styled.a`
-  color: black;
-  font-size: 32px;
-  margin-left: 19px;
-  margin-top: -4%;
-  &:hover {
-    cursor: pointer;
-    color: #009db8;
-  }
-`
-const Image = styled.img`
-  height: 32px;
-  width: 32px;
-  margin-left: 19px;
-  &:hover {
-    cursor: pointer;
-    height: 52px;
-    width: 52px;
-  }
-`
-
-const fileprops = {
-  name: "file",
-  action: "https://www.mocky.io/v2/5cc8019d300000980a055e76",
-  headers: {
-    authorization: "authorization-text",
-  },
-  onChange(info) {
-    if (info.file.status !== "uploading") {
-      console.log(info.file, info.fileList)
-    }
-    if (info.file.status === "done") {
-      message.success(`${info.file.name} file uploaded successfully`)
-    } else if (info.file.status === "error") {
-      message.error(`${info.file.name} file upload failed.`)
-    }
-  },
-}
-
 const normFile = e => {
-  console.log('Upload event:', e);
-
   if (Array.isArray(e)) {
-    return e;
+    return e
   }
-
-  return e && e.fileList;
-};
+  return e && e.fileList
+}
 
 const validateMessages = {
   required: "This field is required!",
@@ -132,49 +48,44 @@ const validateMessages = {
     range: "Must be between ${min} and ${max}",
   },
 }
+
 const Formfield = () => {
-  const [form] = Form.useForm();
+  const [form] = Form.useForm()
   const [modalVisible, setmodalVisible] = useState(false)
+  const [loading, toggleLoading] = useState(false)
 
   const showModal = () => {
     setmodalVisible(true)
-  };
+  }
 
   const handleOk = e => {
-    console.log(e);
     setmodalVisible(false)
-    form.resetFields();
-  };
+    form.resetFields()
+  }
 
   const handleCancel = e => {
     setmodalVisible(false)
-  };
+  }
 
   const onFinish = async values => {
     let UploadFormData = new FormData()
     UploadFormData.append("message", values.textarea)
-    let passport =
-      UploadFormData.append("file", values.file[0].originFileObj)
-    console.log("Success:", values.file[0])
+    UploadFormData.append("file", values.file[0].originFileObj)
     try {
-      console.log("Success UploadFormData:", UploadFormData)
+      toggleLoading(true)
       const res = await apiHelper
         .post("api/send_email/senior_accountant", UploadFormData, {
           headers: {
-            "Content-Type": "multipart/form-data"
+            "Content-Type": "multipart/form-data",
           },
         })
         .then(res => {
-          console.log(res)
+          toggleLoading(false)
           setmodalVisible(true)
         })
     } catch (e) {
-      console.log("Error: ", e)
+      toggleLoading(false)
     }
-  }
-
-  const onFinishFailed = errorInfo => {
-    console.log("Failed:", errorInfo)
   }
 
   return (
@@ -186,7 +97,6 @@ const Formfield = () => {
       }}
       form={form}
       onFinish={onFinish}
-      onFinishFailed={onFinishFailed}
       nostyle="true"
     >
       <Form.Item
@@ -239,6 +149,7 @@ const Formfield = () => {
             <Button
               type="primary"
               htmlType="submit"
+              loading={loading}
               style={{ width: "180px", height: "45px" }}
             >
               Ուղարկել
@@ -263,8 +174,7 @@ const Formfield = () => {
           </LinkedinLink>
         </SharedWrapperCol>
       </Row>
-      <CareerModal
-        handleOk={handleOk} modalVisible={modalVisible} />
+      <CareerModal handleOk={handleOk} modalVisible={modalVisible} />
     </Form>
   )
 }

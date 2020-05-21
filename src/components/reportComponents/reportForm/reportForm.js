@@ -17,7 +17,6 @@ import {
   SubmitSpan,
   LabelSpan,
 } from "./reportFormStyle.js"
-import { getActiveElement } from "formik"
 const { Option } = Select
 const formItemLayout = {
   labelCol: {
@@ -88,7 +87,6 @@ const tailFormButtonLayout = {
 function getDate(date, dateString) {
   return dateString
 }
-
 const RegistrationForm = ({
   closeForm1,
   setConfirm2,
@@ -130,6 +128,9 @@ const RegistrationForm = ({
   /*onSubmiting === OnFinish => values === fieldsValues*/
   const onFinish = e => {
     let values = form.getFieldsValue("register")
+    console.log(values)
+    let url =
+      "http://triple-c-api.algorithm.am/api/carSalesCredentialPdfDownload?full_name="
     let body
     values.hasOwnProperty("when")
       ? (body = {
@@ -153,126 +154,33 @@ const RegistrationForm = ({
     try {
       toggleLoading(true)
       if (body.hasOwnProperty("when")) {
-        const res = apiHelper
-          .get(
-            "http://triple-c-api.algorithm.am/api/carSalesCredentialPdfDownload?full_name=" +
-            body.full_name +
-            "&city=" +
-            body.city +
-            "&address=" +
-            body.address +
-            "&passport_series=" +
-            body.passport_series +
-            "&given=" +
-            body.given +
-            "&when=" +
-            body.when +
-            "&birthday=" +
-            body.birthday +
-            "&psn=" +
-            body.psn +
-            "&tin=" +
-            body.tin +
-            "&phone=" +
-            body.phone +
-            "&email=" +
-            body.email +
-            "&identity_document_type=" +
-            body.identity_document_type
-          )
-          .then(
-            response => {
-              updateFieldsState(body)
-              toggleLoading(false)
-              let RequestHref =
-                "http://triple-c-api.algorithm.am/api/carSalesCredentialPdfDownload?full_name=" +
-                body.full_name +
-                "&city=" +
-                body.city +
-                "&address=" +
-                body.address +
-                "&passport_series=" +
-                body.passport_series +
-                "&given=" +
-                body.given +
-                "&when=" +
-                body.when +
-                "&birthday=" +
-                body.birthday +
-                "&psn=" +
-                body.psn +
-                "&tin=" +
-                body.tin +
-                "&phone=" +
-                body.phone +
-                "&email=" +
-                body.email +
-                "&identity_document_type=" +
-                body.identity_document_type
-              document.location.href = RequestHref
-              goNextPage()
-            },
-            rejected => {
-              onFinishFailedPassport(rejected)
-            }
-          )
+        let queryString = `${url}${body.full_name}&city=${body.city}&address=${body.address}&passport_series=${body.passport_series}&given=${body.given}&when=${body.when}&birthday=${body.birthday}&psn=${body.psn}&tin=${body.tin}&phone=${body.phone}&email=${body.email}&identity_document_type=${body.identity_document_type}`
+        apiHelper.get(queryString).then(
+          response => {
+            console.log("PROMISE ", response)
+            updateFieldsState(body)
+            toggleLoading(false)
+            document.location.href = queryString
+            goNextPage()
+          },
+          rejected => {
+            onFinishFailedPassport(rejected)
+          }
+        )
       } else {
-        const res = apiHelper
-          .get(
-            "http://triple-c-api.algorithm.am/api/carSalesCredentialPdfDownload?full_name=" +
-            body.full_name +
-            "&city=" +
-            body.city +
-            "&address=" +
-            body.address +
-            "&ID_card_number=" +
-            body.ID_card_number +
-            "&birthday=" +
-            body.birthday +
-            "&psn=" +
-            body.psn +
-            "&tin=" +
-            body.tin +
-            "&phone=" +
-            body.phone +
-            "&email=" +
-            body.email +
-            "&identity_document_type=" +
-            body.identity_document_type
-          )
-          .then(
-            response => {
-              console.log("PROMISE ", response)
-              updateFieldsState(body)
-              // goNextPage()
-              let RequestHref =
-                "http://triple-c-api.algorithm.am/api/carSalesCredentialPdfDownload?full_name=" +
-                body.full_name +
-                "&city=" +
-                body.city +
-                "&address=" +
-                body.address +
-                "&ID_card_number=" +
-                body.ID_card_number +
-                "&birthday=" +
-                body.birthday +
-                "&psn=" +
-                body.psn +
-                "&tin=" +
-                body.tin +
-                "&phone=" +
-                body.phone +
-                "&email=" +
-                body.email +
-                "&identity_document_type=" +
-                body.identity_document_type
-              document.location.href = RequestHref
-              goNextPage()
-            },
-            rejected => {
-              onFinishFailedId(rejected)
-            }
-          )
+        let queryString = `${url}${body.full_name}&city=${body.city}&address=${body.address}&ID_card_number=${body.ID_card_number}&birthday=${body.birthday}&psn=${body.psn}&tin=${body.tin}&phone=${body.phone}&email=${body.email}&identity_document_type=${body.identity_document_type}`
+        apiHelper.get(queryString).then(
+          response => {
+            console.log("PROMISE ", response)
+            updateFieldsState(body)
+            // goNextPage()
+            document.location.href = queryString
+            goNextPage()
+          },
+          rejected => {
+            onFinishFailedId(rejected)
+          }
+        )
       }
     } catch (e) {
       console.log("Error: ", e.response)
@@ -414,6 +322,7 @@ const RegistrationForm = ({
         phone: obj.phone,
         email: obj.email,
       })
+      setTin(obj.tin)
     } else {
       form.setFieldsValue({
         full_name: obj.full_name,
@@ -464,6 +373,9 @@ const RegistrationForm = ({
         form={form}
         name="register"
         onFinish={onFinish}
+        initialValues={{
+          remember: true,
+        }}
         scrollToFirstError
       >
         <Form.Item
@@ -687,7 +599,7 @@ const RegistrationForm = ({
               required: true,
               message:
                 "Խնդրում ենք լրացնել նշված դաշտը համարը պետք է սկսվի +374 թվային կոդով",
-              pattern: /^(\+|374)[0-9]{1,3}[0-9]{4,14}(?:x.+)?$/,
+              pattern: /^(\+|374)[0-9]{1,3}[0-9]{5,5}(?:x.+)?$/,
               max: 11,
               len: 11,
               min: 11,
