@@ -293,42 +293,18 @@ const VacationCalculator = ({ toggleForm, showForm }) => {
   };
 
   const validationSchema = Yup.object().shape({
-    month1_price: Yup.number()
-      .required()
-      .min(40000),
-    month2_price: Yup.number()
-      .required()
-      .min(40000),
-    month3_price: Yup.number()
-      .required()
-      .min(40000),
-    month4_price: Yup.number()
-      .required()
-      .min(40000),
-    month5_price: Yup.number()
-      .required()
-      .min(40000),
-    month6_price: Yup.number()
-      .required()
-      .min(40000),
-    month7_price: Yup.number()
-      .required()
-      .min(40000),
-    month8_price: Yup.number()
-      .required()
-      .min(40000),
-    month9_price: Yup.number()
-      .required()
-      .min(40000),
-    month10_price: Yup.number()
-      .required()
-      .min(40000),
-    month11_price: Yup.number()
-      .required()
-      .min(40000),
-    month12_price: Yup.number()
-      .required()
-      .min(40000),
+    month1_price: Yup.number().required(),
+    month2_price: Yup.number().required(),
+    month3_price: Yup.number().required(),
+    month4_price: Yup.number().required(),
+    month5_price: Yup.number().required(),
+    month6_price: Yup.number().required(),
+    month7_price: Yup.number().required(),
+    month8_price: Yup.number().required(),
+    month9_price: Yup.number().required(),
+    month10_price: Yup.number().required(),
+    month11_price: Yup.number().required(),
+    month12_price: Yup.number().required(),
   });
 
   const formik = useFormik({
