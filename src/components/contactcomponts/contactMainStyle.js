@@ -15,11 +15,11 @@ export const ParagraphRow = styled(Row)`
     padding: 0 3.5%;
   }
   @media only screen and (max-width: 375px) {
-    margin-bottom: 70px;
+    margin-bottom: 10px;
     padding: 0 3.5%;
   }
   @media only screen and (max-width: 320px) {
-    margin-bottom: 70px;
+    margin-bottom: 10px;
     padding: 0 2.5%;
   }
 `

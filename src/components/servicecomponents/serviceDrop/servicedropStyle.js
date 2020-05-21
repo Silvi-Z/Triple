@@ -126,7 +126,6 @@ export const SubParagStyled = styled.div`
   @media only screen and (max-width: 375px) {
     margin-left: 12%;
     width: 260px;
-    height: 74px;
     font-family: ArialAMU;
     font-size: 14px;
     font-weight: normal;

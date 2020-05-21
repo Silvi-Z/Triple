@@ -5,7 +5,7 @@ import { Upload } from "antd"
 import { apiHelper } from "../../../helpers/apiHelper"
 import uploadImage from "../../../assets/upload2.svg"
 import CareerModal from "../contactModal/contactModal"
-import { Arealabel, UploadImg } from "./formStyle"
+import { Arealabel, UploadImg, StyledForm } from "./formStyle"
 //input styled custom with id in layout css #basic_username*/
 import "../../layout.css"
 const layout = {
@@ -14,12 +14,6 @@ const layout = {
   },
   wrapperCol: {
     span: 24,
-  },
-}
-const tailLayout = {
-  wrapperCol: {
-    offset: 8,
-    span: 16,
   },
 }
 const normFile = e => {
@@ -83,7 +77,7 @@ const Formfield = () => {
   }
 
   return (
-    <Form
+    <StyledForm
       {...layout}
       name="basic"
       initialValues={{
@@ -95,14 +89,14 @@ const Formfield = () => {
     >
       <Row>
         <Col
-          lg={{ span: 22 }}
+          lg={{ span: 24 }}
           xl={{ span: 24 }}
           xxl={{ span: 24 }}
-          md={{ span: 11 }}
+          md={{ span: 12 }}
           sm={{ span: 23 }}
           xs={{ span: 23 }}
         >
-          <Form.Item
+          <StyledForm.Item
             label="Անուն / Ազգանուն ( Կազմակերպության անվանում )"
             name="username"
             rules={[
@@ -114,17 +108,17 @@ const Formfield = () => {
             style={{ marginBottom: "3px" }}
           >
             <Input style={{ width: "100%" }} />
-          </Form.Item>
+          </StyledForm.Item>
         </Col>
         <Col
-          lg={{ span: 22, offset: 0 }}
+          lg={{ span: 24, offset: 0 }}
           xl={{ span: 24, offset: 0 }}
           xxl={{ span: 24, offset: 0 }}
           md={{ span: 11, offset: 1 }}
           sm={{ span: 23 }}
           xs={{ span: 23 }}
         >
-          <Form.Item
+          <StyledForm.Item
             name="email"
             label="Էլ․ հասցե"
             rules={[
@@ -137,10 +131,10 @@ const Formfield = () => {
             style={{ marginBottom: "3px" }}
           >
             <Input size="large" style={{ width: "100%" }} />
-          </Form.Item>
+          </StyledForm.Item>
         </Col>
-        <Col xxl={{ span: 24 }} xl={{ span: 24 }} lg={{ span: 22 }}>
-          <Form.Item
+        <Col lg={{ span: 24 }} xxl={{ span: 24 }} xl={{ span: 24 }}>
+          <StyledForm.Item
             label="Կցել ֆայլը"
             name="file"
             valuePropName="fileList"
@@ -158,10 +152,15 @@ const Formfield = () => {
                 <UploadImg src={uploadImage} />
               </Button>
             </Upload>
-          </Form.Item>
+          </StyledForm.Item>
         </Col>
-        <Col xxl={{ span: 24 }} xl={{ span: 24, offset: 0 }} lg={{ span: 19 }}>
-          <Form.Item
+        <Col
+          xxl={{ span: 24 }}
+          xl={{ span: 24, offset: 0 }}
+          lg={{ span: 24 }}
+          md={{ span: 24 }}
+        >
+          <StyledForm.Item
             label="Վերնագիր"
             name="title"
             rules={[
@@ -173,11 +172,17 @@ const Formfield = () => {
             style={{ marginBottom: "3px" }}
           >
             <Input size="large" />
-          </Form.Item>
+          </StyledForm.Item>
         </Col>
-        <Col xxl={{ span: 24 }} xl={{ span: 24 }} lg={{ span: 22 }}>
+        <Col
+          xxl={{ span: 22 }}
+          xl={{ span: 24 }}
+          lg={{ span: 24 }}
+          sm={{ span: 23 }}
+          xs={{ span: 23 }}
+        >
           <Arealabel>Ձեր հաղորդագրությունը</Arealabel>
-          <Form.Item
+          <StyledForm.Item
             label="Ձեր հաղորդագրությունը"
             name="textarea"
             noStyle="false"
@@ -189,10 +194,10 @@ const Formfield = () => {
             ]}
           >
             <Input.TextArea autoSize={{ minRows: 4, maxRows: 8 }} />
-          </Form.Item>
+          </StyledForm.Item>
         </Col>
       </Row>
-      <Form.Item {...tailLayout}>
+      <StyledForm.Item>
         <Button
           type="primary"
           htmlType="submit"
@@ -201,9 +206,9 @@ const Formfield = () => {
         >
           Ուղարկել
         </Button>
-      </Form.Item>
+      </StyledForm.Item>
       <CareerModal handleOk={handleOk} modalVisible={modalVisible} />
-    </Form>
+    </StyledForm>
   )
 }
 
