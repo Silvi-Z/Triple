@@ -153,27 +153,15 @@ const initialValuesOne = {
 };
 
 const schemaOne = Yup.object().shape({
-  price1: Yup.number()
-    .required()
-    .min(40000),
-  price2: Yup.number()
-    .required()
-    .min(40000),
-  price3: Yup.number()
-    .required()
-    .min(40000),
+  price1: Yup.number().required(),
+  price2: Yup.number().required(),
+  price3: Yup.number().required(),
 });
 
 const schemaTwo = Yup.object().shape({
-  price1: Yup.number()
-    .required()
-    .min(40000),
-  price2: Yup.number()
-    .required()
-    .min(40000),
-  price3: Yup.number()
-    .required()
-    .min(40000),
+  price1: Yup.number().required(),
+  price2: Yup.number().required(),
+  price3: Yup.number().required(),
   paid_price: Yup.number()
     .required()
     .min(1),
