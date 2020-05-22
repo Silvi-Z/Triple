@@ -117,11 +117,11 @@ const RegistrationForm = ({
       res.data.data.length === 0 ? setTin(null) : setTin(res.data.data.tin)
       res.data.data.length === 0
         ? form.setFieldsValue({
-          tin: null,
-        })
+            tin: null,
+          })
         : form.setFieldsValue({
-          tin: res.data.data.tin,
-        })
+            tin: res.data.data.tin,
+          })
     } catch (e) {
       console.log("Calculation error: ", e)
     }
@@ -135,20 +135,20 @@ const RegistrationForm = ({
     let body
     values.hasOwnProperty("when")
       ? (body = {
-        ...values,
-        birthday: values["birthday"].format("YYYY-MM-DD"),
-        when: values["when"].format("YYYY-MM-DD"),
-        tin: tin === null ? form.getFieldValue("tin") : tin,
-        phone: "+" + values["phone"],
-        identity_document_type,
-      })
+          ...values,
+          birthday: values["birthday"].format("YYYY-MM-DD"),
+          when: values["when"].format("YYYY-MM-DD"),
+          tin: tin === null ? form.getFieldValue("tin") : tin,
+          phone: "+" + values["phone"],
+          identity_document_type,
+        })
       : ((body = {
-        ...values,
-        birthday: values["birthday"].format("YYYY-MM-DD"),
-        tin: tin === null ? form.getFieldValue("tin") : tin,
-        phone: "+" + values["phone"],
-        identity_document_type,
-      }),
+          ...values,
+          birthday: values["birthday"].format("YYYY-MM-DD"),
+          tin: tin === null ? form.getFieldValue("tin") : tin,
+          phone: "+" + values["phone"],
+          identity_document_type,
+        }),
         delete body["passport_series"],
         delete body["given"],
         delete body["when"])
@@ -165,7 +165,7 @@ const RegistrationForm = ({
             goNextPage()
           },
           rejected => {
-            onFinishFailedPassport(rejected)
+            // onFinishFailedPassport(rejected)
           }
         )
       } else {
@@ -179,7 +179,7 @@ const RegistrationForm = ({
             goNextPage()
           },
           rejected => {
-            onFinishFailedId(rejected)
+            // onFinishFailedId(rejected)
           }
         )
       }
@@ -467,13 +467,7 @@ const RegistrationForm = ({
         </StyledForm.Item>
         {checkPassport === 0 ? (
           <ReportPassportRow>
-            <Col
-              xs={24}
-              sm={24}
-              md={6}
-              lg={6}
-              xl={6}
-              xxl={5}>
+            <Col xs={24} sm={24} md={6} lg={6} xl={6} xxl={5}>
               <StyledForm.Item
                 name="passport_series"
                 label={<LabelSpan>Անձնագրի սերիա</LabelSpan>}
@@ -492,13 +486,7 @@ const RegistrationForm = ({
                 <Input />
               </StyledForm.Item>
             </Col>
-            <Col
-              xs={24}
-              sm={24}
-              md={6}
-              lg={6}
-              xl={6}
-              xxl={5}>
+            <Col xs={24} sm={24} md={6} lg={6} xl={6} xxl={5}>
               <StyledForm.Item
                 name="given"
                 label={<LabelSpan>Տրված է ում կողմից</LabelSpan>}
@@ -517,13 +505,7 @@ const RegistrationForm = ({
                 <Input />
               </StyledForm.Item>
             </Col>
-            <Col
-              xs={24}
-              sm={24}
-              md={8}
-              lg={6}
-              xl={6}
-              xxl={5}>
+            <Col xs={24} sm={24} md={8} lg={6} xl={6} xxl={5}>
               <StyledForm.Item
                 name="when"
                 label={<LabelSpan>Երբ</LabelSpan>}
@@ -543,27 +525,27 @@ const RegistrationForm = ({
             </Col>
           </ReportPassportRow>
         ) : (
-            <Row>
-              <Col lg={8}>
-                <StyledForm.Item
-                  name="ID_card_number"
-                  label={<LabelSpan>Նույնականացման քարտ</LabelSpan>}
-                  rules={[
-                    {
-                      required: true,
-                      message:
-                        "Խնդրում ենք լրացնել նշված դաշտերը, այն պետք է պարունակի 9 նիշ",
-                      whitespace: true,
-                      max: 9,
-                      len: 9,
-                    },
-                  ]}
-                >
-                  <Input type="number" />
-                </StyledForm.Item>
-              </Col>
-            </Row>
-          )}
+          <Row>
+            <Col lg={8}>
+              <StyledForm.Item
+                name="ID_card_number"
+                label={<LabelSpan>Նույնականացման քարտ</LabelSpan>}
+                rules={[
+                  {
+                    required: true,
+                    message:
+                      "Խնդրում ենք լրացնել նշված դաշտերը, այն պետք է պարունակի 9 նիշ",
+                    whitespace: true,
+                    max: 9,
+                    len: 9,
+                  },
+                ]}
+              >
+                <Input type="number" />
+              </StyledForm.Item>
+            </Col>
+          </Row>
+        )}
         <StyledForm.Item
           name="birthday"
           label={<LabelSpan>Ծննդյան օր/ամիս/տարեթիվ</LabelSpan>}
@@ -619,7 +601,7 @@ const RegistrationForm = ({
               required: true,
               message:
                 "Խնդրում ենք լրացնել նշված դաշտը համարը պետք է սկսվի +374 թվային կոդով",
-              pattern: /^(\+|374)[0-9]{1,3}[0-9]{5,5}(?:x.+)?$/,
+              pattern: /^(\+|374)[0-9]{4,4}[0-9]{4,4}(?:x.+)?$/,
               max: 11,
               len: 11,
               min: 11,

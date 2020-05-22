@@ -14,7 +14,7 @@ import {
   SharedWrapperCol,
   FaceLink,
   LinkedinLink,
-  Image
+  Image,
 } from "./formStyle"
 const layout = {
   labelCol: {
@@ -66,8 +66,13 @@ const Formfield = () => {
   const handleCancel = e => {
     setmodalVisible(false)
   }
-
+  const dummyRequest = ({ file, onSuccess }) => {
+    setTimeout(() => {
+      onSuccess("ok");
+    }, 0);
+  };
   const onFinish = async values => {
+    console.log(values)
     let UploadFormData = new FormData()
     UploadFormData.append("message", values.textarea)
     UploadFormData.append("file", values.file[0].originFileObj)
@@ -79,15 +84,17 @@ const Formfield = () => {
             "Content-Type": "multipart/form-data",
           },
         })
-        .then(res => {
-          console.log(res)
-          toggleLoading(false)
-          setmodalVisible(true)
-        },
+        .then(
+          res => {
+            console.log(res)
+            toggleLoading(false)
+            setmodalVisible(true)
+          },
           reject => {
             console.log(reject.response)
             toggleLoading(false)
-          })
+          }
+        )
     } catch (e) {
       console.log(e.response)
       toggleLoading(false)
@@ -131,7 +138,10 @@ const Formfield = () => {
               },
             ]}
           >
-            <Upload>
+            <Upload
+              accept=".txt, .csv, .pdf, .png, .jpg"
+              customRequest={dummyRequest}
+            >
               <Button id="careeruploadbutton">
                 <UploadOutlined
                   style={{
