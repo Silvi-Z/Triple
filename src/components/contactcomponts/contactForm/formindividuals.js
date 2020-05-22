@@ -37,18 +37,18 @@ const Formfield = () => {
   const [form] = Form.useForm()
   const [modalVisible, setmodalVisible] = useState(false)
   const [loading, toggleLoading] = useState(false)
-
-  const showModal = () => {
-    setmodalVisible(true)
+  /*Ant Upload component has a defualt action prop,wich was triggered when user clicked to upload button,
+  to disable mentioned action, use dummyRequest with customRequest prop
+  */
+  const dummyRequest = ({ file, onSuccess }) => {
+    setTimeout(() => {
+      onSuccess("ok")
+    }, 0)
   }
 
   const handleOk = e => {
     setmodalVisible(false)
     form.resetFields()
-  }
-
-  const handleCancel = e => {
-    setmodalVisible(false)
   }
 
   const onFinish = async values => {
@@ -147,7 +147,10 @@ const Formfield = () => {
             ]}
             style={{ marginBottom: "3px" }}
           >
-            <Upload>
+            <Upload
+              accept=".jpeg,.png,.jpg,.doc,.pdf,.docx,.xlsx"
+              customRequest={dummyRequest}
+            >
               <Button size="large" id="uploadbutton">
                 <UploadImg src={uploadImage} />
               </Button>

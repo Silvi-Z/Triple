@@ -54,18 +54,13 @@ const Formfield = () => {
   const [modalVisible, setmodalVisible] = useState(false)
   const [loading, toggleLoading] = useState(false)
 
-  const showModal = () => {
-    setmodalVisible(true)
-  }
-
   const handleOk = e => {
     setmodalVisible(false)
     form.resetFields()
   }
-
-  const handleCancel = e => {
-    setmodalVisible(false)
-  }
+  /*Ant Upload component has a defualt action prop,wich was triggered when user clicked to upload button,
+  to disable mentioned action, use dummyRequest with customRequest prop
+  */
   const dummyRequest = ({ file, onSuccess }) => {
     setTimeout(() => {
       onSuccess("ok");
@@ -139,7 +134,7 @@ const Formfield = () => {
             ]}
           >
             <Upload
-              accept=".txt, .csv, .pdf, .png, .jpg"
+              accept=".jpeg,.png,.jpg,.doc,.pdf,.docx,.xlsx"
               customRequest={dummyRequest}
             >
               <Button id="careeruploadbutton">
@@ -191,7 +186,7 @@ const Formfield = () => {
         </SharedWrapperCol>
       </Row>
       <CareerModal handleOk={handleOk} modalVisible={modalVisible} />
-    </Form>
+    </Form >
   )
 }
 

@@ -58,7 +58,14 @@ function ReportForm2({
   current_tracking_number,
 }) {
   const [loading, toggleLoading] = useState(false)
-
+  /*Ant Upload component has a defualt action prop,wich was triggered when user clicked to upload button,
+  to disable mentioned action, use dummyRequest with customRequest prop
+  */
+  const dummyRequest = ({ file, onSuccess }) => {
+    setTimeout(() => {
+      onSuccess("ok");
+    }, 0);
+  };
   const onFinish = async values => {
     console.log(values.credentials_file[0])
     let UploadFormData = new FormData()
@@ -155,7 +162,10 @@ function ReportForm2({
               },
             ]}
           >
-            <Upload>
+            <Upload
+              accept=".jpeg,.png,.jpg,.doc,.pdf,.docx,.xlsx"
+              customRequest={dummyRequest}
+            >
               <CustomButton>
                 <span>Անձնագիր</span>
                 <UploadWrapper src={UploadImage} />
@@ -173,7 +183,9 @@ function ReportForm2({
               },
             ]}
           >
-            <Upload>
+            <Upload
+              accept=".jpeg,.png,.jpg,.doc,.pdf,.docx,.xlsx"
+              customRequest={dummyRequest}>
               <CustomButton>
                 <span>Ավտոմեքենայի առք ու վաճառքի պայմանագիր</span>
                 <UploadWrapper src={UploadImage} />
@@ -191,7 +203,8 @@ function ReportForm2({
               },
             ]}
           >
-            <Upload>
+            <Upload accept=".jpeg,.png,.jpg,.doc,.pdf,.docx,.xlsx"
+              customRequest={dummyRequest}>
               <CustomButton>
                 <span>Լիազորագիր</span>
                 <UploadWrapper src={UploadImage} />
@@ -222,9 +235,6 @@ function ReportForm2({
             </NavigateForwardButton>
           </NavigateWrapper>
         </Form>
-      </Col>
-      <Col span={24}>
-
       </Col>
     </Row>
   )

@@ -3,7 +3,6 @@ import React, { useState, useEffect, useRef } from "react"
 import { Form, Input, Tooltip, Select, Row, Col, Button, Spin } from "antd"
 import { QuestionCircleOutlined } from "@ant-design/icons"
 import { apiHelper } from "../../../helpers/apiHelper"
-import FileSaver from "file-saver"
 import moment from "moment"
 //styled inputs with layout.css
 import "../../layout.css"
@@ -117,11 +116,11 @@ const RegistrationForm = ({
       res.data.data.length === 0 ? setTin(null) : setTin(res.data.data.tin)
       res.data.data.length === 0
         ? form.setFieldsValue({
-            tin: null,
-          })
+          tin: null,
+        })
         : form.setFieldsValue({
-            tin: res.data.data.tin,
-          })
+          tin: res.data.data.tin,
+        })
     } catch (e) {
       console.log("Calculation error: ", e)
     }
@@ -135,20 +134,20 @@ const RegistrationForm = ({
     let body
     values.hasOwnProperty("when")
       ? (body = {
-          ...values,
-          birthday: values["birthday"].format("YYYY-MM-DD"),
-          when: values["when"].format("YYYY-MM-DD"),
-          tin: tin === null ? form.getFieldValue("tin") : tin,
-          phone: "+" + values["phone"],
-          identity_document_type,
-        })
+        ...values,
+        birthday: values["birthday"].format("YYYY-MM-DD"),
+        when: values["when"].format("YYYY-MM-DD"),
+        tin: tin === null ? form.getFieldValue("tin") : tin,
+        phone: "+" + values["phone"],
+        identity_document_type,
+      })
       : ((body = {
-          ...values,
-          birthday: values["birthday"].format("YYYY-MM-DD"),
-          tin: tin === null ? form.getFieldValue("tin") : tin,
-          phone: "+" + values["phone"],
-          identity_document_type,
-        }),
+        ...values,
+        birthday: values["birthday"].format("YYYY-MM-DD"),
+        tin: tin === null ? form.getFieldValue("tin") : tin,
+        phone: "+" + values["phone"],
+        identity_document_type,
+      }),
         delete body["passport_series"],
         delete body["given"],
         delete body["when"])
@@ -525,27 +524,27 @@ const RegistrationForm = ({
             </Col>
           </ReportPassportRow>
         ) : (
-          <Row>
-            <Col lg={8}>
-              <StyledForm.Item
-                name="ID_card_number"
-                label={<LabelSpan>Նույնականացման քարտ</LabelSpan>}
-                rules={[
-                  {
-                    required: true,
-                    message:
-                      "Խնդրում ենք լրացնել նշված դաշտերը, այն պետք է պարունակի 9 նիշ",
-                    whitespace: true,
-                    max: 9,
-                    len: 9,
-                  },
-                ]}
-              >
-                <Input type="number" />
-              </StyledForm.Item>
-            </Col>
-          </Row>
-        )}
+            <Row>
+              <Col lg={8}>
+                <StyledForm.Item
+                  name="ID_card_number"
+                  label={<LabelSpan>Նույնականացման քարտ</LabelSpan>}
+                  rules={[
+                    {
+                      required: true,
+                      message:
+                        "Խնդրում ենք լրացնել նշված դաշտերը, այն պետք է պարունակի 9 նիշ",
+                      whitespace: true,
+                      max: 9,
+                      len: 9,
+                    },
+                  ]}
+                >
+                  <Input type="number" />
+                </StyledForm.Item>
+              </Col>
+            </Row>
+          )}
         <StyledForm.Item
           name="birthday"
           label={<LabelSpan>Ծննդյան օր/ամիս/տարեթիվ</LabelSpan>}
