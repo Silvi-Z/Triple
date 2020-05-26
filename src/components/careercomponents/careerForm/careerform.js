@@ -4,17 +4,14 @@ import { Form, Input, Button, Col, Row, Upload, message } from "antd"
 import { UploadOutlined } from "@ant-design/icons"
 import { apiHelper } from "../../../helpers/apiHelper"
 import CareerModal from "../careerModal/careerModal"
-import FbIcon from "../../../assets/career/facebook.png"
-import FbBlackIcon from "../../../assets/career/facebookBlack.svg"
-import LinkdinIcon from "../../../assets/career/linkedin.png"
-import LinkedinBlueIcon from "../../../assets/career/linkedinBlue.svg"
 import "../../layout.css"
 import {
   ShareLabel,
   SharedWrapperCol,
   FaceLink,
   LinkedinLink,
-  Image,
+  FacebookIcon,
+  LinkdinIcon
 } from "./formStyle"
 const layout = {
   labelCol: {
@@ -63,11 +60,11 @@ const Formfield = () => {
   */
   const dummyRequest = ({ file, onSuccess }) => {
     setTimeout(() => {
-      onSuccess("ok");
-    }, 0);
-  };
+      onSuccess("ok")
+    }, 0)
+  }
+
   const onFinish = async values => {
-    console.log(values)
     let UploadFormData = new FormData()
     UploadFormData.append("message", values.textarea)
     UploadFormData.append("file", values.file[0].originFileObj)
@@ -174,19 +171,19 @@ const Formfield = () => {
             target="_blank"
             rel="noopener"
           >
-            <Image src={FbIcon} />
+            <FacebookIcon />
           </FaceLink>
           <LinkedinLink
             href="https://www.facebook.com/sharer/sharer.php?u=https://www.facebook.com/TripleCArmenia/"
             target="_blank"
             rel="noopener"
           >
-            <Image src={LinkdinIcon} />
+            <LinkdinIcon />
           </LinkedinLink>
         </SharedWrapperCol>
       </Row>
       <CareerModal handleOk={handleOk} modalVisible={modalVisible} />
-    </Form >
+    </Form>
   )
 }
 

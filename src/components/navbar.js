@@ -24,21 +24,21 @@ const phones = (
           transform: 'rotate(90deg)',
         }}
       />
-      <span className="phonenumber">374 93 00 00 00</span>
+      <span className="phonenumber">374 98 553533</span>
     </div>
     <div className="phonebox">
       <i
         className="fab fa-whatsapp"
         style={{ fontSize: '15px', color: 'green', marginRight: '4%' }}
       ></i>
-      <span className="phonenumber">374 93 00 00 00</span>
+      <span className="phonenumber">374 98 553533</span>
     </div>
     <div className="phonebox">
       <i
         className="fab fa-viber"
         style={{ fontSize: '15px', color: 'purply', marginRight: '4%' }}
       ></i>
-      <span className="phonenumber">374 93 00 00 00</span>
+      <span className="phonenumber">374 98 553533</span>
     </div>
   </div>
 );
@@ -310,7 +310,7 @@ const Navbar = ({ open, responswrapper }) => {
                 activeStyle={activeStyle}
                 style={{ fontSize: '20px' }}
                 state={{ clickedItems: 0 }}
-                // onClick={() => setResponswrapper()}
+              // onClick={() => setResponswrapper()}
               >
                 Ծառայություններ
               </NavLink>
@@ -320,7 +320,7 @@ const Navbar = ({ open, responswrapper }) => {
                 to="/reports/"
                 activeStyle={activeStyle}
                 style={{ fontSize: '20px' }}
-                // onClick={() => setResponswrapper()}
+              // onClick={() => setResponswrapper()}
               >
                 Հաշվետվության տրամադրում
               </NavLink>
@@ -407,7 +407,7 @@ const Navbar = ({ open, responswrapper }) => {
                   transform: 'rotate(90deg)',
                 }}
               />
-              <PhoneSpan>374 93 00 00 00</PhoneSpan>{' '}
+              <PhoneSpan>374 98 553533</PhoneSpan>{' '}
               <CaretDownOutlined style={{ fontSize: '11px' }} />
             </a>
           </GridPhone>

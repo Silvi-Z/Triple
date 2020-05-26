@@ -211,7 +211,6 @@ function ReportForm2({
               </CustomButton>
             </Upload>
           </Form.Item>
-
           <Form.Item wrapperCol={{ span: 12, offset: 0 }}>
             <Button
               type="primary"

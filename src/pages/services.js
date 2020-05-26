@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react"
 import Layout from "../components/layout"
 import { Col } from "antd"
+import { apiHelper } from "../helpers/apiHelper"
 import ServiceDropWrap from "../components/servicecomponents/serviceDrop/servicedrop"
 import CalcImg from "../assets/homeImages/icons/calculator.svg"
 import TaxImg from "../assets/homeImages/icons/tax.svg"
@@ -13,13 +14,12 @@ import TeamImg from "../assets/homeImages/icons/teamwork.svg"
 import {
   HeadingParagraphRow,
   H2Styled,
-  PStyled
+  PStyled,
 } from "../components/servicecomponents/serviceMainStyle"
 
 const Services = ({ location, ...props }) => {
   const [servicedata, setservicedata] = useState([
     {
-      status: true,
       data: {
         id: 0,
         image: CalcImg,
@@ -33,7 +33,6 @@ const Services = ({ location, ...props }) => {
       open: false,
     },
     {
-      status: true,
       data: {
         id: 1,
         image: TaxImg,
@@ -47,7 +46,7 @@ const Services = ({ location, ...props }) => {
       open: false,
     },
     // {
-    //   status: true,
+    //
     //   data: {
     //     id: 2,
     //     image: AuditImg,
@@ -61,7 +60,6 @@ const Services = ({ location, ...props }) => {
     //   open: false,
     // },
     {
-      status: true,
       data: {
         id: 2,
         image: ClientImg,
@@ -75,7 +73,6 @@ const Services = ({ location, ...props }) => {
       open: false,
     },
     {
-      status: true,
       data: {
         id: 3,
         image: BrowserImg,
@@ -89,7 +86,6 @@ const Services = ({ location, ...props }) => {
       open: false,
     },
     {
-      status: true,
       data: {
         id: 4,
         image: LawImg,
@@ -103,7 +99,6 @@ const Services = ({ location, ...props }) => {
       open: false,
     },
     {
-      status: true,
       data: {
         id: 5,
         image: UserImg,
@@ -117,7 +112,6 @@ const Services = ({ location, ...props }) => {
       open: false,
     },
     {
-      status: true,
       data: {
         id: 6,
         image: TeamImg,
@@ -131,18 +125,35 @@ const Services = ({ location, ...props }) => {
       open: false,
     },
   ])
-  const getServiceData = () => {
-    setservicedata()
+  const [teststate, setteststate] = useState([])
+  const getServiceData = async () => {
+    try {
+      let res = await apiHelper.get("/api/service").then(
+        res => {
+          setteststate(res.data.data)
+          console.log(res.data.data)
+        },
+        reject => {
+          console.log(reject.response)
+        }
+      )
+    } catch (e) {
+      console.log("Calculation error: ", e)
+    }
+
   }
+
   useEffect(() => {
+    getServiceData()
     if (location.state.clickedItems >= 2) {
       setTimeout(function () {
-        window.scrollTo(0, 500);
-      }, 2);
+        window.scrollTo(0, 500)
+      }, 2)
     }
     toggleFromHomePage(location.state)
   }, [])
   const toggle = current => {
+    console.log(teststate)
     const data = servicedata.map(d =>
       d.data.id === current.data.id && d.open === false
         ? { ...d, open: true }

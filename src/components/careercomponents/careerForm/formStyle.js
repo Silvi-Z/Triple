@@ -1,5 +1,10 @@
 import { Col } from "antd"
 import styled from "styled-components"
+import FbBlueIcon from "../../../assets/career/facebookBlueCareer.svg"
+import FbBlackIcon from "../../../assets/career/facebookCareer.svg"
+import LinkdinBlackIcon from "../../../assets/career/linkedinCareer.svg"
+import LinkedinBlueIcon from "../../../assets/career/linkedinBlueCareer.svg"
+
 export const ShareLabel = styled.h3`
   width: 50px;
   height: 15px;
@@ -11,6 +16,7 @@ export const ShareLabel = styled.h3`
   line-height: 1.88;
   letter-spacing: normal;
   text-align: right;
+  margin-top: -5px;
   color: #000000;
 `
 export const SharedWrapperCol = styled(Col)`
@@ -29,7 +35,6 @@ export const SharedWrapperCol = styled(Col)`
 export const FaceLink = styled.a`
   color: black;
   font-size: 32px;
-  margin-left: 19px;
   margin-top: -4%;
   &:hover {
     cursor: pointer;
@@ -39,20 +44,29 @@ export const FaceLink = styled.a`
 export const LinkedinLink = styled.a`
   color: black;
   font-size: 32px;
-  margin-left: 19px;
   margin-top: -4%;
+  cursor: pointer;
   &:hover {
-    cursor: pointer;
     color: #009db8;
   }
 `
-export const Image = styled.img`
+export const FacebookIcon = styled.div`
   height: 32px;
   width: 32px;
   margin-left: 19px;
+  background-image: url(${FbBlackIcon});
+  cursor: pointer;
   &:hover {
-    cursor: pointer;
-    height: 52px;
-    width: 52px;
+    background-image: url(${FbBlueIcon});
+  }
+`
+export const LinkdinIcon = styled.div`
+  height: 32px;
+  width: 32px;
+  margin-left: 19px;
+  background-image: url(${LinkdinBlackIcon});
+  cursor: pointer;
+  &:hover {
+    background-image: url(${LinkedinBlueIcon});
   }
 `

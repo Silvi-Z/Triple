@@ -1111,6 +1111,9 @@ pre tt:after {
   color: #e8e8e8;
   text-decoration: underline;
 }
+.footerlinkweb:hover {
+  color: #25ae85;
+}
 @media only screen and (max-width: 480px) {
   html {
     font-size: 100%;

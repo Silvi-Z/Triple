@@ -201,7 +201,7 @@ const FooterBlack = () => {
             <span className="copyright">
               Copyright © {new Date().getFullYear()}
             </span>{" "}
-            <a className="footerlinkweb">Powered by algorithm</a>
+            <a className="footerlinkweb">Powered by AlgorithmSolutions</a>
           </FooterCopyRightWrap>
         </FooterCopyRightColumn>
       </Row>
