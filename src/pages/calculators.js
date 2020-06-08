@@ -89,8 +89,8 @@ const Calculators = () => {
       <Divider />
       <VacationCalculator toggleForm={() => toggleDisplay('vacation')} showForm={display.vacation} />
       <Divider />
-      <NonWorkingCalculator toggleForm={() => toggleDisplay('nonWorking')} showForm={display.nonWorking} />
-      <Divider />
+      {/* <NonWorkingCalculator toggleForm={() => toggleDisplay('nonWorking')} showForm={display.nonWorking} />
+      <Divider /> */}
       <FinalCalculator toggleForm={() => toggleDisplay('final')} showForm={display.final} />
       <Divider />
       <MortgageCalculator toggleForm={() => toggleDisplay('mortgage')} showForm={display.mortgage} />
