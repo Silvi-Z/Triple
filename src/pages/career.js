@@ -6,7 +6,7 @@ import CareerWrap from "../components/careercomponents/careerDroping/careerdrop"
 import {
   CareerParagraphRow,
   H2Styled,
-  PStyled
+  PStyled,
 } from "../components/careercomponents/careerMainStyle"
 const Career = () => {
   const [careerdata, setcareerdata] = useState([])

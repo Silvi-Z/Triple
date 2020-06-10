@@ -12,7 +12,7 @@ import {
 
 const News = ({ data, openpage }) => {
   return (
-    <ContainerNews ls={24} onClick={openpage}>
+    <ContainerNews ls={24}>
       <Row>
         <ImgWrapper xl={6} lg={6} md={6} xs={24}>
           <WrapperImg src={data.Imgurl} alt={"img"} />
