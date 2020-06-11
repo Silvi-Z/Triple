@@ -176,7 +176,7 @@ const FooterBlack = () => {
           <ViberWrapper src={ViberImg} />
           <TelegramWrapper src={TelegramImg} />
           <FooterNumberWrap>
-            <span>+374 93706010,+374 93706010</span>
+            <span>+374 98553533,+374 98553533</span>
           </FooterNumberWrap>
         </FooterNumberColumn>
         <FooterAdressColumn xs={24} sm={24} md={8} lg={6} xl={6} xxl={6}>
@@ -190,7 +190,11 @@ const FooterBlack = () => {
             <span>Հետևեք մեզ</span>
           </FooterFollowUsWrap>
           <LinkedinWrapper src={LinkedinImg} />
-          <a href="https://www.facebook.com/TripleCArmenia/" target="_blank">
+          <a
+            href="https://www.facebook.com/sharer/sharer.php?u=http://triple-c.algorithm.am/"
+            target="_blank"
+            title="triple-c.algorithm.am"
+          >
             <FacebookWrapper src={FacebookImg} />
           </a>
         </FooterFollowUsColumn>
@@ -201,7 +205,7 @@ const FooterBlack = () => {
             <span className="copyright">
               Copyright © {new Date().getFullYear()}
             </span>{" "}
-            <a className="footerlinkweb">Powered by AlgorithmSolutions</a>
+            <a href="https://algorithm.am/" className="footerlinkweb">Powered by AlgorithmSolutions</a>
           </FooterCopyRightWrap>
         </FooterCopyRightColumn>
       </Row>

@@ -21,7 +21,7 @@ import {
 } from "../components/informationcomponents/informMainStyle"
 const Information = () => {
   const [dataNewsInfo, setDataNewsinfo] = useState([])
-  const [openSecondNews, setopenSecondNews] = useState(false)
+  // const [openSecondNews, setopenSecondNews] = useState(false)
   const [dataUseInfo, setdataUseInfo] = useState([])
   const [dataDoctempInfo, setdataDoctempInfo] = useState([])
   const [openNews, setOpenNews] = useState(true)
@@ -326,21 +326,23 @@ const Information = () => {
     setOpenUseful(true)
     setOpenNews(false)
     setOpenDocTemp(false)
-    setopenSecondNews(false)
+    // setopenSecondNews(false)
   }
   const ChangePageDoc = () => {
     setOpenDocTemp(true)
     setOpenUseful(false)
     setOpenNews(false)
-    setopenSecondNews(false)
+    // setopenSecondNews(false)
   }
 
-  const openPage = () => {
-    setopenSecondNews(true)
-    setOpenDocTemp(false)
-    setOpenUseful(false)
-    setOpenNews(false)
-  }
+
+  //this function for second news page
+  // const openPage = () => {
+  //   setOpenDocTemp(false)
+  //   setOpenUseful(false)
+  //   setOpenNews(false)
+  //   setopenSecondNews(true)
+  // }
 
   return (
     <Layout>
@@ -356,8 +358,8 @@ const Information = () => {
         <InformationNewsCol
           onClick={ChangePageNews}
           open={openNews}
-          opensecondnews={openSecondNews.toString()}
           xs={24}
+        // opensecondnews={openSecondNews.toString()}
         >
           <span>Նորություններ</span>
         </InformationNewsCol>
@@ -393,11 +395,9 @@ const Information = () => {
       ) : openNews ? (
         <InformSectionRow>
           {dataNewsInfo.map((d, id) => (
-            <InformNews data={d} key={id} openpage={openPage} />
+            <InformNews data={d} key={id} />
           ))}
         </InformSectionRow>
-      ) : openSecondNews ? (
-        <News1 />
       ) : null}
     </Layout>
   )

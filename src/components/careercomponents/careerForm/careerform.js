@@ -11,7 +11,7 @@ import {
   FaceLink,
   LinkedinLink,
   FacebookIcon,
-  LinkdinIcon
+  LinkdinIcon,
 } from "./formStyle"
 const layout = {
   labelCol: {
@@ -167,7 +167,7 @@ const Formfield = () => {
         <SharedWrapperCol span={10}>
           <ShareLabel>Կիսվել</ShareLabel>
           <FaceLink
-            href="https://www.facebook.com/sharer/sharer.php?u=https://www.facebook.com/TripleCArmenia/"
+            href="https://www.facebook.com/sharer/sharer.php?u=http://triple-c.algorithm.am/career/"
             target="_blank"
             rel="noopener"
           >

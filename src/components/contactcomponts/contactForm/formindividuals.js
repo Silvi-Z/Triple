@@ -102,7 +102,7 @@ const Formfield = () => {
             rules={[
               {
                 required: true,
-                message: "Խնդրում եմ լրացրեք այս դաշտը!",
+                message: "Խնդրում ենք լրացնել նշված դաշտը",
               },
             ]}
             style={{ marginBottom: "3px" }}
@@ -125,7 +125,7 @@ const Formfield = () => {
               {
                 type: "email",
                 required: true,
-                message: "Խնդրում եմ լրացրեք այս դաշտը!",
+                message: "Խնդրում ենք լրացնել նշված դաշտը",
               },
             ]}
             style={{ marginBottom: "3px" }}
@@ -141,8 +141,8 @@ const Formfield = () => {
             getValueFromEvent={normFile}
             rules={[
               {
-                required: true,
-                message: "Խնդրում եմ լրացրեք այս դաշտը!",
+                required: false,
+                message: "Խնդրում ենք լրացնել նշված դաշտը",
               },
             ]}
             style={{ marginBottom: "3px" }}
@@ -169,7 +169,7 @@ const Formfield = () => {
             rules={[
               {
                 required: true,
-                message: "Խնդրում եմ լրացրեք այս դաշտը!",
+                message: "Խնդրում ենք լրացնել նշված դաշտը",
               },
             ]}
             style={{ marginBottom: "3px" }}
@@ -184,15 +184,13 @@ const Formfield = () => {
           sm={{ span: 23 }}
           xs={{ span: 23 }}
         >
-          <Arealabel>Ձեր հաղորդագրությունը</Arealabel>
           <StyledForm.Item
             label="Ձեր հաղորդագրությունը"
             name="textarea"
-            noStyle="false"
             rules={[
               {
-                required: false,
-                message: "",
+                required: true,
+                message: "Խնդրում ենք լրացնել նշված դաշտը",
               },
             ]}
           >
