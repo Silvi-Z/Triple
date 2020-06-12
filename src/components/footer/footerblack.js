@@ -191,7 +191,7 @@ const FooterBlack = () => {
           </FooterFollowUsWrap>
           <LinkedinWrapper src={LinkedinImg} />
           <a
-            href="https://www.facebook.com/sharer/sharer.php?u=http://triple-c.algorithm.am/"
+            href="https://www.facebook.com/TripleCArmenia/"
             target="_blank"
             title="triple-c.algorithm.am"
           >
@@ -205,7 +205,7 @@ const FooterBlack = () => {
             <span className="copyright">
               Copyright © {new Date().getFullYear()}
             </span>{" "}
-            <a href="https://algorithm.am/" className="footerlinkweb">Powered by AlgorithmSolutions</a>
+            <a href="https://algorithm.am/" className="footerlinkweb" target="_blank">Powered by AlgorithmSolutions</a>
           </FooterCopyRightWrap>
         </FooterCopyRightColumn>
       </Row>

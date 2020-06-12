@@ -13,6 +13,15 @@ import {
   FacebookIcon,
   LinkdinIcon,
 } from "./formStyle"
+import {
+  FacebookShareButton,
+  LineShareButton,
+  LinkedinShareButton,
+  TwitterShareButton,
+  ViberShareButton,
+  VKShareButton,
+  WhatsappShareButton,
+} from "react-share"
 const layout = {
   labelCol: {
     span: 24,
@@ -167,19 +176,25 @@ const Formfield = () => {
         <SharedWrapperCol span={10}>
           <ShareLabel>Կիսվել</ShareLabel>
           <FaceLink
-            href="https://www.facebook.com/sharer/sharer.php?u=http://triple-c.algorithm.am/career/"
-            target="_blank"
+            //href="https://www.facebook.com/sharer/sharer.php?u=http://triple-c.algorithm.am/career/"
+            //target="_blank"
             rel="noopener"
-          >
-            <FacebookIcon />
-          </FaceLink>
-          <LinkedinLink
+          ></FaceLink>
+          <FacebookShareButton
+            url="http://triple-c.algorithm.am/career/"
+            //quote="Ավագ Հաշվապահ"
+            children={<FacebookIcon />}
+            hashtag="Avag HAshvapah"
+          />
+          <FacebookIcon />
+
+          {/* <LinkedinLink
             href="https://www.facebook.com/sharer/sharer.php?u=https://www.facebook.com/TripleCArmenia/"
             target="_blank"
             rel="noopener"
           >
             <LinkdinIcon />
-          </LinkedinLink>
+          </LinkedinLink> */}
         </SharedWrapperCol>
       </Row>
       <CareerModal handleOk={handleOk} modalVisible={modalVisible} />
