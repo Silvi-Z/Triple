@@ -108,7 +108,7 @@ const Career = () => {
     <Layout>
       <Helmet>
         <meta charSet="utf-8" />
-        <title>My Title</title>
+        <title>Ավագ Հաշվապահ</title>
         <link rel="canonical" href="http://mysite.com/example" />
       </Helmet>
       <CareerParagraphRow>
