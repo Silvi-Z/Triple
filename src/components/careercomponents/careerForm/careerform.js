@@ -1,5 +1,5 @@
 /*eslint-disable */
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { Form, Input, Button, Col, Row, Upload, message } from "antd"
 import { UploadOutlined } from "@ant-design/icons"
 import { apiHelper } from "../../../helpers/apiHelper"
@@ -13,15 +13,8 @@ import {
   FacebookIcon,
   LinkdinIcon,
 } from "./formStyle"
-import {
-  FacebookShareButton,
-  LineShareButton,
-  LinkedinShareButton,
-  TwitterShareButton,
-  ViberShareButton,
-  VKShareButton,
-  WhatsappShareButton,
-} from "react-share"
+import { FacebookShareButton, LinkedinShareButton } from "react-share"
+//import FB from "gatsby-plugin-facebook-analytics"
 const layout = {
   labelCol: {
     span: 24,
@@ -59,6 +52,24 @@ const Formfield = () => {
   const [form] = Form.useForm()
   const [modalVisible, setmodalVisible] = useState(false)
   const [loading, toggleLoading] = useState(false)
+  useEffect(() => {
+    window.fbAsyncInit = function () {
+      FB.init({ //eslint-disable-line
+        appId: '323009385338778',
+        cookie: true,
+        xfbml: true,
+        version: 'v6.0'
+      });
+    };
+
+    (function (d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = 'https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v7.0&appId=323009385338778&autoLogAppEvents=1';
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+  })
 
   const handleOk = e => {
     setmodalVisible(false)
@@ -101,7 +112,31 @@ const Formfield = () => {
       toggleLoading(false)
     }
   }
+  const Fbinit = () => {
+    console.log(FB)
+    // FB.init({
+    //   appId: '323009385338778',
+    //   status: true,
+    //   xfbml: true,
+    //   version: 'v2.7' // or v2.6, v2.5, v2.4, v2.3
+    // });
+    FB.ui({
+      method: 'share',
+      href: window.location.href,
+    }, function (response) {
+      console.log(response)
+    });
+  }
 
+  const share = () => {
+    var windowFeatures =
+      "menubar=yes,location=yes,resizable=yes,scrollbars=yes,status=yes"
+    window.open(
+      "https://facebook.com/sharer.php?u=http://triple-c.algorithm.am/career/",
+      "Avag HAsgvapah",
+      windowFeatures
+    )
+  }
   return (
     <Form
       {...layout}
@@ -176,17 +211,27 @@ const Formfield = () => {
         <SharedWrapperCol span={10}>
           <ShareLabel>Կիսվել</ShareLabel>
           <FaceLink
-            //href="https://www.facebook.com/sharer/sharer.php?u=http://triple-c.algorithm.am/career/"
-            //target="_blank"
-            rel="noopener"
-          ></FaceLink>
-          <FacebookShareButton
+            onClick={Fbinit}
+          // onClick={() =>
+          //   window.open(
+          //     "https://www.facebook.com/sharer/sharer.php?u=http://triple-c.algorithm.am/career/",
+          //     "Facebook",
+          //     "Popup",
+          //     "toolbar=yes, location=no, statusbar=no, menubar=yes, scrollbars=1, resizable=0, width=580, height=600, top=30"
+          //   )
+          // }
+          // alt="ssds"
+          //target="_blank"
+          //rel="noopener"
+          >
+            sdsdsdsd
+          </FaceLink>
+          {/* <FacebookShareButton
             url="http://triple-c.algorithm.am/career/"
-            //quote="Ավագ Հաշվապահ"
             children={<FacebookIcon />}
-            hashtag="Avag HAshvapah"
-          />
-          <FacebookIcon />
+            hashtag={"Avag HAshvapah"}
+          /> */}
+          {/* <FacebookIcon /> */}
 
           {/* <LinkedinLink
             href="https://www.facebook.com/sharer/sharer.php?u=https://www.facebook.com/TripleCArmenia/"
@@ -195,6 +240,13 @@ const Formfield = () => {
           >
             <LinkdinIcon />
           </LinkedinLink> */}
+          <LinkedinShareButton
+            title={`Avag HAshvapah`}
+            summary={`Avag HAshvapah`}
+            source={`Avag hasvapah`}
+            children={<LinkdinIcon />}
+            url="http://triple-c.algorithm.am/career/"
+          ></LinkedinShareButton>
         </SharedWrapperCol>
       </Row>
       <CareerModal handleOk={handleOk} modalVisible={modalVisible} />

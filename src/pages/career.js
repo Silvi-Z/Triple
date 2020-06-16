@@ -5,7 +5,7 @@ import { Col } from "antd"
 import CareerWrap from "../components/careercomponents/careerDroping/careerdrop"
 import {
   CareerParagraphRow,
-  H2Styled,
+  H1Styled,
   PStyled,
 } from "../components/careercomponents/careerMainStyle"
 const Career = () => {
@@ -56,7 +56,7 @@ const Career = () => {
     <Layout>
       <CareerParagraphRow>
         <Col lg={{ span: 24 }} xxl={{ span: 8, offset: 4 }}>
-          <H2Styled>Միացիր մեր թիմին</H2Styled>
+          <H1Styled>Միացիր մեր թիմին</H1Styled>
           <PStyled>
             Մենք միշտ ուրախ ենք ընդլայնել մեր թիմը լավագույն մասնագետներով։ Եթե
             ունեք ցանկություն միանալու մեզ, ապա ուղարկեք Ձեր ինքնակենսագրականը,

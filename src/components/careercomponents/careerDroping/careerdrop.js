@@ -35,8 +35,8 @@ const CareerDropWrapper = ({ showCareerForm, data }) => {
           {data.open ? (
             <MinusOutlined style={{ fontSize: "20px" }} />
           ) : (
-              <PlusOutlined style={{ fontSize: "20px" }} />
-            )}
+            <PlusOutlined style={{ fontSize: "20px" }} />
+          )}
         </ToggleButton>
       </DropHeadingButtonCol>
       {data.open ? (

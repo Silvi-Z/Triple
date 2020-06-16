@@ -189,7 +189,13 @@ const FooterBlack = () => {
           <FooterFollowUsWrap>
             <span>Հետևեք մեզ</span>
           </FooterFollowUsWrap>
-          <LinkedinWrapper src={LinkedinImg} />
+          <a
+            href="https://www.linkedin.com/company/triple-consulting/"
+            target="_blank"
+            title="triple-c.algorithm.am"
+          >
+            <LinkedinWrapper src={LinkedinImg} />
+          </a>
           <a
             href="https://www.facebook.com/TripleCArmenia/"
             target="_blank"
