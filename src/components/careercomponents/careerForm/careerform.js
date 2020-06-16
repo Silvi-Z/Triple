@@ -54,21 +54,25 @@ const Formfield = () => {
   const [loading, toggleLoading] = useState(false)
   useEffect(() => {
     window.fbAsyncInit = function () {
-      FB.init({ //eslint-disable-line
-        appId: '323009385338778',
+      FB.init({
+        //eslint-disable-line
+        appId: "323009385338778",
         cookie: true,
         xfbml: true,
-        version: 'v6.0'
-      });
-    };
+        version: "v6.0",
+      })
+    }
 
-    (function (d, s, id) {
-      var js, fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) return;
-      js = d.createElement(s); js.id = id;
-      js.src = 'https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v7.0&appId=323009385338778&autoLogAppEvents=1';
-      fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
+      ; (function (d, s, id) {
+        var js,
+          fjs = d.getElementsByTagName(s)[0]
+        if (d.getElementById(id)) return
+        js = d.createElement(s)
+        js.id = id
+        js.src =
+          "https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v7.0&appId=323009385338778&autoLogAppEvents=1"
+        fjs.parentNode.insertBefore(js, fjs)
+      })(document, "script", "facebook-jssdk")
   })
 
   const handleOk = e => {
@@ -120,12 +124,18 @@ const Formfield = () => {
     //   xfbml: true,
     //   version: 'v2.7' // or v2.6, v2.5, v2.4, v2.3
     // });
-    FB.ui({
-      method: 'share',
-      href: window.location.href,
-    }, function (response) {
-      console.log(response)
-    });
+    FB.ui(
+      {
+        method: "share",
+        href: "http://triple-c.algorithm.am/career/",
+        title: "your_title",
+        caption: 'your_caption',
+        description: 'your_description'
+      },
+      function (response) {
+        console.log(response)
+      }
+    )
   }
 
   const share = () => {
