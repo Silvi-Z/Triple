@@ -19,7 +19,7 @@ export const CareerParagraphRow = styled(Row)`
     padding-right: 0%;
   }
 `
-export const H2Styled = styled.h1`
+export const H1Styled = styled.h1`
   width: 244px;
   height: 18px;
   font-family: ArialAMU;
