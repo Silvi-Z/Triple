@@ -1,5 +1,5 @@
 /*eslint-disable */
-import React from "react"
+import React, { useState, useEffect } from "react"
 import { Row } from "antd"
 import {
   ContainerNews,
@@ -7,12 +7,17 @@ import {
   ImgWrapper,
   Ptext,
   WrapperImg,
-  H2text
+  H2text,
 } from "./newsStyle"
+import ReadMoreReact from "read-more-react"
 
 const News = ({ data, openpage }) => {
+  const [seeMore, setseeMore] = useState(false)
+  useEffect(() => {
+
+  }, [seeMore])
   return (
-    <ContainerNews ls={24}>
+    <ContainerNews seemore={seeMore.toString()} ls={24}>
       <Row>
         <ImgWrapper xl={6} lg={6} md={6} xs={24}>
           <WrapperImg src={data.Imgurl} alt={"img"} />
@@ -20,7 +25,19 @@ const News = ({ data, openpage }) => {
         <TextWrapper xl={18} lg={18} md={18} xs={24}>
           <H2text>{data.heading}</H2text>
           <hr width="10%" style={{ marginBottom: "9px" }} />
-          <Ptext>{data.paragraph}</Ptext>
+          <ReadMoreReact
+            id="seeMore"
+            readMoreText=" ... տեսնել ավելին"
+            min={100}
+            ideal={120}
+            max={150}
+            text={data.paragraph}
+            onClick={() => setseeMore(!seeMore)}
+          />
+          {/* <Ptext>
+           
+            {data.paragraph}
+          </Ptext> */}
         </TextWrapper>
       </Row>
     </ContainerNews>

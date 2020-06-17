@@ -42,11 +42,11 @@ function SEO({ description, lang, meta, title, image: metaImage, pathname }) {
       link={
         canonical
           ? [
-              {
-                rel: "canonical",
-                href: canonical,
-              },
-            ]
+            {
+              rel: "canonical",
+              href: canonical,
+            },
+          ]
           : []
       }
       meta={[
@@ -86,29 +86,29 @@ function SEO({ description, lang, meta, title, image: metaImage, pathname }) {
         .concat(
           metaImage
             ? [
-                {
-                  property: "og:image",
-                  content: image,
-                },
-                {
-                  property: "og:image:width",
-                  content: metaImage.width,
-                },
-                {
-                  property: "og:image:height",
-                  content: metaImage.height,
-                },
-                {
-                  name: "twitter:card",
-                  content: "summary_large_image",
-                },
-              ]
+              {
+                property: "og:image",
+                content: image,
+              },
+              {
+                property: "og:image:width",
+                content: metaImage.width,
+              },
+              {
+                property: "og:image:height",
+                content: metaImage.height,
+              },
+              {
+                name: "twitter:card",
+                content: "summary_large_image",
+              },
+            ]
             : [
-                {
-                  name: "twitter:card",
-                  content: "summary",
-                },
-              ]
+              {
+                name: "twitter:card",
+                content: "summary",
+              },
+            ]
         )
         .concat(meta)}
     />

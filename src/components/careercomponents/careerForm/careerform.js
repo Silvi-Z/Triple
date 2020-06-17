@@ -14,6 +14,8 @@ import {
   LinkdinIcon,
 } from "./formStyle"
 import { FacebookShareButton, LinkedinShareButton } from "react-share"
+import { Helmet } from "react-helmet"
+
 //import FB from "gatsby-plugin-facebook-analytics"
 const layout = {
   labelCol: {
@@ -52,6 +54,7 @@ const Formfield = () => {
   const [form] = Form.useForm()
   const [modalVisible, setmodalVisible] = useState(false)
   const [loading, toggleLoading] = useState(false)
+  const [title, setTitle] = useState("Avag Hashvapah")
   useEffect(() => {
     window.fbAsyncInit = function () {
       FB.init({
@@ -148,6 +151,7 @@ const Formfield = () => {
     )
   }
   return (
+
     <Form
       {...layout}
       name="basic_career"
@@ -157,7 +161,10 @@ const Formfield = () => {
       form={form}
       onFinish={onFinish}
       nostyle="true"
-    >
+    ><Helmet>
+        <title>Nested Title</title>
+        <meta name="description" content="Nested component" />
+      </Helmet>
       <Form.Item
         label="Ձեր հաղորդագրությունը"
         name="textarea"
@@ -234,7 +241,7 @@ const Formfield = () => {
           //target="_blank"
           //rel="noopener"
           >
-            sdsdsdsd
+            <FacebookIcon />
           </FaceLink>
           {/* <FacebookShareButton
             url="http://triple-c.algorithm.am/career/"

@@ -84,8 +84,8 @@ const Reports = () => {
             {showForm ? (
               <MinusOutlined style={{ fontSize: "20px" }} />
             ) : (
-              <PlusOutlined style={{ fontSize: "20px" }} />
-            )}
+                <PlusOutlined style={{ fontSize: "20px" }} />
+              )}
           </ToggleButton>
         </Col>
       </ReportDropRow>
@@ -148,12 +148,6 @@ const Reports = () => {
           </Col>
         ) : null}
       </ReportFormRow>
-      <FacebookShareButton
-        url="http://triple-c.algorithm.am/reports/"
-        //quote="Ավագ Հաշվապահ"
-        children={"jh"}
-        hashtag="Avag HAshvapah"
-      />
     </Layout>
   )
 }

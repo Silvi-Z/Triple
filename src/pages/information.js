@@ -1,7 +1,7 @@
 /*eslint-disable */
 import React, { useState, useEffect } from "react"
 import Layout from "../components/layout"
-import { Col } from "antd"
+import { Col, Button } from "antd"
 import InformNews from "../components/informationcomponents/News/informnews"
 import InformUseFul from "../components/informationcomponents/useFullInform/usefulinformation"
 import InformDocTemplate from "../components/informationcomponents/documentTemplate/doctemplateinform"

@@ -2,9 +2,9 @@ import styled from "styled-components"
 import { Col } from "antd"
 
 export const ContainerNews = styled(Col)`
+  height: ${props => console.log(props.seemore)};
   max-width: 790px;
-  height: 150px;
-  overflow: hidden;
+  /* overflow: hidden; */
   margin-top: 5%;
   box-shadow: 0px 5px 40px 0 rgba(0, 0, 0, 0.1);
   background-color: #ffffff;
@@ -25,7 +25,7 @@ export const ImgWrapper = styled(Col)`
 `
 export const TextWrapper = styled(Col)`
   padding: 2.2% 1%;
-  &:hover {
+  /* &:hover {
     color: #009db8;
     cursor: pointer;
     h2 {
@@ -34,7 +34,50 @@ export const TextWrapper = styled(Col)`
     p {
       color: #009db8;
     }
+  } */
+  .read-more-button {
+  height: auto;
+  font-family: ArialAMU;
+  font-size: 12px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: left;
+  color: #000000;
+  @media only screen and (max-width: 375px) {
+    width: 268px;
+    height: 133px;
+    font-family: ArialAMU;
+    font-size: 12px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1;
+    letter-spacing: normal;
+    text-align: left;
+    color: #000000;
   }
+  @media only screen and (max-width: 320px) {
+    width: 268px;
+    height: 133px;
+    font-family: ArialAMU;
+    font-size: 12px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1;
+    letter-spacing: normal;
+    text-align: left;
+    color: #000000;
+  }
+}
+
+.read-more-button:hover {
+  color: #009db8;
+  cursor: pointer;
+}
 `
 export const Ptext = styled.p`
   height: auto;
@@ -75,7 +118,8 @@ export const Ptext = styled.p`
   }
 `
 export const WrapperImg = styled.img`
-  height: -webkit-fill-available;
+  /* height: -webkit-fill-available; */
+  margin-bottom: 0;
   cursor: pointer;
   @media only screen and (max-width: 375px) {
     width: 100%;
