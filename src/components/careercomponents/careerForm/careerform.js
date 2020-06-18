@@ -65,7 +65,6 @@ const Formfield = () => {
         version: "v6.0",
       })
     }
-
       ; (function (d, s, id) {
         var js,
           fjs = d.getElementsByTagName(s)[0]
@@ -132,8 +131,8 @@ const Formfield = () => {
         method: "share",
         href: "http://triple-c.algorithm.am/career/",
         title: "your_title",
-        caption: 'your_caption',
-        description: 'your_description'
+        caption: "your_caption",
+        description: "your_description",
       },
       function (response) {
         console.log(response)
@@ -151,7 +150,6 @@ const Formfield = () => {
     )
   }
   return (
-
     <Form
       {...layout}
       name="basic_career"
@@ -161,9 +159,15 @@ const Formfield = () => {
       form={form}
       onFinish={onFinish}
       nostyle="true"
-    ><Helmet>
-        <title>Nested Title</title>
-        <meta name="description" content="Nested component" />
+    >
+      <Helmet>
+        {/* <title>Nested Title</title> */}
+        {/* <meta name="description" content="Nested component" /> */}
+        {/* <meta property="og:url" content={ogUrl} /> */}
+        {/* <meta property="og:type" content={props.type} /> */}
+        {/* <meta property="og:title" content={"props.title"} />
+        <meta property="og:description" content={"props.desc"} /> */}
+        {/* <meta property="og:image" content={ogImg} /> */}
       </Helmet>
       <Form.Item
         label="Ձեր հաղորդագրությունը"

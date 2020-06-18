@@ -51,66 +51,38 @@ function SEO({ description, lang, meta, title, image: metaImage, pathname }) {
       }
       meta={[
         {
-          name: "description",
+          name: `description`,
           content: metaDescription,
         },
         {
-          property: "og:title",
+          property: `og:title`,
           content: title,
         },
         {
-          property: "og:description",
+          property: `og:description`,
           content: metaDescription,
         },
         {
-          property: "og:type",
-          content: "website",
+          property: `og:type`,
+          content: `website`,
         },
         {
-          name: "twitter:card",
-          content: "summary",
+          name: `twitter:card`,
+          content: `summary`,
         },
         {
-          name: "twitter:creator",
-          content: site.siteMetadata.author,
+          name: `twitter:creator`,
+          content: "site.siteMetadata.social.facebook",
         },
         {
-          name: "twitter:title",
+          name: `twitter:title`,
           content: title,
         },
         {
-          name: "twitter:description",
+          name: `twitter:description`,
           content: metaDescription,
         },
-      ]
-        .concat(
-          metaImage
-            ? [
-              {
-                property: "og:image",
-                content: image,
-              },
-              {
-                property: "og:image:width",
-                content: metaImage.width,
-              },
-              {
-                property: "og:image:height",
-                content: metaImage.height,
-              },
-              {
-                name: "twitter:card",
-                content: "summary_large_image",
-              },
-            ]
-            : [
-              {
-                name: "twitter:card",
-                content: "summary",
-              },
-            ]
-        )
-        .concat(meta)}
+      ].concat(meta)}
     />
   )
 }

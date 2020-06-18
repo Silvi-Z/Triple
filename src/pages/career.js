@@ -67,8 +67,11 @@ const Career = () => {
       <Helmet>
         <meta charSet="utf-8" />
         <title>Ավագ Հաշվապահ</title>
-        <link rel="canonical" href="http://localhost:8000" />
-        <meta name="description" content="Ավագ Հաշվապահ" />
+        <link rel="canonical" href="http://triple-c.algorithm.am/career/" />
+        <meta name="description" content="Մենք միշտ ուրախ ենք ընդլայնել մեր թիմը լավագույն մասնագետներով։ Եթե
+            ունեք ցանկություն միանալու մեզ, ապա ուղարկեք Ձեր ինքնակենսագրականը,
+            մենք ուրախ ենք տեսնել լավագույններին մեր կազմում։Ստորեւ կարող եք
+            ծանոթանալ թափուր աշխատատեղերին։" />
       </Helmet>
       <CareerParagraphRow>
         <Col lg={{ span: 24 }} xxl={{ span: 8, offset: 4 }}>
