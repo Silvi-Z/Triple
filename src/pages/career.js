@@ -64,13 +64,13 @@ const Career = () => {
   }
   return (
     <Layout>
-      <Helmet>
+      {/* <Helmet>
         <meta charSet="utf-8" />
-        <title>Ավագ Հաշվապահ</title>
-        <meta property="og:title" content="Միացիր մեր Թիմին" />
+        <title>{careerdata.length !== 0 ? careerdata[0].data.title_arm : null}</title>
+        <meta property="og:title" content={careerdata.length !== 0 ? careerdata[0].data.title_arm : null} />
         <meta property="og:type" content="website" />
         <link rel="canonical" href="http://triple-c.algorithm.am/career/" />
-      </Helmet>
+      </Helmet> */}
       <CareerParagraphRow>
         <Col lg={{ span: 24 }} xxl={{ span: 8, offset: 4 }}>
           <H1Styled>Միացիր մեր թիմին</H1Styled>

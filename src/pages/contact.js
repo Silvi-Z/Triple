@@ -34,6 +34,7 @@ import {
 const Contact = () => {
   const [openIndivid, setopenIndivid] = useState(true)
   const [openComp, setopenComp] = useState(false)
+
   const ChangeOpenInvid = () => {
     setopenIndivid(true)
     setopenComp(false)
@@ -47,7 +48,7 @@ const Contact = () => {
     <Layout>
       <Helmet>
         <meta charSet="utf-8" />
-        <title>Contact</title>
+        <title>Կապ մեզ հետ</title>
         <meta property="og:title" content="Կապ մեզ հետ" />
         <meta property="og:type" content="website" />
         <link rel="canonical" href="http://triple-c.algorithm.am/contact/" />

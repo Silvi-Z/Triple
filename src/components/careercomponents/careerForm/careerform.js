@@ -50,11 +50,10 @@ const validateMessages = {
   },
 }
 
-const Formfield = () => {
+const Formfield = ({ title }) => {
   const [form] = Form.useForm()
   const [modalVisible, setmodalVisible] = useState(false)
   const [loading, toggleLoading] = useState(false)
-  const [title, setTitle] = useState("Avag Hashvapah")
   useEffect(() => {
     window.fbAsyncInit = function () {
       FB.init({
@@ -162,8 +161,8 @@ const Formfield = () => {
     >
       <Helmet>
         <meta charSet="utf-8" />
-        <title>Career</title>
-        <meta property="og:title" content="Ավագ Հաշվապահ" />
+        <title>{title}</title>
+        <meta property="og:title" content={title} />
         <meta property="og:type" content="website" />
         <link rel="canonical" href="http://triple-c.algorithm.am/career/" />
       </Helmet>

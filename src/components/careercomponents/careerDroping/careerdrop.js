@@ -20,13 +20,6 @@ import {
 const CareerDropWrapper = ({ showCareerForm, data }) => {
   return (
     <DropCareerRow gutter={[10, 30]}>
-      <Helmet>
-        <meta charSet="utf-8" />
-        <title>Career</title>
-        <meta property="og:title" content={data.data.title_arm} />
-        <meta property="og:type" content="website" />
-        <link rel="canonical" href="http://triple-c.algorithm.am/career/" />
-      </Helmet>
       <DropHeadingIconCol
         xxl={{ span: 2, offset: 4 }}
         xl={{ span: 2, offset: 3 }}
@@ -65,7 +58,7 @@ const CareerDropWrapper = ({ showCareerForm, data }) => {
             <OrderSection>{data.data.description_arm_5}</OrderSection>
             <OrderSection>{data.data.description_arm_6}</OrderSection>
           </OrderList>
-          <FormCareer />
+          <FormCareer title={data.data.title_arm} />
         </FormWrapperCol>
       ) : null}
     </DropCareerRow>

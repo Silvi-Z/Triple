@@ -257,7 +257,9 @@ export const SharedWrapperCol = styled(Col)`
   display: flex;
   justify-content: end;
   margin-top: 2%;
-
+  .react-share__ShareButton {
+    all: unset;
+  }
   /* @media (min-width: 375px) {
     a {
       display: contents;
