@@ -48,8 +48,8 @@ const Contact = () => {
     <Layout>
       <Helmet>
         <meta charSet="utf-8" />
-        <title>Կապ մեզ հետ</title>
-        <meta property="og:title" content="The Contact" />
+        <title>{document.location.title}</title>
+        <meta property="og:title" content="Կապ մեզ հետ" />
         <meta property="og:type" content="website" />
         <link rel="canonical" href="http://triple-c.algorithm.am/contact/" />
       </Helmet>

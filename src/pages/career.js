@@ -67,12 +67,9 @@ const Career = () => {
       <Helmet>
         <meta charSet="utf-8" />
         <title>Ավագ Հաշվապահ</title>
-        <meta property="og:description"
-          content="Sean Connery found fame and fortune as the
-           suave, sophisticated British agent, James Bond." />
-        <meta property="og:determiner" content="the" />
+        <meta property="og:title" content="Միացիր մեր Թիմին" />
+        <meta property="og:type" content="website" />
         <link rel="canonical" href="http://triple-c.algorithm.am/career/" />
-        <meta property="og:description" content="Ավագ" />
       </Helmet>
       <CareerParagraphRow>
         <Col lg={{ span: 24 }} xxl={{ span: 8, offset: 4 }}>

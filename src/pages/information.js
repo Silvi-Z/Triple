@@ -9,6 +9,7 @@ import Img1 from "../assets/informimages/hdm.jpg"
 import Img2 from "../assets/informimages/water.jpg"
 import Img3 from "../assets/informimages/drosh.jpg"
 import News1 from "../components/informationcomponents/News/secondNews/secondnewspage"
+import { Helmet } from "react-helmet"
 import {
   InformationParagraphRow,
   H2Styled,
@@ -17,8 +18,18 @@ import {
   InformationUsfulCol,
   InformationDocumentCol,
   InformSectionRow,
-  InformationNewsCol
+  InformationNewsCol,
+  SharedWrapperCol,
+  FaceLink,
+  ShareLabel,
+  LinkedinLink,
+  FacebookIcon,
+  LinkdinIcon
 } from "../components/informationcomponents/informMainStyle"
+import {
+  FacebookShareButton,
+  LinkedinShareButton,
+} from "react-share"
 const Information = () => {
   const [dataNewsInfo, setDataNewsinfo] = useState([])
   // const [openSecondNews, setopenSecondNews] = useState(false)
@@ -335,7 +346,6 @@ const Information = () => {
     // setopenSecondNews(false)
   }
 
-
   //this function for second news page
   // const openPage = () => {
   //   setOpenDocTemp(false)
@@ -346,11 +356,21 @@ const Information = () => {
 
   return (
     <Layout>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>{document.location.title}</title>
+        <meta property="og:title" content="Օգտակար տեղեկություններ" />
+        <meta property="og:type" content="website" />
+        <link rel="canonical" href="http://triple-c.algorithm.am/information/" />
+      </Helmet>
       <InformationParagraphRow>
         <Col lg={{ span: 24 }}>
           <H2Styled>Օգտակար տեղեկություններ</H2Styled>
           <PStyled>
-            Մեր ընկերությունն իր պարտքն է համարում կիսվել իր հաճախորդների հետ այն օգտակար տեղեկատվությամբ, որին տիրապետում է՝ այդպիսով իր լուման ներդնելով հաճախորդների տեղեկացված և պատրաստված լինելու կարևոր գործառույթին։
+            Մեր ընկերությունն իր պարտքն է համարում կիսվել իր հաճախորդների հետ
+            այն օգտակար տեղեկատվությամբ, որին տիրապետում է՝ այդպիսով իր լուման
+            ներդնելով հաճախորդների տեղեկացված և պատրաստված լինելու կարևոր
+            գործառույթին։
           </PStyled>
         </Col>
       </InformationParagraphRow>
@@ -399,6 +419,46 @@ const Information = () => {
           ))}
         </InformSectionRow>
       ) : null}
+      <SharedWrapperCol span={5} offset={4}>
+        <ShareLabel>Կիսվել</ShareLabel>
+        {/* <FaceLink
+            onClick={Fbinit}
+            onClick={() =>
+              window.open(
+                "https://www.facebook.com/sharer/sharer.php?u=http://triple-c.algorithm.am/career/",
+                "Facebook",
+                "Popup",
+                "toolbar=yes, location=no, statusbar=no, menubar=yes, scrollbars=1, resizable=0, width=580, height=600, top=30"
+              )
+            }
+            alt="ssds"
+            target="_blank"
+            rel="noopener"
+          >
+            <FacebookIcon />
+          </FaceLink> */}
+        <FacebookShareButton
+          url="http://triple-c.algorithm.am/information/"
+          children={<FacebookIcon />}
+          hashtag={"Avag HAshvapah"}
+        />
+        {/* <FacebookIcon />
+
+          {/* <LinkedinLink
+            href="https://www.facebook.com/sharer/sharer.php?u=https://www.facebook.com/TripleCArmenia/"
+            target="_blank"
+            rel="noopener"
+          >
+            <LinkdinIcon />
+          </LinkedinLink> */}
+        <LinkedinShareButton
+          title={`Avag HAshvapah`}
+          summary={`Avag HAshvapah`}
+          source={`Avag hasvapah`}
+          children={<LinkdinIcon />}
+          url="http://triple-c.algorithm.am/information/"
+        ></LinkedinShareButton>
+      </SharedWrapperCol>
     </Layout>
   )
 }

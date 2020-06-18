@@ -3,6 +3,7 @@ import React from "react"
 import { PlusOutlined, MinusOutlined } from "@ant-design/icons"
 import CalcImg from "../../../assets/account.png"
 import FormCareer from "../careerForm/careerform"
+import { Helmet } from "react-helmet"
 import {
   ToggleH2Styled,
   H2Styled,
@@ -19,6 +20,13 @@ import {
 const CareerDropWrapper = ({ showCareerForm, data }) => {
   return (
     <DropCareerRow gutter={[10, 30]}>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>{document.location.title}</title>
+        <meta property="og:title" content={data.data.title_arm} />
+        <meta property="og:type" content="website" />
+        <link rel="canonical" href="http://triple-c.algorithm.am/career/" />
+      </Helmet>
       <DropHeadingIconCol
         xxl={{ span: 2, offset: 4 }}
         xl={{ span: 2, offset: 3 }}
@@ -35,8 +43,8 @@ const CareerDropWrapper = ({ showCareerForm, data }) => {
           {data.open ? (
             <MinusOutlined style={{ fontSize: "20px" }} />
           ) : (
-            <PlusOutlined style={{ fontSize: "20px" }} />
-          )}
+              <PlusOutlined style={{ fontSize: "20px" }} />
+            )}
         </ToggleButton>
       </DropHeadingButtonCol>
       {data.open ? (

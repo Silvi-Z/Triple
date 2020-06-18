@@ -161,19 +161,11 @@ const Formfield = () => {
       nostyle="true"
     >
       <Helmet>
-        <title>Nested Title</title>
-        <meta name="description" content="Հաղորդագրութուն" />
-        {/* <meta property="og:description"
-          content="Sean Connery found fame and fortune as the
-           suave, sophisticated British agent, James Bond." />
-        <meta property="og:determiner" content="the" /> */}
-        <meta property="og:locale" content="en_GB" />
-        {/* <meta name="description" content="Nested component" /> */}
-        {/* <meta property="og:url" content={ogUrl} /> */}
-        {/* <meta property="og:type" content={props.type} /> */}
-        {/* <meta property="og:title" content={"props.title"} />
-        <meta property="og:description" content={"props.desc"} /> */}
-        {/* <meta property="og:image" content={ogImg} /> */}
+        <meta charSet="utf-8" />
+        <title>{document.location.title}</title>
+        <meta property="og:title" content="Ավագ Հաշվապահ" />
+        <meta property="og:type" content="website" />
+        <link rel="canonical" href="http://triple-c.algorithm.am/career/" />
       </Helmet>
       <Form.Item
         label="Ձեր հաղորդագրությունը"
@@ -237,27 +229,27 @@ const Formfield = () => {
         </Col>
         <SharedWrapperCol span={10}>
           <ShareLabel>Կիսվել</ShareLabel>
-          <FaceLink
+          {/* <FaceLink
             onClick={Fbinit}
-          // onClick={() =>
-          //   window.open(
-          //     "https://www.facebook.com/sharer/sharer.php?u=http://triple-c.algorithm.am/career/",
-          //     "Facebook",
-          //     "Popup",
-          //     "toolbar=yes, location=no, statusbar=no, menubar=yes, scrollbars=1, resizable=0, width=580, height=600, top=30"
-          //   )
-          // }
-          // alt="ssds"
-          //target="_blank"
-          //rel="noopener"
+          onClick={() =>
+            window.open(
+              "https://www.facebook.com/sharer/sharer.php?u=http://triple-c.algorithm.am/career/",
+              "Facebook",
+              "Popup",
+              "toolbar=yes, location=no, statusbar=no, menubar=yes, scrollbars=1, resizable=0, width=580, height=600, top=30"
+            )
+          }
+          alt="ssds"
+          target="_blank"
+          rel="noopener"
           >
             <FacebookIcon />
-          </FaceLink>
-          {/* <FacebookShareButton
+          </FaceLink> */}
+          <FacebookShareButton
             url="http://triple-c.algorithm.am/career/"
             children={<FacebookIcon />}
             hashtag={"Avag HAshvapah"}
-          /> */}
+          />
           {/* <FacebookIcon /> */}
 
           {/* <LinkedinLink

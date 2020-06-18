@@ -1,5 +1,9 @@
 import styled from "styled-components"
 import { Row, Col } from "antd"
+import FbBlueIcon from "../../assets/career/facebookBlueCareer.svg"
+import FbBlackIcon from "../../assets/career/facebookCareer.svg"
+import LinkdinBlackIcon from "../../assets/career/linkedinCareer.svg"
+import LinkedinBlueIcon from "../../assets/career/linkedinBlueCareer.svg"
 export const InformationParagraphRow = styled(Row)`
   padding: 0 13.5%;
   margin-bottom: 2.8%;
@@ -207,7 +211,7 @@ export const InformationNewsCol = styled(Col)`
   padding-top: 1.8%;
   box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
   background-color: ${props =>
-        props.open || props.opensecondnews === "true" ? "#009db8" : "#ffffff"};
+    props.open || props.opensecondnews === "true" ? "#009db8" : "#ffffff"};
   > span {
     width: 105px;
     height: 15px;
@@ -220,7 +224,7 @@ export const InformationNewsCol = styled(Col)`
     letter-spacing: normal;
     text-align: center;
     color: ${props =>
-        props.open || props.opensecondnews === "true" ? "#ffffff" : "#009db8"};
+    props.open || props.opensecondnews === "true" ? "#ffffff" : "#009db8"};
   }
   &:hover {
     background-color: #009db8;
@@ -247,4 +251,70 @@ export const InformationNewsCol = styled(Col)`
     padding-top: 3.5%;
     margin-bottom: 10px;
   }
+`
+export const SharedWrapperCol = styled(Col)`
+  padding: 0 1%;
+  display: flex;
+  justify-content: end;
+  margin-top: 2%;
+
+  /* @media (min-width: 375px) {
+    a {
+      display: contents;
+      color: #da4567;
+    }
+  } */
+`
+export const FaceLink = styled.a`
+  color: black;
+  font-size: 32px;
+  margin-top: -4%;
+  &:hover {
+    cursor: pointer;
+    color: #009db8;
+  }
+`
+export const LinkedinLink = styled.a`
+  color: black;
+  font-size: 32px;
+  margin-top: -4%;
+  cursor: pointer;
+  &:hover {
+    color: #009db8;
+  }
+`
+export const FacebookIcon = styled.div`
+  height: 32px;
+  width: 32px;
+  margin-left: 19px;
+  background-image: url(${FbBlackIcon});
+  cursor: pointer;
+  &:hover {
+    background-image: url(${FbBlueIcon});
+  }
+`
+export const LinkdinIcon = styled.div`
+  height: 32px;
+  width: 32px;
+  margin-left: 19px;
+  background-image: url(${LinkdinBlackIcon});
+  cursor: pointer;
+  &:hover {
+    background-image: url(${LinkedinBlueIcon});
+  }
+`
+
+export const ShareLabel = styled.h3`
+  width: 50px;
+  height: 15px;
+  font-family: ArialAMU;
+  font-size: 16px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.88;
+  letter-spacing: normal;
+  text-align: right;
+  margin-top: -5px;
+  color: #000000;
 `
