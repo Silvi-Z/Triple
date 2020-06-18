@@ -38,7 +38,6 @@ const Information = () => {
   const [openNews, setOpenNews] = useState(true)
   const [openUseful, setOpenUseful] = useState(false)
   const [openDocTemp, setOpenDocTemp] = useState(false)
-
   const GetNewsInfo = () => {
     setDataNewsinfo([
       {
@@ -358,7 +357,7 @@ const Information = () => {
     <Layout>
       <Helmet>
         <meta charSet="utf-8" />
-        <title>{document.location.title}</title>
+        <title>Information</title>
         <meta property="og:title" content="Օգտակար տեղեկություններ" />
         <meta property="og:type" content="website" />
         <link rel="canonical" href="http://triple-c.algorithm.am/information/" />

@@ -22,7 +22,7 @@ const CareerDropWrapper = ({ showCareerForm, data }) => {
     <DropCareerRow gutter={[10, 30]}>
       <Helmet>
         <meta charSet="utf-8" />
-        <title>{document.location.title}</title>
+        <title>Career</title>
         <meta property="og:title" content={data.data.title_arm} />
         <meta property="og:type" content="website" />
         <link rel="canonical" href="http://triple-c.algorithm.am/career/" />

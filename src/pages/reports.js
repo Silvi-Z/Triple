@@ -90,7 +90,7 @@ const Reports = () => {
     <Layout>
       <Helmet>
         <meta charSet="utf-8" />
-        <title>{document.location.title}</title>
+        <title>Report</title>
         <meta property="og:title" content="Հաշվետվության տրամադրում" />
         <meta property="og:type" content="website" />
         <link rel="canonical" href="http://triple-c.algorithm.am/reports/" />
