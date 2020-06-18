@@ -72,7 +72,7 @@ function SEO({ description, lang, meta, title, image: metaImage, pathname }) {
         },
         {
           name: `twitter:creator`,
-          content: "site.siteMetadata.social.facebook",
+          content: "site.siteMetadata.social.twitter",
         },
         {
           name: `twitter:title`,

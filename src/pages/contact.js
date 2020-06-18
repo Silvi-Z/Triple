@@ -7,6 +7,7 @@ import FormOrganizations from "../components/contactcomponts/contactFormOrgaznit
 import EnvironmentImg from "../assets/footericons/location.svg"
 import CallPhoneImg from "../assets/footericons/phone-call.svg"
 import { FacebookShareButton, LinkedinShareButton } from "react-share"
+import { Helmet } from "react-helmet"
 import {
   ParagraphRow,
   H2Styled,
@@ -45,6 +46,13 @@ const Contact = () => {
 
   return (
     <Layout>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Կապ մեզ հետ</title>
+        <meta property="og:title" content="The Contact" />
+        <meta property="og:type" content="website" />
+        <link rel="canonical" href="http://triple-c.algorithm.am/contact/" />
+      </Helmet>
       <ParagraphRow>
         <HeadingParagrCol lg={{ span: 24 }} xxl={{ span: 8, offset: 4 }}>
           <H2Styled>Կապ մեզ հետ</H2Styled>
@@ -144,7 +152,7 @@ const Contact = () => {
             sdsdsdsd
           </FaceLink> */}
         <FacebookShareButton
-          url="http://triple-c.algorithm.am/career/"
+          url="http://triple-c.algorithm.am/contact/"
           children={<FacebookIcon />}
           hashtag={"Avag HAshvapah"}
         />
@@ -162,7 +170,7 @@ const Contact = () => {
           summary={`Avag HAshvapah`}
           source={`Avag hasvapah`}
           children={<LinkdinIcon />}
-          url="http://triple-c.algorithm.am/career/"
+          url="http://triple-c.algorithm.am/contact/"
         ></LinkedinShareButton>
       </SharedWrapperCol>
     </Layout>
