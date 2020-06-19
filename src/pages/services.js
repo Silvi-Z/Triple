@@ -133,7 +133,6 @@ const Services = ({ location, ...props }) => {
       let res = await apiHelper.get("/api/service").then(
         res => {
           setteststate(res.data.data)
-          console.log(res.data.data)
         },
         reject => {
           console.log(reject.response)
@@ -147,7 +146,7 @@ const Services = ({ location, ...props }) => {
   useEffect(() => {
     getServiceData()
     if (location.state.clickedItems >= 2) {
-      setTimeout(function () {
+      setTimeout(function() {
         window.scrollTo(0, 500)
       }, 2)
     }
@@ -160,8 +159,8 @@ const Services = ({ location, ...props }) => {
       d.data.id === current.data.id && d.open === false
         ? { ...d, open: true }
         : d.data.id !== current.data.id && d.open === true
-          ? { ...d, open: false }
-          : { ...d, open: false }
+        ? { ...d, open: false }
+        : { ...d, open: false }
     )
     setservicedata(data)
   }
