@@ -16,7 +16,7 @@ import {
   H2Styled,
   PStyled,
 } from "../components/servicecomponents/serviceMainStyle"
-
+import { Helmet } from "react-helmet"
 const Services = ({ location, ...props }) => {
   const [servicedata, setservicedata] = useState([
     {
@@ -126,6 +126,8 @@ const Services = ({ location, ...props }) => {
     },
   ])
   const [teststate, setteststate] = useState([])
+  const [titleHelmet, setTitleHelmet] = useState("Ծառայություններ")
+
   const getServiceData = async () => {
     try {
       let res = await apiHelper.get("/api/service").then(
@@ -140,7 +142,6 @@ const Services = ({ location, ...props }) => {
     } catch (e) {
       console.log("Calculation error: ", e)
     }
-
   }
 
   useEffect(() => {
@@ -154,6 +155,7 @@ const Services = ({ location, ...props }) => {
   }, [])
   const toggle = current => {
     console.log(teststate)
+    setTitleHelmet(current.data.paragraph)
     const data = servicedata.map(d =>
       d.data.id === current.data.id && d.open === false
         ? { ...d, open: true }
@@ -171,6 +173,14 @@ const Services = ({ location, ...props }) => {
   }
   return (
     <Layout>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>{titleHelmet}</title>
+        <meta property="og:title" content={titleHelmet} />
+        {/* <meta property="og:description" content={data.data.text} /> */}
+        <meta property="og:type" content="website" />
+        <link rel="canonical" href="http://triple-c.algorithm.am/services/" />
+      </Helmet>
       <HeadingParagraphRow>
         <Col
           xs={{ span: 24, offset: 0 }}

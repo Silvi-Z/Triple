@@ -16,25 +16,14 @@ import {
   ShareLabel,
   LinkedinLink,
   FacebookIcon,
-  LinkdinIcon
+  LinkdinIcon,
 } from "./servicedropStyle.js"
-import {
-  FacebookShareButton,
-  LinkedinShareButton,
-} from "react-share"
-import { Helmet } from "react-helmet"
+import { FacebookShareButton, LinkedinShareButton } from "react-share"
+
 
 const Servicedrop = ({ data, showServiceForm }) => {
-
   return (
     <ServiceDropRow align="middle" gutter={[10, 30]}>
-      <Helmet>
-        <meta charSet="utf-8" />
-        <title>{data.data.paragraph}</title>
-        <meta property="og:title" content={data.data.paragraph} />
-        <meta property="og:type" content="website" />
-        <link rel="canonical" href="http://triple-c.algorithm.am/services/" />
-      </Helmet>
       <DropHeadingIconCol
         xxl={{ span: 2, offset: 4 }}
         xl={{ span: 2, offset: 2 }}

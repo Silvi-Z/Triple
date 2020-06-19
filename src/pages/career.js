@@ -8,16 +8,7 @@ import {
   H1Styled,
   PStyled,
 } from "../components/careercomponents/careerMainStyle"
-import {
-  ShareLabel,
-  SharedWrapperCol,
-  FaceLink,
-  LinkedinLink,
-  FacebookIcon,
-  LinkdinIcon,
-} from "../components/careercomponents/careerForm/formStyle"
 import { Helmet } from "react-helmet"
-import { FacebookShareButton, LinkedinShareButton } from "react-share"
 const Career = () => {
   const [careerdata, setcareerdata] = useState([])
 
@@ -57,8 +48,8 @@ const Career = () => {
       d.data.id === current.data.id && d.open === false
         ? { ...d, open: true }
         : d.data.id !== current.data.id && d.open === true
-          ? { ...d, open: false }
-          : { ...d, open: false }
+        ? { ...d, open: false }
+        : { ...d, open: false }
     )
     setcareerdata(data)
   }
@@ -66,8 +57,15 @@ const Career = () => {
     <Layout>
       {/* <Helmet>
         <meta charSet="utf-8" />
-        <title>{careerdata.length !== 0 ? careerdata[0].data.title_arm : null}</title>
-        <meta property="og:title" content={careerdata.length !== 0 ? careerdata[0].data.title_arm : null} />
+        <title>
+          {careerdata.length !== 0 ? careerdata[0].data.title_arm : null}
+        </title>
+        <meta
+          property="og:title"
+          content={
+            careerdata.length !== 0 ? careerdata[0].data.title_arm : null
+          }
+        />
         <meta property="og:type" content="website" />
         <link rel="canonical" href="http://triple-c.algorithm.am/career/" />
       </Helmet> */}

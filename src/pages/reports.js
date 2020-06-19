@@ -24,12 +24,9 @@ import {
   ShareLabel,
   LinkedinLink,
   FacebookIcon,
-  LinkdinIcon
+  LinkdinIcon,
 } from "../components/reportComponents/reportStyle"
-import {
-  FacebookShareButton,
-  LinkedinShareButton,
-} from "react-share"
+import { FacebookShareButton, LinkedinShareButton } from "react-share"
 
 const Reports = () => {
   const [showForm, toggleForm] = useState(true)
@@ -45,7 +42,7 @@ const Reports = () => {
     setConfirm3(false)
   }
   useEffect(() => {
-    window.fbAsyncInit = function () {
+    window.fbAsyncInit = function() {
       FB.init({
         //eslint-disable-line
         appId: "323009385338778",
@@ -54,16 +51,16 @@ const Reports = () => {
         version: "v6.0",
       })
     }
-      ; (function (d, s, id) {
-        var js,
-          fjs = d.getElementsByTagName(s)[0]
-        if (d.getElementById(id)) return
-        js = d.createElement(s)
-        js.id = id
-        js.src =
-          "https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v7.0&appId=323009385338778&autoLogAppEvents=1"
-        fjs.parentNode.insertBefore(js, fjs)
-      })(document, "script", "facebook-jssdk")
+    ;(function(d, s, id) {
+      var js,
+        fjs = d.getElementsByTagName(s)[0]
+      if (d.getElementById(id)) return
+      js = d.createElement(s)
+      js.id = id
+      js.src =
+        "https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v7.0&appId=323009385338778&autoLogAppEvents=1"
+      fjs.parentNode.insertBefore(js, fjs)
+    })(document, "script", "facebook-jssdk")
   })
   const Fbinit = () => {
     console.log(FB)
@@ -81,7 +78,7 @@ const Reports = () => {
         caption: "your_caption",
         description: "your_description",
       },
-      function (response) {
+      function(response) {
         console.log(response)
       }
     )
@@ -131,8 +128,8 @@ const Reports = () => {
             {showForm ? (
               <MinusOutlined style={{ fontSize: "20px" }} />
             ) : (
-                <PlusOutlined style={{ fontSize: "20px" }} />
-              )}
+              <PlusOutlined style={{ fontSize: "20px" }} />
+            )}
           </ToggleButton>
         </Col>
       </ReportDropRow>
