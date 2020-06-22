@@ -15,7 +15,14 @@ import {
   HeadingParagraphRow,
   H2Styled,
   PStyled,
+  SharedWrapperCol,
+  FaceLink,
+  ShareLabel,
+  LinkedinLink,
+  FacebookIcon,
+  LinkdinIcon,
 } from "../components/servicecomponents/serviceMainStyle"
+import { FacebookShareButton, LinkedinShareButton } from "react-share"
 import { Helmet } from "react-helmet"
 const Services = ({ location, ...props }) => {
   const [servicedata, setservicedata] = useState([
@@ -125,14 +132,14 @@ const Services = ({ location, ...props }) => {
       open: false,
     },
   ])
-  const [teststate, setteststate] = useState([])
+  const [Apistate, setApistate] = useState([])
   const [titleHelmet, setTitleHelmet] = useState("Ծառայություններ")
 
   const getServiceData = async () => {
     try {
       let res = await apiHelper.get("/api/service").then(
         res => {
-          setteststate(res.data.data)
+          setApistate(res.data.data)
         },
         reject => {
           console.log(reject.response)
@@ -142,25 +149,23 @@ const Services = ({ location, ...props }) => {
       console.log("Calculation error: ", e)
     }
   }
-
   useEffect(() => {
     getServiceData()
     if (location.state.clickedItems >= 2) {
-      setTimeout(function() {
+      setTimeout(function () {
         window.scrollTo(0, 500)
       }, 2)
     }
     toggleFromHomePage(location.state)
   }, [])
   const toggle = current => {
-    console.log(teststate)
     setTitleHelmet(current.data.paragraph)
     const data = servicedata.map(d =>
       d.data.id === current.data.id && d.open === false
         ? { ...d, open: true }
         : d.data.id !== current.data.id && d.open === true
-        ? { ...d, open: false }
-        : { ...d, open: false }
+          ? { ...d, open: false }
+          : { ...d, open: false }
     )
     setservicedata(data)
   }
@@ -176,7 +181,12 @@ const Services = ({ location, ...props }) => {
         <meta charSet="utf-8" />
         <title>{titleHelmet}</title>
         <meta property="og:title" content={titleHelmet} />
-        {/* <meta property="og:description" content={data.data.text} /> */}
+        <meta
+          property="og:description"
+          content={
+            "Թրիփլ Քոնսալթինգի կողմից մատոցվող հաշվապահական համալիր ծառայությունների միջոցով մոռացեք հաշվապահական հաշվառման հետկապած խնդիրների մասին"
+          }
+        />
         <meta property="og:type" content="website" />
         <link rel="canonical" href="http://triple-c.algorithm.am/services/" />
       </Helmet>
@@ -200,7 +210,22 @@ const Services = ({ location, ...props }) => {
       {servicedata.map((d, id) => (
         <ServiceDropWrap showServiceForm={toggle} data={d} key={id} />
       ))}
-    </Layout>
+      <SharedWrapperCol span={5} offset={3}>
+        <ShareLabel>Կիսվել</ShareLabel>
+        <FacebookShareButton
+          url="http://triple-c.algorithm.am/services/"
+          children={<FacebookIcon />}
+          hashtag={"Avag HAshvapah"}
+        />
+        <LinkedinShareButton
+          title={`Avag HAshvapah`}
+          summary={`Avag HAshvapah`}
+          source={`Avag hasvapah`}
+          children={<LinkdinIcon />}
+          url="http://triple-c.algorithm.am/services/"
+        />
+      </SharedWrapperCol>
+    </Layout >
   )
 }
 export default Services

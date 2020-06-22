@@ -11,7 +11,6 @@ import {
 import { Helmet } from "react-helmet"
 const Career = () => {
   const [careerdata, setcareerdata] = useState([])
-
   const getCareerData = () => {
     setcareerdata([
       {
@@ -55,20 +54,20 @@ const Career = () => {
   }
   return (
     <Layout>
-      {/* <Helmet>
+      <Helmet>
         <meta charSet="utf-8" />
-        <title>
-          {careerdata.length !== 0 ? careerdata[0].data.title_arm : null}
-        </title>
+        <title>{"Միացիր մեր թիմին"}</title>
         <meta
           property="og:title"
           content={
-            careerdata.length !== 0 ? careerdata[0].data.title_arm : null
+            careerdata.length !== 0
+              ? careerdata[0].data.title_arm
+              : "Ավագ Հաշվապահ"
           }
         />
         <meta property="og:type" content="website" />
         <link rel="canonical" href="http://triple-c.algorithm.am/career/" />
-      </Helmet> */}
+      </Helmet>
       <CareerParagraphRow>
         <Col lg={{ span: 24 }} xxl={{ span: 8, offset: 4 }}>
           <H1Styled>Միացիր մեր թիմին</H1Styled>

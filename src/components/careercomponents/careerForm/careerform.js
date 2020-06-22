@@ -161,9 +161,8 @@ const Formfield = ({ title }) => {
     >
       <Helmet>
         <meta charSet="utf-8" />
-        <title>{title}</title>
-        {/* <meta property="og:title" content={title} /> */}
-        <meta name="title" content={title || "Ավագ Հաշվապահ"} />
+        <title>{"Միացիր մեր թիմին"}</title>
+        <meta property="og:title" content={"Ավագ Հաշվապահ"} />
         <meta property="og:type" content="website" />
         <link rel="canonical" href="http://triple-c.algorithm.am/career/" />
       </Helmet>
