@@ -34,10 +34,6 @@ const News = ({ data, openpage }) => {
             text={data.paragraph}
             onClick={() => setseeMore(!seeMore)}
           />
-          {/* <Ptext>
-           
-            {data.paragraph}
-          </Ptext> */}
         </TextWrapper>
       </Row>
     </ContainerNews>

@@ -152,7 +152,7 @@ const Services = ({ location, ...props }) => {
   useEffect(() => {
     getServiceData()
     if (location.state.clickedItems >= 2) {
-      setTimeout(function () {
+      setTimeout(function() {
         window.scrollTo(0, 500)
       }, 2)
     }
@@ -164,8 +164,8 @@ const Services = ({ location, ...props }) => {
       d.data.id === current.data.id && d.open === false
         ? { ...d, open: true }
         : d.data.id !== current.data.id && d.open === true
-          ? { ...d, open: false }
-          : { ...d, open: false }
+        ? { ...d, open: false }
+        : { ...d, open: false }
     )
     setservicedata(data)
   }
@@ -181,10 +181,13 @@ const Services = ({ location, ...props }) => {
         <meta charSet="utf-8" />
         <title>{titleHelmet}</title>
         <meta property="og:title" content={titleHelmet} />
+        <meta http-equiv="cache -control" content="no-cache"></meta>
+        {/* <meta http-equiv='expires' content='0'></meta> */}
+        {/* <meta http-equiv='pragma' content='no-cache' /> */}
         <meta
           property="og:description"
           content={
-            "Թրիփլ Քոնսալթինգի կողմից մատոցվող հաշվապահական համալիր ծառայությունների միջոցով մոռացեք հաշվապահական հաշվառման հետկապած խնդիրների մասին"
+            "Թրիփլ Քոնսալթինգի կողմից մատուցվող հաշվապահական համալիր ծառայությունների միջոցով մոռացեք հաշվապահական հաշվառման հետկապած խնդիրների մասին"
           }
         />
         <meta property="og:type" content="website" />
@@ -199,7 +202,7 @@ const Services = ({ location, ...props }) => {
         >
           <H2Styled>Ծառայություններ</H2Styled>
           <PStyled>
-            Թրիփլ Քոնսալթինգի կողմից մատոցվող հաշվապահական համալիր
+            Թրիփլ Քոնսալթինգի կողմից մատուցվող հաշվապահական համալիր
             ծառայությունների միջոցով մոռացեք հաշվապահական հաշվառման հետկապած
             խնդիրների մասին, խուսափեք հավելյալ հարկային բեռից, խնայեք ժամանակ՝
             նվիրելով այն Ձեր բիզնեսի առաջխաղացմանը։ Մեր ընկերության մատուցվող
@@ -213,19 +216,15 @@ const Services = ({ location, ...props }) => {
       <SharedWrapperCol span={5} offset={3}>
         <ShareLabel>Կիսվել</ShareLabel>
         <FacebookShareButton
-          url="http://triple-c.algorithm.am/services/"
+          url="http://triple-c.algorithm.am/services/?foo=bar "
           children={<FacebookIcon />}
-          hashtag={"Avag HAshvapah"}
         />
         <LinkedinShareButton
-          title={`Avag HAshvapah`}
-          summary={`Avag HAshvapah`}
-          source={`Avag hasvapah`}
           children={<LinkdinIcon />}
           url="http://triple-c.algorithm.am/services/"
         />
       </SharedWrapperCol>
-    </Layout >
+    </Layout>
   )
 }
 export default Services

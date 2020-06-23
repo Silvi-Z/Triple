@@ -41,48 +41,6 @@ const Reports = () => {
     toggleForm(!showForm)
     setConfirm3(false)
   }
-  useEffect(() => {
-    window.fbAsyncInit = function() {
-      FB.init({
-        //eslint-disable-line
-        appId: "323009385338778",
-        cookie: true,
-        xfbml: true,
-        version: "v6.0",
-      })
-    }
-    ;(function(d, s, id) {
-      var js,
-        fjs = d.getElementsByTagName(s)[0]
-      if (d.getElementById(id)) return
-      js = d.createElement(s)
-      js.id = id
-      js.src =
-        "https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v7.0&appId=323009385338778&autoLogAppEvents=1"
-      fjs.parentNode.insertBefore(js, fjs)
-    })(document, "script", "facebook-jssdk")
-  })
-  const Fbinit = () => {
-    console.log(FB)
-    // FB.init({
-    //   appId: '323009385338778',
-    //   status: true,
-    //   xfbml: true,
-    //   version: 'v2.7' // or v2.6, v2.5, v2.4, v2.3
-    // });
-    FB.ui(
-      {
-        method: "share",
-        href: "http://triple-c.algorithm.am/reports/",
-        title: "your_title",
-        caption: "your_caption",
-        description: "your_description",
-      },
-      function(response) {
-        console.log(response)
-      }
-    )
-  }
   return (
     <Layout>
       <Helmet>
@@ -193,42 +151,14 @@ const Reports = () => {
         ) : null}
         <SharedWrapperCol span={5} offset={4}>
           <ShareLabel>Կիսվել</ShareLabel>
-          {/* <FaceLink
-            onClick={Fbinit}
-            onClick={() =>
-              window.open(
-                "https://www.facebook.com/sharer/sharer.php?u=http://triple-c.algorithm.am/career/",
-                "Facebook",
-                "Popup",
-                "toolbar=yes, location=no, statusbar=no, menubar=yes, scrollbars=1, resizable=0, width=580, height=600, top=30"
-              )
-            }
-            alt="ssds"
-            target="_blank"
-            rel="noopener"
-          >
-            <FacebookIcon />
-          </FaceLink> */}
           <FacebookShareButton
             url="http://triple-c.algorithm.am/reports/"
             children={<FacebookIcon />}
             hashtag={"Avag HAshvapah"}
           />
-          {/* <FacebookIcon />
-
-          {/* <LinkedinLink
-            href="https://www.facebook.com/sharer/sharer.php?u=https://www.facebook.com/TripleCArmenia/"
-            target="_blank"
-            rel="noopener"
-          >
-            <LinkdinIcon />
-          </LinkedinLink> */}
           <LinkedinShareButton
-            title={`Avag HAshvapah`}
-            summary={`Avag HAshvapah`}
-            source={`Avag hasvapah`}
             children={<LinkdinIcon />}
-            url="http://triple-c.algorithm.am/report/"
+            url="http://triple-c.algorithm.am/reports/"
           ></LinkedinShareButton>
         </SharedWrapperCol>
       </ReportFormRow>

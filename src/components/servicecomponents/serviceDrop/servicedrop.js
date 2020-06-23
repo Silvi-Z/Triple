@@ -10,16 +10,8 @@ import {
   DropHeadingIconCol,
   DropHeadingParagraphCol,
   DropButtonCol,
-  DropTextCol,
-  SharedWrapperCol,
-  FaceLink,
-  ShareLabel,
-  LinkedinLink,
-  FacebookIcon,
-  LinkdinIcon,
+  DropTextCol
 } from "./servicedropStyle.js"
-import { FacebookShareButton, LinkedinShareButton } from "react-share"
-
 
 const Servicedrop = ({ data, showServiceForm }) => {
   return (
@@ -47,46 +39,6 @@ const Servicedrop = ({ data, showServiceForm }) => {
       {data.open ? (
         <DropTextCol span={24}>
           <SubParagStyled>{data.data.text}</SubParagStyled>
-          <SharedWrapperCol span={5} offset={4}>
-            <ShareLabel>Կիսվել</ShareLabel>
-            {/* <FaceLink
-            onClick={Fbinit}
-            onClick={() =>
-              window.open(
-                "https://www.facebook.com/sharer/sharer.php?u=http://triple-c.algorithm.am/career/",
-                "Facebook",
-                "Popup",
-                "toolbar=yes, location=no, statusbar=no, menubar=yes, scrollbars=1, resizable=0, width=580, height=600, top=30"
-              )
-            }
-            alt="ssds"
-            target="_blank"
-            rel="noopener"
-          >
-            <FacebookIcon />
-          </FaceLink> */}
-            <FacebookShareButton
-              url="http://triple-c.algorithm.am/services/"
-              children={<FacebookIcon />}
-              hashtag={"Avag HAshvapah"}
-            />
-            {/* <FacebookIcon />
-
-          {/* <LinkedinLink
-            href="https://www.facebook.com/sharer/sharer.php?u=https://www.facebook.com/TripleCArmenia/"
-            target="_blank"
-            rel="noopener"
-          >
-            <LinkdinIcon />
-          </LinkedinLink> */}
-            <LinkedinShareButton
-              title={`Avag HAshvapah`}
-              summary={`Avag HAshvapah`}
-              source={`Avag hasvapah`}
-              children={<LinkdinIcon />}
-              url="http://triple-c.algorithm.am/services/"
-            ></LinkedinShareButton>
-          </SharedWrapperCol>
         </DropTextCol>
       ) : null}
     </ServiceDropRow>

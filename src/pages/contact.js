@@ -29,7 +29,7 @@ import {
   LinkdinIcon,
   FacebookIcon,
   SharedWrapperCol,
-  ShareLabel
+  ShareLabel,
 } from "../components/contactcomponts/contactMainStyle"
 const Contact = () => {
   const [openIndivid, setopenIndivid] = useState(true)
@@ -136,39 +136,13 @@ const Contact = () => {
       </ContactMapRow>
       <SharedWrapperCol xl={{ span: 10, offset: 6 }}>
         <ShareLabel>Կիսվել</ShareLabel>
-        {/* <FaceLink
-            onClick={() =>
-              window.open(
-                "https://www.facebook.com/sharer/sharer.php?u=http://triple-c.algorithm.am/career/",
-                "Facebook",
-                "Popup",
-                "toolbar=yes, location=no, statusbar=no, menubar=yes, scrollbars=1, resizable=0, width=580, height=600, top=30"
-              )
-            }
-            alt="ssds"
-            //target="_blank"
-            //rel="noopener"
-          >
-            sdsdsdsd
-          </FaceLink> */}
         <FacebookShareButton
           url="http://triple-c.algorithm.am/contact/"
           children={<FacebookIcon />}
           hashtag={"Avag HAshvapah"}
         />
-        {/* <FacebookIcon /> */}
 
-        {/* <LinkedinLink
-            href="https://www.facebook.com/sharer/sharer.php?u=https://www.facebook.com/TripleCArmenia/"
-            target="_blank"
-            rel="noopener"
-          >
-            <LinkdinIcon />
-          </LinkedinLink> */}
         <LinkedinShareButton
-          title={`Avag HAshvapah`}
-          summary={`Avag HAshvapah`}
-          source={`Avag hasvapah`}
           children={<LinkdinIcon />}
           url="http://triple-c.algorithm.am/contact/"
         ></LinkedinShareButton>
