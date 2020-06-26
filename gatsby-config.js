@@ -11,7 +11,7 @@ module.exports = {
       resolve: "gatsby-source-filesystem",
       options: {
         name: "images",
-        path: `${__dirname}/src/images`,
+        path: `${__dirname}/src/assets`,
       },
     },
     "gatsby-transformer-sharp",
@@ -37,6 +37,16 @@ module.exports = {
         modifyVars: {
           "primary-color": "#009db8",
           "font-family": ["ArialAMU", "sans-serif"],
+        },
+      },
+    },
+    {
+      resolve: '@wapps/gatsby-plugin-i18next',
+      options: {
+        availableLngs: ['en', 'el'],
+        fallbackLng: 'el',
+        i18nextOptions: {
+          debug: false,
         },
       },
     },

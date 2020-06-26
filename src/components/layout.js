@@ -7,10 +7,10 @@
 /*eslint-disable */
 import React, { useState } from "react"
 import PropTypes from "prop-types"
-// import { useStaticQuery, graphql } from 'gatsby';
+import { withTrans } from '../i18n/withTrans'
 import { Layout as CustomLayout } from "antd"
 import styled from "styled-components"
-import Navbar from "./navbar"
+import Navbar from "./navbar/navbar"
 import FooterBlack from "./footer/footerblack"
 import FooterWhite from "./footer/footerwhite"
 import "./layout.css"
@@ -55,8 +55,9 @@ const Main = styled.div`
   min-height: ${props => (props.setheight === true ? "100vh" : "0vh")};
 `
 
-const Layout = ({ children }) => {
+const Layout = ({ children, t, i18n }) => {
   const [responswrapper, setResponswrapper] = useState(true)
+
   // const data = useStaticQuery(graphql`
   //   query SiteTitleQuery {
   //     site {
@@ -70,14 +71,16 @@ const Layout = ({ children }) => {
     setResponswrapper(!responswrapper)
   }
 
+
+
   return (
     <>
       <Navbar open={openMenu} responswrapper={responswrapper} />
       <Main setheight={responswrapper}>
         <ContentStyled>{responswrapper ? children : null}</ContentStyled>
       </Main>
-      <FooterCust backcolor={responswrapper.toString()}>
-        {!responswrapper ? <FooterWhite /> : <FooterBlack />}
+      <FooterCust backcolor={responswrapper.toString()} texttranslate={t(`site.footer`)}>
+        {!responswrapper ? <FooterWhite /> : <FooterBlack texttranslate={t(`site.footer`)} />}
       </FooterCust>
     </>
   )
@@ -87,4 +90,4 @@ Layout.propTypes = {
   children: PropTypes.node.isRequired,
 }
 
-export default Layout
+export default withTrans(Layout)

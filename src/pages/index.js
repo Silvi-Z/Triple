@@ -5,7 +5,7 @@ import SEO from '../components/seo';
 import Slideshow from '../components/slideshow';
 import Homeservices from '../components/homecomponents/homeServices/homeservices';
 import Homepartners from '../components/homecomponents/homePartners/homepartners';
-
+import { useTranslation } from "react-i18next"
 const siteMetada = [
   {
     name: 'Հաշվետվության տրամադրում',
@@ -34,6 +34,7 @@ const siteMetada = [
 ];
 
 const IndexPage = () => {
+  const { t } = useTranslation()
   return (
     <Layout>
       <SEO title='Triple Consulting' meta={siteMetada} />

@@ -24,7 +24,9 @@ import {
 } from "../components/servicecomponents/serviceMainStyle"
 import { FacebookShareButton, LinkedinShareButton } from "react-share"
 import { Helmet } from "react-helmet"
+import { useTranslation, Trans } from "react-i18next"
 const Services = ({ location, ...props }) => {
+  const { t } = useTranslation()
   const [servicedata, setservicedata] = useState([
     {
       data: {
@@ -135,6 +137,7 @@ const Services = ({ location, ...props }) => {
   const [Apistate, setApistate] = useState([])
   const [titleHelmet, setTitleHelmet] = useState("Ծառայություններ")
 
+  console.log(t)
   const getServiceData = async () => {
     try {
       let res = await apiHelper.get("/api/service").then(
@@ -200,7 +203,7 @@ const Services = ({ location, ...props }) => {
           xl={{ span: 24, offset: 2 }}
           xxl={{ span: 18, offset: 4 }}
         >
-          <H2Styled>Ծառայություններ</H2Styled>
+          <h1>{t("services.title")}</h1>
           <PStyled>
             Թրիփլ Քոնսալթինգի կողմից մատուցվող հաշվապահական համալիր
             ծառայությունների միջոցով մոռացեք հաշվապահական հաշվառման հետկապած
