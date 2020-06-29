@@ -24,20 +24,17 @@ import {
 } from "../components/servicecomponents/serviceMainStyle"
 import { FacebookShareButton, LinkedinShareButton } from "react-share"
 import { Helmet } from "react-helmet"
-import { useTranslation, Trans } from "react-i18next"
+import { useTranslation } from "react-i18next"
 const Services = ({ location, ...props }) => {
-  const { t } = useTranslation()
+  console.log(props)
+  const { t, i18n } = useTranslation()
   const [servicedata, setservicedata] = useState([
     {
       data: {
         id: 0,
         image: CalcImg,
-        paragraph: "Հաշվապահական հաշվառում",
-        text:
-          "Հաշվապահական հաշվառման ճշգրիտ վարումը բիզնեսի կարեւորագույն գործառույթներից է, որը օգնում է զերծ մնալ տարատեսակ ֆինանսական կորուստներից։ Հաշվապահական հաշվառումը իրականացվում է միջազգային ստանդարտներին համապատասխան՝ ՀԾ եւ 1C հաշվապահական ծրագրերի միջոցով։",
-        name_arm: "string",
-        name_ru: "string",
-        name_en: "string",
+        paragraph: `Հաշվապահական հաշվառում`,
+        text: `Հաշվապահական հաշվառման ճշգրիտ վարումը`,
       },
       open: false,
     },
@@ -137,38 +134,49 @@ const Services = ({ location, ...props }) => {
   const [Apistate, setApistate] = useState([])
   const [titleHelmet, setTitleHelmet] = useState("Ծառայություններ")
 
-  console.log(t)
-  const getServiceData = async () => {
-    try {
-      let res = await apiHelper.get("/api/service").then(
-        res => {
-          setApistate(res.data.data)
-        },
-        reject => {
-          console.log(reject.response)
-        }
-      )
-    } catch (e) {
-      console.log("Calculation error: ", e)
-    }
-  }
+  //this function gets Api data from swagger endpoints
+  // const getServiceData = async () => {
+  //   try {
+  //     let res = await apiHelper.get("/api/service").then(
+  //       res => {
+  //         setApistate(res.data.data)
+  //       },
+  //       reject => {
+  //         console.log(reject.response)
+  //       }
+  //     )
+  //   } catch (e) {
+  //     console.log("Calculation error: ", e)
+  //   }
+  // }
   useEffect(() => {
-    getServiceData()
+    // getServiceData()
+    setservicedata([
+      ...servicedata,
+      (servicedata[0].data = {
+        id: 0,
+        image: CalcImg,
+        paragraph: `${t("services.Firstdata.paragraph")}`,
+        text: `${t("services.Firstdata.text")}`,
+      }),
+    ])
+    setTitleHelmet(`${t("services.Firstdata.paragraph")}`)
+    console.log(i18n.language)
     if (location.state.clickedItems >= 2) {
-      setTimeout(function() {
+      setTimeout(function () {
         window.scrollTo(0, 500)
       }, 2)
     }
     toggleFromHomePage(location.state)
-  }, [])
+  }, [t])
   const toggle = current => {
     setTitleHelmet(current.data.paragraph)
     const data = servicedata.map(d =>
       d.data.id === current.data.id && d.open === false
         ? { ...d, open: true }
         : d.data.id !== current.data.id && d.open === true
-        ? { ...d, open: false }
-        : { ...d, open: false }
+          ? { ...d, open: false }
+          : { ...d, open: false }
     )
     setservicedata(data)
   }
@@ -179,14 +187,13 @@ const Services = ({ location, ...props }) => {
     setservicedata(data)
   }
   return (
-    <Layout>
-      <Helmet>
+    <>
+      <Helmet
+        onChangeClientState={(newState) => console.log(newState)}>
         <meta charSet="utf-8" />
         <title>{titleHelmet}</title>
         <meta property="og:title" content={titleHelmet} />
-        <meta http-equiv="cache -control" content="no-cache"></meta>
-        {/* <meta http-equiv='expires' content='0'></meta> */}
-        {/* <meta http-equiv='pragma' content='no-cache' /> */}
+        <meta http-equiv="cache -control" content="no-cache" />
         <meta
           property="og:description"
           content={
@@ -195,6 +202,7 @@ const Services = ({ location, ...props }) => {
         />
         <meta property="og:type" content="website" />
         <link rel="canonical" href="http://triple-c.algorithm.am/services/" />
+        <html lang={i18n.language} />
       </Helmet>
       <HeadingParagraphRow>
         <Col
@@ -204,18 +212,14 @@ const Services = ({ location, ...props }) => {
           xxl={{ span: 18, offset: 4 }}
         >
           <h1>{t("services.title")}</h1>
-          <PStyled>
-            Թրիփլ Քոնսալթինգի կողմից մատուցվող հաշվապահական համալիր
-            ծառայությունների միջոցով մոռացեք հաշվապահական հաշվառման հետկապած
-            խնդիրների մասին, խուսափեք հավելյալ հարկային բեռից, խնայեք ժամանակ՝
-            նվիրելով այն Ձեր բիզնեսի առաջխաղացմանը։ Մեր ընկերության մատուցվող
-            ծառայություններին կարող եք ծանոթանալ ստորև:
-          </PStyled>
+          <PStyled>{t("services.paragraph")}</PStyled>
         </Col>
       </HeadingParagraphRow>
-      {servicedata.map((d, id) => (
-        <ServiceDropWrap showServiceForm={toggle} data={d} key={id} />
-      ))}
+      {
+        servicedata.map((d, id) => (
+          <ServiceDropWrap showServiceForm={toggle} data={d} key={id} />
+        ))
+      }
       <SharedWrapperCol span={5} offset={3}>
         <ShareLabel>Կիսվել</ShareLabel>
         <FacebookShareButton
@@ -227,7 +231,7 @@ const Services = ({ location, ...props }) => {
           url="http://triple-c.algorithm.am/services/"
         />
       </SharedWrapperCol>
-    </Layout>
+    </>
   )
 }
 export default Services

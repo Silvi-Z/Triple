@@ -7,7 +7,10 @@
 /*eslint-disable */
 import React, { useState } from "react"
 import PropTypes from "prop-types"
-import { withTrans } from '../i18n/withTrans'
+// import { I18nextProvider, useTranslation } from 'react-i18next';
+// import i18next from 'i18next';
+// import { useStaticQuery, graphql } from 'gatsby';
+import { withTrans } from "../i18n/withTrans"
 import { Layout as CustomLayout } from "antd"
 import styled from "styled-components"
 import Navbar from "./navbar/navbar"
@@ -71,16 +74,21 @@ const Layout = ({ children, t, i18n }) => {
     setResponswrapper(!responswrapper)
   }
 
-
-
   return (
     <>
       <Navbar open={openMenu} responswrapper={responswrapper} />
       <Main setheight={responswrapper}>
         <ContentStyled>{responswrapper ? children : null}</ContentStyled>
       </Main>
-      <FooterCust backcolor={responswrapper.toString()} texttranslate={t(`site.footer`)}>
-        {!responswrapper ? <FooterWhite /> : <FooterBlack texttranslate={t(`site.footer`)} />}
+      <FooterCust
+        backcolor={responswrapper.toString()}
+        texttranslate={t(`site.footer`)}
+      >
+        {!responswrapper ? (
+          <FooterWhite />
+        ) : (
+            <FooterBlack texttranslate={t(`site.footer`)} />
+          )}
       </FooterCust>
     </>
   )

@@ -6,7 +6,9 @@ module.exports = {
     author: "@algorithmSolutions",
   },
   plugins: [
+    `gatsby-plugin-react-helmet-async`,
     "gatsby-plugin-react-helmet",
+    `gatsby-plugin-lodash`,
     {
       resolve: "gatsby-source-filesystem",
       options: {
@@ -41,14 +43,11 @@ module.exports = {
       },
     },
     {
-      resolve: '@wapps/gatsby-plugin-i18next',
+      resolve: `gatsby-plugin-layout`,
       options: {
-        availableLngs: ['en', 'el'],
-        fallbackLng: 'el',
-        i18nextOptions: {
-          debug: false,
-        },
-      },
+        // add relative path to your layout component
+        component: `${__dirname}/src/components/layout.js`
+      }
     },
     {
       resolve: `gatsby-plugin-facebook-analytics`,

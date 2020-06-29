@@ -103,7 +103,7 @@ const activeStyle = {
 
 const Navbar = ({ open, responswrapper }) => {
   const { t, i18n } = useTranslation()
-  const [languageText, setlanguageText] = useState("Հայ")
+  const [languageText, setlanguageText] = useState(["Հայ", "Eng", "Рус"])
   const [lang, setLang] = useState({
     language: "en",
   })
@@ -112,40 +112,46 @@ const Navbar = ({ open, responswrapper }) => {
     <div className="languagedrop">
       <div className="languagebox">
         <span
-          onClick={(e) => handleChange(e, "langeEn")}
+          onClick={e => handleChangeLanguage(e, "langeEn")}
           className="languagetext"
           id="langeEn"
         >
-          Eng
+          {languageText[1]}
         </span>
       </div>
       <div className="languagebox">
         <span
-          onClick={(e) => handleChange(e, "langeRu")}
+          onClick={e => handleChangeLanguage(e, "langeRu")}
           className="languagetext"
           id="langeRu"
         >
-          Рус
+          {languageText[2]}
         </span>
       </div>
     </div>
   )
-  const handleChange = (e, id) => {
+
+  const handleChangeLanguage = (e, id) => {
     let elem = document.getElementById(id)
-    //setlanguageText(elem)
-    console.log(elem.innerText)
+
     if (elem.innerText === "Рус") {
       i18n.changeLanguage("ru")
-      alert("dddddddd")
     } else if (elem.innerText === "Eng") {
       i18n.changeLanguage("en")
+    } else if (elem.innerText === "Հայ") {
+      i18n.changeLanguage("arm")
     }
-    // e.target.value = 'ru'
-    // setLang(oldValues => ({
-    //   ...oldValues,
-    //   [event.target.name]: elem.innerText,
-    // }));
+
+    let newtext = languageText.filter(text => text !== elem.innerText)
+    newtext.unshift(elem.innerText)
+    setlanguageText(newtext)
+
+    setLang(oldValues => ({
+      ...oldValues,
+      [event.target.name]: elem.innerText,
+    }))
   }
+
   return (
     <>
       <ResponsiveNavWrapper>
@@ -247,10 +253,10 @@ const Navbar = ({ open, responswrapper }) => {
                 style={{ width: "100%", color: "black" }}
               >
                 <LangSpan
-                  onClick={(e) => handleChange(e, "langSpan")}
+                  onClick={e => handleChangeLanguage(e, "langSpan")}
                   id="langSpan"
                 >
-                  {languageText}
+                  {languageText[0]}
                 </LangSpan>{" "}
                 <CaretDownOutlined style={{ fontSize: "10px" }} />
               </a>
@@ -327,5 +333,4 @@ const Navbar = ({ open, responswrapper }) => {
     </>
   )
 }
-
 export default Navbar

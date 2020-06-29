@@ -1,13 +1,16 @@
 import i18next from 'i18next';
 
 i18next.init({
-    fallbackLng: 'en',
+    fallbackLng: 'arm',
     resources: {
         'ru': {
             translations: require('../locales/ru/translation.json')
         },
         en: {
             translations: require('../locales/en/translation.json')
+        },
+        arm: {
+            translations: require('../locales/arm/translation.json')
         }
     },
     ns: ['translations'],
@@ -22,6 +25,6 @@ i18next.init({
     },
 });
 
-i18next.languages = ['ru', 'en'];
+i18next.languages = ['ru', 'en', 'arm'];
 
 export default i18next
