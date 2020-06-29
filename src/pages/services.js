@@ -23,7 +23,7 @@ import {
   LinkdinIcon,
 } from "../components/servicecomponents/serviceMainStyle"
 import { FacebookShareButton, LinkedinShareButton } from "react-share"
-import { Helmet } from "react-helmet"
+import Helmet from "react-helmet"
 import { useTranslation } from "react-i18next"
 const Services = ({ location, ...props }) => {
   console.log(props)
@@ -189,8 +189,10 @@ const Services = ({ location, ...props }) => {
   return (
     <>
       <Helmet
-        onChangeClientState={(newState) => console.log(newState)}>
-        <meta charSet="utf-8" />
+        defer={false}
+        onChangeClientState={newState => console.log(newState)}
+      >
+        <meta charSet="utf-8" />Ֆ
         <title>{titleHelmet}</title>
         <meta property="og:title" content={titleHelmet} />
         <meta http-equiv="cache -control" content="no-cache" />
@@ -202,7 +204,7 @@ const Services = ({ location, ...props }) => {
         />
         <meta property="og:type" content="website" />
         <link rel="canonical" href="http://triple-c.algorithm.am/services/" />
-        <html lang={i18n.language} />
+        <html lang={i18n.language} amp />
       </Helmet>
       <HeadingParagraphRow>
         <Col
@@ -215,11 +217,9 @@ const Services = ({ location, ...props }) => {
           <PStyled>{t("services.paragraph")}</PStyled>
         </Col>
       </HeadingParagraphRow>
-      {
-        servicedata.map((d, id) => (
-          <ServiceDropWrap showServiceForm={toggle} data={d} key={id} />
-        ))
-      }
+      {servicedata.map((d, id) => (
+        <ServiceDropWrap showServiceForm={toggle} data={d} key={id} />
+      ))}
       <SharedWrapperCol span={5} offset={3}>
         <ShareLabel>Կիսվել</ShareLabel>
         <FacebookShareButton
