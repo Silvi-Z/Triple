@@ -1,6 +1,5 @@
 /*eslint-disable */
 import React, { useState } from "react"
-import Layout from "../components/layout"
 import { Row } from "antd"
 import FormindIviduals from "../components/contactcomponts/contactForm/formindividuals"
 import FormOrganizations from "../components/contactcomponts/contactFormOrgaznitations/formorganizations"
@@ -45,7 +44,7 @@ const Contact = () => {
   }
 
   return (
-    <Layout>
+    <>
       <Helmet>
         <meta charSet="utf-8" />
         <title>Կապ մեզ հետ</title>
@@ -147,7 +146,7 @@ const Contact = () => {
           url="http://triple-c.algorithm.am/contact/"
         ></LinkedinShareButton>
       </SharedWrapperCol>
-    </Layout>
+    </>
   )
 }
 

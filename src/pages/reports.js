@@ -1,6 +1,5 @@
 /*eslint-disable */
 import React, { useState, useEffect } from "react"
-import Layout from "../components/layout"
 import { Row, Col } from "antd"
 import ReportForm from "../components/reportComponents/reportForm/reportForm"
 import ReportForm3 from "../components/reportComponents/reportForm3/reportForm3"
@@ -42,7 +41,7 @@ const Reports = () => {
     setConfirm3(false)
   }
   return (
-    <Layout>
+    <>
       <Helmet>
         <meta charSet="utf-8" />
         <title>Report</title>
@@ -86,8 +85,8 @@ const Reports = () => {
             {showForm ? (
               <MinusOutlined style={{ fontSize: "20px" }} />
             ) : (
-              <PlusOutlined style={{ fontSize: "20px" }} />
-            )}
+                <PlusOutlined style={{ fontSize: "20px" }} />
+              )}
           </ToggleButton>
         </Col>
       </ReportDropRow>
@@ -162,7 +161,7 @@ const Reports = () => {
           ></LinkedinShareButton>
         </SharedWrapperCol>
       </ReportFormRow>
-    </Layout>
+    </>
   )
 }
 

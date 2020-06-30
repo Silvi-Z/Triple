@@ -1,6 +1,5 @@
 /*eslint-disable */
 import React, { useState, useEffect } from "react"
-import Layout from "../components/layout"
 import { Col } from "antd"
 import CareerWrap from "../components/careercomponents/careerDroping/careerdrop"
 import {
@@ -47,13 +46,13 @@ const Career = () => {
       d.data.id === current.data.id && d.open === false
         ? { ...d, open: true }
         : d.data.id !== current.data.id && d.open === true
-        ? { ...d, open: false }
-        : { ...d, open: false }
+          ? { ...d, open: false }
+          : { ...d, open: false }
     )
     setcareerdata(data)
   }
   return (
-    <Layout>
+    <>
       <Helmet>
         <meta charSet="utf-8" />
         <title>{"Միացիր մեր թիմին"}</title>
@@ -87,7 +86,7 @@ const Career = () => {
           key={id}
         />
       ))}
-    </Layout>
+    </>
   )
 }
 

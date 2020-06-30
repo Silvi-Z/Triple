@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Typography, Row, Col, Divider } from 'antd';
 import styled from 'styled-components';
-import Layout from '../components/layout';
 import SalaryCalculator from '../components/calculators/salarycalculator';
 import VacationCalculator from '../components/calculators/vacationcalculator';
 import NonWorkingCalculator from '../components/calculators/nonWorkingCalculator';
@@ -45,7 +44,7 @@ const Calculators = () => {
   });
 
   const toggleDisplay = name => {
-    const data = {...display};
+    const data = { ...display };
 
     for (let property in data) {
       data[property] = false;
@@ -57,7 +56,7 @@ const Calculators = () => {
   };
 
   return (
-    <Layout>
+    <>
       <HeaderRow>
         <Col
           xxl={{ span: 8, offset: 4 }}
@@ -100,7 +99,7 @@ const Calculators = () => {
       <CarSellCalculator toggleForm={() => toggleDisplay('carSell')} showForm={display.carSell} />
       <Divider />
       <CarPropTaxCalculator toggleForm={() => toggleDisplay('carPropTax')} showForm={display.carPropTax} />
-    </Layout>
+    </>
   );
 };
 

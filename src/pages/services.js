@@ -26,7 +26,7 @@ import { FacebookShareButton, LinkedinShareButton } from "react-share"
 import Helmet from "react-helmet"
 import { useTranslation } from "react-i18next"
 const Services = ({ location, ...props }) => {
-  console.log(props)
+  console.log(location)
   const { t, i18n } = useTranslation()
   const [servicedata, setservicedata] = useState([
     {
@@ -149,6 +149,15 @@ const Services = ({ location, ...props }) => {
   //     console.log("Calculation error: ", e)
   //   }
   // }
+  const getSharedUrl = (lng) => {
+    if (lng === "en") {
+      return "http://triple-c.algorithm.am/services/?lng=en"
+    } else if (lng === "ru") {
+      return "http://triple-c.algorithm.am/services/?lng=ru"
+    } else {
+      return "http://triple-c.algorithm.am/services/?lng=arm"
+    }
+  }
   useEffect(() => {
     // getServiceData()
     setservicedata([
@@ -161,13 +170,13 @@ const Services = ({ location, ...props }) => {
       }),
     ])
     setTitleHelmet(`${t("services.Firstdata.paragraph")}`)
-    console.log(i18n.language)
-    if (location.state.clickedItems >= 2) {
+    if (location.state !== null && location.state.clickedItems >= 2) {
       setTimeout(function () {
         window.scrollTo(0, 500)
       }, 2)
     }
     toggleFromHomePage(location.state)
+
   }, [t])
   const toggle = current => {
     setTitleHelmet(current.data.paragraph)
@@ -181,6 +190,7 @@ const Services = ({ location, ...props }) => {
     setservicedata(data)
   }
   const toggleFromHomePage = state => {
+    state === null ? state = 0 : state
     const data = servicedata.map(d =>
       d.data.id === state.clickedItems ? { ...d, open: true } : { ...d }
     )
@@ -192,10 +202,10 @@ const Services = ({ location, ...props }) => {
         defer={false}
         onChangeClientState={newState => console.log(newState)}
       >
-        <meta charSet="utf-8" />Ֆ
+        <meta charSet="utf-8" />
         <title>{titleHelmet}</title>
         <meta property="og:title" content={titleHelmet} />
-        <meta http-equiv="cache -control" content="no-cache" />
+        {/* <meta http-equiv="cache -control" content="no-cache" /> */}
         <meta
           property="og:description"
           content={
@@ -223,7 +233,7 @@ const Services = ({ location, ...props }) => {
       <SharedWrapperCol span={5} offset={3}>
         <ShareLabel>Կիսվել</ShareLabel>
         <FacebookShareButton
-          url="http://triple-c.algorithm.am/services/?foo=bar "
+          url={getSharedUrl(i18n.language)}
           children={<FacebookIcon />}
         />
         <LinkedinShareButton

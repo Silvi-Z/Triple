@@ -1,6 +1,5 @@
 /*eslint-disable */
 import React, { useState, useEffect } from "react"
-import Layout from "../components/layout"
 import { Col, Button } from "antd"
 import InformNews from "../components/informationcomponents/News/informnews"
 import InformUseFul from "../components/informationcomponents/useFullInform/usefulinformation"
@@ -351,7 +350,7 @@ const Information = () => {
   // }
 
   return (
-    <Layout>
+    <>
       <Helmet>
         <meta charSet="utf-8" />
         <title>Information</title>
@@ -378,7 +377,7 @@ const Information = () => {
           onClick={ChangePageNews}
           open={openNews}
           xs={24}
-          // opensecondnews={openSecondNews.toString()}
+        // opensecondnews={openSecondNews.toString()}
         >
           <span>Նորություններ</span>
         </InformationNewsCol>
@@ -430,7 +429,7 @@ const Information = () => {
           url="http://triple-c.algorithm.am/information/"
         ></LinkedinShareButton>
       </SharedWrapperCol>
-    </Layout>
+    </>
   )
 }
 
