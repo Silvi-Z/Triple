@@ -3,6 +3,7 @@ import Layout from "../components/layout"
 import { Col } from "antd"
 import { apiHelper } from "../helpers/apiHelper"
 import ServiceDropWrap from "../components/servicecomponents/serviceDrop/servicedrop"
+import MainLogo from "../assets/homeImages/3c.png"
 import CalcImg from "../assets/homeImages/icons/calculator.svg"
 import TaxImg from "../assets/homeImages/icons/tax.svg"
 import AuditImg from "../assets/homeImages/icons/audit.svg"
@@ -212,9 +213,11 @@ const Services = ({ location, ...props }) => {
         defer={false}
         onChangeClientState={newState => console.log(newState)}
       >
+        <html lang={i18n.language} amp />
         <meta charSet="utf-8" />
         <title>{t("services.title")}</title>
         <meta property="og:title" content={t("services.title")} />
+        <meta property="og:image" content={MainLogo} />
         {/* <meta http-equiv="cache -control" content="no-cache" /> */}
         <meta
           property="og:description"
@@ -223,8 +226,9 @@ const Services = ({ location, ...props }) => {
           }
         />
         <meta property="og:type" content="website" />
-        <link rel="canonical" href="http://triple-c.algorithm.am/services/?lng=en" />
-        <html lang={i18n.language} amp />
+        <meta property="og:url" content={getSharedUrl(i18n.language)} />
+        <link rel="canonical" href={getSharedUrl(i18n.language)} />
+
       </Helmet>
       <HeadingParagraphRow>
         <Col

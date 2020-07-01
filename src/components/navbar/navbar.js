@@ -140,12 +140,9 @@ const Navbar = ({ open, responswrapper, location }) => {
       })
     } else if (elem.innerText === "Eng") {
       i18n.changeLanguage("en").then(() => {
-        navigate(
-          "/services/?lng=en",
-          { replace: true }
-        )
+        navigate("/services/?lng=en")
       })
-    } else {
+    } else if (elem.innerText === "Հայ") {
       i18n.changeLanguage("arm").then(() => {
         navigate("/services/?lng=arm")
       })
