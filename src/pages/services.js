@@ -26,7 +26,6 @@ import { FacebookShareButton, LinkedinShareButton } from "react-share"
 import Helmet from "react-helmet"
 import { useTranslation } from "react-i18next"
 const Services = ({ location, ...props }) => {
-  console.log(location)
   const { t, i18n } = useTranslation()
   const [servicedata, setservicedata] = useState([
     {
@@ -149,7 +148,8 @@ const Services = ({ location, ...props }) => {
   //     console.log("Calculation error: ", e)
   //   }
   // }
-  const getSharedUrl = (lng) => {
+  const getSharedUrl = lng => {
+    console.log(lng)
     if (lng === "en") {
       return "http://triple-c.algorithm.am/services/?lng=en"
     } else if (lng === "ru") {
@@ -158,6 +158,7 @@ const Services = ({ location, ...props }) => {
       return "http://triple-c.algorithm.am/services/?lng=arm"
     }
   }
+  console.log(getSharedUrl(i18n.language))
   useEffect(() => {
     // getServiceData()
     setservicedata([
@@ -176,7 +177,6 @@ const Services = ({ location, ...props }) => {
       }, 2)
     }
     toggleFromHomePage(location.state)
-
   }, [t])
   const toggle = current => {
     setTitleHelmet(current.data.paragraph)
@@ -190,7 +190,7 @@ const Services = ({ location, ...props }) => {
     setservicedata(data)
   }
   const toggleFromHomePage = state => {
-    state === null ? state = 0 : state
+    state === null ? (state = 0) : state
     const data = servicedata.map(d =>
       d.data.id === state.clickedItems ? { ...d, open: true } : { ...d }
     )
@@ -213,7 +213,7 @@ const Services = ({ location, ...props }) => {
           }
         />
         <meta property="og:type" content="website" />
-        <link rel="canonical" href="http://triple-c.algorithm.am/services/" />
+        <link rel="canonical" href="http://triple-c.algorithm.am/services/?lng=en" />
         <html lang={i18n.language} amp />
       </Helmet>
       <HeadingParagraphRow>

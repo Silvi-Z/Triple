@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { Link } from "gatsby"
+import { Link, navigate } from "gatsby"
 import styled from "styled-components"
 import { Row, Col, Dropdown } from "antd"
 import CallImg from "../../assets/homeImages/phone-call3.png"
@@ -135,14 +135,17 @@ const Navbar = ({ open, responswrapper, location }) => {
     let elem = document.getElementById(id)
 
     if (elem.innerText === "Рус") {
-      i18n.changeLanguage("ru")
+      i18n.changeLanguage("ru").then(() => {
+        navigate("/services/?lng=ru")
+      })
     } else if (elem.innerText === "Eng") {
       i18n.changeLanguage("en").then(() => {
-        // console.log(i18n.language)
-        // history.push(`/${i18n.language}`)
+        navigate("/services/?lng=en")
       })
     } else if (elem.innerText === "Հայ") {
-      i18n.changeLanguage("arm")
+      i18n.changeLanguage("arm").then(() => {
+        navigate("/services/?lng=arm")
+      })
     }
 
     let newtext = languageText.filter(text => text !== elem.innerText)
@@ -297,7 +300,7 @@ const Navbar = ({ open, responswrapper, location }) => {
         </Dropdown>
         <GridService>
           <NavLink
-            to="/services/"
+            to="/services/?lng=arm"
             activeStyle={activeStyle}
             state={{ responswrapper }}
           >
