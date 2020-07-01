@@ -158,7 +158,17 @@ const Services = ({ location, ...props }) => {
       return "http://triple-c.algorithm.am/services/?lng=arm"
     }
   }
-  console.log(getSharedUrl(i18n.language))
+  const getSharedTitle = lng => {
+    console.log(lng)
+    if (lng === "en") {
+      return "Services"
+    } else if (lng === "ru") {
+      return "Сервисы"
+    } else {
+      return "Ծառայություններ"
+    }
+  }
+
   useEffect(() => {
     // getServiceData()
     setservicedata([
@@ -203,8 +213,8 @@ const Services = ({ location, ...props }) => {
         onChangeClientState={newState => console.log(newState)}
       >
         <meta charSet="utf-8" />
-        <title>{titleHelmet}</title>
-        <meta property="og:title" content={titleHelmet} />
+        <title>{t("services.title")}</title>
+        <meta property="og:title" content={t("services.title")} />
         {/* <meta http-equiv="cache -control" content="no-cache" /> */}
         <meta
           property="og:description"
