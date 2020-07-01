@@ -30,7 +30,7 @@ const options = {
 i18next
     .use(LanguageDetector)
     .init({
-        fallbackLng: 'en',
+        fallbackLng: 'arm',
         resources: {
             'ru': {
                 translations: require('../locales/ru/translation.json')
@@ -38,9 +38,9 @@ i18next
             en: {
                 translations: require('../locales/en/translation.json')
             },
-            // arm: {
-            //     translations: require('../locales/arm/translation.json')
-            // }
+            arm: {
+                translations: require('../locales/arm/translation.json')
+            }
         },
         detection: options,
         ns: ['translations'],
@@ -55,6 +55,6 @@ i18next
         },
     });
 
-i18next.languages = ['ru', 'en'];
+i18next.languages = ['ru', 'en', 'arm'];
 
 export default i18next

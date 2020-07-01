@@ -145,10 +145,10 @@ const Navbar = ({ open, responswrapper, location }) => {
           { replace: true }
         )
       })
-    // } else {
-    //   i18n.changeLanguage("arm").then(() => {
-    //     navigate("/services/?lng=arm")
-    //   })
+    } else {
+      i18n.changeLanguage("arm").then(() => {
+        navigate("/services/?lng=arm")
+      })
     }
 
     let newtext = languageText.filter(text => text !== elem.innerText)
