@@ -140,12 +140,15 @@ const Navbar = ({ open, responswrapper, location }) => {
       })
     } else if (elem.innerText === "Eng") {
       i18n.changeLanguage("en").then(() => {
-        navigate("/services/?lng=en")
+        navigate(
+          "/services/?lng=en",
+          { replace: true }
+        )
       })
-    } else {
-      i18n.changeLanguage("arm").then(() => {
-        navigate("/services/?lng=arm")
-      })
+    // } else {
+    //   i18n.changeLanguage("arm").then(() => {
+    //     navigate("/services/?lng=arm")
+    //   })
     }
 
     let newtext = languageText.filter(text => text !== elem.innerText)
@@ -175,10 +178,10 @@ const Navbar = ({ open, responswrapper, location }) => {
               &#x2573;
             </Label>
           ) : (
-            <Label htmlFor="toggle" onClick={() => open()}>
-              &#9776;
-            </Label>
-          )}
+              <Label htmlFor="toggle" onClick={() => open()}>
+                &#9776;
+              </Label>
+            )}
         </Col>
       </ResponsiveNavWrapper>
 
@@ -191,7 +194,7 @@ const Navbar = ({ open, responswrapper, location }) => {
                 activeStyle={activeStyle}
                 style={{ fontSize: "20px" }}
                 state={{ clickedItems: 0 }}
-                // onClick={() => setResponswrapper()}
+              // onClick={() => setResponswrapper()}
               >
                 Ծառայություններ
               </NavLink>
@@ -201,7 +204,7 @@ const Navbar = ({ open, responswrapper, location }) => {
                 to="/reports/"
                 activeStyle={activeStyle}
                 style={{ fontSize: "20px" }}
-                // onClick={() => setResponswrapper()}
+              // onClick={() => setResponswrapper()}
               >
                 Հաշվետվության տրամադրում
               </NavLink>

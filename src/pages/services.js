@@ -248,7 +248,7 @@ const Services = ({ location, ...props }) => {
         />
         <LinkedinShareButton
           children={<LinkdinIcon />}
-          url="http://triple-c.algorithm.am/services/"
+          url="http://triple-c.algorithm.am/services/?lng=en"
         />
       </SharedWrapperCol>
     </>
