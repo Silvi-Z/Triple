@@ -8,7 +8,7 @@
 import React, { useState } from "react"
 import PropTypes from "prop-types"
 // import { I18nextProvider, useTranslation } from 'react-i18next';
-// import i18next from 'i18next';
+import i18next from 'i18next';
 // import { useStaticQuery, graphql } from 'gatsby';
 import { withTrans } from "../i18n/withTrans"
 import { Layout as CustomLayout } from "antd"
@@ -58,9 +58,15 @@ const Main = styled.div`
   min-height: ${props => (props.setheight === true ? "100vh" : "0vh")};
 `
 
-const Layout = ({ children, t, i18n }) => {
+const Layout = ({ children, t, i18n, location }) => {
+
+
+
+
   const [responswrapper, setResponswrapper] = useState(true)
 
+
+  console.log('location', location)
   // const data = useStaticQuery(graphql`
   //   query SiteTitleQuery {
   //     site {
