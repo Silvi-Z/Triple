@@ -39,8 +39,8 @@ const options = {
 console.log('LanguageDetector', LanguageDetector)
 
 i18next.use(LanguageDetector).init({
-  lng: 'ru',
-  fallbackLng: 'arm',
+  // lng: 'ru',
+  // fallbackLng: 'arm',
   resources: {
     ru: {
       translations: require("../locales/ru/translation.json"),
