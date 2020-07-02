@@ -251,10 +251,12 @@ const Services = ({ location, ...props }) => {
       ))}
       <SharedWrapperCol span={5} offset={3}>
         <ShareLabel>Կիսվել</ShareLabel>
+        {console.log('urlShared', urlShared)}
         <FacebookShareButton
           url={urlShared}
           children={<FacebookIcon />}
         />
+
         <LinkedinShareButton
           children={<LinkdinIcon />}
           url="http://triple-c.algorithm.am/services/?lng=en"

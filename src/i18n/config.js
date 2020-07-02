@@ -36,7 +36,10 @@ const options = {
   cookieOptions: { path: "/" },
 }
 
+console.log('LanguageDetector', LanguageDetector)
+
 i18next.use(LanguageDetector).init({
+  lng: 'ru-RU',
   fallbackLng: 'arm',
   resources: {
     ru: {
