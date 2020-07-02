@@ -217,7 +217,6 @@ const Services = ({ location, ...props }) => {
         <meta charSet="utf-8" />
         <title>{t("services.title")}</title>
         <meta property="og:title" content={t("services.title")} />
-        <meta property="og:image" content={MainLogo} />
         {/* <meta http-equiv="cache -control" content="no-cache" /> */}
         <meta
           property="og:description"
@@ -237,7 +236,7 @@ const Services = ({ location, ...props }) => {
           xl={{ span: 24, offset: 2 }}
           xxl={{ span: 18, offset: 4 }}
         >
-          <h1>{t("services.title")}</h1>
+          <h1>{i18n.t("services.title")}</h1>
           <PStyled>{t("services.paragraph")}</PStyled>
         </Col>
       </HeadingParagraphRow>

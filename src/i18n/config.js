@@ -37,7 +37,6 @@ const options = {
 }
 
 i18next.use(LanguageDetector).init({
-  fallbackLng: "arm",
   resources: {
     ru: {
       translations: require("../locales/ru/translation.json"),
