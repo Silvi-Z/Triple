@@ -1,5 +1,6 @@
 import i18next from "i18next"
 import LanguageDetector from "i18next-browser-languagedetector"
+import { Link, navigate, location } from "gatsby"
 
 const options = {
   // order and from where user language should be detected
@@ -36,15 +37,18 @@ const options = {
   cookieOptions: { path: "/" },
 }
 
-console.log('LanguageDetector', LanguageDetector)
+let lng = 'arm'
+if (typeof window !== 'undefined') {
+  const url = window.location.href;
 
-const url = window.location.href;
+  const pos = url.indexOf('lng=');
 
-const pos = url.indexOf('lng=');
+  const lng = url.substr(pos + 4);
 
-const lng = url.substr(pos + 4);
+  console.log('window.location', lng)
+}
 
-console.log('window.location', lng)
+
 
 i18next.init({
   lng,
