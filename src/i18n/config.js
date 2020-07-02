@@ -38,8 +38,16 @@ const options = {
 
 console.log('LanguageDetector', LanguageDetector)
 
-i18next.use(LanguageDetector).init({
-  // lng: 'ru',
+const url = window.location.href;
+
+const pos = url.indexOf('lng=');
+
+const lng = url.substr(pos + 4);
+
+console.log('window.location', lng)
+
+i18next.init({
+  lng,
   // fallbackLng: 'arm',
   resources: {
     ru: {
