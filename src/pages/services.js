@@ -172,7 +172,7 @@ const Services = ({ location, ...props }) => {
   }
   let urlShared = getSharedUrl(i18n.language);
   let title = getSharedTitle(i18n.language);
-
+  console.log("efdfd0 ",  i18n.language)
   useEffect(() => {
     // getServiceData()
     // urlShared = getSharedUrl(i18n.language)

@@ -39,7 +39,7 @@ const options = {
 console.log('LanguageDetector', LanguageDetector)
 
 i18next.use(LanguageDetector).init({
-  lng: 'ru-RU',
+  lng: 'ru',
   fallbackLng: 'arm',
   resources: {
     ru: {
