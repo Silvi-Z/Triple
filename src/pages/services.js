@@ -134,6 +134,7 @@ const Services = ({ location, ...props }) => {
   const [Apistate, setApistate] = useState([])
   const [titleHelmet, setTitleHelmet] = useState("Ծառայություններ")
 
+
   //this function gets Api data from swagger endpoints
   // const getServiceData = async () => {
   //   try {
@@ -169,9 +170,14 @@ const Services = ({ location, ...props }) => {
       return "Ծառայություններ"
     }
   }
+  let urlShared = getSharedUrl(i18n.language);
+  let title = getSharedTitle(i18n.language);
 
   useEffect(() => {
     // getServiceData()
+    // urlShared = getSharedUrl(i18n.language)
+    // title = getSharedTitle(i18n.language)
+    console.log(`url  + ${urlShared} +  " title " + ${t("services.title")}`)
     setservicedata([
       ...servicedata,
       (servicedata[0].data = {
@@ -215,8 +221,8 @@ const Services = ({ location, ...props }) => {
       >
         <html lang={i18n.language} amp />
         <meta charSet="utf-8" />
-        <title>{t("services.title")}</title>
-        <meta property="og:title" content={t("services.title")} />
+        <title>{title}</title>
+        <meta property="og:title" content={title} />
         {/* <meta http-equiv="cache -control" content="no-cache" /> */}
         <meta
           property="og:description"
@@ -225,7 +231,7 @@ const Services = ({ location, ...props }) => {
           }
         />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content={getSharedUrl(i18n.language)} />
+        <meta property="og:url" content={urlShared} />
         <link rel="canonical" href={getSharedUrl(i18n.language)} />
 
       </Helmet>
@@ -246,7 +252,7 @@ const Services = ({ location, ...props }) => {
       <SharedWrapperCol span={5} offset={3}>
         <ShareLabel>Կիսվել</ShareLabel>
         <FacebookShareButton
-          url={getSharedUrl(i18n.language)}
+          url={urlShared}
           children={<FacebookIcon />}
         />
         <LinkedinShareButton
