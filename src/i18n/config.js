@@ -1,7 +1,7 @@
 import i18next from "i18next"
 import LanguageDetector from "i18next-browser-languagedetector"
 import { Link, navigate, location } from "gatsby"
-import { initReactI18next } from "react-i18next"
+// import { initReactI18next } from "react-i18next"
 
 const options = {
   // order and from where user language should be detected
@@ -54,7 +54,7 @@ if (typeof window !== 'undefined') {
 
 i18next
   .use(LanguageDetector)
-  .use(initReactI18next)
+  // .use(initReactI18next)
   .init({
     lng,
     // fallbackLng: 'arm',

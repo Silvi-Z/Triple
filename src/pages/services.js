@@ -136,27 +136,27 @@ const Services = ({ location, ...props }) => {
   const [titleHelmet, setTitleHelmet] = useState("Ծառայություններ")
 
 
-  const newInstance = i18next.createInstance({
-    lng: 'ru',
-    // fallbackLng: 'en',
-    resources: {
-      ru: {
-        translations: require("../locales/ru/translation.json"),
-      },
-      en: {
-        translations: require("../locales/en/translation.json"),
-      },
-      arm: {
-        translations: require("../locales/arm/translation.json"),
-      },
-    },
-    ns: ["translations"],
-    defaultNS: "translations",
-    debug: true
-  }, (err, t) => {
-    if (err) return console.log('something went wrong loading', err)
-    t('key') // -> same as i18next.t
-  })
+  // const newInstance = i18next.createInstance({
+  //   lng: 'ru',
+  //   // fallbackLng: 'en',
+  //   resources: {
+  //     ru: {
+  //       translations: require("../locales/ru/translation.json"),
+  //     },
+  //     en: {
+  //       translations: require("../locales/en/translation.json"),
+  //     },
+  //     arm: {
+  //       translations: require("../locales/arm/translation.json"),
+  //     },
+  //   },
+  //   ns: ["translations"],
+  //   defaultNS: "translations",
+  //   debug: true
+  // }, (err, t) => {
+  //   if (err) return console.log('something went wrong loading', err)
+  //   t('key') // -> same as i18next.t
+  // })
 
   //this function gets Api data from swagger endpoints
   // const getServiceData = async () => {
@@ -243,7 +243,7 @@ const Services = ({ location, ...props }) => {
   }
   hookComponent()
   return (
-    <Suspense fallback="loading">
+    <>
       <Helmet
         defer={false}
         onChangeClientState={newState => console.log(newState)}
@@ -291,7 +291,7 @@ const Services = ({ location, ...props }) => {
           url="http://triple-c.algorithm.am/services/?lng=en"
         />
       </SharedWrapperCol>
-    </Suspense>
+    </>
   )
 }
 export default Services
