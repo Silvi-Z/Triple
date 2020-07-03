@@ -27,6 +27,9 @@ import { FacebookShareButton, LinkedinShareButton } from "react-share"
 import Helmet from "react-helmet"
 import i18next from "i18next"
 import { useTranslation, Translation } from "react-i18next"
+import SEO from '../components/seo';
+
+
 const Services = ({ location, ...props }) => {
   const { t, i18n } = useTranslation()
   const [serviceData, setServiceData] = useState([
@@ -135,7 +138,6 @@ const Services = ({ location, ...props }) => {
   const [ApiState, setApiState] = useState([])
   const [titleHelmet, setTitleHelmet] = useState("Ծառայություններ")
 
-
   // const newInstance = i18next.createInstance({
   //   lng: 'ru',
   //   // fallbackLng: 'en',
@@ -235,11 +237,11 @@ const Services = ({ location, ...props }) => {
     setServiceData(data)
   }
 
-  let urlShared;
-  let title;
+  let urlShared
+  let title
   const hookComponent = () => {
-    urlShared = getSharedUrl(i18n.language);
-    title = getSharedTitle(i18n.language);
+    urlShared = getSharedUrl(i18n.language)
+    title = getSharedTitle(i18n.language)
   }
   hookComponent()
   return (
@@ -262,8 +264,8 @@ const Services = ({ location, ...props }) => {
         <meta property="og:type" content="website" />
         <meta property="og:url" content={urlShared} />
         <link rel="canonical" href={urlShared} />
-
       </Helmet>
+      <SEO title={title} />
       <HeadingParagraphRow>
         <Col
           xs={{ span: 24, offset: 0 }}
@@ -280,11 +282,8 @@ const Services = ({ location, ...props }) => {
       ))}
       <SharedWrapperCol span={5} offset={3}>
         <ShareLabel>Կիսվել</ShareLabel>
-        {console.log('urlShared', urlShared)}
-        <FacebookShareButton
-          url={urlShared}
-          children={<FacebookIcon />}
-        />
+        {console.log("urlShared", urlShared)}
+        <FacebookShareButton url={urlShared} children={<FacebookIcon />} />
 
         <LinkedinShareButton
           children={<LinkdinIcon />}

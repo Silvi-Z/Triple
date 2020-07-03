@@ -63,10 +63,7 @@ const Layout = ({ children, t, i18n, location }) => {
 
 
 
-  const [responswrapper, setResponswrapper] = useState(true)
-
-
-  console.log('location', location)
+  const [responsWrapper, setResponsWrapper] = useState(true)
   // const data = useStaticQuery(graphql`
   //   query SiteTitleQuery {
   //     site {
@@ -77,20 +74,20 @@ const Layout = ({ children, t, i18n, location }) => {
   //   }
   // `);
   const openMenu = () => {
-    setResponswrapper(!responswrapper)
+    setResponsWrapper(!responsWrapper)
   }
 
   return (
     <>
-      <Navbar open={openMenu} responswrapper={responswrapper} />
-      <Main setheight={responswrapper}>
-        <ContentStyled>{responswrapper ? children : null}</ContentStyled>
+      <Navbar open={openMenu} responswrapper={responsWrapper} />
+      <Main setheight={responsWrapper}>
+        <ContentStyled>{responsWrapper ? children : null}</ContentStyled>
       </Main>
       <FooterCust
-        backcolor={responswrapper.toString()}
+        backcolor={responsWrapper.toString()}
         texttranslate={t(`site.footer`)}
       >
-        {!responswrapper ? (
+        {!responsWrapper ? (
           <FooterWhite />
         ) : (
             <FooterBlack texttranslate={t(`site.footer`)} />
