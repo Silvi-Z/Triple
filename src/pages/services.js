@@ -170,9 +170,7 @@ const Services = ({ location, ...props }) => {
       return "Ծառայություններ"
     }
   }
-  let urlShared = getSharedUrl(i18n.language);
-  let title = getSharedTitle(i18n.language);
-  console.log("efdfd0 ",  i18n.language)
+  console.log("efdfd0 ", i18n.language)
   useEffect(() => {
     // getServiceData()
     // urlShared = getSharedUrl(i18n.language)
@@ -213,8 +211,16 @@ const Services = ({ location, ...props }) => {
     )
     setservicedata(data)
   }
+  let urlShared;
+  let title;
+  const hookComponent = () => {
+    urlShared = getSharedUrl(i18n.language);
+    title = getSharedTitle(i18n.language);
+  }
+  hookComponent()
   return (
     <>
+      {console.log(" urlShared ", urlShared)}
       <Helmet
         defer={false}
         onChangeClientState={newState => console.log(newState)}
@@ -232,7 +238,7 @@ const Services = ({ location, ...props }) => {
         />
         <meta property="og:type" content="website" />
         <meta property="og:url" content={urlShared} />
-        <link rel="canonical" href={getSharedUrl(i18n.language)} />
+        <link rel="canonical" href={urlShared} />
 
       </Helmet>
       <HeadingParagraphRow>
