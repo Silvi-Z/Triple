@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react"
+import React, { useState, useEffect, useRef, Suspense } from "react"
 import Layout from "../components/layout"
 import { Col } from "antd"
 import { apiHelper } from "../helpers/apiHelper"
@@ -25,10 +25,11 @@ import {
 } from "../components/servicecomponents/serviceMainStyle"
 import { FacebookShareButton, LinkedinShareButton } from "react-share"
 import Helmet from "react-helmet"
-import { useTranslation } from "react-i18next"
+import i18next from "i18next"
+import { useTranslation, Translation } from "react-i18next"
 const Services = ({ location, ...props }) => {
   const { t, i18n } = useTranslation()
-  const [servicedata, setservicedata] = useState([
+  const [serviceData, setServiceData] = useState([
     {
       data: {
         id: 0,
@@ -131,16 +132,38 @@ const Services = ({ location, ...props }) => {
       open: false,
     },
   ])
-  const [Apistate, setApistate] = useState([])
+  const [ApiState, setApiState] = useState([])
   const [titleHelmet, setTitleHelmet] = useState("Ծառայություններ")
 
+
+  const newInstance = i18next.createInstance({
+    lng: 'ru',
+    // fallbackLng: 'en',
+    resources: {
+      ru: {
+        translations: require("../locales/ru/translation.json"),
+      },
+      en: {
+        translations: require("../locales/en/translation.json"),
+      },
+      arm: {
+        translations: require("../locales/arm/translation.json"),
+      },
+    },
+    ns: ["translations"],
+    defaultNS: "translations",
+    debug: true
+  }, (err, t) => {
+    if (err) return console.log('something went wrong loading', err)
+    t('key') // -> same as i18next.t
+  })
 
   //this function gets Api data from swagger endpoints
   // const getServiceData = async () => {
   //   try {
   //     let res = await apiHelper.get("/api/service").then(
   //       res => {
-  //         setApistate(res.data.data)
+  //         setApiState(res.data.data)
   //       },
   //       reject => {
   //         console.log(reject.response)
@@ -176,9 +199,9 @@ const Services = ({ location, ...props }) => {
     // urlShared = getSharedUrl(i18n.language)
     // title = getSharedTitle(i18n.language)
     console.log(`url  + ${urlShared} +  " title " + ${t("services.title")}`)
-    setservicedata([
-      ...servicedata,
-      (servicedata[0].data = {
+    setServiceData([
+      ...serviceData,
+      (serviceData[0].data = {
         id: 0,
         image: CalcImg,
         paragraph: `${t("services.Firstdata.paragraph")}`,
@@ -195,22 +218,23 @@ const Services = ({ location, ...props }) => {
   }, [t])
   const toggle = current => {
     setTitleHelmet(current.data.paragraph)
-    const data = servicedata.map(d =>
+    const data = serviceData.map(d =>
       d.data.id === current.data.id && d.open === false
         ? { ...d, open: true }
         : d.data.id !== current.data.id && d.open === true
           ? { ...d, open: false }
           : { ...d, open: false }
     )
-    setservicedata(data)
+    setServiceData(data)
   }
   const toggleFromHomePage = state => {
     state === null ? (state = 0) : state
-    const data = servicedata.map(d =>
+    const data = serviceData.map(d =>
       d.data.id === state.clickedItems ? { ...d, open: true } : { ...d }
     )
-    setservicedata(data)
+    setServiceData(data)
   }
+
   let urlShared;
   let title;
   const hookComponent = () => {
@@ -219,8 +243,7 @@ const Services = ({ location, ...props }) => {
   }
   hookComponent()
   return (
-    <>
-      {console.log(" urlShared ", urlShared)}
+    <Suspense fallback="loading">
       <Helmet
         defer={false}
         onChangeClientState={newState => console.log(newState)}
@@ -252,7 +275,7 @@ const Services = ({ location, ...props }) => {
           <PStyled>{t("services.paragraph")}</PStyled>
         </Col>
       </HeadingParagraphRow>
-      {servicedata.map((d, id) => (
+      {serviceData.map((d, id) => (
         <ServiceDropWrap showServiceForm={toggle} data={d} key={id} />
       ))}
       <SharedWrapperCol span={5} offset={3}>
@@ -268,7 +291,7 @@ const Services = ({ location, ...props }) => {
           url="http://triple-c.algorithm.am/services/?lng=en"
         />
       </SharedWrapperCol>
-    </>
+    </Suspense>
   )
 }
 export default Services

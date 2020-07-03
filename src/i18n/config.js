@@ -1,6 +1,7 @@
 import i18next from "i18next"
 import LanguageDetector from "i18next-browser-languagedetector"
 import { Link, navigate, location } from "gatsby"
+import { initReactI18next } from "react-i18next"
 
 const options = {
   // order and from where user language should be detected
@@ -38,6 +39,7 @@ const options = {
 }
 
 let lng = 'arm'
+
 if (typeof window !== 'undefined') {
   const url = window.location.href;
 
@@ -50,32 +52,38 @@ if (typeof window !== 'undefined') {
 
 
 
-i18next.init({
-  lng,
-  // fallbackLng: 'arm',
-  resources: {
-    ru: {
-      translations: require("../locales/ru/translation.json"),
+i18next
+  .use(LanguageDetector)
+  .use(initReactI18next)
+  .init({
+    lng,
+    // fallbackLng: 'arm',
+    resources: {
+      ru: {
+        translations: require("../locales/ru/translation.json"),
+      },
+      en: {
+        translations: require("../locales/en/translation.json"),
+      },
+      arm: {
+        translations: require("../locales/arm/translation.json"),
+      },
     },
-    en: {
-      translations: require("../locales/en/translation.json"),
+    detection: options,
+    debug: true,
+    ns: ["translations"],
+    defaultNS: "translations",
+    initialLanguage: lng,
+    returnObjects: true,
+    debug: process.env.NODE_ENV === "development",
+    interpolation: {
+      escapeValue: false, // not needed for react!!
     },
-    arm: {
-      translations: require("../locales/arm/translation.json"),
+    react: {
+      wait: false,
+      useSuspense: true,
     },
-  },
-  detection: options,
-  ns: ["translations"],
-  defaultNS: "translations",
-  returnObjects: true,
-  debug: process.env.NODE_ENV === "development",
-  interpolation: {
-    escapeValue: false, // not needed for react!!
-  },
-  react: {
-    wait: true,
-  },
-})
+  })
 
 i18next.languages = ["ru", "en", "arm"]
 
