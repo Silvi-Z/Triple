@@ -4,6 +4,7 @@ module.exports = {
     description:
       "Թարմ մտածողությունը և նորարական լուծումները այն դրդապատճառներներից մեկն են, որի վրա հիմնվելով կազմակերպությունները ընտրում են Triple Consulting-ը",
     author: "@algorithmSolutions",
+    siteUrl: "http://triple-c.algorithm.am"
   },
   plugins: [
     `gatsby-plugin-react-helmet-async`,

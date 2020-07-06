@@ -27,8 +27,7 @@ import { FacebookShareButton, LinkedinShareButton } from "react-share"
 import Helmet from "react-helmet"
 import i18next from "i18next"
 import { useTranslation, Translation } from "react-i18next"
-import SEO from '../components/seo';
-
+import SEO from "../components/seo"
 
 const Services = ({ location, ...props }) => {
   const { t, i18n } = useTranslation()
@@ -212,7 +211,7 @@ const Services = ({ location, ...props }) => {
     ])
     setTitleHelmet(`${t("services.Firstdata.paragraph")}`)
     if (location.state !== null && location.state.clickedItems >= 2) {
-      setTimeout(function () {
+      setTimeout(function() {
         window.scrollTo(0, 500)
       }, 2)
     }
@@ -224,8 +223,8 @@ const Services = ({ location, ...props }) => {
       d.data.id === current.data.id && d.open === false
         ? { ...d, open: true }
         : d.data.id !== current.data.id && d.open === true
-          ? { ...d, open: false }
-          : { ...d, open: false }
+        ? { ...d, open: false }
+        : { ...d, open: false }
     )
     setServiceData(data)
   }
@@ -254,7 +253,7 @@ const Services = ({ location, ...props }) => {
         <meta charSet="utf-8" />
         <title>{title}</title>
         <meta property="og:title" content={title} />
-        {/* <meta http-equiv="cache -control" content="no-cache" /> */}
+        <meta http-equiv="cache -control" content="no-cache" />
         <meta
           property="og:description"
           content={
@@ -265,7 +264,10 @@ const Services = ({ location, ...props }) => {
         <meta property="og:url" content={urlShared} />
         <link rel="canonical" href={urlShared} />
       </Helmet>
-      <SEO title={title} />
+      {console.log("title", title)}
+      {console.log("i18n.language", i18n.language)}
+      {console.log("location", location)}
+      <SEO title={i18n.t("services.title")} />
       <HeadingParagraphRow>
         <Col
           xs={{ span: 24, offset: 0 }}
@@ -282,9 +284,7 @@ const Services = ({ location, ...props }) => {
       ))}
       <SharedWrapperCol span={5} offset={3}>
         <ShareLabel>Կիսվել</ShareLabel>
-        {console.log("urlShared", urlShared)}
         <FacebookShareButton url={urlShared} children={<FacebookIcon />} />
-
         <LinkedinShareButton
           children={<LinkdinIcon />}
           url="http://triple-c.algorithm.am/services/?lng=en"
