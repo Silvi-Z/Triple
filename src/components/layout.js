@@ -58,7 +58,7 @@ const Main = styled.div`
   min-height: ${props => (props.setheight === true ? "100vh" : "0vh")};
 `
 
-const Layout = ({ children, t, i18n, location }) => {
+const Layout = ({ children, t, i18n, location, pageContext }) => {
 
 
 
@@ -79,7 +79,7 @@ const Layout = ({ children, t, i18n, location }) => {
 
   return (
     <>
-      <Navbar open={openMenu} responswrapper={responsWrapper} />
+      <Navbar open={openMenu} responswrapper={responsWrapper} pageContext={pageContext} />
       <Main setheight={responsWrapper}>
         <ContentStyled>{responsWrapper ? children : null}</ContentStyled>
       </Main>

@@ -3,7 +3,7 @@ import LanguageDetector from "i18next-browser-languagedetector"
 import { Link, navigate, location } from "gatsby"
 // import { initReactI18next } from "react-i18next"
 
-const options = {
+/* const options = {
   // order and from where user language should be detected
   order: [
     "querystring",
@@ -86,5 +86,40 @@ i18next
   })
 
 i18next.languages = ["ru", "en", "arm"]
+
+
+
+
+
+
+
+
+ */
+
+
+
+i18next.init({
+  resources: {
+    ru: {
+      translations: require("../locales/ru/translation.json"),
+    },
+    en: {
+      translations: require("../locales/en/translation.json"),
+    },
+    arm: {
+      translations: require("../locales/arm/translation.json"),
+    },
+  },
+  fallbackLng: 'arm',
+  interpolation: {
+    escapeValue: false,
+  },
+  defaultNS: "translations",
+  react: {
+    useSuspense: false,
+  },
+});
+
+
 
 export default i18next

@@ -30,6 +30,8 @@ import {
 
 import { useTranslation } from "react-i18next"
 
+import LanguagePicker from '../LanguagePicker/LanguagePicker';
+
 const phones = (
   <div className="phonedrop">
     <div className="phonebox">
@@ -101,7 +103,7 @@ const activeStyle = {
   border: "1px solid #009db8",
 }
 
-const Navbar = ({ open, responswrapper, location }) => {
+const Navbar = ({ open, responswrapper, location, pageContext }) => {
   const { t, i18n } = useTranslation()
   const [languageText, setlanguageText] = useState(["Հայ", "Eng", "Рус"])
   const [lang, setLang] = useState({
@@ -248,7 +250,8 @@ const Navbar = ({ open, responswrapper, location }) => {
 
       <GridWrapper>
         <GridLang>
-          <Dropdown
+          <LanguagePicker originalPath={pageContext.originalPath} />
+          {/* <Dropdown
             overlay={language}
             trigger={["click"]}
             style={{ marginBottom: "10%" }}
@@ -267,7 +270,7 @@ const Navbar = ({ open, responswrapper, location }) => {
                 <CaretDownOutlined style={{ fontSize: "10px" }} />
               </a>
             </GridLang>
-          </Dropdown>
+          </Dropdown> */}
         </GridLang>
         <GridAddress>
           <EnvironmentWrapper src={EnvironmentImg} />

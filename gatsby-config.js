@@ -1,5 +1,7 @@
 module.exports = {
   siteMetadata: {
+    supportedLanguages: ["ru", "en", "arm"],
+    defaultLanguage: "arm",
     title: "Triple Consulting",
     description:
       "Թարմ մտածողությունը և նորարական լուծումները այն դրդապատճառներներից մեկն են, որի վրա հիմնվելով կազմակերպությունները ընտրում են Triple Consulting-ը",
@@ -7,6 +9,7 @@ module.exports = {
     siteUrl: "http://triple-c.algorithm.am"
   },
   plugins: [
+    `gatsby-plugin-netlify`,
     `gatsby-plugin-react-helmet-async`,
     "gatsby-plugin-react-helmet",
     `gatsby-plugin-lodash`,

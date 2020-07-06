@@ -29,7 +29,7 @@ import i18next from "i18next"
 import { useTranslation, Translation } from "react-i18next"
 import SEO from "../components/seo"
 
-const Services = ({ location, ...props }) => {
+const Services = ({ location, pageContext, ...props }) => {
   const { t, i18n } = useTranslation()
   const [serviceData, setServiceData] = useState([
     {
@@ -245,7 +245,7 @@ const Services = ({ location, ...props }) => {
   hookComponent()
   return (
     <>
-      <Helmet
+      {/* <Helmet
         defer={false}
         onChangeClientState={newState => console.log(newState)}
       >
@@ -263,11 +263,11 @@ const Services = ({ location, ...props }) => {
         <meta property="og:type" content="website" />
         <meta property="og:url" content={urlShared} />
         <link rel="canonical" href={urlShared} />
-      </Helmet>
+      </Helmet> */}
       {console.log("title", title)}
       {console.log("i18n.language", i18n.language)}
       {console.log("location", location)}
-      <SEO title={i18n.t("services.title")} />
+      <SEO title={i18n.t("services.title")} pageContext={pageContext} />
       <HeadingParagraphRow>
         <Col
           xs={{ span: 24, offset: 0 }}

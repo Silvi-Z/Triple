@@ -32,11 +32,11 @@ const siteMetada = [
   },
 ];
 
-const IndexPage = () => {
+const IndexPage = ({ pageContext }) => {
   const { t } = useTranslation()
   return (
     <>
-      <SEO title='Triple Consulting' meta={siteMetada} />
+      <SEO title='Triple Consulting' meta={siteMetada} pageContext={pageContext} />
       <Slideshow />
       <Homeservices />
       <Homepartners />
