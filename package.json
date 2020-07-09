@@ -30,6 +30,7 @@
     "gatsby-plugin-styled-components": "^3.2.1",
     "gatsby-source-facebook": "^2.0.1",
     "gatsby-source-filesystem": "^2.2.2",
+    "gatsby-transformer-json": "^2.4.11",
     "gatsby-transformer-sharp": "^2.4.4",
     "i18next": "^19.5.1",
     "i18next-browser-languagedetector": "^5.0.0",

@@ -103,14 +103,14 @@ const activeStyle = {
   border: "1px solid #009db8",
 }
 
-const Navbar = ({ open, responswrapper, location, pageContext }) => {
+const Navbar = ({ open, responswrapper, location, lang, originalPath }) => {
   const { t, i18n } = useTranslation()
-  const [languageText, setlanguageText] = useState(["Հայ", "Eng", "Рус"])
-  const [lang, setLang] = useState({
+  // const [languageText, setlanguageText] = useState(["Հայ", "Eng", "Рус"])
+  /* const [lang, setLang] = useState({
     language: "en",
-  })
+  }) */
 
-  const language = (
+  /* const language = (
     <div className="languagedrop">
       <div className="languagebox">
         <span
@@ -131,9 +131,9 @@ const Navbar = ({ open, responswrapper, location, pageContext }) => {
         </span>
       </div>
     </div>
-  )
+  ) */
 
-  const handleChangeLanguage = (e, id) => {
+  /* const handleChangeLanguage = (e, id) => {
     let elem = document.getElementById(id)
 
     if (elem.innerText === "Рус") {
@@ -148,18 +148,16 @@ const Navbar = ({ open, responswrapper, location, pageContext }) => {
       i18n.changeLanguage("arm").then(() => {
         navigate("/services/?lng=arm")
       })
-    }
+    } */
 
-    let newtext = languageText.filter(text => text !== elem.innerText)
+   /*  let newtext = languageText.filter(text => text !== elem.innerText)
     newtext.unshift(elem.innerText)
     setlanguageText(newtext)
 
     setLang(oldValues => ({
       ...oldValues,
       [event.target.name]: elem.innerText,
-    }))
-  }
-
+    })) */
   return (
     <>
       <ResponsiveNavWrapper>
@@ -189,7 +187,7 @@ const Navbar = ({ open, responswrapper, location, pageContext }) => {
           <Row>
             <Col span={24} style={{ marginBottom: "4.6%" }}>
               <NavLink
-                to="/services/"
+                to={`/${lang}/services/`}
                 activeStyle={activeStyle}
                 style={{ fontSize: "20px" }}
                 state={{ clickedItems: 0 }}
@@ -210,7 +208,7 @@ const Navbar = ({ open, responswrapper, location, pageContext }) => {
             </Col>
             <Col span={24} style={{ marginBottom: "4.6%" }}>
               <NavLink
-                to="/calculators/"
+                to={`/${lang}/calculators/`}
                 activeStyle={activeStyle}
                 style={{ fontSize: "20px" }}
               >
@@ -250,7 +248,7 @@ const Navbar = ({ open, responswrapper, location, pageContext }) => {
 
       <GridWrapper>
         <GridLang>
-          <LanguagePicker originalPath={pageContext.originalPath} />
+          <LanguagePicker originalPath={originalPath} />
           {/* <Dropdown
             overlay={language}
             trigger={["click"]}
@@ -303,7 +301,7 @@ const Navbar = ({ open, responswrapper, location, pageContext }) => {
         </Dropdown>
         <GridService>
           <NavLink
-            to="/services/?lng=arm"
+            to={`/${lang}/services`}
             activeStyle={activeStyle}
             state={{ responswrapper }}
           >
@@ -311,7 +309,7 @@ const Navbar = ({ open, responswrapper, location, pageContext }) => {
           </NavLink>
         </GridService>
         <GridReport>
-          <NavLink to="/reports/" activeStyle={activeStyle}>
+          <NavLink to={`/${lang}/reports/`} activeStyle={activeStyle}>
             Հաշվետվության
             <br /> տրամադրում
           </NavLink>

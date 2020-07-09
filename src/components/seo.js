@@ -2,8 +2,10 @@ import React from 'react';
 import { graphql, useStaticQuery } from 'gatsby';
 import Helmet from 'react-helmet';
 import { useTranslation } from 'react-i18next';
+import LocaleContext from '../localeContext';
 
 const SEO = ({ title, description, meta, pageContext }) => {
+  const { locale } = React.useContext(LocaleContext);
   const { t } = useTranslation();
 
   const { site } = useStaticQuery(
@@ -27,6 +29,7 @@ const SEO = ({ title, description, meta, pageContext }) => {
       htmlAttributes={{
         lang,
       }}
+      title={title}
       titleTemplate={`%s | ${t('siteMetadata.title')}`}
       meta={[
         {
@@ -43,13 +46,13 @@ const SEO = ({ title, description, meta, pageContext }) => {
         },
         {
           property: 'og:locale',
-          content: lang,
+          content: locale,
         }
       ]/* .concat(meta) */}
       link={[
         {
           rel: 'canonical',
-          href: `${host}/${lang}${originalPath}`,
+          href: `${host}/${locale}${originalPath}`,
         },
         {
           rel: 'alternate',

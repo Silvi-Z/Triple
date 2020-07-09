@@ -1,16 +1,8 @@
-/**
- * Layout component that queries for data
- * with Gatsby's useStaticQuery component
- *
- * See: https://www.gatsbyjs.org/docs/use-static-query/
- */
 /*eslint-disable */
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import PropTypes from "prop-types"
-// import { I18nextProvider, useTranslation } from 'react-i18next';
-import i18next from 'i18next';
-// import { useStaticQuery, graphql } from 'gatsby';
-import { withTrans } from "../i18n/withTrans"
+import { useTranslation } from "react-i18next"
+import withI18next from "../i18n/withI18next"
 import { Layout as CustomLayout } from "antd"
 import styled from "styled-components"
 import Navbar from "./navbar/navbar"
@@ -58,28 +50,27 @@ const Main = styled.div`
   min-height: ${props => (props.setheight === true ? "100vh" : "0vh")};
 `
 
-const Layout = ({ children, t, i18n, location, pageContext }) => {
+const Layout = ({ children, location, pageContext: { locale, originalPath } }) => {
 
+  const { i18n, t } = useTranslation();
 
-
+  useEffect(() => {
+    i18n.changeLanguage(locale)
+  }, [location, i18n, locale]);
 
   const [responsWrapper, setResponsWrapper] = useState(true)
-  // const data = useStaticQuery(graphql`
-  //   query SiteTitleQuery {
-  //     site {
-  //       siteMetadata {
-  //         title
-  //       }
-  //     }
-  //   }
-  // `);
   const openMenu = () => {
     setResponsWrapper(!responsWrapper)
   }
 
   return (
     <>
-      <Navbar open={openMenu} responswrapper={responsWrapper} pageContext={pageContext} />
+      <Navbar
+        open={openMenu}
+        responswrapper={responsWrapper}
+        originalPath={originalPath}
+        lang={locale}
+      />
       <Main setheight={responsWrapper}>
         <ContentStyled>{responsWrapper ? children : null}</ContentStyled>
       </Main>
@@ -101,4 +92,4 @@ Layout.propTypes = {
   children: PropTypes.node.isRequired,
 }
 
-export default withTrans(Layout)
+export default withI18next()(Layout)

@@ -54,6 +54,14 @@ module.exports = {
       }
     },
     {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${__dirname}/config/translations`,
+        name: `translations`
+      }
+    },
+    `gatsby-transformer-json`,
+    /* {
       resolve: `gatsby-plugin-facebook-analytics`,
       options: {
         // Required - set this to the ID of your Facebook app.
@@ -78,10 +86,9 @@ module.exports = {
 
         // Select your language.
         language: `en_US`,
-      },
-    },
+      }, */
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
   ],
-}
+};

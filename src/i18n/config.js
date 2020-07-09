@@ -98,7 +98,7 @@ i18next.languages = ["ru", "en", "arm"]
 
 
 
-i18next.init({
+/* i18next.init({
   resources: {
     ru: {
       translations: require("../locales/ru/translation.json"),
@@ -122,4 +122,18 @@ i18next.init({
 
 
 
-export default i18next
+export default i18next */
+
+export default () => {
+  i18next.init({
+    debug: process.env.NODE_ENV === "development",
+    fallbackLng: "arm",
+    keySeparator: false, // we do not use keys in form messages.welcome
+    interpolation: {
+      escapeValue: false // react already safes from xss
+    },
+    react: { useSuspense: false }
+  });
+
+  return i18next;
+};

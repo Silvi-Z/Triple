@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef, Suspense } from "react"
 import Layout from "../components/layout"
+import useTranslations from "../components/useTranslations"
 import { Col } from "antd"
 import { apiHelper } from "../helpers/apiHelper"
 import ServiceDropWrap from "../components/servicecomponents/serviceDrop/servicedrop"
@@ -30,6 +31,7 @@ import { useTranslation, Translation } from "react-i18next"
 import SEO from "../components/seo"
 
 const Services = ({ location, pageContext, ...props }) => {
+  const { services } = useTranslations();
   const { t, i18n } = useTranslation()
   const [serviceData, setServiceData] = useState([
     {
@@ -267,7 +269,7 @@ const Services = ({ location, pageContext, ...props }) => {
       {console.log("title", title)}
       {console.log("i18n.language", i18n.language)}
       {console.log("location", location)}
-      <SEO title={i18n.t("services.title")} pageContext={pageContext} />
+      <SEO title={services.title} pageContext={pageContext} />
       <HeadingParagraphRow>
         <Col
           xs={{ span: 24, offset: 0 }}
@@ -275,8 +277,8 @@ const Services = ({ location, pageContext, ...props }) => {
           xl={{ span: 24, offset: 2 }}
           xxl={{ span: 18, offset: 4 }}
         >
-          <h1>{i18n.t("services.title")}</h1>
-          <PStyled>{t("services.paragraph")}</PStyled>
+          <h1>{services.title}</h1>
+          <PStyled>{services.paragraph}</PStyled>
         </Col>
       </HeadingParagraphRow>
       {serviceData.map((d, id) => (
@@ -284,7 +286,7 @@ const Services = ({ location, pageContext, ...props }) => {
       ))}
       <SharedWrapperCol span={5} offset={3}>
         <ShareLabel>Կիսվել</ShareLabel>
-        <FacebookShareButton url={urlShared} children={<FacebookIcon />} />
+        <FacebookShareButton url='http://triple-c.algorithm.am/en/services/' children={<FacebookIcon />} />
         <LinkedinShareButton
           children={<LinkdinIcon />}
           url="http://triple-c.algorithm.am/services/?lng=en"

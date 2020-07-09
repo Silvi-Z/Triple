@@ -1,9 +1,6 @@
 const config = require('./gatsby-config');
-/**
- * Makes sure to create localized paths for each file in the /pages folder.
- * For example, pages/404.js will be converted to /en/404.js and /el/404.js and
- * it will be accessible from https:// .../en/404/ and https:// .../el/404/
- */
+const resources = require('./src/i18n/resources');
+
 exports.onCreatePage = async ({ page, actions: { createPage, deletePage, createRedirect } }) => {
   const isEnvDevelopment = process.env.NODE_ENV === 'development';
   const originalPath = page.path;
@@ -32,7 +29,8 @@ exports.onCreatePage = async ({ page, actions: { createPage, deletePage, createR
         context: {
           ...page.context,
           originalPath,
-          lang,
+          locale: lang,
+          localeResources: resources[lang] ? resources[lang] : {},
         },
       });
     })
