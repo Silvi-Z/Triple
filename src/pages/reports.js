@@ -7,6 +7,8 @@ import ReportForm2 from "../components/reportComponents/reportForm2/reportForm2"
 import { PlusOutlined, MinusOutlined } from "@ant-design/icons"
 import CarImg from "../assets/calcImages/carSell.png"
 import { Helmet } from "react-helmet"
+import useTranslations from "../components/useTranslations"
+import SEO from "../components/seo"
 import moment from "moment"
 import {
   ReportParagraphRow,
@@ -27,7 +29,7 @@ import {
 } from "../components/reportComponents/reportStyle"
 import { FacebookShareButton, LinkedinShareButton } from "react-share"
 
-const Reports = () => {
+const Reports = ({ pageContext }) => {
   const [showForm, toggleForm] = useState(true)
   const [confirm2, setConfirm2] = useState(false)
   const [confirm3, setConfirm3] = useState(false)
@@ -35,20 +37,34 @@ const Reports = () => {
   const [fillform, setfillform] = useState(false)
   const [resetForm, setResetForm] = useState(false)
   const [AllFieldsValues, setAllFieldsValues] = useState({})
+  const { reports } = useTranslations();
+  let urlShared
 
   const DropdownForm = () => {
     toggleForm(!showForm)
     setConfirm3(false)
   }
+
+  const getSharedUrl = lng => {
+    if (lng === "en") {
+      return "http://triple-c.algorithm.am/en/reports/"
+    } else if (lng === "ru") {
+      return "http://triple-c.algorithm.am/ru/reports"
+    } else {
+      return "http://triple-c.algorithm.am/arm/reports/"
+    }
+  }
+
+  const hookComponent = () => {
+    urlShared = getSharedUrl(pageContext.locale)
+  }
+  hookComponent()
   return (
     <>
-      <Helmet>
-        <meta charSet="utf-8" />
-        <title>Report</title>
-        <meta property="og:title" content="Հաշվետվության տրամադրում" />
-        <meta property="og:type" content="website" />
-        <link rel="canonical" href="http://triple-c.algorithm.am/reports/" />
-      </Helmet>
+      <SEO
+        title={reports.title}
+        description={reports.paragraph}
+        pageContext={pageContext} />
       <ReportParagraphRow>
         <Col
           xs={{ span: 9 }}
@@ -56,12 +72,8 @@ const Reports = () => {
           lg={{ span: 24 }}
           xxl={{ span: 24, offset: 1 }}
         >
-          <H2Styled>Հաշվետվության տրամադրում</H2Styled>
-          <PStyled>
-            Ստացեք Ձեր ցանկալի հաշվետվությունը առցանց՝ առանց ավելորդ
-            քաշքշուկների: Լրացրեք պահանջվող տեղեկատվության դաշտերը և մեր
-            մասնագետները կարձագանքեն հաշված րոպեների ընթացքում։
-          </PStyled>
+          <H2Styled>{reports.title}</H2Styled>
+          <PStyled>{reports.paragraph}</PStyled>
         </Col>
       </ReportParagraphRow>
       <ReportDropRow align="middle" gutter={[10, 15]}>
@@ -77,7 +89,7 @@ const Reports = () => {
         </Col>
         <Col xxl={14} xl={15} lg={15} md={16} sm={10} xs={14} span={17}>
           <H3Styled>
-            Ավտոմեքենայի վաճառքի հաշվետվություն <span>( 5000 դր )</span>
+            {reports.dropParagraph} <span>({reports.currency})</span>
           </H3Styled>
         </Col>
         <Col span={2}>
@@ -100,7 +112,7 @@ const Reports = () => {
             sm={{ span: 22, offset: 0 }}
             xs={{ span: 24, offset: 0 }}
           >
-            <H3StyledForm>Պահանջվող տեղեկատվություն</H3StyledForm>
+            <H3StyledForm>{reports.subdropParagraph}</H3StyledForm>
             <ReportForm
               setConfirm2={setConfirm2}
               closeForm1={DropdownForm}
@@ -108,6 +120,7 @@ const Reports = () => {
               allFieldsValues={AllFieldsValues}
               fillform={fillform}
               resetForm={resetForm}
+              langText={reports.reportForm}
             />
           </Col>
         ) : confirm2 ? (
@@ -119,7 +132,7 @@ const Reports = () => {
             sm={{ span: 3, offset: 0 }}
             xs={{ span: 3, offset: 0 }}
           >
-            <H3StyledForm>Պահանջվող տեղեկատվություն</H3StyledForm>
+            <H3StyledForm>{reports.subdropParagraph}</H3StyledForm>
             <ReportForm2
               setConfirm3={setConfirm3}
               setConfirm2={setConfirm2}
@@ -151,13 +164,13 @@ const Reports = () => {
         <SharedWrapperCol span={5} offset={4}>
           <ShareLabel>Կիսվել</ShareLabel>
           <FacebookShareButton
-            url="http://triple-c.algorithm.am/reports/"
+            url={urlShared}
             children={<FacebookIcon />}
             hashtag={"Avag HAshvapah"}
           />
           <LinkedinShareButton
             children={<LinkdinIcon />}
-            url="http://triple-c.algorithm.am/reports/"
+            url={urlShared}
           ></LinkedinShareButton>
         </SharedWrapperCol>
       </ReportFormRow>

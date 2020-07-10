@@ -8,6 +8,7 @@ import styled from "styled-components"
 import Navbar from "./navbar/navbar"
 import FooterBlack from "./footer/footerblack"
 import FooterWhite from "./footer/footerwhite"
+import useTranslations from "../components/useTranslations"
 import "./layout.css"
 
 const { Content, Footer } = CustomLayout
@@ -50,10 +51,10 @@ const Main = styled.div`
   min-height: ${props => (props.setheight === true ? "100vh" : "0vh")};
 `
 
-const Layout = ({ children, location, pageContext: { locale, originalPath } }) => {
+const Layout = ({ children, location, pageContext: { locale, originalPath, localeResources } }) => {
 
   const { i18n, t } = useTranslation();
-
+  const { site } = useTranslations();
   useEffect(() => {
     i18n.changeLanguage(locale)
   }, [location, i18n, locale]);
@@ -62,7 +63,7 @@ const Layout = ({ children, location, pageContext: { locale, originalPath } }) =
   const openMenu = () => {
     setResponsWrapper(!responsWrapper)
   }
-
+  console.log(" 18nnnnnn ", localeResources.translation.site.header)
   return (
     <>
       <Navbar
@@ -70,18 +71,21 @@ const Layout = ({ children, location, pageContext: { locale, originalPath } }) =
         responswrapper={responsWrapper}
         originalPath={originalPath}
         lang={locale}
+        langtext={localeResources.translation.site}
       />
       <Main setheight={responsWrapper}>
         <ContentStyled>{responsWrapper ? children : null}</ContentStyled>
       </Main>
       <FooterCust
         backcolor={responsWrapper.toString()}
-        texttranslate={t(`site.footer`)}
+        langtext={site}
       >
         {!responsWrapper ? (
           <FooterWhite />
         ) : (
-            <FooterBlack texttranslate={t(`site.footer`)} />
+            <FooterBlack
+              langtext={site}
+            />
           )}
       </FooterCust>
     </>

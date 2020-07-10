@@ -159,7 +159,7 @@ const FooterCopyRightColumn = styled(Col)`
   height: 20%;
 `
 
-const FooterBlack = ({ texttranslate }) => {
+const FooterBlack = ({ langtext }) => {
   return (
     <React.Fragment>
       <Row id="footerfirstrow">
@@ -183,13 +183,13 @@ const FooterBlack = ({ texttranslate }) => {
           <EnvironmentWrapper src={EnvironmentImg} />
           <FooterAdressWrap>
             {/* <span>Հր, Քոչար 44</span> */}
-            <span>{texttranslate.address}</span>
+            <span>{langtext !== undefined ? langtext.footer.address : null}</span>
           </FooterAdressWrap>
         </FooterAdressColumn>
         <FooterFollowUsColumn xs={24} sm={24} md={8} lg={6} xl={6} xxl={6}>
           <FooterFollowUsWrap>
             {/* <span>Հետևեք մեզ</span> */}
-            <span>{texttranslate.follow}</span>
+            <span>{langtext !== undefined ? langtext.footer.follow : null}</span>
           </FooterFollowUsWrap>
           <a
             href="https://www.linkedin.com/company/triple-consulting/"

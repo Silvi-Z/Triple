@@ -94,6 +94,7 @@ const RegistrationForm = ({
   allFieldsValues,
   fillform,
   resetForm,
+  langText
 }) => {
   const [form] = Form.useForm()
   const [loading, toggleLoading] = useState(false)
@@ -380,7 +381,7 @@ const RegistrationForm = ({
       >
         <StyledForm.Item
           name="full_name"
-          label={<LabelSpan>Անուն / Ազգանուն</LabelSpan>}
+          label={<LabelSpan>{langText.full_name}</LabelSpan>}
           rules={[
             {
               required: true,
@@ -402,7 +403,7 @@ const RegistrationForm = ({
           >
             <StyledForm.Item
               name="city"
-              label={<LabelSpan>Բնակության վայրի հասցե</LabelSpan>}
+              label={<LabelSpan>{langText.city}</LabelSpan>}
               rules={[
                 {
                   required: true,
@@ -461,7 +462,7 @@ const RegistrationForm = ({
             type={checkId === 1 ? "default" : "primary"}
             onClick={() => openId()}
           >
-            Նույնականացման քարտ
+            {langText.ID_card_number}
           </IdButton>
         </StyledForm.Item>
         {checkPassport === 0 ? (
@@ -469,7 +470,7 @@ const RegistrationForm = ({
             <Col xs={24} sm={24} md={6} lg={6} xl={6} xxl={5}>
               <StyledForm.Item
                 name="passport_series"
-                label={<LabelSpan>Անձնագրի սերիա</LabelSpan>}
+                label={<LabelSpan>{langText.passport_series}</LabelSpan>}
                 rules={[
                   {
                     required: true,
@@ -488,7 +489,7 @@ const RegistrationForm = ({
             <Col xs={24} sm={24} md={6} lg={6} xl={6} xxl={5}>
               <StyledForm.Item
                 name="given"
-                label={<LabelSpan>Տրված է ում կողմից</LabelSpan>}
+                label={<LabelSpan>{langText.given}</LabelSpan>}
                 rules={[
                   {
                     required: true,
@@ -507,7 +508,7 @@ const RegistrationForm = ({
             <Col xs={24} sm={24} md={8} lg={6} xl={6} xxl={5}>
               <StyledForm.Item
                 name="when"
-                label={<LabelSpan>Երբ</LabelSpan>}
+                label={<LabelSpan>{langText.when}</LabelSpan>}
                 rules={[
                   {
                     required: true,
@@ -528,7 +529,7 @@ const RegistrationForm = ({
               <Col lg={8}>
                 <StyledForm.Item
                   name="ID_card_number"
-                  label={<LabelSpan>Նույնականացման քարտ</LabelSpan>}
+                  label={<LabelSpan>{langText.ID_card_number}</LabelSpan>}
                   rules={[
                     {
                       required: true,
@@ -547,7 +548,7 @@ const RegistrationForm = ({
           )}
         <StyledForm.Item
           name="birthday"
-          label={<LabelSpan>Ծննդյան օր/ամիս/տարեթիվ</LabelSpan>}
+          label={<LabelSpan>{langText.birthday}</LabelSpan>}
           rules={[
             { required: true, message: "Խնդրում ենք լրացնել նշված դաշտերը" },
           ]}
@@ -560,7 +561,7 @@ const RegistrationForm = ({
         </StyledForm.Item>
         <StyledForm.Item
           name="psn"
-          label={<LabelSpan>ՀԾՀ</LabelSpan>}
+          label={<LabelSpan>{langText.psn}</LabelSpan>}
           rules={[
             {
               required: true,
@@ -576,7 +577,7 @@ const RegistrationForm = ({
         </StyledForm.Item>
         <StyledForm.Item
           name="tin"
-          label={<LabelSpan>ՀՎՀՀ</LabelSpan>}
+          label={<LabelSpan>{langText.tin}</LabelSpan>}
           rules={[
             {
               required: tin === null ? true : false,
@@ -594,7 +595,7 @@ const RegistrationForm = ({
 
         <StyledForm.Item
           name="phone"
-          label={<LabelSpan>Հեռախոսահամար</LabelSpan>}
+          label={<LabelSpan>{langText.phone}</LabelSpan>}
           rules={[
             {
               required: true,
@@ -613,7 +614,7 @@ const RegistrationForm = ({
           name="email"
           label={
             <span>
-              Էլ. Հասցե &nbsp;
+              {langText.email} &nbsp;
               <Tooltip title="Խնդրում ենք լրացնել ակտիվ էլ․ հասցե։ Հետագա զարգացումների մասին տեղեկացվելու եք էլ․ հասցեի միջոցով։">
                 <QuestionCircleOutlined style={{ color: "#009db8" }} />
               </Tooltip>
@@ -635,8 +636,7 @@ const RegistrationForm = ({
         <StyledForm.Item
           label={
             <SubmitSpan>
-              Հաստատել կոճակը սեղմելուց հետո լիազորագիրը կներբեռնվի։ Խնդրում ենք
-              ստորագրել և վերբեռնել հաջորդ քայլում։
+              {langText.SubmitSpan}
             </SubmitSpan>
           }
           {...tailFormItemLayout}
@@ -648,7 +648,7 @@ const RegistrationForm = ({
             htmlType="submit"
             id="registerSubmit"
           >
-            Հաստատել
+            {langText.submitButton}
           </Button>
         </StyledForm.Item>
       </StyledForm>

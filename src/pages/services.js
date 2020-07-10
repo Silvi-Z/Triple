@@ -30,7 +30,7 @@ import i18next from "i18next"
 import { useTranslation, Translation } from "react-i18next"
 import SEO from "../components/seo"
 
-const Services = ({ location, pageContext, ...props }) => {
+const Services = ({ location, pageContext, originalPath }) => {
   const { services } = useTranslations();
   const { t, i18n } = useTranslation()
   const [serviceData, setServiceData] = useState([
@@ -50,26 +50,9 @@ const Services = ({ location, pageContext, ...props }) => {
         paragraph: "Հարկային աուդիտ եւ հաշվառում",
         text:
           "Իրականացնելով հարկային աուդիտ, կստուգենք կազմված հարկային հաշվետվությունների ճշտությունը, կհայտնաբերենբք հարկային ռիսկեր պարունակող գործարքները, կօգնենք ընտրել Ձեր ընկերության համար ամենաշահեկան հարկման դաշտը եւ ճիշտ պլանավորել հարկերը՝ խուսափելով հավելյալ հարկային պարտավորություններից, տարատեսակ տույժերից եւ տուգանքներից։",
-        name_arm: "string",
-        name_ru: "string",
-        name_en: "string",
       },
       open: false,
     },
-    // {
-    //
-    //   data: {
-    //     id: 2,
-    //     image: AuditImg,
-    //     paragraph: 'Հարկային աուդիտ',
-    //     text:
-    //       'Իրականացնելով հարկային աուդիտ, կստուգենք կազմված հարկային հաշվետվությունների ճշտությունը, կհայտնաբերենբք հարկային ռիսկեր պարունակող գործարքները, կօգնենք ընտրել Ձեր ընկերության համար ամենաշահեկան հարկման դաշտը եւ ճիշտ պլանավորել հարկերը՝ խուսափելով հավելյալ հարկային պարտավորություններից, տարատեսակ տույժերից եւ տուգանքներից։',
-    //     name_arm: 'string',
-    //     name_ru: 'string',
-    //     name_en: 'string',
-    //   },
-    //   open: false,
-    // },
     {
       data: {
         id: 2,
@@ -77,9 +60,6 @@ const Services = ({ location, pageContext, ...props }) => {
         paragraph: "Խորհրդատվություն",
         text:
           "Ձեզ հետաքրքրող հարցերի շուրջ խորհրդատվություն ստանալու համար կարողեք դիմել մեզ, եւ մենք կտրամադրենք բարձրակարգ մասնագիտական խորհրդատվություն։",
-        name_arm: "string",
-        name_ru: "string",
-        name_en: "string",
       },
       open: false,
     },
@@ -90,9 +70,6 @@ const Services = ({ location, pageContext, ...props }) => {
         paragraph: "Կազմակերպության գրանցում",
         text:
           "Բիզնես գործունություն ծավալելու ամենատարածված եղանակը կազմակերպության, հիմնականում, ՍՊԸ գրանցումն է: ՍՊԸ գրանցման միջոցով բիզնես գործունություն ծավալելու նպատակահարմարությունը պայմանավորված է առաջին հերթին սահմանափակ պատասխանատվություն կրելու օրենսդրական հնարավորությամբ: Մեր մասնագետները կօգնեն Ձեր կազմակերությանը հանդես գալ իր անունից, ունենալ սեփականության իրավունքով իրեն ամրակցված գույք և պատասխանատվություն  կրել միայն այդ գույքի համար: Պետական գրանցում ստանալու պահից  Ձեր  կազմակերությունը ձեռք  կբերի իրավունքներ և կստանձնի պարտականություններ:",
-        name_arm: "string",
-        name_ru: "string",
-        name_en: "string",
       },
       open: false,
     },
@@ -103,9 +80,6 @@ const Services = ({ location, pageContext, ...props }) => {
         paragraph: "Ֆիզիկական անձինք",
         text:
           "Ըստ հարկային օրենսգրքի՝ ֆիզիկական անձանց կողմից կատարված որոշակի գործարքների արդյունքում առաջանում են հարկային պարտավորություններ, որոնց համար պետք է ներկայացվեն համապատասխան հաշվետվություններ։ Առաջարկում ենք հաշվետվությունների կազմման եւ հարկային մարմին ներկայացման ծառայություններ։",
-        name_arm: "string",
-        name_ru: "string",
-        name_en: "string",
       },
       open: false,
     },
@@ -116,9 +90,6 @@ const Services = ({ location, pageContext, ...props }) => {
         paragraph: "Մաքսային գործարքներ",
         text:
           "Դիմեք մեզ ապրանքների ներմուծման եւ արտահանման գործարքների համար անհրաժեշտ հարկային եւ մաքսային փաստաթղթերի կազմման եւ համապատասխան պետական մարմիններ ներկայացման համար։",
-        name_arm: "string",
-        name_ru: "string",
-        name_en: "string",
       },
       open: false,
     },
@@ -129,37 +100,12 @@ const Services = ({ location, pageContext, ...props }) => {
         paragraph: "Կադրային Աշխատանք",
         text:
           "Մենք կհեշտացնենք Ձեր կազմակերպության աշխատանքը՝ ամբողջությամբ մեզվրա վերցնելով կադրային աշխատանքի վարումը: Մենք առաջարկում ենք հետեւյալ ծառայությունները ՝ աշխատանքային եւ ծառայությունների մատուցման պայմանագրերի, ինչպես նաեւ համաձայնագրերի կազմում, գործատուի ներքին եւ անհատական իրավական ակտերի կազմում, աշխատաժամանակի եւ աշխատավարձի հաշվարկում, տեղեկագրերի կազմում,եկամտային հարկի եւ սոցիալական վճարի անձնավորված հաշվառում։",
-        name_arm: "string",
-        name_ru: "string",
-        name_en: "string",
       },
       open: false,
     },
   ])
   const [ApiState, setApiState] = useState([])
   const [titleHelmet, setTitleHelmet] = useState("Ծառայություններ")
-
-  // const newInstance = i18next.createInstance({
-  //   lng: 'ru',
-  //   // fallbackLng: 'en',
-  //   resources: {
-  //     ru: {
-  //       translations: require("../locales/ru/translation.json"),
-  //     },
-  //     en: {
-  //       translations: require("../locales/en/translation.json"),
-  //     },
-  //     arm: {
-  //       translations: require("../locales/arm/translation.json"),
-  //     },
-  //   },
-  //   ns: ["translations"],
-  //   defaultNS: "translations",
-  //   debug: true
-  // }, (err, t) => {
-  //   if (err) return console.log('something went wrong loading', err)
-  //   t('key') // -> same as i18next.t
-  // })
 
   //this function gets Api data from swagger endpoints
   // const getServiceData = async () => {
@@ -176,18 +122,17 @@ const Services = ({ location, pageContext, ...props }) => {
   //     console.log("Calculation error: ", e)
   //   }
   // }
+
   const getSharedUrl = lng => {
-    console.log(lng)
     if (lng === "en") {
-      return "http://triple-c.algorithm.am/services/?lng=en"
+      return "http://triple-c.algorithm.am/en/services/"
     } else if (lng === "ru") {
-      return "http://triple-c.algorithm.am/services/?lng=ru"
+      return "http://triple-c.algorithm.am/ru/services"
     } else {
-      return "http://triple-c.algorithm.am/services/?lng=arm"
+      return "http://triple-c.algorithm.am/arm/services/"
     }
   }
   const getSharedTitle = lng => {
-    console.log(lng)
     if (lng === "en") {
       return "Services"
     } else if (lng === "ru") {
@@ -196,40 +141,42 @@ const Services = ({ location, pageContext, ...props }) => {
       return "Ծառայություններ"
     }
   }
-  console.log("efdfd0 ", i18n.language)
+
   useEffect(() => {
-    // getServiceData()
-    // urlShared = getSharedUrl(i18n.language)
-    // title = getSharedTitle(i18n.language)
-    console.log(`url  + ${urlShared} +  " title " + ${t("services.title")}`)
-    setServiceData([
-      ...serviceData,
-      (serviceData[0].data = {
-        id: 0,
-        image: CalcImg,
-        paragraph: `${t("services.Firstdata.paragraph")}`,
-        text: `${t("services.Firstdata.text")}`,
-      }),
-    ])
-    setTitleHelmet(`${t("services.Firstdata.paragraph")}`)
+    // gets Translated texts from Json static files and set it to Locale state
+    let serviceTransText = pageContext.localeResources.translation.services
+    let images = [CalcImg, TaxImg, ClientImg, BrowserImg, LawImg, UserImg, TeamImg]
+    serviceTransText.contentData.map((obj, index) => {
+      setServiceData([
+        ...serviceData,
+        (serviceData[index].data = {
+          id: index,
+          image: images[index],
+          paragraph: `${obj.paragraph}`,
+          text: `${obj.text}`,
+        }),
+      ])
+    })
     if (location.state !== null && location.state.clickedItems >= 2) {
-      setTimeout(function() {
+      setTimeout(function () {
         window.scrollTo(0, 500)
       }, 2)
     }
     toggleFromHomePage(location.state)
   }, [t])
+
   const toggle = current => {
     setTitleHelmet(current.data.paragraph)
     const data = serviceData.map(d =>
       d.data.id === current.data.id && d.open === false
         ? { ...d, open: true }
         : d.data.id !== current.data.id && d.open === true
-        ? { ...d, open: false }
-        : { ...d, open: false }
+          ? { ...d, open: false }
+          : { ...d, open: false }
     )
     setServiceData(data)
   }
+
   const toggleFromHomePage = state => {
     state === null ? (state = 0) : state
     const data = serviceData.map(d =>
@@ -241,10 +188,11 @@ const Services = ({ location, pageContext, ...props }) => {
   let urlShared
   let title
   const hookComponent = () => {
-    urlShared = getSharedUrl(i18n.language)
-    title = getSharedTitle(i18n.language)
+    urlShared = getSharedUrl(pageContext.locale)
+    // title = getSharedTitle(i18n.language)
   }
   hookComponent()
+
   return (
     <>
       {/* <Helmet
@@ -266,10 +214,11 @@ const Services = ({ location, pageContext, ...props }) => {
         <meta property="og:url" content={urlShared} />
         <link rel="canonical" href={urlShared} />
       </Helmet> */}
-      {console.log("title", title)}
-      {console.log("i18n.language", i18n.language)}
-      {console.log("location", location)}
-      <SEO title={services.title} pageContext={pageContext} />
+
+      <SEO
+        title={services.title}
+        description={services.paragraph}
+        pageContext={pageContext} />
       <HeadingParagraphRow>
         <Col
           xs={{ span: 24, offset: 0 }}
@@ -277,7 +226,7 @@ const Services = ({ location, pageContext, ...props }) => {
           xl={{ span: 24, offset: 2 }}
           xxl={{ span: 18, offset: 4 }}
         >
-          <h1>{services.title}</h1>
+          <H2Styled>{services.title}</H2Styled>
           <PStyled>{services.paragraph}</PStyled>
         </Col>
       </HeadingParagraphRow>
@@ -285,11 +234,11 @@ const Services = ({ location, pageContext, ...props }) => {
         <ServiceDropWrap showServiceForm={toggle} data={d} key={id} />
       ))}
       <SharedWrapperCol span={5} offset={3}>
-        <ShareLabel>Կիսվել</ShareLabel>
-        <FacebookShareButton url='http://triple-c.algorithm.am/en/services/' children={<FacebookIcon />} />
+        <ShareLabel>{services.share}</ShareLabel>
+        <FacebookShareButton url={urlShared} children={<FacebookIcon />} />
         <LinkedinShareButton
           children={<LinkdinIcon />}
-          url="http://triple-c.algorithm.am/services/?lng=en"
+          url={urlShared}
         />
       </SharedWrapperCol>
     </>

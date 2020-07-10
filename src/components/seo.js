@@ -21,7 +21,7 @@ const SEO = ({ title, description, meta, pageContext }) => {
     `
   );
 
-  const { lang, originalPath} = pageContext;
+  const { lang, originalPath } = pageContext;
   const metaDescription = description || t('siteMetadata.description');
   const host = site.siteMetadata.siteUrl;
   return (

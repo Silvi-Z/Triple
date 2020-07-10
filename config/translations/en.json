@@ -1,9 +1,18 @@
 {
   "site": {
-    "Gatsby Default Starter": "Հետևեք մեզ",
+    "Gatsby Default Starter": "Follow Us",
+    "header": {
+      "serveTitle": "Services",
+      "reportTitle": "Reporting",
+      "calcTitle": "Calculator",
+      "infoTitle": "Useful information",
+      "careerTitle": "Join us",
+      "contractTitle": "Contact us",
+      "address": "Hr Qochar 44"
+    },
     "footer": {
-      "follow": "Հետևեք մեզ",
-      "address": "Հր, Քոչար 44"
+      "follow": "Follow Us",
+      "address": "Hr. Qochar 44"
     }
   },
   "home": {
@@ -15,10 +24,44 @@
   "services": {
     "title": "Services",
     "paragraph": "Forget about accounting issues with accounting services provided by Triple Consulting, avoid the extra tax burden, and save time by dedicating it to promoting your business. You can get acquainted with the services provided by our company",
-    "Firstdata": {
-      "paragraph": "Accounting",
-      "text": "Accurate accounting is one of the most important functions of a business, which helps to avoid various financial losses. Accounting is carried out in accordance with international standards through AS and 1C accounting programs."
-    }
+    "contentData": [
+      {
+        "paragraph": "Accounting",
+        "text": "Accurate accounting is one of the most important functions of a business, which helps to avoid various financial losses. Accounting is carried out in accordance with international standards through AS and 1C accounting software."
+      },
+      {
+        "paragraph": "Tax audit and accounting",
+        "text": "Carrying out a tax audit, we will check the accuracy of tax reports, identify tax risky transactions, help you choose the most profitable tax field for your company and plan taxes correctly, avoiding additional tax liabilities, various penalties and fines."
+      },
+      {
+        "paragraph": "Consultation",
+        "text": "You can contact us for advice on issues you are interested in, and we will provide high-quality professional advice."
+      },
+      {
+        "paragraph": "Company registration",
+        "text": "The most common way to do business is to register an organization, mainly an LLC. The expediency of doing business through the registration of an LLC is primarily due to the legal possibility of bearing limited liability. Our specialists will help your organization to act on its behalf, to have property attached to it with the right of ownership, to be responsible only for that property. From the moment you receive state registration, your organization will acquire rights and responsibilities."
+      },
+      {
+        "paragraph": "Individuals",
+        "text": "According to the Tax Code, certain transactions made by individuals result in tax liabilities for which appropriate reports must be submitted. We offer reporting and tax services."
+      },
+      {
+        "paragraph": "Customs transactions",
+        "text": "Contact us to prepare the necessary tax and customs documents for import and export transactions and submit them to the relevant state bodies."
+      },
+      {
+        "paragraph": "Human Resources",
+        "text": "We will facilitate the work of your organization by taking full control of the personnel work. We offer the following services: drafting employment and service contracts, as well as agreements, drafting internal and individual legal acts of the employer, calculation of working hours and salary, compilation of newsletters, personalized accounting of income tax and social payment."
+      }
+    ],
+    "share": "Share"
+  },
+  "reports": {
+    "title": "Reporting",
+    "paragraph": "Get the report you want online without any hassle. Fill in the required information fields և Our specialists will respond in a matter of minutes.",
+    "dropParagraph": "Car sales report",
+    "currency": " 5000 dr ",
+    "subdropParagraph": "Required information"
   },
   "link": "Go back to the homepage"
 }

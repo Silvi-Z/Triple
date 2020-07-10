@@ -143,7 +143,7 @@ export const LinkdinIcon = styled.div`
 `
 
 export const ShareLabel = styled.h3`
-  width: 50px;
+  width: 83px;
   height: 15px;
   font-family: ArialAMU;
   font-size: 16px;

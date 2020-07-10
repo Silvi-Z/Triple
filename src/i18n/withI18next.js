@@ -39,7 +39,7 @@ const withI18next = () => Comp => {
 
     componentDidUpdate(prevProps) {
       if (this.props.pageContext.locale !== prevProps.pageContext.locale) {
-        this.changelocaleuage();
+        this.changeLanguage();
       }
     }
 
