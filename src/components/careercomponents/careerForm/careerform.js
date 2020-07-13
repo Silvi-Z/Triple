@@ -55,25 +55,25 @@ const Formfield = ({ title }) => {
   const [modalVisible, setmodalVisible] = useState(false)
   const [loading, toggleLoading] = useState(false)
   useEffect(() => {
-    window.fbAsyncInit = function() {
-      FB.init({
-        //eslint-disable-line
-        appId: "323009385338778",
-        cookie: true,
-        xfbml: true,
-        version: "v6.0",
-      })
-    }
-    ;(function(d, s, id) {
-      var js,
-        fjs = d.getElementsByTagName(s)[0]
-      if (d.getElementById(id)) return
-      js = d.createElement(s)
-      js.id = id
-      js.src =
-        "https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v7.0&appId=323009385338778&autoLogAppEvents=1"
-      fjs.parentNode.insertBefore(js, fjs)
-    })(document, "script", "facebook-jssdk")
+    // window.fbAsyncInit = function () {
+    //   FB.init({
+    //     //eslint-disable-line
+    //     appId: "323009385338778",
+    //     cookie: true,
+    //     xfbml: true,
+    //     version: "v6.0",
+    //   })
+    // }
+    //   ; (function (d, s, id) {
+    //     var js,
+    //       fjs = d.getElementsByTagName(s)[0]
+    //     if (d.getElementById(id)) return
+    //     js = d.createElement(s)
+    //     js.id = id
+    //     js.src =
+    //       "https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v7.0&appId=323009385338778&autoLogAppEvents=1"
+    //     fjs.parentNode.insertBefore(js, fjs)
+    //   })(document, "script", "facebook-jssdk")
   })
 
   const handleOk = e => {

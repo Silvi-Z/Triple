@@ -1,5 +1,5 @@
 {
-  "site": {
+  "layout": {
     "Gatsby Default Starter": "Follow Us",
     "header": {
       "serveTitle": "Services",
@@ -16,10 +16,24 @@
     }
   },
   "home": {
-    "test": "hello",
-    "title": "Hi people",
-    "content": "Welcome to your new Gatsby site.\nNow go build something great.",
-    "link": "Go to page 2"
+    "services": {
+      "title": "Services",
+      "sub_title": "The main services provided by Triple Consulting are.",
+      "button_text": "See more",
+      "icon_text_calc": "Accounting",
+      "icon_text_aud_1": "Tax Accounting",
+      "icon_text_aud_2": "Tax Audit",
+      "icon_text_consult": "Consultation",
+      "icon_text_registr": "Company registration",
+      "icon_text_individ": "Individuals",
+      "icon_text_trans": "Customs transactions",
+      "icon_text_hr": "Personnel management"
+    },
+    "our_partners": {
+      "title": "Our Partners",
+      "sub_title": "During its two years of operation, Triple Consulting has managed to cooperate with a number of companies.",
+      "button_text": "Become a partner"
+    }
   },
   "services": {
     "title": "Services",
@@ -61,7 +75,78 @@
     "paragraph": "Get the report you want online without any hassle. Fill in the required information fields և Our specialists will respond in a matter of minutes.",
     "dropParagraph": "Car sales report",
     "currency": " 5000 dr ",
-    "subdropParagraph": "Required information"
+    "subdropParagraph": "Required information",
+    "reportForm": {
+      "full_name": "Name / Surname",
+      "city": "Residence address",
+      "address": "",
+      "passport_series": "Passport series",
+      "passport": "Passport",
+      "pass_id_label": "Select the type of ID",
+      "given": "Given by",
+      "when": "When",
+      "ID_card_number": "Identification card",
+      "birthday": "Birthday/months/date",
+      "psn": "PSN",
+      "tin": "TIN",
+      "phone": "Phone",
+      "email": "email",
+      "SubmitSpan": "After pressing the Confirm button, the power of attorney will be downloaded. Please sign և upload in the next step.",
+      "submitButton": "Confirm"
+    },
+    "reportForm2": {
+      "subParagraph": "Please upload the relevant documents",
+      "pass_label": "Passport",
+      "auto_label": "Car purchase and sale agreement",
+      "attorney_label": "Power of Attorney",
+      "submitButton": "Confirm",
+      "back_button": "back",
+      "forward_button": "forward"
+    },
+    "reportForm3": {
+      "paragraph": "Your request has been successfully completed. You will be informed about further developments through emails.",
+      "subParagraph_1": "This is your query number.",
+      "subParagraph_2": "Please save this code.",
+      "closeButton": "Close"
+    }
+  },
+  "information": {
+    "title": "Useful information",
+    "paragraph": "Our company considers it its duty to share with its customers the useful information it possesses, thus contributing to the important function of being informed and prepared by the customers.",
+    "news_button": "News",
+    "useInf_button": "Useful information",
+    "doc_button": "Sample documents",
+    "news": [
+      {
+        "heading": "Cash register insertion office",
+        "paragraph": "Պետական եկամուտների կոմիտեն տեղեկացնում է, որ Հայաստանի Հանրապետությունում առկա իրավիճակով պայմանավորված՝ «Հսկիչ-դրամարկղային մեքենաների ներդրման գրասենյակ» ՊՈԱԿ-ը 2020թ. մարտի 24-ից դադարեցնում է թղթային տարբերակով դիմումների և գրությունների ընդունումը։"
+      },
+      {
+        "heading": "Cash register insertion office",
+        "paragraph": "Կառավարությունը 2016 թվականի ապրիլի 28-ի N 429 - Ն որոշմամբ ուժը կորցրած է ճանաչել  2014 թվականի սեպտեմբերի 4-ի N 980-Ն որոշումը, ինչի արդյունքում օրենքով սահմանված դրույթներին համապատասխան պիտանելիության ժամկետը լրացած, սահմանված կարգով դուրս գրված ապրանքների դրոշմապիտակների գծով պարտավորություններ չեն հաշվարկվի:"
+      },
+      {
+        "heading": "Cash register insertion office",
+        "paragraph": "2016 թվականի ապրիլի 28-ի 413-Ն որոշմամաբ առաջարկվում է նոր սերնդի ՀԴՄ-ների ներ Հիշեցնենք, որ ըստ կառավարության 2013թ. սեպտեմբերի 5-ի որոշման ս.թ մայիսի 1-ից նոր սերնդի ՀԴՄ-ների ներդրումը պարտադիր է 2014թ. արդյունքներով 10.0 մլն դրամից մինչև 58.35 մլն դրամ կամ 2015թ. արդյունքներով 10.0 մլն դրամից մինչև 115.0 մլն դրամ իրացումից հասույթ ունեցող հարկ վճարողների համար:"
+      }
+    ],
+    "share": "Share"
+  },
+  "career": {
+    "title": "Join Us",
+    "paragraph": "Մենք միշտ ուրախ ենք ընդլայնել մեր թիմը լավագույն մասնագետներով։ Եթե ունեք ցանկություն միանալու մեզ, ապա ուղարկեք Ձեր ինքնակենսագրականը, մենք ուրախ ենք տեսնել լավագույններին մեր կազմում։Ստորեւ կարող եք ծանոթանալ թափուր աշխատատեղերին։",
+    "drop_content": [
+      {
+        "title": "Ավագ Հաշվապահ",
+        "sub_title": "Պահանջվող հմտություններ",
+        "description_1": "Հաշվապահական կամ ֆինանսական ոլորտում աշխատանքային փորձ (առնվազն 3 տարի)",
+        "description_2": "Հաշվապահական ստանդարտների իմացություն,",
+        "description_3": "ՀԾ, 1 C, E-invoicing և այլ հարակից հաշվապահական ծրագրերի իմացություն,",
+        "description_4": "Microsoft Office փաթեթի իմացություն",
+        "description_5": "Հաշվապահական հաշվառման ստանդարտների լավ տիրապետում",
+        "description_6": "Հաշվապահական հաշվառման ստանդարտների լավ տիրապետում"
+      }
+    ]
   },
   "link": "Go back to the homepage"
 }

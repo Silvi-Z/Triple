@@ -106,7 +106,7 @@ const Services = ({ location, pageContext, originalPath }) => {
   ])
   const [ApiState, setApiState] = useState([])
   const [titleHelmet, setTitleHelmet] = useState("Ծառայություններ")
-
+  let urlShared
   //this function gets Api data from swagger endpoints
   // const getServiceData = async () => {
   //   try {
@@ -185,11 +185,9 @@ const Services = ({ location, pageContext, originalPath }) => {
     setServiceData(data)
   }
 
-  let urlShared
-  let title
+
   const hookComponent = () => {
     urlShared = getSharedUrl(pageContext.locale)
-    // title = getSharedTitle(i18n.language)
   }
   hookComponent()
 

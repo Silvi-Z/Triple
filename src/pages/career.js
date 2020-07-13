@@ -7,33 +7,47 @@ import {
   H1Styled,
   PStyled,
 } from "../components/careercomponents/careerMainStyle"
-import { Helmet } from "react-helmet"
-const Career = () => {
-  const [careerdata, setcareerdata] = useState([])
-  const getCareerData = () => {
-    setcareerdata([
-      {
-        status: true,
-        data: {
-          id: 0,
-          title_arm: "Ավագ Հաշվապահ",
-          title_ru: "string",
-          title_en: "string",
-          description_arm_1:
-            "Հաշվապահական կամ ֆինանսական ոլորտում աշխատանքային փորձ (առնվազն 3 տարի)",
-          description_arm_2: "Հաշվապահական ստանդարտների իմացություն,",
-          description_arm_3:
-            "ՀԾ, 1 C, E-invoicing և այլ հարակից հաշվապահական ծրագրերի իմացություն,",
-          description_arm_4: "Microsoft Office փաթեթի իմացություն",
-          description_arm_5:
-            "Հաշվապահական հաշվառման ստանդարտների լավ տիրապետում",
-          description_arm_6:
-            "Հաշվապահական հաշվառման ստանդարտների լավ տիրապետում",
-          description_ru: "string",
-          description_en: "string",
-        },
-        open: true,
+import useTranslations from "../components/useTranslations"
+import SEO from "../components/seo"
+const Career = ({ pageContext }) => {
+  const [careerdata, setcareerdata] = useState([
+    {
+      status: true,
+      data: {
+        id: 0,
+        title: "Ավագ Հաշվապահ",
+        sub_title: "Պահանջվող հմտություններ",
+        description_1:
+          "Հաշվապահական կամ ֆինանսական ոլորտում աշխատանքային փորձ (առնվազն 3 տարի)",
+        description_2: "Հաշվապահական ստանդարտների իմացություն,",
+        description_3:
+          "ՀԾ, 1 C, E-invoicing և այլ հարակից հաշվապահական ծրագրերի իմացություն,",
+        description_4: "Microsoft Office փաթեթի իմացություն",
+        description_5: "Հաշվապահական հաշվառման ստանդարտների լավ տիրապետում",
+        description_6: "Հաշվապահական հաշվառման ստանդարտների լավ տիրապետում",
       },
+      open: true,
+    },
+  ])
+
+  const { career } = useTranslations()
+  const getCareerData = () => {
+    let TransText = pageContext.localeResources.translation.career
+    setcareerdata([
+      ...careerdata,
+      TransText.drop_content.map((obj, index) => {
+        console.log("oooooooooo", careerdata[index])
+        careerdata.data = {
+          id: index,
+          title: obj.title,
+          description_1: obj.description_1,
+          description_2: obj.description_2,
+          description_3: obj.description_3,
+          description_4: obj.description_4,
+          description_5: obj.description_5,
+          description_6: obj.description_6,
+        }
+      }),
     ])
   }
 
@@ -51,41 +65,34 @@ const Career = () => {
     )
     setcareerdata(data)
   }
+  // const hookComponent = () => {
+  //   getCareerData()
+  //   // urlShared = getSharedUrl(pageContext.locale)
+  // }
+  //hookComponent()
   return (
     <>
-      <Helmet>
-        <meta charSet="utf-8" />
-        <title>{"Միացիր մեր թիմին"}</title>
-        <meta
-          property="og:title"
-          content={
-            careerdata.length !== 0
-              ? careerdata[0].data.title_arm
-              : "Ավագ Հաշվապահ"
-          }
-        />
-        <meta property="og:type" content="website" />
-        <link rel="canonical" href="http://triple-c.algorithm.am/career/" />
-      </Helmet>
+      <SEO
+        title={career.title}
+        description={career.paragraph}
+        pageContext={pageContext}
+      />
       <CareerParagraphRow>
         <Col lg={{ span: 24 }} xxl={{ span: 8, offset: 4 }}>
-          <H1Styled>Միացիր մեր թիմին</H1Styled>
-          <PStyled>
-            Մենք միշտ ուրախ ենք ընդլայնել մեր թիմը լավագույն մասնագետներով։ Եթե
-            ունեք ցանկություն միանալու մեզ, ապա ուղարկեք Ձեր ինքնակենսագրականը,
-            մենք ուրախ ենք տեսնել լավագույններին մեր կազմում։Ստորեւ կարող եք
-            ծանոթանալ թափուր աշխատատեղերին։
-          </PStyled>
+          <H1Styled>{career.title}</H1Styled>
+          <PStyled>{career.paragraph}</PStyled>
         </Col>
       </CareerParagraphRow>
-      {careerdata.map((d, id) => (
-        <CareerWrap
-          // showForm={showdrop}
-          showCareerForm={toggle}
-          data={d}
-          key={id}
-        />
-      ))}
+      {console.log(careerdata)}
+      {/* {careerdata.map((d, id) => (
+        console.log(d)
+        // < CareerWrap
+        //   // showForm={showdrop}
+        //   showCareerForm = { toggle }
+        //   data = { d }
+        //   key = { id }
+        // />
+      ))} */}
     </>
   )
 }

@@ -12,6 +12,8 @@ export const NavLink = styled(Link)`
   margin: 1px;
   color: #000;
   text-decoration: none;
+  border: 1px solid white;
+}
 `;
 export const RespNavLink = styled(Link)`
   height: 33px;
@@ -41,7 +43,7 @@ export const AdressSpan = styled.span`
   width: 67px;
   height: 13px;
   font-family: Sylfaen;
-  font-size: 12px;
+  font-size: ${props => props.lang !== "arm" ? "11px" : "12px"};
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;

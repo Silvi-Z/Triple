@@ -94,7 +94,7 @@ const RegistrationForm = ({
   allFieldsValues,
   fillform,
   resetForm,
-  langText
+  langText,
 }) => {
   const [form] = Form.useForm()
   const [loading, toggleLoading] = useState(false)
@@ -366,7 +366,7 @@ const RegistrationForm = ({
     resetForm ? form.resetFields() : null
     fillform ? onFill(previousFieldsValues) : null
   }, [])
-
+ 
   return (
     <React.Fragment>
       <StyledForm
@@ -450,13 +450,13 @@ const RegistrationForm = ({
         </Row>
         <StyledForm.Item
           {...tailFormButtonLayout}
-          label={<LabelSpan>Ընտրել անձը հաստատող փաստաթղթի տեսակը</LabelSpan>}
+          label={<LabelSpan>{langText.pass_id_label}</LabelSpan>}
         >
           <PassportButton
             type={checkPassport === 0 ? "primary" : "default"}
             onClick={() => openPassport()}
           >
-            Անձնագիր
+            {langText.passport}
           </PassportButton>
           <IdButton
             type={checkId === 1 ? "default" : "primary"}
@@ -634,11 +634,7 @@ const RegistrationForm = ({
           <Input />
         </StyledForm.Item>
         <StyledForm.Item
-          label={
-            <SubmitSpan>
-              {langText.SubmitSpan}
-            </SubmitSpan>
-          }
+          label={<SubmitSpan>{langText.SubmitSpan}</SubmitSpan>}
           {...tailFormItemLayout}
         >
           <Button

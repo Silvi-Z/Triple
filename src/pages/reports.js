@@ -143,6 +143,7 @@ const Reports = ({ pageContext }) => {
               AllFieldsValues={AllFieldsValues}
               setCurrent_tracking_number={setCurrent_tracking_number}
               current_tracking_number={current_tracking_number}
+              langText={reports.reportForm2}
             />
           </Col>
         ) : confirm3 ? (
@@ -158,11 +159,12 @@ const Reports = ({ pageContext }) => {
               setresetForm={setResetForm}
               current_tracking_number={current_tracking_number}
               toggleForm={DropdownForm}
+              langText={reports.reportForm3}
             />
           </Col>
         ) : null}
         <SharedWrapperCol span={5} offset={4}>
-          <ShareLabel>Կիսվել</ShareLabel>
+          <ShareLabel>{reports.share}</ShareLabel>
           <FacebookShareButton
             url={urlShared}
             children={<FacebookIcon />}

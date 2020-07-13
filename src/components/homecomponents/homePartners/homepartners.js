@@ -23,29 +23,20 @@ import {
   ContainerRow
 } from "./homePartStyle.js"
 
-const Homepartners = () => {
-  // const [hasError, setErrors] = useState(false)
-  // const [images, setImages] = useState({})
-
-  // async function fetchData() {
-  //   res = await apiHelper.get("/api/partner")
-  //   console.log("Response: ", res.json())
-  // }
-  // useEffect(() => fetchData())
+const Homepartners = ({ langText, lang }) => {
   return (
     <>
       <Row style={{ marginTop: "59px" }}>
         <PartnerspHeadingColumn lg={12} ls={12} sm={24} md={12} xs={24}>
-          <H2Styled>ՄԵր Գործընկերը</H2Styled>
+          <H2Styled>{langText.title}</H2Styled>
           <PStyled>
-            “Թրիփլ Քնսալթինգ” ընկերությունն իր գործունեության երկու տարվա
-            ընթացքում հասցրել է համագործակցել մի շարք ընկերությունների հետ:
+            {langText.sub_title}
           </PStyled>
         </PartnerspHeadingColumn>
         <SeemoreColumn ls={12} sm={24} md={12} lg={12} xs={24}>
           <SeemoreWrapper>
-            <NavLink to="/contact/">
-              <SeemoreSpan>Դառնալ գործընկեր</SeemoreSpan>
+            <NavLink to={`${lang}/contact/`}>
+              <SeemoreSpan>{langText.button_text}</SeemoreSpan>
               <Seemoreimg src={RightArrowImg} alt={"icon"}></Seemoreimg>
             </NavLink>
           </SeemoreWrapper>

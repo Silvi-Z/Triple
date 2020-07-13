@@ -61,32 +61,16 @@ module.exports = {
       }
     },
     `gatsby-transformer-json`,
-    /* {
-      resolve: `gatsby-plugin-facebook-analytics`,
+    {
+      resolve: 'gatsby-plugin-htaccess',
       options: {
-        // Required - set this to the ID of your Facebook app.
-        appId: `323009385338778`,
-
-        // Which version of the SDK to load.
-        version: `v3.3`,
-
-        // Determines whether XFBML tags used by social plugins are parsed.
-        xfbml: true,
-
-        // Determines whether a cookie is created for the session or not.
-        cookie: true,
-
-        // Include Facebook analytics in development.
-        // Defaults to false meaning the library will only be loaded in production.
-        includeInDevelopment: true,
-
-        // Include debug version of sdk
-        // Defaults to false meaning the library will load sdk.js
-        debug: false,
-
-        // Select your language.
-        language: `en_US`,
-      }, */
+        www: false,
+        host: 'triple-c.algorithm.am',
+        redirect: [
+          'RewriteRule ^/?$ /arm [R=301,L,NE]',
+        ],
+      },
+    }
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,

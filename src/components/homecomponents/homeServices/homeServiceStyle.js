@@ -21,7 +21,7 @@ export const H2Styled = styled.section`
   font-style: normal;
   line-height: normal;
   letter-spacing: normal;
-  text-align: center;
+  text-align: left;
   color: #000000;
 `
 export const PStyled = styled.section`

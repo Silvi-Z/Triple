@@ -54,7 +54,7 @@ const Main = styled.div`
 const Layout = ({ children, location, pageContext: { locale, originalPath, localeResources } }) => {
 
   const { i18n, t } = useTranslation();
-  const { site } = useTranslations();
+  const { layout } = useTranslations();
   useEffect(() => {
     i18n.changeLanguage(locale)
   }, [location, i18n, locale]);
@@ -63,7 +63,6 @@ const Layout = ({ children, location, pageContext: { locale, originalPath, local
   const openMenu = () => {
     setResponsWrapper(!responsWrapper)
   }
-  console.log(" 18nnnnnn ", localeResources.translation.site.header)
   return (
     <>
       <Navbar
@@ -71,20 +70,20 @@ const Layout = ({ children, location, pageContext: { locale, originalPath, local
         responswrapper={responsWrapper}
         originalPath={originalPath}
         lang={locale}
-        langtext={localeResources.translation.site}
+        langtext={localeResources.translation.layout}
       />
       <Main setheight={responsWrapper}>
         <ContentStyled>{responsWrapper ? children : null}</ContentStyled>
       </Main>
       <FooterCust
         backcolor={responsWrapper.toString()}
-        langtext={site}
+        langtext={layout}
       >
         {!responsWrapper ? (
           <FooterWhite />
         ) : (
             <FooterBlack
-              langtext={site}
+              langtext={layout}
             />
           )}
       </FooterCust>

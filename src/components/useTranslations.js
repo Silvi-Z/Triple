@@ -31,7 +31,7 @@ const query = graphql`
         node {
           name
           translations: childTranslationsJson {
-            site {
+            layout {
               header {
                 serveTitle
                 reportTitle
@@ -47,7 +47,24 @@ const query = graphql`
               }
             }
             home {
-              test
+              services {
+                title
+                sub_title
+                button_text
+                icon_text_calc
+                icon_text_aud_1
+                icon_text_aud_2
+                icon_text_consult
+                icon_text_registr
+                icon_text_individ
+                icon_text_trans
+                icon_text_hr
+              }
+              our_partners {
+                title
+                sub_title
+                button_text
+              }
             }
             services {
               title
@@ -65,6 +82,8 @@ const query = graphql`
                 city
                 address
                 passport_series
+                passport
+                pass_id_label
                 given
                 when
                 ID_card_number
@@ -76,6 +95,34 @@ const query = graphql`
                 SubmitSpan
                 submitButton
               }
+              reportForm2 {
+                subParagraph
+                pass_label
+                auto_label
+                attorney_label
+                submitButton
+                back_button
+                forward_button
+              }
+              reportForm3 {
+                paragraph
+                subParagraph_1
+                subParagraph_2
+                closeButton
+              }
+              share
+            }
+            information {
+              title
+              paragraph
+              news_button
+              useInf_button
+              doc_button
+              share 
+            }
+            career {
+              title
+              paragraph
             }
             link
           }

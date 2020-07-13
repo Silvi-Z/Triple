@@ -8,7 +8,8 @@ import Img1 from "../assets/informimages/hdm.jpg"
 import Img2 from "../assets/informimages/water.jpg"
 import Img3 from "../assets/informimages/drosh.jpg"
 import News1 from "../components/informationcomponents/News/secondNews/secondnewspage"
-import { Helmet } from "react-helmet"
+import useTranslations from "../components/useTranslations"
+import SEO from "../components/seo"
 import {
   InformationParagraphRow,
   H2Styled,
@@ -26,38 +27,49 @@ import {
   LinkdinIcon,
 } from "../components/informationcomponents/informMainStyle"
 import { FacebookShareButton, LinkedinShareButton } from "react-share"
-const Information = () => {
-  const [dataNewsInfo, setDataNewsinfo] = useState([])
+const Information = ({ pageContext }) => {
+  const [dataNewsInfo, setDataNewsinfo] = useState([
+    {
+      id: 0,
+      paragraph:
+        "Պետական եկամուտների կոմիտեն տեղեկացնում է, որ Հայաստանի Հանրապետությունում առկա իրավիճակով պայմանավորված՝ «Հսկիչ-դրամարկղային մեքենաների ներդրման գրասենյակ» ՊՈԱԿ-ը 2020թ. մարտի 24-ից դադարեցնում է թղթային տարբերակով դիմումների և գրությունների ընդունումը։",
+      heading: "ՀԴՄ ներդրման գրասենյակը",
+      Imgurl: Img1,
+    },
+    {
+      id: 1,
+      paragraph:
+        "Կառավարությունը 2016 թվականի ապրիլի 28-ի N 429 - Ն որոշմամբ ուժը կորցրած է ճանաչել  2014 թվականի սեպտեմբերի 4-ի N 980-Ն որոշումը, ինչի արդյունքում օրենքով սահմանված դրույթներին համապատասխան պիտանելիության ժամկետը լրացած, սահմանված կարգով դուրս գրված ապրանքների դրոշմապիտակների գծով պարտավորություններ չեն հաշվարկվի:",
+      heading: "Պիտանելիության ժամկետը լրացած",
+      Imgurl: Img2,
+    },
+    {
+      id: 2,
+      paragraph:
+        "2016 թվականի ապրիլի 28-ի 413-Ն որոշմամաբ առաջարկվում է նոր սերնդի ՀԴՄ-ների ներ Հիշեցնենք, որ ըստ կառավարության 2013թ. սեպտեմբերի 5-ի որոշման ս.թ մայիսի 1-ից նոր սերնդի ՀԴՄ-ների ներդրումը պարտադիր է 2014թ. արդյունքներով 10.0 մլն դրամից մինչև 58.35 մլն դրամ կամ 2015թ. արդյունքներով 10.0 մլն դրամից մինչև 115.0 մլն դրամ իրացումից հասույթ ունեցող հարկ վճարողների համար:",
+      heading: "Նոր սերնդի ՀԴՄ-ների ներդրման ժամկետը նորից հետաձգվել է",
+      Imgurl: Img3,
+    },
+  ])
   // const [openSecondNews, setopenSecondNews] = useState(false)
   const [dataUseInfo, setdataUseInfo] = useState([])
   const [dataDoctempInfo, setdataDoctempInfo] = useState([])
   const [openNews, setOpenNews] = useState(true)
   const [openUseful, setOpenUseful] = useState(false)
   const [openDocTemp, setOpenDocTemp] = useState(false)
+  const { information } = useTranslations()
+  let urlShared
   const GetNewsInfo = () => {
-    setDataNewsinfo([
-      {
-        id: 1,
-        paragraph:
-          "Պետական եկամուտների կոմիտեն տեղեկացնում է, որ Հայաստանի Հանրապետությունում առկա իրավիճակով պայմանավորված՝ «Հսկիչ-դրամարկղային մեքենաների ներդրման գրասենյակ» ՊՈԱԿ-ը 2020թ. մարտի 24-ից դադարեցնում է թղթային տարբերակով դիմումների և գրությունների ընդունումը։",
-        heading: "ՀԴՄ ներդրման գրասենյակը",
-        Imgurl: Img1,
-      },
-      {
-        id: 2,
-        paragraph:
-          "Կառավարությունը 2016 թվականի ապրիլի 28-ի N 429 - Ն որոշմամբ ուժը կորցրած է ճանաչել  2014 թվականի սեպտեմբերի 4-ի N 980-Ն որոշումը, ինչի արդյունքում օրենքով սահմանված դրույթներին համապատասխան պիտանելիության ժամկետը լրացած, սահմանված կարգով դուրս գրված ապրանքների դրոշմապիտակների գծով պարտավորություններ չեն հաշվարկվի:",
-        heading: "Պիտանելիության ժամկետը լրացած",
-        Imgurl: Img2,
-      },
-      {
-        id: 3,
-        paragraph:
-          "2016 թվականի ապրիլի 28-ի 413-Ն որոշմամաբ առաջարկվում է նոր սերնդի ՀԴՄ-ների ներ Հիշեցնենք, որ ըստ կառավարության 2013թ. սեպտեմբերի 5-ի որոշման ս.թ մայիսի 1-ից նոր սերնդի ՀԴՄ-ների ներդրումը պարտադիր է 2014թ. արդյունքներով 10.0 մլն դրամից մինչև 58.35 մլն դրամ կամ 2015թ. արդյունքներով 10.0 մլն դրամից մինչև 115.0 մլն դրամ իրացումից հասույթ ունեցող հարկ վճարողների համար:",
-        heading: "Նոր սերնդի ՀԴՄ-ների ներդրման ժամկետը նորից հետաձգվել է",
-        Imgurl: Img3,
-      },
-    ])
+    let TransText = pageContext.localeResources.translation.information
+    let images = [Img1, Img2, Img3]
+    setdataDoctempInfo(TransText.news.map((obj, index) => {
+      dataNewsInfo[index] = {
+        id: index,
+        Imgurl: images[index],
+        paragraph: `${obj.paragraph}`,
+        heading: `${obj.heading}`,
+      }
+    }))
   }
   const GetUseInfo = () => {
     setdataUseInfo([
@@ -341,6 +353,20 @@ const Information = () => {
     // setopenSecondNews(false)
   }
 
+  const getSharedUrl = lng => {
+    if (lng === "en") {
+      return "http://triple-c.algorithm.am/en/information/"
+    } else if (lng === "ru") {
+      return "http://triple-c.algorithm.am/ru/information"
+    } else {
+      return "http://triple-c.algorithm.am/arm/information/"
+    }
+  }
+  const hookComponent = () => {
+    urlShared = getSharedUrl(pageContext.locale)
+  }
+  hookComponent()
+
   //this function for second news page
   // const openPage = () => {
   //   setOpenDocTemp(false)
@@ -351,25 +377,15 @@ const Information = () => {
 
   return (
     <>
-      <Helmet>
-        <meta charSet="utf-8" />
-        <title>Information</title>
-        <meta property="og:title" content="Օգտակար տեղեկություններ" />
-        <meta property="og:type" content="website" />
-        <link
-          rel="canonical"
-          href="http://triple-c.algorithm.am/information/"
-        />
-      </Helmet>
+      <SEO
+        title={information.title}
+        description={information.paragraph}
+        pageContext={pageContext}
+      />
       <InformationParagraphRow>
         <Col lg={{ span: 24 }}>
-          <H2Styled>Օգտակար տեղեկություններ</H2Styled>
-          <PStyled>
-            Մեր ընկերությունն իր պարտքն է համարում կիսվել իր հաճախորդների հետ
-            այն օգտակար տեղեկատվությամբ, որին տիրապետում է՝ այդպիսով իր լուման
-            ներդնելով հաճախորդների տեղեկացված և պատրաստված լինելու կարևոր
-            գործառույթին։
-          </PStyled>
+          <H2Styled>{information.title}</H2Styled>
+          <PStyled>{information.paragraph}</PStyled>
         </Col>
       </InformationParagraphRow>
       <InformationNavRow>
@@ -379,7 +395,7 @@ const Information = () => {
           xs={24}
         // opensecondnews={openSecondNews.toString()}
         >
-          <span>Նորություններ</span>
+          <span>{information.news_button}</span>
         </InformationNewsCol>
         <InformationUsfulCol
           offset={0}
@@ -387,7 +403,7 @@ const Information = () => {
           open={openUseful}
           xs={24}
         >
-          <span>Օգտակար տեղեկություններ</span>
+          <span>{information.useInf_button}</span>
         </InformationUsfulCol>
         <InformationDocumentCol
           offset={0}
@@ -395,7 +411,7 @@ const Information = () => {
           open={openDocTemp}
           xs={24}
         >
-          <span>Փաստաթղթերի ձևանմուշներ</span>
+          <span>{information.doc_button}</span>
         </InformationDocumentCol>
       </InformationNavRow>
       {openUseful ? (
@@ -418,15 +434,15 @@ const Information = () => {
         </InformSectionRow>
       ) : null}
       <SharedWrapperCol span={5} offset={4}>
-        <ShareLabel>Կիսվել</ShareLabel>
+        <ShareLabel>{information.share}</ShareLabel>
         <FacebookShareButton
-          url="http://triple-c.algorithm.am/information/"
+          url={urlShared}
           children={<FacebookIcon />}
           hashtag={"Avag HAshvapah"}
         />
         <LinkedinShareButton
           children={<LinkdinIcon />}
-          url="http://triple-c.algorithm.am/information/"
+          url={urlShared}
         ></LinkedinShareButton>
       </SharedWrapperCol>
     </>

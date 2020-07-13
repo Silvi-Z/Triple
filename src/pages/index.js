@@ -5,6 +5,8 @@ import Slideshow from '../components/slideshow';
 import Homeservices from '../components/homecomponents/homeServices/homeservices';
 import Homepartners from '../components/homecomponents/homePartners/homepartners';
 import { useTranslation } from "react-i18next"
+import useTranslations from "../components/useTranslations"
+
 const siteMetada = [
   {
     name: 'Հաշվետվության տրամադրում',
@@ -34,12 +36,13 @@ const siteMetada = [
 
 const IndexPage = ({ pageContext }) => {
   const { t } = useTranslation()
+  const { home } = useTranslations();
   return (
     <>
       <SEO title='Triple Consulting' meta={siteMetada} pageContext={pageContext} />
       <Slideshow />
-      <Homeservices />
-      <Homepartners />
+      <Homeservices langText={home.services} lang={pageContext.locale} />
+      <Homepartners langText={home.our_partners} lang={pageContext.locale} />
     </>
   );
 };

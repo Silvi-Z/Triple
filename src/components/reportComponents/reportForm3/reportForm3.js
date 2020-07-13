@@ -45,7 +45,12 @@ const ConfirmSpan = styled.span`
   text-align: center;
   color: white;
 `
-const ReportForm3 = ({ toggleForm, current_tracking_number, setresetForm }) => {
+const ReportForm3 = ({
+  toggleForm,
+  current_tracking_number,
+  setresetForm,
+  langText
+}) => {
   const onClose = () => {
     setresetForm(true)
     toggleForm()
@@ -54,17 +59,16 @@ const ReportForm3 = ({ toggleForm, current_tracking_number, setresetForm }) => {
     <Row gutter={[10, 25]}>
       <Col span={24}>
         <H5Styled>
-          Ձեր հարցումը հաջողությամբ կատարված է։
-          Հետագա զարգացումների մասին կտեղեկանաք էլ․ նամակների միջոցով։
+          {langText.paragraph}
         </H5Styled>
         <H6Styled>
-          Ձեր հարցման համարն է:  <span> {current_tracking_number} </span> <br />
-          Խնդրում ենք պահպանել այս կոդը։
+          {langText.subParagraph_1}  <span> {current_tracking_number} </span> <br />
+          {langText.subParagraph_2}
         </H6Styled>
       </Col>
       <Col span={24}>
         <Button type="primary" id="registerSubmit" onClick={onClose}>
-          <ConfirmSpan>Փակել</ConfirmSpan>
+          <ConfirmSpan>{langText.closeButton}</ConfirmSpan>
         </Button>
       </Col>
     </Row>

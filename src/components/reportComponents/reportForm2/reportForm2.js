@@ -56,6 +56,7 @@ function ReportForm2({
   setCurrent_tracking_number,
   setResetForm,
   current_tracking_number,
+  langText
 }) {
   const [loading, toggleLoading] = useState(false)
   /*Ant Upload component has a defualt action prop,wich was triggered when user clicked to upload button,
@@ -140,7 +141,7 @@ function ReportForm2({
   return (
     <Row gutter={[10, 25]}>
       <Col span={24}>
-        <H6Styled>Խնդրում ենք վերբեռնել համապատասխան փաստաթղթերը</H6Styled>
+        <H6Styled>{langText.subParagraph}</H6Styled>
       </Col>
       <Col span={24}>
         <Form
@@ -167,7 +168,7 @@ function ReportForm2({
               customRequest={dummyRequest}
             >
               <CustomButton>
-                <span>Անձնագիր</span>
+                <span>{langText.pass_label}</span>
                 <UploadWrapper src={UploadImage} />
               </CustomButton>
             </Upload>
@@ -187,7 +188,7 @@ function ReportForm2({
               accept=".jpeg,.png,.jpg,.doc,.pdf,.docx,.xlsx"
               customRequest={dummyRequest}>
               <CustomButton>
-                <span>Ավտոմեքենայի առք ու վաճառքի պայմանագիր</span>
+                <span>{langText.auto_label}</span>
                 <UploadWrapper src={UploadImage} />
               </CustomButton>
             </Upload>
@@ -206,7 +207,7 @@ function ReportForm2({
             <Upload accept=".jpeg,.png,.jpg,.doc,.pdf,.docx,.xlsx"
               customRequest={dummyRequest}>
               <CustomButton>
-                <span>Լիազորագիր</span>
+                <span>{langText.attorney_label}</span>
                 <UploadWrapper src={UploadImage} />
               </CustomButton>
             </Upload>
@@ -218,16 +219,16 @@ function ReportForm2({
               id="registerSubmit"
               loading={loading}
             >
-              Հաստատել
+              {langText.submitButton}
             </Button>
           </Form.Item>
           <NavigateWrapper>
             <NavigateBackButton onClick={goBack}>
               <ArrowLeftOutlined style={{ color: "#009db8", fontSize: "15px" }} />
-              <BackSpan>Հետ</BackSpan>
+              <BackSpan>{langText.back_button}</BackSpan>
             </NavigateBackButton>
             <NavigateForwardButton htmlType="submit">
-              <ForwardSpan>Առաջ</ForwardSpan>
+              <ForwardSpan>{langText.forward_button}</ForwardSpan>
               <ArrowRightOutlined
                 style={{ color: "#009db8", fontSize: "15px" }}
               />
