@@ -137,16 +137,45 @@
     "paragraph": "Մենք միշտ ուրախ ենք ընդլայնել մեր թիմը լավագույն մասնագետներով։ Եթե ունեք ցանկություն միանալու մեզ, ապա ուղարկեք Ձեր ինքնակենսագրականը, մենք ուրախ ենք տեսնել լավագույններին մեր կազմում։Ստորեւ կարող եք ծանոթանալ թափուր աշխատատեղերին։",
     "drop_content": [
       {
-        "title": "Ավագ Հաշվապահ",
-        "sub_title": "Պահանջվող հմտություններ",
-        "description_1": "Հաշվապահական կամ ֆինանսական ոլորտում աշխատանքային փորձ (առնվազն 3 տարի)",
-        "description_2": "Հաշվապահական ստանդարտների իմացություն,",
-        "description_3": "ՀԾ, 1 C, E-invoicing և այլ հարակից հաշվապահական ծրագրերի իմացություն,",
-        "description_4": "Microsoft Office փաթեթի իմացություն",
-        "description_5": "Հաշվապահական հաշվառման ստանդարտների լավ տիրապետում",
-        "description_6": "Հաշվապահական հաշվառման ստանդարտների լավ տիրապետում"
+        "status": true,
+        "data": {
+          "title": "Senior Accountant",
+          "sub_title": "Required skills",
+          "description_1": "Հաշվապահական կամ ֆինանսական ոլորտում աշխատանքային փորձ (առնվազն 3 տարի)",
+          "description_2": "Հաշվապահական ստանդարտների իմացություն,",
+          "description_3": "ՀԾ, 1 C, E-invoicing և այլ հարակից հաշվապահական ծրագրերի իմացություն,",
+          "description_4": "Microsoft Office փաթեթի իմացություն",
+          "description_5": "Հաշվապահական հաշվառման ստանդարտների լավ տիրապետում",
+          "description_6": "Հաշվապահական հաշվառման ստանդարտների լավ տիրապետում"
+        },
+        "open": true
       }
     ]
+  },
+  "careerForm": {
+    "textare_label": "Your message",
+    "file_label": "Upload CV *",
+    "send_button": "Send",
+    "share": "Share"
+  },
+  "contact": {
+    "title": "Contact us",
+    "paragraph": "For questions and suggestions you can fill in the necessary information and we will be happy to contact you.",
+    "form_content": {
+      "name_label": "Name / Surname (Company Name)",
+      "email_label": "E-mail",
+      "file_label": "Attach the file",
+      "title_label": "Title",
+      "textare_label": "Your message",
+      "send_button": "Send"
+    },
+    "address": "Hr Qochar 44/54",
+    "share": "Share"
+  },
+  "calculator": {
+    "title": "Calculators",
+    "paragraph": "Triple Consulting company provides Calculators service, through which you can make online calculations.",
+    "share": "Share"
   },
   "link": "Go back to the homepage"
 }

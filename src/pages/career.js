@@ -9,13 +9,22 @@ import {
 } from "../components/careercomponents/careerMainStyle"
 import useTranslations from "../components/useTranslations"
 import SEO from "../components/seo"
+import {
+  ShareLabel,
+  SharedWrapperCol,
+  FaceLink,
+  LinkedinLink,
+  FacebookIcon,
+  LinkdinIcon,
+} from "../components/careercomponents/careerForm/formStyle"
+import { FacebookShareButton, LinkedinShareButton } from "react-share"
 const Career = ({ pageContext }) => {
   const [careerdata, setcareerdata] = useState([
     {
       status: true,
       data: {
         id: 0,
-        title: "Ավագ Հաշվապահ",
+        title: "Ավագ ",
         sub_title: "Պահանջվող հմտություններ",
         description_1:
           "Հաշվապահական կամ ֆինանսական ոլորտում աշխատանքային փորձ (առնվազն 3 տարի)",
@@ -30,25 +39,13 @@ const Career = ({ pageContext }) => {
     },
   ])
 
-  const { career } = useTranslations()
+  const { career, careerForm } = useTranslations()
+  let urlShared
+
   const getCareerData = () => {
     let TransText = pageContext.localeResources.translation.career
-    setcareerdata([
-      ...careerdata,
-      TransText.drop_content.map((obj, index) => {
-        console.log("oooooooooo", careerdata[index])
-        careerdata.data = {
-          id: index,
-          title: obj.title,
-          description_1: obj.description_1,
-          description_2: obj.description_2,
-          description_3: obj.description_3,
-          description_4: obj.description_4,
-          description_5: obj.description_5,
-          description_6: obj.description_6,
-        }
-      }),
-    ])
+    let newData = TransText.drop_content
+    setcareerdata(newData)
   }
 
   useEffect(() => {
@@ -65,11 +62,22 @@ const Career = ({ pageContext }) => {
     )
     setcareerdata(data)
   }
-  // const hookComponent = () => {
-  //   getCareerData()
-  //   // urlShared = getSharedUrl(pageContext.locale)
-  // }
-  //hookComponent()
+  const getSharedUrl = lng => {
+    if (lng === "en") {
+      return "http://triple-c.algorithm.am/en/career/"
+    } else if (lng === "ru") {
+      return "http://triple-c.algorithm.am/ru/career"
+    } else {
+      return "http://triple-c.algorithm.am/arm/career/"
+    }
+  }
+
+  const hookComponent = () => {
+    urlShared = getSharedUrl(pageContext.locale)
+  }
+
+  hookComponent()
+
   return (
     <>
       <SEO
@@ -83,16 +91,30 @@ const Career = ({ pageContext }) => {
           <PStyled>{career.paragraph}</PStyled>
         </Col>
       </CareerParagraphRow>
-      {console.log(careerdata)}
-      {/* {careerdata.map((d, id) => (
-        console.log(d)
-        // < CareerWrap
-        //   // showForm={showdrop}
-        //   showCareerForm = { toggle }
-        //   data = { d }
-        //   key = { id }
-        // />
-      ))} */}
+      {careerdata.map((d, id) => (
+        <CareerWrap
+          // showForm={showdrop}
+          showCareerForm={toggle}
+          data={d}
+          key={id}
+          seotitle={career.title}
+          seodescription={career.paragraph}
+          seolang={pageContext.locale}
+          formlangtext={careerForm}
+          lang={pageContext.locale}
+        />
+      ))}
+      <SharedWrapperCol span={10} offset={3}>
+        <ShareLabel>{careerForm.share}</ShareLabel>
+        <FacebookShareButton
+          url={urlShared}
+          children={<FacebookIcon />}
+        />
+        <LinkedinShareButton
+          children={<LinkdinIcon />}
+          url={urlShared}
+        ></LinkedinShareButton>
+      </SharedWrapperCol>
     </>
   )
 }

@@ -33,7 +33,7 @@ const validateMessages = {
     range: "Must be between ${min} and ${max}",
   },
 }
-const Formfield = () => {
+const Formfield = ({ langtext, lang }) => {
   const [form] = Form.useForm()
   const [modalVisible, setmodalVisible] = useState(false)
   const [loading, toggleLoading] = useState(false)
@@ -97,12 +97,17 @@ const Formfield = () => {
           xs={{ span: 23 }}
         >
           <StyledForm.Item
-            label="Անուն / Ազգանուն ( Կազմակերպության անվանում )"
+            label={langtext.name_label}
             name="username"
             rules={[
               {
                 required: true,
-                message: "Խնդրում ենք լրացնել նշված դաշտը",
+                message:
+                  lang === "en"
+                    ? "Please fill in the fields provided"
+                    : lang === "ru"
+                      ? "Пожалуйста, заполните необходимые поля"
+                      : "Խնդրում ենք լրացնել նշված դաշտերը",
               },
             ]}
             style={{ marginBottom: "3px" }}
@@ -120,12 +125,17 @@ const Formfield = () => {
         >
           <StyledForm.Item
             name="email"
-            label="Էլ․ հասցե"
+            label={langtext.email_label}
             rules={[
               {
                 type: "email",
                 required: true,
-                message: "Խնդրում ենք լրացնել նշված դաշտը",
+                message:
+                  lang === "en"
+                    ? "Please fill in the fields provided"
+                    : lang === "ru"
+                      ? "Пожалуйста, заполните необходимые поля"
+                      : "Խնդրում ենք լրացնել նշված դաշտերը",
               },
             ]}
             style={{ marginBottom: "3px" }}
@@ -135,14 +145,19 @@ const Formfield = () => {
         </Col>
         <Col lg={{ span: 24 }} xxl={{ span: 24 }} xl={{ span: 24 }}>
           <StyledForm.Item
-            label="Կցել ֆայլը"
+            label={langtext.file_label}
             name="file"
             valuePropName="fileList"
             getValueFromEvent={normFile}
             rules={[
               {
                 required: false,
-                message: "Խնդրում ենք լրացնել նշված դաշտը",
+                message:
+                  lang === "en"
+                    ? "Please fill in the fields provided"
+                    : lang === "ru"
+                      ? "Пожалуйста, заполните необходимые поля"
+                      : "Խնդրում ենք լրացնել նշված դաշտերը",
               },
             ]}
             style={{ marginBottom: "3px" }}
@@ -164,12 +179,17 @@ const Formfield = () => {
           md={{ span: 24 }}
         >
           <StyledForm.Item
-            label="Վերնագիր"
+            label={langtext.title_label}
             name="title"
             rules={[
               {
                 required: true,
-                message: "Խնդրում ենք լրացնել նշված դաշտը",
+                message:
+                  lang === "en"
+                    ? "Please fill in the fields provided"
+                    : lang === "ru"
+                      ? "Пожалуйста, заполните необходимые поля"
+                      : "Խնդրում ենք լրացնել նշված դաշտերը",
               },
             ]}
             style={{ marginBottom: "3px" }}
@@ -185,12 +205,17 @@ const Formfield = () => {
           xs={{ span: 23 }}
         >
           <StyledForm.Item
-            label="Ձեր հաղորդագրությունը"
+            label={langtext.textare_label}
             name="textarea"
             rules={[
               {
                 required: true,
-                message: "Խնդրում ենք լրացնել նշված դաշտը",
+                message:
+                  lang === "en"
+                    ? "Please fill in the fields provided"
+                    : lang === "ru"
+                      ? "Пожалуйста, заполните необходимые поля"
+                      : "Խնդրում ենք լրացնել նշված դաշտերը",
               },
             ]}
           >
@@ -205,7 +230,7 @@ const Formfield = () => {
           id="submitbotton"
           loading={loading}
         >
-          Ուղարկել
+          {langtext.send_button}
         </Button>
       </StyledForm.Item>
       <CareerModal handleOk={handleOk} modalVisible={modalVisible} />

@@ -6,7 +6,7 @@ import LinkdinBlackIcon from "../../../assets/career/linkedinCareer.svg"
 import LinkedinBlueIcon from "../../../assets/career/linkedinBlueCareer.svg"
 
 export const ShareLabel = styled.h3`
-  width: 50px;
+  width: 83px;
   height: 15px;
   font-family: ArialAMU;
   font-size: 16px;

@@ -4,17 +4,9 @@ import { Form, Input, Button, Col, Row, Upload, message } from "antd"
 import { UploadOutlined } from "@ant-design/icons"
 import { apiHelper } from "../../../helpers/apiHelper"
 import CareerModal from "../careerModal/careerModal"
+import SEO from "../../../components/seo"
 import "../../layout.css"
-import {
-  ShareLabel,
-  SharedWrapperCol,
-  FaceLink,
-  LinkedinLink,
-  FacebookIcon,
-  LinkdinIcon,
-} from "./formStyle"
-import { FacebookShareButton, LinkedinShareButton } from "react-share"
-import { Helmet } from "react-helmet"
+
 
 //import FB from "gatsby-plugin-facebook-analytics"
 const layout = {
@@ -50,10 +42,14 @@ const validateMessages = {
   },
 }
 
-const Formfield = ({ title }) => {
+const Formfield = ({
+  formlangtext,
+  lang
+}) => {
   const [form] = Form.useForm()
   const [modalVisible, setmodalVisible] = useState(false)
   const [loading, toggleLoading] = useState(false)
+
   useEffect(() => {
     // window.fbAsyncInit = function () {
     //   FB.init({
@@ -118,100 +114,89 @@ const Formfield = ({ title }) => {
     }
   }
 
+
+
   return (
-    <Form
-      {...layout}
-      name="basic_career"
-      initialValues={{
-        remember: true,
-      }}
-      form={form}
-      onFinish={onFinish}
-      nostyle="true"
-    >
-      <Helmet>
-        <meta charSet="utf-8" />
-        <title>{"Միացիր մեր թիմին"}</title>
-        <meta property="og:title" content={"Ավագ Հաշվապահ"} />
-        <meta property="og:type" content="website" />
-        <link rel="canonical" href="http://triple-c.algorithm.am/career/" />
-      </Helmet>
-      <Form.Item
-        label="Ձեր հաղորդագրությունը"
-        name="textarea"
-        rules={[
-          {
-            required: false,
-            message: "",
-          },
-        ]}
+    <>
+      <Form
+        {...layout}
+        name="basic_career"
+        initialValues={{
+          remember: true,
+        }}
+        form={form}
+        onFinish={onFinish}
+        nostyle="true"
       >
-        <Input.TextArea />
-      </Form.Item>
-      <Row>
-        <Col span={10} xl={10} lg={10} md={10} xs={24}>
-          <Form.Item
-            label="Վերբեռնել CV * "
-            name="file"
-            valuePropName="fileList"
-            getValueFromEvent={normFile}
-            rules={[
-              {
-                required: true,
-                message: "Խնդրում եմ լրացրեք այս դաշտը!",
-              },
-            ]}
-          >
-            <Upload
-              accept=".jpeg,.png,.jpg,.doc,.pdf,.docx,.xlsx"
-              customRequest={dummyRequest}
-            >
-              <Button id="careeruploadbutton">
-                <UploadOutlined
-                  style={{
-                    color: "#009db8",
-                    fontSize: "20px",
-                  }}
-                />
-              </Button>
-            </Upload>
-          </Form.Item>
-        </Col>
-        <Col
-          span={8}
-          xl={8}
-          lg={8}
-          md={8}
-          xs={{ span: 24, offset: 0 }}
-          id="careersubmitcol"
+        <Form.Item
+          label={formlangtext.textare_label}
+          name="textarea"
+          rules={[
+            {
+              required: false,
+              message: "",
+            },
+          ]}
         >
-          <Form.Item {...tailLayout}>
-            <Button
-              type="primary"
-              htmlType="submit"
-              loading={loading}
-              style={{ width: "180px", height: "45px" }}
+          <Input.TextArea />
+        </Form.Item>
+        <Row>
+          <Col span={10} xl={10} lg={10} md={10} xs={24}>
+            <Form.Item
+              label={formlangtext.file_label}
+              name="file"
+              valuePropName="fileList"
+              getValueFromEvent={normFile}
+              rules={[
+                {
+                  required: true,
+                  message:
+                    lang === "en"
+                      ? "Please fill in the fields provided"
+                      : lang === "ru"
+                        ? "Пожалуйста, заполните необходимые поля"
+                        : "Խնդրում ենք լրացնել նշված դաշտերը",
+                },
+              ]}
             >
-              Ուղարկել
-            </Button>
-          </Form.Item>
-        </Col>
-        <SharedWrapperCol span={10}>
-          <ShareLabel>Կիսվել</ShareLabel>
-          <FacebookShareButton
-            url="http://triple-c.algorithm.am/career/"
-            children={<FacebookIcon />}
-            hashtag={"Avag HAshvapah"}
-          />
-          {/* <FacebookIcon /> */}
-          <LinkedinShareButton
-            children={<LinkdinIcon />}
-            url="http://triple-c.algorithm.am/career/"
-          ></LinkedinShareButton>
-        </SharedWrapperCol>
-      </Row>
-      <CareerModal handleOk={handleOk} modalVisible={modalVisible} />
-    </Form>
+              <Upload
+                accept=".jpeg,.png,.jpg,.doc,.pdf,.docx,.xlsx"
+                customRequest={dummyRequest}
+              >
+                <Button id="careeruploadbutton">
+                  <UploadOutlined
+                    style={{
+                      color: "#009db8",
+                      fontSize: "20px",
+                    }}
+                  />
+                </Button>
+              </Upload>
+            </Form.Item>
+          </Col>
+          <Col
+            span={8}
+            xl={8}
+            lg={8}
+            md={8}
+            xs={{ span: 24, offset: 0 }}
+            id="careersubmitcol"
+          >
+            <Form.Item {...tailLayout}>
+              <Button
+                type="primary"
+                htmlType="submit"
+                loading={loading}
+                style={{ width: "180px", height: "45px" }}
+              >
+                {formlangtext.send_button}
+              </Button>
+            </Form.Item>
+          </Col>
+        </Row>
+        <CareerModal handleOk={handleOk} modalVisible={modalVisible} />
+      </Form>
+    </>
   )
 }
 

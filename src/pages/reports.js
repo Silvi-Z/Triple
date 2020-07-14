@@ -6,10 +6,8 @@ import ReportForm3 from "../components/reportComponents/reportForm3/reportForm3"
 import ReportForm2 from "../components/reportComponents/reportForm2/reportForm2"
 import { PlusOutlined, MinusOutlined } from "@ant-design/icons"
 import CarImg from "../assets/calcImages/carSell.png"
-import { Helmet } from "react-helmet"
 import useTranslations from "../components/useTranslations"
 import SEO from "../components/seo"
-import moment from "moment"
 import {
   ReportParagraphRow,
   H2Styled,
@@ -121,6 +119,7 @@ const Reports = ({ pageContext }) => {
               fillform={fillform}
               resetForm={resetForm}
               langText={reports.reportForm}
+              lang={pageContext.locale}
             />
           </Col>
         ) : confirm2 ? (
@@ -163,12 +162,11 @@ const Reports = ({ pageContext }) => {
             />
           </Col>
         ) : null}
-        <SharedWrapperCol span={5} offset={4}>
+        <SharedWrapperCol span={5} offset={3}>
           <ShareLabel>{reports.share}</ShareLabel>
           <FacebookShareButton
             url={urlShared}
             children={<FacebookIcon />}
-            hashtag={"Avag HAshvapah"}
           />
           <LinkedinShareButton
             children={<LinkdinIcon />}

@@ -124,6 +124,74 @@ const query = graphql`
               title
               paragraph
             }
+            careerForm {
+              textare_label
+              file_label
+              send_button
+              share
+            }
+            contact {
+              title
+              paragraph
+              form_content {
+                name_label
+                email_label
+                file_label
+                title_label
+                textare_label
+                send_button
+              }
+              address
+              share
+            }
+            calculator {
+              title
+              paragraph
+              salary_calculator {
+                title
+                clean_salary_button
+                dirty_salary_button
+                general_tax_button_1
+                general_tax_button_2
+                micro_business_button_1
+                micro_business_button_2
+                it_patent_button_1
+                it_patent_button_2
+                salary_label
+                bonus_label
+                pensioner_label
+                stamp_label
+                yes_button
+                no_button
+                count_button
+                result_title
+                general_storage_label
+                income_tax_label
+                pension_paymet_label
+                stamp_duty_label
+                result_duty_salary
+                result_duty_bonus
+              }
+              vacation_calculator {
+                title
+              }
+              final_calculator {
+                title
+              }
+              mortgage_calculator {
+                title
+              }
+              car_customs_calculator {
+                title
+              }
+              car_sell_calculator {
+                title
+              }
+              car_prop_tax_calculator {
+                title
+              }
+              share
+            }
             link
           }
         }

@@ -122,7 +122,11 @@ const validationSchema = Yup.object().shape({
   }),
 });
 
-const SalaryCalculator = ({ toggleForm, showForm }) => {
+const SalaryCalculator = ({
+  toggleForm,
+  showForm,
+  langText
+}) => {
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState(null);
 
@@ -184,7 +188,7 @@ const SalaryCalculator = ({ toggleForm, showForm }) => {
     <>
       <Row align="middle" gutter={[10, 40]}>
         <FormIcon iconImg={SalaryImg} />
-        <FormHeader headerText={'Աշխատավարձի հաշվիչ'} />
+        <FormHeader headerText={langText.title} />
         <FormToggle showForm={showForm} onClick={toggleForm} />
       </Row>
 
@@ -207,7 +211,7 @@ const SalaryCalculator = ({ toggleForm, showForm }) => {
                   onClick={() => formik.setFieldValue('salary_type', false)}
                 >
                   <Label fontcolor={!formik.values.salary_type ? '#fff' : '#000'}>
-                    Մաքուր
+                    {langText.clean_salary_button}
                   </Label>
                 </ButtonBase>
               </Col>
@@ -219,7 +223,7 @@ const SalaryCalculator = ({ toggleForm, showForm }) => {
                   onClick={() => formik.setFieldValue('salary_type', true)}
                 >
                   <Label fontcolor={formik.values.salary_type ? '#fff' : '#000'}>
-                    Կեղտոտ
+                    {langText.dirty_salary_button}
                   </Label>
                 </ButtonBase>
               </Col>
@@ -249,9 +253,9 @@ const SalaryCalculator = ({ toggleForm, showForm }) => {
                       ? '#fff'
                       : '#000'
                   }>
-                    Ընդհանուր
+                    {langText.general_tax_button_1}
                     <br />
-                    հարկման դաշտ
+                    {langText.general_tax_button_2}
                   </Label>
                 </ButtonLarge>
               </Col>
@@ -267,9 +271,9 @@ const SalaryCalculator = ({ toggleForm, showForm }) => {
                       ? '#fff'
                       : '#000'
                   }>
-                    Միկրոձեռնարկատիրության
+                    {langText.micro_business_button_1}
                     <br />
-                    սուբյեկտ
+                    {langText.micro_business_button_2}
                   </Label>
                 </ButtonLarge>
               </Col>
@@ -285,16 +289,16 @@ const SalaryCalculator = ({ toggleForm, showForm }) => {
                       ? '#fff'
                       : '#000'
                   }>
-                    ՏՏ ոլորտի
+                    {langText.it_patent_button_1}
                     <br />
-                    Արտոնագիր
+                    {langText.it_patent_button_2}
                   </Label>
                 </ButtonLarge>
               </Col>
             </Row>
 
             <Row align="middle" gutter={[10, 10]}>
-              <FormLabelLong text={'Աշխատավարձ'} />
+              <FormLabelLong text={langText.salary_label} />
               <Col xxl={3} xl={3} lg={4} md={5} sm={5} span={6}>
                 <StyledInputNumber
                   size="large"
@@ -309,7 +313,7 @@ const SalaryCalculator = ({ toggleForm, showForm }) => {
             </Row>
 
             <Row align="middle" gutter={[10, 10]}>
-              <FormLabelLong text={'Պարգևավճար'} />
+              <FormLabelLong text={langText.bonus_label} />
               <Col xxl={3} xl={3} lg={4} md={5} sm={5} span={6}>
                 <StyledInputNumber
                   size="large"
@@ -324,7 +328,7 @@ const SalaryCalculator = ({ toggleForm, showForm }) => {
             </Row>
 
             <Row align="middle" gutter={[10, 10]}>
-              <FormLabelLong text={'Մասնակցու՞մ եք կուտակային կենսաթոշակայինին'} />
+              <FormLabelLong text={langText.pensioner_label} />
               <Col>
                 <ButtonSmall
                   type={formik.values.pension ? 'primary' : 'default'}
@@ -337,7 +341,7 @@ const SalaryCalculator = ({ toggleForm, showForm }) => {
                       ? '#fff'
                       : '#000'
                   }>
-                    Այո
+                    {langText.yes_button}
                   </Label>
                 </ButtonSmall>
               </Col>
@@ -353,14 +357,14 @@ const SalaryCalculator = ({ toggleForm, showForm }) => {
                       ? '#fff'
                       : '#000'
                   }>
-                    Ոչ
+                    {langText.no_button}
                   </Label>
                 </ButtonSmall>
               </Col>
             </Row>
 
             <Row align="middle" gutter={[10, 30]}>
-              <FormLabelLong text={'Վճարե՞լ եք արդեն դրոշմանիշային վճարը'} />
+              <FormLabelLong text={langText.stamp_label} />
               <Col>
                 <ButtonSmall
                   type={formik.values.bonus_stamp ? 'primary' : 'default'}
@@ -373,7 +377,7 @@ const SalaryCalculator = ({ toggleForm, showForm }) => {
                       ? '#fff'
                       : '#000'
                   }>
-                    Այո
+                    {langText.yes_button}
                   </Label>
                 </ButtonSmall>
               </Col>
@@ -389,7 +393,7 @@ const SalaryCalculator = ({ toggleForm, showForm }) => {
                       ? '#fff'
                       : '#000'
                   }>
-                    Ոչ
+                    {langText.no_button}
                   </Label>
                 </ButtonSmall>
               </Col>
@@ -410,7 +414,7 @@ const SalaryCalculator = ({ toggleForm, showForm }) => {
                   block
                   htmlType="submit"
                 >
-                  {loading ? <Spin /> : 'Հաշվել'}
+                  {loading ? <Spin /> : langText.count_button}
                 </ButtonSubmit>
               </Col>
             </Row>
@@ -422,11 +426,11 @@ const SalaryCalculator = ({ toggleForm, showForm }) => {
                   xxl={{ span: 4, offset: 6 }}
                   xl={{ span: 4, offset: 5 }}
                   lg={{ span: 5, offset: 4 }}
-                  md={{span: 6, offset: 2}}
+                  md={{ span: 6, offset: 2 }}
                   offset={1}
                   span={10}
                 >
-                  <H3Styled>Արդյունք</H3Styled>
+                  <H3Styled>{result_title}</H3Styled>
                 </Col>
               </Row>
 
@@ -442,7 +446,7 @@ const SalaryCalculator = ({ toggleForm, showForm }) => {
                   <Row gutter={[10, 10]}>
                     <Col span={16}>
                       <ResultCell>
-                        <Label fontcolor="#fff">Ընդհանուր պահում</Label>
+                        <Label fontcolor="#fff">{langtext.general_storage_label}</Label>
                       </ResultCell>
                     </Col>
                     <Col span={7}>
@@ -455,7 +459,7 @@ const SalaryCalculator = ({ toggleForm, showForm }) => {
                   <Row gutter={[10, 10]}>
                     <Col span={16}>
                       <ResultCell>
-                        <Label fontcolor="#fff">Եկամտային հարկ</Label>
+                        <Label fontcolor="#fff">{langtext.income_tax_label}</Label>
                       </ResultCell>
                     </Col>
                     <Col span={7}>
@@ -468,7 +472,7 @@ const SalaryCalculator = ({ toggleForm, showForm }) => {
                   <Row gutter={[10, 10]}>
                     <Col span={16}>
                       <ResultCell>
-                        <Label fontcolor="#fff">Կենսաթոշակային վճար</Label>
+                        <Label fontcolor="#fff">{langText.pension_paymet_label}</Label>
                       </ResultCell>
                     </Col>
                     <Col span={7}>
@@ -481,7 +485,7 @@ const SalaryCalculator = ({ toggleForm, showForm }) => {
                   <Row gutter={[10, 10]}>
                     <Col span={16}>
                       <ResultCell>
-                        <Label fontcolor="#fff">Դրոշմանիշային վճար</Label>
+                        <Label fontcolor="#fff">{langText.stamp_duty_label}</Label>
                       </ResultCell>
                     </Col>
                     <Col span={7}>
@@ -496,7 +500,7 @@ const SalaryCalculator = ({ toggleForm, showForm }) => {
                   xxl={{ span: 9, offset: 0 }}
                   xl={{ span: 9, offset: 0 }}
                   lg={{ span: 11, offset: 0 }}
-                  md={{span: 20, offset: 2}}
+                  md={{ span: 20, offset: 2 }}
                   span={20}
                   offset={1}
                 >
@@ -506,7 +510,7 @@ const SalaryCalculator = ({ toggleForm, showForm }) => {
                         <Label2 fontcolor="#fff">
                           {`${
                             +result.salary_type ? 'Մաքուր' : 'Կեղտոտ'
-                          } աշխատավարձ`}
+                            } աշխատավարձ`}
                         </Label2>
                       </ResultCell>
                     </Col>
@@ -525,7 +529,7 @@ const SalaryCalculator = ({ toggleForm, showForm }) => {
                         <Label2 fontcolor="#fff">
                           {`${
                             +result.salary_type ? 'Մաքուր' : 'Կեղտոտ'
-                          } պարգևավճար`}
+                            } պարգևավճար`}
                         </Label2>
                       </ResultCell>
                     </Col>

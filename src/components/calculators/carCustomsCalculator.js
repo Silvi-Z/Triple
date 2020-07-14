@@ -124,7 +124,7 @@ const validationSchema = Yup.object().shape({
   }),
 });
 
-const CarCustomsCalculator = ({ toggleForm, showForm }) => {
+const CarCustomsCalculator = ({ toggleForm, showForm, langText }) => {
   const [loading, toggleLoading] = useState(false);
   const [result, setResult] = useState(null);
 
@@ -151,7 +151,7 @@ const CarCustomsCalculator = ({ toggleForm, showForm }) => {
     <>
       <Row align="middle" gutter={[10, 40]}>
         <FormIcon iconImg={CarImg} />
-        <FormHeader headerText={'Ավտոմեքենայի մաքսազերծման վճարի հաշվիչ'} />
+        <FormHeader headerText={langText.title} />
         <FormToggle showForm={showForm} onClick={toggleForm} />
       </Row>
 

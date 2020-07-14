@@ -6,7 +6,8 @@ import FormOrganizations from "../components/contactcomponts/contactFormOrgaznit
 import EnvironmentImg from "../assets/footericons/location.svg"
 import CallPhoneImg from "../assets/footericons/phone-call.svg"
 import { FacebookShareButton, LinkedinShareButton } from "react-share"
-import { Helmet } from "react-helmet"
+import useTranslations from "../components/useTranslations"
+import SEO from "../components/seo"
 import {
   ParagraphRow,
   H2Styled,
@@ -30,35 +31,49 @@ import {
   SharedWrapperCol,
   ShareLabel,
 } from "../components/contactcomponts/contactMainStyle"
-const Contact = () => {
+const Contact = ({ pageContext }) => {
   const [openIndivid, setopenIndivid] = useState(true)
   const [openComp, setopenComp] = useState(false)
+  const { contact } = useTranslations()
+  let urlShared
 
   const ChangeOpenInvid = () => {
     setopenIndivid(true)
     setopenComp(false)
   }
+
   const ChangeOpenComp = () => {
     setopenIndivid(false)
     setopenComp(true)
   }
 
+  const getSharedUrl = lng => {
+    if (lng === "en") {
+      return "http://triple-c.algorithm.am/en/contact/"
+    } else if (lng === "ru") {
+      return "http://triple-c.algorithm.am/ru/contact"
+    } else {
+      return "http://triple-c.algorithm.am/arm/contact/"
+    }
+  }
+
+  const hookComponent = () => {
+    urlShared = getSharedUrl(pageContext.locale)
+  }
+
+  hookComponent()
+
   return (
     <>
-      <Helmet>
-        <meta charSet="utf-8" />
-        <title>Կապ մեզ հետ</title>
-        <meta property="og:title" content="Կապ մեզ հետ" />
-        <meta property="og:type" content="website" />
-        <link rel="canonical" href="http://triple-c.algorithm.am/contact/" />
-      </Helmet>
+      <SEO
+        title={contact.title}
+        description={contact.paragraph}
+        pageContext={pageContext}
+      />
       <ParagraphRow>
         <HeadingParagrCol lg={{ span: 24 }} xxl={{ span: 8, offset: 4 }}>
-          <H2Styled>Կապ մեզ հետ</H2Styled>
-          <PStyled>
-            Հարցերի եւ առաջարկների համար կարող եք լրացնել անհրաժեշտ տվյալները եւ
-            մենք սիրով կապ կհաստատենք Ձեզ հետ։
-          </PStyled>
+          <H2Styled>{contact.title}</H2Styled>
+          <PStyled>{contact.paragraph}</PStyled>
         </HeadingParagrCol>
       </ParagraphRow>
       {/* <ContactNavRow>
@@ -96,7 +111,7 @@ const Contact = () => {
             xs={{ span: 17, offset: 3 }}
             xxl={{ span: 17, offset: 3 }}
           >
-            <FormindIviduals />
+            <FormindIviduals langtext={contact.form_content} lang={pageContext.locale} />
           </FormColumn>
         ) : openComp ? (
           <FormColumn lg={{ span: 17 }} offset={3}>
@@ -122,7 +137,7 @@ const Contact = () => {
           <Row>
             <ContactAdressWrap span={24}>
               <EnvironmentWrapper src={EnvironmentImg} />
-              <AddressSpan>Հր Քոչար 44/54 </AddressSpan>
+              <AddressSpan>{contact.address}</AddressSpan>
             </ContactAdressWrap>
             <MapCol span={24}>
               <Mapiframe
@@ -134,16 +149,11 @@ const Contact = () => {
         </AdressMapCol>
       </ContactMapRow>
       <SharedWrapperCol xl={{ span: 10, offset: 6 }}>
-        <ShareLabel>Կիսվել</ShareLabel>
-        <FacebookShareButton
-          url="http://triple-c.algorithm.am/contact/"
-          children={<FacebookIcon />}
-          hashtag={"Avag HAshvapah"}
-        />
-
+        <ShareLabel>{contact.share}</ShareLabel>
+        <FacebookShareButton url={urlShared} children={<FacebookIcon />} />
         <LinkedinShareButton
           children={<LinkdinIcon />}
-          url="http://triple-c.algorithm.am/contact/"
+          url={urlShared}
         ></LinkedinShareButton>
       </SharedWrapperCol>
     </>

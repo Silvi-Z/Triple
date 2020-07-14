@@ -28,7 +28,7 @@ export const ParagraphRow = styled(Row)`
   }
 `
 export const H2Styled = styled.h2`
-  width: 119px;
+  width: 141px;
   height: 18px;
   font-family: ArialAMU;
   font-size: 18px;
@@ -567,7 +567,7 @@ export const SharedWrapperCol = styled(Col)`
   } */
 `
 export const ShareLabel = styled.h3`
-  width: 50px;
+  width: 83px;
   height: 15px;
   font-family: ArialAMU;
   font-size: 16px;

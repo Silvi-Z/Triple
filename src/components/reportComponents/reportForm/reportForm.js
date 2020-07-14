@@ -95,6 +95,7 @@ const RegistrationForm = ({
   fillform,
   resetForm,
   langText,
+  lang,
 }) => {
   const [form] = Form.useForm()
   const [loading, toggleLoading] = useState(false)
@@ -366,7 +367,7 @@ const RegistrationForm = ({
     resetForm ? form.resetFields() : null
     fillform ? onFill(previousFieldsValues) : null
   }, [])
- 
+
   return (
     <React.Fragment>
       <StyledForm
@@ -385,7 +386,12 @@ const RegistrationForm = ({
           rules={[
             {
               required: true,
-              message: "Խնդրում ենք լրացնել նշված դաշտերը",
+              message:
+                lang === "en"
+                  ? "Please fill in the fields provided"
+                  : lang === "ru"
+                    ? "Пожалуйста, заполните необходимые поля"
+                    : "Խնդրում ենք լրացնել նշված դաշտերը",
               whitespace: true,
             },
           ]}
@@ -407,7 +413,12 @@ const RegistrationForm = ({
               rules={[
                 {
                   required: true,
-                  message: "Խնդրում ենք լրացնել նշված դաշտերը",
+                  message:
+                    lang === "en"
+                      ? "Please fill in the fields provided"
+                      : lang === "ru"
+                        ? "Пожалуйста, заполните необходимые поля"
+                        : "Խնդրում ենք լրացնել նշված դաշտերը",
                   whitespace: true,
                 },
               ]}
@@ -440,7 +451,12 @@ const RegistrationForm = ({
               rules={[
                 {
                   required: false,
-                  message: "Խնդրում ենք լրացնել նշված դաշտերը",
+                  message:
+                    lang === "en"
+                      ? "Please fill in the fields provided"
+                      : lang === "ru"
+                        ? "Пожалуйста, заполните необходимые поля"
+                        : "Խնդրում ենք լրացնել նշված դաշտերը",
                 },
               ]}
             >
@@ -475,7 +491,11 @@ const RegistrationForm = ({
                   {
                     required: true,
                     message:
-                      "Խնդրում ենք լրացնել նշված դաշտերը այն պետք է պարունակի 9 նիշ",
+                      lang === "en"
+                        ? "Please fill in the fields, it must contain 9 characters"
+                        : lang === "ru"
+                          ? "Пожалуйста, заполните поля, они должны содержать 9 символов"
+                          : "Խնդրում ենք լրացնել նշված դաշտերը այն պետք է պարունակի 9 նիշ",
                     whitespace: true,
                     max: 9,
                     len: 9,
@@ -494,7 +514,11 @@ const RegistrationForm = ({
                   {
                     required: true,
                     message:
-                      "Խնդրում ենք լրացնել նշված դաշտը, այն պետք է պարունակի 3 թիվ",
+                      lang === "en"
+                        ? "Please fill in the fields, it must contain 3 characters"
+                        : lang === "ru"
+                          ? "Пожалуйста, заполните поля, они должны содержать 3 символов"
+                          : "Խնդրում ենք լրացնել նշված դաշտերը այն պետք է պարունակի 3 նիշ",
                     whitespace: true,
                     max: 3,
                     len: 3,
@@ -512,7 +536,12 @@ const RegistrationForm = ({
                 rules={[
                   {
                     required: true,
-                    message: "Խնդրում ենք լրացնել նշված դաշտերը",
+                    message:
+                      lang === "en"
+                        ? "Please fill in the fields provided"
+                        : lang === "ru"
+                          ? "Пожалуйста, заполните необходимые поля"
+                          : "Խնդրում ենք լրացնել նշված դաշտերը",
                   },
                 ]}
               >
@@ -534,7 +563,11 @@ const RegistrationForm = ({
                     {
                       required: true,
                       message:
-                        "Խնդրում ենք լրացնել նշված դաշտերը, այն պետք է պարունակի 9 նիշ",
+                        lang === "en"
+                          ? "Please fill in the fields, it must contain 9 characters"
+                          : lang === "ru"
+                            ? "Пожалуйста, заполните поля, они должны содержать 9 символов"
+                            : "Խնդրում ենք լրացնել նշված դաշտերը այն պետք է պարունակի 9 նիշ",
                       whitespace: true,
                       max: 9,
                       len: 9,
@@ -550,7 +583,15 @@ const RegistrationForm = ({
           name="birthday"
           label={<LabelSpan>{langText.birthday}</LabelSpan>}
           rules={[
-            { required: true, message: "Խնդրում ենք լրացնել նշված դաշտերը" },
+            {
+              required: true,
+              message:
+                lang === "en"
+                  ? "Please fill in the fields provided"
+                  : lang === "ru"
+                    ? "Пожалуйста, заполните необходимые поля"
+                    : "Խնդրում ենք լրացնել նշված դաշտերը",
+            },
           ]}
         >
           <DatePickerCustom
@@ -566,7 +607,11 @@ const RegistrationForm = ({
             {
               required: true,
               message:
-                "Խնդրում ենք լրացնել նշված դաշտը, այն պետք է պարունակի 10 նիշ",
+                lang === "en"
+                  ? "Please fill in the fields, it must contain 10 characters"
+                  : lang === "ru"
+                    ? "Пожалуйста, заполните поля, они должны содержать 10 символов"
+                    : "Խնդրում ենք լրացնել նշված դաշտերը այն պետք է պարունակի 10 նիշ",
               whitespace: true,
               max: 10,
               len: 10,
@@ -582,7 +627,11 @@ const RegistrationForm = ({
             {
               required: tin === null ? true : false,
               message:
-                "Ձեր նշած ՀԾՀ–ին համապատասխան ՀՎՀՀ չի գտնվել, խնդրում ենք լրացնել այն մուտքագրելով 8 նիշ",
+                lang === "en"
+                  ? "The corresponding VAT number you specified was not found, please enter it by entering 8 characters"
+                  : lang === "ru"
+                    ? "Соответствующий указанный вами номер НДС не найден, введите его, введя 8 символов"
+                    : "Ձեր նշած ՀԾՀ–ին համապատասխան ՀՎՀՀ չի գտնվել, խնդրում ենք լրացնել այն մուտքագրելով 8 նիշ",
               whitespace: tin === null ? true : false,
               max: 8,
               len: 8,
@@ -600,7 +649,11 @@ const RegistrationForm = ({
             {
               required: true,
               message:
-                "Խնդրում ենք լրացնել նշված դաշտը համարը պետք է սկսվի +374 թվային կոդով",
+                lang === "en"
+                  ? "Please fill in the specified field, the number must start with a +374 numeric code"
+                  : lang === "ru"
+                    ? "Пожалуйста, заполните поле выше, номер должен начинаться с цифрового кода +374"
+                    : "Խնդրում ենք լրացնել նշված դաշտը, համարը պետք է սկսվի +374 թվային կոդով",
               pattern: /^(\+|374)[0-9]{4,4}[0-9]{4,4}(?:x.+)?$/,
               max: 11,
               len: 11,
@@ -623,11 +676,21 @@ const RegistrationForm = ({
           rules={[
             {
               type: "email",
-              message: "Խնդրում ենք ճիշտ լրացնել նշված դաշտերը",
+              message:
+                lang === "en"
+                  ? "Please fill in the fields provided"
+                  : lang === "ru"
+                    ? "Пожалуйста, заполните необходимые поля"
+                    : "Խնդրում ենք լրացնել նշված դաշտերը",
             },
             {
               required: true,
-              message: "Խնդրում ենք լրացնել նշված դաշտերը",
+              message:
+                lang === "en"
+                  ? "Please fill in the fields provided"
+                  : lang === "ru"
+                    ? "Пожалуйста, заполните необходимые поля"
+                    : "Խնդրում ենք լրացնել նշված դաշտերը",
             },
           ]}
         >
@@ -648,7 +711,7 @@ const RegistrationForm = ({
           </Button>
         </StyledForm.Item>
       </StyledForm>
-    </React.Fragment>
+    </React.Fragment >
   )
 }
 export default RegistrationForm

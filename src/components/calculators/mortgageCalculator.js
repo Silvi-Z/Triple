@@ -167,7 +167,7 @@ const schemaTwo = Yup.object().shape({
     .min(1),
 });
 
-const MortgageCalculator = ({ toggleForm, showForm }) => {
+const MortgageCalculator = ({ toggleForm, showForm, langText }) => {
   const monthOne = useRef(1);
   const monthTwo = useRef(2);
   const monthThree = useRef(3);
@@ -246,7 +246,7 @@ const MortgageCalculator = ({ toggleForm, showForm }) => {
     <>
       <Row align="middle" gutter={[10, 40]}>
         <FormIcon iconImg={ContractImg} />
-        <FormHeader headerText={'Հիփոթեքի տոկոսագումարի ետ վերադարձի հաշվիչ'} />
+        <FormHeader headerText={langText.title} />
         <FormToggle showForm={showForm} onClick={toggleForm} />
       </Row>
 
@@ -319,7 +319,7 @@ const MortgageCalculator = ({ toggleForm, showForm }) => {
                   </Label>
                 </ButtonBase>
               </Col>
-              
+
               <Col xxl={5} xl={6} lg={7} md={9} sm={11} span={11}>
                 <ButtonBase
                   type={!formikOne.values.patent ? 'primary' : 'default'}
@@ -633,7 +633,7 @@ const MortgageCalculator = ({ toggleForm, showForm }) => {
                   xxl={{ span: 4, offset: 6 }}
                   xl={{ span: 5, offset: 5 }}
                   lg={{ span: 8, offset: 4 }}
-                  md={{span: 6, offset: 2}}
+                  md={{ span: 6, offset: 2 }}
                   offset={1}
                   span={10}
                 >

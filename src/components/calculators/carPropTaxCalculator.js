@@ -107,7 +107,7 @@ const validationSchema = Yup.object().shape({
   horsepower: Yup.number().required().min(1),
 });
 
-const CarPropTaxCalculator = ({ toggleForm, showForm }) => {
+const CarPropTaxCalculator = ({ toggleForm, showForm, langText }) => {
   const [loading, toggleLoading] = useState(false);
   const [result, setResult] = useState(null);
 
@@ -134,7 +134,7 @@ const CarPropTaxCalculator = ({ toggleForm, showForm }) => {
     <>
       <Row align="middle" gutter={[10, 50]}>
         <FormIcon iconImg={CarImg} />
-        <FormHeader headerText={'Ավտոմեքենայի գույքահարկի հաշվիչ'} />
+        <FormHeader headerText={langText.title} />
         <FormToggle showForm={showForm} onClick={toggleForm} />
       </Row>
 
@@ -275,7 +275,7 @@ const CarPropTaxCalculator = ({ toggleForm, showForm }) => {
                   xxl={{ span: 4, offset: 6 }}
                   xl={{ span: 5, offset: 5 }}
                   lg={{ span: 8, offset: 4 }}
-                  md={{span: 6, offset: 2}}
+                  md={{ span: 6, offset: 2 }}
                   offset={1}
                   span={10}
                 >

@@ -177,7 +177,7 @@ const year11 = moment(currentDate).subtract(11, 'months').year();
 const month12 = !month11 ? 11 : month11 - 1;
 const year12 = moment(currentDate).subtract(12, 'months').year();
 
-const FinalCalculator = ({ toggleForm, showForm }) => {
+const FinalCalculator = ({ toggleForm, showForm, langText }) => {
   const [result1, setResult1] = useState(0);
   const [result2, setResult2] = useState(null);
   const [loading1, setLoading1] = useState(false);
@@ -329,7 +329,7 @@ const FinalCalculator = ({ toggleForm, showForm }) => {
     <>
       <Row align="middle" gutter={[10, 40]}>
         <FormIcon iconImg={CalcImg} />
-        <FormHeader headerText={'Վերջնահաշվարկի հաշվիչ'} />
+        <FormHeader headerText={langText.title} />
         <FormToggle showForm={showForm} onClick={toggleForm} />
       </Row>
       {showForm && (
@@ -339,12 +339,12 @@ const FinalCalculator = ({ toggleForm, showForm }) => {
           <form onSubmit={formik1.handleSubmit}>
             <Row align="middle" gutter={[10, 10]}>
               <Col
-                xxl={{offset: 6, span: 4}}
-                xl={{offset: 5, span: 4}}
-                lg={{offset: 4, span: 5}}
-                md={{offset: 2, span: 6}}
-                sm={{offset: 1, span: 10}}
-                xs={{span: 10}}
+                xxl={{ offset: 6, span: 4 }}
+                xl={{ offset: 5, span: 4 }}
+                lg={{ offset: 4, span: 5 }}
+                md={{ offset: 2, span: 6 }}
+                sm={{ offset: 1, span: 10 }}
+                xs={{ span: 10 }}
               >
                 <FormLabelCell>
                   <Label fontcolor="#000">Ընդունման ամսաթիվ</Label>
@@ -372,12 +372,12 @@ const FinalCalculator = ({ toggleForm, showForm }) => {
                 />
               </Col>
               <Col
-                xxl={{offset: 0, span: 4}}
-                xl={{offset: 0, span: 4}}
-                lg={{offset: 0, span: 5}}
-                md={{offset: 0, span: 6}}
-                sm={{offset: 1, span: 10}}
-                xs={{span: 10}}
+                xxl={{ offset: 0, span: 4 }}
+                xl={{ offset: 0, span: 4 }}
+                lg={{ offset: 0, span: 5 }}
+                md={{ offset: 0, span: 6 }}
+                sm={{ offset: 1, span: 10 }}
+                xs={{ span: 10 }}
               >
                 <FormLabelCell>
                   <Label fontcolor="#000">Ազատման ամսաթիվ</Label>
@@ -519,7 +519,7 @@ const FinalCalculator = ({ toggleForm, showForm }) => {
                   xxl={{ span: 4, offset: 6 }}
                   xl={{ span: 4, offset: 5 }}
                   lg={{ span: 5, offset: 4 }}
-                  md={{span: 6, offset: 2}}
+                  md={{ span: 6, offset: 2 }}
                   offset={1}
                   span={10}
                 >
@@ -531,7 +531,7 @@ const FinalCalculator = ({ toggleForm, showForm }) => {
                   xxl={{ offset: 6, span: 7 }}
                   xl={{ offset: 5, span: 9 }}
                   lg={{ offset: 4, span: 10 }}
-                  md={{ offset: 2, span: 13}}
+                  md={{ offset: 2, span: 13 }}
                   offset={1}
                 >
                   <ResultCell>
@@ -936,7 +936,7 @@ const FinalCalculator = ({ toggleForm, showForm }) => {
                   xxl={{ span: 4, offset: 6 }}
                   xl={{ span: 4, offset: 5 }}
                   lg={{ span: 5, offset: 4 }}
-                  md={{span: 6, offset: 2}}
+                  md={{ span: 6, offset: 2 }}
                   offset={1}
                   span={10}
                 >
@@ -950,9 +950,9 @@ const FinalCalculator = ({ toggleForm, showForm }) => {
                   xxl={{ span: 8, offset: 6 }}
                   xl={{ span: 10, offset: 5 }}
                   lg={{ span: 12, offset: 4 }}
-                  md={{span: 15, offset: 2}}
-                  sm={{span: 19, offset: 1}}
-                  xs={{span: 20, offset: 0}}
+                  md={{ span: 15, offset: 2 }}
+                  sm={{ span: 19, offset: 1 }}
+                  xs={{ span: 20, offset: 0 }}
                 >
                   <ResultCell>
                     <Label fontcolor="#fff">
@@ -974,9 +974,9 @@ const FinalCalculator = ({ toggleForm, showForm }) => {
                   xxl={{ span: 8, offset: 6 }}
                   xl={{ span: 10, offset: 5 }}
                   lg={{ span: 12, offset: 4 }}
-                  md={{span: 15, offset: 2}}
-                  sm={{span: 19, offset: 1}}
-                  xs={{span: 20, offset: 0}}
+                  md={{ span: 15, offset: 2 }}
+                  sm={{ span: 19, offset: 1 }}
+                  xs={{ span: 20, offset: 0 }}
                 >
                   <ResultCell>
                     <Label fontcolor="#fff">
@@ -998,9 +998,9 @@ const FinalCalculator = ({ toggleForm, showForm }) => {
                   xxl={{ span: 3, offset: 6 }}
                   xl={{ span: 4, offset: 5 }}
                   lg={{ span: 4, offset: 4 }}
-                  md={{span: 5, offset: 2}}
-                  sm={{span: 6, offset: 1}}
-                  xs={{span: 7, offset: 0}}
+                  md={{ span: 5, offset: 2 }}
+                  sm={{ span: 6, offset: 1 }}
+                  xs={{ span: 7, offset: 0 }}
                 />
                 <Col xxl={2} xl={2} lg={3} md={3} sm={4} xs={4}>
                   <TabHeadCell>
@@ -1037,9 +1037,9 @@ const FinalCalculator = ({ toggleForm, showForm }) => {
                   xxl={{ span: 3, offset: 6 }}
                   xl={{ span: 4, offset: 5 }}
                   lg={{ span: 4, offset: 4 }}
-                  md={{span: 5, offset: 2}}
-                  sm={{span: 6, offset: 1}}
-                  xs={{span: 7, offset: 0}}
+                  md={{ span: 5, offset: 2 }}
+                  sm={{ span: 6, offset: 1 }}
+                  xs={{ span: 7, offset: 0 }}
                 >
                   <ResultCell>
                     <Label fontcolor="#fff">
@@ -1082,9 +1082,9 @@ const FinalCalculator = ({ toggleForm, showForm }) => {
                   xxl={{ span: 3, offset: 6 }}
                   xl={{ span: 4, offset: 5 }}
                   lg={{ span: 4, offset: 4 }}
-                  md={{span: 5, offset: 2}}
-                  sm={{span: 6, offset: 1}}
-                  xs={{span: 7, offset: 0}}
+                  md={{ span: 5, offset: 2 }}
+                  sm={{ span: 6, offset: 1 }}
+                  xs={{ span: 7, offset: 0 }}
                 >
                   <ResultCell>
                     <Label fontcolor="#fff">
@@ -1127,9 +1127,9 @@ const FinalCalculator = ({ toggleForm, showForm }) => {
                   xxl={{ span: 3, offset: 6 }}
                   xl={{ span: 4, offset: 5 }}
                   lg={{ span: 4, offset: 4 }}
-                  md={{span: 5, offset: 2}}
-                  sm={{span: 6, offset: 1}}
-                  xs={{span: 7, offset: 0}}
+                  md={{ span: 5, offset: 2 }}
+                  sm={{ span: 6, offset: 1 }}
+                  xs={{ span: 7, offset: 0 }}
                 >
                   <ResultCell>
                     <Label fontcolor="#fff">

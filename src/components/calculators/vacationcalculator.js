@@ -205,7 +205,7 @@ const year11 = moment(currentDate).subtract(11, 'months').year();
 const month12 = !month11 ? 11 : month11 - 1;
 const year12 = moment(currentDate).subtract(12, 'months').year();
 
-const VacationCalculator = ({ toggleForm, showForm }) => {
+const VacationCalculator = ({ toggleForm, showForm, langText }) => {
   const [formDisable, setFormDisable] = useState(false);
   const [result, setResult] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -389,7 +389,7 @@ const VacationCalculator = ({ toggleForm, showForm }) => {
     <>
       <Row align="middle" gutter={[10, 40]}>
         <FormIcon iconImg={VacationImg} />
-        <FormHeader headerText={'Արձակուրդայինի հաշվիչ'} />
+        <FormHeader headerText={langText.title} />
         <FormToggle showForm={showForm} onClick={toggleForm} />
       </Row>
       {showForm ? (
@@ -397,11 +397,11 @@ const VacationCalculator = ({ toggleForm, showForm }) => {
           <Description text={'Ժամանակահատված, որի ընթացքում աշխատողը գտնվել(ու) է արձակուրդի մեջ'} />
           <Row align="middle" gutter={[10, 10]}>
             <Col
-              xxl={{span: 2, offset: 6}}
-              xl={{span: 2, offset: 5}}
-              lg={{span: 3, offset: 4}}
-              md={{span: 3, offset: 2}}
-              sm={{span: 4, offset: 1}}
+              xxl={{ span: 2, offset: 6 }}
+              xl={{ span: 2, offset: 5 }}
+              lg={{ span: 3, offset: 4 }}
+              md={{ span: 3, offset: 2 }}
+              sm={{ span: 4, offset: 1 }}
               span={4}
             >
               <FormLabelCell>
@@ -422,7 +422,7 @@ const VacationCalculator = ({ toggleForm, showForm }) => {
                 suffixIcon={<CustomCaret />}
                 size="large"
                 format="DD.MM.YYYY"
-                // disabledDate={d => !d || d.isAfter(vacEnd)}
+              // disabledDate={d => !d || d.isAfter(vacEnd)}
               />
             </Col>
             <Col xxl={2} xl={2} lg={3} md={3} sm={4} span={4}>
@@ -468,11 +468,11 @@ const VacationCalculator = ({ toggleForm, showForm }) => {
           </Row>
           <Row align="middle" gutter={[10, 10]}>
             <Col
-              xxl={{span: 3, offset: 6}}
-              xl={{span: 4, offset: 5}}
-              lg={{span: 4, offset: 4}}
-              md={{span: 5, offset: 2}}
-              sm={{span: 7, offset: 1}}
+              xxl={{ span: 3, offset: 6 }}
+              xl={{ span: 4, offset: 5 }}
+              lg={{ span: 4, offset: 4 }}
+              md={{ span: 5, offset: 2 }}
+              sm={{ span: 7, offset: 1 }}
               span={7}
             >
               <FormLabelCell>
@@ -555,7 +555,7 @@ const VacationCalculator = ({ toggleForm, showForm }) => {
                 onClick={() => setSixDayWeek(1)}
               >
                 <Label fontcolor={!sixDayWeek ? '#000' : '#fff'}>
-                  Վեցօրյա աշխատանքային շաբաթ	
+                  Վեցօրյա աշխատանքային շաբաթ
                 </Label>
               </ButtonLarge>
             </Col>
@@ -1000,7 +1000,7 @@ const VacationCalculator = ({ toggleForm, showForm }) => {
                   xxl={{ span: 4, offset: 6 }}
                   xl={{ span: 4, offset: 5 }}
                   lg={{ span: 5, offset: 4 }}
-                  md={{span: 6, offset: 2}}
+                  md={{ span: 6, offset: 2 }}
                   offset={1}
                   span={10}
                 >
@@ -1060,7 +1060,7 @@ const VacationCalculator = ({ toggleForm, showForm }) => {
                   xxl={{ span: 9, offset: 0 }}
                   xl={{ span: 10, offset: 0 }}
                   lg={{ span: 11, offset: 0 }}
-                  md={{span: 20, offset: 2}}
+                  md={{ span: 20, offset: 2 }}
                   span={20}
                   offset={1}
                 >
@@ -1109,8 +1109,8 @@ const VacationCalculator = ({ toggleForm, showForm }) => {
                       xxl={{ span: 4, offset: 6 }}
                       xl={{ span: 4, offset: 5 }}
                       lg={{ span: 5, offset: 4 }}
-                      md={{span: 6, offset: 2}}
-                      sm={{span: 10, offset: 1}}
+                      md={{ span: 6, offset: 2 }}
+                      sm={{ span: 10, offset: 1 }}
                       offset={1}
                       span={10}
                     >
@@ -1122,8 +1122,8 @@ const VacationCalculator = ({ toggleForm, showForm }) => {
                       xxl={{ span: 4, offset: 6 }}
                       xl={{ span: 5, offset: 5 }}
                       lg={{ span: 6, offset: 4 }}
-                      md={{span: 7, offset: 2}}
-                      sm={{span: 10, offset: 1}}
+                      md={{ span: 7, offset: 2 }}
+                      sm={{ span: 10, offset: 1 }}
                       offset={1}
                       span={10}
                     />
@@ -1143,8 +1143,8 @@ const VacationCalculator = ({ toggleForm, showForm }) => {
                       xxl={{ span: 4, offset: 6 }}
                       xl={{ span: 5, offset: 5 }}
                       lg={{ span: 6, offset: 4 }}
-                      md={{span: 7, offset: 2}}
-                      sm={{span: 10, offset: 1}}
+                      md={{ span: 7, offset: 2 }}
+                      sm={{ span: 10, offset: 1 }}
                       offset={1}
                       span={10}
                     >
@@ -1174,8 +1174,8 @@ const VacationCalculator = ({ toggleForm, showForm }) => {
                       xxl={{ span: 4, offset: 6 }}
                       xl={{ span: 5, offset: 5 }}
                       lg={{ span: 6, offset: 4 }}
-                      md={{span: 7, offset: 2}}
-                      sm={{span: 10, offset: 1}}
+                      md={{ span: 7, offset: 2 }}
+                      sm={{ span: 10, offset: 1 }}
                       offset={1}
                       span={10}
                     >
@@ -1205,8 +1205,8 @@ const VacationCalculator = ({ toggleForm, showForm }) => {
                       xxl={{ span: 4, offset: 6 }}
                       xl={{ span: 5, offset: 5 }}
                       lg={{ span: 6, offset: 4 }}
-                      md={{span: 7, offset: 2}}
-                      sm={{span: 10, offset: 1}}
+                      md={{ span: 7, offset: 2 }}
+                      sm={{ span: 10, offset: 1 }}
                       offset={1}
                       span={10}
                     >
@@ -1241,11 +1241,11 @@ const VacationCalculator = ({ toggleForm, showForm }) => {
           <form onSubmit={formik2.handleSubmit}>
             <Row align="middle" gutter={[10, 10]}>
               <Col
-                xxl={{span: 2, offset: 6}}
-                xl={{span: 2, offset: 5}}
-                lg={{span: 3, offset: 4}}
-                md={{span: 4, offset: 2}}
-                sm={{span: 4, offset: 1}}
+                xxl={{ span: 2, offset: 6 }}
+                xl={{ span: 2, offset: 5 }}
+                lg={{ span: 3, offset: 4 }}
+                md={{ span: 4, offset: 2 }}
+                sm={{ span: 4, offset: 1 }}
                 span={4}
               >
                 <FormLabelCell>
@@ -1313,7 +1313,7 @@ const VacationCalculator = ({ toggleForm, showForm }) => {
                   onClick={() => formik2.setFieldValue('work_day_type', 1)}
                 >
                   <Label fontcolor={!formik2.values.work_day_type ? '#000' : '#fff'}>
-                    Վեցօրյա աշխատանքային շաբաթ	
+                    Վեցօրյա աշխատանքային շաբաթ
                   </Label>
                 </ButtonLarge>
               </Col>
@@ -1373,7 +1373,7 @@ const VacationCalculator = ({ toggleForm, showForm }) => {
                   xxl={{ span: 4, offset: 6 }}
                   xl={{ span: 4, offset: 5 }}
                   lg={{ span: 5, offset: 4 }}
-                  md={{span: 6, offset: 2}}
+                  md={{ span: 6, offset: 2 }}
                   offset={1}
                   span={10}
                 >
@@ -1385,7 +1385,7 @@ const VacationCalculator = ({ toggleForm, showForm }) => {
                   xxl={{ offset: 6 }}
                   xl={{ offset: 5 }}
                   lg={{ offset: 4 }}
-                  md={{ offset: 2}}
+                  md={{ offset: 2 }}
                   offset={1}
                 >
                   <ResultCell>

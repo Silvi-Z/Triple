@@ -2,7 +2,7 @@ import { Col, Button, Row } from "antd"
 import styled from "styled-components"
 
 export const ToggleH2Styled = styled.h2`
-  width: 148px;
+  width: 151px;
   height: 18px;
   font-family: ArialAMU;
   font-size: 18px;
