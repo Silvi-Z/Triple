@@ -1,88 +1,72 @@
-/**
- * SEO component that queries for data with
- *  Gatsby's useStaticQuery React hook
- *
- * See: https://www.gatsbyjs.org/docs/use-static-query/
- */
+import React from 'react';
+import { graphql, useStaticQuery } from 'gatsby';
+import Helmet from 'react-helmet';
+import { useTranslation } from 'react-i18next';
+import LocaleContext from '../localeContext';
 
-import React from "react"
-import PropTypes from "prop-types"
-import Helmet from "react-helmet"
-import { useStaticQuery, graphql } from "gatsby"
+const SEO = ({ title, description, meta, pageContext }) => {
+  const { locale } = React.useContext(LocaleContext);
+  const { t } = useTranslation();
 
-function SEO({ description, lang, meta, title }) {
   const { site } = useStaticQuery(
     graphql`
       query {
         site {
           siteMetadata {
-            title
-            description
-            author
+            siteUrl
+            supportedLanguages
           }
         }
       }
     `
-  )
+  );
 
-  const metaDescription = description || site.siteMetadata.description
-
+  const { lang, originalPath } = pageContext;
+  const metaDescription = description || t('siteMetadata.description');
+  const host = site.siteMetadata.siteUrl;
   return (
     <Helmet
       htmlAttributes={{
         lang,
       }}
       title={title}
-      titleTemplate={`%s | ${site.siteMetadata.title}`}
+      titleTemplate={`%s | ${t('siteMetadata.title')}`}
       meta={[
         {
-          name: `description`,
+          name: 'description',
           content: metaDescription,
         },
         {
-          property: `og:title`,
+          property: 'og:title',
           content: title,
         },
         {
-          property: `og:description`,
+          property: 'og:description',
           content: metaDescription,
         },
         {
-          property: `og:type`,
-          content: `website`,
+          property: 'og:locale',
+          content: locale,
+        }
+      ]/* .concat(meta) */}
+      link={[
+        {
+          rel: 'canonical',
+          href: `${host}/${locale}${originalPath}`,
         },
         {
-          name: `twitter:card`,
-          content: `summary`,
+          rel: 'alternate',
+          hrefLang: 'x-default',
+          href: `${host}${originalPath}`,
         },
-        {
-          name: `twitter:creator`,
-          content: site.siteMetadata.author,
-        },
-        {
-          name: `twitter:title`,
-          content: title,
-        },
-        {
-          name: `twitter:description`,
-          content: metaDescription,
-        },
-      ].concat(meta)}
+        ...site.siteMetadata.supportedLanguages.map(supportedLang => ({
+          rel: 'alternate',
+          hrefLang: supportedLang,
+          href: `${host}/${supportedLang}${originalPath}`,
+        })),
+      ]}
     />
-  )
-}
+  );
+};
 
-SEO.defaultProps = {
-  lang: `en`,
-  meta: [],
-  description: ``,
-}
-
-SEO.propTypes = {
-  description: PropTypes.string,
-  lang: PropTypes.string,
-  meta: PropTypes.arrayOf(PropTypes.object),
-  title: PropTypes.string.isRequired,
-}
-
-export default SEO
+export default SEO;

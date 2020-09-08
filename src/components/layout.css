@@ -1,12 +1,18 @@
+@font-face {
+  src: url(../assets/fonts/Arial-AMU-Regular-8891.ttf);
+  font-family: ArialAMU;
+}
 html {
-  font-family: sans-serif;
+  font-family: ArialAMU;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
 }
 body {
   margin: 0;
+  font-family: ArialAMU;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #f7f7f7;
 }
 article,
 aside,
@@ -164,7 +170,9 @@ textarea {
   box-sizing: border-box;
   padding: 0;
 }
-[type="number"]::-webkit-inner-spin-button,
+[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
 [type="number"]::-webkit-outer-spin-button {
   height: auto;
 }
@@ -185,7 +193,7 @@ textarea {
   font: inherit;
 }
 html {
-  font: 112.5%/1.45em georgia, serif;
+  font-family: ArialAMU;
   box-sizing: border-box;
   overflow-y: scroll;
 }
@@ -200,7 +208,7 @@ html {
 }
 body {
   color: hsla(0, 0%, 0%, 0.8);
-  font-family: georgia, serif;
+  font-family: ArialAMU;
   font-weight: normal;
   word-wrap: break-word;
   font-kerning: normal;
@@ -231,7 +239,8 @@ h1 {
   margin-bottom: 1.45rem;
   color: inherit;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif,
+    ArialAMU;
   font-weight: bold;
   text-rendering: optimizeLegibility;
   font-size: 2.25rem;
@@ -248,7 +257,8 @@ h2 {
   margin-bottom: 1.45rem;
   color: inherit;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif,
+    ArialAMU;
   font-weight: bold;
   text-rendering: optimizeLegibility;
   font-size: 1.62671rem;
@@ -265,7 +275,8 @@ h3 {
   margin-bottom: 1.45rem;
   color: inherit;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif,
+    ArialAMU;
   font-weight: bold;
   text-rendering: optimizeLegibility;
   font-size: 1.38316rem;
@@ -282,7 +293,8 @@ h4 {
   margin-bottom: 1.45rem;
   color: inherit;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif,
+    ArialAMU;
   font-weight: bold;
   text-rendering: optimizeLegibility;
   font-size: 1rem;
@@ -299,7 +311,8 @@ h5 {
   margin-bottom: 1.45rem;
   color: inherit;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif,
+    ArialAMU;
   font-weight: bold;
   text-rendering: optimizeLegibility;
   font-size: 0.85028rem;
@@ -543,6 +556,7 @@ code {
   font-size: 0.85rem;
   line-height: 1.45rem;
 }
+
 kbd {
   font-size: 0.85rem;
   line-height: 1.45rem;
@@ -593,7 +607,7 @@ code {
   background-color: hsla(0, 0%, 0%, 0.04);
   border-radius: 3px;
   font-family: "SFMono-Regular", Consolas, "Roboto Mono", "Droid Sans Mono",
-    "Liberation Mono", Menlo, Courier, monospace;
+    "Liberation Mono", Menlo, Courier, monospace, ArialAMU;
   padding: 0;
   padding-top: 0.2em;
   padding-bottom: 0.2em;
@@ -615,8 +629,622 @@ pre tt:before,
 pre tt:after {
   content: "";
 }
+
+/*register*/
+#register_address > div {
+  width: 145px;
+  height: 43px;
+  border: solid 1px #009db8;
+  background-color: #ffffff;
+}
+
+#register_full_name {
+  width: 448px;
+  height: 40px;
+  border: solid 1px #009db8;
+  background-color: #ffffff;
+}
+
+#register_email {
+  width: 448px;
+  height: 40px;
+  border: solid 1px #009db8;
+  background-color: #ffffff;
+}
+#register_passport_series {
+  width: 146px;
+  height: 40px;
+  border: solid 1px #009db8;
+  background-color: #ffffff;
+}
+#register_ID_card_number {
+  width: 146px;
+  height: 40px;
+  border: solid 1px #009db8;
+  background-color: #ffffff;
+}
+#register_given {
+  width: 146px;
+  height: 40px;
+  border: solid 1px #009db8;
+  background-color: #ffffff;
+}
+#register_when {
+  width: 146px;
+  height: 40px;
+  border: solid 1px #009db8;
+  background-color: #ffffff;
+}
+#register_birthday {
+  width: 185px;
+  height: 14px;
+  font-family: ArialAMU;
+  font-size: 14px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: left;
+  color: #000000;
+}
+#register_psn {
+  width: 448px;
+  height: 40px;
+  border: solid 1px #009db8;
+  background-color: #ffffff;
+}
+#register_tin {
+  width: 448px;
+  height: 40px;
+  border: solid 1px #009db8;
+  background-color: #ffffff;
+}
+#register_phone {
+  width: 448px;
+  height: 40px;
+  border: solid 1px #009db8;
+  background-color: #ffffff;
+}
+#register_address {
+  width: 110%;
+  height: 42px;
+  border: solid 1px #009db8;
+  background-color: #ffffff;
+}
+#registerSubmit {
+  width: 180px;
+  height: 46px;
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
+  background-color: #009db8;
+  margin-top: 10px;
+}
+/*response*/
+.phonebox {
+  margin-right: 10%;
+}
+.phonedrop {
+  background: white;
+  width: 161px;
+  height: 64px;
+  text-align: center;
+  margin-left: 7%;
+}
+.phonenumber {
+  width: 91px;
+  height: 10px;
+  font-family: ArialAMU;
+  font-size: 12px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: #000000;
+}
+#basic_username {
+  width: 514px;
+  height: 38px;
+}
+/* #basic_username:focus {
+  border-color: yellow;
+  outline: 0;
+  -webkit-box-shadow: 0 0 0 2px rgba(87, 168, 233, 0.2);
+  box-shadow: 0 0 0 2px rgba(87, 168, 233, 0.2);
+} */
+#basic_username label {
+  width: 122px;
+  height: 14px;
+  font-family: ArialAMU;
+  font-size: 14px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: left;
+  color: #000000;
+  padding: 0%;
+}
+#basic_companyname {
+  width: 252px;
+  height: 38px;
+}
+#basic_email {
+  width: 514px;
+  height: 38px;
+}
+/* #uploadbuttoncompany {
+  width: 252px;
+  height: 38px;
+  margin-left: 2%;
+  text-align: right;
+} */
+
+/* #basic_title {
+  width: 484px;
+  height: 38px;
+} */
+#basic_textarea {
+  width: 484px;
+  height: 80px;
+  margin-bottom: 20px;
+}
+#formtextarea {
+  width: 514px;
+  height: 80px;
+}
+#uploadbutton {
+  width: 100%;
+  height: 38px;
+  text-align: right;
+}
+#submitbotton {
+  width: 180px;
+  height: 46px;
+  margin: 5px;
+}
+#submitbottoncompany {
+  width: 180px;
+  height: 46px;
+  margin: 7px -30px;
+}
+
+@media only screen and (max-width: 375px) {
+  #basic_username {
+    width: 270px;
+    height: 38px;
+  }
+  #basic_companyname {
+    width: 270px;
+    height: 38px;
+  }
+  #basic_user_email {
+    width: 270px;
+    height: 38px;
+  }
+  #uploadbuttoncompany {
+    width: 270px;
+    height: 38px;
+    text-align: right;
+  }
+  #uploadbutton {
+    width: 270px;
+    height: 38px;
+    text-align: right;
+  }
+  #basic_title {
+    width: 270px;
+    height: 38px;
+    margin-bottom: 20px;
+  }
+  #basic_textarea {
+    width: 270px;
+    height: 80px;
+  }
+  #formcontact div {
+    margin-top: 0%;
+  }
+  #submitbotton {
+    width: 180px;
+    height: 46px;
+    margin-left: -26%;
+    margin-top: 20px;
+  }
+  #submitbottoncompany {
+    width: 180px;
+    height: 46px;
+    margin-left: -20%;
+    margin-top: 0px;
+  }
+  /*register*/
+  label[title] {
+    width: 400px;
+    height: 31px;
+    font-family: ArialAMU;
+    font-size: 14px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: left;
+    color: #000000;
+  }
+  #register_full_name {
+    width: 100%;
+    height: 40px;
+    border: solid 1px #009db8;
+    background-color: #ffffff;
+  }
+  #register_email {
+    width: 100%;
+    height: 40px;
+    border: solid 1px #009db8;
+    background-color: #ffffff;
+  }
+  #register_psn {
+    width: 100%;
+    height: 40px;
+    border: solid 1px #009db8;
+    background-color: #ffffff;
+  }
+  #register_tin {
+    width: 100%;
+    height: 40px;
+    border: solid 1px #009db8;
+    background-color: #ffffff;
+  }
+  #register_phone {
+    width: 100%;
+    height: 40px;
+    border: solid 1px #009db8;
+    background-color: #ffffff;
+  }
+  #register_address {
+    border: solid 1px #009db8;
+    background-color: #ffffff;
+  }
+  #register_passport_series {
+    width: 100%;
+    height: 40px;
+    border: solid 1px #009db8;
+    background-color: #ffffff;
+  }
+  #register_ID_card_number {
+    width: 100%;
+    height: 40px;
+    border: solid 1px #009db8;
+    background-color: #ffffff;
+  }
+  #register_given {
+    width: 100%;
+    height: 40px;
+    border: solid 1px #009db8;
+    background-color: #ffffff;
+  }
+  #register_when {
+    width: 100%;
+    height: 40px;
+    border: solid 1px #009db8;
+    background-color: #ffffff;
+  }
+}
+
+#basic_career {
+  width: 540px;
+  margin-left: 5%;
+}
+#basic_career_textarea {
+  height: 80px;
+}
+#careersubmitcol {
+  padding-top: 7.5%;
+  margin-left: 25%;
+}
+#careeruploadbutton {
+  width: 340px;
+  height: 46px;
+  text-align: right;
+}
+
+@media only screen and (max-width: 768px) {
+  #basic_textarea {
+    max-width: 102%;
+    margin-bottom: 20px;
+  }
+  #basic_career_textarea {
+    height: 80px;
+  }
+  #basic_career {
+    width: 540px;
+  }
+  #basic_user_email {
+    width: 245px;
+    height: 38px;
+  }
+  #uploadbuttoncompany {
+    width: 245px;
+    height: 38px;
+    margin-left: 4%;
+    text-align: right;
+  }
+  #basic_username {
+    width: 240px;
+    height: 38px;
+  }
+  #basic_title {
+    width: 500px;
+    height: 38px;
+  }
+  #uploadbutton {
+    width: 500px;
+    height: 38px;
+    text-align: right;
+  }
+}
+
+@media only screen and (max-width: 375px) {
+  #basic_user_email {
+    width: 270px;
+    height: 38px;
+    margin-left: 0%;
+  }
+  #uploadbuttoncompany {
+    width: 270px;
+    height: 38px;
+    margin-left: 0%;
+    text-align: right;
+  }
+  #basic_username {
+    width: 270px;
+    height: 38px;
+  }
+  #uploadbutton {
+    width: 270px;
+    height: 38px;
+    text-align: right;
+  }
+  #basic_title {
+    width: 270px;
+    height: 38px;
+  }
+  #formcontact {
+    width: 290px;
+    padding: 2% 2%;
+    margin-left: 2%;
+  }
+}
+@media only screen and (max-width: 375px) {
+  #basic_career {
+    width: 290px;
+  }
+  #basic_career_textarea {
+    height: 160px;
+  }
+  #careersubmitcol {
+    padding-top: 7.5%;
+    margin-left: 0%;
+  }
+  #careeruploadbutton {
+    width: 290px;
+    height: 46px;
+    text-align: right;
+  }
+  #register_address {
+    width: 290px;
+    height: 42px;
+    border: solid 1px #009db8;
+    background-color: #ffffff;
+  }
+}
+@media only screen and (max-width: 320px) {
+  #basic_career {
+    width: 290px;
+  }
+  #basic_career_textarea {
+    max-width: 95%;
+    height: 160px;
+  }
+  #careeruploadbutton {
+    width: 280px;
+    height: 46px;
+    text-align: right;
+  }
+}
+.languagetext {
+  width: 18px;
+  height: 13px;
+  font-family: ArialAMU;
+  font-size: 12px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: #000000;
+}
+.languagedrop {
+  width: 63px;
+  height: 52px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+  border: solid 1px #ebebeb;
+  background-color: #ffffff;
+  cursor: pointer;
+  margin-left: -15px;
+  text-align: center;
+}
+
+.languagetext:hover {
+  color: #009db8;
+}
+#footerfirstrow {
+  height: 70%;
+}
+#footersecondtrow {
+  height: 30%;
+}
+.copyright {
+  width: 95px;
+  height: 13px;
+  font-family: ArialAMU;
+  font-size: 12px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: #e8e8e8;
+}
+.footerlinkweb {
+  /* width: 155px; */
+  height: 13px;
+  font-family: ArialAMU;
+  font-size: 12px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: #e8e8e8;
+  text-decoration: underline;
+}
+.footerlinkweb:hover {
+  color: #25ae85;
+}
 @media only screen and (max-width: 480px) {
   html {
     font-size: 100%;
   }
+}
+@media only screen and (min-width: 375px) {
+  #register_address {
+    width: 90%;
+    height: 42px;
+    border: solid 1px #009db8;
+    background-color: #ffffff;
+  }
+}
+@media only screen and (min-width: 1170px) {
+  .slick-slider {
+    margin-top: -50px;
+    margin-left: -20px;
+    margin-right: -20px;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .slick-slider {
+    margin-left: -20px;
+    margin-right: -20px;
+  }
+}
+@media only screen and (max-width: 1024px) {
+  .phonebox {
+    margin-right: 6%;
+  }
+}
+@media only screen and (max-width: 1200px) {
+  #register_address {
+    width: 100%;
+    height: 42px;
+    border: solid 1px #009db8;
+    background-color: #ffffff;
+  }
+}
+@media only screen and (min-width: 1366px) {
+  .slick-slider {
+    margin-top: -50px;
+    margin-left: -50px;
+    margin-right: -50px;
+  }
+  #register_address {
+    width: 89%;
+    height: 42px;
+    border: solid 1px #009db8;
+    background-color: #ffffff;
+  }
+  #basic_title {
+    width: 510px;
+    height: 38px;
+  }
+  #uploadbutton {
+    width: 510px;
+    height: 38px;
+    text-align: right;
+  }
+  /* #basic_textarea {
+    max-width: 510px;
+    margin-bottom: 20px;
+  } */
+}
+@media only screen and (min-width: 1170x) {
+  #basic_username {
+    width: 252px;
+    height: 38px;
+  }
+  #basic_title {
+    width: 500px;
+    height: 38px;
+  }
+  #uploadbutton {
+    width: 500px;
+    height: 38px;
+    text-align: right;
+  }
+  #basic_textarea {
+    max-width: 500px;
+    margin-bottom: 20px;
+  }
+  #uploadbutton {
+    width: 252px;
+    height: 38px;
+    margin-left: 2%;
+    text-align: right;
+  }
+}
+
+@media (min-width: 1600px) {
+  #basic_username {
+    width: 510px;
+    height: 38px;
+  }
+  #basic_textarea {
+    max-width: 109%;
+    margin-bottom: 20px;
+  }
+  .slick-slider {
+    margin-top: -50px;
+    margin-left: -100px;
+    margin-right: -100px;
+  }
+  .phonedrop {
+    background: white;
+    width: 161px;
+    height: 63px;
+    text-align: center;
+    margin-left: 20%;
+  }
+  #register_address {
+    width: 77%;
+    height: 42px;
+    border: solid 1px #009db8;
+    background-color: #ffffff;
+  }
+  #basic_title {
+    width: 484px;
+    height: 38px;
+  }
+  #uploadbutton {
+    width: 484px;
+    height: 38px;
+    text-align: right;
+  }
+}
+
+.ant-input-number-handler-wrap {
+  display: none;
 }

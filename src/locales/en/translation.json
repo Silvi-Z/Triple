@@ -1,0 +1,181 @@
+{
+  "layout": {
+    "Gatsby Default Starter": "Follow Us",
+    "header": {
+      "serveTitle": "Services",
+      "reportTitle": "Reporting",
+      "calcTitle": "Calculator",
+      "infoTitle": "Useful information",
+      "careerTitle": "Join us",
+      "contractTitle": "Contact us",
+      "address": "Hr Qochar 44"
+    },
+    "footer": {
+      "follow": "Follow Us",
+      "address": "Hr. Qochar 44"
+    }
+  },
+  "home": {
+    "services": {
+      "title": "Services",
+      "sub_title": "The main services provided by Triple Consulting are.",
+      "button_text": "See more",
+      "icon_text_calc": "Accounting",
+      "icon_text_aud_1": "Tax Accounting",
+      "icon_text_aud_2": "Tax Audit",
+      "icon_text_consult": "Consultation",
+      "icon_text_registr": "Company registration",
+      "icon_text_individ": "Individuals",
+      "icon_text_trans": "Customs transactions",
+      "icon_text_hr": "Personnel management"
+    },
+    "our_partners": {
+      "title": "Our Partners",
+      "sub_title": "During its two years of operation, Triple Consulting has managed to cooperate with a number of companies.",
+      "button_text": "Become a partner"
+    }
+  },
+  "services": {
+    "title": "Services",
+    "paragraph": "Forget about accounting issues with accounting services provided by Triple Consulting, avoid the extra tax burden, and save time by dedicating it to promoting your business. You can get acquainted with the services provided by our company",
+    "contentData": [
+      {
+        "paragraph": "Accounting",
+        "text": "Accurate accounting is one of the most important functions of a business, which helps to avoid various financial losses. Accounting is carried out in accordance with international standards through AS and 1C accounting software."
+      },
+      {
+        "paragraph": "Tax audit and accounting",
+        "text": "Carrying out a tax audit, we will check the accuracy of tax reports, identify tax risky transactions, help you choose the most profitable tax field for your company and plan taxes correctly, avoiding additional tax liabilities, various penalties and fines."
+      },
+      {
+        "paragraph": "Consultation",
+        "text": "You can contact us for advice on issues you are interested in, and we will provide high-quality professional advice."
+      },
+      {
+        "paragraph": "Company registration",
+        "text": "The most common way to do business is to register an organization, mainly an LLC. The expediency of doing business through the registration of an LLC is primarily due to the legal possibility of bearing limited liability. Our specialists will help your organization to act on its behalf, to have property attached to it with the right of ownership, to be responsible only for that property. From the moment you receive state registration, your organization will acquire rights and responsibilities."
+      },
+      {
+        "paragraph": "Individuals",
+        "text": "According to the Tax Code, certain transactions made by individuals result in tax liabilities for which appropriate reports must be submitted. We offer reporting and tax services."
+      },
+      {
+        "paragraph": "Customs transactions",
+        "text": "Contact us to prepare the necessary tax and customs documents for import and export transactions and submit them to the relevant state bodies."
+      },
+      {
+        "paragraph": "Human Resources",
+        "text": "We will facilitate the work of your organization by taking full control of the personnel work. We offer the following services: drafting employment and service contracts, as well as agreements, drafting internal and individual legal acts of the employer, calculation of working hours and salary, compilation of newsletters, personalized accounting of income tax and social payment."
+      }
+    ],
+    "share": "Share"
+  },
+  "reports": {
+    "title": "Reporting",
+    "paragraph": "Get the report you want online without any hassle. Fill in the required information fields և Our specialists will respond in a matter of minutes.",
+    "dropParagraph": "Car sales report",
+    "currency": " 5000 dr ",
+    "subdropParagraph": "Required information",
+    "reportForm": {
+      "full_name": "Name / Surname",
+      "city": "Residence address",
+      "address": "",
+      "passport_series": "Passport series",
+      "passport": "Passport",
+      "pass_id_label": "Select the type of ID",
+      "given": "Given by",
+      "when": "When",
+      "ID_card_number": "Identification card",
+      "birthday": "Birthday/months/date",
+      "psn": "PSN",
+      "tin": "TIN",
+      "phone": "Phone",
+      "email": "email",
+      "SubmitSpan": "After pressing the Confirm button, the power of attorney will be downloaded. Please sign և upload in the next step.",
+      "submitButton": "Confirm"
+    },
+    "reportForm2": {
+      "subParagraph": "Please upload the relevant documents",
+      "pass_label": "Passport",
+      "auto_label": "Car purchase and sale agreement",
+      "attorney_label": "Power of Attorney",
+      "submitButton": "Confirm",
+      "back_button": "back",
+      "forward_button": "forward"
+    },
+    "reportForm3": {
+      "paragraph": "Your request has been successfully completed. You will be informed about further developments through emails.",
+      "subParagraph_1": "This is your query number.",
+      "subParagraph_2": "Please save this code.",
+      "closeButton": "Close"
+    }
+  },
+  "information": {
+    "title": "Useful information",
+    "paragraph": "Our company considers it its duty to share with its customers the useful information it possesses, thus contributing to the important function of being informed and prepared by the customers.",
+    "news_button": "News",
+    "useInf_button": "Useful information",
+    "doc_button": "Sample documents",
+    "news": [
+      {
+        "heading": "Cash register insertion office",
+        "paragraph": "Պետական եկամուտների կոմիտեն տեղեկացնում է, որ Հայաստանի Հանրապետությունում առկա իրավիճակով պայմանավորված՝ «Հսկիչ-դրամարկղային մեքենաների ներդրման գրասենյակ» ՊՈԱԿ-ը 2020թ. մարտի 24-ից դադարեցնում է թղթային տարբերակով դիմումների և գրությունների ընդունումը։"
+      },
+      {
+        "heading": "Cash register insertion office",
+        "paragraph": "Կառավարությունը 2016 թվականի ապրիլի 28-ի N 429 - Ն որոշմամբ ուժը կորցրած է ճանաչել  2014 թվականի սեպտեմբերի 4-ի N 980-Ն որոշումը, ինչի արդյունքում օրենքով սահմանված դրույթներին համապատասխան պիտանելիության ժամկետը լրացած, սահմանված կարգով դուրս գրված ապրանքների դրոշմապիտակների գծով պարտավորություններ չեն հաշվարկվի:"
+      },
+      {
+        "heading": "Cash register insertion office",
+        "paragraph": "2016 թվականի ապրիլի 28-ի 413-Ն որոշմամաբ առաջարկվում է նոր սերնդի ՀԴՄ-ների ներ Հիշեցնենք, որ ըստ կառավարության 2013թ. սեպտեմբերի 5-ի որոշման ս.թ մայիսի 1-ից նոր սերնդի ՀԴՄ-ների ներդրումը պարտադիր է 2014թ. արդյունքներով 10.0 մլն դրամից մինչև 58.35 մլն դրամ կամ 2015թ. արդյունքներով 10.0 մլն դրամից մինչև 115.0 մլն դրամ իրացումից հասույթ ունեցող հարկ վճարողների համար:"
+      }
+    ],
+    "share": "Share"
+  },
+  "career": {
+    "title": "Join Us",
+    "paragraph": "Մենք միշտ ուրախ ենք ընդլայնել մեր թիմը լավագույն մասնագետներով։ Եթե ունեք ցանկություն միանալու մեզ, ապա ուղարկեք Ձեր ինքնակենսագրականը, մենք ուրախ ենք տեսնել լավագույններին մեր կազմում։Ստորեւ կարող եք ծանոթանալ թափուր աշխատատեղերին։",
+    "drop_content": [
+      {
+        "status": true,
+        "data": {
+          "title": "Senior Accountant",
+          "sub_title": "Required skills",
+          "description_1": "Հաշվապահական կամ ֆինանսական ոլորտում աշխատանքային փորձ (առնվազն 3 տարի)",
+          "description_2": "Հաշվապահական ստանդարտների իմացություն,",
+          "description_3": "ՀԾ, 1 C, E-invoicing և այլ հարակից հաշվապահական ծրագրերի իմացություն,",
+          "description_4": "Microsoft Office փաթեթի իմացություն",
+          "description_5": "Հաշվապահական հաշվառման ստանդարտների լավ տիրապետում",
+          "description_6": "Հաշվապահական հաշվառման ստանդարտների լավ տիրապետում"
+        },
+        "open": true
+      }
+    ]
+  },
+  "careerForm": {
+    "textare_label": "Your message",
+    "file_label": "Upload CV *",
+    "send_button": "Send",
+    "share": "Share"
+  },
+  "contact": {
+    "title": "Contact us",
+    "paragraph": "For questions and suggestions you can fill in the necessary information and we will be happy to contact you.",
+    "form_content": {
+      "name_label": "Name / Surname (Company Name)",
+      "email_label": "E-mail",
+      "file_label": "Attach the file",
+      "title_label": "Title",
+      "textare_label": "Your message",
+      "send_button": "Send"
+    },
+    "address": "Hr Qochar 44/54",
+    "share": "Share"
+  },
+  "calculator": {
+    "title": "Calculators",
+    "paragraph": "Triple Consulting company provides Calculators service, through which you can make online calculations.",
+    "share": "Share"
+  },
+  "link": "Go back to the homepage"
+}

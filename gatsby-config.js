@@ -1,34 +1,78 @@
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
+    supportedLanguages: ["ru", "en", "arm"],
+    defaultLanguage: "arm",
+    title: "Triple Consulting",
+    description:
+      "Թարմ մտածողությունը և նորարական լուծումները այն դրդապատճառներներից մեկն են, որի վրա հիմնվելով կազմակերպությունները ընտրում են Triple Consulting-ը",
+    author: "@algorithmSolutions",
+    siteUrl: "http://triple-c.algorithm.am"
   },
   plugins: [
-    `gatsby-plugin-react-helmet`,
+    `gatsby-plugin-netlify`,
+    `gatsby-plugin-react-helmet-async`,
+    "gatsby-plugin-react-helmet",
+    `gatsby-plugin-lodash`,
+    {
+      resolve: "gatsby-source-filesystem",
+      options: {
+        name: "images",
+        path: `${__dirname}/src/assets`,
+      },
+    },
+    "gatsby-transformer-sharp",
+    "gatsby-plugin-sharp",
+    {
+      resolve: "gatsby-plugin-manifest",
+      options: {
+        name: "gatsby-starter-default",
+        short_name: "starter",
+        start_url: "/",
+        background_color: "#f7f7f7",
+        theme_color: "#f7f7f7",
+        display: "minimal-ui",
+        icon: "src/assets/title.png", // This path is relative to the root of the site.
+      },
+    },
+    "gatsby-plugin-styled-components",
+    "gatsby-plugin-antd",
+    {
+      resolve: "gatsby-plugin-less",
+      options: {
+        javascriptEnabled: true,
+        modifyVars: {
+          "primary-color": "#009db8",
+          "font-family": ["ArialAMU", "sans-serif"],
+        },
+      },
+    },
+    {
+      resolve: `gatsby-plugin-layout`,
+      options: {
+        // add relative path to your layout component
+        component: `${__dirname}/src/components/layout.js`
+      }
+    },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        name: `images`,
-        path: `${__dirname}/src/images`,
-      },
+        path: `${__dirname}/config/translations`,
+        name: `translations`
+      }
     },
-    `gatsby-transformer-sharp`,
-    `gatsby-plugin-sharp`,
+    `gatsby-transformer-json`,
     {
-      resolve: `gatsby-plugin-manifest`,
+      resolve: 'gatsby-plugin-htaccess',
       options: {
-        name: `gatsby-starter-default`,
-        short_name: `starter`,
-        start_url: `/`,
-        background_color: `#663399`,
-        theme_color: `#663399`,
-        display: `minimal-ui`,
-        icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+        www: false,
+        host: 'triple-c.algorithm.am',
+        redirect: [
+          'RewriteRule ^/?$ /arm [R=301,L,NE]',
+        ],
       },
-    },
+    }
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
   ],
-}
+};
