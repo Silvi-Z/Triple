@@ -27,7 +27,7 @@ module.exports = {
       options: {
         name: "gatsby-starter-default",
         short_name: "starter",
-        start_url: "/",
+        start_url: "/arm/",
         background_color: "#f7f7f7",
         theme_color: "#f7f7f7",
         display: "minimal-ui",
@@ -35,13 +35,18 @@ module.exports = {
       },
     },
     "gatsby-plugin-styled-components",
-    "gatsby-plugin-antd",
+    {
+      resolve: "gatsby-plugin-antd",
+      options: {
+        style: true
+      }
+    },
     {
       resolve: "gatsby-plugin-less",
       options: {
         javascriptEnabled: true,
         modifyVars: {
-          "primary-color": "#009db8",
+          "primary-color": "#00b3c7",
           "font-family": ["ArialAMU", "sans-serif"],
         },
       },

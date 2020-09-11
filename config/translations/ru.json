@@ -177,16 +177,17 @@
     "title": "Калькуляторы",
     "paragraph": "Компания Triple Consulting предоставляет услугу «Калькуляторы», с помощью которой можно производить онлайн-расчеты.",
     "share": "Поделиться",
+    "nav": {
+      "title": "Հաշվիչներ"
+    },
     "salary_calculator": {
       "title": "Калькулятор зарплаты",
       "clean_salary_button": "Մաքուր",
       "dirty_salary_button": "Կեղտոտ",
-      "general_tax_button_1": "Ընդհանուր",
-      "general_tax_button_2": "հարկման դաշտ",
-      "micro_business_button_1": "Միկրոձեռնարկատիրության",
-      "micro_business_button_2": "սուբյեկտ",
-      "it_patent_button_1": "ՏՏ ոլորտի",
-      "it_patent_button_2": "Արտոնագիր",
+      "tax_label": "Ընտրել տարբերակը",
+      "tax_label_common": "Աշխատում ե՞ք ՏՏ ոլորտի հավաստագրված կազմակերպությունում։",
+      "tax_label_enterprise": "Աշխատում ե՞ք միկրոձեռնարկության սուբյեկտ հանդիսացող կազմակերպությունում։",
+      "tax_label_it": "Աշխատում ե՞ք ընդհանուր հարկման դաշտի սուբյեկտ հանդիսացող կազմակերպությունում։",
       "salary_label": "Աշխատավարձ",
       "bonus_label": "Պարգևավճար",
       "pensioner_label": "Մասնակցու՞մ եք կուտակային կենսաթոշակայինին",
@@ -199,7 +200,8 @@
       "income_tax_label": "Եկամտային հարկ",
       "pension_paymet_label": "Կենսաթոշակային վճար",
       "stamp_duty_label": "Դրոշմանիշային վճար",
-      "result_duty_salary": "Կեղտոտ աշխատավարձ",
+      "dirty_to_clean_salary": "Զուտ աշխատավարձ",
+      "clean_dirty_to_salary": "Գրանցված աշխատավարձ",
       "result_duty_bonus": "Կեղտոտ պարգևավճար"
     },
     "vacation_calculator": {

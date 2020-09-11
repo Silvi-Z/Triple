@@ -23,6 +23,16 @@ exports.onCreatePage = async ({ page, actions: { createPage, deletePage, createR
         statusCode: 301,
       });
 
+      // page.matchPath is a special key that's used for matching pages
+      // only on the client.
+      const reg = new RegExp(``)
+      if (page.path.match(/^\/app/)) {
+        page.matchPath = "/app/*"
+
+        // Update the page.
+        createPage(page)
+      }
+
       await createPage({
         ...page,
         path: localizedPath,
@@ -35,6 +45,8 @@ exports.onCreatePage = async ({ page, actions: { createPage, deletePage, createR
       });
     })
   );
+
+
 
   // Create a fallback redirect if the language is not supported or the
   // Accept-Language header is missing for some reason

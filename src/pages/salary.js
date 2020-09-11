@@ -3,9 +3,9 @@ import { Row, Col, Form, Card, Radio, Button, InputNumber, Typography, Spin, Div
 import { useFormik } from "formik"
 import styled from "styled-components";
 import * as Yup from "yup"
-import { apiHelper } from "../../helpers/apiHelper"
-import { FormIcon, FormHeader, FormToggle } from "./calcComponents"
-import SalaryCardResult from "./calcComponents/SalaryCardResult"
+import { apiHelper } from "../helpers/apiHelper"
+import SalaryCardResult from "../components/calculators/calcComponents/SalaryCardResult"
+import useTranslations from "../components/useTranslations"
 
 const { Text } = Typography;
 
@@ -40,7 +40,7 @@ const RadioButton = styled(Radio.Button)`
   }
   &.ant-radio-button-wrapper-checked {
     border-radius: 5px !important;
-  } 
+  }
 `;
 
 const SalaryInput = styled(InputNumber)`
@@ -108,7 +108,10 @@ const validationSchema = Yup.object().shape({
   tax_field: Yup.number().oneOf([1, 2, 3]).required(),
 });
 
-const SalaryCalculator = ({ toggleForm, showForm, langText }) => {
+const SalaryCalculator = ({ toggleForm, showForm }) => {
+  const { calculator } = useTranslations()
+  const langText = calculator.salary_calculator;
+
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState({
     total_fee: 0,

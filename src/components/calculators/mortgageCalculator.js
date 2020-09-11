@@ -375,7 +375,7 @@ const MortgageCalculator = ({ toggleForm, showForm, langText }) => {
                       console.log('Validation fired: ', res);
                       console.log(formikOne.values);
                     });
-                    console.log('Ref test', monthOne.current);
+                    console.log('Ref calculators', monthOne.current);
                   }}
                 >
                   <Label fontcolor="#fff">

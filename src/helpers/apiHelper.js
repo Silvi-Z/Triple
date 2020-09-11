@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-const baseURL = 'http://triple-c-api.algorithm.am';
+// const baseURL = 'http://triple-c-api.algorithm.am';
+const baseURL = 'http://triplebe.loc/';
 
 const apiHelper = axios.create({
   baseURL,

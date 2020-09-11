@@ -147,16 +147,17 @@ const query = graphql`
             calculator {
               title
               paragraph
+              nav {
+                title
+              }
               salary_calculator {
                 title
                 clean_salary_button
                 dirty_salary_button
-                general_tax_button_1
-                general_tax_button_2
-                micro_business_button_1
-                micro_business_button_2
-                it_patent_button_1
-                it_patent_button_2
+                tax_label
+                tax_label_common
+                tax_label_enterprise
+                tax_label_it
                 salary_label
                 bonus_label
                 pensioner_label
@@ -169,7 +170,8 @@ const query = graphql`
                 income_tax_label
                 pension_paymet_label
                 stamp_duty_label
-                result_duty_salary
+                dirty_to_clean_salary
+                clean_dirty_to_salary
                 result_duty_bonus
               }
               vacation_calculator {
