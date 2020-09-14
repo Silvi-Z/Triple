@@ -1,10 +1,9 @@
 import React, { useState } from "react"
-import { Row, Col, Form, Card, Radio, Button, InputNumber, Typography, Spin, Divider } from "antd"
+import * as Yup from "yup"
 import { useFormik } from "formik"
 import styled from "styled-components";
-import * as Yup from "yup"
+import { Row, Col, Form, Card, Radio, Button, InputNumber, Typography, Spin, Divider } from "antd"
 import { apiHelper } from "../../helpers/apiHelper"
-import { FormIcon, FormHeader, FormToggle } from "./calcComponents"
 import SalaryCardResult from "./calcComponents/SalaryCardResult"
 
 const { Text } = Typography;
@@ -17,6 +16,7 @@ const FormLabel = styled.h3`
   line-height: 25px;
   letter-spacing: 0.15px;
   color: #000000;
+  margin-bottom: 15px;
 `;
 
 const RadioGroup = styled(Radio.Group)`
@@ -82,7 +82,7 @@ const ButtonSubmit = styled(Button)`
   color: #FFFFFF;
   width: 260px;
   height: 50px;
-  &:hover {
+  &:hover:enabled {
     color: #FFFFFF !important;
     background: #1C1D21 !important;
     border-color: #1C1D21 !important;
@@ -108,7 +108,7 @@ const validationSchema = Yup.object().shape({
   tax_field: Yup.number().oneOf([1, 2, 3]).required(),
 });
 
-const SalaryCalculator = ({ toggleForm, showForm, langText }) => {
+const SalaryCalculator = ({ langText }) => {
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState({
     total_fee: 0,
@@ -148,7 +148,7 @@ const SalaryCalculator = ({ toggleForm, showForm, langText }) => {
         <FormLabel>{langText.title}</FormLabel>
 
         <Card bordered={false} loading={loading}>
-          <Form onFinish={formik.handleSubmit} layout="horizontal" colon={false}>
+          <Form onFinish={formik.handleSubmit} initialValues={initialValues} layout="horizontal" colon={false}>
             <Row align="middle" gutter={[10,10]}>
               <RadioGroup
                 onChange={(e) => formik.setFieldValue("from", e.target.value)}
@@ -261,4 +261,4 @@ const SalaryCalculator = ({ toggleForm, showForm, langText }) => {
   )
 }
 
-export default SalaryCalculator
+export default SalaryCalculator;

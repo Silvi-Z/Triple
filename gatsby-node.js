@@ -13,6 +13,8 @@ exports.onCreatePage = async ({ page, actions: { createPage, deletePage, createR
     config.siteMetadata.supportedLanguages.map(async lang => {
       const localizedPath = `/${lang}${page.path}`;
 
+      console.log('localizedPath')
+      console.log(localizedPath)
       // create a redirect based on the accept-language header
       createRedirect({
         fromPath: originalPath,
@@ -23,14 +25,13 @@ exports.onCreatePage = async ({ page, actions: { createPage, deletePage, createR
         statusCode: 301,
       });
 
-      // page.matchPath is a special key that's used for matching pages
-      // only on the client.
-      const reg = new RegExp(``)
-      if (page.path.match(/^\/app/)) {
-        page.matchPath = "/app/*"
+      const reg = new RegExp(`^${lang}/calculators`);
+
+      if (page.path.match(/^\/arm\/calculators/)) {
+        page.matchPath = `arm/calculators/*`
 
         // Update the page.
-        createPage(page)
+        await createPage(page);
       }
 
       await createPage({
