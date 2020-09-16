@@ -317,7 +317,7 @@ const Navbar = ({ open, responswrapper, lang, langtext, originalPath }) => {
           </NavLink>
         </GridReport>
         <GridCalc>
-          <NavLink to={`/${lang}/calculators/`} activeStyle={activeStyle}>
+          <NavLink to={`/${lang}/calculators/salary`} activeStyle={activeStyle}>
             {langtext.header.calcTitle}
           </NavLink>
         </GridCalc>
