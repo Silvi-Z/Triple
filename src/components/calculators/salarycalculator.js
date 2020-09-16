@@ -6,6 +6,12 @@ import { Row, Col, Form, Card, Radio, Button, InputNumber, Typography, Spin, Div
 import { apiHelper } from "../../helpers/apiHelper"
 import SalaryCardResult from "./calcComponents/SalaryCardResult"
 
+const TAX_FIELD_IT = 3;
+
+const TAX_FIELD_COMMON = 1;
+
+const TAX_FIELD_ENTERPRISE = 2;
+
 const { Text } = Typography;
 
 const FormLabel = styled.h3`
@@ -98,12 +104,12 @@ const initialValues = {
   from: 1,
   amount: 0,
   pension: true,
-  tax_field: 1,
+  tax_field: TAX_FIELD_IT,
 };
 
 const validationSchema = Yup.object().shape({
   from: Yup.number().oneOf([1, 2]).required(),
-  amount: Yup.number().required().min(40000),
+  amount: Yup.number().required().min(1),
   pension: Yup.bool().required(),
   tax_field: Yup.number().oneOf([1, 2, 3]).required(),
 });
@@ -124,7 +130,7 @@ const SalaryCalculator = ({ langText }) => {
     validateOnMount: true,
     isInitialValid: false,
     onSubmit: async values => {
-      setLoading(true);
+      // setLoading(true);
 
       try {
         const res = await apiHelper.post("/api/counter/salary", values)
@@ -132,7 +138,7 @@ const SalaryCalculator = ({ langText }) => {
       } catch (e) {
         console.log("Calculation error: ", e)
       }
-      setLoading(false)
+      // setLoading(false)
     },
   });
 
@@ -156,7 +162,7 @@ const SalaryCalculator = ({ langText }) => {
                 size="large"
               >
                 <Col span={11}>
-                  <RadioButton value={1} onChange={(e) => formik.setFieldValue("pension", e.target.value)} size="large">
+                  <RadioButton value={1} size="large">
                     {langText.dirty_salary_button}
                   </RadioButton>
                 </Col>
@@ -166,7 +172,7 @@ const SalaryCalculator = ({ langText }) => {
                   </svg>
                 </Col>
                 <Col span={11}>
-                  <RadioButton value={2} onChange={(e) => formik.setFieldValue("pension", e.target.value)} size="large">
+                  <RadioButton value={2} size="large">
                     {langText.clean_salary_button}
                   </RadioButton>
                 </Col>
@@ -203,14 +209,14 @@ const SalaryCalculator = ({ langText }) => {
                 onChange={(e) => formik.setFieldValue("tax_field", e.target.value)}
                 value={formik.values.tax_field}
               >
-                <Radio style={radioStyle} value={1}>
-                  <RadioLabel>{langText.tax_label_common}</RadioLabel>
+                <Radio style={radioStyle} value={TAX_FIELD_IT}>
+                  <RadioLabel>{langText.tax_label_it}</RadioLabel>
                 </Radio>
-                <Radio style={radioStyle} value={2}>
+                <Radio style={radioStyle} value={TAX_FIELD_ENTERPRISE}>
                   <RadioLabel>{langText.tax_label_enterprise}</RadioLabel>
                 </Radio>
-                <Radio style={radioStyle} value={3}>
-                  <RadioLabel>{langText.tax_label_it}</RadioLabel>
+                <Radio style={radioStyle} value={TAX_FIELD_COMMON}>
+                  <RadioLabel>{langText.tax_label_common}</RadioLabel>
                 </Radio>
               </Radio.Group>
             </Form.Item>
