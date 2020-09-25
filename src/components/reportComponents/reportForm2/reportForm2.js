@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import { ArrowLeftOutlined, ArrowRightOutlined } from "@ant-design/icons"
-import { apiHelper } from "../../../helpers/apiHelper"
+import triple from "../../../api/triple"
 import { Form, Button, Upload, Row, Col } from "antd"
 import UploadImage from "../../../assets/upload2.svg"
 import {
@@ -103,7 +103,7 @@ function ReportForm2({
     }
     try {
       toggleLoading(true)
-      const res = await apiHelper
+      const res = await triple
         .post("/api/reports/car_sales_credential", UploadFormData, {
           headers: {
             Accept: 'application/json',

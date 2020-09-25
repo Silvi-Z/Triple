@@ -1,14 +1,10 @@
 import React, { useState } from 'react';
+import { CaretDownFilled } from '@ant-design/icons';
 import { Typography, Row, Col, Button, InputNumber, DatePicker } from 'antd';
-import {
-  CaretDownFilled,
-  // QuestionCircleOutlined,
-} from '@ant-design/icons';
 import styled from 'styled-components';
 import moment from 'moment';
 import { useFormik } from 'formik';
-// import * as Yup from 'yup';
-import { apiHelper } from '../../helpers/apiHelper';
+import triple from "../../api/triple";
 import CalcImg from '../../assets/calcImages/nonworking.png';
 import {
   FormIcon,
@@ -287,7 +283,7 @@ const NonWorkingCalculator = ({ toggleForm, showForm }) => {
       setLoading1(true);
 
       try {
-        const res = await apiHelper.post('/api/counter/benefit', bodyFormData);
+        const res = await triple.post('/api/counter/benefit', bodyFormData);
         console.log('Non working calc response', res.data);
         if (res.data.success) {
           // setResult1(res.data.data);
@@ -551,7 +547,7 @@ const NonWorkingCalculator = ({ toggleForm, showForm }) => {
             </Row>
           )}
 
-          {!!formik1.values.employment && ( 
+          {!!formik1.values.employment && (
             <>
               <Row gutter={[10, 15]}><Col /></Row>
               <SubmitButton

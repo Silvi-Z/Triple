@@ -1,8 +1,7 @@
-/*eslint-disable */
 import React, { useState } from "react"
 import { Form, Input, Button, Row, Col } from "antd"
 import { Upload } from "antd"
-import { apiHelper } from "../../../helpers/apiHelper"
+import triple from "../../../api/triple"
 import uploadImage from "../../../assets/upload2.svg"
 import CareerModal from "../contactModal/contactModal"
 import { Arealabel, UploadImg, StyledForm } from "./formStyle"
@@ -60,7 +59,7 @@ const Formfield = ({ langtext, lang }) => {
     UploadFormData.append("file", values.file[0].originFileObj)
     try {
       toggleLoading(true)
-      const res = await apiHelper
+      const res = await triple
         .post("/api/send_email/contact_us", UploadFormData, {
           headers: {
             "Content-Type": "multipart/form-data",

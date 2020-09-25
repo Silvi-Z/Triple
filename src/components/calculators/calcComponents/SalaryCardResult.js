@@ -1,7 +1,7 @@
 import React from "react";
+import styled from "styled-components";
 import { Card, Tooltip } from "antd";
 import { InfoCircleTwoTone } from "@ant-design/icons";
-import styled from "styled-components";
 
 const CardTitle = styled.h3`
   font-family: Arial AMU;
@@ -33,7 +33,6 @@ const SalaryCardResult = ({title, text, tooltip}) => (
       borderRadius: '5px',
       padding: "10px 20px",
       marginBottom: 10,
-      height: 80,
       width: 300
     }}
     bodyStyle={{padding: 0}}

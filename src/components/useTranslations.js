@@ -162,8 +162,9 @@ const query = graphql`
                 bonus_label
                 pensioner_label
                 stamp_label
-                yes_button
-                no_button
+                yes_volunteer
+                yes
+                no
                 count_button
                 result_title
                 general_storage_label
@@ -174,8 +175,41 @@ const query = graphql`
                 clean_dirty_to_salary
                 result_duty_bonus
               }
-              vacation_calculator {
+              vacation {
                 title
+                salary_label
+                static_salary_label
+                pensioner_label
+                tax_label_common
+                tax_label_enterprise
+                tax_label_it
+                tax_label
+                yes_volunteer
+                yes
+                no
+                start
+                end
+                month
+                year
+                gross_salary
+                bonus
+                surcharge
+                date_from_placeholder
+                date_to_placeholder
+                vacation_days
+                working_schedule
+                five_days
+                six_days
+                calculate
+                result {
+                  title
+                  gross_vacation_amount
+                  income_tax
+                  pension_fee
+                  stamp_fee
+                  total_fee
+                  pure_vacation_amount
+                }
               }
               final_calculator {
                 title

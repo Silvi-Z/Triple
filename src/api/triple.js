@@ -3,7 +3,7 @@ import axios from 'axios';
 const baseURL = 'http://triple-c-api.algorithm.am';
 // const baseURL = 'http://triplebe.loc/';
 
-const apiHelper = axios.create({
+export default axios.create({
   baseURL,
   headers: {
     // Content-Type: 'application/x-www-form-urlencoded',
@@ -11,5 +11,3 @@ const apiHelper = axios.create({
     // responseType: "blob"
   },
 });
-
-export { apiHelper };

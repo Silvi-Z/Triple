@@ -1,12 +1,9 @@
-/*eslint-disable */
 import React, { useState, useEffect } from "react"
-import { Form, Input, Button, Col, Row, Upload, message } from "antd"
 import { UploadOutlined } from "@ant-design/icons"
-import { apiHelper } from "../../../helpers/apiHelper"
+import { Form, Input, Button, Col, Row, Upload } from "antd"
+import triple from "../../../api/triple";
 import CareerModal from "../careerModal/careerModal"
-import SEO from "../../../components/seo"
 import "../../layout.css"
-
 
 //import FB from "gatsby-plugin-facebook-analytics"
 const layout = {
@@ -91,7 +88,7 @@ const Formfield = ({
     UploadFormData.append("file", values.file[0].originFileObj)
     try {
       toggleLoading(true)
-      const res = await apiHelper
+      const res = await triple
         .post("api/send_email/senior_accountant", UploadFormData, {
           headers: {
             "Content-Type": "multipart/form-data",

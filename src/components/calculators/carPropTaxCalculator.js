@@ -12,8 +12,7 @@ import moment from "moment"
 import * as Yup from "yup"
 import { useFormik } from "formik"
 import styled from "styled-components"
-import { apiHelper } from "../../helpers/apiHelper"
-
+import triple from "../../api/triple"
 const { Option } = Select
 const { Text } = Typography
 
@@ -114,7 +113,7 @@ const CarPropTaxCalculator = ({ toggleForm, showForm, langText }) => {
       setResult(null)
       toggleLoading(true)
       try {
-        const res = await apiHelper.post("/api/counter/car_property_tax", values)
+        const res = await triple.post("/api/counter/car_property_tax", values)
         setResult(res.data)
         console.log("Response: ", res.data)
       } catch (e) {

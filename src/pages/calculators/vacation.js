@@ -4,11 +4,11 @@ import VacationCalculator from "../../components/calculators/vacationcalculator"
 import CalculatorWrapper from "../../components/calculators/calcComponents/CalculatorWrapper";
 
 const vacation = ({pageContext}) => {
-  const { calculator } = useTranslations()
+  const { calculator } = useTranslations();
 
   return (
     <CalculatorWrapper ctx={pageContext}>
-      <VacationCalculator langText={calculator.vacation_calculator}/>
+      <VacationCalculator lang={calculator.vacation}/>
     </CalculatorWrapper>
   )
 };

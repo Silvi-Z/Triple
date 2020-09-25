@@ -13,8 +13,7 @@ import styled from "styled-components"
 import { useFormik } from "formik"
 import * as Yup from "yup"
 import moment from "moment"
-import { apiHelper } from "../../helpers/apiHelper"
-
+import triple from "../../api/triple";
 const { Text } = Typography
 
 const H3Styled = styled.h3`
@@ -115,7 +114,7 @@ const CarSellCalculator = ({ langText }) => {
       setResult(null)
       toggleLoading(true)
       try {
-        const res = await apiHelper.post("/api/counter/car_income_tax", values)
+        const res = await triple.post("/api/counter/car_income_tax", values)
         setResult(res.data)
         console.log("Response: ", res.data)
       } catch (e) {

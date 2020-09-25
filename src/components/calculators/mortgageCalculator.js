@@ -11,8 +11,7 @@ import styled from "styled-components"
 import { useFormik } from "formik"
 import * as Yup from "yup"
 import moment from "moment"
-import { apiHelper } from "../../helpers/apiHelper"
-import ContractImg from "../../assets/calcImages/contract.png"
+import triple from "../../api/triple"
 import {
   FormIcon,
   FormHeader,
@@ -199,7 +198,7 @@ const MortgageCalculator = ({ langText }) => {
       toggleLoadingOne(true)
 
       try {
-        const res = await apiHelper.post(
+        const res = await triple.post(
           "/api/counter/income_tax_return",
           values,
         )
@@ -227,7 +226,7 @@ const MortgageCalculator = ({ langText }) => {
       console.log("Formik values 2: ", values)
       toggleLoadingTwo(true)
       try {
-        const res = await apiHelper.post(
+        const res = await triple.post(
           "/api/counter/income_tax_return",
           values,
         )

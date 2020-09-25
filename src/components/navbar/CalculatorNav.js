@@ -71,7 +71,7 @@ const CalculatorNav = ({ t, locale }) => {
           <NavLink to={`${locale}/calculators/salary`}>{t.salary_calculator.title}</NavLink>
         </NavItem>
         <NavItem>
-          <NavLink to={`${locale}/calculators/vacation`}>{t.vacation_calculator.title}</NavLink>
+          <NavLink to={`${locale}/calculators/vacation`}>{t.vacation.title}</NavLink>
         </NavItem>
         <NavItem>
           <NavLink to={`${locale}/calculators/final`}>{t.final_calculator.title}</NavLink>

@@ -12,8 +12,7 @@ import styled from "styled-components"
 import { useFormik } from "formik"
 import * as Yup from "yup"
 import moment from "moment"
-import { apiHelper } from "../../helpers/apiHelper"
-import CarImg from "../../assets/calcImages/carCustoms.png"
+import triple from "../../api/triple";
 import {
   FormIcon,
   FormHeader,
@@ -137,7 +136,7 @@ const CarCustomsCalculator = ({ langText }) => {
       setResult(null)
       toggleLoading(true)
       try {
-        const res = await apiHelper.post("/api/counter/car_clearance_tax", values)
+        const res = await triple.post("/api/counter/car_clearance_tax", values)
         setResult(res.data)
         console.log("Response: ", res.data)
       } catch (e) {

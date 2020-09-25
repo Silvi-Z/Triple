@@ -1,121 +1,24 @@
-import React, { useState } from "react"
-import * as Yup from "yup"
-import { useFormik } from "formik"
-import styled from "styled-components";
-import { Row, Col, Form, Card, Radio, Button, InputNumber, Typography, Spin, Divider } from "antd"
-import { apiHelper } from "../../helpers/apiHelper"
-import SalaryCardResult from "./calcComponents/SalaryCardResult"
-
-const TAX_FIELD_IT = 3;
-
-const TAX_FIELD_COMMON = 1;
-
-const TAX_FIELD_ENTERPRISE = 2;
-
-const { Text } = Typography;
-
-const FormLabel = styled.h3`
-  font-family: Arial AMU;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 25px;
-  letter-spacing: 0.15px;
-  color: #000000;
-  margin-bottom: 15px;
-`;
-
-const RadioGroup = styled(Radio.Group)`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 50px;
-  margin-bottom: 25px;
-`;
-
-const RadioButton = styled(Radio.Button)`
-  font-weight: bold;
-  text-align: center;
-  border-radius: 5px;
-  width: 100%;
-  height: 50px !important;
-  border-color: #555555 !important;
-  &.ant-radio-button-wrapper {
-    line-height: 50px;
-  }
-  &.ant-radio-button-wrapper-checked {
-    border-radius: 5px !important;
-  } 
-`;
-
-const SalaryInput = styled(InputNumber)`
-  background: #FFFFFF;
-  border: 0.5px solid #555555;
-  box-sizing: border-box;
-  border-radius: 5px !important;
-  width: 136px;
-`;
-
-const Label = styled(Text)`
-  font-style: normal;
-  font-size: 14px;
-  line-height: 25px;
-  letter-spacing: 0.15px;
-  text-transform: uppercase;
-  color: #000000;
-  font-weight: bold;
-`;
-
-const RadioLabel = styled(Text)`
-  font-style: normal;
-  font-weight: normal;
-  font-size: 14px;
-  line-height: 25px;
-  letter-spacing: 0.15px;
-  color: #000000;
-`;
-
-const ButtonSubmit = styled(Button)`
-  background: #1C1D21;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 25px;
-  text-align: center;
-  letter-spacing: 0.15px;
-  text-transform: uppercase;
-  color: #FFFFFF;
-  width: 260px;
-  height: 50px;
-  &:hover:enabled {
-    color: #FFFFFF !important;
-    background: #1C1D21 !important;
-    border-color: #1C1D21 !important;
-  }
-`;
-
-const UnderLine = styled(Divider)`
-  margin: 5px 0 15px!important;
-  border-top: 1px solid #000000;
-`;
+import React, { useState } from "react";
+import { useFormik } from "formik";
+import { Row, Col, Form, Card, Radio, Slider } from "antd";
+import triple from "../../api/triple";
+import SalaryCardResult from "./calcComponents/SalaryCardResult";
+import {
+  schema,
+  SALARY_MIN, SALARY_MAX, SALARY_STEP,
+  TAX_FIELD_IT, TAX_FIELD_COMMON, TAX_FIELD_ENTERPRISE,
+  PENSION_FIELD_YES, PENSION_FIELD_YES_VOLUNTEER, PENSION_FIELD_NO,
+} from "./utilities/salary"
+import { ButtonSubmit, FormLabel, Label, RadioButton, RadioGroup, RadioLabel, SalaryInput, UnderLine } from "./styled";
 
 const initialValues = {
   from: 1,
   amount: 0,
-  pension: true,
-  tax_field: TAX_FIELD_IT,
+  pension: PENSION_FIELD_YES,
+  tax_field: TAX_FIELD_COMMON,
 };
 
-const validationSchema = Yup.object().shape({
-  from: Yup.number().oneOf([1, 2]).required(),
-  amount: Yup.number().required().min(1),
-  pension: Yup.bool().required(),
-  tax_field: Yup.number().oneOf([1, 2, 3]).required(),
-});
-
 const SalaryCalculator = ({ langText }) => {
-  const [loading, setLoading] = useState(false);
   const [result, setResult] = useState({
     total_fee: 0,
     income_tax: 0,
@@ -126,19 +29,17 @@ const SalaryCalculator = ({ langText }) => {
 
   const formik = useFormik({
     initialValues,
-    validationSchema,
+    validationSchema: schema,
     validateOnMount: true,
     isInitialValid: false,
     onSubmit: async values => {
-      // setLoading(true);
-
       try {
-        const res = await apiHelper.post("/api/counter/salary", values)
+        const res = await triple.post("/api/counter/salary", values);
+
         setResult(res.data);
       } catch (e) {
         console.log("Calculation error: ", e)
       }
-      // setLoading(false)
     },
   });
 
@@ -149,16 +50,17 @@ const SalaryCalculator = ({ langText }) => {
   };
 
   return (
-    <Row align="middle" gutter={20}>
+    <Row align="start" gutter={20}>
       <Col span={16}>
         <FormLabel>{langText.title}</FormLabel>
 
-        <Card bordered={false} loading={loading}>
+        <Card bordered={false}>
           <Form onFinish={formik.handleSubmit} initialValues={initialValues} layout="horizontal" colon={false}>
             <Row align="middle" gutter={[10,10]}>
               <RadioGroup
                 onChange={(e) => formik.setFieldValue("from", e.target.value)}
                 value={formik.values.from}
+                style={{ flexDirection: formik.values.from === 2 ? "row-reverse" : "row" }}
                 size="large"
               >
                 <Col span={11}>
@@ -167,7 +69,14 @@ const SalaryCalculator = ({ langText }) => {
                   </RadioButton>
                 </Col>
                 <Col span={2} style={{textAlign: 'center'}}>
-                  <svg width="24" height="14" viewBox="0 0 24 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <svg
+                    fill="none"
+                    width="30"
+                    height="49"
+                    viewBox="0 0 24 14"
+                    xmlns="http://www.w3.org/2000/svg"
+                    onClick={() => formik.setFieldValue("from", formik.values.from === 2 ? 1 : 2)}
+                  >
                     <path d="M5.32 6L0 10L5.32 14V11H14.6667V9H5.32V6ZM24 4L18.68 0V3H9.33333V5H18.68V8L24 4Z" fill="#00B3C7"/>
                   </svg>
                 </Col>
@@ -183,10 +92,21 @@ const SalaryCalculator = ({ langText }) => {
               <SalaryInput
                 onChange={v => formik.setFieldValue("amount", v)}
                 value={formik.values.amount}
-                min={0}
+                min={SALARY_MIN}
                 name="amount"
                 size="large"
                 type="number"
+              />
+            </Form.Item>
+
+            <Form.Item name="amount">
+              <Slider
+                onChange={v => formik.setFieldValue("amount", v)}
+                value={formik.values.amount}
+                step={SALARY_STEP}
+                min={SALARY_MIN}
+                max={SALARY_MAX}
+                name="amount"
               />
             </Form.Item>
 
@@ -195,11 +115,14 @@ const SalaryCalculator = ({ langText }) => {
                 onChange={(e) => formik.setFieldValue("pension", e.target.value)}
                 value={formik.values.pension}
               >
-                <Radio value={true}>
-                  <Label>{langText.yes_button}</Label>
+                <Radio value={PENSION_FIELD_YES}>
+                  <Label>{langText.yes}</Label>
                 </Radio>
-                <Radio value={false}>
-                  <Label>{langText.no_button}</Label>
+                <Radio value={PENSION_FIELD_YES_VOLUNTEER}>
+                  <Label>{langText.yes_volunteer}</Label>
+                </Radio>
+                <Radio value={PENSION_FIELD_NO}>
+                  <Label>{langText.no}</Label>
                 </Radio>
               </Radio.Group>
             </Form.Item>
@@ -209,26 +132,26 @@ const SalaryCalculator = ({ langText }) => {
                 onChange={(e) => formik.setFieldValue("tax_field", e.target.value)}
                 value={formik.values.tax_field}
               >
+                <Radio style={radioStyle} value={TAX_FIELD_COMMON}>
+                  <RadioLabel>{langText.tax_label_common}</RadioLabel>
+                </Radio>
                 <Radio style={radioStyle} value={TAX_FIELD_IT}>
                   <RadioLabel>{langText.tax_label_it}</RadioLabel>
                 </Radio>
                 <Radio style={radioStyle} value={TAX_FIELD_ENTERPRISE}>
                   <RadioLabel>{langText.tax_label_enterprise}</RadioLabel>
                 </Radio>
-                <Radio style={radioStyle} value={TAX_FIELD_COMMON}>
-                  <RadioLabel>{langText.tax_label_common}</RadioLabel>
-                </Radio>
               </Radio.Group>
             </Form.Item>
 
             <Form.Item>
               <ButtonSubmit
-                disabled={loading || !formik.isValid}
+                disabled={!formik.isValid}
                 htmlType="submit"
                 shape="round"
                 size="large"
               >
-                {loading ? <Spin /> : langText.count_button}
+                {langText.count_button}
               </ButtonSubmit>
             </Form.Item>
           </Form>
@@ -265,6 +188,6 @@ const SalaryCalculator = ({ langText }) => {
       </Col>
     </Row>
   )
-}
+};
 
 export default SalaryCalculator;

@@ -1,8 +1,7 @@
-/*eslint-disable */
 import React, { useState, useEffect, useRef } from "react"
-import { Form, Input, Tooltip, Select, Row, Col, Button, Spin } from "antd"
+import { Form, Input, Tooltip, Select, Row, Col, Button } from "antd"
 import { QuestionCircleOutlined } from "@ant-design/icons"
-import { apiHelper } from "../../../helpers/apiHelper"
+import triple from "../../../api/triple"
 import moment from "moment"
 //styled inputs with layout.css
 import "../../layout.css"
@@ -114,7 +113,7 @@ const RegistrationForm = ({
       psn: e.target.value,
     }
     try {
-      let res = await apiHelper.post("/api/getTin", body)
+      let res = await triple.post("/api/getTin", body)
       res.data.data.length === 0 ? setTin(null) : setTin(res.data.data.tin)
       res.data.data.length === 0
         ? form.setFieldsValue({
@@ -157,7 +156,7 @@ const RegistrationForm = ({
       toggleLoading(true)
       if (body.hasOwnProperty("when")) {
         let queryString = `${url}${body.full_name}&city=${body.city}&address=${body.address}&passport_series=${body.passport_series}&given=${body.given}&when=${body.when}&birthday=${body.birthday}&psn=${body.psn}&tin=${body.tin}&phone=${body.phone}&email=${body.email}&identity_document_type=${body.identity_document_type}`
-        apiHelper.get(queryString).then(
+        triple.get(queryString).then(
           response => {
             console.log("PROMISE ", response)
             updateFieldsState(body)
@@ -171,7 +170,7 @@ const RegistrationForm = ({
         )
       } else {
         let queryString = `${url}${body.full_name}&city=${body.city}&address=${body.address}&ID_card_number=${body.ID_card_number}&birthday=${body.birthday}&psn=${body.psn}&tin=${body.tin}&phone=${body.phone}&email=${body.email}&identity_document_type=${body.identity_document_type}`
-        apiHelper.get(queryString).then(
+        triple.get(queryString).then(
           response => {
             console.log("PROMISE ", response)
             updateFieldsState(body)

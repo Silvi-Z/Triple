@@ -1,13 +1,9 @@
 import React, { useState, useEffect, useRef, Suspense } from "react"
-import Layout from "../components/layout"
 import useTranslations from "../components/useTranslations"
 import { Col } from "antd"
-import { apiHelper } from "../helpers/apiHelper"
+import triple from "../api/triple";
 import ServiceDropWrap from "../components/servicecomponents/serviceDrop/servicedrop"
-import MainLogo from "../assets/homeImages/3c.png"
-import CalcImg from "../assets/homeImages/icons/calculator.svg"
 import TaxImg from "../assets/homeImages/icons/tax.svg"
-import AuditImg from "../assets/homeImages/icons/audit.svg"
 import ClientImg from "../assets/homeImages/icons/client.svg"
 import BrowserImg from "../assets/homeImages/icons/browser.svg"
 import UserImg from "../assets/homeImages/icons/user.svg"
@@ -110,7 +106,7 @@ const Services = ({ location, pageContext, originalPath }) => {
   //this function gets Api data from swagger endpoints
   // const getServiceData = async () => {
   //   try {
-  //     let res = await apiHelper.get("/api/service").then(
+  //     let res = await triple.get("/api/service").then(
   //       res => {
   //         setApiState(res.data.data)
   //       },

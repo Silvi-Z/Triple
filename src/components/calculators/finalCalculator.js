@@ -5,7 +5,7 @@ import styled from "styled-components"
 import { useFormik } from "formik"
 import moment from "moment"
 import * as Yup from "yup"
-import { apiHelper } from "../../helpers/apiHelper"
+import triple from "../../api/triple"
 import {
   Description,
   ToggleLarge,
@@ -198,7 +198,7 @@ const FinalCalculator = ({ langText }) => {
       setResult1(0)
 
       try {
-        const res = await apiHelper.post("/api/counter/vacation_days", values)
+        const res = await triple.post("/api/counter/vacation_days", values)
         console.log("Available vac days: ", res)
         if (res.data.success) {
           setResult1(res.data.data.available)
@@ -304,7 +304,7 @@ const FinalCalculator = ({ langText }) => {
       setLoading2(true)
 
       try {
-        const res = await apiHelper.post("/api/counter/final", bodyFormData)
+        const res = await triple.post("/api/counter/final", bodyFormData)
         console.log("Final calc response: ", res.data.data)
         if (res.data.success) {
           setResult2(res.data.data)
@@ -384,7 +384,7 @@ const FinalCalculator = ({ langText }) => {
                 setLoading3(true)
 
                 try {
-                  const res = await apiHelper.post("/api/counter/vacation_days", body)
+                  const res = await triple.post("/api/counter/vacation_days", body)
                   formik1.setFieldValue("total_vacation_days", res.data.data.available)
                   console.log(res.data.data)
                 } catch (e) {
@@ -421,7 +421,7 @@ const FinalCalculator = ({ langText }) => {
               setLoading3(true)
 
               try {
-                const res = await apiHelper.post("/api/counter/vacation_days", body)
+                const res = await triple.post("/api/counter/vacation_days", body)
                 formik1.setFieldValue("total_vacation_days", res.data.data.available)
                 console.log(res.data.data)
               } catch (e) {
@@ -450,7 +450,7 @@ const FinalCalculator = ({ langText }) => {
               setLoading3(true)
 
               try {
-                const res = await apiHelper.post("/api/counter/vacation_days", body)
+                const res = await triple.post("/api/counter/vacation_days", body)
                 formik1.setFieldValue("total_vacation_days", res.data.data.available)
                 console.log(res.data.data)
               } catch (e) {
