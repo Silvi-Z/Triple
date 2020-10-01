@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Button, DatePicker, Divider, InputNumber, Radio, Typography } from "antd"
+import { Button, DatePicker, Divider, InputNumber, Radio, Slider, Typography } from "antd"
 
 const { Text } = Typography;
 
@@ -36,6 +36,21 @@ export const RadioButton = styled(Radio.Button)`
   &.ant-radio-button-wrapper-checked {
     border-radius: 5px !important;
   } 
+`;
+
+export const SalarySlider = styled(Slider)`
+  &:hover .ant-slider-rail {
+    background-color: #000000;
+  }
+  
+  .ant-slider-handle {
+    background-color: #72eded;
+    border: solid 3px #000000;
+  }
+  
+  .ant-slider-rail  {
+    background-color: #000000;
+  }
 `;
 
 export const SalaryInput = styled(InputNumber)`

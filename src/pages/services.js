@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef, Suspense } from "react"
 import useTranslations from "../components/useTranslations"
 import { Col } from "antd"
-import triple from "../api/triple";
 import ServiceDropWrap from "../components/servicecomponents/serviceDrop/servicedrop"
 import TaxImg from "../assets/homeImages/icons/tax.svg"
+import CalcImg from "../assets/homeImages/icons/calculator.svg"
 import ClientImg from "../assets/homeImages/icons/client.svg"
 import BrowserImg from "../assets/homeImages/icons/browser.svg"
 import UserImg from "../assets/homeImages/icons/user.svg"

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useFormik } from "formik";
-import { Row, Col, Form, Card, Radio, Slider } from "antd";
+import { Row, Col, Form, Card, Radio } from "antd";
 import triple from "../../api/triple";
 import SalaryCardResult from "./calcComponents/SalaryCardResult";
 import {
@@ -9,7 +9,17 @@ import {
   TAX_FIELD_IT, TAX_FIELD_COMMON, TAX_FIELD_ENTERPRISE,
   PENSION_FIELD_YES, PENSION_FIELD_YES_VOLUNTEER, PENSION_FIELD_NO,
 } from "./utilities/salary"
-import { ButtonSubmit, FormLabel, Label, RadioButton, RadioGroup, RadioLabel, SalaryInput, UnderLine } from "./styled";
+import {
+  Label,
+  FormLabel,
+  UnderLine,
+  RadioGroup,
+  RadioLabel,
+  RadioButton,
+  SalaryInput,
+  SalarySlider,
+  ButtonSubmit,
+} from "./styled"
 
 const initialValues = {
   from: 1,
@@ -52,7 +62,11 @@ const SalaryCalculator = ({ langText }) => {
   return (
     <Row align="start" gutter={20}>
       <Col span={16}>
-        <FormLabel>{langText.title}</FormLabel>
+        <Row align="center" style={{justifyContent: 'space-between'}}>
+          <FormLabel>{langText.title}</FormLabel>
+
+          <FormLabel>{(new Date()).getFullYear()}</FormLabel>
+        </Row>
 
         <Card bordered={false}>
           <Form onFinish={formik.handleSubmit} initialValues={initialValues} layout="horizontal" colon={false}>
@@ -100,7 +114,7 @@ const SalaryCalculator = ({ langText }) => {
             </Form.Item>
 
             <Form.Item name="amount">
-              <Slider
+              <SalarySlider
                 onChange={v => formik.setFieldValue("amount", v)}
                 value={formik.values.amount}
                 step={SALARY_STEP}

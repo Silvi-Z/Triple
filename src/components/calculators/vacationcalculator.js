@@ -1,10 +1,10 @@
 import React from "react"
 import moment from "moment"
 import triple from "../../api/triple"
-import { pick, isNull } from "lodash"
+import { pick, isNull, isEmpty } from "lodash"
 import VacationTable from "./calcComponents/VacationTable"
-import { Row, Col, Form, Slider, Radio, Checkbox, Card } from "antd"
-import { ButtonSubmit, FormLabel, Label, RadioLabel, SalaryInput, UnderLine, VacationDatePicker } from "./styled"
+import { Row, Col, Form, Radio, Checkbox, Card } from "antd"
+import { ButtonSubmit, FormLabel, Label, SalarySlider, RadioLabel, SalaryInput, UnderLine, VacationDatePicker } from "./styled"
 import {
   schema,
   SALARY_MAX, SALARY_MIN, SALARY_STEP,
@@ -83,15 +83,15 @@ class VacationCalculator extends React.Component {
     const momentFrom = moment(date_from).subtract(1, "month")
     let items = []
 
-    if (!date_from || !amount) {
+    if (!date_from) {
       return items
     }
 
-    while (moment(date_from).diff(momentFrom, "months") <= 11) {
+    while (moment(date_from).diff(momentFrom, "months") <= 12) {
       items.push({
         month: momentFrom.month(),
         year: momentFrom.year(),
-        salary: amount,
+        salary: amount || null,
         bonus: null,
         surcharge: null,
       })
@@ -108,6 +108,10 @@ class VacationCalculator extends React.Component {
     const weekends = working_schedule === 5 ? [0, 6] : [6]
 
     let vacation_days = 0, momentFrom = moment(date_from)
+
+    if (isNull(date_to)) {
+      this.setState({form: { ...this.state.form, vacation_days: null}})
+    }
 
     if (date_from && date_to) {
       while (momentFrom.isSameOrBefore(date_to)) {
@@ -126,7 +130,11 @@ class VacationCalculator extends React.Component {
     const { date_from, vacation_days, working_schedule } = this.state.form
     const weekends = working_schedule === 5 ? [0, 6] : [6]
     const momentFrom = moment(date_from)
-    let date_to = undefined
+    let date_to = null
+
+    if (isEmpty(vacation_days)) {
+      this.setState({ form: { ...this.state.form, date_to } })
+    }
 
     if (date_from && vacation_days) {
       for (let i = 1; i < vacation_days; i++) {
@@ -141,6 +149,12 @@ class VacationCalculator extends React.Component {
 
       this.setState({ form: { ...this.state.form, date_to } })
     }
+  }
+
+  setDateField(name, date) {
+    date = isNull(date) ? date : date.format("YYYY-MM-DD");
+
+    this.setField(name, date, this.autocompleteVacationDays)
   }
 
   setField(name, value, cb) {
@@ -174,7 +188,11 @@ class VacationCalculator extends React.Component {
     return (
       <Row align="start" gutter={20}>
         <Col span={16}>
-          <FormLabel>{lang.title}</FormLabel>
+          <Row align="center" style={{justifyContent: 'space-between'}}>
+            <FormLabel>{lang.title}</FormLabel>
+
+            <FormLabel>{(new Date()).getFullYear()}</FormLabel>
+          </Row>
 
           <Card bordered={false}>
             <Form
@@ -188,11 +206,10 @@ class VacationCalculator extends React.Component {
                 <Col span={10}>
                   <Form.Item label={<Label>{lang.start}</Label>}>
                     <VacationDatePicker
-                      onChange={date => this.setField("date_from", date.format("YYYY-MM-DD"), this.autocompleteVacationDays)}
+                      onChange={date => this.setDateField("date_from", date)}
                       placeholder={lang.date_from_placeholder}
                       value={this.dateFromValue}
-                      allowClear={false}
-                      format="DD/MM/YYYY"
+                      format="DD.MM.YYYY"
                       name="date_from"
                       size="large"
                     />
@@ -201,12 +218,11 @@ class VacationCalculator extends React.Component {
                 <Col span={10}>
                   <Form.Item label={<Label>{lang.end}</Label>}>
                     <VacationDatePicker
-                      onChange={date => this.setField("date_to", date.format("YYYY-MM-DD"), this.autocompleteVacationDays)}
+                      onChange={date => this.setDateField("date_to", date)}
                       disabledDate={d => !this.fromDate || (d.isSameOrBefore(this.fromDate, "day"))}
                       placeholder={lang.date_from_placeholder}
                       value={this.dateToValue}
-                      allowClear={false}
-                      format="DD/MM/YYYY"
+                      format="DD.MM.YYYY"
                       name="date_to"
                       size="large"
                     />
@@ -252,7 +268,7 @@ class VacationCalculator extends React.Component {
               </Form.Item>
 
               <Form.Item>
-                <Slider
+                <SalarySlider
                   onChange={v => this.setField("amount", v)}
                   value={form.amount}
                   step={SALARY_STEP}

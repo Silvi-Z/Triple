@@ -11,8 +11,12 @@ class VacationTable extends React.Component {
     this.state = { items: cloneDeep(props.items) }
   }
 
+  get workedMonths() {
+    return this.state.items.filter(item => item.salary > 0).length
+  }
+
   get avgMonthAmount() {
-    return Math.round((this.total("salary") + this.total("bonus")) / 11 + this.total("surcharge") / 12)
+    return Math.round((this.total("salary") + this.total("surcharge")) / this.workedMonths + this.total("bonus") / 12)
   }
 
   total(key) {
@@ -43,8 +47,8 @@ class VacationTable extends React.Component {
           <ColHeader>{lang.month}</ColHeader>
           <ColHeader>{lang.year}</ColHeader>
           <ColHeader>{lang.gross_salary}</ColHeader>
-          <ColHeader>{lang.bonus}</ColHeader>
           <ColHeader>{lang.surcharge}</ColHeader>
+          <ColHeader>{lang.bonus}</ColHeader>
         </tr>
         </thead>
         <tbody>
@@ -57,19 +61,8 @@ class VacationTable extends React.Component {
                 onChange={value => this.setField({ name: "salary", value, i })}
                 formatter={value => value.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                 parser={value => value.replace(/\$\s?|(,*)/g, "")}
-                style={{ width: "100%", color: "#00B3C7" }}
+                style={{ width: "100%" }}
                 value={item.salary}
-                min={SALARY_MIN}
-                max={SALARY_MAX}
-              />
-            </td>
-            <td>
-              <SalaryInput
-                onChange={value => this.setField({ name: "bonus", value, i })}
-                formatter={value => value.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
-                parser={value => value.replace(/\$\s?|(,*)/g, "")}
-                style={{ width: "100%", color: "#00B3C7" }}
-                value={item.bonus}
                 min={SALARY_MIN}
                 max={SALARY_MAX}
               />
@@ -79,8 +72,19 @@ class VacationTable extends React.Component {
                 onChange={value => this.setField({ name: "surcharge", value, i })}
                 formatter={value => value.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                 parser={value => value.replace(/\$\s?|(,*)/g, "")}
-                style={{ width: "100%", color: "#00B3C7" }}
+                style={{ width: "100%" }}
                 value={item.surcharge}
+                min={SALARY_MIN}
+                max={SALARY_MAX}
+              />
+            </td>
+            <td>
+              <SalaryInput
+                onChange={value => this.setField({ name: "bonus", value, i })}
+                formatter={value => value.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                parser={value => value.replace(/\$\s?|(,*)/g, "")}
+                style={{ width: "100%" }}
+                value={item.bonus}
                 min={SALARY_MIN}
                 max={SALARY_MAX}
               />
