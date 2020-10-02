@@ -214,14 +214,45 @@ const query = graphql`
               final_calculator {
                 title
               }
-              mortgage_calculator {
+              mortgage {
                 title
+                clean_salary
+                dirty_salary
+                salary_label
+                salary_type_label
+                static_salary_label
+                interest_amount_label
+                pensioner_label
+                tax_label_common
+                tax_label_enterprise
+                tax_label_it
+                tax_label
+                yes_volunteer
+                yes
+                no
+                quarter_months
+                gross_salary
+                bonus
+                surcharge
+                calculate
+                result {
+                  title
+                  income_tax_back
+                }
               }
               car_customs_calculator {
                 title
               }
-              car_sell_calculator {
-                title
+              car_sell {
+                title,
+                achievement
+                alienation
+                price
+                power
+                horsepower
+                kilowatts
+                calculate
+                tax_label
               }
               car_prop_tax_calculator {
                 title

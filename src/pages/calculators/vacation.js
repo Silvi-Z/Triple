@@ -1,6 +1,6 @@
 import React from "react";
 import useTranslations from "../../components/useTranslations";
-import VacationCalculator from "../../components/calculators/vacationcalculator";
+import VacationCalculator from "../../components/calculators/VacationCalculator";
 import CalculatorWrapper from "../../components/calculators/calcComponents/CalculatorWrapper";
 
 const vacation = ({pageContext}) => {

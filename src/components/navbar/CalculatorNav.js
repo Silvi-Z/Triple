@@ -77,13 +77,13 @@ const CalculatorNav = ({ t, locale }) => {
           <NavLink to={`${locale}/calculators/final`}>{t.final_calculator.title}</NavLink>
         </NavItem>
         <NavItem>
-          <NavLink to={`${locale}/calculators/mortgage`}>{t.mortgage_calculator.title}</NavLink>
+          <NavLink to={`${locale}/calculators/mortgage`}>{t.mortgage.title}</NavLink>
         </NavItem>
         <NavItem>
           <NavLink to={`${locale}/calculators/car-customs`}>{t.car_customs_calculator.title}</NavLink>
         </NavItem>
         <NavItem>
-          <NavLink to={`${locale}/calculators/car-sell`}>{t.car_sell_calculator.title}</NavLink>
+          <NavLink to={`${locale}/calculators/car-sell`}>{t.car_sell.title}</NavLink>
         </NavItem>
         <NavItem>
           <NavLink to={`${locale}/calculators/car-tax`}>{t.car_prop_tax_calculator.title}</NavLink>

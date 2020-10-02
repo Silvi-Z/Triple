@@ -2,7 +2,7 @@ import React from "react"
 import { cloneDeep, isEqual } from "lodash"
 import { months } from "../utilities/vacation"
 import { SALARY_MAX, SALARY_MIN } from "../utilities/salary"
-import { ColHeader, VacationHistoryTable, VacationCol, SalaryInput } from "../styled"
+import { ColHeader, CalculatorTable, CalculatorCol, SalaryInput } from "../styled"
 
 class VacationTable extends React.Component {
   constructor(props) {
@@ -41,7 +41,7 @@ class VacationTable extends React.Component {
     const { items } = this.state
 
     return (
-      <VacationHistoryTable>
+      <CalculatorTable>
         <thead>
         <tr>
           <ColHeader>{lang.month}</ColHeader>
@@ -54,8 +54,8 @@ class VacationTable extends React.Component {
         <tbody>
         {items.map((item, i) => (
           <tr key={`amounts-${item.month}`}>
-            <VacationCol>{months.arm[item.month]}</VacationCol>
-            <VacationCol>{item.year}</VacationCol>
+            <CalculatorCol>{months.arm[item.month]}</CalculatorCol>
+            <CalculatorCol>{item.year}</CalculatorCol>
             <td>
               <SalaryInput
                 onChange={value => this.setField({ name: "salary", value, i })}
@@ -92,7 +92,7 @@ class VacationTable extends React.Component {
           </tr>
         ))}
         </tbody>
-      </VacationHistoryTable>
+      </CalculatorTable>
     )
   }
 }

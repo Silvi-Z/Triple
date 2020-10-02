@@ -244,14 +244,45 @@
     "final_calculator": {
       "title": "Final settlement calculator"
     },
-    "mortgage_calculator": {
-      "title": "Mortgage repayment calculator"
+    "mortgage": {
+      "title": "Mortgage repayment calculator",
+      "clean_salary": "Զուտ աշխատավարձ",
+      "dirty_salary": "Գրանցված աշխատավարձ",
+      "salary_label": "ԱՄՍԱԿԱՆ Աշխատավարձ",
+      "salary_type_label": "Հաշվարկի համար հիմք ընդունել",
+      "static_salary_label": "Աշխատավարձը անփոփոխ է եղել վերջին 3 ամիսների ընթացքում, չեն հատկացվել հավելավճարներ և պարգևավճարներ։",
+      "pensioner_label": "Մասնակցում ե՞ք կուտակային կենսաթոշակային համակարգին",
+      "interest_amount_label": "Հաշվետու եռամսյակում վճարած տոկոսագումար",
+      "tax_label_common": "Ընդհանուր հարկման դաշտի սուբյեկտ հանդիսացող կազմակերպություն",
+      "tax_label_enterprise": "Միկրոձեռնարկության սուբյեկտ հանդիսացող կազմակերպություն",
+      "tax_label_it": "ՏՏ ոլորտի հավաստագրված կազմակերպություն",
+      "tax_label": "Ընտրել տարբերակը",
+      "yes_volunteer": "Այո(կամավոր)",
+      "yes": "Այո",
+      "no": "Ոչ",
+      "quarter_months": "եռամսյակի ամիսներ",
+      "gross_salary": "Համախառն աշխատավարձ",
+      "bonus": "Պարգևավճար",
+      "surcharge": "Հավելավճար",
+      "calculate": "ՀԱՇՎԵԼ",
+      "result": {
+        "title" : "Արդյունք",
+        "income_tax_back": "Վերադարձվող եկամտային հարկ"
+      }
     },
     "car_customs_calculator": {
       "title": "Car customs clearance fee calculator"
     },
-    "car_sell_calculator": {
-      "title": "Car sales calculator"
+    "car_sell": {
+      "title": "Car sales calculator",
+      "achievement": "ՁԵՌՔԲԵՐՈՒՄ",
+      "alienation": "ՕՏԱՐՈՒՄ",
+      "price": "վաճառքի գին",
+      "power": "ՇԱՐԺԻՉԻ ՀԶՈՐՈՒԹՅՈՒՆ",
+      "horsepower": "Ձիաուժ",
+      "kilowatts": "Կիլովատ",
+      "calculate": "ՀԱՇՎԵԼ",
+      "tax_label": "Վճարման ենթակա եկամտային հարկ"
     },
     "car_prop_tax_calculator": {
       "title": "Car property tax calculator"

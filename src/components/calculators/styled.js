@@ -99,6 +99,11 @@ export const ButtonSubmit = styled(Button)`
     background: #1C1D21 !important;
     border-color: #1C1D21 !important;
   }
+  &:focus {
+    color: #FFFFFF !important;
+    background: #1C1D21 !important;
+    border-color: #1C1D21 !important;
+  }
 `;
 
 export const UnderLine = styled(Divider)`
@@ -126,12 +131,12 @@ export const ColHeader = styled.th`
   color: #000000;
 `
 
-export const VacationHistoryTable = styled.table`
+export const CalculatorTable = styled.table`
   border-collapse: separate;
   border-spacing: 10px;
 `
 
-export const VacationCol = styled.th`
+export const CalculatorCol = styled.th`
   background: #F7F7F7;
   border-radius: 5px;
   font-family: Arial AMU;
