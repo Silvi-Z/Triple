@@ -3,7 +3,7 @@ import moment from "moment"
 import triple from "../../api/triple"
 import { pick, isNull, isEmpty } from "lodash"
 import VacationTable from "./calcComponents/VacationTable"
-import { Row, Col, Form, Radio, Checkbox, Card } from "antd"
+import { Row, Col, Card, Form, Radio, Checkbox } from "antd"
 import { ButtonSubmit, FormLabel, Label, SalarySlider, RadioLabel, SalaryInput, UnderLine, VacationDatePicker } from "./styled"
 import {
   schema,
@@ -296,27 +296,6 @@ class VacationCalculator extends React.Component {
                 : null}
 
               <Form.Item
-                label={<RadioLabel>{lang.pensioner_label}</RadioLabel>}
-                labelCol={{ span: 24 }}
-                name="pension"
-              >
-                <Radio.Group
-                  onChange={e => this.setField("pension", e.target.value)}
-                  value={form.pension}
-                >
-                  <Radio value={PENSION_FIELD_YES}>
-                    <Label>{lang.yes}</Label>
-                  </Radio>
-                  <Radio value={PENSION_FIELD_YES_VOLUNTEER}>
-                    <Label>{lang.yes_volunteer}</Label>
-                  </Radio>
-                  <Radio value={PENSION_FIELD_NO}>
-                    <Label>{lang.no}</Label>
-                  </Radio>
-                </Radio.Group>
-              </Form.Item>
-
-              <Form.Item
                 label={<Label style={{ fontSize: "16px" }}>{lang.tax_label}</Label>}
                 labelCol={{ span: 24 }}
                 name="tax_field"
@@ -333,6 +312,27 @@ class VacationCalculator extends React.Component {
                   </Radio>
                   <Radio style={radioStyle} value={TAX_FIELD_ENTERPRISE}>
                     <RadioLabel>{lang.tax_label_enterprise}</RadioLabel>
+                  </Radio>
+                </Radio.Group>
+              </Form.Item>
+
+              <Form.Item
+                label={<RadioLabel>{lang.pensioner_label}</RadioLabel>}
+                labelCol={{ span: 24 }}
+                name="pension"
+              >
+                <Radio.Group
+                  onChange={e => this.setField("pension", e.target.value)}
+                  value={form.pension}
+                >
+                  <Radio value={PENSION_FIELD_YES}>
+                    <Label>{lang.yes}</Label>
+                  </Radio>
+                  <Radio value={PENSION_FIELD_YES_VOLUNTEER}>
+                    <Label>{lang.yes_volunteer}</Label>
+                  </Radio>
+                  <Radio value={PENSION_FIELD_NO}>
+                    <Label>{lang.no}</Label>
                   </Radio>
                 </Radio.Group>
               </Form.Item>

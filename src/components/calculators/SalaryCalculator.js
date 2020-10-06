@@ -124,23 +124,6 @@ const SalaryCalculator = ({ langText }) => {
               />
             </Form.Item>
 
-            <Form.Item label={<RadioLabel>{langText.pensioner_label}</RadioLabel>} name="pension">
-              <Radio.Group
-                onChange={(e) => formik.setFieldValue("pension", e.target.value)}
-                value={formik.values.pension}
-              >
-                <Radio value={PENSION_FIELD_YES}>
-                  <Label>{langText.yes}</Label>
-                </Radio>
-                <Radio value={PENSION_FIELD_YES_VOLUNTEER}>
-                  <Label>{langText.yes_volunteer}</Label>
-                </Radio>
-                <Radio value={PENSION_FIELD_NO}>
-                  <Label>{langText.no}</Label>
-                </Radio>
-              </Radio.Group>
-            </Form.Item>
-
             <Form.Item label={<Label style={{fontSize: '16px'}}>{langText.tax_label}</Label>} labelCol={{ span: 24 }} name="tax_field">
               <Radio.Group
                 onChange={(e) => formik.setFieldValue("tax_field", e.target.value)}
@@ -154,6 +137,23 @@ const SalaryCalculator = ({ langText }) => {
                 </Radio>
                 <Radio style={radioStyle} value={TAX_FIELD_ENTERPRISE}>
                   <RadioLabel>{langText.tax_label_enterprise}</RadioLabel>
+                </Radio>
+              </Radio.Group>
+            </Form.Item>
+
+            <Form.Item label={<RadioLabel>{langText.pensioner_label}</RadioLabel>} name="pension">
+              <Radio.Group
+                onChange={(e) => formik.setFieldValue("pension", e.target.value)}
+                value={formik.values.pension}
+              >
+                <Radio value={PENSION_FIELD_YES}>
+                  <Label>{langText.yes}</Label>
+                </Radio>
+                <Radio value={PENSION_FIELD_YES_VOLUNTEER}>
+                  <Label>{langText.yes_volunteer}</Label>
+                </Radio>
+                <Radio value={PENSION_FIELD_NO}>
+                  <Label>{langText.no}</Label>
                 </Radio>
               </Radio.Group>
             </Form.Item>

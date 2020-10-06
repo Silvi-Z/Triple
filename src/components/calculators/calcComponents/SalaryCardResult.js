@@ -25,7 +25,7 @@ const CardText = styled.p`
   margin: 0;
 `
 
-const SalaryCardResult = ({title, text, tooltip}) => (
+const SalaryCardResult = ({title, text, tooltip, loading = false}) => (
   <Card
     style={{
       border: '0.5px solid #555555',
@@ -36,6 +36,7 @@ const SalaryCardResult = ({title, text, tooltip}) => (
       width: 300
     }}
     bodyStyle={{padding: 0}}
+    loading={loading}
   >
     <CardTitle>
       {title}

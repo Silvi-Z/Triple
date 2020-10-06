@@ -15,7 +15,7 @@ function useTranslations() {
       translations: item.node.translations,
     }
   })
-  console.log("simplified", simplified)
+  // console.log("simplified", simplified)
   // Only return translations for the current locale
   const { translations } = simplified.filter(lang => lang.name === locale)[0]
 
@@ -150,7 +150,7 @@ const query = graphql`
               nav {
                 title
               }
-              salary_calculator {
+              salary {
                 title
                 clean_salary_button
                 dirty_salary_button
@@ -253,6 +253,7 @@ const query = graphql`
                 kilowatts
                 calculate
                 tax_label
+                tax_body
               }
               car_prop_tax_calculator {
                 title

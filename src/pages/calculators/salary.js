@@ -1,6 +1,6 @@
 import React from "react";
 import useTranslations from "../../components/useTranslations";
-import SalaryCalculator from "../../components/calculators/salarycalculator";
+import SalaryCalculator from "../../components/calculators/SalaryCalculator";
 import CalculatorWrapper from "../../components/calculators/calcComponents/CalculatorWrapper";
 
 const salary = ({ pageContext }) => {
@@ -8,7 +8,7 @@ const salary = ({ pageContext }) => {
 
   return (
     <CalculatorWrapper ctx={pageContext}>
-      <SalaryCalculator langText={calculator.salary_calculator} />
+      <SalaryCalculator langText={calculator.salary} />
     </CalculatorWrapper>
   )
 };

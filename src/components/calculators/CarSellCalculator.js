@@ -1,9 +1,10 @@
 import React from "react"
-import { isNull } from "lodash"
+import { isNull, isNumber } from "lodash"
 import { Row, Col, Card, Form, Radio } from "antd"
 import SalaryCardResult from "./calcComponents/SalaryCardResult"
 import { ButtonSubmit, FormLabel, Label, SalaryInput, SalarySlider, VacationDatePicker } from "./styled"
 import { schema, ENGINE_HORSEPOWER, ENGINE_KILOWATTS, CAR_SELL_MIN, CAR_SELL_MAX, CAR_SELL_STEP } from "./utilities/carsell"
+import { isString } from "formik"
 
 const form = {
   achievementDate: null,
@@ -20,14 +21,19 @@ class CarSellCalculator extends React.Component {
     this.state = { form: { ...form }, tax: null }
   }
 
+  /**
+   * Car sell tax
+   *
+   * @returns {number|String}
+   */
   get tax() {
     const {achievementDate, alienationDate, powerType, price, power} = this.state.form;
 
     let contractValue = price * 0.01
     let powerValue
 
-    if (achievementDate.diff(alienationDate, 'year')) {
-      return 0;
+    if (alienationDate && achievementDate && alienationDate.diff(achievementDate, "year") >= 1) {
+      return this.props.lang.tax_body;
     }
 
     if (powerType === ENGINE_HORSEPOWER) {
@@ -63,6 +69,10 @@ class CarSellCalculator extends React.Component {
 
       this.setState({tax: this.tax})
     })
+  }
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    console.log(this.tax)
   }
 
   render() {
@@ -172,7 +182,9 @@ class CarSellCalculator extends React.Component {
         <Col span={8}>
           <SalaryCardResult
             title={lang.tax_label}
-            text={tax > 0 ? tax : 'text'}
+            text={
+              tax > 0 && isNumber(tax) ? tax : isString(tax) ? lang.tax_body : null
+            }
           />
         </Col>
       </Row>

@@ -68,7 +68,7 @@ const CalculatorNav = ({ t, locale }) => {
 
       <List bordered={false} itemLayout="vertical">
         <NavItem>
-          <NavLink to={`${locale}/calculators/salary`}>{t.salary_calculator.title}</NavLink>
+          <NavLink to={`${locale}/calculators/salary`}>{t.salary.title}</NavLink>
         </NavItem>
         <NavItem>
           <NavLink to={`${locale}/calculators/vacation`}>{t.vacation.title}</NavLink>

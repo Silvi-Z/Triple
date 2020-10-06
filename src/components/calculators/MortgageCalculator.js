@@ -1,11 +1,16 @@
 import React from "react"
+import triple from "../../api/triple"
 import { cloneDeep, isNull } from "lodash"
 import MortgageTable from "./calcComponents/MortgageTable"
 import SalaryCardResult from "./calcComponents/SalaryCardResult"
-import { Card, Checkbox, Col, Form, Radio, Row } from "antd"
+import { Row, Col, Card, Form, Radio, Checkbox } from "antd"
 import { SALARY_TYPE_NET, SALARY_TYPE_REGISTERED } from "./utilities/mortgage"
 import { ButtonSubmit, FormLabel, Label, RadioLabel, SalaryInput, SalarySlider, UnderLine } from "./styled"
-import { SALARY_MAX, SALARY_MIN, SALARY_STEP, TAX_FIELD_COMMON, TAX_FIELD_ENTERPRISE, TAX_FIELD_IT } from "./utilities/salary"
+import {
+  SALARY_MAX, SALARY_MIN, SALARY_STEP,
+  TAX_FIELD_COMMON, TAX_FIELD_ENTERPRISE, TAX_FIELD_IT,
+  PENSION_FIELD_NO, PENSION_FIELD_YES, PENSION_FIELD_YES_VOLUNTEER, schema,
+} from "./utilities/salary"
 
 const radioStyle = {
   display: "block",
@@ -19,6 +24,7 @@ const form = {
   static_salary: true,
   salary_type: SALARY_TYPE_REGISTERED,
   tax_field: TAX_FIELD_COMMON,
+  pension: PENSION_FIELD_YES
 }
 
 class MortgageCalculator extends React.Component {
@@ -32,6 +38,7 @@ class MortgageCalculator extends React.Component {
         {month: 1, salary: null, surcharge: null, bonus: null},
         {month: 2, salary: null, surcharge: null, bonus: null}
       ],
+      loading: false,
       tax: null
     }
   }
@@ -75,6 +82,10 @@ class MortgageCalculator extends React.Component {
     this.setState({ form: { ...this.state.form, [name]: value } }, cb)
   }
 
+  setLoading(loading) {
+    this.setState({loading})
+  }
+
   setItemField = ({ name, value, i }) => {
     let items = cloneDeep(this.state.items)
       items[i][name] = value
@@ -82,12 +93,50 @@ class MortgageCalculator extends React.Component {
     this.setState({ items })
   }
 
-  componentDidUpdate(prevProps, prevState, snapshot) {
-    console.log(this.backIncomeTax)
+  handleSubmit = async () => {
+    const { salary_type, tax_field, pension, static_salary, amount, interest_amount } = this.state.form;
+    let { items } = this.state;
+
+    const a = static_salary
+      ? amount
+      : items.reduce((t ,item) => t + Math.round(( (item.salary || 0) + (item.bonus || 0) + (item.surcharge || 0) )), 0)
+
+    if (salary_type === SALARY_TYPE_NET) {
+      const data = {
+        from: salary_type,
+        amount: a,
+        tax_field,
+        pension
+      }
+      const valid = await schema.isValid(data)
+
+      if (valid) {
+        this.setLoading(true)
+
+        try {
+          const res = await triple.post("/api/counter/salary", data);
+          let { income_tax } = res.data
+
+          if (static_salary || tax_field === TAX_FIELD_ENTERPRISE) {
+            income_tax = income_tax * 3
+          }
+
+          let tax = income_tax > interest_amount ? interest_amount : income_tax
+
+          this.setState({ tax })
+        } catch (e) {
+          console.log(e)
+        } finally {
+          this.setLoading(false)
+        }
+      }
+    } else {
+      this.setState({tax: this.backIncomeTax})
+    }
   }
 
   render() {
-    const { form, items } = this.state
+    const { form, items, tax, loading } = this.state
     const { lang } = this.props
 
     return (
@@ -121,28 +170,6 @@ class MortgageCalculator extends React.Component {
                 </Radio.Group>
               </Form.Item>
 
-              <Form.Item label={<Label>{lang.salary_label}</Label>} name="amount">
-                <SalaryInput
-                  onChange={v => this.setField("amount", v)}
-                  value={form.amount}
-                  min={SALARY_MIN}
-                  name="amount"
-                  size="large"
-                  type="number"
-                />
-              </Form.Item>
-
-              <Form.Item name="amount">
-                <SalarySlider
-                  onChange={v => this.setField("amount", v)}
-                  value={form.amount}
-                  step={SALARY_STEP}
-                  min={SALARY_MIN}
-                  max={SALARY_MAX}
-                  name="amount"
-                />
-              </Form.Item>
-
               <Form.Item>
                 <Checkbox
                   onChange={e => this.setField("static_salary", e.target.checked)}
@@ -150,6 +177,50 @@ class MortgageCalculator extends React.Component {
                 >
                   <RadioLabel>{lang.static_salary_label}</RadioLabel>
                 </Checkbox>
+              </Form.Item>
+
+              {!form.static_salary ?
+                <MortgageTable
+                  lang={lang}
+                  items={items}
+                  onChange={this.setItemField}
+                />
+                : null}
+
+              {form.static_salary ?
+                <Form.Item label={<Label>{lang.salary_label}</Label>} name="amount">
+                  <SalaryInput
+                    onChange={v => this.setField("amount", v)}
+                    value={form.amount}
+                    min={SALARY_MIN}
+                    name="amount"
+                    size="large"
+                    type="number"
+                  />
+                </Form.Item>
+              : null}
+
+              {form.static_salary ?
+                <Form.Item name="amount">
+                  <SalarySlider
+                    onChange={v => this.setField("amount", v)}
+                    value={form.amount}
+                    step={SALARY_STEP}
+                    min={SALARY_MIN}
+                    max={SALARY_MAX}
+                    name="amount"
+                  />
+                </Form.Item>
+              : null}
+
+              <Form.Item label={<Label>{lang.interest_amount_label}</Label>} name="interest_amount">
+                <SalaryInput
+                  onChange={v => this.setField("interest_amount", v)}
+                  value={form.interest_amount}
+                  name="interest_amount"
+                  type="number"
+                  size="large"
+                />
               </Form.Item>
 
               <Form.Item label={<Label style={{ fontSize: "16px" }}>{lang.tax_label}</Label>} labelCol={{ span: 24 }} name="tax_field">
@@ -169,26 +240,33 @@ class MortgageCalculator extends React.Component {
                 </Radio.Group>
               </Form.Item>
 
-              <Form.Item label={<Label>{lang.interest_amount_label}</Label>} name="interest_amount">
-                <SalaryInput
-                  onChange={v => this.setField("interest_amount", v)}
-                  value={form.interest_amount}
-                  name="interest_amount"
-                  type="number"
-                  size="large"
-                />
-              </Form.Item>
-
-              {!form.static_salary ?
-                <MortgageTable
-                  lang={lang}
-                  items={items}
-                  onChange={this.setItemField}
-                />
+              {form.salary_type === SALARY_TYPE_NET ?
+                <Form.Item
+                  label={<RadioLabel>{lang.pensioner_label}</RadioLabel>}
+                  labelCol={{ span: 24 }}
+                  name="pension"
+                >
+                  <Radio.Group
+                    onChange={e => this.setField("pension", e.target.value)}
+                    value={form.pension}
+                  >
+                    <Radio value={PENSION_FIELD_YES}>
+                      <Label>{lang.yes}</Label>
+                    </Radio>
+                    <Radio value={PENSION_FIELD_YES_VOLUNTEER}>
+                      <Label>{lang.yes_volunteer}</Label>
+                    </Radio>
+                    <Radio value={PENSION_FIELD_NO}>
+                      <Label>{lang.no}</Label>
+                    </Radio>
+                  </Radio.Group>
+                </Form.Item>
               : null}
 
               <Form.Item>
                 <ButtonSubmit
+                  loading={loading}
+                  disabled={loading}
                   htmlType="submit"
                   shape="round"
                   size="large"
@@ -206,7 +284,8 @@ class MortgageCalculator extends React.Component {
 
           <SalaryCardResult
             title={lang.result.income_tax_back}
-            text={this.backIncomeTax}
+            loading={loading}
+            text={tax}
           />
         </Col>
       </Row>
