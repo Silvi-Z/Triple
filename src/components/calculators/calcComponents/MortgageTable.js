@@ -1,7 +1,7 @@
 import React from "react"
 import { months } from "../utilities/mortgage"
 import { SALARY_MAX, SALARY_MIN } from "../utilities/salary"
-import { CalculatorCol, CalculatorTable, ColHeader, SalaryInput } from "../styled"
+import { CalculatorCol, CalculatorTable, ColHeader, CalculatorInput } from "../styled"
 
 class MortgageTable extends React.Component {
   constructor(props) {
@@ -26,7 +26,7 @@ class MortgageTable extends React.Component {
             <tr key={`amounts-${item.month}`}>
               <CalculatorCol>{months.arm[item.month]}</CalculatorCol>
               <td>
-                <SalaryInput
+                <CalculatorInput
                   onChange={value => onChange({ name: "salary", value, i })}
                   formatter={value => value.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                   parser={value => value.replace(/\$\s?|(,*)/g, "")}
@@ -37,7 +37,7 @@ class MortgageTable extends React.Component {
                 />
               </td>
               <td>
-                <SalaryInput
+                <CalculatorInput
                   onChange={value => onChange({ name: "surcharge", value, i })}
                   formatter={value => value.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                   parser={value => value.replace(/\$\s?|(,*)/g, "")}
@@ -48,7 +48,7 @@ class MortgageTable extends React.Component {
                 />
               </td>
               <td>
-                <SalaryInput
+                <CalculatorInput
                   onChange={value => onChange({ name: "bonus", value, i })}
                   formatter={value => value.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                   parser={value => value.replace(/\$\s?|(,*)/g, "")}

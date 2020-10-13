@@ -211,8 +211,47 @@ const query = graphql`
                   pure_vacation_amount
                 }
               }
-              final_calculator {
+              final {
                 title
+                form {
+                  acceptance
+                  release
+                  date_acceptance_placeholder
+                  date_release_placeholder
+                  working_schedule
+                  five_days
+                  six_days
+                  available_vacation_days
+                  total_vacation_days
+                  used_vacation_days
+                  salary
+                  static_salary
+                  tax
+                  tax_common
+                  tax_enterprise
+                  tax_it
+                  pensioner
+                  yes_volunteer
+                  yes
+                  no
+                  calculate   
+                }
+                table {
+                  hint
+                  month
+                  year
+                  gross_salary
+                  bonus
+                  surcharge
+                }
+                result {
+                  title
+                  total_amount
+                  income_tax
+                  pension_fee
+                  total_fee
+                  net_amount
+                }
               }
               mortgage {
                 title
@@ -254,6 +293,9 @@ const query = graphql`
                 calculate
                 tax_label
                 tax_body
+                result {
+                  title
+                }
               }
               car_prop_tax_calculator {
                 title

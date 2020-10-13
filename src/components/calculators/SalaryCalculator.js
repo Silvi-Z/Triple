@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useFormik } from "formik";
 import { Row, Col, Form, Card, Radio } from "antd";
 import triple from "../../api/triple";
@@ -16,8 +16,8 @@ import {
   RadioGroup,
   RadioLabel,
   RadioButton,
-  SalaryInput,
-  SalarySlider,
+  CalculatorInput,
+  CalculatorSlider,
   ButtonSubmit,
 } from "./styled"
 
@@ -35,7 +35,9 @@ const SalaryCalculator = ({ langText }) => {
     pension_fee: 0,
     stamp_fee: 0,
     salary: 0
-  });
+  })
+  const [loading, setLoading] = useState(false)
+  const [calculated, setCalculated] = useState(false)
 
   const formik = useFormik({
     initialValues,
@@ -43,12 +45,18 @@ const SalaryCalculator = ({ langText }) => {
     validateOnMount: true,
     isInitialValid: false,
     onSubmit: async values => {
+      setLoading(true)
+
       try {
         const res = await triple.post("/api/counter/salary", values);
+
+        if (!calculated) setCalculated(true)
 
         setResult(res.data);
       } catch (e) {
         console.log("Calculation error: ", e)
+      } finally {
+        setLoading(false)
       }
     },
   });
@@ -59,13 +67,17 @@ const SalaryCalculator = ({ langText }) => {
     lineHeight: '30px',
   };
 
+  useEffect(() => {
+    if (calculated) formik.handleSubmit()
+  }, [formik.values])
+
   return (
     <Row align="start" gutter={20}>
       <Col span={16}>
         <Row align="center" style={{justifyContent: 'space-between'}}>
           <FormLabel>{langText.title}</FormLabel>
 
-          <FormLabel>{(new Date()).getFullYear()}</FormLabel>
+          <FormLabel>{(new Date()).getFullYear()}թ.</FormLabel>
         </Row>
 
         <Card bordered={false}>
@@ -103,7 +115,7 @@ const SalaryCalculator = ({ langText }) => {
             </Row>
 
             <Form.Item label={<Label>{langText.salary_label}</Label>} name="amount">
-              <SalaryInput
+              <CalculatorInput
                 onChange={v => formik.setFieldValue("amount", v)}
                 value={formik.values.amount}
                 min={SALARY_MIN}
@@ -114,7 +126,7 @@ const SalaryCalculator = ({ langText }) => {
             </Form.Item>
 
             <Form.Item name="amount">
-              <SalarySlider
+              <CalculatorSlider
                 onChange={v => formik.setFieldValue("amount", v)}
                 value={formik.values.amount}
                 step={SALARY_STEP}
@@ -180,24 +192,29 @@ const SalaryCalculator = ({ langText }) => {
         <SalaryCardResult
           title={formik.values.from === 1 ? langText.dirty_to_clean_salary : langText.clean_dirty_to_salary}
           text={result.salary}
+          loading={loading}
         />
         <SalaryCardResult
           title={langText.income_tax_label}
           text={result.income_tax}
+          loading={loading}
           tooltip
         />
         <SalaryCardResult
           title={langText.pension_paymet_label}
           text={result.pension_fee}
+          loading={loading}
           tooltip
         />
         <SalaryCardResult
           title={langText.stamp_duty_label}
           text={result.stamp_fee}
+          loading={loading}
         />
         <SalaryCardResult
           title={langText.general_storage_label}
           text={result.total_fee}
+          loading={loading}
         />
       </Col>
     </Row>

@@ -14,6 +14,16 @@ const CardTitle = styled.h3`
   margin-bottom: 10px;
 `;
 
+const CardSubtitle = styled.p`
+  font-family: Arial AMU;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 25px;
+  letter-spacing: 0.15px;
+  color: rgba(0,0,0,.45);
+`
+
 const CardText = styled.p`
   font-family: Arial AMU;
   font-style: normal;
@@ -25,7 +35,7 @@ const CardText = styled.p`
   margin: 0;
 `
 
-const SalaryCardResult = ({title, text, tooltip, loading = false}) => (
+const SalaryCardResult = ({title, subtitle = '', text, tooltip, loading = false}) => (
   <Card
     style={{
       border: '0.5px solid #555555',
@@ -49,6 +59,8 @@ const SalaryCardResult = ({title, text, tooltip, loading = false}) => (
     </CardTitle>
 
     <CardText>{text}</CardText>
+
+    {subtitle ? <CardSubtitle>{subtitle}</CardSubtitle> : null}
   </Card>
 )
 

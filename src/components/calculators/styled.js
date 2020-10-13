@@ -38,7 +38,7 @@ export const RadioButton = styled(Radio.Button)`
   } 
 `;
 
-export const SalarySlider = styled(Slider)`
+export const CalculatorSlider = styled(Slider)`
   &:hover .ant-slider-rail {
     background-color: #000000;
   }
@@ -53,7 +53,7 @@ export const SalarySlider = styled(Slider)`
   }
 `;
 
-export const SalaryInput = styled(InputNumber)`
+export const CalculatorInput = styled(InputNumber)`
   background: #FFFFFF;
   border: 0.5px solid #555555;
   box-sizing: border-box;
@@ -78,7 +78,7 @@ export const RadioLabel = styled(Text)`
   line-height: 25px;
   letter-spacing: 0.15px;
   color: #000000;
-  word-break: break-all!important;
+  word-break: break-word!important;
   overflow-wrap: break-word!important;
 `;
 
@@ -111,7 +111,7 @@ export const UnderLine = styled(Divider)`
   border-top: 1px solid #000000;
 `;
 
-export const VacationDatePicker = styled(DatePicker)`
+export const CalculatorDatePicker = styled(DatePicker)`
   width: 150px;
   height: 40px;
   background: #FFFFFF;

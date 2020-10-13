@@ -1,10 +1,9 @@
 import React from "react"
-import { isNull, isNumber } from "lodash"
+import { isNull, isEqual } from "lodash"
 import { Row, Col, Card, Form, Radio } from "antd"
 import SalaryCardResult from "./calcComponents/SalaryCardResult"
-import { ButtonSubmit, FormLabel, Label, SalaryInput, SalarySlider, VacationDatePicker } from "./styled"
+import { ButtonSubmit, FormLabel, Label, CalculatorInput, CalculatorSlider, UnderLine, CalculatorDatePicker } from "./styled"
 import { schema, ENGINE_HORSEPOWER, ENGINE_KILOWATTS, CAR_SELL_MIN, CAR_SELL_MAX, CAR_SELL_STEP } from "./utilities/carsell"
-import { isString } from "formik"
 
 const form = {
   achievementDate: null,
@@ -18,7 +17,7 @@ class CarSellCalculator extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { form: { ...form }, tax: null }
+    this.state = { form: { ...form }, tax: null, calculated: false }
   }
 
   /**
@@ -33,7 +32,7 @@ class CarSellCalculator extends React.Component {
     let powerValue
 
     if (alienationDate && achievementDate && alienationDate.diff(achievementDate, "year") >= 1) {
-      return this.props.lang.tax_body;
+      return 0
     }
 
     if (powerType === ENGINE_HORSEPOWER) {
@@ -67,12 +66,18 @@ class CarSellCalculator extends React.Component {
     schema.isValid(form).then(valid => {
       if (!valid) return
 
-      this.setState({tax: this.tax})
+      this.setState({tax: this.tax}, () => {
+        if (!this.state.calculated) {
+          this.setState({calculated: true})
+        }
+      })
     })
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
-    console.log(this.tax)
+    if (!isEqual(this.state.form, prevState.form) && this.state.calculated) {
+      this.handleSubmit()
+    }
   }
 
   render() {
@@ -99,7 +104,7 @@ class CarSellCalculator extends React.Component {
               <Row gutter={10} align="middle">
                 <Col span={12}>
                   <Form.Item label={<Label>{lang.achievement}</Label>}>
-                    <VacationDatePicker
+                    <CalculatorDatePicker
                       onChange={date => this.setField("achievementDate", date)}
                       placeholder={null}
                       format="DD.MM.YYYY"
@@ -109,7 +114,7 @@ class CarSellCalculator extends React.Component {
                 </Col>
                 <Col span={12}>
                   <Form.Item label={<Label>{lang.alienation}</Label>}>
-                    <VacationDatePicker
+                    <CalculatorDatePicker
                       onChange={date => this.setField("alienationDate", date)}
                       disabledDate={d => !form.achievementDate || (d.isSameOrBefore(form.achievementDate, "day"))}
                       placeholder={null}
@@ -121,7 +126,7 @@ class CarSellCalculator extends React.Component {
               </Row>
 
               <Form.Item label={<Label>{lang.price}</Label>}>
-                <SalaryInput
+                <CalculatorInput
                   ormatter={value => value.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
                   parser={value => value.replace(/\$\s?|(,*)/g, '')}
                   onChange={v => this.setField("price", v)}
@@ -133,7 +138,7 @@ class CarSellCalculator extends React.Component {
               </Form.Item>
 
               <Form.Item>
-                <SalarySlider
+                <CalculatorSlider
                   onChange={v => this.setField("price", v)}
                   value={form.price}
                   step={CAR_SELL_STEP}
@@ -143,7 +148,7 @@ class CarSellCalculator extends React.Component {
               </Form.Item>
 
               <Form.Item label={<Label>{lang.power}</Label>}>
-                <SalaryInput
+                <CalculatorInput
                   onChange={v => this.setField("power", v)}
                   style={{marginRight: "10px"}}
                   value={form.power}
@@ -180,11 +185,14 @@ class CarSellCalculator extends React.Component {
         </Col>
 
         <Col span={8}>
+          <FormLabel style={{ margin: 0 }}>{lang.result.title}</FormLabel>
+
+          <UnderLine />
+
           <SalaryCardResult
             title={lang.tax_label}
-            text={
-              tax > 0 && isNumber(tax) ? tax : isString(tax) ? lang.tax_body : null
-            }
+            subtitle={tax === 0 ? lang.tax_body : ''}
+            text={tax}
           />
         </Col>
       </Row>

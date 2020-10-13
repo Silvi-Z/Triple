@@ -1,11 +1,11 @@
 import React from "react"
 import triple from "../../api/triple"
-import { cloneDeep, isNull } from "lodash"
+import { cloneDeep, isNull, isEqual } from "lodash"
 import MortgageTable from "./calcComponents/MortgageTable"
 import SalaryCardResult from "./calcComponents/SalaryCardResult"
 import { Row, Col, Card, Form, Radio, Checkbox } from "antd"
 import { SALARY_TYPE_NET, SALARY_TYPE_REGISTERED } from "./utilities/mortgage"
-import { ButtonSubmit, FormLabel, Label, RadioLabel, SalaryInput, SalarySlider, UnderLine } from "./styled"
+import { ButtonSubmit, FormLabel, Label, RadioLabel, CalculatorInput, CalculatorSlider, UnderLine } from "./styled"
 import {
   SALARY_MAX, SALARY_MIN, SALARY_STEP,
   TAX_FIELD_COMMON, TAX_FIELD_ENTERPRISE, TAX_FIELD_IT,
@@ -38,6 +38,7 @@ class MortgageCalculator extends React.Component {
         {month: 1, salary: null, surcharge: null, bonus: null},
         {month: 2, salary: null, surcharge: null, bonus: null}
       ],
+      calculated: false,
       loading: false,
       tax: null
     }
@@ -123,7 +124,11 @@ class MortgageCalculator extends React.Component {
 
           let tax = income_tax > interest_amount ? interest_amount : income_tax
 
-          this.setState({ tax })
+          this.setState({ tax }, () => {
+            if (!this.state.calculated) {
+              this.setState({calculated: true})
+            }
+          })
         } catch (e) {
           console.log(e)
         } finally {
@@ -131,7 +136,17 @@ class MortgageCalculator extends React.Component {
         }
       }
     } else {
-      this.setState({tax: this.backIncomeTax})
+      this.setState({tax: this.backIncomeTax}, () => {
+        if (!this.state.calculated) {
+          this.setState({calculated: true})
+        }
+      })
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if ((!isEqual(this.state.form, prevState.form) || !isEqual(this.state.items, prevState.items)) && this.state.calculated) {
+      this.handleSubmit()
     }
   }
 
@@ -189,7 +204,7 @@ class MortgageCalculator extends React.Component {
 
               {form.static_salary ?
                 <Form.Item label={<Label>{lang.salary_label}</Label>} name="amount">
-                  <SalaryInput
+                  <CalculatorInput
                     onChange={v => this.setField("amount", v)}
                     value={form.amount}
                     min={SALARY_MIN}
@@ -202,7 +217,7 @@ class MortgageCalculator extends React.Component {
 
               {form.static_salary ?
                 <Form.Item name="amount">
-                  <SalarySlider
+                  <CalculatorSlider
                     onChange={v => this.setField("amount", v)}
                     value={form.amount}
                     step={SALARY_STEP}
@@ -214,7 +229,7 @@ class MortgageCalculator extends React.Component {
               : null}
 
               <Form.Item label={<Label>{lang.interest_amount_label}</Label>} name="interest_amount">
-                <SalaryInput
+                <CalculatorInput
                   onChange={v => this.setField("interest_amount", v)}
                   value={form.interest_amount}
                   name="interest_amount"

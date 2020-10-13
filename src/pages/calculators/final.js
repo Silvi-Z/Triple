@@ -1,6 +1,6 @@
 import React from "react"
 import useTranslations from "../../components/useTranslations"
-import FinalCalculator from "../../components/calculators/finalCalculator";
+import FinalCalculator from "../../components/calculators/FinalCalculator";
 import CalculatorWrapper from "../../components/calculators/calcComponents/CalculatorWrapper"
 
 const final = ({ pageContext }) => {
@@ -8,7 +8,7 @@ const final = ({ pageContext }) => {
 
   return (
     <CalculatorWrapper ctx={pageContext}>
-      <FinalCalculator langText={calculator.final_calculator} />
+      <FinalCalculator lang={calculator.final} />
     </CalculatorWrapper>
   )
 };

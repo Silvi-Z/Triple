@@ -3,13 +3,13 @@
   font-family: ArialAMU;
 }
 html {
-  font-family: ArialAMU;
+  font-family: ArialAMU, sans-serif;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
 }
 body {
   margin: 0;
-  font-family: ArialAMU;
+  font-family: ArialAMU, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #f7f7f7;
@@ -56,11 +56,9 @@ a:hover {
 abbr[title] {
   border-bottom: none;
   text-decoration: underline;
-  text-decoration: underline dotted;
 }
 b,
 strong {
-  font-weight: inherit;
   font-weight: bolder;
 }
 dfn {
@@ -193,7 +191,7 @@ textarea {
   font: inherit;
 }
 html {
-  font-family: ArialAMU;
+  font-family: ArialAMU, serif;
   box-sizing: border-box;
   overflow-y: scroll;
 }
@@ -208,7 +206,7 @@ html {
 }
 body {
   color: hsla(0, 0%, 0%, 0.8);
-  font-family: ArialAMU;
+  font-family: ArialAMU, serif;
   font-weight: normal;
   word-wrap: break-word;
   font-kerning: normal;
@@ -681,7 +679,7 @@ pre tt:after {
 #register_birthday {
   width: 185px;
   height: 14px;
-  font-family: ArialAMU;
+  font-family: ArialAMU, serif;
   font-size: 14px;
   font-weight: normal;
   font-stretch: normal;
@@ -736,7 +734,7 @@ pre tt:after {
 .phonenumber {
   width: 91px;
   height: 10px;
-  font-family: ArialAMU;
+  font-family: ArialAMU, serif;
   font-size: 12px;
   font-weight: normal;
   font-stretch: normal;
@@ -759,7 +757,7 @@ pre tt:after {
 #basic_username label {
   width: 122px;
   height: 14px;
-  font-family: ArialAMU;
+  font-family: ArialAMU, serif;
   font-size: 14px;
   font-weight: normal;
   font-stretch: normal;
@@ -768,7 +766,7 @@ pre tt:after {
   letter-spacing: normal;
   text-align: left;
   color: #000000;
-  padding: 0%;
+  padding: 0;
 }
 #basic_companyname {
   width: 252px;
@@ -1184,7 +1182,7 @@ pre tt:after {
     margin-bottom: 20px;
   } */
 }
-@media only screen and (min-width: 1170x) {
+@media only screen and (min-width: 1170px) {
   #basic_username {
     width: 252px;
     height: 38px;
@@ -1250,4 +1248,9 @@ pre tt:after {
 
 .ant-input-number-handler-wrap {
   display: none;
+}
+
+.calculator-result {
+  position: fixed;
+  right: 100px;
 }
