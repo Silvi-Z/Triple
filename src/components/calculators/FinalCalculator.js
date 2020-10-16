@@ -52,11 +52,26 @@ class FinalCalculator extends React.Component {
 
   dateToPicker = React.createRef()
 
+  row = React.createRef()
+
+  col = React.createRef()
+
   disabledAcceptanceDates = date => (this.state.form.date_release && (date.isSameOrAfter(this.state.form.date_release, "day")))
 
   disabledReleasedDates = date => (!this.state.form.date_acceptance || (date.isSameOrBefore(this.state.form.date_acceptance, "day")))
 
   setReleaseDate = date => this.setFormField("date_release", date.add(1, "month"))
+
+  handleWindowScroll = e => {
+    if (
+      (window.scrollY + this.colElement.offsetHeight + this.rowElementOffsetTop) >=
+      (this.rowElementOffsetTop + this.rowElement.offsetHeight)
+    ) {
+      this.colElement.classList.add('abs')
+    } else {
+      this.colElement.classList.remove('abs')
+    }
+  }
 
   handlePickerInput = e => {
     const { value, name } = e.target
@@ -92,6 +107,18 @@ class FinalCalculator extends React.Component {
         .catch(err => console.log(err))
         .finally(() => this.setState({ loading: false }))
     })
+  }
+
+  get rowElement() {
+    return ReactDOM.findDOMNode(this.row.current)
+  }
+
+  get rowElementOffsetTop() {
+    return this.rowElement.getBoundingClientRect().top
+  }
+
+  get colElement() {
+    return ReactDOM.findDOMNode(this.col.current)
   }
 
   get totalVacationDays() {
@@ -215,7 +242,7 @@ class FinalCalculator extends React.Component {
 
     return (
       <Row align="start" gutter={20}>
-        <Col span={16}>
+        <Col xs={24} sm={24} md={24} lg={16} xl={16} xxl={16} ref={this.row}>
           <Row align="center" style={{ justifyContent: "space-between" }}>
             <FormLabel>{lang.title}</FormLabel>
 
@@ -407,7 +434,7 @@ class FinalCalculator extends React.Component {
           </Card>
         </Col>
 
-        <Col span={8} className="calculator-result">
+        <Col xs={24} sm={24} md={24} lg={8} xl={8} xxl={8} ref={this.col} className="calculator-result">
           <FormLabel style={{ margin: 0 }}>{lang.result.title}</FormLabel>
 
           <UnderLine />
@@ -448,6 +475,12 @@ class FinalCalculator extends React.Component {
   componentDidMount() {
     this.dateFromInput.addEventListener("input", this.handlePickerInput)
     this.dateToInput.addEventListener("input", this.handlePickerInput)
+
+    window.addEventListener('scroll', this.handleWindowScroll)
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.handleWindowScroll)
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {

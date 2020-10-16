@@ -18,7 +18,7 @@ import {
   NavLink,
   RespNavLink,
   ResponsiveMenuWrapper,
-  AdressSpan,
+  AddressSpan,
   PhoneSpan,
   LangSpan,
   GridWrapper,
@@ -275,7 +275,7 @@ const Navbar = ({ open, responswrapper, lang, langtext, originalPath }) => {
         </GridLang>
         <GridAddress>
           <EnvironmentWrapper src={EnvironmentImg} />
-          <AdressSpan lang={lang}>{langtext.header.address}</AdressSpan>
+          <AddressSpan lang={lang}>{langtext.header.address}</AddressSpan>
         </GridAddress>
         <GridBlank1 />
         <GridHome>

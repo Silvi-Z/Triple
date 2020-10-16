@@ -307,8 +307,23 @@
         "income_tax_back": "Վերադարձվող եկամտային հարկ"
       }
     },
-    "car_customs_calculator": {
-      "title": "Car customs clearance fee calculator"
+    "car_customs": {
+      "title": "Car customs clearance fee calculator",
+      "calculate": "ՀԱՇՎԵԼ",
+      "form": {
+        "imported_eeu": "ԵԱՏՄ երկրներից ներմուծում",
+        "imported_third": "Երրորդ երկրից ներմուծում",
+        "person_physical": "Ֆիզիկական անձ",
+        "person_legal": "Իրավաբանական անձ",
+        "year": "ԹՈՂԱՐԿՄԱՆ ՏԱՐԵԹԻՎ",
+        "capacity": "ՇԱՐԺԻՉԻ ԱՇԽԱՏԱՆՔԱՅԻՆ ԾԱՎԱԼ (խսմ)",
+        "price": "ԱՎՏՈՄԵՔԵՆԱՅԻ ԱՐԺԵՔ"
+      },
+      "result": {
+        "title": "Արդյունք",
+        "fee": "Վճարման ենթակա մաքսազերծման վճար",
+        "tax": ""
+      }
     },
     "car_sell": {
       "title": "Car sales calculator",

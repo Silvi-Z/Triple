@@ -45,6 +45,10 @@ class VacationCalculator extends React.Component {
 
   dateToPicker = React.createRef()
 
+  row = React.createRef()
+
+  col = React.createRef()
+
   constructor(props) {
     super(props)
 
@@ -60,6 +64,18 @@ class VacationCalculator extends React.Component {
       monthAvgSalary: 0,
       calculated: false,
     }
+  }
+
+  get rowElement() {
+    return ReactDOM.findDOMNode(this.row.current)
+  }
+
+  get rowElementOffsetTop() {
+    return this.rowElement.getBoundingClientRect().top
+  }
+
+  get colElement() {
+    return ReactDOM.findDOMNode(this.col.current)
   }
 
   get dateFromInput() {
@@ -196,6 +212,17 @@ class VacationCalculator extends React.Component {
 
   setFromDate = date => this.setDateField("date_from", date)
 
+  handleWindowScroll = e => {
+    if (
+      (window.scrollY + this.colElement.offsetHeight + this.rowElementOffsetTop) >=
+      (this.rowElementOffsetTop + this.rowElement.offsetHeight)
+    ) {
+      this.colElement.classList.add('abs')
+    } else {
+      this.colElement.classList.remove('abs')
+    }
+  }
+
   handlePickerInput = e => {
     const { value, name } = e.target
 
@@ -232,6 +259,8 @@ class VacationCalculator extends React.Component {
   componentDidMount() {
     this.dateFromInput.addEventListener("input", this.handlePickerInput)
     this.dateToInput.addEventListener("input", this.handlePickerInput)
+
+    window.addEventListener('scroll', this.handleWindowScroll)
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
@@ -240,13 +269,18 @@ class VacationCalculator extends React.Component {
     }
   }
 
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.handleWindowScroll)
+  }
+
   render() {
     const { form, result } = this.state
     const { lang } = this.props
+    const width = document.documentElement.clientWidth
 
     return (
-      <Row align="start" gutter={20}>
-        <Col span={16}>
+      <Row align="start" gutter={20} ref={this.row}>
+        <Col xs={24} sm={24} md={24} lg={16} xl={16} xxl={16}>
           <Row align="center" style={{ justifyContent: "space-between" }}>
             <FormLabel>{lang.title}</FormLabel>
 
@@ -410,7 +444,7 @@ class VacationCalculator extends React.Component {
           </Card>
         </Col>
 
-        <Col span={8} className="calculator-result">
+        <Col xs={24} sm={24} md={24} lg={8} xl={8} xxl={8} ref={this.col} className={width >= 992 ? 'calculator-result':'' }>
           <FormLabel style={{ margin: 0 }}>{lang.result.title}</FormLabel>
 
           <UnderLine />

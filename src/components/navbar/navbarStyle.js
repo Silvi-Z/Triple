@@ -1,6 +1,6 @@
-import styled from 'styled-components';
-import { Row, Col, Dropdown } from 'antd';
+import { Row } from 'antd';
 import { Link } from 'gatsby';
+import styled from 'styled-components';
 
 export const NavLink = styled(Link)`
   flex-grow: 1;
@@ -39,10 +39,10 @@ export const ResponsiveMenuWrapper = styled.div`
   }
 `;
 
-export const AdressSpan = styled.span`
+export const AddressSpan = styled.span`
   width: 67px;
   height: 13px;
-  font-family: Sylfaen;
+  font-family: ArialAMU;
   font-size: ${props => props.lang !== "arm" ? "11px" : "12px"};
   font-weight: normal;
   font-stretch: normal;

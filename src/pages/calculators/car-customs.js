@@ -1,6 +1,6 @@
 import React from "react";
 import useTranslations from "../../components/useTranslations";
-import CarCustomsCalculator from "../../components/calculators/carCustomsCalculator";
+import CarCustomsCalculator from "../../components/calculators/CarCustomsCalculator";
 import CalculatorWrapper from "../../components/calculators/calcComponents/CalculatorWrapper";
 
 const carCustoms = ({ pageContext }) => {
@@ -8,7 +8,7 @@ const carCustoms = ({ pageContext }) => {
 
   return (
     <CalculatorWrapper ctx={pageContext}>
-      <CarCustomsCalculator langText={calculator.car_customs_calculator} />
+      <CarCustomsCalculator lang={calculator.car_customs} />
     </CalculatorWrapper>
   )
 };

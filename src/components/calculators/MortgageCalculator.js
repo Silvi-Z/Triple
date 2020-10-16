@@ -156,7 +156,7 @@ class MortgageCalculator extends React.Component {
 
     return (
       <Row align="start" gutter={20}>
-        <Col span={16}>
+        <Col xs={24} sm={24} md={24} lg={16} xl={16} xxl={16}>
           <Row align="center" style={{ justifyContent: "space-between" }}>
             <FormLabel>{lang.title}</FormLabel>
 
@@ -292,7 +292,8 @@ class MortgageCalculator extends React.Component {
             </Form>
           </Card>
         </Col>
-        <Col span={8}>
+
+        <Col xs={24} sm={24} md={24} lg={8} xl={8} xxl={8}>
           <FormLabel style={{margin: 0}}>{lang.result.title}</FormLabel>
 
           <UnderLine/>

@@ -1,10 +1,10 @@
 import styled from "styled-components";
-import { Button, DatePicker, Divider, InputNumber, Radio, Slider, Typography } from "antd"
+import { Button, DatePicker, Divider, InputNumber, Radio, Select, Slider, Typography } from "antd"
 
 const { Text } = Typography;
 
 export const FormLabel = styled.h3`
-  font-family: Arial AMU;
+  font-family: ArialAMU;
   font-style: normal;
   font-weight: bold;
   font-size: 16px;
@@ -60,6 +60,21 @@ export const CalculatorInput = styled(InputNumber)`
   border-radius: 5px !important;
   width: 136px;
 `;
+
+export const CalculatorSelect = styled(Select)`
+  background: #FFFFFF;
+  border: 0.5px solid #555555;
+  box-sizing: border-box;
+  border-radius: 5px !important;
+  width: 136px;
+  
+  .ant-select-selector {
+   
+    border: none !important;
+    border-radius: 5px !important;
+    background-color: transparent !important; 
+  }
+`
 
 export const Label = styled(Text)`
   font-style: normal;
@@ -120,7 +135,7 @@ export const CalculatorDatePicker = styled(DatePicker)`
 `;
 
 export const ColHeader = styled.th`
-  font-family: Arial AMU;
+  font-family: ArialAMU;
   font-style: normal;
   font-weight: bold;
   font-size: 14px;
@@ -139,7 +154,7 @@ export const CalculatorTable = styled.table`
 export const CalculatorCol = styled.th`
   background: #F7F7F7;
   border-radius: 5px;
-  font-family: Arial AMU;
+  font-family: ArialAMU;
   font-style: normal;
   font-weight: normal;
   font-size: 14px;

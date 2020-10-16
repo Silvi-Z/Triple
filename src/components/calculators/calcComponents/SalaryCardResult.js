@@ -4,7 +4,7 @@ import { Card, Tooltip } from "antd";
 import { InfoCircleTwoTone } from "@ant-design/icons";
 
 const CardTitle = styled.h3`
-  font-family: Arial AMU;
+  font-family: 'ArialAMU';
   font-style: normal;
   font-weight: bold;
   font-size: 16px;
@@ -15,7 +15,7 @@ const CardTitle = styled.h3`
 `;
 
 const CardSubtitle = styled.p`
-  font-family: Arial AMU;
+  font-family: ArialAMU;
   font-style: normal;
   font-weight: normal;
   font-size: 12px;
@@ -25,7 +25,7 @@ const CardSubtitle = styled.p`
 `
 
 const CardText = styled.p`
-  font-family: Arial AMU;
+  font-family: ArialAMU;
   font-style: normal;
   font-weight: bold;
   font-size: 22px;
@@ -43,7 +43,7 @@ const SalaryCardResult = ({title, subtitle = '', text, tooltip, loading = false}
       borderRadius: '5px',
       padding: "10px 20px",
       marginBottom: 10,
-      width: 300
+      width: '100%'
     }}
     bodyStyle={{padding: 0}}
     loading={loading}

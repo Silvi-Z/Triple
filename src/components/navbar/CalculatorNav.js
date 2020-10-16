@@ -13,7 +13,7 @@ const NavCard = styled(Card)`
 `;
 
 const NavTitle = styled.h3`
-  font-family: Arial AMU;
+  font-family: ArialAMU;
   font-style: normal;
   font-weight: bold;
   font-size: 16px;
@@ -34,7 +34,7 @@ const NavItem = styled(List.Item)`
 const UnderLine = styled(Divider)`
   margin: 5px 0 15px!important;
   border-top: 1px solid #000000;
-  font-family: Arial AMU;
+  font-family: ArialAMU;
   font-style: normal;
   font-weight: normal;
   font-size: 16px;
@@ -80,7 +80,7 @@ const CalculatorNav = ({ t, locale }) => {
           <NavLink to={`${locale}/calculators/mortgage`}>{t.mortgage.title}</NavLink>
         </NavItem>
         <NavItem>
-          <NavLink to={`${locale}/calculators/car-customs`}>{t.car_customs_calculator.title}</NavLink>
+          <NavLink to={`${locale}/calculators/car-customs`}>{t.car_customs.title}</NavLink>
         </NavItem>
         <NavItem>
           <NavLink to={`${locale}/calculators/car-sell`}>{t.car_sell.title}</NavLink>

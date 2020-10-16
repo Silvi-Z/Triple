@@ -22,7 +22,7 @@ export const SharedWrapperCol = styled(Col)`
 `;
 
 const H1Styled = styled.h1`
-  font-family: Arial AMU;
+  font-family: ArialAMU;
   font-style: normal;
   font-weight: bold;
   font-size: 24px;
@@ -32,7 +32,7 @@ const H1Styled = styled.h1`
   color: #000000;
 `
 const TextStyled = styled.p`
-  font-family: Arial AMU;
+  font-family: ArialAMU;
   font-style: normal;
   font-weight: normal;
   font-size: 18px;
@@ -66,7 +66,7 @@ const FacebookIcon = styled.div`
     background-image: url(${FbBlueIcon});
   }
 `
-const LinkdinIcon = styled.div`
+const LinkedinIcon = styled.div`
   height: 32px;
   width: 32px;
   margin-left: 19px;
@@ -110,10 +110,10 @@ const CalculatorWrapper = ({ ctx, children }) => {
       <TextStyled>{calculator.paragraph}</TextStyled>
 
       <Row gutter={10}>
-        <Col span={6}>
+        <Col xs={24} sm={24} md={24} lg={6} xl={6} xxl={6}>
           <CalculatorNav t={calculator} locale={ctx.locale} />
         </Col>
-        <Col span={18}>
+        <Col xs={24} sm={24} md={24} lg={18} xl={18} xxl={18}>
           {children}
         </Col>
       </Row>
@@ -124,7 +124,7 @@ const CalculatorWrapper = ({ ctx, children }) => {
 
           <FacebookShareButton url={urlShared} children={<FacebookIcon />} />
 
-          <LinkedinShareButton children={<LinkdinIcon />} url={urlShared} />
+          <LinkedinShareButton children={<LinkedinIcon />} url={urlShared} />
         </Col>
       </Row>
     </>

@@ -279,8 +279,23 @@ const query = graphql`
                   income_tax_back
                 }
               }
-              car_customs_calculator {
+              car_customs {
                 title
+                calculate
+                form {
+                  imported_eeu
+                  imported_third
+                  person_physical
+                  person_legal
+                  year
+                  capacity
+                  price
+                }
+                result {
+                  title
+                  fee
+                  tax
+                }
               }
               car_sell {
                 title,

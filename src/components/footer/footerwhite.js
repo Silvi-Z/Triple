@@ -25,7 +25,7 @@ const FooterNumberWrap = styled.div`
 const FooterAdressWrap = styled.div`
   width: 93px;
   height: 16px;
-  font-family: Sylfaen;
+  font-family: ArialAMU;
   font-size: 16px;
   font-weight: normal;
   font-stretch: normal;
