@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useFormik } from "formik";
 import { Row, Col, Form, Card, Radio } from "antd";
 import triple from "../../api/triple";
-import SalaryCardResult from "./calcComponents/SalaryCardResult";
+import CalculatorCardResult from "./calcComponents/CalculatorCardResult";
 import {
   schema,
   SALARY_MIN, SALARY_MAX, SALARY_STEP,
@@ -189,29 +189,29 @@ const SalaryCalculator = ({ langText }) => {
 
         <UnderLine/>
 
-        <SalaryCardResult
+        <CalculatorCardResult
           title={formik.values.from === 1 ? langText.dirty_to_clean_salary : langText.clean_dirty_to_salary}
           text={result.salary}
           loading={loading}
         />
-        <SalaryCardResult
+        <CalculatorCardResult
           title={langText.income_tax_label}
           text={result.income_tax}
           loading={loading}
           tooltip
         />
-        <SalaryCardResult
+        <CalculatorCardResult
           title={langText.pension_paymet_label}
           text={result.pension_fee}
           loading={loading}
           tooltip
         />
-        <SalaryCardResult
+        <CalculatorCardResult
           title={langText.stamp_duty_label}
           text={result.stamp_fee}
           loading={loading}
         />
-        <SalaryCardResult
+        <CalculatorCardResult
           title={langText.general_storage_label}
           text={result.total_fee}
           loading={loading}

@@ -295,6 +295,7 @@ const query = graphql`
                   title
                   fee
                   tax
+                  vat
                 }
               }
               car_sell {

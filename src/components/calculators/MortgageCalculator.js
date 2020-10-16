@@ -2,7 +2,7 @@ import React from "react"
 import triple from "../../api/triple"
 import { cloneDeep, isNull, isEqual } from "lodash"
 import MortgageTable from "./calcComponents/MortgageTable"
-import SalaryCardResult from "./calcComponents/SalaryCardResult"
+import CalculatorCardResult from "./calcComponents/CalculatorCardResult"
 import { Row, Col, Card, Form, Radio, Checkbox } from "antd"
 import { SALARY_TYPE_NET, SALARY_TYPE_REGISTERED } from "./utilities/mortgage"
 import { ButtonSubmit, FormLabel, Label, RadioLabel, CalculatorInput, CalculatorSlider, UnderLine } from "./styled"
@@ -298,7 +298,7 @@ class MortgageCalculator extends React.Component {
 
           <UnderLine/>
 
-          <SalaryCardResult
+          <CalculatorCardResult
             title={lang.result.income_tax_back}
             loading={loading}
             text={tax}

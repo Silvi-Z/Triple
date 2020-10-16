@@ -35,7 +35,7 @@ const CardText = styled.p`
   margin: 0;
 `
 
-const SalaryCardResult = ({title, subtitle = '', text, tooltip, loading = false}) => (
+const CalculatorCardResult = ({title, subtitle = '', text, tooltip, loading = false}) => (
   <Card
     style={{
       border: '0.5px solid #555555',
@@ -64,4 +64,4 @@ const SalaryCardResult = ({title, subtitle = '', text, tooltip, loading = false}
   </Card>
 )
 
-export default SalaryCardResult;
+export default CalculatorCardResult;

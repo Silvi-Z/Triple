@@ -5,7 +5,7 @@ import triple from "../../api/triple"
 import { pick, isNull, isEmpty, isEqual } from "lodash"
 import { Row, Col, Card, Form, Radio, Checkbox } from "antd"
 import GrossSalaryTable from "./calcComponents/GrossSalaryTable"
-import SalaryCardResult from "./calcComponents/SalaryCardResult"
+import CalculatorCardResult from "./calcComponents/CalculatorCardResult"
 import {
   Label,
   UnderLine,
@@ -449,26 +449,26 @@ class VacationCalculator extends React.Component {
 
           <UnderLine />
 
-          <SalaryCardResult
+          <CalculatorCardResult
             title={lang.result["gross_vacation_amount"]}
             text={this.vacationSalary}
           />
 
-          <SalaryCardResult
+          <CalculatorCardResult
             title={lang.result["income_tax"]}
             text={result.income_tax}
           />
 
-          <SalaryCardResult
+          <CalculatorCardResult
             title={lang.result["pension_fee"]}
             text={result.pension_fee}
           />
 
-          <SalaryCardResult
+          <CalculatorCardResult
             title={lang.result["total_fee"]}
             text={result.total_fee}
           />
-          <SalaryCardResult
+          <CalculatorCardResult
             title={lang.result["pure_vacation_amount"]}
             text={result.salary}
           />

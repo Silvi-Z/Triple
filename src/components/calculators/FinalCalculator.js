@@ -3,7 +3,7 @@ import triple from "../../api/triple"
 import { isEqual, pick } from "lodash"
 import { Row, Col, Card, Form, Radio, Checkbox } from "antd"
 import GrossSalaryTable from "./calcComponents/GrossSalaryTable"
-import SalaryCardResult from "./calcComponents/SalaryCardResult"
+import CalculatorCardResult from "./calcComponents/CalculatorCardResult"
 import {
   Label,
   FormLabel,
@@ -439,30 +439,30 @@ class FinalCalculator extends React.Component {
 
           <UnderLine />
 
-          <SalaryCardResult
+          <CalculatorCardResult
             title={lang.result["total_amount"]}
             text={result.salary}
             loading={loading}
           />
 
-          <SalaryCardResult
+          <CalculatorCardResult
             title={lang.result["income_tax"]}
             text={result.income_tax}
             loading={loading}
           />
 
-          <SalaryCardResult
+          <CalculatorCardResult
             title={lang.result["pension_fee"]}
             text={result.pension_fee}
             loading={loading}
           />
 
-          <SalaryCardResult
+          <CalculatorCardResult
             title={lang.result["total_fee"]}
             text={result.total_fee}
             loading={loading}
           />
-          <SalaryCardResult
+          <CalculatorCardResult
             title={lang.result["net_amount"]}
             text={calculated ? this.amount : 0}
             loading={loading}

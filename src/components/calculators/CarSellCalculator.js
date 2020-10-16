@@ -1,7 +1,7 @@
 import React from "react"
 import { isNull, isEqual } from "lodash"
 import { Row, Col, Card, Form, Radio } from "antd"
-import SalaryCardResult from "./calcComponents/SalaryCardResult"
+import CalculatorCardResult from "./calcComponents/CalculatorCardResult"
 import { ButtonSubmit, FormLabel, Label, CalculatorInput, CalculatorSlider, UnderLine, CalculatorDatePicker } from "./styled"
 import { schema, ENGINE_HORSEPOWER, ENGINE_KILOWATTS, CAR_SELL_MIN, CAR_SELL_MAX, CAR_SELL_STEP } from "./utilities/carsell"
 
@@ -189,7 +189,7 @@ class CarSellCalculator extends React.Component {
 
           <UnderLine />
 
-          <SalaryCardResult
+          <CalculatorCardResult
             title={lang.tax_label}
             subtitle={tax === 0 ? lang.tax_body : ''}
             text={tax}

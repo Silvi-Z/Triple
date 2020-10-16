@@ -1,38 +1,31 @@
 import React from "react"
-import { Card, Col, Form, Radio, Row, Select } from "antd"
-import { ButtonSubmit, CalculatorInput, CalculatorSelect, FormLabel, Label, UnderLine } from "./styled"
-import { years, coefficient, COUNTRY_EEU, COUNTRY_THIRD, PERSON_LEGAL, PERSON_PHYSICAL } from "./utilities/carcutom"
-import SalaryCardResult from "./calcComponents/SalaryCardResult"
+import moment from "moment"
+import { Card, Col, Form, Radio, Row } from "antd"
+import { ButtonSubmit, CalculatorDatePicker, CalculatorInput, FormLabel, Label, UnderLine, } from "./styled"
+import { calculate, COUNTRY_EEU, COUNTRY_THIRD, PERSON_LEGAL, PERSON_PHYSICAL } from "./utilities/carcutom"
+import CalculatorCardResult from "./calcComponents/CalculatorCardResult"
+
+moment.locale('ru')
 
 const form = {
   imported: COUNTRY_THIRD,
   person: PERSON_PHYSICAL,
-  year: new Date().getFullYear(),
+  date: null,
   capacity: null,
   price: null,
 }
 
 class CarCustomsCalculator extends React.Component {
   handleSubmit = () => {
-    const { imported, person, year, capacity, price } = this.state.form
+    const result = calculate(this.state.form)
 
-    const coefficients = coefficient(year, capacity, price)
-    const fee = coefficients.hasOwnProperty('percentage')
-      ? Math.max(coefficients.percentage * price, coefficients.price * capacity)
-      : coefficients.price * capacity
-
-    console.log(fee)
-    console.log(coefficients, capacity)
-
-    const tax = coefficients.ecology * price
-
-    this.setState({result: {fee, tax}, calculated: true})
+    this.setState({result: {...result}, calculated: true})
   }
 
   constructor(props) {
     super(props)
 
-    this.state = { form: { ...form }, result: {fee: null, tax: null}, calculated: false }
+    this.state = { form: { ...form }, result: {fee: null, tax: null, vat: null}, calculated: false }
   }
 
   setField(name, value, cb) {
@@ -89,17 +82,14 @@ class CarCustomsCalculator extends React.Component {
               </Form.Item>
 
               <Form.Item label={<Label>{lang.form.year}</Label>}>
-                <CalculatorSelect
-                  value={form.year}
-                  style={{ width: "150px" }}
-                  onChange={value => this.setField("year", value)}
-                >
-                  {years(1885).map(year => (
-                    <Select.Option value={year} key={`year-${year}`}>
-                      {year}
-                    </Select.Option>
-                  ))}
-                </CalculatorSelect>
+                <CalculatorDatePicker
+                  onChange={date => this.setField("date", date)}
+                  value={form.date}
+                  placeholder={null}
+                  allowClear={true}
+                  format="DD.MM.YYYY"
+                  size="large"
+                />
               </Form.Item>
 
               <Form.Item label={<Label>{lang.form.price}</Label>}>
@@ -135,12 +125,17 @@ class CarCustomsCalculator extends React.Component {
 
           <UnderLine />
 
-          <SalaryCardResult
+          <CalculatorCardResult
             title={lang.result.fee}
             text={result.fee}
           />
 
-          { result.tax ? <SalaryCardResult
+          { result.vat ? <CalculatorCardResult
+            title={lang.result.vat}
+            text={result.vat}
+          /> : null}
+
+          { result.tax ? <CalculatorCardResult
               title={lang.result.tax}
               text={result.tax}
             /> : null}
