@@ -258,7 +258,7 @@ class FinalCalculator extends React.Component {
               size="large"
             >
               <Row gutter={10} align="middle">
-                <Col span={10}>
+                <Col span={12}>
                   <Form.Item label={<Label>{lang.form.acceptance}</Label>}>
                     <CalculatorDatePicker
                       onChange={date => this.setFormField("date_acceptance", date)}
@@ -272,7 +272,7 @@ class FinalCalculator extends React.Component {
                     />
                   </Form.Item>
                 </Col>
-                <Col span={10}>
+                <Col span={12}>
                   <Form.Item label={<Label>{lang.form.release}</Label>}>
                     <CalculatorDatePicker
                       onChange={date => this.setFormField("date_release", date)}
@@ -288,7 +288,7 @@ class FinalCalculator extends React.Component {
                 </Col>
               </Row>
 
-              <Form.Item label={lang.form.working_schedule} labelCol={{ span: 24 }}>
+              <Form.Item label={<Label>{lang.form.working_schedule}</Label>} labelCol={{ span: 24 }}>
                 <Radio.Group
                   onChange={e => this.setFormField("working_schedule", e.target.value, this.autoFillAvailableVacationDays)}
                   value={form.working_schedule}
@@ -341,10 +341,11 @@ class FinalCalculator extends React.Component {
                 <>
                   <Form.Item label={<Label>{lang.form.salary}</Label>}>
                     <CalculatorInput
+                      formatter={value => value.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+                      parser={value => value.replace(/\$\s?|(,*)/g, '')}
                       onChange={v => this.setFormField("salary", v)}
                       value={form.salary}
                       min={SALARY_MIN}
-                      type="number"
                       name="salary"
                       size="large"
                     />

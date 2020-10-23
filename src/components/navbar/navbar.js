@@ -340,4 +340,5 @@ const Navbar = ({ open, responswrapper, lang, langtext, originalPath }) => {
     </>
   )
 }
+
 export default Navbar

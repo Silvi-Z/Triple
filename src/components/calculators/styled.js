@@ -66,10 +66,8 @@ export const CalculatorSelect = styled(Select)`
   border: 0.5px solid #555555;
   box-sizing: border-box;
   border-radius: 5px !important;
-  width: 136px;
   
-  .ant-select-selector {
-   
+  .ant-select-selector {   
     border: none !important;
     border-radius: 5px !important;
     background-color: transparent !important; 

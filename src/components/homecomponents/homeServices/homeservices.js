@@ -44,7 +44,7 @@ const Homeservices = ({ langText, lang }) => {
         </Col>
         <SeemoreColumn ls={12} sm={24} md={12} lg={12} xl={12} xxl={12}>
           <SeemoreWrapper>
-            <NavLink to={`${lang}/services/`}>
+            <NavLink to={`/ ${lang}/services/`}>
               <SeemoreSpan>{langText.button_text}</SeemoreSpan>
               <Seemoreimg src={RightArrowImg} alt={"icon"}></Seemoreimg>
             </NavLink>

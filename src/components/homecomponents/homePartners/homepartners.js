@@ -35,7 +35,7 @@ const Homepartners = ({ langText, lang }) => {
         </PartnerspHeadingColumn>
         <SeemoreColumn ls={12} sm={24} md={12} lg={12} xs={24}>
           <SeemoreWrapper>
-            <NavLink to={`${lang}/contact/`}>
+            <NavLink to={`/${lang}/contact`}>
               <SeemoreSpan>{langText.button_text}</SeemoreSpan>
               <Seemoreimg src={RightArrowImg} alt={"icon"}></Seemoreimg>
             </NavLink>

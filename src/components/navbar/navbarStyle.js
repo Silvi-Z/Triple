@@ -40,9 +40,7 @@ export const ResponsiveMenuWrapper = styled.div`
 `;
 
 export const AddressSpan = styled.span`
-  width: 67px;
-  height: 13px;
-  font-family: ArialAMU;
+  font-family: ArialAMU, serif;
   font-size: ${props => props.lang !== "arm" ? "11px" : "12px"};
   font-weight: normal;
   font-stretch: normal;
@@ -51,7 +49,6 @@ export const AddressSpan = styled.span`
   letter-spacing: normal;
   text-align: center;
   color: #000000;
-  margin-bottom: 4%;
 `;
 export const PhoneSpan = styled.span`
   width: 93px;
@@ -116,9 +113,6 @@ export const HeadIcon = styled.img`
   }
 `;
 export const HeadMainIcon = styled.img`
-  border-left: 1px solid;
-  border-right: 1px solid;
-  border-bottom: 1px solid;
   border-color: #ebebeb;
   padding-top: 7%;
   @media (min-width: 1600px) {
@@ -178,8 +172,6 @@ export const Label = styled.label`
 `;
 export const EnvironmentWrapper = styled.img`
   width: 14px;
-  height: 19px;
-  margin-right: 5%;
   margin-top: 19%;
   @media (min-width: 1600px) {
     margin-top: 11%;

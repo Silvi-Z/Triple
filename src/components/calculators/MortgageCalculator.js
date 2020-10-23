@@ -205,12 +205,13 @@ class MortgageCalculator extends React.Component {
               {form.static_salary ?
                 <Form.Item label={<Label>{lang.salary_label}</Label>} name="amount">
                   <CalculatorInput
+                    formatter={value => value.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+                    parser={value => value.replace(/\$\s?|(,*)/g, '')}
                     onChange={v => this.setField("amount", v)}
                     value={form.amount}
                     min={SALARY_MIN}
                     name="amount"
                     size="large"
-                    type="number"
                   />
                 </Form.Item>
               : null}

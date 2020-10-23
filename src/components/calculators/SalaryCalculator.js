@@ -116,12 +116,13 @@ const SalaryCalculator = ({ langText }) => {
 
             <Form.Item label={<Label>{langText.salary_label}</Label>} name="amount">
               <CalculatorInput
+                formatter={value => value.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+                parser={value => value.replace(/\$\s?|(,*)/g, '')}
                 onChange={v => formik.setFieldValue("amount", v)}
                 value={formik.values.amount}
                 min={SALARY_MIN}
                 name="amount"
                 size="large"
-                type="number"
               />
             </Form.Item>
 

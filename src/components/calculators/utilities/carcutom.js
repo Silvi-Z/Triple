@@ -8,6 +8,12 @@ export const COUNTRY_EEU = 0
 
 export const COUNTRY_THIRD = 1
 
+export const currencies = [
+  {text: 'AMD', value: 'AMD', sym: '&#1423;'},
+  {text: 'USD', value: 'USD', sym: '&#36;'},
+  {text: 'EUR', value: 'EUR', sym: '&#8364;'}
+]
+
 /**
  * Generate array of years from current to given
  *
@@ -21,12 +27,30 @@ export const years = to => {
   return years;
 }
 
-export const calculate = ({ imported, person, date, capacity, price }) => {
+export const euroTo = ({amount, currency}, rates) => {
+  switch (currency) {
+    case "AMD":
+      return Math.round(amount * rates["EUR"])
+    case "USD":
+      return Math.round(amount * rates["EUR"] / rates["USD"])
+    case "EUR":
+      return amount
+    default:
+      return amount
+  }
+}
+
+export const calculate = ({ imported, person, date, capacity, price, currency }, rates) => {
   const age = Math.ceil(moment().diff(date, 'months') / 12)
-  console.log(moment().diff(date, "years"))
-  console.log(moment().diff(date, "months"))
-  console.log(age)
   let _coefficient = {}, res = {tax: 0, fee: 0, vat: 0}
+
+  if (currency === 'AMD') {
+    price = price / rates['EUR']
+  }
+
+  if (currency === 'USD') {
+    price = price * rates[currency] / rates['EUR']
+  }
 
   // getting ecology coefficient
   if (age + 1 <= 5) {
@@ -40,7 +64,7 @@ export const calculate = ({ imported, person, date, capacity, price }) => {
   }
 
   if (imported === COUNTRY_EEU && person === PERSON_PHYSICAL) {
-    res.tax = _coefficient.ecology * price
+    res.tax = Math.round(_coefficient.ecology * price)
   }
 
   if (imported === COUNTRY_EEU && person === PERSON_LEGAL) {
@@ -101,15 +125,14 @@ export const calculate = ({ imported, person, date, capacity, price }) => {
     }
 
     res.fee = _coefficient.hasOwnProperty('percentage')
-      ? Math.max(_coefficient.percentage * price, _coefficient.price * capacity)
-      : _coefficient.price * capacity
-    res.tax = _coefficient.ecology * price
+      ? Math.round(Math.max(_coefficient.percentage * price, _coefficient.price * capacity))
+      : Math.round(_coefficient.price * capacity)
+    res.tax = Math.round(_coefficient.ecology * price)
   }
 
   if (imported === COUNTRY_THIRD && person === PERSON_LEGAL) {
     // TODO: calculate for this condition
   }
-  console.log(res)
 
   return res;
 }

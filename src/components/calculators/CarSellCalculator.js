@@ -133,7 +133,6 @@ class CarSellCalculator extends React.Component {
                   value={form.price}
                   min={CAR_SELL_MIN}
                   size="large"
-                  type="number"
                 />
               </Form.Item>
 
