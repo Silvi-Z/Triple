@@ -109,11 +109,11 @@ const CalculatorWrapper = ({ ctx, children }) => {
 
       <TextStyled>{calculator.paragraph}</TextStyled>
 
-      <Row gutter={10}>
-        <Col xs={24} sm={24} md={24} lg={6} xl={6} xxl={6}>
+      <Row gutter={0}>
+        <Col className="px-35" span={6}>
           <CalculatorNav t={calculator} locale={ctx.locale} />
         </Col>
-        <Col xs={24} sm={24} md={24} lg={18} xl={18} xxl={18}>
+        <Col span={18}>
           {children}
         </Col>
       </Row>

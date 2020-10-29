@@ -13,23 +13,9 @@ import "./layout.css"
 
 const { Content, Footer } = CustomLayout
 
-const ContentStyled = styled(Content)`
-  padding-top: 50px;
-  padding-bottom: 50px;
-  padding-left: 20px;
-  padding-right: 20px;
-  @media (min-width: 1200px) {
-    padding-left: 50px;
-    padding-right: 50px;
-  }
-  @media (max-width: 768px) {
-    padding-bottom: ${props => (props.Responswrapper ? 50 : 0)};
-    padding-top: ${props => (props.Responswrapper ? 50 : 0)};
-  }
-  @media (min-width: 1600px) {
-    padding-left: 100px;
-    padding-right: 100px;
-  }
+const Main = styled(Content)`
+  max-width: 1440px;
+  margin: 0 auto;
 `
 const FooterCust = styled(Footer)`
   height: ${props => (props.backcolor === "true" ? "130px" : "208px")};
@@ -46,46 +32,39 @@ const FooterCust = styled(Footer)`
     height: 234px;
   }
 `
-const Main = styled.div`
-  margin: 0 auto;
-  min-height: ${props => (props.setheight === true ? "100vh" : "0vh")};
-`
+
 
 const Layout = ({ children, location, pageContext: { locale, originalPath, localeResources } }) => {
-
   const { i18n, t } = useTranslation();
   const { layout } = useTranslations();
+  
   useEffect(() => {
     i18n.changeLanguage(locale)
   }, [location, i18n, locale]);
 
-  const [responsWrapper, setResponsWrapper] = useState(true)
+  const [responseWrapper, setResponseWrapper] = useState(true)
+  
   const openMenu = () => {
-    setResponsWrapper(!responsWrapper)
+    setResponseWrapper(!responseWrapper)
   }
+  
   return (
     <>
       <Navbar
         open={openMenu}
-        responswrapper={responsWrapper}
         originalPath={originalPath}
+        responseWrapper={responseWrapper}
         lang={locale}
-        langtext={localeResources.translation.layout}
+        langText={localeResources.translation.layout}
       />
-      <Main setheight={responsWrapper}>
-        <ContentStyled>{responsWrapper ? children : null}</ContentStyled>
-      </Main>
+      
+      <Main>{children}</Main>
+
       <FooterCust
-        backcolor={responsWrapper.toString()}
+        backcolor={responseWrapper.toString()}
         langtext={layout}
       >
-        {!responsWrapper ? (
-          <FooterWhite />
-        ) : (
-            <FooterBlack
-              langtext={layout}
-            />
-          )}
+        {!responseWrapper ? <FooterWhite/> : <FooterBlack langtext={layout}/>}
       </FooterCust>
     </>
   )

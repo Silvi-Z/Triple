@@ -175,6 +175,51 @@ const query = graphql`
                 clean_dirty_to_salary
                 result_duty_bonus
               }
+              salary_table {
+                title
+                calculate
+                form {
+                  title
+                  by_date
+                  by_table
+                  upload
+                  start
+                  end
+                  clean_salary
+                  dirty_salary
+                  tax_label
+                  tax_common
+                  tax_enterprise
+                  tax_it
+                  salary
+                  bonus
+                  pensioner
+                  stamp
+                  yes_volunteer
+                  yes
+                  no
+                  working_schedule
+                  five_days
+                  six_days
+                }
+                table {
+                  name
+                  day
+                  hour
+                  salary
+                }
+                result {
+                  title
+                  total_fee
+                  income_tax
+                  stamp_fee
+                  pension_fee
+                  dirty_to_clean_salary
+                  clean_to_dirty_salary
+                  duty_bonus
+                  download
+                }
+              }
               vacation {
                 title
                 salary_label

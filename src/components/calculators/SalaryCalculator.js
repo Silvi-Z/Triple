@@ -72,8 +72,8 @@ const SalaryCalculator = ({ langText }) => {
   }, [formik.values])
 
   return (
-    <Row align="start" gutter={20}>
-      <Col xs={24} sm={24} md={24} lg={16} xl={16} xxl={16}>
+    <Row align="start" gutter={0}>
+      <Col className="px-35" span={16}>
         <Row align="center" style={{justifyContent: 'space-between'}}>
           <FormLabel>{langText.title}</FormLabel>
 
@@ -185,7 +185,7 @@ const SalaryCalculator = ({ langText }) => {
         </Card>
       </Col>
 
-      <Col xs={24} sm={24} md={24} lg={8} xl={8} xxl={8}>
+      <Col className="px-35" span={8}>
         <FormLabel style={{margin: 0}}>{langText.result_title}</FormLabel>
 
         <UnderLine/>

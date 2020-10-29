@@ -1,37 +1,28 @@
 import React, { useState, useEffect } from "react"
-import { Link, navigate } from "gatsby"
 import styled from "styled-components"
+import { navigate } from "gatsby"
 import { Row, Col, Dropdown } from "antd"
+import { PhoneOutlined, CaretDownOutlined } from "@ant-design/icons"
 import CallImg from "../../assets/homeImages/phone-call3.png"
 import MainLogo from "../../assets/homeImages/3c.png"
 import EnvironmentImg from "../../assets/footericons/location.svg"
 import "@fortawesome/fontawesome-free/css/all.css"
 import "@fortawesome/fontawesome-free/js/all.js"
-import useTranslations from "../../components/useTranslations"
-import {
-  EnvironmentOutlined,
-  PhoneOutlined,
-  CaretDownOutlined,
-} from "@ant-design/icons"
 import "../layout.css"
 import {
-  NavLink,
-  RespNavLink,
-  ResponsiveMenuWrapper,
-  AddressSpan,
-  PhoneSpan,
-  LangSpan,
-  GridWrapper,
-  HeadIcon,
-  HeadMainIcon,
-  ResponsiveNavWrapper,
   Label,
+  NavLink,
+  HeadIcon,
+  LangSpan,
+  PhoneSpan,
+  RespNavLink,
+  AddressSpan,
+  GridWrapper,
+  HeadMainIcon,
   EnvironmentWrapper,
+  ResponsiveNavWrapper,
+  ResponsiveMenuWrapper,
 } from "./navbarStyle.js"
-
-import { useTranslation } from "react-i18next"
-
-import LanguagePicker from "../LanguagePicker/LanguagePicker"
 
 const phones = (
   <div className="phonedrop">
@@ -49,14 +40,14 @@ const phones = (
       <i
         className="fab fa-whatsapp"
         style={{ fontSize: "15px", color: "green", marginRight: "4%" }}
-      ></i>
+      />
       <span className="phonenumber">374 98 553533</span>
     </div>
     <div className="phonebox">
       <i
         className="fab fa-viber"
         style={{ fontSize: "15px", color: "purply", marginRight: "4%" }}
-      ></i>
+      />
       <span className="phonenumber">374 98 553533</span>
     </div>
   </div>
@@ -104,7 +95,7 @@ const activeStyle = {
   border: "1px solid #009db8",
 }
 
-const Navbar = ({ open, responswrapper, lang, langtext, originalPath }) => {
+const Navbar = ({ open, responseWrapper, lang, langText, originalPath }) => {
   const [languageText, setLanguageText] = useState(["Հայ", "Eng", "Рус"])
 
   const language = (
@@ -130,7 +121,7 @@ const Navbar = ({ open, responswrapper, lang, langtext, originalPath }) => {
     </div>
   )
 
-  const checkDefaultLanguage = (defaultLang) => {
+  const checkDefaultLanguage = defaultLang => {
     let lang
     if (defaultLang === "en") {
       lang = "Eng"
@@ -174,7 +165,7 @@ const Navbar = ({ open, responswrapper, lang, langtext, originalPath }) => {
           </RespNavLink>
         </Col>
         <Col lg={8} md={8} sm={6} xs={6}>
-          {!responswrapper ? (
+          {!responseWrapper ? (
             <Label htmlFor="toggle" onClick={() => open()}>
               &#x2573;
             </Label>
@@ -186,7 +177,7 @@ const Navbar = ({ open, responswrapper, lang, langtext, originalPath }) => {
         </Col>
       </ResponsiveNavWrapper>
 
-      {!responswrapper ? (
+      {!responseWrapper ? (
         <ResponsiveMenuWrapper>
           <Row>
             <Col span={24} style={{ marginBottom: "4.6%" }}>
@@ -197,7 +188,7 @@ const Navbar = ({ open, responswrapper, lang, langtext, originalPath }) => {
                 state={{ clickedItems: 0 }}
               // onClick={() => setResponswrapper()}
               >
-                {langtext.header.serveTitle}
+                {langText.header.serveTitle}
               </NavLink>
             </Col>
             <Col span={24} style={{ marginBottom: "4.6%" }}>
@@ -207,7 +198,7 @@ const Navbar = ({ open, responswrapper, lang, langtext, originalPath }) => {
                 style={{ fontSize: "20px" }}
               // onClick={() => setResponswrapper()}
               >
-                {langtext.header.reportTitle}
+                {langText.header.reportTitle}
               </NavLink>
             </Col>
             <Col span={24} style={{ marginBottom: "4.6%" }}>
@@ -216,7 +207,7 @@ const Navbar = ({ open, responswrapper, lang, langtext, originalPath }) => {
                 activeStyle={activeStyle}
                 style={{ fontSize: "20px" }}
               >
-                {langtext.header.calcTitle}
+                {langText.header.calcTitle}
               </NavLink>
             </Col>
             <Col span={24} style={{ marginBottom: "4.6%" }}>
@@ -225,7 +216,7 @@ const Navbar = ({ open, responswrapper, lang, langtext, originalPath }) => {
                 activeStyle={activeStyle}
                 style={{ fontSize: "20px" }}
               >
-                {langtext.header.infoTitle}
+                {langText.header.infoTitle}
               </NavLink>
             </Col>
             <Col span={24} style={{ marginBottom: "4.6%" }}>
@@ -234,7 +225,7 @@ const Navbar = ({ open, responswrapper, lang, langtext, originalPath }) => {
                 activeStyle={activeStyle}
                 style={{ fontSize: "20px" }}
               >
-                {langtext.header.careerTitle}
+                {langText.header.careerTitle}
               </NavLink>
             </Col>
             <Col span={24} style={{ marginBottom: "4.6%" }}>
@@ -243,7 +234,7 @@ const Navbar = ({ open, responswrapper, lang, langtext, originalPath }) => {
                 activeStyle={activeStyle}
                 style={{ fontSize: "20px" }}
               >
-                {langtext.header.contractTitle}
+                {langText.header.contractTitle}
               </NavLink>
             </Col>
           </Row>
@@ -275,7 +266,7 @@ const Navbar = ({ open, responswrapper, lang, langtext, originalPath }) => {
         </GridLang>
         <GridAddress>
           <EnvironmentWrapper src={EnvironmentImg} />
-          <AddressSpan lang={lang}>{langtext.header.address}</AddressSpan>
+          <AddressSpan lang={lang}>{langText.header.address}</AddressSpan>
         </GridAddress>
         <GridBlank1 />
         <GridHome>
@@ -306,34 +297,34 @@ const Navbar = ({ open, responswrapper, lang, langtext, originalPath }) => {
           <NavLink
             to={`/${lang}/services/`}
             activeStyle={activeStyle}
-            state={{ responswrapper }}
+            state={{ responseWrapper }}
           >
-            {langtext.header.serveTitle}
+            {langText.header.serveTitle}
           </NavLink>
         </GridService>
         <GridReport>
           <NavLink to={`/${lang}/reports/`} activeStyle={activeStyle}>
-            {langtext.header.reportTitle}
+            {langText.header.reportTitle}
           </NavLink>
         </GridReport>
         <GridCalc>
           <NavLink to={`/${lang}/calculators/salary`} activeStyle={activeStyle}>
-            {langtext.header.calcTitle}
+            {langText.header.calcTitle}
           </NavLink>
         </GridCalc>
         <GridInfo md={{ span: 0, offset: 2 }}>
           <NavLink to={`/${lang}/information/`} activeStyle={activeStyle}>
-            {langtext.header.infoTitle}
+            {langText.header.infoTitle}
           </NavLink>
         </GridInfo>
         <GridJoin md={{ span: 0, offset: 2 }}>
           <NavLink to={`/${lang}/career/`} activeStyle={activeStyle}>
-            {langtext.header.careerTitle}
+            {langText.header.careerTitle}
           </NavLink>
         </GridJoin>
         <GridContact>
           <NavLink to={`/${lang}/contact/`} activeStyle={activeStyle}>
-            {langtext.header.contractTitle}
+            {langText.header.contractTitle}
           </NavLink>
         </GridContact>
       </GridWrapper>

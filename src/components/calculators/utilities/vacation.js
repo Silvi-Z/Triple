@@ -54,11 +54,58 @@ const may = [
 const jun = ['2020-06-01', '2020-06-14']
 const jul = ['2020-07-05']
 const aug = []
-const sep = ['2020-09-01', '2020-09-21']
-const oct = ['2020-10-05', '2020-10-10']
+const sep = ['2020-09-21']
+const oct = ['2020-10-10']
 const nov = ['2020-11-10']
 const dec = ['2020-12-07', '2020-12-09', '2020-12-31']
+
+export const holidaysByMonth = [
+  jan, feb, mar, apr, may, jun, jul, aug, sep, oct, nov, dec
+]
 
 export const holidays = [
   ...jan, ...feb, ...mar, ...apr, ...may, ...jun, ...jul, ...aug, ...sep, ...oct, ...nov, ...dec
 ]
+
+export const workingDaysInMonth = ({ date, schedule }) => {
+  const weekend = schedule === 5 ? [0, 6] : [6]
+  let days = [],
+    daysInMonth = date.daysInMonth(),
+    start = date.startOf('month')
+
+  while (daysInMonth) {
+    start.date(daysInMonth);
+
+    if (
+      !weekend.includes(start.day()) &&
+      holidaysByMonth[date.month()].every(holiday => !moment(holiday).isSame(start))
+    ) days.push(start.clone());
+
+    daysInMonth--;
+  }
+
+  return days
+}
+
+/**
+ * Getting working dates between two dates
+ *
+ * @param start - moment date
+ * @param end - moment date
+ * @param {Number} schedule - working schedule
+ * @return {Array}
+ */
+export const workingDaysInRange = ({start, end}, schedule) => {
+  const weekend = schedule === 5 ? [0, 6] : [6], days = []
+
+  while (start.isSameOrBefore(end)) {
+    if (
+      !weekend.includes(start.day()) &&
+      holidaysByMonth[start.month()].every(holiday => !moment(holiday).isSame(start))
+    ) days.push(start.clone());
+
+    start.add(1, 'day');
+  }
+
+  return days
+}

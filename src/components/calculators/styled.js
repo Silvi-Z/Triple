@@ -30,6 +30,7 @@ export const RadioButton = styled(Radio.Button)`
   width: 100%;
   height: 50px !important;
   border-color: #555555 !important;
+  border-radius: 5px !important;
   &.ant-radio-button-wrapper {
     line-height: 50px;
   }
@@ -97,6 +98,7 @@ export const RadioLabel = styled(Text)`
 
 export const ButtonSubmit = styled(Button)`
   background: #1C1D21;
+  font-family: ArialAMU;
   font-style: normal;
   font-weight: bold;
   font-size: 16px;
