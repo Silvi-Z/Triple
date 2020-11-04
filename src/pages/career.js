@@ -24,16 +24,12 @@ const Career = ({ pageContext }) => {
       status: true,
       data: {
         id: 0,
-        title: "Ավագ ",
+        title: "Ավագ",
         sub_title: "Պահանջվող հմտություններ",
-        description_1:
-          "Հաշվապահական կամ ֆինանսական ոլորտում աշխատանքային փորձ (առնվազն 3 տարի)",
-        description_2: "Հաշվապահական ստանդարտների իմացություն,",
-        description_3:
-          "ՀԾ, 1 C, E-invoicing և այլ հարակից հաշվապահական ծրագրերի իմացություն,",
-        description_4: "Microsoft Office փաթեթի իմացություն",
-        description_5: "Հաշվապահական հաշվառման ստանդարտների լավ տիրապետում",
-        description_6: "Հաշվապահական հաշվառման ստանդարտների լավ տիրապետում",
+        description_1: "Առնվազն 2 տարվա աշխատանքային փորձ",
+        description_2: "Հաշվապահական հաշվառման գիտելիքներ,",
+        description_3: "Հարկային օրենսգրքի իմացություն,",
+        description_4: "Հայկական Ծրագրերի իմացություն",
       },
       open: true,
     },
@@ -85,15 +81,14 @@ const Career = ({ pageContext }) => {
         description={career.paragraph}
         pageContext={pageContext}
       />
-      <CareerParagraphRow>
-        <Col lg={{ span: 24 }} xxl={{ span: 8, offset: 4 }}>
+      <CareerParagraphRow justify="center">
+        <Col>
           <H1Styled>{career.title}</H1Styled>
           <PStyled>{career.paragraph}</PStyled>
         </Col>
       </CareerParagraphRow>
       {careerdata.map((d, id) => (
         <CareerWrap
-          // showForm={showdrop}
           showCareerForm={toggle}
           data={d}
           key={id}
@@ -104,17 +99,17 @@ const Career = ({ pageContext }) => {
           lang={pageContext.locale}
         />
       ))}
-      <SharedWrapperCol span={10} offset={3}>
-        <ShareLabel>{careerForm.share}</ShareLabel>
-        <FacebookShareButton
-          url={urlShared}
-          children={<FacebookIcon />}
-        />
-        <LinkedinShareButton
-          children={<LinkdinIcon />}
-          url={urlShared}
-        ></LinkedinShareButton>
-      </SharedWrapperCol>
+      {/*<SharedWrapperCol span={10} offset={3}>*/}
+      {/*  <ShareLabel>{careerForm.share}</ShareLabel>*/}
+      {/*  <FacebookShareButton*/}
+      {/*    url={urlShared}*/}
+      {/*    children={<FacebookIcon />}*/}
+      {/*  />*/}
+      {/*  <LinkedinShareButton*/}
+      {/*    children={<LinkdinIcon />}*/}
+      {/*    url={urlShared}*/}
+      {/*  />*/}
+      {/*</SharedWrapperCol>*/}
     </>
   )
 }

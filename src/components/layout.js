@@ -16,20 +16,39 @@ const { Content, Footer } = CustomLayout
 const Main = styled(Content)`
   max-width: 1440px;
   margin: 0 auto;
+  padding:50px 118px;
+  @media (max-width: 1200px) {
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+  @media (max-width: 768px) {
+    padding: 50px 20px;
+  }
+  @media (min-width: 1600px) {
+    padding-left: 118px;
+    padding-right: 118px;
+  }
 `
 const FooterCust = styled(Footer)`
-  height: ${props => (props.backcolor === "true" ? "130px" : "208px")};
+padding:50px 115px;
+height:196px;
+  // height: ${props => (props.backcolor === "true" ? "130px" : "208px")};
   background-color: ${props =>
     props.backcolor === "true" ? "#1c1d21" : "white"};
   border-top: ${props =>
     props.backcolor === "true" ? null : "0.01em solid #ebebeb"};
   border-top-width: 80% thin;
-  @media (max-width: 768px) {
-    padding-left: 0px;
-    padding-right: 0px;
+  @media (max-width: 1040px){
+    padding:50px 20px;
   }
-  @media (max-width: 380px) {
-    height: 234px;
+  @media (max-width: 900px){
+    padding:40px 25px;
+  }
+  @media (max-width: 768px) {
+  height:253px;
+  }
+  @media (max-width: 427px) {
+    height: 368px;
   }
 `
 

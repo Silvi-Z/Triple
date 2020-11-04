@@ -39,8 +39,8 @@ const FooterNumberWrap = styled.div`
     text-align: center;
     color: #ffffff;
   }
-  @media only screen and (max-width: 375px) {
-    width: 220px;
+  @media only screen and (max-width: 416px) {
+    width: 100%;
     height: 15px;
     font-family: ArialAMU;
     font-size: 15px;
@@ -51,9 +51,15 @@ const FooterNumberWrap = styled.div`
     letter-spacing: normal;
     text-align: center;
     color: #ffffff;
+    margin-left:0;
   }
 `
+const FooterAdressSpan = styled.span`
+  min-width:100px;
+`
 const FooterAdressWrap = styled.div`
+  display:flex;
+  flex-wrap:nowrap;
   height: 16px;
   font-family: ArialAMU;
   font-size: 15px;
@@ -68,6 +74,7 @@ const FooterAdressWrap = styled.div`
   text-align: center;
 `
 const FooterFollowUsWrap = styled.div`
+  min-width:100px;
   width: 90px;
   height: 15px;
   font-family: ArialAMU;
@@ -79,32 +86,40 @@ const FooterFollowUsWrap = styled.div`
   letter-spacing: normal;
   text-align: center;
   color: #ffffff;
+  @media only screen and (max-width: 850px){
+    order:3
+  }
 `
 const FooterCopyRightWrap = styled.div`
   width: 100%;
   font-family: ArialAMU;
   border-top: 0.01em solid;
   border-color: #ffffff;
+  padding:0 20px;
   padding-top: 22px;
   color: #e8e8e8;
   display: flex;
   justify-content: space-between;
+  @media only screen and (max-width: 850px){
+  flex-wrap:wrap;
+  }
 `
 const EnvironmentWrapper = styled.img`
-  width: 14px;
-  height: 20px;
+  width: 16px;
+  height: 22px;
 `
 const PhoneWrapper = styled.img`
-  width: 20px;
-  height: 20px;
+  width: 22px;
+  height: 22px;
+  margin-left:0;
 `
 const WhatsappWrapper = styled.img`
-  width: 20px;
-  height: 20px;
+  width: 22px;
+  height: 22px;
 `
 const ViberWrapper = styled.img`
   width: 20px;
-  height: 20px;
+  height: 21px;
 `
 const TelegramWrapper = styled.img`
   width: 20px;
@@ -121,24 +136,39 @@ const LinkedinWrapper = styled.img`
 
 const FooterNumberColumn = styled(Col)`
   display: flex;
-  /* padding-left: 5%; */
-  justify-content: space-around;
+  justify-content: center;
+  margin-left:0;
+  &>*{
+  margin-left:15px;
+  }
   @media only screen and (max-width: 1170px) {
-    /* padding-left: 1%; */
+    justify-content: space-between;
+    margin-left:0;
+  }
+  @media only screen and (max-width: 850px){
+  justify-content:center;
+  flex-wrap:wrap;
   }
   @media only screen and (max-width: 768px) {
     padding-left: 1%;
+    margin-left:0;
   }
-  @media only screen and (max-width: 375px) {
+  @media only screen and (max-width: 438px){
+    padding-left:0;
+    }
+
+  @media only screen and (max-width: 400px) {
     justify-content: space-evenly;
-    padding-left: 5%;
-    margin-bottom: 20px;
+    margin-bottom: 40px;
   }
 `
 const FooterAdressColumn = styled(Col)`
   display: flex;
   justify-content: center;
   /* padding-left: 12%; */
+  @media only screen and (max-width: 850px){
+    flex-wrap:wrap;
+  }
   @media only screen and (max-width: 768px) {
     padding-left: 0%;
     justify-content: center;
@@ -146,8 +176,15 @@ const FooterAdressColumn = styled(Col)`
 `
 const FooterFollowUsColumn = styled(Col)`
   display: flex;
+  justify-content: center;
+  &>*{
+  margin-left:8px;
+  }
+  @media only screen and (max-width: 850px){
   justify-content: space-between;
-  padding: 0 5%;
+  flex-wrap:wrap;
+  justify-content:center;
+  }
   @media only screen and (max-width: 768px) {
     padding-right: 0%;
   }
@@ -165,11 +202,11 @@ const FooterBlack = ({ langtext }) => {
       <Row id="footerfirstrow">
         <FooterNumberColumn
           xs={24}
-          sm={24}
-          md={8}
-          lg={{ span: 8, offset: 3 }}
-          xl={{ span: 8, offset: 3 }}
-          xxl={{ span: 8, offset: 2 }}
+          sm={9}
+          md={12}
+          lg={{ span: 12, offset: 2 }}
+          xl={{ span: 11, offset: 0 }}
+          xxl={{ span: 12, offset: 0 }}
         >
           <PhoneWrapper src={PhoneImg} />
           <WhatsappWrapper src={WhatsappImg} />
@@ -179,14 +216,26 @@ const FooterBlack = ({ langtext }) => {
             <span>+374 98553533,+374 98553533</span>
           </FooterNumberWrap>
         </FooterNumberColumn>
-        <FooterAdressColumn xs={24} sm={24} md={8} lg={6} xl={6} xxl={6}>
+        <FooterAdressColumn
+            xs={3}
+            sm={3}
+            md={4}
+            lg={6}
+            xl={4}
+            xxl={6}>
           <EnvironmentWrapper src={EnvironmentImg} />
           <FooterAdressWrap>
             {/* <span>Հր, Քոչար 44</span> */}
-            <span>{langtext !== undefined ? langtext.footer.address : null}</span>
+            <FooterAdressSpan>{langtext !== undefined ? langtext.footer.address : null}</FooterAdressSpan>
           </FooterAdressWrap>
         </FooterAdressColumn>
-        <FooterFollowUsColumn xs={24} sm={24} md={8} lg={6} xl={6} xxl={6}>
+        <FooterFollowUsColumn
+            xs={6}
+            sm={5}
+            md={5}
+            lg={6}
+            xl={6}
+            xxl={6}>
           <FooterFollowUsWrap>
             {/* <span>Հետևեք մեզ</span> */}
             <span>{langtext !== undefined ? langtext.footer.follow : null}</span>
@@ -195,6 +244,7 @@ const FooterBlack = ({ langtext }) => {
             href="https://www.linkedin.com/company/triple-consulting/"
             target="_blank"
             title="triple-c.algorithm.am"
+            style={{order:1}}
           >
             <LinkedinWrapper src={LinkedinImg} />
           </a>
@@ -202,6 +252,7 @@ const FooterBlack = ({ langtext }) => {
             href="https://www.facebook.com/TripleCArmenia/"
             target="_blank"
             title="triple-c.algorithm.am"
+            style={{order:2}}
           >
             <FacebookWrapper src={FacebookImg} />
           </a>

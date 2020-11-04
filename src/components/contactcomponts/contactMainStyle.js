@@ -554,8 +554,9 @@ export const CompanyCol = styled(Col)`
 export const SharedWrapperCol = styled(Col)`
   padding: 0 1%;
   display: flex;
+  color:red;
   justify-content: end;
-  margin-top: 2%;
+  margin: 2% 0;
   .react-share__ShareButton {
     all: unset;
   }
@@ -568,7 +569,7 @@ export const SharedWrapperCol = styled(Col)`
 `
 export const ShareLabel = styled.h3`
   width: 83px;
-  height: 15px;
+  height: 24px;
   font-family: ArialAMU;
   font-size: 16px;
   font-weight: normal;
@@ -583,7 +584,6 @@ export const ShareLabel = styled.h3`
 export const FacebookIcon = styled.div`
   height: 32px;
   width: 32px;
-  margin-left: 19px;
   background-image: url(${FbBlackIcon});
   cursor: pointer;
   &:hover {
