@@ -7,6 +7,10 @@ html {
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
 }
+html {
+  --antd-wave-shadow-color: none;
+  --scroll-bar: 0;
+}
 body {
   margin: 0;
   font-family: ArialAMU, sans-serif;
@@ -222,7 +226,7 @@ img {
 }
 h1 {
   padding: 0;
-  margin: 0 0 1.45rem;
+  margin: 0 0 30px;
   color: inherit;
   font-family: ArialAMU, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
@@ -615,7 +619,9 @@ pre tt:after {
   border: solid 1px #009db8;
   background-color: #ffffff;
 }
-
+#careeruploadbutton{
+  margin-top: 7px;
+}
 #register_full_name {
   width: 448px;
   height: 40px;
@@ -731,6 +737,9 @@ pre tt:after {
   -webkit-box-shadow: 0 0 0 2px rgba(87, 168, 233, 0.2);
   box-shadow: 0 0 0 2px rgba(87, 168, 233, 0.2);
 } */
+#basic_career .ant-row{
+  display:block;
+}
 #basic_username label {
   width: 122px;
   height: 14px;
@@ -910,21 +919,23 @@ pre tt:after {
   }
 }
 
-#basic_career {
-  width: 540px;
-  margin-left: 5%;
-}
 #basic_career_textarea {
-  height: 80px;
+  margin-top: 7px;
+  box-shadow: none;
+  height: 86px;
+  width: 390px;
+  border: 0.5px solid #555555;
+  border-radius: 5px;
 }
 #careersubmitcol {
-  padding-top: 7.5%;
-  margin-left: 25%;
+  padding-top: 8px;
 }
 #careeruploadbutton {
-  width: 340px;
-  height: 46px;
+  width: 390px;
+  height: 42px;
   text-align: right;
+  border-radius: 5px;
+  border: .5px solid #555555;
 }
 
 @media only screen and (max-width: 768px) {
@@ -936,7 +947,8 @@ pre tt:after {
     height: 80px;
   }
   #basic_career {
-    width: 540px;
+    width: 100%;
+    margin-left:0;
   }
   #basic_user_email {
     width: 245px;
@@ -994,19 +1006,20 @@ pre tt:after {
     margin-left: 2%;
   }
 }
-@media only screen and (max-width: 375px) {
-  #basic_career {
-    width: 290px;
+@media only screen and (max-width: 490px){
+  #careeruploadbutton, #basic_career_file, #basic_career_textarea, ant-upload-select-text, .ant-upload{
+    width: 100%;
   }
+}
+@media only screen and (max-width: 375px) {
   #basic_career_textarea {
     height: 160px;
   }
   #careersubmitcol {
     padding-top: 7.5%;
-    margin-left: 0%;
+    width: 100%;
   }
   #careeruploadbutton {
-    width: 290px;
     height: 46px;
     text-align: right;
   }
@@ -1018,15 +1031,7 @@ pre tt:after {
   }
 }
 @media only screen and (max-width: 320px) {
-  #basic_career {
-    width: 290px;
-  }
-  #basic_career_textarea {
-    max-width: 95%;
-    height: 160px;
-  }
   #careeruploadbutton {
-    width: 280px;
     height: 46px;
     text-align: right;
   }
@@ -1060,6 +1065,7 @@ pre tt:after {
 }
 #footerfirstrow {
   height: 70%;
+  justify-content: space-around;
 }
 #footersecondtrow {
   height: 30%;
@@ -1099,6 +1105,7 @@ pre tt:after {
     font-size: 100%;
   }
 }
+
 @media only screen and (min-width: 375px) {
   #register_address {
     width: 90%;
@@ -1114,10 +1121,19 @@ pre tt:after {
     margin-right: -20px;
   }
 }
+
+@media only screen and (max-width: 860px) {
+  /*#footerfirstrow>div{*/
+  /*  flex-direction: column;*/
+  /*}*/
+}
 @media only screen and (max-width: 768px) {
   .slick-slider {
     margin-left: -20px;
     margin-right: -20px;
+  }
+  #footerfirstrow img{
+    margin-bottom: 0;
   }
 }
 @media only screen and (max-width: 1024px) {
@@ -1256,3 +1272,4 @@ pre tt:after {
     right: 90px;
   }
 }
+
