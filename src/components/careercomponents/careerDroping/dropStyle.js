@@ -108,10 +108,10 @@ export const FormWrapper = styled.div`
   border-top:1px solid black;
   padding: 40px 100px 0 0;
   @media only screen and (max-width:1200px){
-  padding: 40px 50px 0 0;
+  padding: 40px 50px 29px 0;
   }
   @media only screen and (max-width:970px){
-  padding: 40px 20px 0 0;
+  padding: 40px 20px 29px 0;
   }
   @media only screen and (max-width:768px){
   flex-direction:column;
@@ -122,7 +122,7 @@ export const FormWrapper = styled.div`
 `
 export const OrderListWrapper = styled.div`
   justify-content:flex-start;
-  padding:0 20px;
+  padding:0 20px 30px 20px;
   display:flex;
   flex-direction:column;
   @media only screen and (max-width: 768px){

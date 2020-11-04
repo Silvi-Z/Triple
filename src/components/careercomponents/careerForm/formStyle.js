@@ -28,19 +28,13 @@ export const SharedWrapperCol = styled(Col)`
   display: flex;
   justify-content: end;
   margin-top: 30px;
-  margin-bottom: 49px;
-  @media (max-width: 763px){
-  margin-bottom: 40px;
+  padding-left:20px;
+  @media only screen and (max-width: 768px){
+  padding-left:0;
   }
   .react-share__ShareButtonSharedWrapperCol {
     all: unset;
   }
-  /* @media (min-width: 375px) {
-    a {
-      display: contents;
-      color: #da4567;
-    }
-  } */
 `
 export const FaceLink = styled.a`
   color: black;

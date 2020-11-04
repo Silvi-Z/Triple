@@ -68,18 +68,7 @@ const CareerDropWrapper = ({
                     <OrderSection>{data.data.description_3}</OrderSection>
                     <OrderSection>{data.data.description_4}</OrderSection>
                   </OrderList>
-                  <SharedWrapperCol>
-                    <ShareLabel>{careerForm.share}</ShareLabel>
-                      <FacebookShare
-                        url="https://github.com/AlgorithmSolutions/TripleFE"
-                        children={<FacebookIcon />}
-                      />
 
-                    <LinkedinShare
-                      url="https://github.com/AlgorithmSolutions/TripleFE"
-                      children={<LinkdinIcon />}
-                    />
-                  </SharedWrapperCol>
                 </OrderListWrapper>
                 <FormCareer
                   seotitle={seotitle}
