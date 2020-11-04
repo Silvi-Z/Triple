@@ -16,6 +16,8 @@ import {
   LinkedinLink,
   FacebookIcon,
   LinkdinIcon,
+  FacebookShare,
+  LinkedinShare,
 } from "../components/careercomponents/careerForm/formStyle"
 import { FacebookShareButton, LinkedinShareButton } from "react-share"
 const Career = ({ pageContext }) => {
@@ -99,17 +101,18 @@ const Career = ({ pageContext }) => {
           lang={pageContext.locale}
         />
       ))}
-      {/*<SharedWrapperCol span={10} offset={3}>*/}
-      {/*  <ShareLabel>{careerForm.share}</ShareLabel>*/}
-      {/*  <FacebookShareButton*/}
-      {/*    url={urlShared}*/}
-      {/*    children={<FacebookIcon />}*/}
-      {/*  />*/}
-      {/*  <LinkedinShareButton*/}
-      {/*    children={<LinkdinIcon />}*/}
-      {/*    url={urlShared}*/}
-      {/*  />*/}
-      {/*</SharedWrapperCol>*/}
+      <SharedWrapperCol>
+        <ShareLabel>{careerForm.share}</ShareLabel>
+        <FacebookShare
+          url={urlShared}
+          children={<FacebookIcon />}
+        />
+
+        <LinkedinShare
+          url={urlShared}
+          children={<LinkdinIcon />}
+        />
+      </SharedWrapperCol>
     </>
   )
 }
