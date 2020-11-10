@@ -41,7 +41,7 @@ export const euroTo = ({amount, currency}, rates) => {
 }
 
 export const calculate = ({ imported, person, date, capacity, price, currency }, rates) => {
-  const age = Math.ceil(moment().diff(date, 'months') / 12)
+  const age = Math.round(moment().diff(date, 'months') / 12)
   let _coefficient = {}, res = {tax: 0, fee: 0, vat: 0}
 
   if (currency === 'AMD') {
@@ -75,19 +75,19 @@ export const calculate = ({ imported, person, date, capacity, price, currency },
 
   if (imported === COUNTRY_THIRD && person === PERSON_PHYSICAL) {
     if (age <= 3) {
-      if (price < 8500) {
+      if (price <= 8500) {
         _coefficient.percentage = 0.54
         _coefficient.price = 2.5
-      } else if (price >= 8500 && price < 16700) {
+      } else if (price > 8500 && price <= 16700) {
         _coefficient.percentage = 0.48
         _coefficient.price = 3.5
-      } else if (price >= 16700 && price < 42300) {
+      } else if (price > 16700 && price <= 42300) {
         _coefficient.percentage = 0.48
         _coefficient.price = 5.5
-      } else if (price >= 42300 && price < 84500) {
+      } else if (price > 42300 && price <= 84500) {
         _coefficient.percentage = 0.48
         _coefficient.price = 7.5
-      } else if (price >= 84500 && price < 169000) {
+      } else if (price > 84500 && price <= 169000) {
         _coefficient.percentage = 0.48
         _coefficient.price = 15
       } else {
@@ -95,29 +95,29 @@ export const calculate = ({ imported, person, date, capacity, price, currency },
         _coefficient.price = 20
       }
     } else if (age > 3 && age <= 5) {
-      if (capacity < 1000) {
+      if (capacity <= 1000) {
         _coefficient.price =  1.5
-      } else if (capacity >= 1000 && capacity < 1500) {
+      } else if (capacity > 1000 && capacity <= 1500) {
         _coefficient.price =  1.7
-      } else if (capacity >= 1500 && capacity < 1800) {
+      } else if (capacity > 1500 && capacity <= 1800) {
         _coefficient.price =  2.5
-      } else if (capacity >= 1800 && capacity < 2300) {
+      } else if (capacity > 1800 && capacity <= 2300) {
         _coefficient.price =  2.7
-      } else if (capacity >= 2300 && capacity < 3000) {
+      } else if (capacity > 2300 && capacity <= 3000) {
         _coefficient.price = 3
       } else {
         _coefficient.price = 3.6
       }
     } else {
-      if (capacity < 1000) {
+      if (capacity <= 1000) {
         _coefficient.price = 3
-      } else if (capacity >= 1000 && capacity < 1500) {
+      } else if (capacity > 1000 && capacity <= 1500) {
         _coefficient.price = 3.2
-      } else if (capacity >= 1500 && capacity < 1800) {
+      } else if (capacity > 1500 && capacity <= 1800) {
         _coefficient.price = 3.5
-      } else if (capacity >= 1800 && capacity < 2300) {
+      } else if (capacity > 1800 && capacity <= 2300) {
         _coefficient.price = 4.8
-      } else if (capacity >= 2300 && capacity < 3000) {
+      } else if (capacity > 2300 && capacity <= 3000) {
         _coefficient.price = 5
       } else {
         _coefficient.price = 5.7
@@ -133,6 +133,8 @@ export const calculate = ({ imported, person, date, capacity, price, currency },
   if (imported === COUNTRY_THIRD && person === PERSON_LEGAL) {
     // TODO: calculate for this condition
   }
+
+  console.log(res)
 
   return res;
 }
