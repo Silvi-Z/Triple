@@ -727,16 +727,6 @@ pre tt:after {
   text-align: center;
   color: #000000;
 }
-#basic_username {
-  width: 514px;
-  height: 38px;
-}
-/* #basic_username:focus {
-  border-color: yellow;
-  outline: 0;
-  -webkit-box-shadow: 0 0 0 2px rgba(87, 168, 233, 0.2);
-  box-shadow: 0 0 0 2px rgba(87, 168, 233, 0.2);
-} */
 #basic_career .ant-row{
   display:block;
 }
@@ -760,32 +750,25 @@ pre tt:after {
 }
 #basic_email {
   width: 514px;
-  height: 38px;
 }
-/* #uploadbuttoncompany {
-  width: 252px;
-  height: 38px;
-  margin-left: 2%;
-  text-align: right;
-} */
-
-/* #basic_title {
-  width: 484px;
-  height: 38px;
-} */
-#basic_textarea {
-  width: 484px;
-  height: 80px;
-  margin-bottom: 20px;
+#uploadbutton{
+  pointer-events: none;
+  box-shadow:none;
+  width: 100%;
+  outline: 0;
+  border:none;
+  border-bottom: 1px solid #D0D0D0;
+  color: #D4D4D4;
+  padding: 7px 0 0 0;
+  align-items: center;
+  height:50px;
+  background: transparent;
+  display: flex;
+  justify-content: space-between;
 }
 #formtextarea {
   width: 514px;
   height: 80px;
-}
-#uploadbutton {
-  width: 100%;
-  height: 38px;
-  text-align: right;
 }
 #submitbotton {
   width: 180px;
@@ -799,10 +782,6 @@ pre tt:after {
 }
 
 @media only screen and (max-width: 375px) {
-  #basic_username {
-    width: 270px;
-    height: 38px;
-  }
   #basic_companyname {
     width: 270px;
     height: 38px;
@@ -815,20 +794,6 @@ pre tt:after {
     width: 270px;
     height: 38px;
     text-align: right;
-  }
-  #uploadbutton {
-    width: 270px;
-    height: 38px;
-    text-align: right;
-  }
-  #basic_title {
-    width: 270px;
-    height: 38px;
-    margin-bottom: 20px;
-  }
-  #basic_textarea {
-    width: 270px;
-    height: 80px;
   }
   #formcontact div {
     margin-top: 0%;
@@ -939,10 +904,6 @@ pre tt:after {
 }
 
 @media only screen and (max-width: 768px) {
-  #basic_textarea {
-    max-width: 102%;
-    margin-bottom: 20px;
-  }
   #basic_career_textarea {
     height: 80px;
   }
@@ -953,25 +914,6 @@ pre tt:after {
   #basic_user_email {
     width: 245px;
     height: 38px;
-  }
-  #uploadbuttoncompany {
-    width: 245px;
-    height: 38px;
-    margin-left: 4%;
-    text-align: right;
-  }
-  #basic_username {
-    width: 240px;
-    height: 38px;
-  }
-  #basic_title {
-    width: 500px;
-    height: 38px;
-  }
-  #uploadbutton {
-    width: 500px;
-    height: 38px;
-    text-align: right;
   }
 }
 
@@ -987,23 +929,7 @@ pre tt:after {
     margin-left: 0%;
     text-align: right;
   }
-  #basic_username {
-    width: 270px;
-    height: 38px;
-  }
-  #uploadbutton {
-    width: 270px;
-    height: 38px;
-    text-align: right;
-  }
-  #basic_title {
-    width: 270px;
-    height: 38px;
-  }
   #formcontact {
-    width: 290px;
-    padding: 2% 2%;
-    margin-left: 2%;
   }
 }
 @media only screen and (max-width: 490px){
@@ -1161,55 +1087,9 @@ pre tt:after {
     border: solid 1px #009db8;
     background-color: #ffffff;
   }
-  #basic_title {
-    width: 510px;
-    height: 38px;
-  }
-  #uploadbutton {
-    width: 510px;
-    height: 38px;
-    text-align: right;
-  }
-  /* #basic_textarea {
-    max-width: 510px;
-    margin-bottom: 20px;
-  } */
-}
-@media only screen and (min-width: 1170px) {
-  #basic_username {
-    width: 252px;
-    height: 38px;
-  }
-  #basic_title {
-    width: 500px;
-    height: 38px;
-  }
-  #uploadbutton {
-    width: 500px;
-    height: 38px;
-    text-align: right;
-  }
-  #basic_textarea {
-    max-width: 500px;
-    margin-bottom: 20px;
-  }
-  #uploadbutton {
-    width: 252px;
-    height: 38px;
-    margin-left: 2%;
-    text-align: right;
-  }
 }
 
 @media (min-width: 1600px) {
-  #basic_username {
-    width: 510px;
-    height: 38px;
-  }
-  #basic_textarea {
-    max-width: 109%;
-    margin-bottom: 20px;
-  }
   .slick-slider {
     margin-top: -50px;
     margin-left: -100px;
@@ -1227,15 +1107,6 @@ pre tt:after {
     height: 42px;
     border: solid 1px #009db8;
     background-color: #ffffff;
-  }
-  #basic_title {
-    width: 484px;
-    height: 38px;
-  }
-  #uploadbutton {
-    width: 484px;
-    height: 38px;
-    text-align: right;
   }
 }
 

@@ -14,20 +14,7 @@ import "./layout.css"
 const { Content, Footer } = CustomLayout
 
 const Main = styled(Content)`
-  max-width: 1440px;
   margin: 0 auto;
-  padding:50px 118px;
-  @media (max-width: 1200px) {
-    padding-left: 50px;
-    padding-right: 50px;
-  }
-  @media (max-width: 768px) {
-    padding: 50px 20px;
-  }
-  @media (min-width: 1600px) {
-    padding-left: 118px;
-    padding-right: 118px;
-  }
 `
 const FooterCust = styled(Footer)`
 padding:50px 115px;

@@ -18,15 +18,8 @@ import {
   OrderList,
   OrderSection,
   DropCareer,
+  Wrapper
 } from "./dropStyle"
-import {
-  FacebookIcon,
-  LinkdinIcon,
-  SharedWrapperCol,
-  ShareLabel,
-  FacebookShare,
-  LinkedinShare
-} from "../careerForm/formStyle"
 const CareerDropWrapper = ({
   showCareerForm,
   data,
@@ -39,17 +32,17 @@ const CareerDropWrapper = ({
   const { careerForm } = useTranslations()
 
   return (
-    <>
-    <DropCareer >
-      <DropHeadingTitle>
-        <ToggleH2Styled>{data.data.title}</ToggleH2Styled>
-      </DropHeadingTitle>
-      <DropHeadingButton>
-        <ToggleButton isOpen={data.open} block onClick={() => showCareerForm(data)}>
-          {data.open ? <UpOutlined/> :  <DownOutlined />}
-        </ToggleButton>
-      </DropHeadingButton>
-    </DropCareer >
+    <Wrapper>
+      <DropCareer >
+        <DropHeadingTitle>
+          <ToggleH2Styled>{data.data.title}</ToggleH2Styled>
+        </DropHeadingTitle>
+        <DropHeadingButton>
+          <ToggleButton isOpen={data.open} block onClick={() => showCareerForm(data)}>
+            {data.open ? <UpOutlined/> :  <DownOutlined />}
+          </ToggleButton>
+        </DropHeadingButton>
+      </DropCareer >
       {
         data.open ? (
               <FormWrapper
@@ -80,7 +73,7 @@ const CareerDropWrapper = ({
               </FormWrapper>
         ) : null
       }
-    </>
+    </Wrapper>
   )
 }
 export default CareerDropWrapper;

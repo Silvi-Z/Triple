@@ -19,62 +19,24 @@ const device = {
   desktop: `(min-width: ${size.desktop})`,
   desktopL: `(min-width: ${size.desktop})`,
 };
-export const StyledForm = styled(Form)`
-  .ant-form-item-has-error .ant-input {
-    border-color: #d9d9d9 !important;
+export const StyledForm = styled(Form)``
+export const ContactPageWrapper = styled.div`
+  margin: 0 auto;
+  max-width:1440px;
+  padding:50px 118px 40px 118px;
+  @media only screen and (max-width: 1400px){
+    padding: 50px 70px 40px 120px
   }
-  @media ${device.mobileS} {
-    #submitbotton {
-      margin: 0 18%;
-    }
+  @media only screen and (max-width: 1300px){
+    padding: 50px 60px 40px 60px;
   }
-  @media ${device.mobileM} {
-    #submitbotton {
-      margin: 0 19%;
-    }
+  @media only screen and (max-width: 1070px){
+    padding: 50px 20px 40px 20px;
   }
-  @media ${device.tablet} {
-    #submitbotton {
-      margin: 0 33%;
-    }
-    #basic_textarea {
-      height: 98px;
-      min-height: 98px;
-      max-height: 186px;
-      overflow-y: hidden;
-      width: 500px;
-    }
+  @media only screen and (max-width: 387px){
+    padding: 50px 14px 40px 14px;
   }
-  @media ${device.tablet} {
-    #submitbotton {
-      margin: 0 33%;
-    }
-    #basic_textarea {
-      height: 98px;
-      min-height: 98px;
-      max-height: 186px;
-      overflow-y: hidden;
-      width: 500px;
-    }
-    .ant-upload {
-      width: 100%;
-    }
-  }
-  @media ${device.laptop} {
-    .ant-upload {
-      width: 100%;
-    }
-  }
-  @media only screen and (min-width: 1366px) {
-    #basic_textarea {
-      height: 98px;
-      min-height: 98px;
-      max-height: 186px;
-      overflow-y: hidden;
-      width: 512px;
-    }
-  }
-`;
+`
 export const Arealabel = styled.label`
   position: relative;
   display: inline-flex;

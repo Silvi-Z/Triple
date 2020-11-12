@@ -1,12 +1,18 @@
 import React, { useState } from "react"
-import { Form, Input, Button, Row, Col } from "antd"
-import { Upload } from "antd"
+import { Form, Button, Upload } from "antd"
 import triple from "../../../api/triple"
-import uploadImage from "../../../assets/upload2.svg"
 import CareerModal from "../contactModal/contactModal"
-import { Arealabel, UploadImg, StyledForm } from "./formStyle"
+import { StyledForm } from "./formStyle"
 //input styled custom with id in layout css #basic_username*/
 import "../../layout.css"
+import {
+  InputElement,
+  InputWrapper,
+  UploadOutlinedSpan,
+  UploadOutlined
+} from "../contactMainStyle"
+import { SubmitButton } from "../../careercomponents/careerDroping/dropStyle"
+import UploadIcon from "../../../assets/footericons/brandIcons/white_upload.svg"
 const layout = {
   labelCol: {
     span: 24,
@@ -14,12 +20,6 @@ const layout = {
   wrapperCol: {
     span: 24,
   },
-}
-const normFile = e => {
-  if (Array.isArray(e)) {
-    return e
-  }
-  return e && e.fileList
 }
 
 const validateMessages = {
@@ -36,6 +36,7 @@ const Formfield = ({ langtext, lang }) => {
   const [form] = Form.useForm()
   const [modalVisible, setmodalVisible] = useState(false)
   const [loading, toggleLoading] = useState(false)
+  const [selectedFile, setSelectedFile] = useState(null)
   /*Ant Upload component has a defualt action prop,wich was triggered when user clicked to upload button,
   to disable mentioned action, use dummyRequest with customRequest prop
   */
@@ -47,7 +48,19 @@ const Formfield = ({ langtext, lang }) => {
 
   const handleOk = e => {
     setmodalVisible(false)
-    form.resetFields()
+    form.resetFields();
+    setSelectedFile(null);
+  }
+
+
+  const normFile = e => {
+    setSelectedFile(e.file);
+    if (Array.isArray(e)) {
+      console.log(e)
+      return e
+    }
+    console.log(e)
+    return e && [e.file]
   }
 
   const onFinish = async values => {
@@ -56,7 +69,9 @@ const Formfield = ({ langtext, lang }) => {
     UploadFormData.append("email", values.email)
     UploadFormData.append("message", values.textarea)
     UploadFormData.append("title", values.title)
-    UploadFormData.append("file", values.file[0].originFileObj)
+    if (selectedFile) {
+      UploadFormData.append("file",values.file[0].originFileObj)
+    }
     try {
       toggleLoading(true)
       const res = await triple
@@ -79,6 +94,7 @@ const Formfield = ({ langtext, lang }) => {
     <StyledForm
       {...layout}
       name="basic"
+      layout="vertical"
       initialValues={{
         remember: true,
       }}
@@ -86,17 +102,9 @@ const Formfield = ({ langtext, lang }) => {
       onFinish={onFinish}
       id="formcontact"
     >
-      <Row>
-        <Col
-          lg={{ span: 24 }}
-          xl={{ span: 24 }}
-          xxl={{ span: 24 }}
-          md={{ span: 12 }}
-          sm={{ span: 23 }}
-          xs={{ span: 23 }}
-        >
+      <>
+        <InputWrapper class="input_wrapper">
           <StyledForm.Item
-            label={langtext.name_label}
             name="username"
             rules={[
               {
@@ -105,26 +113,22 @@ const Formfield = ({ langtext, lang }) => {
                   lang === "en"
                     ? "Please fill in the fields provided"
                     : lang === "ru"
-                      ? "Пожалуйста, заполните необходимые поля"
-                      : "Խնդրում ենք լրացնել նշված դաշտերը",
+                    ? "Пожалуйста, заполните необходимые поля"
+                    : "Խնդրում ենք լրացնել նշված դաշտերը",
               },
             ]}
-            style={{ marginBottom: "3px" }}
+            style={{ color: "white", marginBottom: "3px" }}
           >
-            <Input style={{ width: "100%" }} />
+            <InputElement
+              name="username"
+              placeholder={`${langtext.name_label_first} ${langtext.name_label_second}`}
+              style={{ width: "100%" }}
+            />
           </StyledForm.Item>
-        </Col>
-        <Col
-          lg={{ span: 24, offset: 0 }}
-          xl={{ span: 24, offset: 0 }}
-          xxl={{ span: 24, offset: 0 }}
-          md={{ span: 11, offset: 1 }}
-          sm={{ span: 23 }}
-          xs={{ span: 23 }}
-        >
+        </InputWrapper>
+        <InputWrapper >
           <StyledForm.Item
             name="email"
-            label={langtext.email_label}
             rules={[
               {
                 type: "email",
@@ -133,18 +137,17 @@ const Formfield = ({ langtext, lang }) => {
                   lang === "en"
                     ? "Please fill in the fields provided"
                     : lang === "ru"
-                      ? "Пожалуйста, заполните необходимые поля"
-                      : "Խնդրում ենք լրացնել նշված դաշտերը",
+                    ? "Пожалуйста, заполните необходимые поля"
+                    : "Խնդրում ենք լրացնել նշված դաշտերը",
               },
             ]}
             style={{ marginBottom: "3px" }}
           >
-            <Input size="large" style={{ width: "100%" }} />
+            <InputElement placeholder={langtext.email_label} name="email" size="large" style={{ width: "100%" }} />
           </StyledForm.Item>
-        </Col>
-        <Col lg={{ span: 24 }} xxl={{ span: 24 }} xl={{ span: 24 }}>
+        </InputWrapper>
+        <InputWrapper>
           <StyledForm.Item
-            label={langtext.file_label}
             name="file"
             valuePropName="fileList"
             getValueFromEvent={normFile}
@@ -155,8 +158,8 @@ const Formfield = ({ langtext, lang }) => {
                   lang === "en"
                     ? "Please fill in the fields provided"
                     : lang === "ru"
-                      ? "Пожалуйста, заполните необходимые поля"
-                      : "Խնդրում ենք լրացնել նշված դաշտերը",
+                    ? "Пожалуйста, заполните необходимые поля"
+                    : "Խնդրում ենք լրացնել նշված դաշտերը",
               },
             ]}
             style={{ marginBottom: "3px" }}
@@ -166,19 +169,14 @@ const Formfield = ({ langtext, lang }) => {
               customRequest={dummyRequest}
             >
               <Button size="large" id="uploadbutton">
-                <UploadImg src={uploadImage} />
+                <UploadOutlinedSpan>{selectedFile ? selectedFile.name : langtext.file_label}</UploadOutlinedSpan>
+                <UploadOutlined />
               </Button>
             </Upload>
           </StyledForm.Item>
-        </Col>
-        <Col
-          xxl={{ span: 24 }}
-          xl={{ span: 24, offset: 0 }}
-          lg={{ span: 24 }}
-          md={{ span: 24 }}
-        >
+        </InputWrapper>
+        <InputWrapper>
           <StyledForm.Item
-            label={langtext.title_label}
             name="title"
             rules={[
               {
@@ -187,24 +185,18 @@ const Formfield = ({ langtext, lang }) => {
                   lang === "en"
                     ? "Please fill in the fields provided"
                     : lang === "ru"
-                      ? "Пожалуйста, заполните необходимые поля"
-                      : "Խնդրում ենք լրացնել նշված դաշտերը",
+                    ? "Пожалуйста, заполните необходимые поля"
+                    : "Խնդրում ենք լրացնել նշված դաշտերը",
               },
             ]}
             style={{ marginBottom: "3px" }}
           >
-            <Input size="large" />
+            <InputElement name="title" placeholder={langtext.title_label} size="large" />
           </StyledForm.Item>
-        </Col>
-        <Col
-          xxl={{ span: 22 }}
-          xl={{ span: 24 }}
-          lg={{ span: 24 }}
-          sm={{ span: 23 }}
-          xs={{ span: 23 }}
-        >
+
+        </InputWrapper>
+        <InputWrapper  >
           <StyledForm.Item
-            label={langtext.textare_label}
             name="textarea"
             rules={[
               {
@@ -213,24 +205,25 @@ const Formfield = ({ langtext, lang }) => {
                   lang === "en"
                     ? "Please fill in the fields provided"
                     : lang === "ru"
-                      ? "Пожалуйста, заполните необходимые поля"
-                      : "Խնդրում ենք լրացնել նշված դաշտերը",
+                    ? "Пожалуйста, заполните необходимые поля"
+                    : "Խնդրում ենք լրացնել նշված դաշտերը",
               },
             ]}
           >
-            <Input.TextArea autoSize={{ minRows: 4, maxRows: 8 }} />
+            <InputElement name="textarea" placeholder={langtext.textare_label} size="large"/>
           </StyledForm.Item>
-        </Col>
-      </Row>
+        </InputWrapper>
+      </>
       <StyledForm.Item>
-        <Button
+        <SubmitButton
+          className="submit_button_style"
           type="primary"
           htmlType="submit"
-          id="submitbotton"
           loading={loading}
+          color={true}
         >
           {langtext.send_button}
-        </Button>
+        </SubmitButton>
       </StyledForm.Item>
       <CareerModal handleOk={handleOk} modalVisible={modalVisible} />
     </StyledForm>

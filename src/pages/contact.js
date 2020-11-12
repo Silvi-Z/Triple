@@ -23,29 +23,56 @@ import {
   CallIconWrapper,
   ContactNumberWrap,
   FormRow,
+  InfoColumn,
   FormColumn,
   ContactNavRow,
-  ContactMapRow,
-  LinkdinIcon,
-  FacebookIcon,
   SharedWrapperCol,
   ShareLabel,
+  FacebookShare,
+  LinkdinIcon,
+  FacebookIcon,
+  LinkedinShare,
+  H1Email,
+  H3Element,
+  PElement,
+  AdressColumn,
+  ContactColumn,
+  ShareColumn
 } from "../components/contactcomponts/contactMainStyle"
+import "../components/contactcomponts/contactModal/modalStyle.css"
+import { ContactPageWrapper } from "../components/contactcomponts/contactForm/formStyle"
+import WhatsappImg from "../assets/footericons/brandIcons/whatsapp (header).svg"
+import ViberImg from "../assets/footericons/brandIcons/viber(header)svg.svg"
+import TelegramImg from "../assets/footericons/brandIcons/telegram (header).svg"
+import styled from "styled-components"
+
+const WhatsappWrapper = styled.img`
+  width: 22px;
+  height: 22px;
+  margin-right:16px;
+  @media only screen and (max-width: 292px){
+    margin-right: 7px;
+  }
+`
+const ViberWrapper = styled.img`
+  width: 20px;
+  height: 21px;
+  margin-right:16px;
+  @media only screen and (max-width: 292px){
+    margin-right: 7px;
+  }
+`
+const TelegramWrapper = styled.img`
+  width: 20px;
+  margin-right:16px;
+  height: 20px;
+  @media only screen and (max-width: 292px){
+    margin-right: 7px;
+  }
+`
 const Contact = ({ pageContext }) => {
-  const [openIndivid, setopenIndivid] = useState(true)
-  const [openComp, setopenComp] = useState(false)
   const { contact } = useTranslations()
   let urlShared
-
-  const ChangeOpenInvid = () => {
-    setopenIndivid(true)
-    setopenComp(false)
-  }
-
-  const ChangeOpenComp = () => {
-    setopenIndivid(false)
-    setopenComp(true)
-  }
 
   const getSharedUrl = lng => {
     if (lng === "en") {
@@ -65,6 +92,7 @@ const Contact = ({ pageContext }) => {
 
   return (
     <>
+    <ContactPageWrapper>
       <SEO
         title={contact.title}
         description={contact.paragraph}
@@ -76,87 +104,56 @@ const Contact = ({ pageContext }) => {
           <PStyled>{contact.paragraph}</PStyled>
         </HeadingParagrCol>
       </ParagraphRow>
-      {/* <ContactNavRow>
-        <IndividCol
-          xxl={{ span: 10, offset: 8 }}
-          xl={11}
-          lg={9}
-          md={9}
-          sm={24}
-          xs={24}
-          offset={2}
-          onClick={ChangeOpenInvid}
-          open={openIndivid}
-        >
-          <span>Անհատների համար</span>
-        </IndividCol>
-        <CompanyCol
-          xxl={{ span: 10, offset: 8 }}
-          xl={11}
-          lg={9}
-          md={9}
-          sm={24}
-          xs={24}
-          offset={1}
-          onClick={ChangeOpenComp}
-          open={openComp}
-        >
-          <span>Կազմակերպությունների համար</span>
-        </CompanyCol>
-      </ContactNavRow> */}
       <FormRow align="middle">
-        {openIndivid ? (
-          <FormColumn
-            lg={{ span: 17, offset: 3 }}
-            xs={{ span: 17, offset: 3 }}
-            xxl={{ span: 17, offset: 3 }}
-          >
+          <>
+          <InfoColumn>
+            <H1Email>info@triple-c.am</H1Email>
+            <Row>
+          <AdressColumn >
+            <H3Element>Հասցե</H3Element>
+            <PElement>Հր․ Քոչար 44/54</PElement>
+          </AdressColumn>
+            <ContactColumn style={{display: 'flex', flexDirection: 'row', flexWrap:'wrap'}}>
+            <H3Element style={{width:'100%'}}>Հեռ․</H3Element>
+              <TelegramWrapper src={TelegramImg} />
+              <ViberWrapper src={ViberImg} />
+              <WhatsappWrapper src={WhatsappImg} />
+            <PElement>+374 98553533</PElement>
+              </ContactColumn>
+              <ShareColumn xl={24} lg={24} md={24} sm={5} >
+            <SharedWrapperCol>
+              <H3Element>Հետևեք մեզ</H3Element>
+              <FacebookShare
+                url={urlShared}
+                children={<FacebookIcon />}
+              />
+              <LinkedinShare
+                url={urlShared}
+                children={<LinkdinIcon />}
+              />
+            </SharedWrapperCol>
+                </ShareColumn>
+              </Row>
+          </InfoColumn>
+          <FormColumn>
             <FormindIviduals langtext={contact.form_content} lang={pageContext.locale} />
           </FormColumn>
-        ) : openComp ? (
-          <FormColumn lg={{ span: 17 }} offset={3}>
-            <FormOrganizations />
-          </FormColumn>
-        ) : null}
+          </>
       </FormRow>
-      <ContactMapRow align="middle">
-        <NumberCol
-          xxl={{ span: 19, offset: 4 }}
-          xl={{ span: 19 }}
-          lg={{ span: 19 }}
-          md={{ span: 19 }}
-          xs={{ span: 24 }}
-          offset={2}
-        >
-          <CallIconWrapper src={CallPhoneImg} alt={"icon"} />
-          <ContactNumberWrap>
-            <span>+374 93706010,+374 93706010</span>
-          </ContactNumberWrap>
-        </NumberCol>
-        <AdressMapCol xl={19} lg={{ span: 19 }} md={{ span: 19 }} offset={2}>
-          <Row>
-            <ContactAdressWrap span={24}>
-              <EnvironmentWrapper src={EnvironmentImg} />
-              <AddressSpan>{contact.address}</AddressSpan>
-            </ContactAdressWrap>
-            <MapCol span={24}>
+    </ContactPageWrapper>
+      <>
+        <AdressMapCol>
+          <>
+            <MapCol>
               <Mapiframe
                 frameborder="0"
                 src="https://maps.google.com/maps?q=Armenia%2C%20Yerevan%20Hrachya%20Qochar%2044%2F54&t=&z=17&ie=UTF8&iwloc=&output=embed"
               />
             </MapCol>
-          </Row>
+          </>
         </AdressMapCol>
-      </ContactMapRow>
-      <SharedWrapperCol xl={{ span: 10, offset: 6 }}>
-        <ShareLabel>{contact.share}</ShareLabel>
-        <FacebookShareButton url={urlShared} children={<FacebookIcon />} />
-        <LinkedinShareButton
-          children={<LinkdinIcon />}
-          url={urlShared}
-        ></LinkedinShareButton>
-      </SharedWrapperCol>
-    </>
+      </>
+</>
   )
 }
 

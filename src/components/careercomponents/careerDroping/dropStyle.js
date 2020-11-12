@@ -1,9 +1,21 @@
 import { Col, Button, Row } from "antd"
 import styled from "styled-components"
 import  '../../layout.css'
-import { DownOutlined, UpOutlined } from "@ant-design/icons"
 
-import DownloadIcon from "../../../../src/assets/download.svg";
+export const Wrapper = styled.div`
+  padding:50px 118px;
+  @media (min-width: 1600px) {
+    padding-left: 118px;
+    padding-right: 118px;
+  }
+  @media (max-width: 1200px) {
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+  @media (max-width: 770px) {
+    padding: 50px 20px;
+  }
+`
 export const ToggleH2Styled = styled.h2`
   font-family: ArialAMU;
   font-size: 24px;
@@ -15,36 +27,39 @@ export const ToggleH2Styled = styled.h2`
   text-align: left;
   color: #000000;
   margin:0;
-  @media only screen and (max-width:768px){
+  @media only screen and (max-width:770px){
   font-size:20px;
   }
 `
 export const SubmitButton = styled.button`
   position:relative;
   overflow: hidden;
-  background:black;
+  background:${props => props.color ? "white" : "black"};
   width:260px;
   height:49px ;
+  outline:none;
+  font-weight:bold;
+  border-style: outset;
   border-radius: 30px;
-  border:#1C1D21;
+  border:1px solid ${props => props.color ? "white" : "black"};
   font-size:16px;
-  color:white;
+  color: ${props => props.color ? "black" : "white"};
   background-position: 50% 50%;
   display: inline-block;
-  background-image: linear-gradient(#ffffff, #ffffff);
+  background-image:linear-gradient( ${props => props.color ? `#000000, #000000` : `#ffffff, #ffffff` });
   background-repeat: no-repeat;
   transition: background-size .5s, color .5s;
   background-size: 0% 100%;
   &:hover{
   background-size: 100% 100%;
-  color: #000000;
+  color: ${props => props.color ? "white" : "black"};
   cursor:pointer;
   outline:none;
   }
   &:focus{
   outline:none;
   }
-  @media only screen and (max-width:768px){
+  @media only screen and (max-width:770px){
     margin-bottom:19px;
   }
   @media only screen and (max-width:320px){
@@ -113,7 +128,7 @@ export const FormWrapper = styled.div`
   @media only screen and (max-width:970px){
   padding: 40px 20px 29px 0;
   }
-  @media only screen and (max-width:768px){
+  @media only screen and (max-width:770px){
   flex-direction:column;
   }
   @media only screen and (max-width:320px){
@@ -125,7 +140,7 @@ export const OrderListWrapper = styled.div`
   padding:0 20px 30px 20px;
   display:flex;
   flex-direction:column;
-  @media only screen and (max-width: 768px){
+  @media only screen and (max-width: 770px){
   padding:0;
   width:100%;
   }
@@ -172,7 +187,7 @@ export const DropCareer = styled.div`
     border-bottom: 1px solid;
     border-color: #d7d7d7;
     position:relative;
-  @media only screen and (max-width: 768px){
+  @media only screen and (max-width: 770px){
     padding: 48px 0;
     }
 `

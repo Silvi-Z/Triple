@@ -134,7 +134,8 @@ const query = graphql`
               title
               paragraph
               form_content {
-                name_label
+                name_label_first
+                name_label_second
                 email_label
                 file_label
                 title_label

@@ -80,7 +80,6 @@ export const LangSpan = styled.span`
 export const GridWrapper = styled.nav`
   padding: 1px;
   background-color: #ebebeb;
-  margin-bottom: 50px;
   width: 100%;
   height: 100px;
   display: grid;
