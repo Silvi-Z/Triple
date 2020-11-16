@@ -2,20 +2,6 @@ import { Col, Button, Row } from "antd"
 import styled from "styled-components"
 import  '../../layout.css'
 
-export const Wrapper = styled.div`
-  padding:50px 118px;
-  @media (min-width: 1600px) {
-    padding-left: 118px;
-    padding-right: 118px;
-  }
-  @media (max-width: 1200px) {
-    padding-left: 50px;
-    padding-right: 50px;
-  }
-  @media (max-width: 770px) {
-    padding: 50px 20px;
-  }
-`
 export const ToggleH2Styled = styled.h2`
   font-family: ArialAMU;
   font-size: 24px;
@@ -111,8 +97,6 @@ export const HeadIcon = styled.img`
     height: 40px;
   }
 `
-
-export const DropHeadingIconCol = styled(Col)``
 export const DropHeadingTitle = styled.div``
 export const DropHeadingButton = styled.div``
 export const FormWrapper = styled.div`
@@ -121,7 +105,7 @@ export const FormWrapper = styled.div`
   border-bottom:1px solid #D0D0D0;
   width:100%;
   border-top:1px solid black;
-  padding: 40px 100px 0 0;
+  padding: 40px 100px 53px 0;
   @media only screen and (max-width:1200px){
   padding: 40px 50px 29px 0;
   }

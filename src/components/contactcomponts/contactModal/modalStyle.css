@@ -3,59 +3,53 @@
   display: flex;
   justify-content: center;
 }
-.ant-form label{
-    pointer-events: none;
-  position: absolute;
-    top: 10px;
-  display: block;
-  transition: 0.2s;
-  font-size: 10px ;
-  color: white;
-}
 .ant-form-item-control-input-content{
-  position: relative;
-  padding: 15px 0 0;
-  width: 50%;
+   position: relative;
+   padding: 15px 0 0;
+   width: 50%;
 }
 .ant-form-item-control-input-content:required, .ant-form-item-control-input-content:invalid{ box-shadow:none; }
 .ant-upload{
-  width: 100%;
+    width: 100%;
+}
+.ant-form-item-required{
+    margin-top: 30px!important;
 }
 
 .ant-upload-list.ant-upload-list-text {
     display: none;
 }
-.ant-upload{
+#formcontact .ant-upload{
     padding-top: 15px;
 }
-.ant-input{
-  box-shadow:none;
-  width: 100%!important;
-  outline: 0;
-  border:none;
-  border-bottom: 1px solid #D0D0D0;
-  color: #FFFFFF;
-  padding: 20px 0 10px 0;
-  margin-top: 10px;
-  background: transparent;
-  transition: border-color 0.2s;
+#formcontact .ant-input{
+    box-shadow:none;
+    width: 100%!important;
+    outline: 0;
+    border:none;
+    border-bottom: 1px solid #D0D0D0;
+    color: #FFFFFF;
+    padding: 20px 0 10px 0;
+    margin-top: 10px;
+    background: transparent;
+    transition: border-color 0.2s;
 }
 .ant-form-item-control-input-content{
-  padding: 0;
+    padding: 0;
 }
 .ant-input:focus{
-  border-color:#D0D0D0;
-  box-shadow:none !important;
+    border-color:#D0D0D0;
+    box-shadow:none !important;
 }
 .ant-input:placeholder-shown  .ant-input::placeholder{
-  color:#D5D5D5
+    color:#D5D5D5
 }
 .ant-input::placeholder{
-  color: #D4D4D4;
-  opacity: 1;
+    color: #D4D4D4;
+    opacity: 1;
  }
 .ant-input:hover{
-  border-color:#D0D0D0;
+    border-color:#D0D0D0;
 }
 .ant-input:-webkit-autofill,
 .ant-input:-webkit-autofill:hover,

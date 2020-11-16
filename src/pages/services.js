@@ -14,19 +14,15 @@ import {
   H2Styled,
   PStyled,
   SharedWrapperCol,
-  FaceLink,
   ShareLabel,
-  LinkedinLink,
   FacebookIcon,
   LinkdinIcon,
 } from "../components/servicecomponents/serviceMainStyle"
 import { FacebookShareButton, LinkedinShareButton } from "react-share"
-import Helmet from "react-helmet"
-import i18next from "i18next"
-import { useTranslation, Translation } from "react-i18next"
+import { useTranslation } from "react-i18next"
 import SEO from "../components/seo"
 
-const Services = ({ location, pageContext, originalPath }) => {
+const Services = ({ location, pageContext }) => {
   const { services } = useTranslations();
   const { t, i18n } = useTranslation()
   const [serviceData, setServiceData] = useState([
@@ -100,8 +96,7 @@ const Services = ({ location, pageContext, originalPath }) => {
       open: false,
     },
   ])
-  const [ApiState, setApiState] = useState([])
-  const [titleHelmet, setTitleHelmet] = useState("Ծառայություններ")
+  const [setTitleHelmet] = useState("Ծառայություններ")
   let urlShared
   //this function gets Api data from swagger endpoints
   // const getServiceData = async () => {

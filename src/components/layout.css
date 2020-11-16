@@ -893,7 +893,7 @@ pre tt:after {
   border-radius: 5px;
 }
 #careersubmitcol {
-  padding-top: 8px;
+  margin-top: 32px;
 }
 #careeruploadbutton {
   width: 390px;
@@ -942,7 +942,6 @@ pre tt:after {
     height: 160px;
   }
   #careersubmitcol {
-    padding-top: 7.5%;
     width: 100%;
   }
   #careeruploadbutton {
@@ -1048,11 +1047,6 @@ pre tt:after {
   }
 }
 
-@media only screen and (max-width: 860px) {
-  /*#footerfirstrow>div{*/
-  /*  flex-direction: column;*/
-  /*}*/
-}
 @media only screen and (max-width: 768px) {
   .slick-slider {
     margin-left: -20px;
@@ -1110,13 +1104,13 @@ pre tt:after {
   }
 }
 
+
 .ant-input-number-handler-wrap {
   display: none;
 }
 
 .calculator-result {
   position: fixed;
-  /*top: 0;*/
 }
 
 .calculator-result.abs {

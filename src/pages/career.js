@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react"
 import { Col } from "antd"
 import CareerWrap from "../components/careercomponents/careerDroping/careerdrop"
 import {
+  CareerPageWrapper,
   CareerParagraphRow,
   H1Styled,
   PStyled,
@@ -12,14 +13,11 @@ import SEO from "../components/seo"
 import {
   ShareLabel,
   SharedWrapperCol,
-  FaceLink,
-  LinkedinLink,
   FacebookIcon,
   LinkdinIcon,
   FacebookShare,
   LinkedinShare,
 } from "../components/careercomponents/careerForm/formStyle"
-import { FacebookShareButton, LinkedinShareButton } from "react-share"
 const Career = ({ pageContext }) => {
   const [careerdata, setcareerdata] = useState([
     {
@@ -77,7 +75,7 @@ const Career = ({ pageContext }) => {
   hookComponent()
 
   return (
-    <>
+    <CareerPageWrapper>
       <SEO
         title={career.title}
         description={career.paragraph}
@@ -113,7 +111,7 @@ const Career = ({ pageContext }) => {
           children={<LinkdinIcon />}
         />
       </SharedWrapperCol>
-    </>
+      </CareerPageWrapper>
   )
 }
 

@@ -5,7 +5,6 @@ import triple from "../../../api/triple";
 import CareerModal from "../careerModal/careerModal"
 import "../../layout.css"
 import { SubmitButton } from "../careerDroping/dropStyle"
-//import FB from "gatsby-plugin-facebook-analytics"
 const layout = {
   labelCol: {
     span: 24,

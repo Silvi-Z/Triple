@@ -1,24 +1,18 @@
 /*eslint-disable */
 import React from "react"
 import { DownOutlined, UpOutlined } from "@ant-design/icons"
-import CalcImg from "../../../assets/account.png"
 import FormCareer from "../careerForm/careerform"
-import useTranslations from "../../../components/useTranslations"
-import { Helmet } from "react-helmet"
 import {
   ToggleH2Styled,
   H2Styled,
   ToggleButton,
   OrderListWrapper,
-  HeadIcon,
-  DropHeadingIconCol,
   DropHeadingTitle,
   DropHeadingButton,
   FormWrapper,
   OrderList,
   OrderSection,
   DropCareer,
-  Wrapper
 } from "./dropStyle"
 const CareerDropWrapper = ({
   showCareerForm,
@@ -29,10 +23,9 @@ const CareerDropWrapper = ({
   formlangtext,
   lang
 }) => {
-  const { careerForm } = useTranslations()
 
   return (
-    <Wrapper>
+    <>
       <DropCareer >
         <DropHeadingTitle>
           <ToggleH2Styled>{data.data.title}</ToggleH2Styled>
@@ -73,7 +66,7 @@ const CareerDropWrapper = ({
               </FormWrapper>
         ) : null
       }
-    </Wrapper>
+    </>
   )
 }
 export default CareerDropWrapper;

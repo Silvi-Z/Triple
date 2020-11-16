@@ -1,6 +1,21 @@
 import styled from "styled-components"
 import { Row } from "antd"
-
+export const CareerPageWrapper = styled.div`
+  max-width:1440px;
+  margin: 0 auto;
+  padding:50px 118px;
+  @media (min-width: 1600px) {
+    padding-left: 118px;
+    padding-right: 118px;
+  }
+  @media (max-width: 1200px) {
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+  @media (max-width: 770px) {
+    padding: 50px 20px;
+  }
+`
 export const CareerParagraphRow = styled(Row)`
   padding: 0 12%;
   margin-bottom: 19px;
