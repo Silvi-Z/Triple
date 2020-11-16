@@ -2,30 +2,28 @@ import React from "react"
 import {
   ContainerUseful,
   TextWrapper,
-  ListWrapper,
-  Hr
+  LineWrapper,
+  ContainerNews,
+  DownloadingIcon,
+  H2text
 } from "./docStyle"
+import { Row } from "antd"
 const DocTemplateInform = ({ usedata }) => {
-  const linklist = usedata.data.links.map(lin => (
-    <a
-      href={lin.link}
-      target="_blank
-    "
-      key={lin.id}
-    >
-      <li>{lin.label}</li>
-    </a>
-  ))
 
   return (
     <ContainerUseful>
-      <TextWrapper span={24}>
-        <h2>{usedata.data.first_heading}</h2>
-      </TextWrapper>
-      <Hr />
-      <ListWrapper>
-        <ul>{linklist}</ul>
-      </ListWrapper>
+      {usedata.data.links.map(({label}) => (
+        <ContainerNews>
+          <Row>
+            <LineWrapper >
+              <TextWrapper>
+                <H2text>{label}</H2text>
+              </TextWrapper>
+              <DownloadingIcon/>
+            </LineWrapper>
+          </Row>
+        </ContainerNews>
+      ))}
     </ContainerUseful>
   )
 }

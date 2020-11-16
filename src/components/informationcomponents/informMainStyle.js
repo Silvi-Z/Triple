@@ -4,35 +4,26 @@ import FbBlueIcon from "../../assets/career/facebookBlueCareer.svg"
 import FbBlackIcon from "../../assets/career/facebookCareer.svg"
 import LinkdinBlackIcon from "../../assets/career/linkedinCareer.svg"
 import LinkedinBlueIcon from "../../assets/career/linkedinBlueCareer.svg"
-export const InformationParagraphRow = styled(Row)`
-  padding: 0 13.5%;
-  margin-bottom: 2.8%;
-  @media (min-width: 1200px) {
-    padding: 0 19%;
+export const InformationPageWrapper = styled.div`
+  margin: 0 auto;
+  max-width:1440px;
+  padding:50px 118px 90px 118px;
+  @media only screen and (max-width: 1400px){
+    padding:50px 40px 90px 40px;
   }
-  @media (min-width: 1600px) {
-    padding: 0 17%;
-  }
-  @media only screen and (max-width: 768px) {
-    margin-top: 49px;
-    padding: 0 3.5%;
-  }
-  @media only screen and (max-width: 375px) {
-    margin-bottom: 70px;
-    padding: 0 3.5%;
-    margin-top: 39px;
-  }
-  @media only screen and (max-width: 320px) {
-    margin-bottom: 70px;
-    padding: 0 3.5%;
-    margin-top: 39px;
+  @media only screen and (max-width: 1000px){
+    padding:50px 20px 60px 20px;
   }
 `
+export const InformationParagraphRow = styled(Row)`
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
+  `
 export const H2Styled = styled.h2`
-  width: 244px;
-  height: 18px;
   font-family: ArialAMU;
-  font-size: 18px;
+  font-size: 24px;
   font-weight: bold;
   font-stretch: normal;
   font-style: normal;
@@ -40,169 +31,109 @@ export const H2Styled = styled.h2`
   letter-spacing: normal;
   text-align: left;
   color: #000000;
+  margin-bottom:30px;
+  @media only screen and (max-width: 770px){
+    font-size:20px;
+  }
 `
 export const PStyled = styled.p`
-  width: 769px;
-  height: 76px;
+  line-height:25px;
+  max-width: 621px;
   font-family: ArialAMU;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;
   line-height: 1.88;
   letter-spacing: normal;
-  text-align: left;
+  text-align: center;
   color: #000000;
-  @media only screen and (max-width: 1920px) {
-    max-width: 800px;
-    max-height: 90px;
-    margin-left: 0%;
-    margin-bottom: 30px;
-  }
-  @media only screen and (max-width: 768px) {
-    max-width: 509px;
-    max-height: 106px;
-    margin-left: 0%;
-    margin-bottom: 40px;
-  }
-  @media only screen and (max-width: 375px) {
-    width: 288px;
-    height: 226px;
-    font-family: ArialAMU;
-  }
-  @media only screen and (max-width: 320px) {
-    width: 288px;
-    height: 226px;
-    font-family: ArialAMU;
+  margin-bottom: 52px;
+  @media only screen and (max-width: 770px){
+    font-size:16px;
   }
 `
-export const InformationNavRow = styled(Row)`
-  padding: 0 18.2%;
-  margin-bottom: 3%;
-  @media (min-width: 1200px) {
-    padding: 0 21.6%;
-  }
-  @media (min-width: 1600px) {
-    padding: 0 29%;
-  }
-  @media only screen and (max-width: 1024px) {
-    padding: 0 14%;
-  }
-  @media only screen and (max-width: 768px) {
-    padding: 0 0%;
+export const InformationNavRow = styled.div`
+  display:flex;
+  justify-content: center;
+  margin-bottom: 53px;
+  @media only screen and (max-width: 657px){
+    flex-direction: column;
+    align-items:center;
   }
 `
-
-export const InformationUsfulCol = styled(Col)`
-  max-width: 232px;
-  height: 50px;
-  text-align: center;
-  padding-top: 1.8%;
-  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
-  background-color: ${props => (props.open ? "#009db8" : "#ffffff")};
-  margin-left: 0.7%;
-  > span {
-    width: 205px;
-    height: 16px;
-    font-family: ArialAMU;
-    font-size: 16px;
-    font-weight: normal;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: normal;
-    letter-spacing: normal;
-    text-align: center;
-    color: ${props => (props.open ? "#ffffff" : "#009db8")};
+export const InformationUsfulCol = styled.button`
+  width: 286px;
+  max-width: 286px;
+  background-color: ${props => props.active ? "white" : "black"};
+  color: ${props => props.active ? "black" : "white"};
+  height: 49px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  letter-spacing: 0.15px;
+  justify-content: center;
+  margin-right:30px;
+  @media only screen and (max-width: 657px){
+    margin-right:0;
+    margin-bottom:20px;
+    width:100%;
   }
-  &:hover {
-    background-color: #009db8;
-    cursor: pointer;
-    span {
-      color: white;
+  
+`
+export const InformationDocumentCol = styled.button`
+  width: 286px;
+  max-width: 286px;
+  background-color: ${props => props.active ? "white" : "black"};
+  color: ${props => props.active ? "black" : "white"};
+  height: 49px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  letter-spacing: 0.15px;
+  @media only screen and (max-width: 657px){
+    width:100%;
+  }
+`
+export const InformSectionRow = styled.div`
+  width:100%;
+  display:flex;
+  justify-content:space-between;
+   @media only screen and (max-width: 770px){
+    flex-direction:column;
+   }
+`
+export const LeftSection = styled.div`
+  width: 48%;
+  & ul>a{
+    padding-top: 27px;
+    padding-bottom: 27px;
+  }
+  & ul>a:first-child{
+    padding-top:20px;
+  }
+  @media only screen and (max-width: 770px){
+    width:100%;
+    margin-bottom: 15px;
+    & ul>a{
+      padding-top: 15px;
+      padding-bottom: 15px;
     }
-  }
-  @media (min-width: 1600px) {
-    padding-top: 1%;
-  }
-  @media (min-width: 1200px) {
-    padding-top: 1.5%;
-  }
-  @media only screen and (max-width: 375px) {
-    max-width: 290px;
-    height: 50px;
-    padding-top: 3.5%;
-    margin-bottom: 10px;
-  }
-  @media only screen and (max-width: 320px) {
-    max-width: 290px;
-    height: 50px;
-    padding-top: 3.5%;
-    margin-bottom: 10px;
-  }
-`
-export const InformationDocumentCol = styled(Col)`
-  max-width: 232px;
-  height: 50px;
-  text-align: center;
-  padding-top: 1.8%;
-  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
-  background-color: ${props => (props.open ? "#009db8" : "#ffffff")};
-  margin-left: 0.7%;
-  > span {
-    width: 214px;
-    height: 16px;
-    font-family: ArialAMU;
-    font-size: 16px;
-    font-weight: normal;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: normal;
-    letter-spacing: normal;
-    text-align: center;
-    color: ${props => (props.open ? "#ffffff" : "#009db8")};
-  }
-  &:hover {
-    background-color: #009db8;
-    cursor: pointer;
-    span {
-      color: white;
+    & ul>a:last-child{
+       padding-bottom:20px
     }
-  }
-  @media (min-width: 1600px) {
-    padding-top: 1%;
-  }
-  @media (min-width: 1200px) {
-    padding-top: 1.5%;
-  }
-  @media only screen and (max-width: 375px) {
-    max-width: 290px;
-    height: 50px;
-    padding-top: 3.5%;
-  }
-  @media only screen and (max-width: 320px) {
-    max-width: 290px;
-    height: 50px;
-    padding-top: 3.5%;
-  }
+   }
 `
-export const InformSectionRow = styled(Row)`
-  padding: 0 14.5%;
-  margin-bottom: 2.8%;
-  @media (min-width: 1200px) {
-    padding: 0 19%;
+export const RightSection = styled.div`
+  display:flex;
+  flex-direction:column;
+  width: 48%;
+  & ul>a{
+    padding: 17px 0;
   }
-  @media (min-width: 1600px) {
-    padding: 0 27%;
-  }
-  @media only screen and (max-width: 768px) {
-    padding: 0 0%;
-  }
-  @media only screen and (max-width: 375px) {
-    padding: 0 0%;
-  }
-  @media only screen and (max-width: 320px) {
-    padding: 0 0%;
-  }
+  @media only screen and (max-width: 770px){
+    width:100%
+   }
 `
 export const InformationNewsCol = styled(Col)`
   max-width: 232px;

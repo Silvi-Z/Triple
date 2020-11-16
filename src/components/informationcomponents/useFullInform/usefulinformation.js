@@ -1,32 +1,43 @@
 import React from "react"
-import RightArrowImg from "../../../assets/informimages/rightarrow.svg"
+import { RightOutlined } from "@ant-design/icons"
 import {
   ContainerUseful,
   TextWrapper,
   ListWrapper,
-  Img,
-  Hr
+  Hr,
+  IconWrapper,
 } from "./useStyle"
+import "./useStyle.css"
+
 const UsefulInform = ({ usedata }) => {
-  const linklist = usedata.data.links.map(lin => (
-    <a href={lin.link} download={lin.link} target="_blank" key={lin.id}>
-      <li>{lin.label}</li>
-    </a>
-  ))
+  // const linklist =
 
   return (
+    <a href={usedata.data.href}>
     <ContainerUseful>
-      <Hr />
       <TextWrapper span={24}>
         <a href={usedata.data.href} target="_blank">
           <h2>{usedata.data.first_heading}</h2>
         </a>
-        <Img src={RightArrowImg} />
+        <IconWrapper><RightOutlined/></IconWrapper>
       </TextWrapper>
+      <Hr/>
       <ListWrapper>
-        <ul>{linklist}</ul>
+        <ul>{usedata.data.links.map(({ link, id, label }) => (
+          <a
+            href={link}
+            download={link}
+            target="_blank"
+            key={id}
+          >
+            {label}
+          </a>
+        ))}
+        </ul>
       </ListWrapper>
+
     </ContainerUseful>
+    </a>
   )
 }
 
