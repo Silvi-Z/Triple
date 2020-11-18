@@ -1,11 +1,12 @@
 import React from 'react';
 // import Image from '../components/image';
 import SEO from '../components/seo';
-import Slideshow from '../components/slideshow';
-import Homeservices from '../components/homecomponents/homeServices/homeservices';
-import Homepartners from '../components/homecomponents/homePartners/homepartners';
+import HomeServices from '../components/homecomponents/homeServices/HomeServices';
+import Homepartners from '../components/homecomponents/homePartners/HomePartners';
+import HomeAboutUs from "../components/homecomponents/HomeAboutUs/HomeAboutUs.js"
 import { useTranslation } from "react-i18next"
 import useTranslations from "../components/useTranslations"
+import { HomePageWrapper } from "../components/homecomponents/homeServices/homeServiceStyle"
 
 const siteMetada = [
   {
@@ -38,12 +39,12 @@ const IndexPage = ({ pageContext }) => {
   const { t } = useTranslation()
   const { home } = useTranslations();
   return (
-    <>
+    <HomePageWrapper>
       <SEO title='Triple Consulting' meta={siteMetada} pageContext={pageContext} />
-      <Slideshow />
-      <Homeservices langText={home.services} lang={pageContext.locale} />
+      <HomeAboutUs />
+      <HomeServices langText={home.services} lang={pageContext.locale} />
       <Homepartners langText={home.our_partners} lang={pageContext.locale} />
-    </>
+    </HomePageWrapper>
   );
 };
 

@@ -79,6 +79,14 @@ mark {
 small {
   font-size: 80%;
 }
+.slick-dots li.slick-active{
+  display: inline-block !important;
+}
+.slick-dots li{
+  display: none !important;
+  width:47px !important;
+}
+
 sub,
 sup {
   font-size: 75%;
@@ -209,7 +217,7 @@ html {
   box-sizing: inherit;
 }
 body {
-  color: hsla(0, 0%, 0%, 0.8);
+  color: black;
   font-family: ArialAMU, serif;
   font-weight: normal;
   word-wrap: break-word;
@@ -1121,13 +1129,13 @@ pre tt:after {
   bottom: 0;
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1024px) {
   .calculator-result{
     right: 10px;
   }
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 1024px) {
   .calculator-result{
     right: 29px;
   }
@@ -1143,4 +1151,86 @@ pre tt:after {
 }
 .mx-35 {
   margin: 0 35px !important;
+}
+/* slider */
+.slick-track{
+  padding-top: 85px;
+}
+.slick-initialized{
+  width: 33%;
+  max-width: 394px;
+}
+.slick-prev:before, .slick-next:before{
+  font-family: 'ArialAMU' !important;
+  color:black !important;
+  opacity:10!important;
+}
+.slick-next , .slick-prev{
+  bottom: -31px!important;
+  position: absolute;
+  top: inherit !important;
+}
+.slick-list {
+  margin-top: 83px;
+}
+.slick-prev {
+  left: -2px !important;
+}
+.slick-next{
+  left: 99px !important;
+}
+.slick-slider{
+  margin-right: 0;
+}
+.slick-thumb{
+  width: fit-content !important;
+  left: 41px!important;
+  bottom: -31px!important;
+}
+@media (max-width: 1094px){
+  .slick-initialized{
+    max-width: 100%;
+    width: 100%;
+  }
+  .slick-prev {
+    left: 11px !important;
+    bottom: -19px!important;
+  }
+  .slick-next{
+    left: 112px !important;
+    bottom: -19px!important;
+  }
+  .slick-thumb{
+    width: fit-content !important;
+    left: 55px!important;
+    bottom: -19px!important;
+  }
+}
+@media (max-width: 768px){
+  .slick-track{
+    padding-top: 0;
+  }
+}
+.slick-dots li {
+  font-size: 18px;
+  color: black;
+  width: 47px;
+}
+.slick-prev:before{
+  opacity: 10;
+  content: '' !important;
+  background-image: url("../assets/homeImages/prev_vector.svg");
+  height: 14px;
+  width: 24px;
+  position: absolute;
+  background-repeat: no-repeat;
+}
+.slick-next:before{
+  opacity: 10!important;
+  content: '' !important;
+  background-image: url("../assets/homeImages/next_vector.svg");
+  height: 14px;
+  width: 24px;
+  position: absolute;
+  background-repeat: no-repeat;
 }

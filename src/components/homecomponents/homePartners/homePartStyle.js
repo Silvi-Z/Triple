@@ -9,17 +9,18 @@ export const NavLink = styled(Link)`
     margin-top: auto;
   }
 `
-export const PartnerspHeadingColumn = styled(Col)`
-  @media (max-width: 375px) {
-    margin-top: 88px;
-    margin-bottom: 28px;
-  }
+export const PartnerspHeadingColumn = styled.div`
+  width:100%;
+  margin-top: 78px;
+  margin-bottom: 40px;
+  display: flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items: center;
 `
-export const H2Styled = styled.section`
-  width: 166px;
-  height: 18px;
+export const H2Styled = styled.h2`
   font-family: ArialAMU;
-  font-size: 18px;
+  font-size: 24px;
   font-weight: bold;
   font-stretch: normal;
   font-style: normal;
@@ -27,82 +28,30 @@ export const H2Styled = styled.section`
   letter-spacing: normal;
   color: #000000;
 `
-export const PStyled = styled.section`
-  width: 519px;
-  height: 46px;
+export const PStyled = styled.p`
+  max-width: 595px;
   font-family: ArialAMU;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;
-  line-height: 1.88;
+  line-height: 25px;
   letter-spacing: normal;
-  text-align: left;
+  text-align: center;
   color: #000000;
-  margin-top: 26px;
-  @media only screen and (max-width: 768px) {
-    width: 442px;
-    height: 76px;
-    font-family: ArialAMU;
-    font-size: 16px;
-    font-weight: normal;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: 1.88;
-    letter-spacing: normal;
-    text-align: left;
-    color: #000000;
-  }
-
-  @media (max-width: 380px) {
-    width: 285px;
-    height: 107px;
+  margin: 26px 0 0 0;
+  @media only screen and (max-width: 1094px) {
+    font-size:16px;
   }
 `
 export const SeemoreWrapper = styled.div`
-  width: 226px;
-  height: 50px;
-  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
-  background-color: #ffffff;
-  text-align: center;
-  padding: 16px 23px;
+  background-color:black;
+  margin: 0 auto;
   display: flex;
-
-  @media only screen and (max-width: 1170px) {
-    padding: 16px 22px;
-  }
-  @media only screen and (max-width: 768px) {
-    width: 226px;
-    height: 50px;
-    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
-    background-color: #ffffff;
-    text-align: center;
-    padding: 0px;
-    padding-left: 0px;
-    padding-top: 0px;
-    display: flex;
-  }
-`
-export const SeemoreColumn = styled(Col)`
-  padding-left: 32%;
-  @media only screen and (max-width: 1920px) {
-    padding-left: 37%;
-  }
-  @media only screen and (max-width: 1366px) {
-    padding-left: 32%;
-  }
-  @media only screen and (max-width: 1170px) {
-    padding-left: 30%;
-  }
-  @media only screen and (max-width: 1024px) {
-    padding-left: 26.5%;
-  }
-  @media only screen and (max-width: 768px) {
-    padding-left: 18%;
-  }
-  @media (max-width: 380px) {
-    padding-left: 0%;
-  }
+  justify-content: center;
+  align-items: center;
+  margin-top:42px;
+  letter-spacing: 0.15px;
 `
 export const SeemoreSpan = styled.span`
   width: 162px;
@@ -153,21 +102,13 @@ export const Seemoreimg = styled.img`
   }
 `
 export const IconWrapper = styled.img`
-  width: 171px;
-  height: 50px;
-  margin-top: 18.7%;
-  @media (max-width: 375px) {
-    width: 116px;
-    height: 34px;
-    margin-top: 44.7%;
-  }
+    margin-bottom:0
 `
 
 export const ResponsWrapper = styled.div`
-  @media only screen and (max-width: 768px) {
-    display: block;
-    height: 838px;
-  }
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 `
 export const IconWrapperCol = styled(Col)`
   width: 250px;

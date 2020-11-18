@@ -27,14 +27,11 @@ export const ContactPageWrapper = styled.div`
   @media only screen and (max-width: 1400px){
     padding: 50px 70px 40px 120px
   }
-  @media only screen and (max-width: 1300px){
+  @media only screen and (max-width: 1024px){
     padding: 50px 60px 40px 60px;
   }
-  @media only screen and (max-width: 1070px){
+  @media only screen and (max-width: 768px){
     padding: 50px 20px 40px 20px;
-  }
-  @media only screen and (max-width: 387px){
-    padding: 50px 14px 40px 14px;
   }
 `
 export const Arealabel = styled.label`

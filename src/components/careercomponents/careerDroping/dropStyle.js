@@ -13,7 +13,7 @@ export const ToggleH2Styled = styled.h2`
   text-align: left;
   color: #000000;
   margin:0;
-  @media only screen and (max-width:770px){
+  @media only screen and (max-width:1024px){
   font-size:20px;
   }
 `
@@ -45,7 +45,7 @@ export const SubmitButton = styled.button`
   &:focus{
   outline:none;
   }
-  @media only screen and (max-width:770px){
+  @media only screen and (max-width:1024px){
     margin-bottom:19px;
   }
   @media only screen and (max-width:320px){
@@ -92,7 +92,7 @@ export const ToggleButton = styled(Button)`
 export const HeadIcon = styled.img`
   width: 30px;
   height: 30px;
-  @media (min-width: 1170px) {
+  @media (min-width: 1024px) {
     width: 40px;
     height: 40px;
   }
@@ -106,14 +106,9 @@ export const FormWrapper = styled.div`
   width:100%;
   border-top:1px solid black;
   padding: 40px 100px 53px 0;
-  @media only screen and (max-width:1200px){
-  padding: 40px 50px 29px 0;
-  }
-  @media only screen and (max-width:970px){
-  padding: 40px 20px 29px 0;
-  }
-  @media only screen and (max-width:770px){
+  @media only screen and (max-width:1024px){
   flex-direction:column;
+  padding: 40px 0 53px 0;
   }
   @media only screen and (max-width:320px){
   padding-top: 30px;
@@ -124,7 +119,7 @@ export const OrderListWrapper = styled.div`
   padding:0 20px 30px 20px;
   display:flex;
   flex-direction:column;
-  @media only screen and (max-width: 770px){
+  @media only screen and (max-width: 1024px){
   padding:0;
   width:100%;
   }
@@ -171,7 +166,7 @@ export const DropCareer = styled.div`
     border-bottom: 1px solid;
     border-color: #d7d7d7;
     position:relative;
-  @media only screen and (max-width: 770px){
-    padding: 48px 0;
+  @media only screen and (max-width: 1024px){
+    padding: 40px 0;
     }
 `
