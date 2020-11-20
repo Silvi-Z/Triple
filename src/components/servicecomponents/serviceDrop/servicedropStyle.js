@@ -4,115 +4,74 @@ import FbBlueIcon from "../../../assets/career/facebookBlueCareer.svg"
 import FbBlackIcon from "../../../assets/career/facebookCareer.svg"
 import LinkdinBlackIcon from "../../../assets/career/linkedinCareer.svg"
 import LinkedinBlueIcon from "../../../assets/career/linkedinBlueCareer.svg"
-
-export const ServiceDropRow = styled(Row)`
-  height: ${data => (data.open ? "auto" : "auto")};
-  /* height: 120px; */
-  margin-bottom: 2.2%;
-  padding-right: 7%;
-  padding-left: 4.5%;
-  border-bottom: 1px solid;
-  border-color: #d7d7d7;
-  @media (min-width: 1600px) {
-    padding: 0 0%;
-  }
-  @media only screen and (max-width: 1170px) {
-    padding-left: 8.8%;
-    padding-right: 9%;
-  }
-  @media only screen and (max-width: 375px) {
-    padding-left: 0%;
-    padding-right: 0%;
-  }
-  @media only screen and (max-width: 320px) {
-    padding-left: 0%;
-    padding-right: 0%;
+export const SevicePageWrapper = styled.div`
+  padding:50px 118px 90px 118px;
+  max-width: 1440px;
+  margin: 0 auto;
+  @media only screen and (max-width:1024px){
+    padding:30px 20px 60px 20px;
   }
 `
+export const DropWrapper = styled.div`
+  padding:40px 22px;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  @media only screen and (max-width:1024px){
+    padding:40px 0;
+  }
+`
+export const ServiceDropRow = styled(Row)`
+  border-bottom: 1px solid;
+  border-color: #d7d7d7;
+`
+export const H2Wrapper = styled.div`
+  width: 93%;
+  display: flex;
+  align-items: center;
+`
 export const ToggleH2Styled = styled.h2`
-  width: 270px;
-  height: 18px;
   font-family: ArialAMU;
-  font-size: 18px;
-  font-weight: normal;
+  font-size: 24px;
+  font-weight: bold;
   font-stretch: normal;
   font-style: normal;
-  line-height: normal;
   letter-spacing: normal;
   text-align: left;
   color: #000000;
-  @media only screen and (max-width: 320px) {
-    width: 126px;
-    height: 34px;
-    font-family: ArialAMU;
-    font-size: 16px;
-    font-weight: normal;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: normal;
-    letter-spacing: normal;
-    text-align: left;
-    color: #000000;
-  }
-  @media only screen and (max-width: 375px) {
-    width: 143px;
-    height: 34px;
-    font-family: ArialAMU;
-    font-size: 16px;
-    font-weight: normal;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: normal;
-    letter-spacing: normal;
-    text-align: left;
-    color: #000000;
-  }
-`
-export const HeadIcon = styled.img`
-  width: 30px;
-  height: 30px;
-  margin-top: 80%;
-  @media (min-width: 1200px) {
-    width: 40px;
-    height: 40px;
-  }
-  @media (min-width: 768px) {
-    width: 40px;
-    height: 40px;
-    margin-top: 30%;
-  }
-  @media (min-width: 375px) {
-    width: 40px;
-    height: 40px;
-    margin-top: 10%;
-  }
-  @media (min-width: 320px) {
-    width: 40px;
-    height: 40px;
-    margin-top: 10%;
-  }
-  @media (min-width: 1600px) {
-    width: 50px;
-    height: 50px;
+  margin:0;
+  @media only screen and (max-width:1024px){
+    font-size: 20px;
   }
 `
 export const ToggleButton = styled(Button)`
-  width: 60px;
-  height: 60px;
+  background: ${(props) => props.isOpen ? '#FFFFFF' : '#1C1D21'};
+  border-color:#1C1D21;
+  width: 40px;
+  height: 40px;
   box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
-  background-color: #ffffff;
-  margin-top: -17%;
-  color: #009db8;
-  &:hover {
-    .button {
-      display: none;
-    }
+  color: ${(props) => props.isOpen ? '#1C1D21' : '#FFFFFF'};
+  border: 1px solid #1C1D21;
+  box-sizing: border-box;
+  border-radius:50%;
+  padding:0;
+  --antd-wave-shadow-color:none;
+  &.ant-btn:hover{
+    background: ${(props) => props.isOpen ? '#1C1D21' : '#FFFFFF'};
+    color: ${(props) => props.isOpen ? '#FFFFFF' : '#1C1D21'};
+    border-color:#1C1D21;
+  }
+  &.ant-btn:focus{
+    background: ${(props) => props.isOpen ? '#FFFFFF' : '#1C1D21'};
+    color: ${(props) => props.isOpen ? '#1C1D21' : '#FFFFFF'};
+    border-color: #1C1D21;
   }
 `
-export const SubParagStyled = styled.div`
+export const FirstTextCol = styled.div`
+  max-width:48%;
   width: 517px;
   font-family: ArialAMU;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;
@@ -120,31 +79,45 @@ export const SubParagStyled = styled.div`
   letter-spacing: normal;
   text-align: left;
   color: #000000;
-  margin-left: 17%;
-  @media (min-width: 1600px) {
-    margin-left: 25%;
-  }
-  @media only screen and (max-width: 1170px) {
-    margin-left: 13%;
-  }
-  @media only screen and (max-width: 375px) {
-    margin-left: 12%;
-    width: 260px;
-    font-family: ArialAMU;
-    font-size: 14px;
-    font-weight: normal;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: 2.14;
-    letter-spacing: normal;
-    text-align: left;
-    color: #000000;
+  font-size: 18px;
+  line-height: 40px;
+  letter-spacing: 0.15px;
+  @media only screen and (max-width:1024px){
+    margin-bottom:30px;
+    font-size: 16px;
+    max-width: 100%;
+    width: 100%;
   }
 `
-export const DropHeadingIconCol = styled(Col)``
-export const DropHeadingParagraphCol = styled(Col)``
-export const DropButtonCol = styled(Col)`
-  margin-bottom: 17px;
-  margin-top: 18px;
+export const SecondTextCol = styled.div`
+  max-width:48%;
+  width: 517px;
+  font-family: ArialAMU;
+  font-size: 18px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.88;
+  letter-spacing: normal;
+  text-align: left;
+  color: #000000;
+  font-size: 18px;
+  line-height: 40px;
+  letter-spacing: 0.15px;
+  @media only screen and (max-width:1024px){
+    font-size: 16px;
+    max-width: 100%;
+    width: 100%;
+  }
 `
-export const DropTextCol = styled(Col)``
+export const DropTextCol = styled.div`
+   border-top: 1px solid black;
+   display: flex;
+   width: 100%;
+   padding: 48px 24px;
+   justify-content: space-between;
+   @media only screen and (max-width:1024px){
+    padding: 40px 0;
+    flex-direction:column;
+   }
+`

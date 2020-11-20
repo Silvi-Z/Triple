@@ -5,40 +5,51 @@ import styled from 'styled-components';
 export const NavLink = styled(Link)`
   flex-grow: 1;
   flex-basis: 80px;
+  height:fit-content !important;
   display: flex;
   justify-content: center;
-  align-items: center;
-  background-color: #fff;
+  align-items: left;
+  // background-color: #1C1D21;
   margin: 1px;
   color: #000;
+  width:fit-content;
   text-decoration: none;
-  border: 1px solid white;
-}
+  border: none !important;
+  @media only screen and (max-width: 500px){
+   font-size:16px;
+  }
 `;
 export const RespNavLink = styled(Link)`
-  height: 33px;
   align-items: center;
   background-color: #fff;
   text-decoration: none;
   text-align: center;
+  // display:flex;
+  // align-items:center;
 `;
 export const ResponsiveMenuWrapper = styled.div`
   width: 100%;
   height: 100%;
-  padding: 7% 20%;
+  padding:140px 0 190px 0;
   /* z-index: 999; */
-  background-color: white;
-  @media only screen and (min-width: 968px) {
-    display: none;
+  background-color: #1C1D21;
+  // height:0;
+  // width:100%;
+  // background-color: black;
+   ${NavLink}{
+    color : white
   }
-  @media only screen and (min-width: 375px) {
-    padding: 7% 8%;
-  }
-  @media only screen and (min-width: 320px) {
-    padding: 7% 6%;
-  }
+  // @media only screen and (max-width: 768px) {
+  //   display: none;
+  // }
 `;
-
+export const MenuWrapper = styled.div`
+   display: flex;
+   flex-direction: column;
+   align-items: end;
+   margin: 0 auto;
+   width: fit-content;
+`
 export const AddressSpan = styled.span`
   font-family: ArialAMU, serif;
   font-size: ${props => props.lang !== "arm" ? "11px" : "12px"};
@@ -97,7 +108,7 @@ export const GridWrapper = styled.nav`
     justify-content: center;
     overflow: hidden;
   }
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 1024px) {
     display: none;
   }
 `;
@@ -113,32 +124,18 @@ export const HeadIcon = styled.img`
   }
 `;
 export const HeadMainIcon = styled.img`
-  border-color: #ebebeb;
-  padding-top: 7%;
+    border-color: #ebebeb;
+    margin:0 !important;
   @media (min-width: 1600px) {
     border-left: 0px solid;
     border-right: 0px solid;
-    padding-top: 5%;
   }
   @media only screen and (max-width: 1366px) {
     border-left: 0px solid;
     border-right: 0px solid;
   }
   @media only screen and (max-width: 768px) {
-    height: 500%;
-    padding-top: 0%;
-    border-left: 0px;
-    border-right: 0px;
-    border-bottom: 0px;
-  }
-  @media only screen and (max-width: 375px) {
-    height: 115px;
-    width: 185px;
-    padding-top: 0%;
-    border-left: 0px;
-    border-right: 0px;
-    border-bottom: 0px;
-    margin-top: -6%;
+    height:100%;
   }
 `;
 export const ResponsiveNavWrapper = styled(Row)`
@@ -146,15 +143,22 @@ export const ResponsiveNavWrapper = styled(Row)`
   width: 100%;
   height: 90px;
   background-color: white;
-  @media only screen and (max-width: 768px) {
+  // position: fixed;
+  // z-index: 9999999;
+  @media only screen and (max-width: 1024px) {
     display: flex;
+    justify-content:space-between;
     > div {
-      width: 642px;
-      height: 20px;
+      // display:flex;
+      // width: 642px;
+      height: 100%;
       padding: 0.2% 2%;
       background-color: #fff;
       align-items: center;
       justify-content: center;
+    }
+    > div:last-child{
+      display:flex;
     }
   }
 `;
@@ -172,8 +176,7 @@ export const Label = styled.label`
 `;
 export const EnvironmentWrapper = styled.img`
   width: 14px;
-  margin-top: 19%;
-  @media (min-width: 1600px) {
-    margin-top: 11%;
-  }
+  // @media (min-width: 1600px) {
+  //   margin-top: 11%;
+  // }
 `;

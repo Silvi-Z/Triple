@@ -3,8 +3,10 @@ import styled from "styled-components"
 import { navigate } from "gatsby"
 import { Row, Col, Dropdown } from "antd"
 import { PhoneOutlined, CaretDownOutlined } from "@ant-design/icons"
-import CallImg from "../../assets/homeImages/phone-call3.png"
 import MainLogo from "../../assets/homeImages/3c.png"
+import closeMenu from "../../assets/homeImages/closeMenu.png"
+import openMenu from "../../assets/homeImages/openMenu.png"
+import WhiteLogo  from "../../assets/homeImages/3c_white.png"
 import EnvironmentImg from "../../assets/footericons/location.svg"
 import "@fortawesome/fontawesome-free/css/all.css"
 import "@fortawesome/fontawesome-free/js/all.js"
@@ -12,7 +14,6 @@ import "../layout.css"
 import {
   Label,
   NavLink,
-  HeadIcon,
   LangSpan,
   PhoneSpan,
   RespNavLink,
@@ -21,7 +22,7 @@ import {
   HeadMainIcon,
   EnvironmentWrapper,
   ResponsiveNavWrapper,
-  ResponsiveMenuWrapper,
+  ResponsiveMenuWrapper, MenuWrapper,
 } from "./navbarStyle.js"
 
 const phones = (
@@ -155,91 +156,95 @@ const Navbar = ({ open, responseWrapper, lang, langText, originalPath }) => {
 
   return (
     <>
-      <ResponsiveNavWrapper>
-        <Col lg={8} md={8} sm={6} xs={6}>
-          <HeadIcon src={CallImg} alt={"icon"} />
-        </Col>
-        <Col lg={8} md={8} sm={12} xs={12} style={{ textAlign: "center" }}>
+      <ResponsiveNavWrapper style={{backgroundColor: !responseWrapper ?  "#1C1D21": "white"}}>
+        <div style={{ textAlign: "center" , backgroundColor: !responseWrapper ?  "#1C1D21": "white"}}>
           <RespNavLink to={`/${lang}/`}>
-            <HeadMainIcon src={MainLogo} alt={"icon"} />
+            <HeadMainIcon style={{backgroundColor: !responseWrapper ?  "#1C1D21": "white" , height: !responseWrapper ? "87%" : "100%"}} src={!responseWrapper ?  WhiteLogo : MainLogo} alt={"icon"} />
           </RespNavLink>
-        </Col>
-        <Col lg={8} md={8} sm={6} xs={6}>
+        </div>
+        <div style={{backgroundColor: !responseWrapper ?  "#1C1D21": "white"}}>
+          <Label htmlFor="toggle" onClick={() => open()}>
           {!responseWrapper ? (
-            <Label htmlFor="toggle" onClick={() => open()}>
-              &#x2573;
-            </Label>
+            <img src={openMenu}alt="" />
           ) : (
-              <Label htmlFor="toggle" onClick={() => open()}>
-                &#9776;
-              </Label>
+            <img src={closeMenu} alt="" />
             )}
-        </Col>
+        </Label>
+        </div>
       </ResponsiveNavWrapper>
 
       {!responseWrapper ? (
-        <ResponsiveMenuWrapper>
-          <Row>
-            <Col span={24} style={{ marginBottom: "4.6%" }}>
+      // <div id="menu">
+        <ResponsiveMenuWrapper >
+          <MenuWrapper>
+            <Col  style={{ marginBottom: "50px" }}>
               <NavLink
+                style={{fontSize: !responseWrapper ? "18px" : "16px"}}
+                className="menu_element"
                 to={`/${lang}/services/`}
                 activeStyle={activeStyle}
-                style={{ fontSize: "20px" }}
                 state={{ clickedItems: 0 }}
               // onClick={() => setResponswrapper()}
               >
                 {langText.header.serveTitle}
               </NavLink>
             </Col>
-            <Col span={24} style={{ marginBottom: "4.6%" }}>
+            <Col style={{ marginBottom: "50px" }}>
               <NavLink
+                style={{fontSize: !responseWrapper ? "18px" : "16px"}}
+                className="menu_element"
                 to="/reports/"
                 activeStyle={activeStyle}
-                style={{ fontSize: "20px" }}
               // onClick={() => setResponswrapper()}
               >
                 {langText.header.reportTitle}
               </NavLink>
             </Col>
-            <Col span={24} style={{ marginBottom: "4.6%" }}>
+            <Col  style={{ marginBottom: "50px" }}>
               <NavLink
+                style={{fontSize: !responseWrapper ? "18px" : "16px"}}
+                className="menu_element"
                 to={`/${lang}/calculators/`}
                 activeStyle={activeStyle}
-                style={{ fontSize: "20px" }}
               >
                 {langText.header.calcTitle}
               </NavLink>
             </Col>
-            <Col span={24} style={{ marginBottom: "4.6%" }}>
+            <Col  style={{ marginBottom: "50px" }}>
               <NavLink
+                style={{fontSize: !responseWrapper ? "18px" : "16px"}}
+                className="menu_element"
                 to={`/${lang}/information/`}
                 activeStyle={activeStyle}
-                style={{ fontSize: "20px" }}
               >
                 {langText.header.infoTitle}
               </NavLink>
             </Col>
-            <Col span={24} style={{ marginBottom: "4.6%" }}>
+            <Col  style={{ marginBottom: "50px" }}>
               <NavLink
+                style={{fontSize: !responseWrapper ? "18px" : "16px"}}
+                className="menu_element"
                 to={`/${lang}/career/`}
                 activeStyle={activeStyle}
-                style={{ fontSize: "20px" }}
               >
                 {langText.header.careerTitle}
               </NavLink>
             </Col>
-            <Col span={24} style={{ marginBottom: "4.6%" }}>
+            <Col  style={{ marginBottom: "50px" }}>
               <NavLink
+                style={{fontSize: !responseWrapper ? "18px" : "16px"}}
+                className="menu_element"
                 to={`/${lang}/contact/`}
                 activeStyle={activeStyle}
-                style={{ fontSize: "20px" }}
               >
                 {langText.header.contractTitle}
               </NavLink>
             </Col>
-          </Row>
+          </MenuWrapper>
         </ResponsiveMenuWrapper>
+      // </div>
       ) : null}
+
 
       <GridWrapper>
         <GridLang>

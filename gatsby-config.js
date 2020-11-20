@@ -75,6 +75,13 @@ module.exports = {
           'RewriteRule ^/?$ /arm [R=301,L,NE]',
         ],
       },
+    },
+    {
+      resolve: "gatsby-plugin-anchor-links",
+      options: {
+        offset: 0,
+        duration: 5000
+      }
     }
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
