@@ -126,17 +126,6 @@ const SalaryCalculator = ({ langText }) => {
               />
             </Form.Item>
 
-            <Form.Item name="amount">
-              <CalculatorSlider
-                onChange={v => formik.setFieldValue("amount", v)}
-                value={formik.values.amount}
-                step={SALARY_STEP}
-                min={SALARY_MIN}
-                max={SALARY_MAX}
-                name="amount"
-              />
-            </Form.Item>
-
             <Form.Item label={<Label style={{fontSize: '16px'}}>{langText.tax_label}</Label>} labelCol={{ span: 24 }} name="tax_field">
               <Radio.Group
                 onChange={(e) => formik.setFieldValue("tax_field", e.target.value)}

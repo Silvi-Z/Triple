@@ -1278,3 +1278,37 @@ pre tt:after {
 /*    height: 0;*/
 /*  }*/
 /*}*/
+.calculator-result-label {
+  margin-top: 25px;
+  margin-bottom: 0;
+}
+
+.currency {
+  font-family: ArialAMU, serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 25px;
+  letter-spacing: 0.15px;
+  text-align: center;
+}
+.currency .c-label {
+  display: inline-block;
+  color: #000000;
+}
+.currency .c-label.sym {
+  margin-right: 14px;
+  font-size: 18px;
+}
+.currency .c-text {
+  display: inline-block;
+  color: #00B3C7;
+}
+
+.currency-symbol {
+  font-style: normal;
+  font-weight: bold;
+  line-height: 25px;
+  margin-right: 9px;
+  color: #000000;
+}

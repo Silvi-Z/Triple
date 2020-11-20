@@ -5,9 +5,9 @@ import MortgageTable from "./calcComponents/MortgageTable"
 import CalculatorCardResult from "./calcComponents/CalculatorCardResult"
 import { Row, Col, Card, Form, Radio, Checkbox } from "antd"
 import { SALARY_TYPE_NET, SALARY_TYPE_REGISTERED } from "./utilities/mortgage"
-import { ButtonSubmit, FormLabel, Label, RadioLabel, CalculatorInput, CalculatorSlider, UnderLine } from "./styled"
+import { ButtonSubmit, FormLabel, Label, RadioLabel, CalculatorInput, UnderLine } from "./styled"
 import {
-  SALARY_MAX, SALARY_MIN, SALARY_STEP,
+  SALARY_MIN,
   TAX_FIELD_COMMON, TAX_FIELD_ENTERPRISE, TAX_FIELD_IT,
   PENSION_FIELD_NO, PENSION_FIELD_YES, PENSION_FIELD_YES_VOLUNTEER, schema,
 } from "./utilities/salary"
@@ -212,19 +212,6 @@ class MortgageCalculator extends React.Component {
                     min={SALARY_MIN}
                     name="amount"
                     size="large"
-                  />
-                </Form.Item>
-              : null}
-
-              {form.static_salary ?
-                <Form.Item name="amount">
-                  <CalculatorSlider
-                    onChange={v => this.setField("amount", v)}
-                    value={form.amount}
-                    step={SALARY_STEP}
-                    min={SALARY_MIN}
-                    max={SALARY_MAX}
-                    name="amount"
                   />
                 </Form.Item>
               : null}

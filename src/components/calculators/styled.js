@@ -149,6 +149,7 @@ export const ColHeader = styled.th`
 export const CalculatorTable = styled.table`
   border-collapse: separate;
   border-spacing: 10px;
+  max-width: 100%;
 `
 
 export const CalculatorCol = styled.th`

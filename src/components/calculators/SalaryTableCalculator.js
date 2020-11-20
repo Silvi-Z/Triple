@@ -1,14 +1,17 @@
 import React from "react"
 import Excel from "xlsx"
+import ExcelJS from "exceljs"
 import ReactDOM from "react-dom"
 import moment from "moment"
 import triple from "../../api/triple"
+import { saveAs } from 'file-saver';
 import { isNull, compact, isInteger, isEmpty, isEqual } from "lodash"
 import { DownloadOutlined, UploadOutlined } from "@ant-design/icons"
 import { Row, Col, Card, Form, Radio, Button, notification } from "antd"
+import { defineSchedule, urlToBase64 } from "./utilities/tabel"
 import { workingDaysInMonth, workingDaysInRange } from "./utilities/vacation"
-import { CalculatorDatePicker, CalculatorSlider, CalculatorInput, ButtonSubmit, RadioButton, RadioGroup, RadioLabel, UnderLine, FormLabel, Label } from "./styled"
-import { schemaBy, BY_FIELD_DATE, BY_FIELD_TABLE, SALARY_MAX, SALARY_MIN, SALARY_STEP, TAX_FIELD_IT, TAX_FIELD_COMMON, TAX_FIELD_ENTERPRISE, PENSION_FIELD_NO, PENSION_FIELD_YES, PENSION_FIELD_YES_VOLUNTEER } from "./utilities/salary"
+import { CalculatorDatePicker, CalculatorInput, ButtonSubmit, RadioButton, RadioGroup, RadioLabel, UnderLine, FormLabel, Label } from "./styled"
+import { schemaBy, BY_FIELD_DATE, BY_FIELD_TABLE, SALARY_MIN, TAX_FIELD_IT, TAX_FIELD_COMMON, TAX_FIELD_ENTERPRISE, PENSION_FIELD_NO, PENSION_FIELD_YES, PENSION_FIELD_YES_VOLUNTEER } from "./utilities/salary"
 import EmployeeSalaryTable from "./calcComponents/EmployeeSalaryTable"
 import CalculatorCardResult from "./calcComponents/CalculatorCardResult"
 
@@ -27,7 +30,32 @@ const radioStyle = {
   display: 'block',
   height: '30px',
   lineHeight: '30px',
-};
+}
+
+const headerStyles = {
+  alignment: {vertical: 'middle', horizontal: 'center',  wrapText: true},
+  font: {
+    name: "Comic Sans MS",
+    family: 4,
+    size: 12,
+    underline: false,
+    bold: true
+  },
+  fill: {
+    type: 'pattern',
+    pattern: 'solid',
+    fgColor: {argb: 'FF0066CC'},
+    bgColor: {argb: 'FFFFFFFF'}
+  },
+  border: {
+    top: {style:'thin'},
+    left: {style:'thin'},
+    bottom: {style:'thin'},
+    right: {style:'thin'}
+  }
+}
+
+const Logo = require('../../assets/logo.jpeg')
 
 class SalaryTableCalculator extends React.Component {
   fileInput = React.createRef()
@@ -37,18 +65,17 @@ class SalaryTableCalculator extends React.Component {
   dateFromPicker = React.createRef()
 
   handleSubmit = async () => {
-    const { by, schedule } = this.state.form
-    const avgWorkingDays = schedule === 5 ? 21 : 25;
+    const { by, schedule, date_from } = this.state.form
+    const avgWorkingDays = workingDaysInMonth({ date: moment(date_from), schedule }).length
     const valid = await schemaBy.isValid({ ...this.state.form, employees: this.state.employees })
 
-    console.log(valid)
     schemaBy.validate({ ...this.state.form, employees: this.state.employees }).catch(function (err) {
       console.log(err)
     });
 
     if (!valid) return
 
-    by ? await this.calculateByDate(avgWorkingDays) : await this.calculateByTable(avgWorkingDays)
+    by ? await this.calculateByDate(avgWorkingDays) : await this.calculateByTable()
   }
 
   handleUpload = e => {
@@ -56,25 +83,29 @@ class SalaryTableCalculator extends React.Component {
 
     const file = e.target.files[0]
     const reader = new FileReader();
-    const { schedule } = this.state.form
 
     reader.onload = eve => {
       const data = new Uint8Array(eve.target.result);
-      const workbook = Excel.read(data, {type: 'array'});
+      const workbook = Excel.read(data, {type: 'array', cellStyles: true});
       /** @type {[][]} */
-      const rows = Excel.utils.sheet_to_json(workbook.Sheets['WTimesheet'], {header:1})
+      const rows = Excel.utils.sheet_to_json(workbook.Sheets['WTimesheet'], { header: 1 })
       const date = moment(compact(rows[9])[1], 'DD/MM/YY')
-      const workingDays = workingDaysInMonth({ date, schedule }).length
       const employees = rows.reduce((acc, row, i) => {
-        if (i >= 20 && isInteger(row[0])) acc.push({
-          id: row[0],
-          name: row[2],
-          profession: row[1],
-          days: row[date.daysInMonth() + 4],
-          hours: row[date.daysInMonth() + 5],
-          amount: null,
-          workingDays
-        })
+        if (i >= 20 && isInteger(Number(row[0]))) {
+          const schedule = defineSchedule(row.slice(4, date.daysInMonth() + 4), date)
+
+          acc.push({
+            id: row[0],
+            name: row[2],
+            profession: row[1],
+            days: +row[date.daysInMonth() + 4], // workedDays
+            hours: +row[date.daysInMonth() + 5], // workedHours
+            pension: PENSION_FIELD_YES,
+            amount: null,
+            schedule,
+            workingDaysInMonth: workingDaysInMonth({ date, schedule }).length
+          })
+        }
 
         return acc;
       }, [])
@@ -84,16 +115,83 @@ class SalaryTableCalculator extends React.Component {
     reader.readAsArrayBuffer(file)
   }
 
-  handleDownload = () => {
+  handleDownload = async () => {
     const { excel } = this.state
 
-    const workbook = Excel.utils.book_new()
-    const workSheet = Excel.utils.json_to_sheet(excel, {
-      header: Object.keys(excel[0])
+    const wb = new ExcelJS.Workbook();
+    const worksheet = wb.addWorksheet("ExcelJS sheet", {
+      pageSetup:{fitToPage: true, fitToHeight: 5, fitToWidth: 7},
+      views: [
+        {showGridLines: false}
+      ],
+    });
+    const widths = [5.2, 30, 15.8, 17.3, 11, 11, 15, 13, 14, 14.5, 12, 15]
+    const logo = wb.addImage({
+      base64: await urlToBase64(Logo),
+      extension: 'png',
+    });
+
+    worksheet.addImage(logo, {
+      tl: { col: 0, row: 0 },
+      ext: { width: 120, height: 115 },
+    });
+    let headers = Object.keys(excel[0]); headers.splice(4, 1, "Ընդամենը աշխատած");
+
+    const merged = worksheet.insertRow(7, headers)
+    const header = worksheet.addRow(Object.keys(excel[0]))
+
+    header.eachCell(cell => cell.style = { ...headerStyles })
+    merged.eachCell(cell => cell.style = { ...headerStyles })
+
+    worksheet.mergeCells('A7:A8')
+    worksheet.mergeCells('B7:B8')
+    worksheet.mergeCells('C7:C8')
+    worksheet.mergeCells('D7:D8')
+    worksheet.mergeCells('E7:F7')
+    worksheet.mergeCells('G7:G8')
+    worksheet.mergeCells('H7:H8')
+    worksheet.mergeCells('I7:I8')
+    worksheet.mergeCells('J7:J8')
+    worksheet.mergeCells('K7:K8')
+    worksheet.mergeCells('L7:L8')
+    worksheet.addRows(excel.map(row => Object.values(row)))
+
+    const total = worksheet.addRow([null, 'Ընդամենը', 0, null, null, null, 0, 0, 0, 0, 0, 0])
+    total.font = {bold: true}
+    total.eachCell(cell => {
+      cell.border = {...headerStyles.border}
+      if (cell.type === 2) cell.value = {
+        formula: `SUM(${cell.address.replace(cell.row.toString(), '2')}:${cell.address.replace(cell.row.toString(), (cell.row - 1).toString())})`,
+        date1904: true
+      }
     })
 
-    Excel.utils.book_append_sheet(workbook, workSheet, "Sheet");
-    Excel.writeFile(workbook, 'out.xls');
+    header.height = 30
+    merged.height = 63
+    header.font = {...headerStyles.font};
+    header.alignment = {...headerStyles.alignment};
+    merged.font = {...headerStyles.font};
+    merged.alignment = {...headerStyles.alignment};
+
+    worksheet.columns.forEach((column, i) => {
+      column.width = widths[i]
+      column.eachCell(cell => cell.border = {...headerStyles.border})
+    })
+
+    worksheet.autoFilter = {
+      from: {
+        row: 1,
+        column: 1
+      },
+      to: {
+        row: 3,
+        column: excel.length
+      }
+    };
+
+    const buffer = await wb.xlsx.writeBuffer();
+
+    saveAs(new Blob([buffer], {type: "application/octet-stream"}), 'գնագոյացում.xlsx')
   }
 
   handlePickerInput = e => {
@@ -200,28 +298,34 @@ class SalaryTableCalculator extends React.Component {
     this.setState({result: res.data, loading: false, calculated: 1})
   }
 
-  async calculateByTable(avgWorkingDays) {
+  async calculateByTable() {
     const { employees } = this.state
-    const { from, pension, tax_field } = this.state.form
+    const { from, tax_field } = this.state.form
 
     this.setState({ loading: true })
 
     const reqs = employees
       .map(employee => ({
         from,
-        pension,
         tax_field,
-        amount: (employee.workingDays === employee.days)
+        pension: employee.pension,
+        amount: (employee.workingDaysInMonth === employee.days)
           ? employee.amount
-          : employee.amount / avgWorkingDays * employee.days
+          : employee.amount / employee.workingDaysInMonth * employee.days
       }))
       .map(data => triple.post("/api/counter/salary", data))
 
     const results = await Promise.all(reqs).then(res => res.map(r => r.data))
     const excel = results.map((result, i) => ({
       N: employees[i].id,
-      ["Անուն Ազգանուն"]: employees[i].name,
-      ["Գրանցված աշխատավարձ"]: employees[i].amount,
+      ["Անուն, Ազգանուն, Հայրանուն"]: employees[i].name,
+      ["Գրանցված աշխատավարձ (ամսական)"]: employees[i].amount,
+      ["Աշխատանքային գրաֆիկ"]: employees[i].schedule === 5 ? 'Հնգօրյա' : 'Վեցօրյա',
+      ["Օր"]: employees[i].days,
+      ["ժամ"]: employees[i].hours,
+      ["Գրանցված աշխատավարձ (ըստ աշխատած օրերի)"]: (employees[i].workingDaysInMonth === employees[i].days)
+        ? employees[i].amount
+        : Math.round(employees[i].amount / employees[i].workingDaysInMonth * employees[i].days),
       ["Եկամտային հարկ"]: result.income_tax,
       ["Սոցիալական վճար"]: result.pension_fee,
       ["Դրոշմանշային վճար"]: result.stamp_fee,
@@ -370,17 +474,6 @@ class SalaryTableCalculator extends React.Component {
                       size="large"
                     />
                   </Form.Item>
-
-                  <Form.Item name="amount">
-                    <CalculatorSlider
-                      onChange={v => this.setField("amount", v)}
-                      value={form.amount}
-                      step={SALARY_STEP}
-                      min={SALARY_MIN}
-                      max={SALARY_MAX}
-                      name="amount"
-                    />
-                  </Form.Item>
                 </>
                 : <>
                   <Form.Item label={lang.form.upload}>
@@ -428,37 +521,39 @@ class SalaryTableCalculator extends React.Component {
                 </Radio.Group>
               </Form.Item>
               {/* pension field */}
-              <Form.Item label={<RadioLabel>{lang.form.pensioner}</RadioLabel>} name="pension">
-                <Radio.Group
-                  onChange={e => this.setField("pension", e.target.value)}
-                  value={form.pension}
-                  size="large"
-                >
-                  <Radio value={PENSION_FIELD_YES}>
-                    <Label>{lang.form.yes}</Label>
-                  </Radio>
-                  <Radio value={PENSION_FIELD_YES_VOLUNTEER}>
-                    <Label>{lang.form.yes_volunteer}</Label>
-                  </Radio>
-                  <Radio value={PENSION_FIELD_NO}>
-                    <Label>{lang.form.no}</Label>
-                  </Radio>
-                </Radio.Group>
-              </Form.Item>
-              {/* schedule field */}
-              <Form.Item label={lang.form.working_schedule} labelCol={{ span: 24 }}>
-                <Radio.Group
-                  onChange={e => this.setField("schedule", e.target.value)}
-                  value={form.schedule}
-                >
-                  <Radio value={5}>
-                    {<Label style={{ textTransform: "none" }}>{lang.form.five_days}</Label>}
-                  </Radio>
-                  <Radio value={6}>
-                    {<Label style={{ textTransform: "none" }}>{lang.form.six_days}</Label>}
-                  </Radio>
-                </Radio.Group>
-              </Form.Item>
+              {form.by ? <>
+                <Form.Item label={<RadioLabel>{lang.form.pensioner}</RadioLabel>} name="pension">
+                  <Radio.Group
+                    onChange={e => this.setField("pension", e.target.value)}
+                    value={form.pension}
+                    size="large"
+                  >
+                    <Radio value={PENSION_FIELD_YES}>
+                      <Label>{lang.form.yes}</Label>
+                    </Radio>
+                    <Radio value={PENSION_FIELD_YES_VOLUNTEER}>
+                      <Label>{lang.form.yes_volunteer}</Label>
+                    </Radio>
+                    <Radio value={PENSION_FIELD_NO}>
+                      <Label>{lang.form.no}</Label>
+                    </Radio>
+                  </Radio.Group>
+                </Form.Item>
+                {/* schedule field */}
+                <Form.Item label={lang.form.working_schedule} labelCol={{ span: 24 }}>
+                  <Radio.Group
+                    onChange={e => this.setField("schedule", e.target.value)}
+                    value={form.schedule}
+                  >
+                    <Radio value={5}>
+                      {<Label style={{ textTransform: "none" }}>{lang.form.five_days}</Label>}
+                    </Radio>
+                    <Radio value={6}>
+                      {<Label style={{ textTransform: "none" }}>{lang.form.six_days}</Label>}
+                    </Radio>
+                  </Radio.Group>
+                </Form.Item>
+              </> : null}
               {/* button */}
               <Form.Item>
                 <ButtonSubmit

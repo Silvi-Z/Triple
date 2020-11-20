@@ -40,17 +40,29 @@ export const euroTo = ({amount, currency}, rates) => {
   }
 }
 
-export const calculate = ({ imported, person, date, capacity, price, currency }, rates) => {
+export const convertToAMD = ({amount, currency}, rates) => {
+  const sym = currencies.find(c => c.value === currency).sym
+  const price = (currency !== 'AMD') ?
+    amount ? Math.round(amount * rates[currency]) : null : amount
+
+  return {
+    [currency]: { amount, sym },
+    converted: (currency !== 'AMD') ? price : null
+  }
+}
+
+export const calculate = ({ imported, person, date, capacity, price }) => {
   const age = Math.round(moment().diff(date, 'months') / 12)
   let _coefficient = {}, res = {tax: 0, fee: 0, vat: 0}
 
-  if (currency === 'AMD') {
-    price = price / rates['EUR']
-  }
-
-  if (currency === 'USD') {
-    price = price * rates[currency] / rates['EUR']
-  }
+  // converting given price to EUR
+  // if (currency === 'AMD') {
+  //   price = price / rates['EUR']
+  // }
+  //
+  // if (currency === 'USD') {
+  //   price = price * rates[currency] / rates['EUR']
+  // }
 
   // getting ecology coefficient
   if (age + 1 <= 5) {
@@ -133,8 +145,6 @@ export const calculate = ({ imported, person, date, capacity, price, currency },
   if (imported === COUNTRY_THIRD && person === PERSON_LEGAL) {
     // TODO: calculate for this condition
   }
-
-  console.log(res)
 
   return res;
 }

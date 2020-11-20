@@ -13,12 +13,11 @@ import {
   RadioLabel,
   CalculatorInput,
   ButtonSubmit,
-  CalculatorSlider,
   CalculatorDatePicker,
 } from "./styled"
 import {
   schema,
-  SALARY_MAX, SALARY_MIN, SALARY_STEP,
+  SALARY_MIN,
   TAX_FIELD_COMMON, TAX_FIELD_ENTERPRISE, TAX_FIELD_IT,
   PENSION_FIELD_NO, PENSION_FIELD_YES, PENSION_FIELD_YES_VOLUNTEER,
 } from "./utilities/salary"
@@ -180,7 +179,7 @@ class VacationCalculator extends React.Component {
 
     const weekends = working_schedule === 5 ? [0, 6] : [6]
 
-    let vacation_days = 0, momentFrom = moment(date_from)
+    let vacation_days = 1, momentFrom = moment(date_from)
 
     if (isNull(date_to) || isNull(date_from)) {
       this.setState({ form: { ...this.state.form, vacation_days: null } })
@@ -364,17 +363,6 @@ class VacationCalculator extends React.Component {
                   min={SALARY_MIN}
                   name="amount"
                   size="large"
-                />
-              </Form.Item>
-
-              <Form.Item>
-                <CalculatorSlider
-                  onChange={v => this.setField("amount", v)}
-                  value={form.amount}
-                  step={SALARY_STEP}
-                  min={SALARY_MIN}
-                  max={SALARY_MAX}
-                  name="amount"
                 />
               </Form.Item>
 

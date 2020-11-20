@@ -11,14 +11,11 @@ import {
   RadioLabel,
   ButtonSubmit,
   CalculatorInput,
-  CalculatorSlider,
   CalculatorDatePicker,
 } from "./styled"
 import {
   schema,
-  SALARY_MAX,
   SALARY_MIN,
-  SALARY_STEP,
   TAX_FIELD_IT,
   TAX_FIELD_COMMON,
   TAX_FIELD_ENTERPRISE,
@@ -350,17 +347,6 @@ class FinalCalculator extends React.Component {
                       size="large"
                     />
                   </Form.Item>
-
-                  <Form.Item>
-                    <CalculatorSlider
-                      onChange={v => this.setFormField("salary", v)}
-                      value={form.salary}
-                      step={SALARY_STEP}
-                      min={SALARY_MIN}
-                      max={SALARY_MAX}
-                      name="salary"
-                    />
-                  </Form.Item>
                 </>
                 : null}
 
@@ -442,7 +428,7 @@ class FinalCalculator extends React.Component {
 
           <CalculatorCardResult
             title={lang.result["total_amount"]}
-            text={result.salary}
+            text={calculated ? this.amount : 0}
             loading={loading}
           />
 
@@ -465,7 +451,7 @@ class FinalCalculator extends React.Component {
           />
           <CalculatorCardResult
             title={lang.result["net_amount"]}
-            text={calculated ? this.amount : 0}
+            text={result.salary}
             loading={loading}
           />
         </Col>

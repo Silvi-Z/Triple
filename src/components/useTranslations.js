@@ -206,7 +206,11 @@ const query = graphql`
                   name
                   day
                   hour
+                  social_fee
                   salary
+                  yes_volunteer
+                  yes
+                  no
                 }
                 result {
                   title
@@ -338,6 +342,7 @@ const query = graphql`
                 }
                 result {
                   title
+                  currency
                   fee
                   tax
                   vat
