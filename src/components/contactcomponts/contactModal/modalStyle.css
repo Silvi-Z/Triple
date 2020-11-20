@@ -1,4 +1,69 @@
+
 .ant-modal-footer {
   display: flex;
   justify-content: center;
+}
+.ant-form-item-control-input-content{
+   position: relative;
+   padding: 15px 0 0;
+   width: 50%;
+}
+.ant-form-item-control-input-content:required, .ant-form-item-control-input-content:invalid{ box-shadow:none; }
+.ant-upload{
+    width: 100%;
+}
+.ant-form-item-required{
+    margin-top: 30px!important;
+}
+
+.ant-upload-list.ant-upload-list-text {
+    display: none;
+}
+#formcontact .ant-upload{
+    padding-top: 15px;
+}
+#formcontact .ant-input{
+    box-shadow:none;
+    width: 100%!important;
+    outline: 0;
+    border:none;
+    border-bottom: 1px solid #D0D0D0;
+    color: #FFFFFF;
+    padding: 20px 0 10px 0;
+    margin-top: 10px;
+    background: transparent;
+    transition: border-color 0.2s;
+}
+.ant-form-item-control-input-content{
+    padding: 0;
+}
+.ant-input:focus{
+    border-color:#D0D0D0;
+    box-shadow:none !important;
+}
+.ant-input:placeholder-shown  .ant-input::placeholder{
+    color:#D5D5D5
+}
+.ant-input::placeholder{
+    color: #D4D4D4;
+    opacity: 1;
+ }
+.ant-input:hover{
+    border-color:#D0D0D0;
+}
+.ant-input:-webkit-autofill,
+.ant-input:-webkit-autofill:hover,
+.ant-input:-webkit-autofill:focus,
+.ant-input:-webkit-autofill:active  {
+    -webkit-box-shadow: 0 0 0 30px black inset !important;
+    -webkit-text-fill-color: white;
+    caret-color: white;
+}
+.ant-form-item-has-error .ant-input, .ant-form-item-has-error .ant-input-affix-wrapper, .ant-form-item-has-error .ant-input:hover, .ant-form-item-has-error .ant-input-affix-wrapper:hover {
+    background-color: transparent;
+    border-color: #D0D0D0;
+}
+.some_input{
+    -webkit-box-shadow: inset 0 0 0 50px #fff;
+    -webkit-text-fill-color: #000;
 }

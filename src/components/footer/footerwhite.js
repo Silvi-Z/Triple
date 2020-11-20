@@ -21,6 +21,10 @@ const FooterNumberWrap = styled.div`
   text-align: center;
   color: #009db8;
   margin-left: 9px;
+  @media only screen and (max-width: 850px){
+    justify-content:center;
+    flex-wrap:wrap;
+  }
 `
 const FooterAdressWrap = styled.div`
   width: 93px;

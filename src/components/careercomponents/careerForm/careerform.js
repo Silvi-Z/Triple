@@ -4,8 +4,7 @@ import { Form, Input, Button, Col, Row, Upload } from "antd"
 import triple from "../../../api/triple";
 import CareerModal from "../careerModal/careerModal"
 import "../../layout.css"
-
-//import FB from "gatsby-plugin-facebook-analytics"
+import { SubmitButton } from "../careerDroping/dropStyle"
 const layout = {
   labelCol: {
     span: 24,
@@ -138,7 +137,7 @@ const Formfield = ({
           <Input.TextArea />
         </Form.Item>
         <Row>
-          <Col span={10} xl={10} lg={10} md={10} xs={24}>
+          <Col span={10} xl={24} lg={10} md={10} xs={24}>
             <Form.Item
               label={formlangtext.file_label}
               name="file"
@@ -161,33 +160,23 @@ const Formfield = ({
                 customRequest={dummyRequest}
               >
                 <Button id="careeruploadbutton">
-                  <UploadOutlined
-                    style={{
-                      color: "#009db8",
-                      fontSize: "20px",
-                    }}
-                  />
+                  <UploadOutlined style={{ verticalAlign:"bottom", color: "#000000", fontSize: "20px"}}/>
                 </Button>
               </Upload>
             </Form.Item>
           </Col>
           <Col
-            span={8}
-            xl={8}
-            lg={8}
-            md={8}
-            xs={{ span: 24, offset: 0 }}
+            span={24}
             id="careersubmitcol"
           >
             <Form.Item {...tailLayout}>
-              <Button
+              <SubmitButton
                 type="primary"
                 htmlType="submit"
                 loading={loading}
-                style={{ width: "180px", height: "45px" }}
               >
                 {formlangtext.send_button}
-              </Button>
+              </SubmitButton>
             </Form.Item>
           </Col>
         </Row>

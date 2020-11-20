@@ -7,6 +7,10 @@ html {
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
 }
+html {
+  --antd-wave-shadow-color: none;
+  --scroll-bar: 0;
+}
 body {
   margin: 0;
   font-family: ArialAMU, sans-serif;
@@ -75,6 +79,14 @@ mark {
 small {
   font-size: 80%;
 }
+.slick-dots li.slick-active{
+  display: inline-block !important;
+}
+.slick-dots li{
+  display: none !important;
+  width:47px !important;
+}
+
 sub,
 sup {
   font-size: 75%;
@@ -205,7 +217,7 @@ html {
   box-sizing: inherit;
 }
 body {
-  color: hsla(0, 0%, 0%, 0.8);
+  color: black;
   font-family: ArialAMU, serif;
   font-weight: normal;
   word-wrap: break-word;
@@ -222,7 +234,7 @@ img {
 }
 h1 {
   padding: 0;
-  margin: 0 0 1.45rem;
+  margin: 0 0 30px;
   color: inherit;
   font-family: ArialAMU, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
@@ -615,7 +627,9 @@ pre tt:after {
   border: solid 1px #009db8;
   background-color: #ffffff;
 }
-
+#careeruploadbutton{
+  margin-top: 7px;
+}
 #register_full_name {
   width: 448px;
   height: 40px;
@@ -721,16 +735,9 @@ pre tt:after {
   text-align: center;
   color: #000000;
 }
-#basic_username {
-  width: 514px;
-  height: 38px;
+#basic_career .ant-row{
+  display:block;
 }
-/* #basic_username:focus {
-  border-color: yellow;
-  outline: 0;
-  -webkit-box-shadow: 0 0 0 2px rgba(87, 168, 233, 0.2);
-  box-shadow: 0 0 0 2px rgba(87, 168, 233, 0.2);
-} */
 #basic_username label {
   width: 122px;
   height: 14px;
@@ -751,32 +758,25 @@ pre tt:after {
 }
 #basic_email {
   width: 514px;
-  height: 38px;
 }
-/* #uploadbuttoncompany {
-  width: 252px;
-  height: 38px;
-  margin-left: 2%;
-  text-align: right;
-} */
-
-/* #basic_title {
-  width: 484px;
-  height: 38px;
-} */
-#basic_textarea {
-  width: 484px;
-  height: 80px;
-  margin-bottom: 20px;
+#uploadbutton{
+  pointer-events: none;
+  box-shadow:none;
+  width: 100%;
+  outline: 0;
+  border:none;
+  border-bottom: 1px solid #D0D0D0;
+  color: #D4D4D4;
+  padding: 7px 0 0 0;
+  align-items: center;
+  height:50px;
+  background: transparent;
+  display: flex;
+  justify-content: space-between;
 }
 #formtextarea {
   width: 514px;
   height: 80px;
-}
-#uploadbutton {
-  width: 100%;
-  height: 38px;
-  text-align: right;
 }
 #submitbotton {
   width: 180px;
@@ -790,10 +790,6 @@ pre tt:after {
 }
 
 @media only screen and (max-width: 375px) {
-  #basic_username {
-    width: 270px;
-    height: 38px;
-  }
   #basic_companyname {
     width: 270px;
     height: 38px;
@@ -806,20 +802,6 @@ pre tt:after {
     width: 270px;
     height: 38px;
     text-align: right;
-  }
-  #uploadbutton {
-    width: 270px;
-    height: 38px;
-    text-align: right;
-  }
-  #basic_title {
-    width: 270px;
-    height: 38px;
-    margin-bottom: 20px;
-  }
-  #basic_textarea {
-    width: 270px;
-    height: 80px;
   }
   #formcontact div {
     margin-top: 0%;
@@ -910,56 +892,36 @@ pre tt:after {
   }
 }
 
-#basic_career {
-  width: 540px;
-  margin-left: 5%;
-}
 #basic_career_textarea {
-  height: 80px;
+  margin-top: 7px;
+  box-shadow: none;
+  height: 86px;
+  width: 390px;
+  border: 0.5px solid #555555;
+  border-radius: 5px;
 }
 #careersubmitcol {
-  padding-top: 7.5%;
-  margin-left: 25%;
+  margin-top: 32px;
 }
 #careeruploadbutton {
-  width: 340px;
-  height: 46px;
+  width: 390px;
+  height: 42px;
   text-align: right;
+  border-radius: 5px;
+  border: .5px solid #555555;
 }
 
 @media only screen and (max-width: 768px) {
-  #basic_textarea {
-    max-width: 102%;
-    margin-bottom: 20px;
-  }
   #basic_career_textarea {
     height: 80px;
   }
   #basic_career {
-    width: 540px;
+    width: 100%;
+    margin-left:0;
   }
   #basic_user_email {
     width: 245px;
     height: 38px;
-  }
-  #uploadbuttoncompany {
-    width: 245px;
-    height: 38px;
-    margin-left: 4%;
-    text-align: right;
-  }
-  #basic_username {
-    width: 240px;
-    height: 38px;
-  }
-  #basic_title {
-    width: 500px;
-    height: 38px;
-  }
-  #uploadbutton {
-    width: 500px;
-    height: 38px;
-    text-align: right;
   }
 }
 
@@ -975,38 +937,22 @@ pre tt:after {
     margin-left: 0%;
     text-align: right;
   }
-  #basic_username {
-    width: 270px;
-    height: 38px;
-  }
-  #uploadbutton {
-    width: 270px;
-    height: 38px;
-    text-align: right;
-  }
-  #basic_title {
-    width: 270px;
-    height: 38px;
-  }
   #formcontact {
-    width: 290px;
-    padding: 2% 2%;
-    margin-left: 2%;
+  }
+}
+@media only screen and (max-width: 490px){
+  #careeruploadbutton, #basic_career_file, #basic_career_textarea, ant-upload-select-text, .ant-upload{
+    width: 100%;
   }
 }
 @media only screen and (max-width: 375px) {
-  #basic_career {
-    width: 290px;
-  }
   #basic_career_textarea {
     height: 160px;
   }
   #careersubmitcol {
-    padding-top: 7.5%;
-    margin-left: 0%;
+    width: 100%;
   }
   #careeruploadbutton {
-    width: 290px;
     height: 46px;
     text-align: right;
   }
@@ -1018,15 +964,7 @@ pre tt:after {
   }
 }
 @media only screen and (max-width: 320px) {
-  #basic_career {
-    width: 290px;
-  }
-  #basic_career_textarea {
-    max-width: 95%;
-    height: 160px;
-  }
   #careeruploadbutton {
-    width: 280px;
     height: 46px;
     text-align: right;
   }
@@ -1060,6 +998,7 @@ pre tt:after {
 }
 #footerfirstrow {
   height: 70%;
+  justify-content: space-around;
 }
 #footersecondtrow {
   height: 30%;
@@ -1099,6 +1038,7 @@ pre tt:after {
     font-size: 100%;
   }
 }
+
 @media only screen and (min-width: 375px) {
   #register_address {
     width: 90%;
@@ -1114,10 +1054,14 @@ pre tt:after {
     margin-right: -20px;
   }
 }
+
 @media only screen and (max-width: 768px) {
   .slick-slider {
     margin-left: -20px;
     margin-right: -20px;
+  }
+  #footerfirstrow img{
+    margin-bottom: 0;
   }
 }
 @media only screen and (max-width: 1024px) {
@@ -1145,55 +1089,9 @@ pre tt:after {
     border: solid 1px #009db8;
     background-color: #ffffff;
   }
-  #basic_title {
-    width: 510px;
-    height: 38px;
-  }
-  #uploadbutton {
-    width: 510px;
-    height: 38px;
-    text-align: right;
-  }
-  /* #basic_textarea {
-    max-width: 510px;
-    margin-bottom: 20px;
-  } */
-}
-@media only screen and (min-width: 1170px) {
-  #basic_username {
-    width: 252px;
-    height: 38px;
-  }
-  #basic_title {
-    width: 500px;
-    height: 38px;
-  }
-  #uploadbutton {
-    width: 500px;
-    height: 38px;
-    text-align: right;
-  }
-  #basic_textarea {
-    max-width: 500px;
-    margin-bottom: 20px;
-  }
-  #uploadbutton {
-    width: 252px;
-    height: 38px;
-    margin-left: 2%;
-    text-align: right;
-  }
 }
 
 @media (min-width: 1600px) {
-  #basic_username {
-    width: 510px;
-    height: 38px;
-  }
-  #basic_textarea {
-    max-width: 109%;
-    margin-bottom: 20px;
-  }
   .slick-slider {
     margin-top: -50px;
     margin-left: -100px;
@@ -1212,16 +1110,8 @@ pre tt:after {
     border: solid 1px #009db8;
     background-color: #ffffff;
   }
-  #basic_title {
-    width: 484px;
-    height: 38px;
-  }
-  #uploadbutton {
-    width: 484px;
-    height: 38px;
-    text-align: right;
-  }
 }
+
 
 .ant-input-number-handler-wrap {
   display: none;
@@ -1229,7 +1119,6 @@ pre tt:after {
 
 .calculator-result {
   position: fixed;
-  /*top: 0;*/
 }
 
 .calculator-result.abs {
@@ -1240,13 +1129,13 @@ pre tt:after {
   bottom: 0;
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1024px) {
   .calculator-result{
     right: 10px;
   }
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 1024px) {
   .calculator-result{
     right: 29px;
   }
@@ -1262,4 +1151,86 @@ pre tt:after {
 }
 .mx-35 {
   margin: 0 35px !important;
+}
+/* slider */
+.slick-track{
+  padding-top: 85px;
+}
+.slick-initialized{
+  width: 33%;
+  max-width: 394px;
+}
+.slick-prev:before, .slick-next:before{
+  font-family: 'ArialAMU' !important;
+  color:black !important;
+  opacity:10!important;
+}
+.slick-next , .slick-prev{
+  bottom: -31px!important;
+  position: absolute;
+  top: inherit !important;
+}
+.slick-list {
+  margin-top: 83px;
+}
+.slick-prev {
+  left: -2px !important;
+}
+.slick-next{
+  left: 99px !important;
+}
+.slick-slider{
+  margin-right: 0;
+}
+.slick-thumb{
+  width: fit-content !important;
+  left: 41px!important;
+  bottom: -31px!important;
+}
+@media (max-width: 1094px){
+  .slick-initialized{
+    max-width: 100%;
+    width: 100%;
+  }
+  .slick-prev {
+    left: 11px !important;
+    bottom: -19px!important;
+  }
+  .slick-next{
+    left: 112px !important;
+    bottom: -19px!important;
+  }
+  .slick-thumb{
+    width: fit-content !important;
+    left: 55px!important;
+    bottom: -19px!important;
+  }
+}
+@media (max-width: 768px){
+  .slick-track{
+    padding-top: 0;
+  }
+}
+.slick-dots li {
+  font-size: 18px;
+  color: black;
+  width: 47px;
+}
+.slick-prev:before{
+  opacity: 10;
+  content: '' !important;
+  background-image: url("../assets/homeImages/prev_vector.svg");
+  height: 14px;
+  width: 24px;
+  position: absolute;
+  background-repeat: no-repeat;
+}
+.slick-next:before{
+  opacity: 10!important;
+  content: '' !important;
+  background-image: url("../assets/homeImages/next_vector.svg");
+  height: 14px;
+  width: 24px;
+  position: absolute;
+  background-repeat: no-repeat;
 }

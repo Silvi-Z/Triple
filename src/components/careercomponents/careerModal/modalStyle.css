@@ -2,3 +2,62 @@
   display: flex;
   justify-content: center;
 }
+.ant-modal-content{
+  border-radius: 10px;
+}
+.ant-modal-footer{
+    padding-top: 15px ;
+    padding-bottom: 15px ;
+}
+.ant-form-item{
+    margin-bottom: 0;
+}
+.submit_button_style{
+    margin-top: 30px;
+    margin-bottom: 0!important;
+}
+.submit_button {
+    position: relative;
+    overflow: hidden;
+    width: 260px;
+    height: 49px;
+    outline: none;
+    font-weight: bold;
+    border-radius: 30px;
+    border: 1px solid black;
+    font-size: 16px;
+    color: white;
+    background-position: 50% 50%;
+    display: inline-block;
+    background-image: linear-gradient( #ffffff,#ffffff);
+    background-repeat: no-repeat;
+    transition: background-size .5s,color .5s;
+    background-size: 0 100%;
+}
+.submit_button.ant-btn:hover {
+    border-color: black;
+    background-color: black;
+    background-image: linear-gradient( #ffffff,#ffffff);
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+}
+.submit_button:hover{
+   background-size: 100% 100%;
+   color: black;
+   cursor:pointer;
+   outline:none;
+ }
+.submit_button:focus{
+   outline:none;
+ }
+@media only screen and (max-width:320px){
+  .submit_button {
+  width:100%;
+}
+}
+.ant-btn:hover, .ant-btn:focus, .ant-btn:active{
+    background-size: 100% 100%;
+    color: black;
+    cursor:pointer;
+    outline:none;
+}

@@ -1,37 +1,53 @@
 import styled from "styled-components"
-import { Row, Col } from "antd"
+import { Row, Col, Input } from "antd"
+import UploadIcon from "../../assets/footericons/brandIcons/white_upload.svg"
 import FbBlueIcon from "../../assets/career/facebookBlueCareer.svg"
 import FbBlackIcon from "../../assets/career/facebookCareer.svg"
 import LinkdinBlackIcon from "../../assets/career/linkedinCareer.svg"
 import LinkedinBlueIcon from "../../assets/career/linkedinBlueCareer.svg"
-export const ParagraphRow = styled(Row)`
-  padding: 0 15%;
-  margin-bottom: 2.8%;
-  @media (min-width: 1600px) {
-    padding: 0 0%;
-    margin-bottom: 1%;
+import { FacebookShareButton, LinkedinShareButton } from "react-share"
+
+
+export const H1Email = styled.h1`
+  font-size:54px;
+  font-style: normal;
+  font-weight: bold;
+  text-align: start;
+  letter-spacing: 0.15px;
+  color: #000000;
+  border-bottom: 1px solid #D0D0D0;
+  padding-bottom:30px;
+  margin-right:71px;
   }
-  @media only screen and (max-width: 1170px) {
-    padding: 0 10.5%;
-  }
-  @media only screen and (max-width: 768px) {
-    margin-top: 49px;
-    padding: 0 3.5%;
-  }
-  @media only screen and (max-width: 375px) {
-    margin-bottom: 10px;
-    padding: 0 3.5%;
-  }
-  @media only screen and (max-width: 320px) {
-    margin-bottom: 10px;
-    padding: 0 2.5%;
+  @media only screen and (max-width: 1200px){
+    margin-right:0;
+    font-size:36px;
+    }
+`
+export const PElement = styled.p`
+  font-size:18px;
+  margin-bottom:40px;
+`
+export const H3Element = styled.h3`
+  font-size: 24px;
+  font-style: normal;
+  font-weight: bold;
+  line-height: 25px;
+  letter-spacing: 0.15px;
+  margin-bottom:20px;
+  color:#000000;
+   @media only screen and (max-width: 1200px){
+    font-size:20px;
   }
 `
+export const ParagraphRow = styled(Row)`
+  margin-bottom: 50px;
+  justify-content:center;
+`
 export const H2Styled = styled.h2`
-  width: 141px;
-  height: 18px;
+  margin-bottom:30px;
   font-family: ArialAMU;
-  font-size: 18px;
+  font-size: 24px;
   font-weight: bold;
   font-stretch: normal;
   font-style: normal;
@@ -39,536 +55,157 @@ export const H2Styled = styled.h2`
   letter-spacing: normal;
   text-align: left;
   color: #000000;
+  @media only screen and (max-width: 1200px) {
+    font-size:20px
+  }
 `
 export const PStyled = styled.p`
-  width: 768px;
-  height: 76px;
+  max-width: 621px;
   font-family: ArialAMU;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;
   line-height: 1.88;
   letter-spacing: normal;
-  text-align: left;
+  text-align: center;
   color: #000000;
-  @media only screen and (max-width: 1920px) {
-    width: 968px;
-    height: 76px;
-    font-family: ArialAMU;
-    font-size: 16px;
-    font-weight: normal;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: 1.88;
-    letter-spacing: normal;
-    text-align: left;
-    color: #000000;
-  }
-  @media only screen and (max-width: 1170px) {
-    width: 768px;
-    height: 76px;
-    font-family: ArialAMU;
-    font-size: 16px;
-    font-weight: normal;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: 1.88;
-    letter-spacing: normal;
-    text-align: left;
-    color: #000000;
-  }
-  @media only screen and (max-width: 768px) {
-    max-width: 639px;
-    max-height: 106px;
-    margin-left: 0%;
-    margin-bottom: 40px;
-  }
-  @media only screen and (max-width: 375px) {
-    width: 288px;
-    height: 226px;
-    font-family: ArialAMU;
-  }
-  @media only screen and (max-width: 320px) {
-    width: 288px;
-    height: 226px;
-    font-family: ArialAMU;
-  }
-`
-export const NumberCol = styled(Col)`
-  max-width: 602px;
-  max-height: 55px;
-  padding-top: 2%;
-  box-shadow: 0px 5px 40px 0 rgba(0, 0, 0, 0.05);
-  background-color: #ffffff;
-  display: flex;
-  justify-content: center;
-  margin-top: 1.4%;
-  @media (min-width: 1600px) {
-    max-width: 618px;
-    padding-top: 1.3%;
-    margin-left: 18.4%;
-  }
-  @media only screen and (max-width: 1170px) {
-    max-width: 602px;
-    max-height: 54px;
-    margin-left: 15%;
-  }
-  @media only screen and (max-width: 768px) {
-    max-width: 562px;
-    max-height: 54px;
-    margin-left: 15%;
-  }
-  @media (max-width: 375px) {
-    max-width: 290px;
-    max-height: 54px;
-    margin-left: 2%;
-    padding-top: 5%;
-  }
-  @media (max-width: 320px) {
-    max-width: 290px;
-    max-height: 54px;
-    margin-left: -2%;
-    padding-top: 5%;
+  margin-bottom:0;
+  @media only screen and (max-width: 1200px) {
+    font-size:16px
   }
 `
 export const AdressMapCol = styled(Col)`
-  max-width: 602px;
-  max-height: 410px;
-  padding-top: 1%;
+  margin:0;
+  width: 100%;
+  max-height: 465px;
   box-shadow: 0px 5px 40px 0 rgba(0, 0, 0, 0.05);
   background-color: #ffffff;
   display: flex;
   justify-content: center;
-  margin-top: 1.4%;
-  padding-bottom: 18px;
-  @media (min-width: 1600px) {
-    max-width: 618px;
-    margin-left: 18.4%;
-  }
-  @media only screen and (max-width: 1170px) {
-    max-width: 602px;
-    max-height: 410px;
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.05);
-    background-color: #ffffff;
-    margin-left: 15%;
-    padding-bottom: 18px;
-  }
-  @media only screen and (max-width: 768px) {
-    max-width: 562px;
-    max-height: 410px;
-    margin-left: 15%;
-  }
-  @media (max-width: 375px) {
-    max-width: 290px;
-    max-height: 250px;
-    margin-left: 2%;
-    padding-top: 5%;
-  }
-  @media (max-width: 320px) {
-    max-width: 290px;
-    max-height: 250px;
-    margin-left: -2%;
-    padding-top: 5%;
-  }
-`
-export const AddressSpan = styled.span`
-  width: 142px;
-  height: 16px;
-  font-family: ArialAMU;
-  font-size: 16px;
-  font-weight: normal;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: normal;
-  letter-spacing: normal;
-  text-align: center;
-  color: #000000;
-
-  @media only screen and (max-width: 375px) {
-    width: 142px;
-    height: 15px;
-    font-family: ArialAMU;
-    font-size: 15px;
-    padding: 0 0%;
-  }
-  @media only screen and (max-width: 320px) {
-    width: 235px;
-    height: 15px;
-    font-family: ArialAMU;
-    font-size: 15px;
-    padding: 0 0%;
-    a {
-      font-size: 12px;
-      color: #009db8;
-      font-family: ArialAMU;
-    }
-  }
-`
-export const ContactAdressWrap = styled(Col)`
-  height: 40px;
-  display: flex;
-  justify-content: center;
-  padding-top: 2%;
-  @media only screen and (max-width: 1170px) {
-    height: 40px;
-    font-family: ArialAMU;
-    font-size: 15px;
-    padding-top: 2.5%;
-  }
-  @media only screen and (max-width: 375px) {
-    width: 290px;
-    height: 15px;
-    font-family: ArialAMU;
-    font-size: 15px;
-    padding: 0 0%;
-  }
-  @media only screen and (max-width: 320px) {
-    width: 290px;
-    height: 15px;
-    font-family: ArialAMU;
-    font-size: 15px;
-    padding: 0 0%;
-  }
 `
 export const MapCol = styled(Col)`
-  padding: 2% 3%;
+  width:100%;
 `
 export const Mapiframe = styled.iframe`
-  width: 564px;
-  height: 340px;
+  width: 100%;
+  height: 465px;
   border: 0;
-  @media only screen and (max-width: 375px) {
-    width: 290px;
-    height: 180px;
-    margin-top: 10px;
-  }
-  @media only screen and (max-width: 320px) {
-    width: 290px;
-    height: 180px;
-    margin-top: 10px;
-  }
-`
-export const EnvironmentWrapper = styled.img`
-  width: 18px;
-  height: 18px;
-  margin-bottom: 0%;
 `
 export const HeadingParagrCol = styled(Col)`
-  @media only screen and (max-width: 1170px) {
-    margin-left: 3.8%;
-  }
-  @media only screen and (max-width: 375px) {
-    margin-left: 0%;
-    margin-bottom: 13%;
-  }
-  @media only screen and (max-width: 320px) {
-    margin-left: 0%;
-    margin-bottom: 13%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left:0;
+    width:100%;
+    max-width:100%;
+    flex: 0 0 100%;
+`
+export const FormRow = styled(Row)`
+  align-items:end;
+  display:flex;
+  justify-content:space-between;
+  flex-wrap:nowrap;
+  @media only screen and (max-width: 1200px) {
+    flex-direction: column;
   }
 `
-export const CallIconWrapper = styled.img`
-  width: 20px;
+export const UploadOutlinedSpan = styled.span`
+  top: 17px;
+  font-size:16px;
+  @media only screen and (max-width: 768px){
+    font-size:14px 
+  }
+`
+export const UploadOutlined = styled.div`
+  vertical-align:bottom;
   height: 20px;
-  color: #000000;
-  margin-top: 0.4%;
+  width: 20px;
+  background-image:url(${UploadIcon})
 `
-export const ContactNumberWrap = styled.div`
-  width: 240px;
-  height: 15px;
-  font-family: ArialAMU;
-  font-size: 16px;
-  font-weight: normal;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: normal;
-  letter-spacing: normal;
-  text-align: center;
-  margin-left: 11px;
-  color: #000000;
-  margin-top: 0.4%;
-  @media only screen and (max-width: 375px) {
-    width: 235px;
-    height: 15px;
-    font-family: ArialAMU;
-    font-size: 15px;
-    padding: 0 0%;
+export const InputWrapper = styled.div`
+  position: relative;
+  .ant-form-item-label {
+    position: absolute;
+    transition: 0.2s;
   }
-  @media only screen and (max-width: 320px) {
-    width: 235px;
-    height: 15px;
-    font-family: ArialAMU;
-    font-size: 15px;
-    padding: 0 0%;
+`
+export const InputElement = styled(Input)`
+  font-size:16px;
+  @media only screen and (max-width: 768px){
+    font-size:14px 
+  }
+`
+export const AdressColumn = styled.div`
+  width:100%;
+  margin-right:25px;
+  @media only screen and (max-width: 1200px) {
+    width:25%!important;
+  }
+  @media only screen and (max-width: 768px){
+    width:100% !important
+  }
+`
+export const ContactColumn = styled.div`
+  width:100%;
+  margin-right:20px;
+  @media only screen and (max-width: 1200px) {
+    width:44%!important;
+  }
+  @media only screen and (max-width: 768px){
+    width:100% !important
   }
 `
 
-export const FormRow = styled(Row)`
-  padding: 0 12%;
-  @media (min-width: 1600px) {
-    padding: 0 0%;
+export const ShareColumn = styled.div`
+  width:100%;
+  margin-right:20px;
+  @media only screen and (max-width: 1200px) {
+    width:19%!important;
   }
-  @media only screen and (max-width: 1024px) {
-    padding: 0 8%;
-  }
-  @media only screen and (max-width: 768px) {
-    padding: 0 0%;
-  }
-  @media only screen and (max-width: 375px) {
-    padding: 0 0%;
-  }
-  @media only screen and (max-width: 320px) {
-    padding: 0 0%;
+  @media only screen and (max-width: 768px){
+    width:100% !important;
+    margin-bottom:29px;
   }
 `
-export const FormColumn = styled(Col)`
-  margin-left: 17%;
-  max-width: 602px;
-  max-height: 645px;
+
+export const InfoColumn = styled.div`
+  @media only screen and (max-width: 1200px) {
+    width:100%;
+  }
+`
+export const FormColumn = styled.div`
+  flex:1;
+  min-width:506px;
+  height: auto;
   box-shadow: 0px 5px 40px 0 rgba(0, 0, 0, 0.05);
-  background-color: #ffffff;
-  padding: 1% 5%;
-  @media (min-width: 1600px) {
-    margin-left: 33%;
-    padding: 0.8% 4%;
-    max-width: 618px;
+  background-color: #000000;
+  color:white;
+  padding:38px 62px 61px 60px ;
+  @media only screen and (max-width: 1200px) {
+    width:100%;
+    margin-top:19px;
+    padding: 38px 60px 60px 60px;
+    min-width:auto;
   }
-  @media only screen and (max-width: 1170px) {
-    margin-left: 16.5%;
-    padding: 1% 4%;
-    /* max-width: 562px;
-    max-height: 700px; */
-  }
-  @media only screen and (max-width: 768px) {
-    margin-left: 15%;
-    max-width: 562px;
-    max-height: 700px;
-  }
-  @media only screen and (max-width: 375px) {
-    max-width: 290px;
-    font-size: 15px;
-    padding: 0 0%;
-    margin-left: 2%;
-  }
-  @media only screen and (max-width: 320px) {
-    max-width: 290px;
-    font-size: 15px;
-    padding: 0 0%;
-    margin-left: -3%;
-  }
-`
-export const ContactNavRow = styled(Row)`
-  padding: 0 20%;
-  margin-bottom: 3%;
-  @media (min-width: 1600px) {
-    padding: 0 0%;
-    margin-bottom: 3%;
-  }
-  @media only screen and (max-width: 1170px) {
-    padding: 0 13.6%;
-  }
-  @media only screen and (max-width: 1024px) {
-    padding: 0 10.6%;
-  }
-  @media only screen and (max-width: 768px) {
-    padding: 0 0%;
-  }
-  @media only screen and (max-width: 320px) {
-    padding: 0 0%;
-  }
-`
-export const ContactMapRow = styled(Row)`
-  margin-left: 18%;
-  margin-bottom: 3%;
-  @media only screen and (max-width: 1170px) {
-    margin-left: 0%;
-    padding: 0 13.6%;
-  }
-  @media only screen and (max-width: 1024px) {
-    margin-left: 0%;
-    padding: 0 9.6%;
-  }
-  @media only screen and (max-width: 768px) {
-    padding: 0 0%;
-  }
-  @media only screen and (max-width: 320px) {
-    padding: 0 0%;
-  }
-`
-export const IndividCol = styled(Col)`
-  max-width: 294px;
-  height: 50px;
-  text-align: center;
-  padding-top: 1.6%;
-  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
-  background-color: ${props => (props.open ? "#009db8" : "#ffffff")};
-  > span {
-    width: 205px;
-    height: 16px;
-    font-family: ArialAMU;
-    font-size: 16px;
-    font-weight: normal;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: normal;
-    letter-spacing: normal;
-    text-align: center;
-    color: ${props => (props.open ? "#ffffff" : "#009db8")};
-  }
-  &:hover {
-    background-color: #009db8;
-    cursor: pointer;
-    span {
-      color: white;
-    }
-  }
-  @media (min-width: 1600px) {
-    padding-top: 0.9%;
-  }
-  @media only screen and (max-width: 1170px) {
-    margin-left: 15%;
-    max-width: 294px;
-  }
-  @media only screen and (max-width: 375px) {
-    margin-left: 2%;
-    max-width: 290px;
-    padding-top: 3.6%;
-    margin-bottom: 5%;
-    > span {
-      width: 143px;
-      height: 15px;
-      font-family: ArialAMU;
-      font-size: 16px;
-      font-weight: normal;
-      font-stretch: normal;
-      font-style: normal;
-      line-height: normal;
-      letter-spacing: normal;
-      text-align: center;
-      color: ${props => (props.open ? "#ffffff" : "#009db8")};
-    }
-  }
-  @media only screen and (max-width: 320px) {
-    margin-left: 2%;
-    max-width: 390px;
-    padding-top: 3.6%;
-    margin-bottom: 5%;
-    > span {
-      width: 143px;
-      height: 15px;
-      font-family: ArialAMU;
-      font-size: 16px;
-      font-weight: normal;
-      font-stretch: normal;
-      font-style: normal;
-      line-height: normal;
-      letter-spacing: normal;
-      text-align: center;
-      color: ${props => (props.open ? "#ffffff" : "#009db8")};
-    }
-  }
-`
-export const CompanyCol = styled(Col)`
-  max-width: 294px;
-  height: 50px;
-  text-align: center;
-  padding-top: 1.4%;
-  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
-  background-color: ${props => (props.open ? "#009db8" : "#ffffff")};
-  margin-left: 1.6%;
-  > span {
-    width: 205px;
-    height: 16px;
-    font-family: ArialAMU;
-    font-size: 16px;
-    font-weight: normal;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: normal;
-    letter-spacing: normal;
-    text-align: center;
-    color: ${props => (props.open ? "#ffffff" : "#009db8")};
-  }
-  &:hover {
-    background-color: #009db8;
-    cursor: pointer;
-    span {
-      color: white;
-    }
-  }
-  @media (min-width: 1600px) {
-    padding-top: 0.9%;
-  }
-  @media only screen and (max-width: 1170px) {
-    margin-left: 1.5%;
-    max-width: 294px;
-  }
-  @media only screen and (max-width: 1024px) {
-    margin-left: 1.5%;
-    max-width: 294px;
-  }
-  @media only screen and (max-width: 768px) {
-    margin-left: 2%;
-    max-width: 294px;
-  }
-  @media only screen and (max-width: 375px) {
-    margin-left: 2%;
-    max-width: 290px;
-    padding-top: 3.6%;
-    margin-bottom: 5%;
-    > span {
-      width: 143px;
-      height: 15px;
-      font-family: ArialAMU;
-      font-size: 16px;
-      font-weight: normal;
-      font-stretch: normal;
-      font-style: normal;
-      line-height: normal;
-      letter-spacing: normal;
-      text-align: center;
-      color: ${props => (props.open ? "#ffffff" : "#009db8")};
-    }
-  }
-  @media only screen and (max-width: 320px) {
-    margin-left: 2%;
-    max-width: 290px;
-    padding-top: 3.6%;
-    margin-bottom: 5%;
-    > span {
-      width: 143px;
-      height: 15px;
-      font-family: ArialAMU;
-      font-size: 16px;
-      font-weight: normal;
-      font-stretch: normal;
-      font-style: normal;
-      line-height: normal;
-      letter-spacing: normal;
-      text-align: center;
-      color: ${props => (props.open ? "#ffffff" : "#009db8")};
-    }
+  @media only screen and (max-width: 768px){
+    padding: 38px 15px 63px 15px;
   }
 `
 //share button container
 export const SharedWrapperCol = styled(Col)`
-  padding: 0 1%;
+  max-width:145px;
+  flex-wrap:wrap;
   display: flex;
-  justify-content: end;
-  margin-top: 2%;
-  .react-share__ShareButton {
-    all: unset;
-  }
-  /* @media (min-width: 375px) {
-    a {
-      display: contents;
-      color: #da4567;
-    }
-  } */
+  // @media only screen and (max-width: 768px){
+  //   max-width:100%;
+  //   width:100%
+  // }
 `
 export const ShareLabel = styled.h3`
   width: 83px;
-  height: 15px;
+  height: 24px;
   font-family: ArialAMU;
   font-size: 16px;
   font-weight: normal;
@@ -580,23 +217,53 @@ export const ShareLabel = styled.h3`
   margin-top: -5px;
   color: #000000;
 `
+
 export const FacebookIcon = styled.div`
   height: 32px;
   width: 32px;
-  margin-left: 19px;
   background-image: url(${FbBlackIcon});
   cursor: pointer;
-  &:hover {
-    background-image: url(${FbBlueIcon});
+  @media only screen and (max-width: 1200px){
+    margin-bottom: 12px
   }
 `
+export const FacebookShare = styled(FacebookShareButton)`
+    outline:none;
+    background-image:url(${FbBlackIcon});
+    display: block;
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    &:hover ${FacebookIcon} {
+    transition: all .3s ease;
+    transform: scale(1.5);
+    opacity: 0
+  }
+`
+
+export const InfoWrapper = styled.div`
+  width: 100%;
+`
+
 export const LinkdinIcon = styled.div`
   height: 32px;
   width: 32px;
-  margin-left: 19px;
   background-image: url(${LinkdinBlackIcon});
   cursor: pointer;
-  &:hover {
-    background-image: url(${LinkedinBlueIcon});
+  @media only screen and (max-width: 1200px){
+    margin-bottom: 12px
+  }
+`
+
+export const LinkedinShare = styled(LinkedinShareButton)`
+    outline:none;
+    background-image:url(${LinkdinBlackIcon});
+    margin-left:15px;
+    display: block;
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    &:hover ${LinkdinIcon}{
+    transition: all .3s ease;
+    transform: scale(1.5);
+    opacity: 0
   }
 `

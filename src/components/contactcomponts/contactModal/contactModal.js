@@ -12,11 +12,7 @@ const CareerModal = ({ handleOk, modalVisible }) => {
                 onOk={handleOk}
                 cancelButtonProps={{ style: { display: "none" } }}
                 okButtonProps={{
-                    style: {
-                        width: "180px",
-                        height: "46px",
-                        backgroundColor: "#009db8",
-                    },
+                  className:'submit_button',
                 }}
                 bodyStyle={{
                     padding: "5%",
@@ -24,8 +20,6 @@ const CareerModal = ({ handleOk, modalVisible }) => {
                 }}
                 okText="Փակել"
                 closable={false}
-            // footer={null}
-            // onCancel={this.handleCancel}
             >
                 <Img src={ModalImg} />
                 <H2>Հարգելի օգտատեր, ձեր նամակն ուղարկված է։</H2>

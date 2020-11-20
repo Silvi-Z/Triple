@@ -51,14 +51,15 @@ const query = graphql`
                 title
                 sub_title
                 button_text
-                icon_text_calc
-                icon_text_aud_1
-                icon_text_aud_2
-                icon_text_consult
-                icon_text_registr
-                icon_text_individ
-                icon_text_trans
-                icon_text_hr
+                serviceName_1
+                serviceName_2
+                serviceName_3
+                serviceName_4
+                serviceName_5
+                serviceName_6
+                serviceName_7
+                serviceName_8
+                serviceName_9
               }
               our_partners {
                 title
@@ -134,7 +135,8 @@ const query = graphql`
               title
               paragraph
               form_content {
-                name_label
+                name_label_first
+                name_label_second
                 email_label
                 file_label
                 title_label
