@@ -4,6 +4,7 @@
 }
 html {
   font-family: ArialAMU, sans-serif;
+  scroll-behavior: smooth;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
 }
@@ -230,7 +231,7 @@ body {
 img {
   max-width: 100%;
   padding: 0;
-  margin: 0 0 1.45rem;
+  /*margin: 0 0 1.45rem;*/
 }
 h1 {
   padding: 0;
@@ -1234,3 +1235,46 @@ pre tt:after {
   position: absolute;
   background-repeat: no-repeat;
 }
+#gatsby-focus-wrapper{
+  /*outline: none;*/
+  /*overflow: hidden;*/
+  /*height: 100vh;*/
+}
+
+/*   menu animation   */
+/*#menu{*/
+/*  height: 100vh;*/
+/*  width: 100%;*/
+/*  top: 0;*/
+/*  pointer-events: none;*/
+/*  position: absolute;*/
+/*  background-color: black;*/
+/*  animation-name: openMenu;*/
+/*  animation-duration: 1s;*/
+/*  !*padding-top: 180px;*!*/
+/*}*/
+/*@keyframes openMenu {*/
+/*  0% { height: 0 }*/
+/*  100% {height: 100vh;}*/
+/*}*/
+/*.menu_element::after{*/
+/*  content: "";*/
+/*  position: absolute;*/
+/*  bottom: 0;*/
+/*  width: 100%;*/
+/*  background-color: black;*/
+/*  animation-name: name;*/
+/*  animation-duration: 2s;*/
+/*}*/
+/*@keyframes name {*/
+/*  0%{*/
+/*    background-color: transparent;*/
+/*  }*/
+/*  5%{*/
+/*    height: 30px;*/
+/*    background-color: black;*/
+/*  }*/
+/*  100%{*/
+/*    height: 0;*/
+/*  }*/
+/*}*/
