@@ -5,8 +5,9 @@ export const HomePageWrapper = styled.div`
   max-width:1440px;
   margin:0 auto;
   padding:50px 55px 91px 55px;
-  @media only screen and (max-width: 1024px) {
+  @media only screen and (max-width: 1094px) {
     padding:50px 20px 63px 20px;
+    margin-top:25px;
   }
 `
 export const ServiceTitle = styled.div`
@@ -168,9 +169,14 @@ export const ServiceNameWrapper = styled.div`
   letter-spacing: 0.15px;
   font-weight: bold;
   font-size: 18px;
+  > a{
+    transition: 0s;
+  }
   &:hover{
     border: 1px solid #00B3C7;
-    color:#00B3C7;
+    > a{ 
+     color:#00B3C7;
+  }
   }
   @media only screen and (max-width: 1024px){
     padding: 0 20px;

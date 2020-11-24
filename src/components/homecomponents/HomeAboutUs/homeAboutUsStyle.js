@@ -64,6 +64,7 @@ export const BigImage = styled.img`
   margin-bottom:0;
   @media only screen and (max-width: 1094px){
    position: inherit;
+   z-index:-1;
   }
  `
 export const TextPart = styled.div`

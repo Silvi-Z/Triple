@@ -58,6 +58,8 @@ const query = graphql`
                 serviceName_5
                 serviceName_6
                 serviceName_7
+                serviceName_8
+                serviceName_9
               }
               our_partners {
                 title

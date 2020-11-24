@@ -3,16 +3,16 @@ import React from "react"
 import { DownOutlined, UpOutlined } from "@ant-design/icons"
 import FormCareer from "../careerForm/careerform"
 import {
-  ToggleH2Styled,
   H2Styled,
+  OrderList,
+  DropCareer,
+  FormWrapper,
+  OrderSection,
   ToggleButton,
+  ToggleH2Styled,
   OrderListWrapper,
   DropHeadingTitle,
   DropHeadingButton,
-  FormWrapper,
-  OrderList,
-  OrderSection,
-  DropCareer,
 } from "./dropStyle"
 const CareerDropWrapper = ({
   showCareerForm,

@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react"
 import styled from "styled-components"
 import { navigate } from "gatsby"
-import { Row, Col, Dropdown } from "antd"
-import { PhoneOutlined, CaretDownOutlined } from "@ant-design/icons"
+import { Dropdown } from "antd"
+import { PhoneOutlined, CaretDownOutlined, EnvironmentOutlined } from "@ant-design/icons"
 import MainLogo from "../../assets/homeImages/3c.png"
-import closeMenu from "../../assets/homeImages/closeMenu.png"
-import openMenu from "../../assets/homeImages/openMenu.png"
+import BlackLogo from "../../assets/homeImages/3c1.png"
 import WhiteLogo  from "../../assets/homeImages/3c_white.png"
 import EnvironmentImg from "../../assets/footericons/location.svg"
 import "@fortawesome/fontawesome-free/css/all.css"
@@ -22,7 +21,10 @@ import {
   HeadMainIcon,
   EnvironmentWrapper,
   ResponsiveNavWrapper,
-  ResponsiveMenuWrapper, MenuWrapper,
+  ResponsiveMenuWrapper,
+  MenuWrapper,
+  ResponsiveMenuColumn,
+  ResponsiveMenuInfoRow, Coll,
 } from "./navbarStyle.js"
 
 const phones = (
@@ -139,11 +141,11 @@ const Navbar = ({ open, responseWrapper, lang, langText, originalPath }) => {
   const handleChangeLanguage = (e, id) => {
     let elem = document.getElementById(id)
     if (elem.innerText === "Рус") {
-      navigate(`/ru/${originalPath}`)
+      navigate(`/ru${originalPath}`)
     } else if (elem.innerText === "Eng") {
-      navigate(`/en/${originalPath}`)
+      navigate(`/en${originalPath}`)
     } else if (elem.innerText === "Հայ") {
-      navigate(`/arm/${originalPath}`)
+      navigate(`/arm${originalPath}`)
     }
     let newtext = languageText.filter(text => text !== elem.innerText)
     newtext.unshift(elem.innerText)
@@ -157,92 +159,124 @@ const Navbar = ({ open, responseWrapper, lang, langText, originalPath }) => {
   return (
     <>
       <ResponsiveNavWrapper style={{backgroundColor: !responseWrapper ?  "#1C1D21": "white"}}>
-        <div style={{ textAlign: "center" , backgroundColor: !responseWrapper ?  "#1C1D21": "white"}}>
-          <RespNavLink to={`/${lang}/`}>
-            <HeadMainIcon style={{backgroundColor: !responseWrapper ?  "#1C1D21": "white" , height: !responseWrapper ? "87%" : "100%"}} src={!responseWrapper ?  WhiteLogo : MainLogo} alt={"icon"} />
+        <div style={{ textAlign: "center" , backgroundColor: !responseWrapper ?  "#1C1D21": "white" , display: 'flex'}}>
+          <RespNavLink to={`/${lang}/`} onClick={() => open()}>
+            <HeadMainIcon style={{backgroundColor: !responseWrapper ?  "#1C1D21": "white"}} src={!responseWrapper ?  WhiteLogo : BlackLogo} alt={"icon"} />
           </RespNavLink>
         </div>
-        <div style={{backgroundColor: !responseWrapper ?  "#1C1D21": "white"}}>
+        <div style={{position: "relative" , backgroundColor: !responseWrapper ?  "#1C1D21": "white"}}>
           <Label htmlFor="toggle" onClick={() => open()}>
-          {!responseWrapper ? (
-            <img src={openMenu}alt="" />
-          ) : (
-            <img src={closeMenu} alt="" />
-            )}
+            <a href="javascript:void(0);" id="burger" className={!responseWrapper ? "open" : ''}>
+              <span> </span>
+              <span> </span>
+              <span> </span>
+            </a>
         </Label>
         </div>
       </ResponsiveNavWrapper>
 
       {!responseWrapper ? (
-      // <div id="menu">
+      <div id="menu">
         <ResponsiveMenuWrapper >
           <MenuWrapper>
-            <Col  style={{ marginBottom: "50px" }}>
+            <ResponsiveMenuColumn>
+            <Coll className="coll" style={{ marginBottom: "50px" }}>
               <NavLink
-                style={{fontSize: !responseWrapper ? "18px" : "16px"}}
                 className="menu_element"
                 to={`/${lang}/services/`}
                 activeStyle={activeStyle}
                 state={{ clickedItems: 0 }}
-              // onClick={() => setResponswrapper()}
+                onClick={() => open()}
               >
                 {langText.header.serveTitle}
               </NavLink>
-            </Col>
-            <Col style={{ marginBottom: "50px" }}>
+            </Coll>
+            <Coll style={{ marginBottom: "50px" }}>
               <NavLink
-                style={{fontSize: !responseWrapper ? "18px" : "16px"}}
                 className="menu_element"
                 to="/reports/"
                 activeStyle={activeStyle}
-              // onClick={() => setResponswrapper()}
+                onClick={() => open()}
               >
                 {langText.header.reportTitle}
               </NavLink>
-            </Col>
-            <Col  style={{ marginBottom: "50px" }}>
+            </Coll>
+            <Coll  style={{ marginBottom: "50px" }}>
               <NavLink
-                style={{fontSize: !responseWrapper ? "18px" : "16px"}}
                 className="menu_element"
-                to={`/${lang}/calculators/`}
+                to={`/${lang}/calculators/salary/`}
                 activeStyle={activeStyle}
+                onClick={() => open()}
               >
                 {langText.header.calcTitle}
               </NavLink>
-            </Col>
-            <Col  style={{ marginBottom: "50px" }}>
+            </Coll>
+            <Coll  style={{ marginBottom: "50px" }}>
               <NavLink
-                style={{fontSize: !responseWrapper ? "18px" : "16px"}}
                 className="menu_element"
                 to={`/${lang}/information/`}
                 activeStyle={activeStyle}
+                onClick={() => open()}
               >
                 {langText.header.infoTitle}
               </NavLink>
-            </Col>
-            <Col  style={{ marginBottom: "50px" }}>
+            </Coll>
+            <Coll  style={{ marginBottom: "50px" }}>
               <NavLink
-                style={{fontSize: !responseWrapper ? "18px" : "16px"}}
                 className="menu_element"
                 to={`/${lang}/career/`}
                 activeStyle={activeStyle}
+                onClick={() => open()}
               >
                 {langText.header.careerTitle}
               </NavLink>
-            </Col>
-            <Col  style={{ marginBottom: "50px" }}>
+            </Coll>
+            <Coll  style={{ marginBottom: "50px" }}>
               <NavLink
-                style={{fontSize: !responseWrapper ? "18px" : "16px"}}
                 className="menu_element"
                 to={`/${lang}/contact/`}
                 activeStyle={activeStyle}
+                onClick={() => open()}
               >
                 {langText.header.contractTitle}
               </NavLink>
-            </Col>
+            </Coll>
+            </ResponsiveMenuColumn>
           </MenuWrapper>
+          <ResponsiveMenuInfoRow>
+            <div>
+              <span
+                style={{color:"white"}}
+                onClick={e => handleChangeLanguage(e, "langSpan")}
+                className="languagetext"
+                id="langSpan"
+              >Հայ |
+              </span>
+              <span
+                style={{color:"white"}}
+                onClick={e => handleChangeLanguage(e, "langeEn")}
+                className="languagetext"
+                id="langeEn"
+              >  Eng
+              </span>
+            </div>
+            <div>
+              <EnvironmentOutlined />
+              <AddressSpan lang={lang}>{langText.header.address}</AddressSpan>
+            </div>
+            <div>
+              <PhoneOutlined
+                style={{
+                  fontSize: "14px",
+                  marginRight: "4%",
+                  transform: "rotate(90deg)",
+                }}
+              />
+              <PhoneSpan>+374 98 553533,+374 98 553533</PhoneSpan>
+            </div>
+          </ResponsiveMenuInfoRow>
         </ResponsiveMenuWrapper>
-      // </div>
+       </div>
       ) : null}
 
 

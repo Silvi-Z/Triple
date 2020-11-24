@@ -13,7 +13,7 @@ import {
 import { AnchorLink } from "gatsby-plugin-anchor-links";
 
 const HomeServices = ({ langText, lang }) => {
-  const [clickedItems, setClickedItems] = useState(null)
+  // const [clickedItems, setClickedItems] = useState(null)
   return (
     <>
       <ServiceTitle>
@@ -26,89 +26,98 @@ const HomeServices = ({ langText, lang }) => {
               borderRight
               borderBottom
             >
-              <ServiceNameWrapper>
-                <AnchorLink
-                  to={`/${lang}/services#test_1`}
-                >
+              <AnchorLink to={`/${lang}/services#test_1`} >
+                <ServiceNameWrapper>
                   {langText.serviceName_1}
-                </AnchorLink>
-              </ServiceNameWrapper>
+                </ServiceNameWrapper>
+              </AnchorLink>
             </Borders>
             <Borders
               borderBottom
               borderRight
               borderLeft
             >
-              <ServiceNameWrapper>
-                <AnchorLink
-                  to={`/${lang}/services#test_2`}
-                >
+              <AnchorLink to={`/${lang}/services#test_2`} >
+                <ServiceNameWrapper>
                   {langText.serviceName_2}
-                </AnchorLink>
-              </ServiceNameWrapper>
+                </ServiceNameWrapper>
+              </AnchorLink>
             </Borders>
             <Borders
               borderBottom
               borderLeft
             >
-              <ServiceNameWrapper>
-                <AnchorLink
-                  to={`/${lang}/services#test_3`}
-                >
+              <AnchorLink to={`/${lang}/services#test_3`} >
+                <ServiceNameWrapper>
                   {langText.serviceName_3}
-                </AnchorLink>
-              </ServiceNameWrapper>
+                </ServiceNameWrapper>
+              </AnchorLink>
             </Borders>
             <Borders
               borderRight
               borderTop
+              borderBottom
             >
-              <ServiceNameWrapper>
-                <AnchorLink
-                  to={`/${lang}/services#test_4`}
-                >
+              <AnchorLink to={`/${lang}/services#test_4`} >
+                <ServiceNameWrapper>
                   {langText.serviceName_4}
-                </AnchorLink>
-              </ServiceNameWrapper>
+                </ServiceNameWrapper>
+              </AnchorLink>
             </Borders>
             <Borders
               borderRight
               borderTop
               borderLeft
+              borderBottom
             >
-              <ServiceNameWrapper>
-                <AnchorLink
-                  to={`/${lang}/services#test_5`}
-                >
+              <AnchorLink to={`/${lang}/services#test_5`} >
+                <ServiceNameWrapper>
                   {langText.serviceName_5}
-                </AnchorLink>
-              </ServiceNameWrapper>
+                </ServiceNameWrapper>
+              </AnchorLink>
             </Borders>
             <Borders
               borderLeft
               borderTop
+              borderBottom
             >
-              <ServiceNameWrapper>
-                <AnchorLink
-                  to={`/${lang}/services#test_6`}
-                >
+              <AnchorLink to={`/${lang}/services#test_6`} >
+                <ServiceNameWrapper>
                   {langText.serviceName_6}
-                </AnchorLink>
-              </ServiceNameWrapper>
+                </ServiceNameWrapper>
+              </AnchorLink>
             </Borders>
-            {/*<Borders*/}
-            {/*  borderRight*/}
-            {/*  borderTop*/}
-            {/*  borderLeft*/}
-            {/*>*/}
-            {/*  <ServiceNameWrapper>*/}
-            {/*    <AnchorLink*/}
-            {/*      to={`/${lang}/services#test_7`}*/}
-            {/*    >*/}
-            {/*      {langText.serviceName_7}*/}
-            {/*    </AnchorLink>*/}
-            {/*  </ServiceNameWrapper>*/}
-            {/*</Borders>*/}
+            <Borders
+              borderRight
+              borderTop
+            >
+              <AnchorLink to={`/${lang}/services#test_7`} >
+                <ServiceNameWrapper>
+                  {langText.serviceName_7}
+                </ServiceNameWrapper>
+              </AnchorLink>
+            </Borders>
+          <Borders
+              borderRight
+              borderTop
+              borderLeft
+            >
+            <AnchorLink to={`/${lang}/calculators/salary`} >
+              <ServiceNameWrapper>
+                {langText.serviceName_8}
+              </ServiceNameWrapper>
+            </AnchorLink>
+            </Borders>
+          <Borders
+              borderTop
+              borderLeft
+            >
+            <AnchorLink to={`/${lang}/services#test_9`} >
+              <ServiceNameWrapper>
+                {langText.serviceName_9}
+              </ServiceNameWrapper>
+            </AnchorLink>
+            </Borders>
 
 
         </ContainerRow>

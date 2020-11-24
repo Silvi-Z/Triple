@@ -1,15 +1,14 @@
 /*eslint-disable */
 import React from "react"
 import { DownOutlined, UpOutlined } from "@ant-design/icons"
-import { PlusOutlined, MinusOutlined } from "@ant-design/icons"
 import {
-  ServiceDropRow,
-  ToggleH2Styled,
-  ToggleButton,
+  Text,
+  H2Wrapper,
   DropTextCol,
   DropWrapper,
-  FirstTextCol,
-  SecondTextCol, H2Wrapper,
+  ToggleButton,
+  ToggleH2Styled,
+  ServiceDropRow,
 } from "./servicedropStyle.js"
 
 const Servicedrop = ({ data, showServiceForm }) => {
@@ -25,8 +24,7 @@ const Servicedrop = ({ data, showServiceForm }) => {
       </DropWrapper>
       {data.open ? (
         <DropTextCol>
-          <FirstTextCol>{data.data.text}</FirstTextCol>
-          {/*<SecondTextCol>{data.data.text}</SecondTextCol>*/}
+          <Text>{data.data.text}</Text>
         </DropTextCol>
       ) : null
       }

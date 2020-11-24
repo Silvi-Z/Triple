@@ -1,11 +1,11 @@
 import React from "react"
 import {
-  ContainerUseful,
+  H2text,
   TextWrapper,
   LineWrapper,
   ContainerNews,
   DownloadingIcon,
-  H2text
+  ContainerUseful,
 } from "./docStyle"
 import { Row } from "antd"
 const DocTemplateInform = ({ usedata }) => {
