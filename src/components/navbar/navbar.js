@@ -17,12 +17,13 @@ import {
   PhoneSpan,
   RespNavLink,
   AddressSpan,
+  MenuWrapper,
   GridWrapper,
   HeadMainIcon,
   EnvironmentWrapper,
+  ResponsiveMenuButton,
   ResponsiveNavWrapper,
   ResponsiveMenuWrapper,
-  MenuWrapper,
   ResponsiveMenuColumn,
   ResponsiveMenuInfoRow, Coll,
 } from "./navbarStyle.js"
@@ -67,6 +68,9 @@ const GridBlank1 = styled.div`
 `
 const GridHome = styled.div`
   grid-area: home;
+  ${NavLink}{
+    height:100% !important;
+  }
 `
 const GridBlank2 = styled.div`
   grid-area: bla2;
@@ -138,6 +142,13 @@ const Navbar = ({ open, responseWrapper, lang, langText, originalPath }) => {
     setLanguageText(newtext)
   }
 
+  const changeLanguage = (e, id) =>{
+    if (id === "arm"){
+      navigate(`/arm${originalPath}`)
+    }else if (id === "en"){
+      navigate(`/en${originalPath}`)
+    }
+  }
   const handleChangeLanguage = (e, id) => {
     let elem = document.getElementById(id)
     if (elem.innerText === "Рус") {
@@ -160,18 +171,18 @@ const Navbar = ({ open, responseWrapper, lang, langText, originalPath }) => {
     <>
       <ResponsiveNavWrapper style={{backgroundColor: !responseWrapper ?  "#1C1D21": "white"}}>
         <div style={{ textAlign: "center" , backgroundColor: !responseWrapper ?  "#1C1D21": "white" , display: 'flex'}}>
-          <RespNavLink to={`/${lang}/`} onClick={() => open()}>
+          <RespNavLink to={`/${lang}/`} onClick={() => !responseWrapper ? open() : ''}>
             <HeadMainIcon style={{backgroundColor: !responseWrapper ?  "#1C1D21": "white"}} src={!responseWrapper ?  WhiteLogo : BlackLogo} alt={"icon"} />
           </RespNavLink>
         </div>
         <div style={{position: "relative" , backgroundColor: !responseWrapper ?  "#1C1D21": "white"}}>
-          <Label htmlFor="toggle" onClick={() => open()}>
             <a href="javascript:void(0);" id="burger" className={!responseWrapper ? "open" : ''}>
-              <span> </span>
-              <span> </span>
-              <span> </span>
+              <ResponsiveMenuButton onClick={() => open()} style={{backgroundColor: !responseWrapper ?  "white": "black"}}>
+                <span> </span>
+                <span> </span>
+                <span> </span>
+              </ResponsiveMenuButton>
             </a>
-        </Label>
         </div>
       </ResponsiveNavWrapper>
 
@@ -204,7 +215,7 @@ const Navbar = ({ open, responseWrapper, lang, langText, originalPath }) => {
             <Coll  style={{ marginBottom: "50px" }}>
               <NavLink
                 className="menu_element"
-                to={`/${lang}/calculators/salary/`}
+                to={`/${lang}/calculators/`}
                 activeStyle={activeStyle}
                 onClick={() => open()}
               >
@@ -247,22 +258,22 @@ const Navbar = ({ open, responseWrapper, lang, langText, originalPath }) => {
             <div>
               <span
                 style={{color:"white"}}
-                onClick={e => handleChangeLanguage(e, "langSpan")}
+                onClick={e => changeLanguage( e,"arm")}
                 className="languagetext"
-                id="langSpan"
+                id="arm"
               >Հայ |
               </span>
               <span
                 style={{color:"white"}}
-                onClick={e => handleChangeLanguage(e, "langeEn")}
+                onClick={e => changeLanguage(e,"en")}
                 className="languagetext"
-                id="langeEn"
-              >  Eng
+                id="en"
+              > Eng
               </span>
             </div>
             <div>
               <EnvironmentOutlined />
-              <AddressSpan lang={lang}>{langText.header.address}</AddressSpan>
+              <AddressSpan lang={lang}> {langText.header.address}</AddressSpan>
             </div>
             <div>
               <PhoneOutlined
@@ -346,11 +357,7 @@ const Navbar = ({ open, responseWrapper, lang, langText, originalPath }) => {
             {langText.header.reportTitle}
           </NavLink>
         </GridReport>
-        <GridCalc>
-          <NavLink to={`/${lang}/calculators/salary`} activeStyle={activeStyle}>
-            {langText.header.calcTitle}
-          </NavLink>
-        </GridCalc>
+
         <GridInfo md={{ span: 0, offset: 2 }}>
           <NavLink to={`/${lang}/information/`} activeStyle={activeStyle}>
             {langText.header.infoTitle}

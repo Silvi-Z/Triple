@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react"
-import { AnchorLink } from "gatsby-plugin-anchor-links";
+import React, { useState, useRef, useEffect } from "react"
 import useTranslations from "../components/useTranslations"
 import ServiceDropWrap from "../components/servicecomponents/serviceDrop/servicedrop"
 import TaxImg from "../assets/homeImages/icons/tax.svg"
@@ -17,9 +16,9 @@ import {
 import { useTranslation } from "react-i18next"
 import SEO from "../components/seo"
 import {
-  SevicePageWrapper
+  ServiceDropRow,
+  SevicePageWrapper,
 } from "../components/servicecomponents/serviceDrop/servicedropStyle"
-
 
 const Services = ({ location, pageContext }) => {
   const { services } = useTranslations();
@@ -117,7 +116,6 @@ const Services = ({ location, pageContext }) => {
     }
   }
 
-
   useEffect(() => {
     // gets Translated texts from Json static files and set it to Locale state
     let serviceTransText = pageContext.localeResources.translation.services
@@ -133,28 +131,59 @@ const Services = ({ location, pageContext }) => {
           text: `${obj.text}`,
         }),
       ])
-
-        serviceData.map((scroll_element)=>{
-          if ('#'+scroll_element.data.scroll_id === location.hash){
-            scroll_element.open = true
-          }
-        })
-
     })
     toggleFromHomePage(location.state)
   }, [t]);
 
   const toggle = current => {
     const data = serviceData.map(d =>
-       d.data.id === current.data.id && d.open === false
+      d.data.id === current.data.id && d.open === false
         ? { ...d, open: true }
         : d.data.id !== current.data.id && d.open === true
-          ? { ...d, open: false }
-          : { ...d, open: false }
+        ? { ...d, open: false }
+        : { ...d, open: false }
     )
-    console.log(current)
     setServiceData(data)
   }
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+  });
+
+    function handleScroll() {
+      serviceData.map((scroll_element)=> {
+          if (document.getElementById(scroll_element.data.scroll_id)){
+            let distance = document.getElementById(scroll_element.data.scroll_id).getBoundingClientRect();
+          const bodyScrollPart = window.scrollY
+          const windowHeight = window.outerHeight
+          const bodyHeight = document.documentElement.scrollHeight + 100
+          if ('#' + scroll_element.data.scroll_id === location.hash && distance.top === 0) {
+            console.log('open_first');
+            scroll_element.open = true;
+            toggle(scroll_element)
+          } else if ('#' + scroll_element.data.scroll_id === location.hash && bodyScrollPart + windowHeight >= bodyHeight) {
+            console.log('open_second')
+          }
+        }
+      })
+    }
+
+  // window.onscroll = () =>{
+  //   serviceData.map((scroll_element)=>{
+  //     let distance = document.getElementById(scroll_element.data.scroll_id).getBoundingClientRect();
+  //     const bodyScrollPart = window.scrollY
+  //     const windowHeight = window.outerHeight
+  //     const bodyHeight = document.documentElement.scrollHeight+100
+  //     if ('#'+scroll_element.data.scroll_id === location.hash && distance.top === 0){
+  //       console.log('open_first')
+  //       scroll_element.open = true;
+  //     }
+  //     else if ('#'+scroll_element.data.scroll_id === location.hash && bodyScrollPart + windowHeight >= bodyHeight){
+  //       console.log('open_second')
+  //       scroll_element.open = true;
+  //     }
+  //   })
+  // }
 
   const toggleFromHomePage = state => {
     state === null ? (state = 0) : state
@@ -178,12 +207,10 @@ const Services = ({ location, pageContext }) => {
       <HeadingParagraphRow>
           <H2Styled>{services.title}</H2Styled>
           <PStyled>{services.paragraph}</PStyled>
-      </HeadingParagraphRow>
-
+      </HeadingParagraphRow >
       {serviceData.map((d, id) => (
         <ServiceDropWrap showServiceForm={toggle} data={d} key={id} />
       ))}
-
     </SevicePageWrapper>
   )
 }

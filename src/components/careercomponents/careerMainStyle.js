@@ -15,13 +15,10 @@ export const CareerParagraphRow = styled(Row)`
   padding: 0 12%;
   margin-bottom: 19px;
   @media (min-width: 1200px) {
-    padding: 31px 20px 0 20px;
+    padding: 0px 20px;
   }
   @media only screen and (max-width: 1024px) {
-    padding: 31px 24px 0 24px;
-  }
-  @media only screen and (max-width: 320px) {
-    padding-top: 49px;
+    padding: 0px 24px 0 24px;
   }
 `
 export const H1Styled = styled.h1`

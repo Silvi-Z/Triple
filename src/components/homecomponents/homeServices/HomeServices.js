@@ -1,6 +1,7 @@
 import React, { useState } from "react"
 import {
   NavLink,
+  Link,
   H2Styled,
   PStyled,
   SeemoreWrapper,
@@ -10,7 +11,6 @@ import {
   ContainerRow,
   ServiceTitle
 } from "./homeServiceStyle.js"
-import { AnchorLink } from "gatsby-plugin-anchor-links";
 
 const HomeServices = ({ langText, lang }) => {
   // const [clickedItems, setClickedItems] = useState(null)
@@ -26,43 +26,43 @@ const HomeServices = ({ langText, lang }) => {
               borderRight
               borderBottom
             >
-              <AnchorLink to={`/${lang}/services#test_1`} >
+              <Link to={`/${lang}/services#test_1`} >
                 <ServiceNameWrapper>
                   {langText.serviceName_1}
                 </ServiceNameWrapper>
-              </AnchorLink>
+              </Link>
             </Borders>
             <Borders
               borderBottom
               borderRight
               borderLeft
             >
-              <AnchorLink to={`/${lang}/services#test_2`} >
+              <Link to={`/${lang}/services#test_2`} >
                 <ServiceNameWrapper>
                   {langText.serviceName_2}
                 </ServiceNameWrapper>
-              </AnchorLink>
+              </Link>
             </Borders>
             <Borders
               borderBottom
               borderLeft
             >
-              <AnchorLink to={`/${lang}/services#test_3`} >
+              <Link to={`/${lang}/services#test_3`} >
                 <ServiceNameWrapper>
                   {langText.serviceName_3}
                 </ServiceNameWrapper>
-              </AnchorLink>
+              </Link>
             </Borders>
             <Borders
               borderRight
               borderTop
               borderBottom
             >
-              <AnchorLink to={`/${lang}/services#test_4`} >
+              <Link to={`/${lang}/services#test_4`} >
                 <ServiceNameWrapper>
                   {langText.serviceName_4}
                 </ServiceNameWrapper>
-              </AnchorLink>
+              </Link>
             </Borders>
             <Borders
               borderRight
@@ -70,53 +70,53 @@ const HomeServices = ({ langText, lang }) => {
               borderLeft
               borderBottom
             >
-              <AnchorLink to={`/${lang}/services#test_5`} >
+              <Link to={`/${lang}/services#test_5`} >
                 <ServiceNameWrapper>
                   {langText.serviceName_5}
                 </ServiceNameWrapper>
-              </AnchorLink>
+              </Link>
             </Borders>
             <Borders
               borderLeft
               borderTop
               borderBottom
             >
-              <AnchorLink to={`/${lang}/services#test_6`} >
+              <Link to={`/${lang}/services#test_6`} >
                 <ServiceNameWrapper>
                   {langText.serviceName_6}
                 </ServiceNameWrapper>
-              </AnchorLink>
+              </Link>
             </Borders>
             <Borders
               borderRight
               borderTop
             >
-              <AnchorLink to={`/${lang}/services#test_7`} >
+              <Link to={`/${lang}/services#test_7`} >
                 <ServiceNameWrapper>
                   {langText.serviceName_7}
                 </ServiceNameWrapper>
-              </AnchorLink>
+              </Link>
             </Borders>
           <Borders
               borderRight
               borderTop
               borderLeft
             >
-            <AnchorLink to={`/${lang}/calculators/salary`} >
+            <Link to={`/${lang}/calculators/salary`} >
               <ServiceNameWrapper>
                 {langText.serviceName_8}
               </ServiceNameWrapper>
-            </AnchorLink>
+            </Link>
             </Borders>
           <Borders
               borderTop
               borderLeft
             >
-            <AnchorLink to={`/${lang}/services#test_9`} >
+            <Link to={`/${lang}/services#test_9`} >
               <ServiceNameWrapper>
                 {langText.serviceName_9}
               </ServiceNameWrapper>
-            </AnchorLink>
+            </Link>
             </Borders>
 
 

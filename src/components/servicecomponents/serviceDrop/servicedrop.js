@@ -1,5 +1,5 @@
 /*eslint-disable */
-import React from "react"
+import React, { useEffect, useRef } from "react"
 import { DownOutlined, UpOutlined } from "@ant-design/icons"
 import {
   Text,
@@ -12,13 +12,14 @@ import {
 } from "./servicedropStyle.js"
 
 const Servicedrop = ({ data, showServiceForm }) => {
+
   return (
-    <ServiceDropRow id={data.data.scroll_id}>
+    <ServiceDropRow  id={data.data.scroll_id}>
       <DropWrapper>
         <H2Wrapper>
           <ToggleH2Styled>{data.data.paragraph}</ToggleH2Styled>
         </H2Wrapper>
-          <ToggleButton isOpen={data.open} block onClick={() => showServiceForm(data)}>
+          <ToggleButton isOpen={data.open} block onClick={() => showServiceForm(data)} >
             {data.open ? <UpOutlined/> :  <DownOutlined />}
           </ToggleButton>
       </DropWrapper>

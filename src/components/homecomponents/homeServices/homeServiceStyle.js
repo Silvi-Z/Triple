@@ -1,6 +1,6 @@
-import { Typography, Row, Col, Button, InputNumber } from "antd"
-import { Link } from "gatsby"
+import { Row, Col } from "antd"
 import styled from "styled-components"
+import { AnchorLink } from "gatsby-plugin-anchor-links";
 export const HomePageWrapper = styled.div`
   max-width:1440px;
   margin:0 auto;
@@ -9,6 +9,10 @@ export const HomePageWrapper = styled.div`
     padding:50px 20px 63px 20px;
     margin-top:25px;
   }
+`
+export const Link = styled(AnchorLink)`
+  width:100%;
+  transition: 0s;
 `
 export const ServiceTitle = styled.div`
   display: flex;
@@ -24,9 +28,6 @@ export const ServiceTitle = styled.div`
 export const NavLink = styled(Link)`
   text-decoration: none;
   display: flex;
-`
-export const NavLinkItems = styled(Link)`
-  background-color: #ffffff;
 `
 export const H2Styled = styled.section`
   font-family: ArialAMU;
@@ -67,70 +68,10 @@ export const Seemoreimg = styled.img`
   height: 17px;
   margin-left: 16px;
 `
-
-export const TextWrapperSmall = styled.p`
-  width: 143px;
-  height: 34px;
-  font-family: ArialAMU;
-  font-size: 16px;
-  font-weight: normal;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: normal;
-  letter-spacing: normal;
-  text-align: center;
-  color: #000000;
-  /* margin-left: 28.8%; */
-  margin: auto;
-  @media only screen and (max-width: 1170px) {
-    margin-left: 22.8%;
-  }
-  @media (max-width: 380px) {
-    margin-left: 10.8%;
-  }
-  @media (max-width: 320px) {
-    margin-left: 0.5%;
-    font-size: 14px;
-  }
-`
-export const TextWrapperBig = styled.p`
-  cursor: pointer;
-  width: 163px;
-  height: 16px;
-  font-family: ArialAMU;
-  font-size: 16px;
-  font-weight: normal;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: normal;
-  letter-spacing: normal;
-  text-align: center;
-  color: #000000;
-  /* margin-left: 30.3%; */
-  margin: auto;
-  @media only screen and (max-width: 1170px) {
-    margin-left: auto;
-    margin-bottom: 36px;
-  }
-  @media (max-width: 375px) {
-    margin-left: 4.8%;
-    font-size: 13px;
-  }
-  @media (max-width: 320px) {
-    margin-left: -7.2%;
-    font-size: 13px;
-  }
-`
 export const ResponsWrapper = styled.div`
   margin-bottom:42px;
   justify-content:center;
 `
-// export const Roww = styled.div`
-//   width:100%;
-//   height:auto;
-//   display:flex;
-//   justify-content:center;
-// `
 export const Borders = styled.div`
   display: flex;
   width: 33.3%;
@@ -142,7 +83,7 @@ export const Borders = styled.div`
   border-color: #D0D0D0;
   padding:20px 25px;
   @media only screen and (max-width: 1024px){
-    width:45%;
+    width:50%;
     border-bottom: none;
     border-top: none;
     border-right: none;
@@ -169,9 +110,6 @@ export const ServiceNameWrapper = styled.div`
   letter-spacing: 0.15px;
   font-weight: bold;
   font-size: 18px;
-  > a{
-    transition: 0s;
-  }
   &:hover{
     border: 1px solid #00B3C7;
     > a{ 
@@ -182,18 +120,9 @@ export const ServiceNameWrapper = styled.div`
     padding: 0 20px;
   }
   @media only screen and (max-width: 768px){
-    width:280px;
+    width:100%;
+    margin:0 auto;
   }
-`
-export const IconWrapperColLast = styled(Col)`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 250px;
-  height: 180px;
-  border-bottom: 1px solid;
-  border-color: #d7d7d7;
-  background-color: #ffffff;
 `
 export const IconWrapperSecondLastCol = styled(Col)`
   display: flex;
@@ -217,8 +146,7 @@ export const IconWrapperSecondCol = styled(Col)`
 
 export const ContainerRow = styled(Row)`
   display: flex;
-  justify-content: center;
-  // flex-direction: column;
+  justify-content: end;
   width: 100%;
   height: auto;
   margin: 37 auto;

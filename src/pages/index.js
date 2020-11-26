@@ -1,5 +1,4 @@
 import React from 'react';
-// import Image from '../components/image';
 import SEO from '../components/seo';
 import HomeServices from '../components/homecomponents/homeServices/HomeServices';
 import Homepartners from '../components/homecomponents/homePartners/HomePartners';

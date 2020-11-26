@@ -1,6 +1,5 @@
 import styled from "styled-components"
 import { Button, Row } from "antd"
-
 export const SevicePageWrapper = styled.div`
   padding:50px 118px 90px 118px;
   max-width: 1440px;
@@ -21,6 +20,9 @@ export const DropWrapper = styled.div`
 export const ServiceDropRow = styled(Row)`
   border-bottom: 1px solid;
   border-color: #d7d7d7;
+  .ant-btn{
+    transition:none;
+  }
 `
 export const H2Wrapper = styled.div`
   width: 93%;
@@ -37,23 +39,28 @@ export const ToggleH2Styled = styled.h2`
   text-align: left;
   color: #000000;
   margin:0;
+  line-height: 25px;
   @media only screen and (max-width:1024px){
     font-size: 20px;
   }
 `
+
 export const ToggleButton = styled(Button)`
   background: ${(props) => props.isOpen ? '#FFFFFF' : '#1C1D21'};
   border-color:#1C1D21;
-  width: 40px;
-  height: 40px;
+  width: 40px !important;
+  height: 40px !important;
+  visibility: visible !important;
   box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
   color: ${(props) => props.isOpen ? '#1C1D21' : '#FFFFFF'};
   border: 1px solid #1C1D21;
   box-sizing: border-box;
   border-radius:50%;
   padding:0;
+  background-repeat: no-repeat;
+  background-position: center;
   --antd-wave-shadow-color:none;
-  &.ant-btn:hover{
+  &:hover{
     background: ${(props) => props.isOpen ? '#1C1D21' : '#FFFFFF'};
     color: ${(props) => props.isOpen ? '#FFFFFF' : '#1C1D21'};
     border-color:#1C1D21;
@@ -62,6 +69,10 @@ export const ToggleButton = styled(Button)`
     background: ${(props) => props.isOpen ? '#FFFFFF' : '#1C1D21'};
     color: ${(props) => props.isOpen ? '#1C1D21' : '#FFFFFF'};
     border-color: #1C1D21;
+  }
+  @media only screen and (max-width:1024px){
+    width: 30px;
+    height: 30px;
   }
 `
 export const Text = styled.div`

@@ -14,10 +14,7 @@ export const NavLink = styled(Link)`
   width:fit-content;
   text-decoration: none;
   border: none !important;
-  transform: translateY(200px);
-  opacity: 0;
   font-size:16px;
-  animation: 2s slideUp ease forwards .5s;
   position: relative;
   @media only screen and (max-width: 1024px){
    font-size:18px;
@@ -31,8 +28,6 @@ export const RespNavLink = styled(Link)`
   background-color: #fff;
   text-decoration: none;
   text-align: center;
-  // display:flex;
-  // align-items:center;
 `;
 export const ResponsiveMenuWrapper = styled.div`
   width: 100%;
@@ -46,6 +41,10 @@ export const ResponsiveMenuWrapper = styled.div`
   background-color: #1C1D21;
    ${NavLink}{
     color : white;
+    transform: translateY(200px);
+  opacity: 0;
+  animation: 1s slideUp ease forwards .5s;
+  
   }
   @media only screen and (max-width: 768px){
     padding-left: 20px;
@@ -53,13 +52,14 @@ export const ResponsiveMenuWrapper = styled.div`
   }
 `;
 export const Coll = styled.div`
-height: 100%;
+  height: 100%;
   overflow: hidden;  
 `
 export const ResponsiveMenuColumn = styled.div`
    display:flex;
    align-items:end;
    flex-direction:column;
+  
 `
 export const MenuWrapper = styled.div`
    display: flex;
@@ -106,12 +106,12 @@ export const ResponsiveMenuInfoRow = styled.div`
    }
    >div:not(last-child){
       width:20%;
-         @media only screen and (max-width: 768px){
+         @media only screen and (max-width: 535px){
             width:50%;
          }
    }
    >div:nth-child(2){
-      @media only screen and (max-width: 768px){
+      @media only screen and (max-width: 535px){
          text-align: end;
       }
    }
@@ -121,7 +121,7 @@ export const ResponsiveMenuInfoRow = styled.div`
       flex-wrap: nowrap;
       width: 42%;
       justify-content: flex-end;
-         @media only screen and (max-width: 768px){
+         @media only screen and (max-width: 535px){
             text-align: center;
             margin-top: 16px;
             width: 100%;
@@ -185,6 +185,7 @@ export const HeadIcon = styled.img`
 export const HeadMainIcon = styled.img`
     border-color: #ebebeb;
     margin:0 !important;
+    object-fit: contain;
   @media only screen and (max-width: 768px) {
     height:100%;
   }
@@ -211,6 +212,18 @@ export const ResponsiveNavWrapper = styled(Row)`
     padding: 0px 20px;
   }
 `;
+export const ResponsiveMenuButton =  styled.div`
+   height: 40px;
+   width: 40px;
+   background-color: black;
+   border-radius: 50%;
+   position: relative;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   flex-direction: column;
+   text-align: end;
+`
 export const Label = styled.label`
   position:absolute;
   margin: 37px 20px 0 0;

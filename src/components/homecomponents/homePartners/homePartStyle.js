@@ -142,11 +142,3 @@ export const IconWrapperSecondCol = styled(Col)`
   background-color: #ffffff;
   text-align: center;
 `
-export const ContainerRow = styled(Row)`
-  margin-top: 37px;
-  width: 100%;
-  height: auto;
-  box-shadow: 0px 5px 40px 0 rgba(0, 0, 0, 0.05);
-  background-color: #ffffff;
-  margin: 37 auto;
-`

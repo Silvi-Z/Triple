@@ -261,7 +261,7 @@ class VacationCalculator extends React.Component {
     this.dateFromInput.addEventListener("input", this.handlePickerInput)
     this.dateToInput.addEventListener("input", this.handlePickerInput)
 
-    window.addEventListener('scroll', this.handleWindowScroll)
+    // window.addEventListener('scroll', this.handleWindowScroll)
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {

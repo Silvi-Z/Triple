@@ -20,6 +20,9 @@ export const H2Styled = styled.h2`
   text-align: center;
   color: #000000;
   text-align: center;
+  @media only screen and (max-width:1024px){
+    font-size:20px;
+  }
 `
 export const PStyled = styled.p`
   max-width: 621px;
@@ -32,42 +35,14 @@ export const PStyled = styled.p`
   letter-spacing: 0.15px;
   text-align: center;
   color: #000000;
-  padding:30px 0;
+  padding:30px 0 20px 0;
+  margin-bottom:0;
   @media only screen and (max-width:1024px){
     font-size:16px;
+    padding:30px 0 10px 0;
   }
-`
-export const SharedWrapperCol = styled(Col)`
-  padding: 0 1%;
-  display: flex;
-  justify-content: end;
-  margin-top: 2%;
-  .react-share__ShareButton {
-    all: unset;
-  }
-  /* @media (min-width: 375px) {
-    a {
-      display: contents;
-      color: #da4567;
-    }
-  } */
-`
-export const FaceLink = styled.a`
-  color: black;
-  font-size: 32px;
-  margin-top: -4%;
-  &:hover {
-    cursor: pointer;
-    color: #009db8;
-  }
-`
-export const LinkedinLink = styled.a`
-  color: black;
-  font-size: 32px;
-  margin-top: -4%;
-  cursor: pointer;
-  &:hover {
-    color: #009db8;
+  @media only screen and (max-width:768px){
+    padding: 30px 0 20px 0
   }
 `
 export const FacebookIcon = styled.div`

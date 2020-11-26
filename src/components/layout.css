@@ -4,7 +4,7 @@
 }
 html {
   font-family: ArialAMU, sans-serif;
-  scroll-behavior: smooth;
+  /*scroll-behavior: smooth;*/
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
 }
@@ -1247,7 +1247,7 @@ pre tt:after {
   width: 100%;
   top: 0;
   position: absolute;
-  animation: 1s openMenu ease forwards ;
+  animation: .5s openMenu ease forwards ;
   margin-top: 89px;
 }
 @keyframes showInfoRow {
@@ -1286,39 +1286,38 @@ pre tt:after {
   -o-transition: .5s ease-in-out;
   transition: .5s ease-in-out;
   cursor: pointer;
-  margin-right: 20px;
 }
 
 #burger span {
   position: absolute;
-  height: 2px;
-  width: 40px;
-  background: black;
-  border-radius: 9px;
+  height: 1px;
+  width: 25px;
+  background: white;
   opacity: 1;
-  right: 0;
   transform: rotate(0deg);
   transition: .25s ease-in-out;
 }
 #burger span:nth-child(1) {
-  top: 0;
+  top: 13px;
   transform-origin: left center;
 }
 
 #burger span:nth-child(2) {
-  top: 16px;
+  top: 20px;
   transform-origin: left center;
 }
 
 #burger span:nth-child(3) {
-  top: 31px;
+  top: 27px;
   transform-origin: left center;
 }
 #burger.open span{
-  background: white;
+  background: black;
 }
 #burger.open span:nth-child(1) {
   transform: rotate(45deg);
+  top: 11px;
+  margin-left: 6px;
 }
 #burger.open span:nth-child(2) {
   width: 0;
@@ -1328,4 +1327,5 @@ pre tt:after {
 #burger.open span:nth-child(3) {
   transform: rotate(-45deg);
   top: 29px;
+  margin-left: 6px;
 }

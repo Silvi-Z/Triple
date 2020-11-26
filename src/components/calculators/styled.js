@@ -3,6 +3,65 @@ import { Button, DatePicker, Divider, InputNumber, Radio, Select, Slider, Typogr
 
 const { Text } = Typography;
 
+export const CalcImagesWrapper = styled.div`
+  padding: 39px 51px;
+  text-align: center;
+  background-color:#fff;
+  width:100%;
+  height:100%;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+  display: flex;
+  flex-direction:column;
+  justify-content: center;
+  align-items: center;
+  letter-spacing: 0.15px;
+  font-weight: bold;
+  font-size: 18px;
+  &:hover{
+    border: 1px solid #00B3C7;
+    > a{ 
+     color:#00B3C7;
+  }
+  }
+  @media only screen and (max-width:1340px){
+    padding:39px 0;
+  }
+  @media only screen and (max-width: 1024px){
+    padding: 39px;
+  }
+  @media only screen and (max-width: 768px){
+    width:100%;
+    margin:0 auto;
+  }
+`
+export const Borders = styled.div`
+  display: flex;
+  width: 33.3%;
+  height: 258px;
+  border-bottom: ${props=>props.borderBottom ? ".5px solid" : "none" };
+  border-top: ${props=>props.borderTop ? ".5px solid" : "none" };
+  border-right: ${props=>props.borderRight ? ".5px solid" : "none" };
+  border-left: ${props=>props.borderLeft ? ".5px solid" : "none" };
+  border-color: #D0D0D0;
+  padding:20px 25px;
+  @media only screen and (max-width: 1024px){
+    width: 50%;
+    border-bottom: none;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    height:248px;
+  }
+  @media only screen and (max-width: 768px){
+    justify-content: center;
+    width: 100%;
+    height: 238px;
+  }
+`
+export const IconWrapper = styled.img`
+    margin-bottom: 15px;
+`
 export const FormLabel = styled.h3`
   font-family: ArialAMU;
   font-style: normal;
