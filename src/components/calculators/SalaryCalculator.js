@@ -3,23 +3,18 @@ import { useFormik } from "formik";
 import { Row, Col, Form, Card, Radio } from "antd";
 import triple from "../../api/triple";
 import CalculatorCardResult from "./calcComponents/CalculatorCardResult";
+import { Label, FormLabel, UnderLine, RadioGroup, RadioLabel, RadioButton, CalculatorInput, ButtonSubmit } from "./styled"
 import {
   schema,
-  SALARY_MIN, SALARY_MAX, SALARY_STEP,
-  TAX_FIELD_IT, TAX_FIELD_COMMON, TAX_FIELD_ENTERPRISE,
-  PENSION_FIELD_YES, PENSION_FIELD_YES_VOLUNTEER, PENSION_FIELD_NO,
+  SALARY_MIN,
+  SALARY_STEP,
+  TAX_FIELD_IT,
+  TAX_FIELD_COMMON,
+  TAX_FIELD_ENTERPRISE,
+  PENSION_FIELD_YES,
+  PENSION_FIELD_YES_VOLUNTEER,
+  PENSION_FIELD_NO,
 } from "./utilities/salary"
-import {
-  Label,
-  FormLabel,
-  UnderLine,
-  RadioGroup,
-  RadioLabel,
-  RadioButton,
-  CalculatorInput,
-  CalculatorSlider,
-  ButtonSubmit,
-} from "./styled"
 
 const initialValues = {
   from: 1,
@@ -116,11 +111,12 @@ const SalaryCalculator = ({ langText }) => {
 
             <Form.Item label={<Label>{langText.salary_label}</Label>} name="amount">
               <CalculatorInput
-                formatter={value => value ? value.replace(/\B(?=(\d{3})+(?!\d))/g, ',') : ''}
-                parser={value => value.replace(/\$\s?|(,*)/g, '')}
+                formatter={v => `${v}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+                parser={v => v.replace(/\$\s?|(,*)/g, '')}
                 onChange={v => formik.setFieldValue("amount", v)}
                 value={formik.values.amount}
                 min={SALARY_MIN}
+                step={SALARY_STEP}
                 name="amount"
                 size="large"
               />

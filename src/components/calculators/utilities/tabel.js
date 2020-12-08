@@ -1,12 +1,6 @@
 import moment from "moment"
 import { holidaysByMonth } from "./vacation"
 
-export const sheetToArray = sheet => {
-  Object.keys(sheet).forEach((key, i) => {
-    console.log(key, i)
-  })
-}
-
 /**
  * define working schedule based on array of days
  * non working days are empty elements in array
@@ -41,7 +35,6 @@ const emptyIndexes = array => {
   return empties
 }
 
-
 /**
  * Convert image url to base64
  * @param {string} url
@@ -64,4 +57,14 @@ export const urlToBase64 = url => {
       };
       image.onerror = err => reject(err)
   })
+}
+
+export const randomString = (length = 16) => {
+  let result = '';
+  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  const charactersLength = characters.length;
+  for ( let i = 0; i < length; i++ ) {
+    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+  }
+  return result;
 }

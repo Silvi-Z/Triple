@@ -2,7 +2,7 @@ import * as Yup from "yup"
 
 export const SALARY_MIN = 0;
 export const SALARY_MAX = 5000000;
-export const SALARY_STEP = 10000;
+export const SALARY_STEP = 1000;
 
 export const PENSION_FIELD_NO = 0;
 export const PENSION_FIELD_YES = 1;

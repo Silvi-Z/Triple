@@ -54,8 +54,15 @@ export const holidays = [
   ...jan, ...feb, ...mar, ...apr, ...may, ...jun, ...jul, ...aug, ...sep, ...oct, ...nov, ...dec
 ]
 
+/**
+ * Getting working days in given month
+ *
+ * @param {moment.Moment} date
+ * @param {number} schedule
+ * @return {moment.Moment[]}
+ */
 export const workingDaysInMonth = ({ date, schedule }) => {
-  const weekend = schedule === 5 ? [0, 6] : [6]
+  const weekend = schedule === 5 ? [0, 6] : [0]
   let days = [],
     daysInMonth = date.daysInMonth(),
     start = date.startOf('month')
@@ -77,13 +84,13 @@ export const workingDaysInMonth = ({ date, schedule }) => {
 /**
  * Getting working dates between two dates
  *
- * @param start - moment date
- * @param end - moment date
+ * @param {moment.Moment} start - moment date
+ * @param {moment.Moment} end - moment date
  * @param {Number} schedule - working schedule
  * @return {Array}
  */
 export const workingDaysInRange = ({start, end}, schedule) => {
-  const weekend = schedule === 5 ? [0, 6] : [6], days = []
+  const weekend = schedule === 5 ? [0, 6] : [0], days = []
 
   while (start.isSameOrBefore(end)) {
     if (
@@ -95,4 +102,27 @@ export const workingDaysInRange = ({start, end}, schedule) => {
   }
 
   return days
+}
+
+/**
+ * Get the end date from given date & working schedule
+ *
+ * @param {moment.Moment} start - start date
+ * @param {Number} days - number of worked days
+ * @param {Number} schedule - working schedule (5 | 6)
+ * @return {moment.Moment}
+ */
+export const endDate = (start, days, schedule) => {
+  const weekends = schedule === 5 ? [0, 6] : [6]
+  const end = start.clone()
+
+  for (let i = 1; i < days; i++) {
+    if (weekends.includes(end.day()) || holidays.includes(end.format('YYYY-MM-DD'))) {
+      i--
+    }
+
+    end.add(1, "day")
+  }
+
+  return end
 }

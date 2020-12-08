@@ -8,10 +8,22 @@ import { saveAs } from 'file-saver';
 import { isNull, compact, isInteger, isEmpty, isEqual } from "lodash"
 import { DownloadOutlined, UploadOutlined } from "@ant-design/icons"
 import { Row, Col, Card, Form, Radio, Button, notification } from "antd"
-import { defineSchedule, urlToBase64 } from "./utilities/tabel"
-import { workingDaysInMonth, workingDaysInRange } from "./utilities/vacation"
+import { defineSchedule, urlToBase64, randomString } from "./utilities/tabel"
+import { endDate, workingDaysInMonth, workingDaysInRange } from "./utilities/vacation"
 import { CalculatorDatePicker, CalculatorInput, ButtonSubmit, RadioButton, RadioGroup, RadioLabel, UnderLine, FormLabel, Label } from "./styled"
-import { schemaBy, BY_FIELD_DATE, BY_FIELD_TABLE, SALARY_MIN, TAX_FIELD_IT, TAX_FIELD_COMMON, TAX_FIELD_ENTERPRISE, PENSION_FIELD_NO, PENSION_FIELD_YES, PENSION_FIELD_YES_VOLUNTEER } from "./utilities/salary"
+import {
+  schemaBy,
+  BY_FIELD_DATE,
+  BY_FIELD_TABLE,
+  SALARY_MIN,
+  TAX_FIELD_IT,
+  TAX_FIELD_COMMON,
+  TAX_FIELD_ENTERPRISE,
+  PENSION_FIELD_NO,
+  PENSION_FIELD_YES,
+  PENSION_FIELD_YES_VOLUNTEER,
+  SALARY_STEP,
+} from "./utilities/salary"
 import EmployeeSalaryTable from "./calcComponents/EmployeeSalaryTable"
 import CalculatorCardResult from "./calcComponents/CalculatorCardResult"
 
@@ -22,6 +34,7 @@ const form = {
   schedule: 5,
   date_to: null,
   date_from: null,
+  working_days: null,
   pension: PENSION_FIELD_YES,
   tax_field: TAX_FIELD_COMMON,
 }
@@ -60,23 +73,13 @@ const Logo = require('../../assets/logo.jpeg')
 class SalaryTableCalculator extends React.Component {
   fileInput = React.createRef()
 
+  daysInput = React.createRef()
+
   dateToPicker = React.createRef()
 
   dateFromPicker = React.createRef()
 
-  handleSubmit = async () => {
-    const { by, schedule, date_from } = this.state.form
-    const avgWorkingDays = workingDaysInMonth({ date: moment(date_from), schedule }).length
-    const valid = await schemaBy.isValid({ ...this.state.form, employees: this.state.employees })
-
-    schemaBy.validate({ ...this.state.form, employees: this.state.employees }).catch(function (err) {
-      console.log(err)
-    });
-
-    if (!valid) return
-
-    by ? await this.calculateByDate(avgWorkingDays) : await this.calculateByTable()
-  }
+  dateToPickerKey = randomString()
 
   handleUpload = e => {
     e.persist()
@@ -113,6 +116,30 @@ class SalaryTableCalculator extends React.Component {
       this.setState({employees})
     };
     reader.readAsArrayBuffer(file)
+  }
+
+  handleSubmit = async () => {
+    const { by, schedule, date_from } = this.state.form
+    const avgWorkingDays = workingDaysInMonth({ date: moment(date_from), schedule }).length
+    const valid = await schemaBy.isValid({ ...this.state.form, employees: this.state.employees })
+
+    schemaBy.validate({ ...this.state.form, employees: this.state.employees }).catch(function (err) {
+      console.log(err)
+    });
+
+    if (!valid) return
+
+    by ? await this.calculateByDate(avgWorkingDays) : await this.calculateByTable()
+  }
+
+  handleByFieldChange = () => {
+    const { form } = this.state
+
+    const state = !form.by
+      ? { form: {...form, from: 1}, result: {}, calculated: 0 }
+      : { result: {}, calculated: 0 }
+
+    this.setState(state)
   }
 
   handleDownload = async () => {
@@ -194,54 +221,87 @@ class SalaryTableCalculator extends React.Component {
     saveAs(new Blob([buffer], {type: "application/octet-stream"}), 'գնագոյացում.xlsx')
   }
 
-  handlePickerInput = e => {
-    const { value, name } = e.target
+  handleDateFromChange = date => {
+    const fields = !date ? { date_from: date, date_to: date } : { date_from: date.format("YYYY-MM-DD") }
+
+    this.setFields(fields, () => {
+      this.dateToPickerKey = randomString()
+
+      this.autocompleteWorkingDays()
+    })
+  }
+
+  handleDateToChange = date => {
+    date = isNull(date) ? date : date.format("YYYY-MM-DD")
+
+    this.setField("date_to", date, () => this.autocompleteWorkingDays())
+  }
+
+  handleDateFromDisabled = d => {
+    const { date_to } = this.state.form
+
+    return date_to && (d.isSameOrAfter(date_to, "day")) && (!d.isSame(date_to, 'month'))
+  }
+
+  handleDateToDisabled = d => {
+    const { date_from } = this.state.form
+
+    return !date_from || !d || (d.isBefore(date_from, "day")) || (!d.isSame(date_from, 'month'))
+  }
+
+  handleDateFromInput = e => {
+    const { value } = e.target
 
     if (!value) {
-      this.setDateField(name, null)
-
-      name === "date_from"
-        ? this.dateFromPicker.current.blur()
-        : this.dateFromPicker.current.blur()
+      this.handleDateFromChange(null)
+      this.dateFromPicker.current.blur()
     }
   }
 
-  handleByFieldChange = () => {
-    const { form } = this.state
+  handleDateToInput = e => {
+    const { value } = e.target
 
-    const state = !form.by
-      ? { form: {...form, from: 1}, result: {}, calculated: 0 }
-      : { result: {}, calculated: 0 }
-
-    this.setState(state)
-  }
-
-  get calculatingByDate() {
-    return (this.state.form.by === BY_FIELD_DATE)
+    if (!value) {
+      this.handleDateToChange(null)
+      this.dateToPicker.current.blur()
+    }
   }
 
   get calculatingByTable() {
     return (this.state.form.by === BY_FIELD_TABLE)
   }
 
-  get calculatedByDate() {
-    return this.state.calculated === 1
+  get calculatingByDate() {
+    return (this.state.form.by === BY_FIELD_DATE)
   }
 
   get calculatedByTable() {
     return this.state.calculated === 2
   }
 
-  get dateFromValue() {
-    const { form } = this.state
+  get calculatedByDate() {
+    return this.state.calculated === 1
+  }
 
-    return isNull(form.date_from) ? form.date_from : moment(form.date_from)
+  get maxWorkingDays() {
+    const { date_from, schedule } = this.state.form
+
+    return workingDaysInRange({
+      start: date_from ? moment(date_from) : moment().startOf('month'),
+      end: date_from ? moment(date_from).endOf('month') : moment().endOf('month'),
+    }, schedule).length
+  }
+
+  get dateFromValue() {
+    const { date_from } = this.state.form
+
+    return isNull(date_from) ? date_from : moment(date_from)
   }
 
   get dateToValue() {
-    const { form } = this.state
+    const { date_to } = this.state.form
 
-    return isNull(form.date_to) ? form.date_to : moment(form.date_to)
+    return isNull(date_to) ? date_to : moment(date_to)
   }
 
   constructor(props) {
@@ -261,10 +321,69 @@ class SalaryTableCalculator extends React.Component {
     this.setState({ form: { ...this.state.form, [name]: value } }, cb)
   }
 
+  setFields(fields, cb) {
+    this.setState({form: {...this.state.form, ...fields}}, cb)
+  }
+
   setDateField(name, date) {
     date = isNull(date) ? date : date.format("YYYY-MM-DD")
 
-    this.setField(name, date)
+    this.setField(name, date, this.autocompleteWorkingDays)
+    // if ((name === 'date_from') && date) {
+    //   this.setField(name, date, () => {
+    //     if (!this.state.form.date_to) {
+    //       this.setField("date_to", date, () => {
+    //         this.setField('date_to', null)
+    //       })
+    //     } else {
+    //       this.autocompleteWorkingDays()
+    //     }
+    //   })
+    // } else if ((name === 'date_from') && !date) {
+    //   this.setField(name, moment().format("YYYY-MM-DD"), () => {
+    //     this.setField(name, null, () => {
+    //       this.setField('date_to', moment().format("YYYY-MM-DD"), () => {
+    //         this.setState({ form: { ...this.state.form, date_to : null , working_days: null} })
+    //       })
+    //     })
+    //   })
+    // } else {
+    //   this.setField(name, date, this.autocompleteWorkingDays)
+    // }
+  }
+
+  autocompleteVacationDateTo() {
+    const { date_from, working_days, schedule } = this.state.form
+
+    if (!working_days) {
+      this.setField('date_to',null)
+    }
+
+    if (date_from && working_days) {
+      const days = (working_days > this.maxWorkingDays) ? this.maxWorkingDays : working_days
+      const date_to = endDate(moment(date_from), days, schedule).format("YYYY-MM-DD")
+
+      this.setField("date_to", date_to)
+    }
+  }
+
+  autocompleteWorkingDays() {
+    const { date_from, date_to, schedule } = this.state.form
+
+    this.daysInput.current.blur()
+
+    if (!date_to || !date_from) {
+      this.setField('working_days', null)
+    }
+
+    if (date_from && date_to) {
+      const working_days = workingDaysInRange({
+        start: moment(date_from),
+        end: moment(date_to),
+      }, schedule).length
+
+      this.setField('working_days', working_days)
+    }
   }
 
   autoCalculate(prevState) {
@@ -287,15 +406,18 @@ class SalaryTableCalculator extends React.Component {
       start: moment(date_from),
       end: moment(date_to)
     }, schedule)
+    const gross_salary = Math.round(amount / avgWorkingDays * workingDays.length)
 
     const res = await triple.post("/api/counter/salary", {
       from,
       pension,
       tax_field,
-      amount: amount / avgWorkingDays * workingDays.length
+      amount: gross_salary
     })
 
-    this.setState({result: res.data, loading: false, calculated: 1})
+    const result = Object.assign({}, res.data, { gross_salary })
+
+    this.setState({result, loading: false, calculated: 1})
   }
 
   async calculateByTable() {
@@ -339,6 +461,10 @@ class SalaryTableCalculator extends React.Component {
       stamp_fee: acc.stamp_fee + result.stamp_fee,
       salary: acc.salary + result.salary
     }));
+    result['gross_salary'] = employees.map(employee => (employee.workingDaysInMonth === employee.days)
+      ? employee.amount
+      : employee.amount / employee.workingDaysInMonth * employee.days
+    ).reduce((acc, amount) => acc + Math.round(amount), 0)
 
     this.setState({ excel, result, loading: false, calculated: 2 })
   }
@@ -347,12 +473,12 @@ class SalaryTableCalculator extends React.Component {
     ReactDOM
       .findDOMNode(this.dateFromPicker.current)
       .querySelector("input")
-      .addEventListener("input", this.handlePickerInput)
+      .addEventListener("input", this.handleDateFromInput)
 
     ReactDOM
       .findDOMNode(this.dateToPicker.current)
       .querySelector("input")
-      .addEventListener("input", this.handlePickerInput)
+      .addEventListener("input", this.handleDateToInput)
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
@@ -433,11 +559,10 @@ class SalaryTableCalculator extends React.Component {
                     <Col span={10}>
                       <Form.Item label={<Label>{lang.form.start}</Label>}>
                         <CalculatorDatePicker
-                          disabledDate={d => form.date_to && (d.isSameOrAfter(form.date_to, "day")) && !d.isSame(form.date_to, 'month')}
-                          onChange={date => this.setDateField("date_from", date)}
+                          disabledDate={this.handleDateFromDisabled}
+                          onChange={this.handleDateFromChange}
                           value={this.dateFromValue}
                           ref={this.dateFromPicker}
-                          inputReadOnly={false}
                           placeholder={null}
                           format="DD.MM.YYYY"
                           name="date_from"
@@ -449,9 +574,11 @@ class SalaryTableCalculator extends React.Component {
                     <Col span={10}>
                       <Form.Item label={<Label>{lang.form.end}</Label>}>
                         <CalculatorDatePicker
-                          onChange={date => this.setDateField("date_to", date)}
-                          disabledDate={d => !form.date_from || (d.isSameOrBefore(form.date_from, "day")) || !d.isSame(form.date_from, 'month')}
+                          defaultPickerValue={this.dateFromValue}
+                          disabledDate={this.handleDateToDisabled}
+                          onChange={this.handleDateToChange}
                           value={this.dateToValue}
+                          key={this.dateToPickerKey}
                           ref={this.dateToPicker}
                           placeholder={null}
                           format="DD.MM.YYYY"
@@ -463,12 +590,27 @@ class SalaryTableCalculator extends React.Component {
                     </Col>
                   </Row>
 
+                  <Form.Item label={<Label>{lang.form.working_days}</Label>}>
+                    <CalculatorInput
+                      onChange={v => this.setField("working_days", v, this.autocompleteVacationDateTo)}
+                      value={form.working_days}
+                      style={{ width: "54px" }}
+                      ref={this.daysInput}
+                      max={this.maxWorkingDays}
+                      min={1}
+                      name="working_days"
+                      type="number"
+                      size="large"
+                    />
+                  </Form.Item>
+
                   <Form.Item label={<Label>{lang.form.salary}</Label>} name="amount">
                     <CalculatorInput
-                      formatter={value => value.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
-                      parser={value => value.replace(/\$\s?|(,*)/g, '')}
+                      formatter={v => `${v}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+                      parser={v => v.replace(/\$\s?|(,*)/g, '')}
                       onChange={v => this.setField("amount", v)}
                       value={form.amount}
+                      step={SALARY_STEP}
                       min={SALARY_MIN}
                       name="amount"
                       size="large"
@@ -542,7 +684,7 @@ class SalaryTableCalculator extends React.Component {
                 {/* schedule field */}
                 <Form.Item label={lang.form.working_schedule} labelCol={{ span: 24 }}>
                   <Radio.Group
-                    onChange={e => this.setField("schedule", e.target.value)}
+                    onChange={e => this.setField("schedule", e.target.value, this.autocompleteWorkingDays)}
                     value={form.schedule}
                   >
                     <Radio value={5}>
@@ -574,9 +716,10 @@ class SalaryTableCalculator extends React.Component {
           <UnderLine/>
 
           <CalculatorCardResult
-            title={form.from === 1 ? lang.result["dirty_to_clean_salary"] : lang.result["clean_to_dirty_salary"]}
-            text={result.salary}
+            title={lang.result.gross_salary}
+            text={result.gross_salary}
             loading={loading}
+            tooltip
           />
 
           <CalculatorCardResult
@@ -604,6 +747,13 @@ class SalaryTableCalculator extends React.Component {
             text={result.total_fee}
             loading={loading}
           />
+
+          <CalculatorCardResult
+            title={form.from === 1 ? lang.result["dirty_to_clean_salary"] : lang.result["clean_to_dirty_salary"]}
+            text={result.salary}
+            loading={loading}
+          />
+
           {!form.by && !isEmpty(result) ?
             <ButtonSubmit
               style={{textTransform: "none", width: "100%"}}

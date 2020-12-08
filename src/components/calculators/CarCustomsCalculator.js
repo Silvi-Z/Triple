@@ -151,8 +151,8 @@ class CarCustomsCalculator extends React.Component {
 
               <Form.Item label={<Label>{lang.form.price}</Label>}>
                 <CalculatorInput
-                  formatter={value => value.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
-                  parser={value => value.replace(/\$\s?|(,*)/g, '')}
+                  formatter={v => `${v}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+                  parser={v => v.replace(/\$\s?|(,*)/g, '')}
                   onChange={v => this.setField("price", v)}
                   value={form.price}
                   size="large"

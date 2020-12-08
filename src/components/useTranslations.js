@@ -185,6 +185,7 @@ const query = graphql`
                   upload
                   start
                   end
+                  working_days
                   clean_salary
                   dirty_salary
                   tax_label
@@ -214,6 +215,7 @@ const query = graphql`
                 }
                 result {
                   title
+                  gross_salary
                   total_fee
                   income_tax
                   stamp_fee
