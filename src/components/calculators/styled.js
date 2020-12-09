@@ -19,7 +19,7 @@ export const RadioGroup = styled(Radio.Group)`
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 50px;
+  min-height: 50px !important;
   margin-bottom: 25px;
 `;
 
@@ -28,9 +28,12 @@ export const RadioButton = styled(Radio.Button)`
   text-align: center;
   border-radius: 5px;
   width: 100%;
-  height: 50px !important;
+  word-break: break-word;
+  min-height: 50px !important;
   border-color: #555555 !important;
   border-radius: 5px !important;
+  white-space: nowrap;
+  height: auto !important;
   &.ant-radio-button-wrapper {
     line-height: 50px;
   }
