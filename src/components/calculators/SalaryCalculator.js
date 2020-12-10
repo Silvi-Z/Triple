@@ -16,6 +16,7 @@ import {
 } from "./styled"
 import {
   schema,
+  SALARY_MIN,
   SALARY_STEP,
   TAX_FIELD_IT,
   TAX_FIELD_COMMON,
@@ -55,8 +56,6 @@ const SalaryCalculator = ({ langText }) => {
     validateOnMount: true,
     isInitialValid: false,
     onSubmit: async values => {
-      if ((values.amount < min) && (values.from === 1)) return
-
       setLoading(true)
 
       try {
@@ -96,10 +95,9 @@ const SalaryCalculator = ({ langText }) => {
             <RadioGroup
               onChange={(e) => formik.setFieldValue("from", e.target.value)}
               value={formik.values.from}
-              style={{ flexDirection: formik.values.from === 2 ? "row-reverse" : "row" }}
               size="large"
             >
-              <Row align="middle" gutter={[10, 10]} style={{width: '100%'}}>
+              <Row align="middle" gutter={[10, 10]} style={{width: '100%', flexDirection: formik.values.from === 2 ? "row-reverse" : "row"}}>
                 <Col span={11}>
                   <RadioButton value={1} size="large">
                     {langText.dirty_salary_button}
@@ -114,8 +112,7 @@ const SalaryCalculator = ({ langText }) => {
                     xmlns="http://www.w3.org/2000/svg"
                     onClick={() => formik.setFieldValue("from", formik.values.from === 2 ? 1 : 2)}
                   >
-                    <path d="M5.32 6L0 10L5.32 14V11H14.6667V9H5.32V6ZM24 4L18.68 0V3H9.33333V5H18.68V8L24 4Z"
-                          fill="#00B3C7" />
+                    <path d="M5.32 6L0 10L5.32 14V11H14.6667V9H5.32V6ZM24 4L18.68 0V3H9.33333V5H18.68V8L24 4Z" fill="#00B3C7" />
                   </svg>
                 </Col>
                 <Col span={11}>
@@ -134,14 +131,13 @@ const SalaryCalculator = ({ langText }) => {
                 onChange={v => formik.setFieldValue("amount", v)}
                 value={formik.values.amount}
                 step={SALARY_STEP}
-                min={min}
+                min={SALARY_MIN}
                 name="amount"
                 size="large"
               />
             </Form.Item>
 
-            <Form.Item label={<Label style={{ fontSize: "16px" }}>{langText.tax_label}</Label>} labelCol={{ span: 24 }}
-                       name="tax_field">
+            <Form.Item label={<Label style={{ fontSize: "16px" }}>{langText.tax_label}</Label>} labelCol={{ span: 24 }} name="tax_field">
               <Radio.Group
                 onChange={(e) => formik.setFieldValue("tax_field", e.target.value)}
                 value={formik.values.tax_field}
@@ -215,6 +211,7 @@ const SalaryCalculator = ({ langText }) => {
           title={langText.stamp_duty_label}
           text={result.stamp_fee}
           loading={loading}
+          tooltip
         />
         <CalculatorCardResult
           title={langText.general_storage_label}

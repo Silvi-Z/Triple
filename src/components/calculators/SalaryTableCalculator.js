@@ -81,6 +81,8 @@ class SalaryTableCalculator extends React.Component {
 
   dateToPickerKey = randomString()
 
+  dateFromPickerKey = randomString()
+
   handleUpload = e => {
     e.persist()
 
@@ -223,6 +225,7 @@ class SalaryTableCalculator extends React.Component {
 
   handleDateFromChange = date => {
     const fields = !date ? { date_from: date, date_to: date } : { date_from: date.format("YYYY-MM-DD") }
+    if (!date) this.dateFromPickerKey = randomString()
 
     this.setFields(fields, () => {
       this.dateToPickerKey = randomString()
@@ -482,7 +485,7 @@ class SalaryTableCalculator extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
-    this.autoCalculate(prevState)
+    // this.autoCalculate(prevState)
   }
 
   render() {
@@ -562,6 +565,7 @@ class SalaryTableCalculator extends React.Component {
                           disabledDate={this.handleDateFromDisabled}
                           onChange={this.handleDateFromChange}
                           value={this.dateFromValue}
+                          key={this.dateFromPickerKey}
                           ref={this.dateFromPicker}
                           placeholder={null}
                           format="DD.MM.YYYY"
@@ -602,6 +606,21 @@ class SalaryTableCalculator extends React.Component {
                       type="number"
                       size="large"
                     />
+                  </Form.Item>
+
+                  {/* schedule field */}
+                  <Form.Item label={lang.form.working_schedule} labelCol={{ span: 24 }}>
+                    <Radio.Group
+                      onChange={e => this.setField("schedule", e.target.value, this.autocompleteWorkingDays)}
+                      value={form.schedule}
+                    >
+                      <Radio value={5}>
+                        {<Label style={{ textTransform: "none" }}>{lang.form.five_days}</Label>}
+                      </Radio>
+                      <Radio value={6}>
+                        {<Label style={{ textTransform: "none" }}>{lang.form.six_days}</Label>}
+                      </Radio>
+                    </Radio.Group>
                   </Form.Item>
 
                   <Form.Item label={<Label>{lang.form.salary}</Label>} name="amount">
@@ -663,7 +682,7 @@ class SalaryTableCalculator extends React.Component {
                 </Radio.Group>
               </Form.Item>
               {/* pension field */}
-              {form.by ? <>
+              {form.by ?
                 <Form.Item label={<RadioLabel>{lang.form.pensioner}</RadioLabel>} name="pension">
                   <Radio.Group
                     onChange={e => this.setField("pension", e.target.value)}
@@ -681,21 +700,7 @@ class SalaryTableCalculator extends React.Component {
                     </Radio>
                   </Radio.Group>
                 </Form.Item>
-                {/* schedule field */}
-                <Form.Item label={lang.form.working_schedule} labelCol={{ span: 24 }}>
-                  <Radio.Group
-                    onChange={e => this.setField("schedule", e.target.value, this.autocompleteWorkingDays)}
-                    value={form.schedule}
-                  >
-                    <Radio value={5}>
-                      {<Label style={{ textTransform: "none" }}>{lang.form.five_days}</Label>}
-                    </Radio>
-                    <Radio value={6}>
-                      {<Label style={{ textTransform: "none" }}>{lang.form.six_days}</Label>}
-                    </Radio>
-                  </Radio.Group>
-                </Form.Item>
-              </> : null}
+              : null}
               {/* button */}
               <Form.Item>
                 <ButtonSubmit
@@ -740,6 +745,7 @@ class SalaryTableCalculator extends React.Component {
             title={lang.result.stamp_fee}
             text={result.stamp_fee}
             loading={loading}
+            tooltip
           />
 
           <CalculatorCardResult
