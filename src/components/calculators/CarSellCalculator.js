@@ -2,8 +2,8 @@ import React from "react"
 import { isNull, isEqual } from "lodash"
 import { Row, Col, Card, Form, Radio } from "antd"
 import CalculatorCardResult from "./calcComponents/CalculatorCardResult"
-import { ButtonSubmit, FormLabel, Label, CalculatorInput, CalculatorSlider, UnderLine, CalculatorDatePicker } from "./styled"
-import { schema, ENGINE_HORSEPOWER, ENGINE_KILOWATTS, CAR_SELL_MIN, CAR_SELL_MAX, CAR_SELL_STEP } from "./utilities/carsell"
+import { schema, ENGINE_HORSEPOWER, ENGINE_KILOWATTS, CAR_SELL_MIN } from "./utilities/carsell"
+import { ButtonSubmit, FormLabel, Label, CalculatorInput, UnderLine, CalculatorDatePicker } from "./styled"
 
 const form = {
   achievementDate: null,
@@ -127,22 +127,12 @@ class CarSellCalculator extends React.Component {
 
               <Form.Item label={<Label>{lang.price}</Label>}>
                 <CalculatorInput
-                  formatter={value => value.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
-                  parser={value => value.replace(/\$\s?|(,*)/g, '')}
+                  formatter={v => `${v}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+                  parser={v => v.replace(/\$\s?|(,*)/g, '')}
                   onChange={v => this.setField("price", v)}
                   value={form.price}
                   min={CAR_SELL_MIN}
                   size="large"
-                />
-              </Form.Item>
-
-              <Form.Item>
-                <CalculatorSlider
-                  onChange={v => this.setField("price", v)}
-                  value={form.price}
-                  step={CAR_SELL_STEP}
-                  min={CAR_SELL_MIN}
-                  max={CAR_SELL_MAX}
                 />
               </Form.Item>
 

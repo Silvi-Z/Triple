@@ -27,16 +27,15 @@ class GrossSalaryTable extends React.Component {
     return this.state.items.reduce((a, b) => a + b[key] || 0, 0)
   }
 
-  setField({ name, value, i }, cb) {
+  setField({ name, v, i }, cb) {
     let items = cloneDeep(this.state.items)
-    items[i][name] = value
+    items[i][name] = v
 
     this.setState({ items }, cb)
   }
 
-
   autoFillItems() {
-    let item = { ...this.state.items[0] }
+    const [ item ] = this.state.items
     const { month, year } = item
 
     if (!isNull(month) && year) {
@@ -48,6 +47,10 @@ class GrossSalaryTable extends React.Component {
     if (!isEqual(this.props.items, prevProps.items)) {
       this.setState({ items: cloneDeep(this.props.items) })
     }
+  }
+
+  componentDidMount() {
+    this.props.onChange(this.avgMonthAmount || null)
   }
 
   render() {
@@ -78,7 +81,7 @@ class GrossSalaryTable extends React.Component {
                   <CalculatorSelect
                     value={item.month}
                     style={{ width: "120px" }}
-                    onChange={value => this.setField({ name: "month", value, i }, this.autoFillItems)}
+                    onChange={v => this.setField({ name: "month", v, i }, this.autoFillItems)}
                   >
                     {months.arm.map((month, i) => (
                       <Select.Option value={i} key={`month-${month}`}>
@@ -91,7 +94,7 @@ class GrossSalaryTable extends React.Component {
                   <CalculatorSelect
                     value={item.year}
                     style={{ width: "100px" }}
-                    onChange={value => this.setField({ name: "year", value, i }, this.autoFillItems)}
+                    onChange={v => this.setField({ name: "year", v, i }, this.autoFillItems)}
                   >
                     {years(20).map(year => (
                       <Select.Option value={year} key={`year-${year}`}>
@@ -104,35 +107,38 @@ class GrossSalaryTable extends React.Component {
             }
             <td>
               <CalculatorInput
-                onChange={value => this.setField({ name: "salary", value, i }, () => onChange(this.avgMonthAmount))}
-                formatter={value => value.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
-                parser={value => value.replace(/\$\s?|(,*)/g, "")}
+                onChange={v => this.setField({ name: "salary", v, i }, () => onChange(this.avgMonthAmount))}
+                formatter={v => `${v}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                parser={v => v.replace(/\$\s?|(,*)/g, "")}
                 style={{ width: "100%" }}
                 value={item.salary}
                 min={SALARY_MIN}
                 max={SALARY_MAX}
+                step={1000}
               />
             </td>
             <td>
               <CalculatorInput
-                onChange={value => this.setField({ name: "surcharge", value, i }, () => onChange(this.avgMonthAmount))}
-                formatter={value => value.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
-                parser={value => value.replace(/\$\s?|(,*)/g, "")}
+                onChange={v => this.setField({ name: "surcharge", v, i }, () => onChange(this.avgMonthAmount))}
+                formatter={v => `${v}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                parser={v => v.replace(/\$\s?|(,*)/g, "")}
                 style={{ width: "100%" }}
                 value={item.surcharge}
                 min={SALARY_MIN}
                 max={SALARY_MAX}
+                step={1000}
               />
             </td>
             <td>
               <CalculatorInput
-                onChange={value => this.setField({ name: "bonus", value, i }, () => onChange(this.avgMonthAmount))}
-                formatter={value => value.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
-                parser={value => value.replace(/\$\s?|(,*)/g, "")}
+                onChange={v => this.setField({ name: "bonus", v, i }, () => onChange(this.avgMonthAmount))}
+                formatter={v => `${v}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                parser={v => v.replace(/\$\s?|(,*)/g, "")}
                 style={{ width: "100%" }}
                 value={item.bonus}
                 min={SALARY_MIN}
                 max={SALARY_MAX}
+                step={1000}
               />
             </td>
           </tr>

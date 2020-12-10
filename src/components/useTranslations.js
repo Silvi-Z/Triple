@@ -180,6 +180,7 @@ const query = graphql`
                   upload
                   start
                   end
+                  working_days
                   clean_salary
                   dirty_salary
                   tax_label
@@ -201,10 +202,15 @@ const query = graphql`
                   name
                   day
                   hour
+                  social_fee
                   salary
+                  yes_volunteer
+                  yes
+                  no
                 }
                 result {
                   title
+                  gross_salary
                   total_fee
                   income_tax
                   stamp_fee
@@ -333,6 +339,7 @@ const query = graphql`
                 }
                 result {
                   title
+                  currency
                   fee
                   tax
                   vat

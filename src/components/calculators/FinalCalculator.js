@@ -1,32 +1,12 @@
 import React from "react"
+import ReactDOM from "react-dom"
 import triple from "../../api/triple"
 import { isEqual, pick } from "lodash"
 import { Row, Col, Card, Form, Radio, Checkbox } from "antd"
 import GrossSalaryTable from "./calcComponents/GrossSalaryTable"
 import CalculatorCardResult from "./calcComponents/CalculatorCardResult"
-import {
-  Label,
-  FormLabel,
-  UnderLine,
-  RadioLabel,
-  ButtonSubmit,
-  CalculatorInput,
-  CalculatorSlider,
-  CalculatorDatePicker,
-} from "./styled"
-import {
-  schema,
-  SALARY_MAX,
-  SALARY_MIN,
-  SALARY_STEP,
-  TAX_FIELD_IT,
-  TAX_FIELD_COMMON,
-  TAX_FIELD_ENTERPRISE,
-  PENSION_FIELD_NO,
-  PENSION_FIELD_YES,
-  PENSION_FIELD_YES_VOLUNTEER,
-} from "./utilities/salary"
-import ReactDOM from "react-dom"
+import { Label, FormLabel, UnderLine, RadioLabel, ButtonSubmit, CalculatorInput, CalculatorDatePicker } from "./styled"
+import { schema, SALARY_MIN, TAX_FIELD_IT, TAX_FIELD_COMMON, TAX_FIELD_ENTERPRISE, PENSION_FIELD_NO, PENSION_FIELD_YES, PENSION_FIELD_YES_VOLUNTEER } from "./utilities/salary"
 
 const radioStyle = {
   display: "block",
@@ -106,7 +86,7 @@ class FinalCalculator extends React.Component {
         })
         .catch(err => console.log(err))
         .finally(() => this.setState({ loading: false }))
-    })
+    }).catch(err => console.log(err))
   }
 
   get rowElement() {
@@ -338,31 +318,19 @@ class FinalCalculator extends React.Component {
               </Form.Item>
 
               {form.static_salary ?
-                <>
-                  <Form.Item label={<Label>{lang.form.salary}</Label>}>
-                    <CalculatorInput
-                      formatter={value => value.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
-                      parser={value => value.replace(/\$\s?|(,*)/g, '')}
-                      onChange={v => this.setFormField("salary", v)}
-                      value={form.salary}
-                      min={SALARY_MIN}
-                      name="salary"
-                      size="large"
-                    />
-                  </Form.Item>
-
-                  <Form.Item>
-                    <CalculatorSlider
-                      onChange={v => this.setFormField("salary", v)}
-                      value={form.salary}
-                      step={SALARY_STEP}
-                      min={SALARY_MIN}
-                      max={SALARY_MAX}
-                      name="salary"
-                    />
-                  </Form.Item>
-                </>
-                : null}
+                <Form.Item label={<Label>{lang.form.salary}</Label>}>
+                  <CalculatorInput
+                    formatter={v => `${v}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+                    parser={v => v.replace(/\$\s?|(,*)/g, '')}
+                    onChange={v => this.setFormField("salary", v)}
+                    value={form.salary}
+                    min={SALARY_MIN}
+                    step={1000}
+                    name="salary"
+                    size="large"
+                  />
+                </Form.Item>
+              : null}
 
               <Form.Item>
                 <Checkbox
@@ -434,15 +402,15 @@ class FinalCalculator extends React.Component {
             </Form>
           </Card>
         </Col>
-
-        <Col xs={24} sm={24} md={24} lg={8} xl={8} xxl={8} ref={this.col} className="calculator-result">
+        {/*className="calculator-result"*/}
+        <Col xs={24} sm={24} md={24} lg={8} xl={8} xxl={8} ref={this.col}>
           <FormLabel style={{ margin: 0 }}>{lang.result.title}</FormLabel>
 
           <UnderLine />
 
           <CalculatorCardResult
             title={lang.result["total_amount"]}
-            text={result.salary}
+            text={calculated ? this.amount : 0}
             loading={loading}
           />
 
@@ -465,7 +433,7 @@ class FinalCalculator extends React.Component {
           />
           <CalculatorCardResult
             title={lang.result["net_amount"]}
-            text={calculated ? this.amount : 0}
+            text={result.salary}
             loading={loading}
           />
         </Col>

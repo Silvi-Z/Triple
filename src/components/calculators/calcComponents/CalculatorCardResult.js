@@ -35,7 +35,7 @@ const CardText = styled.p`
   margin: 0;
 `
 
-const CalculatorCardResult = ({title, subtitle = '', text, tooltip, loading = false}) => (
+const CalculatorCardResult = ({title, subtitle = '', text, tooltip, loading = false, children}) => (
   <Card
     style={{
       border: '0.5px solid #555555',
@@ -48,19 +48,23 @@ const CalculatorCardResult = ({title, subtitle = '', text, tooltip, loading = fa
     bodyStyle={{padding: 0}}
     loading={loading}
   >
-    <CardTitle>
-      {title}
+    {!children ? <>
+      <CardTitle>
+        {title}
 
-      { tooltip ?
-        <Tooltip title="prompt text" color="black">
-          <InfoCircleTwoTone twoToneColor="#00B3C7" style={{marginLeft: 5}} />
-        </Tooltip>
-      : null }
-    </CardTitle>
+        { tooltip ?
+          <Tooltip title="prompt text" color="black">
+            <InfoCircleTwoTone twoToneColor="#00B3C7" style={{marginLeft: 5}} />
+          </Tooltip>
+          : null }
+      </CardTitle>
 
-    <CardText>{text}</CardText>
+      <CardText>{text}</CardText>
 
-    {subtitle ? <CardSubtitle>{subtitle}</CardSubtitle> : null}
+      {subtitle ? <CardSubtitle>{subtitle}</CardSubtitle> : null}
+    </> : null}
+
+    {children ? children : null}
   </Card>
 )
 

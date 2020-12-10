@@ -1,9 +1,9 @@
 import React from "react"
 import moment from "moment"
 import { isEqual } from "lodash"
-import { Row, Col, Card, Form, Radio, Space, Select } from "antd"
-import { ButtonSubmit, CalculatorDatePicker, CalculatorInput, CalculatorSelect, FormLabel, Label, UnderLine } from "./styled"
-import { euroTo, calculate, currencies, COUNTRY_EEU, COUNTRY_THIRD, PERSON_LEGAL, PERSON_PHYSICAL } from "./utilities/carcutom"
+import { Row, Col, Card, Form, Radio, Divider } from "antd"
+import { ButtonSubmit, CalculatorDatePicker, CalculatorInput, FormLabel, Label, UnderLine } from "./styled"
+import { calculate, convertToAMD, COUNTRY_EEU, COUNTRY_THIRD, PERSON_LEGAL, PERSON_PHYSICAL } from "./utilities/carcutom"
 import CalculatorCardResult from "./calcComponents/CalculatorCardResult"
 import triple from "../../api/triple"
 
@@ -28,9 +28,9 @@ const form = {
 
 class CarCustomsCalculator extends React.Component {
   handleSubmit = () => {
-    const { form, rates } = this.state
+    const { form } = this.state
 
-    const result = calculate(form, rates)
+    const result = calculate(form)
 
     this.setState({result: {...result}, calculated: true})
   }
@@ -42,19 +42,19 @@ class CarCustomsCalculator extends React.Component {
       form: { ...form },
       result: {fee: null, tax: null, vat: null},
       rates: {},
-      convert: "EUR",
       calculated: false
     }
   }
 
   get convertedResult() {
-    const { convert, rates } = this.state
+    const { rates } = this.state
+    const { currency } = this.state.form
     const { fee, tax, vat } = this.state.result
 
     return {
-      fee: euroTo({amount: fee, currency: convert}, rates),
-      tax: euroTo({amount: tax, currency: convert}, rates),
-      vat: euroTo({amount: vat, currency: convert}, rates),
+      fee: convertToAMD({amount: fee, currency}, rates),
+      tax: convertToAMD({amount: tax, currency}, rates),
+      vat: convertToAMD({amount: vat, currency}, rates),
     }
   }
 
@@ -89,7 +89,9 @@ class CarCustomsCalculator extends React.Component {
 
   render() {
     const { lang } = this.props
-    const { form, result, convert } = this.state
+    const { fee, vat, tax } = this.convertedResult
+    const { form, result, rates, calculated } = this.state
+
 
     return (
       <Row align="start" gutter={20}>
@@ -149,8 +151,8 @@ class CarCustomsCalculator extends React.Component {
 
               <Form.Item label={<Label>{lang.form.price}</Label>}>
                 <CalculatorInput
-                  formatter={value => value.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
-                  parser={value => value.replace(/\$\s?|(,*)/g, '')}
+                  formatter={v => `${v}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+                  parser={v => v.replace(/\$\s?|(,*)/g, '')}
                   onChange={v => this.setField("price", v)}
                   value={form.price}
                   size="large"
@@ -163,15 +165,15 @@ class CarCustomsCalculator extends React.Component {
                   buttonStyle="solid"
                   size="large"
                 >
-                  <Radio.Button style={firstRadioButtonStyles} value="EUR">
-                    <strong>&#8364;</strong>
-                  </Radio.Button>
-                  <Radio.Button value="USD">
-                    <strong>&#36;</strong>
-                  </Radio.Button>
-                  <Radio.Button style={lastRadioButtonStyles} value="AMD">
+                  <Radio style={firstRadioButtonStyles} value="AMD">
                     <strong>&#1423;</strong>
-                  </Radio.Button>
+                  </Radio>
+                  <Radio value="USD">
+                    <strong>&#36;</strong>
+                  </Radio>
+                  <Radio style={lastRadioButtonStyles} value="EUR">
+                    <strong>&#8364;</strong>
+                  </Radio>
                 </Radio.Group>
               </Form.Item>
 
@@ -194,40 +196,78 @@ class CarCustomsCalculator extends React.Component {
         </Col>
 
         <Col xs={24} sm={24} md={24} lg={8} xl={8} xxl={8}>
-          <FormLabel style={{ margin: 0 }}>
-            <Space align="center">
-              {lang.result.title}
-
-              <CalculatorSelect
-                size="large"
-                value={convert}
-                onChange={value => this.setState({ convert: value })}
-              >
-                {currencies.map(currency=> (
-                  <Select.Option value={currency.value} key={`currency-${currency.value}`}>
-                    <span dangerouslySetInnerHTML={{__html: `${currency.text + ' ' + currency.sym}`}}/>
-                  </Select.Option>
-                ))}
-              </CalculatorSelect>
-            </Space>
-          </FormLabel>
+          <FormLabel style={{ margin: 0 }}>{lang.result.title}</FormLabel>
 
           <UnderLine />
 
           <CalculatorCardResult
             title={lang.result.fee}
-            text={this.convertedResult.fee}
+            text={<>
+              {calculated ?
+                <span className="currency-symbol" dangerouslySetInnerHTML={{ __html: fee[form.currency].sym }} />
+              : null}
+
+              {fee[form.currency].amount}
+
+              {fee.converted ? <span>
+                <span className="currency-symbol" style={{marginLeft: '14px'}} dangerouslySetInnerHTML={{__html: '&#1423;'}}/>
+                {fee.converted}
+              </span> : null }
+            </>}
           />
 
           { result.vat ? <CalculatorCardResult
             title={lang.result.vat}
-            text={this.convertedResult.vat}
+            text={<>
+              {calculated ?
+                <span className="currency-symbol" dangerouslySetInnerHTML={{__html: vat[form.currency].sym}}/>
+              : null}
+
+              {vat[form.currency].amount}
+
+              {vat.converted ? <span>
+                <span className="currency-symbol" style={{marginLeft: '14px'}} dangerouslySetInnerHTML={{__html: '&#1423;'}}/>
+                {vat.converted}
+              </span> : null }
+            </>}
           /> : null}
 
           <CalculatorCardResult
             title={lang.result.tax}
-            text={this.convertedResult.tax}
+            text={<>
+              {calculated ?
+                <span className="currency-symbol" dangerouslySetInnerHTML={{__html: tax[form.currency].sym}}/>
+              : null}
+
+              {tax[form.currency].amount}
+
+              {tax.converted ? <span>
+                <span className="currency-symbol" style={{marginLeft: '14px'}} dangerouslySetInnerHTML={{__html: '&#1423;'}}/>
+                {tax.converted}
+              </span> : null }
+            </>}
           />
+
+          <p className="calculator-result-label">{lang.result.currency}</p>
+
+          <UnderLine />
+
+          <CalculatorCardResult style={{padding: '15px'}}>
+            {Object.keys(rates).map((currency, c)=> (
+              <Row align="center" key={`currency-${currency}`}>
+                <Col span={12} className="currency">
+                  <span className="c-label sym" dangerouslySetInnerHTML={{__html: `${(currency === 'EUR' ? '&#8364;' : '&#36;')}`}}/>
+                  <span className="c-label">{currency}</span>
+                </Col>
+                <Col span={12} className="currency">
+                  <span className="c-text">{rates[currency]}</span>
+                </Col>
+                {c < Object.keys(rates).length - 1 ?
+                  <Divider style={{margin: '10px 0', border: '1px solid #555555'}}/>
+                  : null}
+              </Row>
+            ))}
+          </CalculatorCardResult>
         </Col>
       </Row>
     )
