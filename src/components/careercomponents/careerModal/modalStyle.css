@@ -9,9 +9,6 @@
     padding-top: 15px ;
     padding-bottom: 15px ;
 }
-.ant-form-item{
-    margin-bottom: 0;
-}
 .submit_button_style{
     margin-top: 30px;
     margin-bottom: 0!important;
@@ -50,14 +47,14 @@
 .submit_button:focus{
    outline:none;
  }
-@media only screen and (max-width:320px){
-  .submit_button {
-  width:100%;
-}
-}
 .ant-btn:hover, .ant-btn:focus, .ant-btn:active{
     background-size: 100% 100%;
     color: black;
     cursor:pointer;
     outline:none;
+}
+@media only screen and (max-width:320px){
+  .submit_button {
+  width:100%;
+  }
 }

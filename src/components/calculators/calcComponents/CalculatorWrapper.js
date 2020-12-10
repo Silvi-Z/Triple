@@ -28,7 +28,7 @@ const H1Styled = styled.h1`
   font-size: 24px;
   line-height: 25px;
   text-align: center;
-  letter-spacing: 0.15px;
+  letter-spacing: 1.15px;
   color: #000000;
 `
 const TextStyled = styled.p`
@@ -38,7 +38,7 @@ const TextStyled = styled.p`
   font-size: 18px;
   line-height: 25px;
   text-align: center;
-  letter-spacing: 0.15px;
+  letter-spacing: 1.15px;
   color: #000000;
   margin: 0 auto 50px;
   width: 555px;

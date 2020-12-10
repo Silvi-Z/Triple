@@ -9,46 +9,62 @@ export const NavLink = styled(Link)`
   display: flex;
   justify-content: center;
   align-items: left;
-  // background-color: #1C1D21;
   margin: 1px;
   color: #000;
   width:fit-content;
   text-decoration: none;
   border: none !important;
-  @media only screen and (max-width: 500px){
+  font-size:16px;
+  position: relative;
+  @media only screen and (max-width: 1024px){
+   font-size:18px;
+  }
+  @media only screen and (max-width: 768px){
    font-size:16px;
   }
 `;
 export const RespNavLink = styled(Link)`
   align-items: center;
-  background-color: #fff;
   text-decoration: none;
   text-align: center;
-  // display:flex;
-  // align-items:center;
 `;
 export const ResponsiveMenuWrapper = styled.div`
   width: 100%;
-  height: 100%;
-  padding:140px 0 190px 0;
-  /* z-index: 999; */
+  height: 87%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding-top:50px;
+  padding-left: 80px;
+  padding-right: 80px;
   background-color: #1C1D21;
-  // height:0;
-  // width:100%;
-  // background-color: black;
    ${NavLink}{
-    color : white
+    color : white;
+    transform: translateY(200px);
+  opacity: 0;
+  animation: 1s slideUp ease forwards .5s;
+  
   }
-  // @media only screen and (max-width: 768px) {
-  //   display: none;
-  // }
+  @media only screen and (max-width: 768px){
+    padding-left: 20px;
+    padding-right: 20px;
+  }
 `;
+export const Coll = styled.div`
+  height: 100%;
+  overflow: hidden;  
+`
+export const ResponsiveMenuColumn = styled.div`
+   display:flex;
+   align-items:end;
+   flex-direction:column;
+  
+`
 export const MenuWrapper = styled.div`
    display: flex;
    flex-direction: column;
-   align-items: end;
+   align-items: center;
    margin: 0 auto;
-   width: fit-content;
 `
 export const AddressSpan = styled.span`
   font-family: ArialAMU, serif;
@@ -74,6 +90,48 @@ export const PhoneSpan = styled.span`
   text-align: center;
   color: #000000;
 `;
+export const ResponsiveMenuInfoRow = styled.div`
+   display:flex;
+   justify-content:space-between;
+   padding-top:50px;
+   border-top:1px solid grey;
+   opacity:0;
+   animation: 2s showInfoRow ease forwards .5s;
+      @media only screen and (max-width: 768px){
+         flex-wrap:wrap;
+      }
+   >div *{
+      color: #EAEAEA;
+   }
+   >div:not(last-child){
+      width:20%;
+         @media only screen and (max-width: 535px){
+            width:50%;
+         }
+   }
+   >div:nth-child(2){
+      @media only screen and (max-width: 535px){
+         text-align: end;
+      }
+   }
+   >div:last-child{
+      display: flex;
+      align-items: center;
+      flex-wrap: nowrap;
+      width: 42%;
+      justify-content: flex-end;
+         @media only screen and (max-width: 535px){
+            text-align: center;
+            margin-top: 16px;
+            width: 100%;
+            align-items: center;
+            justify-content: center;
+         }
+   }
+   ${PhoneSpan}{
+      width:auto;
+   }
+`
 export const LangSpan = styled.span`
   width: 19px;
   height: 12px;
@@ -92,7 +150,7 @@ export const GridWrapper = styled.nav`
   padding: 1px;
   background-color: #ebebeb;
   width: 100%;
-  height: 100px;
+  // height: 100px;
   display: grid;
   grid-template-areas:
     "lang addr addr bla1 bla1 bla1 bla1 bla1 bla1 home home home home bla2 bla2 bla2 bla2 bla2 bla2 phon phon phon"
@@ -126,14 +184,7 @@ export const HeadIcon = styled.img`
 export const HeadMainIcon = styled.img`
     border-color: #ebebeb;
     margin:0 !important;
-  @media (min-width: 1600px) {
-    border-left: 0px solid;
-    border-right: 0px solid;
-  }
-  @media only screen and (max-width: 1366px) {
-    border-left: 0px solid;
-    border-right: 0px solid;
-  }
+    object-fit: contain;
   @media only screen and (max-width: 768px) {
     height:100%;
   }
@@ -142,18 +193,13 @@ export const ResponsiveNavWrapper = styled(Row)`
   display: none;
   width: 100%;
   height: 90px;
-  background-color: white;
-  // position: fixed;
-  // z-index: 9999999;
+  background-color: ${props=>props.menuColor};
   @media only screen and (max-width: 1024px) {
     display: flex;
     justify-content:space-between;
     > div {
-      // display:flex;
-      // width: 642px;
       height: 100%;
       padding: 0.2% 2%;
-      background-color: #fff;
       align-items: center;
       justify-content: center;
     }
@@ -161,18 +207,32 @@ export const ResponsiveNavWrapper = styled(Row)`
       display:flex;
     }
   }
+  @media only screen and (max-width: 768px){
+    padding: 0px 20px;
+  }
 `;
+export const ResponsiveMenuButton =  styled.div`
+   height: 40px;
+   width: 40px;
+   background-color: black;
+   border-radius: 50%;
+   position: relative;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   flex-direction: column;
+   text-align: end;
+   background-color: ${props=> props.responseWrapper ?  "white": "black"}
+`
 export const Label = styled.label`
+  position:absolute;
+  margin: 37px 20px 0 0;
   display: block;
   cursor: pointer;
-  margin: 0 10px 0 0;
   font-size: 32px;
   font-family: ArialAMU;
   line-height: 70px;
   float: right;
-  @media (max-width: 380px) {
-    margin-top: 7%;
-  }
 `;
 export const EnvironmentWrapper = styled.img`
   width: 14px;

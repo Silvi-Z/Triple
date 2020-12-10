@@ -1,5 +1,4 @@
 import styled from "styled-components"
-import { Row, Col } from "antd"
 import WhiteDownloadingIcon from "../../../assets/useful_information/white-downloading-file.svg"
 import BlackDownloadingIcon from "../../../assets/useful_information/black-downloading-file.svg"
 
@@ -34,6 +33,20 @@ export const H2text = styled.h2`
     font-size:14px;
   }
 `
+export const FormatsWrapper = styled.div`
+  display:flex;
+  *{
+    margin-left:10px;
+  }
+`
+export const FormatsIcons = styled.div`
+  display: flex;
+  width: 0;
+  overflow:hidden;
+`
+export const Image = styled.img`
+  transform: rotate(-90deg);
+`
 export const DownloadingIcon = styled.div`
   cursor:pointer;
   border:1px solid black;
@@ -49,9 +62,10 @@ export const DownloadingIcon = styled.div`
     background-color:white;
     background-image:url("${BlackDownloadingIcon}");
   }
-  @media only screen and (max-width: 340px){
+  @media only screen and (max-width: 768px){
     height:30px;
     width:30px;
+    background-size:12px;
   }
 `
 export const LineWrapper = styled.div`

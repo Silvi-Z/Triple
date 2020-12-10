@@ -1,9 +1,9 @@
 import React from "react"
-import { Form, Input, Button, Checkbox, Row, Col } from "antd"
 import { Upload, message } from "antd"
-import { UploadOutlined } from "@ant-design/icons"
 import styled from "styled-components"
+import { Form, Input, Button, Row, Col } from "antd"
 import uploadImage from "../../../assets/upload2.svg"
+import { Arealabel, UploadImg } from "../contactMainStyle"
 
 const fileprops = {
   name: "file",
@@ -23,20 +23,6 @@ const fileprops = {
   },
 }
 
-const Arealabel = styled.label`
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  height: 32px;
-  color: rgba(0, 0, 0, 0.85);
-  font-size: 14px;
-`
-const UploadImg = styled.img`
-  width: 20px;
-  height: 20px;
-  color: "#009db8";
-  margin-top: 2px;
-`
 const layout = {
   labelCol: {
     span: 24,
@@ -62,6 +48,7 @@ const validateMessages = {
     range: "Must be between ${min} and ${max}",
   },
 }
+
 const Formfield = () => {
   const onFinish = values => {
     console.log("Success:", values)
@@ -166,23 +153,6 @@ const Formfield = () => {
           </Form.Item>
         </Col>
       </Row>
-      {/* <Form.Item
-        label="Կցել ֆայլը"
-        name="file"
-        rules={[
-          {
-            required: true,
-            message: "Խնդրում եմ լրացրեք այս դաշտը!",
-          },
-        ]}
-        style={{ marginBottom: "3px" }}
-      >
-        <Upload {...fileprops}>
-          <Button size="large" id="uploadbutton">
-            <UploadImg src={uploadImage} />
-          </Button>
-        </Upload>
-      </Form.Item> */}
 
       <Form.Item
         label="Վերնագիր"

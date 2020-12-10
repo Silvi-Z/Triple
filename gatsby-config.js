@@ -80,10 +80,9 @@ module.exports = {
       resolve: "gatsby-plugin-anchor-links",
       options: {
         offset: 0,
-        duration: 5000
       }
     }
-    // this (optional) plugin enables Progressive Web App + Offline functionality
+    // this (optional) plugin enables Progressive Web App + Offline functԿազմակերպության գրանցումionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
   ],

@@ -5,18 +5,17 @@ import LeftSectionUseInform from "../components/informationcomponents/useFullInf
 import InformDocTemplate from "../components/informationcomponents/documentTemplate/doctemplateinform"
 import useTranslations from "../components/useTranslations"
 import SEO from "../components/seo"
-
 import {
   InformationParagraphRow,
+  InformationDocumentCol,
+  InformationPageWrapper,
+  InformationUsfulCol,
+  InformationNavRow,
+  InformSectionRow,
+  RightSection,
+  LeftSection,
   H2Styled,
   PStyled,
-  InformationNavRow,
-  InformationUsfulCol,
-  InformationDocumentCol,
-  InformSectionRow,
-  InformationPageWrapper, 
-  LeftSection, 
-  RightSection,
 } from "../components/informationcomponents/informMainStyle"
 
 const Information = ({ pageContext }) => {
@@ -168,91 +167,91 @@ const Information = ({ pageContext }) => {
           second_heading: "Այս կայքում դուք կարող եք գտնել",
           links: [
             {
-              id: 1,
+              id: 0,
               label: "Աշխատաժամանակի հաշվարկի տեղեկագիր",
             },
             {
-              id: 2,
+              id: 1,
               label: "Արձանագրություն ընկերության մասնակիցների փոփոխության",
             },
             {
-              id: 3,
+              id: 2,
               label: "Բեռնատար ավտոմեքենայի երթուղային թերթ",
             },
             {
-              id: 4,
+              id: 3,
               label: "Գործուղման վկայական",
             },
             {
-              id: 5,
+              id: 4,
               label:"Դրամարկղի ելքի օրդեր  (Փաստաթուղթը արտահանված է ՀԾ հաշվապահ 6 համակարգից)",
             },
             {
-              id: 6,
+              id: 5,
               label:
                 "Դրամարկղի մուտքի օրդեր  (Փաստաթուղթը արտահանված է ՀԾ հաշվապահ 6 համակարգից)",
             },
             {
-              id: 7,
+              id: 6,
               label: "Ծառայությունների մատուցման պայմանագիր",
             },
             {
-              id: 8,
+              id: 7,
               label: "Լիազորագիր",
             },
             {
-              id: 9,
+              id: 8,
               label:"Հարկ վճարողների կողմից տեղեկություններ փակցնելու հայտարարության օրինակելի ձև",
             },
             {
-              id: 10,
+              id: 9,
               label:
                 "Հաշիվ ապրանքագիր (Փաստաթուղթը արտահանված է ՀԾ հաշվապահ 6 համակարգից)",
             },
             {
-              id: 11,
+              id: 10,
               label: "Հարկային հաշիվը անվավեր ճանաչելու  ակտ",
             },
             {
-              id: 12,
+              id: 11,
               label: "Հիմնադրի որոշում",
             },
             {
-              id: 13,
+              id: 12,
               label: "Հայտարարություն գործունեության դադարեցման",
             },
             {
-              id: 14,
+              id: 13,
               label:
                 "Վճարման հանձնարարագիր  (Փաստաթուղթը արտահանված է ՀԾ հաշվապահ 6 համակարգից)",
             },
             {
-              id: 15,
+              id: 14,
               label: "Մարդատար ավտոմեքենայի երթուղային թերթ",
             },
             {
-              id: 16,
+              id: 15,
               label: "Որոշում ընկերության միակ մասնակցի փոփոխության",
             },
             {
-              id: 17,
+              id: 16,
               label: "Պարունակության թերթիկ",
             },
             {
-              id: 18,
+              id: 17,
               label:
                 "Վճարային տեղեկագիր   (Փաստաթուղթը արտահանված է ՀԾ հաշվապահ 6 համակարգից)",
             },
             {
-              id: 19,
+              id: 18,
               label: "Տեղեկանք աշխատանքի վայրից (հայերեն)",
             },
             {
-              id: 20,
+              id: 19,
               label: "Տեղեկանք աշխատանքի վայրից (անգլերեն)",
             },
             {
-              id: 21,
+              id: 20,
               label:
                 "ՏԵՂԵԿԱՏՎՈՒԹՅՈՒՆ Էլեկտրոնային փոստով վիճակագրական փաստաթղթերի ներկայացման",
             },
@@ -261,6 +260,7 @@ const Information = ({ pageContext }) => {
       },
     ])
   }
+
   useEffect(() => {
     UseInfoRightSection()
     UseInfoLeftSection()
