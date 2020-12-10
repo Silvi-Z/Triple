@@ -1,5 +1,5 @@
 /*eslint-disable */
-import React from "react"
+import React, { useState } from "react"
 import { DownOutlined, UpOutlined } from "@ant-design/icons"
 import FormCareer from "../careerForm/careerform"
 import {
@@ -14,6 +14,7 @@ import {
   DropHeadingTitle,
   DropHeadingButton,
 } from "./dropStyle"
+
 const CareerDropWrapper = ({
   showCareerForm,
   data,
@@ -23,21 +24,19 @@ const CareerDropWrapper = ({
   formlangtext,
   lang
 }) => {
-
   return (
     <>
       <DropCareer >
         <DropHeadingTitle>
           <ToggleH2Styled>{data.data.title}</ToggleH2Styled>
+          <DropHeadingButton>
+            <ToggleButton isOpen={data.open} block onClick={() => showCareerForm(data)}>
+              {data.open ? <UpOutlined/> : <DownOutlined />}
+            </ToggleButton>
+          </DropHeadingButton>
         </DropHeadingTitle>
-        <DropHeadingButton>
-          <ToggleButton isOpen={data.open} block onClick={() => showCareerForm(data)}>
-            {data.open ? <UpOutlined/> :  <DownOutlined />}
-          </ToggleButton>
-        </DropHeadingButton>
       </DropCareer >
-      {
-        data.open ? (
+      { data.open ? (
               <FormWrapper
                 xxl={{ span: 19, offset: 5 }}
                 xl={{ span: 22, offset: 3 }}
@@ -54,7 +53,6 @@ const CareerDropWrapper = ({
                     <OrderSection>{data.data.description_3}</OrderSection>
                     <OrderSection>{data.data.description_4}</OrderSection>
                   </OrderList>
-
                 </OrderListWrapper>
                 <FormCareer
                   seotitle={seotitle}

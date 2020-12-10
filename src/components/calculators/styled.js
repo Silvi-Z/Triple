@@ -4,6 +4,7 @@ import { Button, DatePicker, Divider, InputNumber, Radio, Select, Slider, Typogr
 const { Text } = Typography;
 
 export const CalcImagesWrapper = styled.div`
+  color:black;
   padding: 39px 51px;
   text-align: center;
   background-color:#fff;
@@ -15,48 +16,19 @@ export const CalcImagesWrapper = styled.div`
   flex-direction:column;
   justify-content: center;
   align-items: center;
-  letter-spacing: 0.15px;
+  letter-spacing: 1.15px;
   font-weight: bold;
   font-size: 18px;
   &:hover{
     border: 1px solid #00B3C7;
-    > a{ 
      color:#00B3C7;
   }
-  }
   @media only screen and (max-width:1340px){
-    padding:39px 0;
-  }
-  @media only screen and (max-width: 1024px){
-    padding: 39px;
+    padding:39px 15px;
   }
   @media only screen and (max-width: 768px){
     width:100%;
     margin:0 auto;
-  }
-`
-export const Borders = styled.div`
-  display: flex;
-  width: 33.3%;
-  height: 258px;
-  border-bottom: ${props=>props.borderBottom ? ".5px solid" : "none" };
-  border-top: ${props=>props.borderTop ? ".5px solid" : "none" };
-  border-right: ${props=>props.borderRight ? ".5px solid" : "none" };
-  border-left: ${props=>props.borderLeft ? ".5px solid" : "none" };
-  border-color: #D0D0D0;
-  padding:20px 25px;
-  @media only screen and (max-width: 1024px){
-    width: 50%;
-    border-bottom: none;
-    border-top: none;
-    border-right: none;
-    border-left: none;
-    height:248px;
-  }
-  @media only screen and (max-width: 768px){
-    justify-content: center;
-    width: 100%;
-    height: 238px;
   }
 `
 export const IconWrapper = styled.img`
@@ -68,7 +40,7 @@ export const FormLabel = styled.h3`
   font-weight: bold;
   font-size: 16px;
   line-height: 25px;
-  letter-spacing: 0.15px;
+  letter-spacing: 1.15px;
   color: #000000;
   margin-bottom: 15px;
 `;
@@ -138,7 +110,7 @@ export const Label = styled(Text)`
   font-style: normal;
   font-size: 14px;
   line-height: 25px;
-  letter-spacing: 0.15px;
+  letter-spacing: 1.15px;
   text-transform: uppercase;
   color: #000000;
   font-weight: bold;
@@ -149,7 +121,7 @@ export const RadioLabel = styled(Text)`
   font-weight: normal;
   font-size: 14px;
   line-height: 25px;
-  letter-spacing: 0.15px;
+  letter-spacing: 1.15px;
   color: #000000;
   word-break: break-word!important;
   overflow-wrap: break-word!important;
@@ -163,7 +135,7 @@ export const ButtonSubmit = styled(Button)`
   font-size: 16px;
   line-height: 25px;
   text-align: center;
-  letter-spacing: 0.15px;
+  letter-spacing: 1.15px;
   text-transform: uppercase;
   color: #FFFFFF;
   width: 260px;
@@ -200,7 +172,7 @@ export const ColHeader = styled.th`
   font-size: 14px;
   line-height: 25px;
   text-align: center;
-  letter-spacing: 0.15px;
+  letter-spacing: 1.15px;
   text-transform: uppercase;
   color: #000000;
 `
@@ -218,7 +190,7 @@ export const CalculatorCol = styled.th`
   font-weight: normal;
   font-size: 14px;
   line-height: 25px;
-  letter-spacing: 0.15px;
+  letter-spacing: 1.15px;
   color: #555555;
   padding: 8px 10px;
   text-align: left; 

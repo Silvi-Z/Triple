@@ -1,23 +1,24 @@
 /*eslint-disable */
 import React, { useState, useEffect } from "react"
-import { Col } from "antd"
 import CareerWrap from "../components/careercomponents/careerDroping/careerdrop"
+import useTranslations from "../components/useTranslations"
+import SEO from "../components/seo"
+import { Col } from "antd"
 import {
-  CareerPageWrapper,
   CareerParagraphRow,
+  CareerPageWrapper,
   H1Styled,
   PStyled,
 } from "../components/careercomponents/careerMainStyle"
-import useTranslations from "../components/useTranslations"
-import SEO from "../components/seo"
 import {
-  ShareLabel,
   SharedWrapperCol,
-  FacebookIcon,
-  LinkdinIcon,
   FacebookShare,
   LinkedinShare,
+  FacebookIcon,
+  LinkdinIcon,
+  ShareLabel,
 } from "../components/careercomponents/careerForm/formStyle"
+
 const Career = ({ pageContext }) => {
   const [careerdata, setcareerdata] = useState([
     {

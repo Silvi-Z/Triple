@@ -1,5 +1,4 @@
-/*eslint-disable */
-import React, { useEffect, useRef } from "react"
+import React from "react"
 import { DownOutlined, UpOutlined } from "@ant-design/icons"
 import {
   Text,
@@ -12,7 +11,6 @@ import {
 } from "./servicedropStyle.js"
 
 const Servicedrop = ({ data, showServiceForm }) => {
-
   return (
     <ServiceDropRow  id={data.data.scroll_id}>
       <DropWrapper>

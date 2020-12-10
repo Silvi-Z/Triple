@@ -1,6 +1,6 @@
 import styled from "styled-components"
 import Slider from "react-slick"
-
+export const TripleIcon = styled.img``
 export const SliderAboutUs = styled(Slider)`
  height:fit-content;
   @media only screen and (max-width: 1094px) {
@@ -9,10 +9,11 @@ export const SliderAboutUs = styled(Slider)`
     }
   }
 `
-export const H1Element = styled.h1`
+export const Slogan = styled.h1`
   font-weight: bold;
   font-size: 44px;
   display: flex;
+  margin-bottom:60px;
   justify-content: center;
   letter-spacing: 16.65px;
   @media only screen and (max-width: 1094px) {
@@ -50,12 +51,12 @@ export const ImagePart = styled.div`
    position: inherit;
    width:100%;
    justify-content: center;
-   height: 419px;
+   height: fit-content;
   }
   @media only screen and (max-width: 768px){
    flex-direction:column;
    min-height:615px;
-   height:auto;
+   // height:auto;
   }
  `
 export const BigImage = styled.img`
@@ -65,15 +66,6 @@ export const BigImage = styled.img`
   @media only screen and (max-width: 1094px){
    position: inherit;
    z-index:-1;
-  }
- `
-export const TextPart = styled.div`
-  // width: 33%;
-  // padding-top: 38px;
-  // max-width: 394px;
-  @media only screen and (max-width: 1094px){
-   display:flex !important;
-   justify-content: center;
   }
  `
 export const TextWrapper = styled.div`
@@ -90,16 +82,21 @@ export const TextWrapper = styled.div`
     background-color: transparent;
     height: auto;
     width: auto;
-    padding: 127px 40px 126px 35px;
+    padding: 100px 40px 100px 35px;
   }
   @media only screen and (max-width: 768px){
     width: 100%;
     padding: 25px 0;
   }
  `
+export const SliderText = styled.p`
+  letter-spacing:0.15px;
+  line-height: 25px;
+  margin-bottom:40px;
+`
 export const PElement = styled.p`
   max-width: 213px;
-  letter-spacing: 0.15px;
+  letter-spacing: 0.5px;
   line-height: 30px;
   font-weight: bold !important;
   font-size:16px;
@@ -113,9 +110,6 @@ export const PElement = styled.p`
   }
  `
 export const TextComponent = styled.div`
- p{
-  margin-bottom:40px;
-  }
   @media only screen and (max-width: 1094px){
   padding:0 17px;
    p{
@@ -125,5 +119,6 @@ export const TextComponent = styled.div`
  `
 export const TextOrder = styled.h3`
    color: #00B3C7;
-   letter-spacing: 0.15px;
+   letter-spacing: 1.15px;
+   margin-bottom:30px;
  `

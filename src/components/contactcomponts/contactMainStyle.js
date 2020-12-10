@@ -1,19 +1,16 @@
 import styled from "styled-components"
 import { Row, Col, Input } from "antd"
-import UploadIcon from "../../assets/footericons/brandIcons/white_upload.svg"
-import FbBlueIcon from "../../assets/career/facebookBlueCareer.svg"
+import { FacebookShareButton, LinkedinShareButton } from "react-share"
 import FbBlackIcon from "../../assets/career/facebookCareer.svg"
 import LinkdinBlackIcon from "../../assets/career/linkedinCareer.svg"
-import LinkedinBlueIcon from "../../assets/career/linkedinBlueCareer.svg"
-import { FacebookShareButton, LinkedinShareButton } from "react-share"
-
+import UploadIcon from "../../assets/footericons/brandIcons/white_upload.svg"
 
 export const H1Email = styled.h1`
   font-size:54px;
   font-style: normal;
   font-weight: bold;
   text-align: start;
-  letter-spacing: 0.15px;
+  letter-spacing: 1.15px;
   color: #000000;
   border-bottom: 1px solid #D0D0D0;
   padding-bottom:30px;
@@ -24,26 +21,30 @@ export const H1Email = styled.h1`
     font-size:36px;
     }
 `
+
 export const PElement = styled.p`
   font-size:18px;
   margin-bottom:40px;
 `
+
 export const H3Element = styled.h3`
   font-size: 24px;
   font-style: normal;
   font-weight: bold;
   line-height: 25px;
-  letter-spacing: 0.15px;
+  letter-spacing: 1.15px;
   margin-bottom:20px;
   color:#000000;
    @media only screen and (max-width: 1200px){
     font-size:20px;
   }
 `
+
 export const ParagraphRow = styled(Row)`
   margin-bottom: 50px;
   justify-content:center;
 `
+
 export const H2Styled = styled.h2`
   margin-bottom:30px;
   font-family: ArialAMU;
@@ -59,6 +60,7 @@ export const H2Styled = styled.h2`
     font-size:20px
   }
 `
+
 export const PStyled = styled.p`
   max-width: 621px;
   font-family: ArialAMU;
@@ -75,6 +77,7 @@ export const PStyled = styled.p`
     font-size:16px
   }
 `
+
 export const AdressMapCol = styled(Col)`
   margin:0;
   width: 100%;
@@ -84,14 +87,17 @@ export const AdressMapCol = styled(Col)`
   display: flex;
   justify-content: center;
 `
+
 export const MapCol = styled(Col)`
   width:100%;
 `
+
 export const Mapiframe = styled.iframe`
   width: 100%;
   height: 465px;
   border: 0;
 `
+
 export const HeadingParagrCol = styled(Col)`
     display: flex;
     flex-direction: column;
@@ -102,6 +108,7 @@ export const HeadingParagrCol = styled(Col)`
     max-width:100%;
     flex: 0 0 100%;
 `
+
 export const FormRow = styled(Row)`
   align-items:end;
   display:flex;
@@ -111,6 +118,7 @@ export const FormRow = styled(Row)`
     flex-direction: column;
   }
 `
+
 export const UploadOutlinedSpan = styled.span`
   top: 17px;
   font-size:16px;
@@ -118,12 +126,14 @@ export const UploadOutlinedSpan = styled.span`
     font-size:14px 
   }
 `
+
 export const UploadOutlined = styled.div`
   vertical-align:bottom;
   height: 20px;
   width: 20px;
   background-image:url(${UploadIcon})
 `
+
 export const InputWrapper = styled.div`
   position: relative;
   .ant-form-item-label {
@@ -131,12 +141,15 @@ export const InputWrapper = styled.div`
     transition: 0.2s;
   }
 `
+
 export const InputElement = styled(Input)`
   font-size:16px;
+  width:100%;
   @media only screen and (max-width: 768px){
     font-size:14px 
   }
 `
+
 export const AdressColumn = styled.div`
   width:100%;
   margin-right:25px;
@@ -147,6 +160,7 @@ export const AdressColumn = styled.div`
     width:100% !important
   }
 `
+
 export const ContactColumn = styled.div`
   width:100%;
   margin-right:20px;
@@ -163,6 +177,7 @@ export const ShareColumn = styled.div`
   margin-right:20px;
   @media only screen and (max-width: 1200px) {
     width:19%!important;
+    margin-right:0;
   }
   @media only screen and (max-width: 768px){
     width:100% !important;
@@ -175,6 +190,7 @@ export const InfoColumn = styled.div`
     width:100%;
   }
 `
+
 export const FormColumn = styled.div`
   flex:1;
   min-width:506px;
@@ -193,9 +209,9 @@ export const FormColumn = styled.div`
     padding: 38px 15px 63px 15px;
   }
 `
-//share button container
+
 export const SharedWrapperCol = styled(Col)`
-  max-width:145px;
+  max-width:147px;
   flex-wrap:wrap;
   display: flex;
   // @media only screen and (max-width: 768px){
@@ -203,6 +219,7 @@ export const SharedWrapperCol = styled(Col)`
   //   width:100%
   // }
 `
+
 export const ShareLabel = styled.h3`
   width: 83px;
   height: 24px;
@@ -227,6 +244,7 @@ export const FacebookIcon = styled.div`
     margin-bottom: 12px
   }
 `
+
 export const FacebookShare = styled(FacebookShareButton)`
     outline:none;
     background-image:url(${FbBlackIcon});
@@ -266,4 +284,18 @@ export const LinkedinShare = styled(LinkedinShareButton)`
     transform: scale(1.5);
     opacity: 0
   }
+`
+export const Arealabel = styled.label`
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  height: 32px;
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 14px;
+`
+export const UploadImg = styled.img`
+  width: 20px;
+  height: 20px;
+  color: "#009db8";
+  margin-top: 2px;
 `

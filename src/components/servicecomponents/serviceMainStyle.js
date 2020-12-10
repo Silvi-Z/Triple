@@ -1,36 +1,42 @@
 import styled from "styled-components"
-import { Row, Col } from "antd"
+import { Row } from "antd"
 import FbBlueIcon from "../../assets/career/facebookBlueCareer.svg"
 import FbBlackIcon from "../../assets/career/facebookCareer.svg"
 import LinkdinBlackIcon from "../../assets/career/linkedinCareer.svg"
 import LinkedinBlueIcon from "../../assets/career/linkedinBlueCareer.svg"
+
+export const ServicePageWrapper = styled.div`
+  padding:50px 118px 90px 118px;
+  max-width: 1440px;
+  margin: 0 auto;
+  @media only screen and (max-width:1024px){
+    padding:30px 20px 60px 20px;
+  }
+`
+
 export const HeadingParagraphRow = styled(Row)`
   display: flex;
   flex-direction: column;
   align-items: center;
 `
+
 export const H2Styled = styled.h2`
   font-family: ArialAMU;
   font-size: 24px;
   font-weight: bold;
-  font-stretch: normal;
-  font-style: normal;
-  letter-spacing: 0.15px;
-  letter-spacing: normal;
+  letter-spacing: 1.15px;
   text-align: center;
   color: #000000;
-  text-align: center;
   @media only screen and (max-width:1024px){
     font-size:20px;
   }
 `
+
 export const PStyled = styled.p`
   max-width: 621px;
   font-family: ArialAMU;
   font-size: 18px;
   font-weight: normal;
-  font-stretch: normal;
-  font-style: normal;
   line-height: 1.88;
   letter-spacing: 0.15px;
   text-align: center;
@@ -45,6 +51,7 @@ export const PStyled = styled.p`
     padding: 30px 0 20px 0
   }
 `
+
 export const FacebookIcon = styled.div`
   height: 32px;
   width: 32px;
@@ -55,6 +62,7 @@ export const FacebookIcon = styled.div`
     background-image: url(${FbBlueIcon});
   }
 `
+
 export const LinkdinIcon = styled.div`
   height: 32px;
   width: 32px;

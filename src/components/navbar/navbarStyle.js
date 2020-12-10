@@ -25,7 +25,6 @@ export const NavLink = styled(Link)`
 `;
 export const RespNavLink = styled(Link)`
   align-items: center;
-  background-color: #fff;
   text-decoration: none;
   text-align: center;
 `;
@@ -151,7 +150,7 @@ export const GridWrapper = styled.nav`
   padding: 1px;
   background-color: #ebebeb;
   width: 100%;
-  height: 100px;
+  // height: 100px;
   display: grid;
   grid-template-areas:
     "lang addr addr bla1 bla1 bla1 bla1 bla1 bla1 home home home home bla2 bla2 bla2 bla2 bla2 bla2 phon phon phon"
@@ -194,13 +193,13 @@ export const ResponsiveNavWrapper = styled(Row)`
   display: none;
   width: 100%;
   height: 90px;
+  background-color: ${props=>props.menuColor};
   @media only screen and (max-width: 1024px) {
     display: flex;
     justify-content:space-between;
     > div {
       height: 100%;
       padding: 0.2% 2%;
-      background-color: #fff;
       align-items: center;
       justify-content: center;
     }
@@ -223,6 +222,7 @@ export const ResponsiveMenuButton =  styled.div`
    justify-content: center;
    flex-direction: column;
    text-align: end;
+   background-color: ${props=> props.responseWrapper ?  "white": "black"}
 `
 export const Label = styled.label`
   position:absolute;

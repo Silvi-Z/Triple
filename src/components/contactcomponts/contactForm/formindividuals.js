@@ -1,18 +1,16 @@
 import React, { useState } from "react"
+import { StyledForm } from "./formStyle"
 import { Form, Button, Upload } from "antd"
 import triple from "../../../api/triple"
 import CareerModal from "../contactModal/contactModal"
-import { StyledForm } from "./formStyle"
-//input styled custom with id in layout css #basic_username*/
-import "../../layout.css"
 import {
   InputElement,
   InputWrapper,
   UploadOutlinedSpan,
-  UploadOutlined
+  UploadOutlined,
 } from "../contactMainStyle"
 import { SubmitButton } from "../../careercomponents/careerDroping/dropStyle"
-import UploadIcon from "../../../assets/footericons/brandIcons/white_upload.svg"
+
 const layout = {
   labelCol: {
     span: 24,
@@ -32,14 +30,14 @@ const validateMessages = {
     range: "Must be between ${min} and ${max}",
   },
 }
+
 const Formfield = ({ langtext, lang }) => {
   const [form] = Form.useForm()
   const [modalVisible, setmodalVisible] = useState(false)
   const [loading, toggleLoading] = useState(false)
   const [selectedFile, setSelectedFile] = useState(null)
-  /*Ant Upload component has a defualt action prop,wich was triggered when user clicked to upload button,
-  to disable mentioned action, use dummyRequest with customRequest prop
-  */
+  const [color, setColor] = useState(true)
+
   const dummyRequest = ({ file, onSuccess }) => {
     setTimeout(() => {
       onSuccess("ok")
@@ -48,18 +46,16 @@ const Formfield = ({ langtext, lang }) => {
 
   const handleOk = e => {
     setmodalVisible(false)
-    form.resetFields();
-    setSelectedFile(null);
+    form.resetFields()
+    form.resetFields()
+    setSelectedFile(null)
   }
 
-
   const normFile = e => {
-    setSelectedFile(e.file);
+    setSelectedFile(e.file)
     if (Array.isArray(e)) {
-      console.log(e)
       return e
     }
-    console.log(e)
     return e && [e.file]
   }
 
@@ -70,9 +66,10 @@ const Formfield = ({ langtext, lang }) => {
     UploadFormData.append("message", values.textarea)
     UploadFormData.append("title", values.title)
     if (selectedFile) {
-      UploadFormData.append("file",values.file[0].originFileObj)
+      UploadFormData.append("file", values.file[0].originFileObj)
     }
     try {
+      console.log(toggleLoading)
       toggleLoading(true)
       const res = await triple
         .post("/api/send_email/contact_us", UploadFormData, {
@@ -103,7 +100,7 @@ const Formfield = ({ langtext, lang }) => {
       id="formcontact"
     >
       <>
-        <InputWrapper class="input_wrapper">
+        <InputWrapper className="input_wrapper">
           <StyledForm.Item
             name="username"
             rules={[
@@ -122,11 +119,10 @@ const Formfield = ({ langtext, lang }) => {
             <InputElement
               name="username"
               placeholder={`${langtext.name_label_first} ${langtext.name_label_second}`}
-              style={{ width: "100%" }}
             />
           </StyledForm.Item>
         </InputWrapper>
-        <InputWrapper >
+        <InputWrapper>
           <StyledForm.Item
             name="email"
             rules={[
@@ -143,7 +139,11 @@ const Formfield = ({ langtext, lang }) => {
             ]}
             style={{ marginBottom: "3px" }}
           >
-            <InputElement placeholder={langtext.email_label} name="email" size="large" style={{ width: "100%" }} />
+            <InputElement
+              placeholder={langtext.email_label}
+              name="email"
+              size="large"
+            />
           </StyledForm.Item>
         </InputWrapper>
         <InputWrapper>
@@ -191,11 +191,14 @@ const Formfield = ({ langtext, lang }) => {
             ]}
             style={{ marginBottom: "3px" }}
           >
-            <InputElement name="title" placeholder={langtext.title_label} size="large" />
+            <InputElement
+              name="title"
+              placeholder={langtext.title_label}
+              size="large" />
           </StyledForm.Item>
 
         </InputWrapper>
-        <InputWrapper  >
+        <InputWrapper>
           <StyledForm.Item
             name="textarea"
             rules={[
@@ -210,7 +213,10 @@ const Formfield = ({ langtext, lang }) => {
               },
             ]}
           >
-            <InputElement name="textarea" placeholder={langtext.textare_label} size="large"/>
+            <InputElement
+              name="textarea"
+              placeholder={langtext.textare_label}
+              size="large" />
           </StyledForm.Item>
         </InputWrapper>
       </>
@@ -220,7 +226,7 @@ const Formfield = ({ langtext, lang }) => {
           type="primary"
           htmlType="submit"
           loading={loading}
-          color={true}
+          buttonColorProp={color}
         >
           {langtext.send_button}
         </SubmitButton>

@@ -17,6 +17,9 @@ export const PartnerspHeadingColumn = styled.div`
   flex-direction:column;
   justify-content:center;
   align-items: center;
+  @media only screen and (max-width: 1024px) {
+    margin-top:63px;
+  }
 `
 export const H2Styled = styled.h2`
   font-family: ArialAMU;
@@ -27,6 +30,7 @@ export const H2Styled = styled.h2`
   line-height: normal;
   letter-spacing: normal;
   color: #000000;
+  margin-bottom:0;
 `
 export const PStyled = styled.p`
   max-width: 595px;
@@ -39,7 +43,7 @@ export const PStyled = styled.p`
   letter-spacing: normal;
   text-align: center;
   color: #000000;
-  margin: 26px 0 0 0;
+  margin: 30px 0 0 0;
   @media only screen and (max-width: 1094px) {
     font-size:16px;
   }
@@ -51,42 +55,7 @@ export const SeemoreWrapper = styled.div`
   justify-content: center;
   align-items: center;
   margin-top:42px;
-  letter-spacing: 0.15px;
-`
-export const SeemoreSpan = styled.span`
-  width: 162px;
-  height: 16px;
-  font-family: ArialAMU;
-  font-size: 16px;
-  font-weight: normal;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: normal;
-  letter-spacing: normal;
-  text-align: center;
-  color: #009db8;
-  box-shadow: none;
-  @media only screen and (max-width: 1170px) {
-    width: 162px;
-  }
-  @media only screen and (max-width: 768px) {
-    width: 187px;
-    height: 50px;
-    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
-    background-color: #ffffff;
-    text-align: center;
-    padding: 15px 22px;
-    display: flex;
-    box-shadow: none;
-  }
-  @media (max-width: 380px) {
-    padding: 19px 16px;
-    box-shadow: none;
-  }
-`
-export const PartnersLogosFirstRow = styled(Row)`
-  width: 100%;
-  height: 100%;
+  letter-spacing: 1.15px;
 `
 export const Seemoreimg = styled.img`
   width: 22px;
@@ -108,7 +77,7 @@ export const IconWrapper = styled.img`
 export const ResponsWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: center;justify-content:end;
 `
 export const IconWrapperCol = styled(Col)`
   width: 250px;

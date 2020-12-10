@@ -1,6 +1,5 @@
 import React from "react"
-import { Modal, Button } from "antd"
-import styled from "styled-components"
+import { Modal} from "antd"
 import ModalImg from "../../../assets/modal/email.png"
 import "./modalStyle.css"
 import {
@@ -30,8 +29,6 @@ const CareerModal = ({ handleOk, modalVisible }) => {
                 }}
                 okText="Փակել"
                 closable={false}
-            // footer={null}
-            // onCancel={this.handleCancel}
             >
                 <Img src={ModalImg} />
                 <H2>Հարգելի օգտատեր, ձեր նամակն ուղարկված է։</H2>

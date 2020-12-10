@@ -1,32 +1,24 @@
-import styled from 'styled-components';
 import { Form } from 'antd';
-const size = {
-  mobileS: '320px',
-  mobileM: '375px',
-  mobileL: '425px',
-  tablet: '768px',
-  laptop: '1170px',
-  laptopL: '1440px',
-  desktop: '2560px',
-};
-const device = {
-  mobileS: `(min-width: ${size.mobileS})`,
-  mobileM: `(min-width: ${size.mobileM})`,
-  mobileL: `(min-width: ${size.mobileL})`,
-  tablet: `(min-width: ${size.tablet})`,
-  laptop: `(min-width: ${size.laptop})`,
-  laptopL: `(min-width: ${size.laptopL})`,
-  desktop: `(min-width: ${size.desktop})`,
-  desktopL: `(min-width: ${size.desktop})`,
-};
-export const StyledForm = styled(Form)``
+import styled from 'styled-components';
+
+export const StyledForm = styled(Form)`
+  .ant-form-item{
+    margin-bottom:0;
+  }
+  .ant-input:-webkit-autofill,
+  .ant-input:-webkit-autofill:hover,
+  .ant-input:-webkit-autofill:focus,
+  .ant-input:-webkit-autofill:active  {
+    -webkit-box-shadow: 0 0 0 30px black inset !important;
+    -webkit-text-fill-color: white;
+    caret-color: white;
+}
+`
+
 export const ContactPageWrapper = styled.div`
   margin: 0 auto;
   max-width:1440px;
   padding:50px 118px 40px 118px;
-  @media only screen and (max-width: 1400px){
-    padding: 50px 70px 40px 120px
-  }
   @media only screen and (max-width: 1024px){
     padding: 50px 60px 40px 60px;
   }
@@ -34,17 +26,35 @@ export const ContactPageWrapper = styled.div`
     padding: 50px 20px 40px 20px;
   }
 `
-export const Arealabel = styled.label`
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  height: 32px;
-  color: rgba(0, 0, 0, 0.85);
-  font-size: 14px;
-`;
+
 export const UploadImg = styled.img`
   width: 20px;
   height: 20px;
   color: "#009db8";
   margin-top: 2px;
 `;
+
+export const WhatsappWrapper = styled.img`
+  width: 22px;
+  height: 22px;
+  margin-right:16px;
+  @media only screen and (max-width: 292px){
+    margin-right: 7px;
+  }
+`
+export const ViberWrapper = styled.img`
+  width: 20px;
+  height: 21px;
+  margin-right:16px;
+  @media only screen and (max-width: 292px){
+    margin-right: 7px;
+  }
+`
+export const TelegramWrapper = styled.img`
+  width: 20px;
+  margin-right:16px;
+  height: 20px;
+  @media only screen and (max-width: 292px){
+    margin-right: 7px;
+  }
+`

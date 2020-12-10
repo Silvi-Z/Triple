@@ -18,7 +18,7 @@ const NavTitle = styled.h3`
   font-weight: bold;
   font-size: 16px;
   line-height: 25px;
-  letter-spacing: 0.15px;
+  letter-spacing: 1.15px;
   color: #000000;
   padding: 0;
   margin: 0;
@@ -39,7 +39,7 @@ const UnderLine = styled(Divider)`
   font-weight: normal;
   font-size: 16px;
   line-height: 25px;
-  letter-spacing: 0.15px;
+  letter-spacing: 1.15px;
 `;
 
 const NavLink = props => (

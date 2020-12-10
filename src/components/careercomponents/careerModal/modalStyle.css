@@ -47,14 +47,14 @@
 .submit_button:focus{
    outline:none;
  }
-@media only screen and (max-width:320px){
-  .submit_button {
-  width:100%;
-}
-}
 .ant-btn:hover, .ant-btn:focus, .ant-btn:active{
     background-size: 100% 100%;
     color: black;
     cursor:pointer;
     outline:none;
+}
+@media only screen and (max-width:320px){
+  .submit_button {
+  width:100%;
+  }
 }

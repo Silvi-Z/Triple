@@ -1,5 +1,8 @@
 import styled from "styled-components"
 import { Row, Col } from "antd"
+import { Link } from "gatsby"
+import BlackRightOutlined from "../../../assets/blackRightOutlined.png"
+import WhiteRightOutlined from "../../../assets/whiteRightOutlined.png"
 export const ContainerUseful = styled(Row)`
   background: #FFFFFF;
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.05);
@@ -11,6 +14,12 @@ export const ContainerUseful = styled(Row)`
     margin-bottom:0
   }
 `
+export const GeneralLink = styled(Link)`
+  width:100%
+`
+
+export const DownloadLink = styled(Link)``
+
 export const IconWrapper = styled.div`
   height: 40px;
   width: 40px;
@@ -22,9 +31,11 @@ export const IconWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  color:white;
+  background-image:url(${WhiteRightOutlined});
+  background-repeat: no-repeat;
+  background-position: center;
   &:hover{
-    color:black;
+    background-image:url(${BlackRightOutlined});
     background-color:white;
   }
   @media only screen and (max-width: 770px){
@@ -34,7 +45,7 @@ export const IconWrapper = styled.div`
   }
 `
 export const TextWrapper = styled(Col)`
-  width: 20%;
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;

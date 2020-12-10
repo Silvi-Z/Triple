@@ -1,13 +1,6 @@
 import styled from "styled-components"
 import { Button, Row } from "antd"
-export const SevicePageWrapper = styled.div`
-  padding:50px 118px 90px 118px;
-  max-width: 1440px;
-  margin: 0 auto;
-  @media only screen and (max-width:1024px){
-    padding:30px 20px 60px 20px;
-  }
-`
+
 export const DropWrapper = styled.div`
   padding:40px 22px;
   display: flex;
@@ -17,6 +10,7 @@ export const DropWrapper = styled.div`
     padding:40px 0;
   }
 `
+
 export const ServiceDropRow = styled(Row)`
   border-bottom: 1px solid;
   border-color: #d7d7d7;
@@ -24,18 +18,18 @@ export const ServiceDropRow = styled(Row)`
     transition:none;
   }
 `
+
 export const H2Wrapper = styled.div`
   width: 93%;
   display: flex;
   align-items: center;
 `
+
 export const ToggleH2Styled = styled.h2`
   font-family: ArialAMU;
   font-size: 24px;
   font-weight: bold;
-  font-stretch: normal;
-  font-style: normal;
-  letter-spacing: normal;
+  letter-spacing: 1.15px;
   text-align: left;
   color: #000000;
   margin:0;
@@ -75,15 +69,13 @@ export const ToggleButton = styled(Button)`
     height: 30px;
   }
 `
+
 export const Text = styled.div`
   width:100%;
   font-family: ArialAMU;
   font-size: 18px;
   font-weight: normal;
-  font-stretch: normal;
-  font-style: normal;
   line-height: 1.88;
-  letter-spacing: normal;
   text-align: left;
   color: #000000;
   font-size: 18px;
@@ -96,6 +88,7 @@ export const Text = styled.div`
     width: 100%;
   }
 `
+
 export const DropTextCol = styled.div`
    border-top: 1px solid black;
    display: flex;

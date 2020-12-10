@@ -1,9 +1,9 @@
 import styled from "styled-components"
 import { Row, Col } from "antd"
+import LinkedinBlueIcon from "../../assets/career/linkedinBlueCareer.svg"
+import LinkdinBlackIcon from "../../assets/career/linkedinCareer.svg"
 import FbBlueIcon from "../../assets/career/facebookBlueCareer.svg"
 import FbBlackIcon from "../../assets/career/facebookCareer.svg"
-import LinkdinBlackIcon from "../../assets/career/linkedinCareer.svg"
-import LinkedinBlueIcon from "../../assets/career/linkedinBlueCareer.svg"
 export const InformationPageWrapper = styled.div`
   margin: 0 auto;
   max-width:1440px;
@@ -99,9 +99,28 @@ export const InformSectionRow = styled.div`
   width:100%;
   display:flex;
   justify-content:space-between;
-   @media only screen and (max-width: 770px){
+  ul{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0;
+  }
+  a{
+    color: black;
+    font-size: 16px;
+  }
+  a:hover{
+    color: #00B3C7;
+  }
+  h2 {
+    margin-bottom: 0;
+    height: auto;
+  }
+  @media only screen and (max-width: 770px){
     flex-direction:column;
-   }
+    a{
+      font-size: 14px;
+    }
+  }
 `
 export const LeftSection = styled.div`
   width: 48%;

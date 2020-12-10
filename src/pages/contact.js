@@ -1,68 +1,42 @@
 /*eslint-disable */
-import React, { useState } from "react"
+import React from "react"
 import { Row } from "antd"
 import FormindIviduals from "../components/contactcomponts/contactForm/formindividuals"
-import FormOrganizations from "../components/contactcomponts/contactFormOrgaznitations/formorganizations"
-import EnvironmentImg from "../assets/footericons/location.svg"
-import CallPhoneImg from "../assets/footericons/phone-call.svg"
-import { FacebookShareButton, LinkedinShareButton } from "react-share"
 import useTranslations from "../components/useTranslations"
 import SEO from "../components/seo"
-import {
-  ParagraphRow,
-  H2Styled,
-  PStyled,
-  AdressMapCol,
-  MapCol,
-  Mapiframe,
-  HeadingParagrCol,
-  FormRow,
-  InfoColumn,
-  FormColumn,
-  SharedWrapperCol,
-  ShareLabel,
-  FacebookShare,
-  LinkdinIcon,
-  FacebookIcon,
-  LinkedinShare,
-  H1Email,
-  H3Element,
-  PElement,
-  AdressColumn,
-  ContactColumn,
-  ShareColumn
-} from "../components/contactcomponts/contactMainStyle"
-import "../components/contactcomponts/contactModal/modalStyle.css"
-import { ContactPageWrapper } from "../components/contactcomponts/contactForm/formStyle"
 import WhatsappImg from "../assets/footericons/brandIcons/whatsapp (header).svg"
 import ViberImg from "../assets/footericons/brandIcons/viber(header)svg.svg"
 import TelegramImg from "../assets/footericons/brandIcons/telegram (header).svg"
-import styled from "styled-components"
+import {
+  ContactPageWrapper,
+  WhatsappWrapper,
+  TelegramWrapper,
+  ViberWrapper,
+} from "../components/contactcomponts/contactForm/formStyle"
+import {
+  HeadingParagrCol,
+  SharedWrapperCol,
+  FacebookShare,
+  LinkedinShare,
+  ContactColumn,
+  FacebookIcon,
+  ParagraphRow,
+  AdressColumn,
+  AdressMapCol,
+  ShareColumn,
+  LinkdinIcon,
+  InfoColumn,
+  FormColumn,
+  Mapiframe,
+  H3Element,
+  H2Styled,
+  PElement,
+  PStyled,
+  FormRow,
+  H1Email,
+  MapCol,
+} from "../components/contactcomponts/contactMainStyle"
 
-const WhatsappWrapper = styled.img`
-  width: 22px;
-  height: 22px;
-  margin-right:16px;
-  @media only screen and (max-width: 292px){
-    margin-right: 7px;
-  }
-`
-const ViberWrapper = styled.img`
-  width: 20px;
-  height: 21px;
-  margin-right:16px;
-  @media only screen and (max-width: 292px){
-    margin-right: 7px;
-  }
-`
-const TelegramWrapper = styled.img`
-  width: 20px;
-  margin-right:16px;
-  height: 20px;
-  @media only screen and (max-width: 292px){
-    margin-right: 7px;
-  }
-`
 const Contact = ({ pageContext }) => {
   const { contact } = useTranslations()
   let urlShared
@@ -113,7 +87,7 @@ const Contact = ({ pageContext }) => {
               <WhatsappWrapper src={WhatsappImg} />
             <PElement>+374 98553533</PElement>
               </ContactColumn>
-              <ShareColumn xl={24} lg={24} md={24} sm={5} >
+              <ShareColumn>
             <SharedWrapperCol>
               <H3Element>Հետևեք մեզ</H3Element>
               <FacebookShare

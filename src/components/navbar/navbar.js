@@ -82,10 +82,10 @@ const GridService = styled.div`
   grid-area: serv;
 `
 const GridReport = styled.div`
-  grid-area: repo;
+  grid-area: calc;
 `
 const GridCalc = styled.div`
-  grid-area: calc;
+  grid-area: repo ;
 `
 const GridInfo = styled.div`
   grid-area: info;
@@ -102,7 +102,7 @@ const activeStyle = {
   border: "1px solid #009db8",
 }
 
-const Navbar = ({ open, responseWrapper, lang, langText, originalPath }) => {
+const Navbar = ({ open, menuColor, setMenuColor, responseWrapper, setResponseWrapper,lang, langText, originalPath }) => {
   const [languageText, setLanguageText] = useState(["Հայ", "Eng", "Рус"])
 
   const language = (
@@ -163,21 +163,27 @@ const Navbar = ({ open, responseWrapper, lang, langText, originalPath }) => {
     setLanguageText(newtext)
   }
 
+  const resize = () =>{
+    const innerWidth = (window.innerWidth);
+    (innerWidth>=1021 && !responseWrapper) ? setResponseWrapper(!responseWrapper) : null
+  }
+  window.addEventListener("resize", resize);
+
   useEffect(() => {
     checkDefaultLanguage(lang)
   }, [])
 
   return (
     <>
-      <ResponsiveNavWrapper style={{backgroundColor: !responseWrapper ?  "#1C1D21": "white"}}>
-        <div style={{ textAlign: "center" , backgroundColor: !responseWrapper ?  "#1C1D21": "white" , display: 'flex'}}>
+      <ResponsiveNavWrapper menuColor={menuColor}>
+        <div  style={{ textAlign: "center" , display: 'flex'}}>
           <RespNavLink to={`/${lang}/`} onClick={() => !responseWrapper ? open() : ''}>
-            <HeadMainIcon style={{backgroundColor: !responseWrapper ?  "#1C1D21": "white"}} src={!responseWrapper ?  WhiteLogo : BlackLogo} alt={"icon"} />
+            <HeadMainIcon src={!responseWrapper ?  WhiteLogo : BlackLogo} alt={"icon"} />
           </RespNavLink>
         </div>
-        <div style={{position: "relative" , backgroundColor: !responseWrapper ?  "#1C1D21": "white"}}>
-            <a href="javascript:void(0);" id="burger" className={!responseWrapper ? "open" : ''}>
-              <ResponsiveMenuButton onClick={() => open()} style={{backgroundColor: !responseWrapper ?  "white": "black"}}>
+        <div style={{position: "relative"}}>
+            <a id="burger" className={!responseWrapper ? "open" : ''}>
+              <ResponsiveMenuButton onClick={() => open()} responseWrapper={!responseWrapper} >
                 <span> </span>
                 <span> </span>
                 <span> </span>
@@ -205,21 +211,21 @@ const Navbar = ({ open, responseWrapper, lang, langText, originalPath }) => {
             <Coll style={{ marginBottom: "50px" }}>
               <NavLink
                 className="menu_element"
-                to="/reports/"
-                activeStyle={activeStyle}
-                onClick={() => open()}
-              >
-                {langText.header.reportTitle}
-              </NavLink>
-            </Coll>
-            <Coll  style={{ marginBottom: "50px" }}>
-              <NavLink
-                className="menu_element"
                 to={`/${lang}/calculators/`}
                 activeStyle={activeStyle}
                 onClick={() => open()}
               >
                 {langText.header.calcTitle}
+              </NavLink>
+            </Coll>
+            <Coll  style={{ marginBottom: "50px" }}>
+              <NavLink
+                className="menu_element"
+                to={`/${lang}/news/`}
+                activeStyle={activeStyle}
+                onClick={() => open()}
+              >
+                {langText.header.newsTitle}
               </NavLink>
             </Coll>
             <Coll  style={{ marginBottom: "50px" }}>
@@ -290,7 +296,6 @@ const Navbar = ({ open, responseWrapper, lang, langText, originalPath }) => {
        </div>
       ) : null}
 
-
       <GridWrapper>
         <GridLang>
           <Dropdown
@@ -353,11 +358,15 @@ const Navbar = ({ open, responseWrapper, lang, langText, originalPath }) => {
           </NavLink>
         </GridService>
         <GridReport>
-          <NavLink to={`/${lang}/reports/`} activeStyle={activeStyle}>
-            {langText.header.reportTitle}
+          <NavLink to={`/${lang}/news/`} activeStyle={activeStyle}>
+            {langText.header.newsTitle}
           </NavLink>
         </GridReport>
-
+        <GridCalc>
+          <NavLink to={`/${lang}/calculators/`} activeStyle={activeStyle}>
+            {langText.header.calcTitle}
+          </NavLink>
+        </GridCalc>
         <GridInfo md={{ span: 0, offset: 2 }}>
           <NavLink to={`/${lang}/information/`} activeStyle={activeStyle}>
             {langText.header.infoTitle}

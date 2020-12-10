@@ -1,29 +1,26 @@
-import React, { useState, useRef, useEffect } from "react"
-import useTranslations from "../components/useTranslations"
-import ServiceDropWrap from "../components/servicecomponents/serviceDrop/servicedrop"
-import TaxImg from "../assets/homeImages/icons/tax.svg"
-import CalcImg from "../assets/homeImages/icons/calculator.svg"
-import ClientImg from "../assets/homeImages/icons/client.svg"
-import BrowserImg from "../assets/homeImages/icons/browser.svg"
-import UserImg from "../assets/homeImages/icons/user.svg"
-import LawImg from "../assets/homeImages/icons/law.svg"
-import TeamImg from "../assets/homeImages/icons/teamwork.svg"
-import {
-  HeadingParagraphRow,
-  H2Styled,
-  PStyled,
-} from "../components/servicecomponents/serviceMainStyle"
-import { useTranslation } from "react-i18next"
 import SEO from "../components/seo"
+import { useTranslation } from "react-i18next"
+import React, { useState, useEffect } from "react"
+import useTranslations from "../components/useTranslations"
+import LawImg from "../assets/homeImages/icons/law.svg"
+import TaxImg from "../assets/homeImages/icons/tax.svg"
+import UserImg from "../assets/homeImages/icons/user.svg"
+import TeamImg from "../assets/homeImages/icons/teamwork.svg"
+import ClientImg from "../assets/homeImages/icons/client.svg"
+import CalcImg from "../assets/homeImages/icons/calculator.svg"
+import BrowserImg from "../assets/homeImages/icons/browser.svg"
+import ServiceDropWrap from "../components/servicecomponents/serviceDrop/servicedrop"
 import {
-  ServiceDropRow,
-  SevicePageWrapper,
-} from "../components/servicecomponents/serviceDrop/servicedropStyle"
+  PStyled,
+  H2Styled,
+  ServicePageWrapper,
+  HeadingParagraphRow,
+} from "../components/servicecomponents/serviceMainStyle"
 
 const Services = ({ location, pageContext }) => {
-  const { services } = useTranslations();
+  const { services } = useTranslations()
   const { t, i18n } = useTranslation()
-  const [serviceData, setServiceData] = useState([
+  const [serviceData, setserviceData] = useState([
     {
       data: {
         id: 0,
@@ -95,6 +92,7 @@ const Services = ({ location, pageContext }) => {
       open: false,
     },
   ])
+
   const getSharedTitle = lng => {
     if (lng === "en") {
       return "Services"
@@ -117,11 +115,10 @@ const Services = ({ location, pageContext }) => {
   }
 
   useEffect(() => {
-    // gets Translated texts from Json static files and set it to Locale state
     let serviceTransText = pageContext.localeResources.translation.services
     let images = [CalcImg, TaxImg, ClientImg, BrowserImg, LawImg, UserImg, TeamImg]
     serviceTransText.contentData.map((obj, index) => {
-      setServiceData([
+      setserviceData([
         ...serviceData,
         (serviceData[index].data = {
           id: index,
@@ -133,64 +130,49 @@ const Services = ({ location, pageContext }) => {
       ])
     })
     toggleFromHomePage(location.state)
-  }, [t]);
+  }, [t])
 
   const toggle = current => {
-    const data = serviceData.map(d =>
-      d.data.id === current.data.id && d.open === false
-        ? { ...d, open: true }
-        : d.data.id !== current.data.id && d.open === true
-        ? { ...d, open: false }
-        : { ...d, open: false }
-    )
-    setServiceData(data)
+    const data = serviceData.map(d => {
+      if (d.data.id === current.data.id && d.open === false) {
+        location.hash ='#'+current.data.scroll_id
+        return { ...d, open: true }
+      }
+      return { ...d, open: false }
+    })
+    setserviceData(data)
   }
 
-  useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
-  });
-
-    function handleScroll() {
-      serviceData.map((scroll_element)=> {
-          if (document.getElementById(scroll_element.data.scroll_id)){
-            let distance = document.getElementById(scroll_element.data.scroll_id).getBoundingClientRect();
-          const bodyScrollPart = window.scrollY
-          const windowHeight = window.outerHeight
-          const bodyHeight = document.documentElement.scrollHeight + 100
-          if ('#' + scroll_element.data.scroll_id === location.hash && distance.top === 0) {
-            console.log('open_first');
-            scroll_element.open = true;
-            toggle(scroll_element)
-          } else if ('#' + scroll_element.data.scroll_id === location.hash && bodyScrollPart + windowHeight >= bodyHeight) {
-            console.log('open_second')
-          }
+  function handleScroll() {
+    const hash = location.hash
+    if (hash){
+      const serviceDataNew = [...serviceData];
+      const foundIndex = serviceDataNew.findIndex(el => "#" + el.data.scroll_id === hash)
+      const foundElement = serviceDataNew[foundIndex];
+      const distance = document.getElementById(foundElement.data.scroll_id) && document.getElementById(foundElement.data.scroll_id).getBoundingClientRect()
+      const bodyScrollPart = window.scrollY
+      const windowHeight = window.outerHeight
+      const bodyHeight = document.documentElement.scrollHeight
+      if (foundIndex > -1 && distance.top < 1 || bodyScrollPart + windowHeight >= bodyHeight) {
+        serviceDataNew[foundIndex] = {
+          ...foundElement,
+          open: true
         }
-      })
+        setserviceData(serviceDataNew)
+        window.removeEventListener("scroll", handleScroll);
+      }
     }
-
-  // window.onscroll = () =>{
-  //   serviceData.map((scroll_element)=>{
-  //     let distance = document.getElementById(scroll_element.data.scroll_id).getBoundingClientRect();
-  //     const bodyScrollPart = window.scrollY
-  //     const windowHeight = window.outerHeight
-  //     const bodyHeight = document.documentElement.scrollHeight+100
-  //     if ('#'+scroll_element.data.scroll_id === location.hash && distance.top === 0){
-  //       console.log('open_first')
-  //       scroll_element.open = true;
-  //     }
-  //     else if ('#'+scroll_element.data.scroll_id === location.hash && bodyScrollPart + windowHeight >= bodyHeight){
-  //       console.log('open_second')
-  //       scroll_element.open = true;
-  //     }
-  //   })
-  // }
+  }
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll)
+  }, [])
 
   const toggleFromHomePage = state => {
     state === null ? (state = 0) : state
     const data = serviceData.map(d =>
-      d.data.id === state.clickedItems ? { ...d, open: true } : { ...d }
+      d.data.id === state.clickedItems ? { ...d, open: true } : { ...d },
     )
-    setServiceData(data)
+    setserviceData(data)
   }
 
   const hookComponent = () => {
@@ -199,19 +181,22 @@ const Services = ({ location, pageContext }) => {
   hookComponent()
 
   return (
-    <SevicePageWrapper>
+    <ServicePageWrapper>
       <SEO
         title={services.title}
         description={services.paragraph}
         pageContext={pageContext} />
       <HeadingParagraphRow>
-          <H2Styled>{services.title}</H2Styled>
-          <PStyled>{services.paragraph}</PStyled>
-      </HeadingParagraphRow >
+        <H2Styled>{services.title}</H2Styled>
+
+
+        <PStyled>{services.paragraph}</PStyled>
+      </HeadingParagraphRow>
       {serviceData.map((d, id) => (
         <ServiceDropWrap showServiceForm={toggle} data={d} key={id} />
       ))}
-    </SevicePageWrapper>
+    </ServicePageWrapper>
   )
 }
+
 export default Services

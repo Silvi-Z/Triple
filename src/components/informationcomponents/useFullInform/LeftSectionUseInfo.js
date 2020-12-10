@@ -1,22 +1,23 @@
 import React from "react"
-import { RightOutlined } from "@ant-design/icons"
 import {
   ContainerUseful,
   TextWrapper,
   ListWrapper,
-  Hr,
   IconWrapper,
+  GeneralLink,
+  Hr,
 } from "./useStyle"
-import "./useStyle.css"
 
 const LeftSectionUseInform = ({ usedata }) => {
   return (
-    <a href={usedata.data.href} target="_blank">
+
     <ContainerUseful>
+      <GeneralLink href={usedata.data.href} target="_blank">
       <TextWrapper span={24}>
           <h2>{usedata.data.first_heading}</h2>
-        <IconWrapper><RightOutlined/></IconWrapper>
+        <IconWrapper/>
       </TextWrapper>
+    </GeneralLink>
       <Hr/>
       <ListWrapper>
         <ul>
@@ -34,7 +35,7 @@ const LeftSectionUseInform = ({ usedata }) => {
       </ListWrapper>
 
     </ContainerUseful>
-    </a>
+
   )
 }
 

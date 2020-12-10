@@ -1,8 +1,10 @@
 import styled from "styled-components"
+
 export const Img = styled.img`
   width: 71px;
   height: 68px;
 `
+
 export const H2 = styled.h2`
    font-family: ArialAMU;
   font-size: 16px;
@@ -14,6 +16,7 @@ export const H2 = styled.h2`
   text-align: center;
   color: #010101;
 `
+
 export const P = styled.p`
  font-family: ArialAMU;
   font-size: 14px;
