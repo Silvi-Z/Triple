@@ -20,6 +20,8 @@ export const ServiceTitle = styled.div`
 export const NavLink = styled(Link)`
   text-decoration: none;
   display: flex;
+  width: fit-content;
+  margin: auto;
 `
 export const H2Styled = styled.section`
   font-family: ArialAMU;
@@ -52,7 +54,6 @@ export const SeemoreWrapper = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin:0 auto;
 `
 
 export const Seemoreimg = styled.img`
