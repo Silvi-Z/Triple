@@ -20,7 +20,7 @@ export const GeneralLink = styled(Link)`
 
 export const DownloadLink = styled(Link)``
 
-export const IconWrapper = styled.div`
+export const IconWrapper = styled.button`
   height: 40px;
   width: 40px;
   cursor:pointer;

@@ -1,6 +1,8 @@
-import React, { useEffect, useState } from "react"
+import React, { useState } from "react"
 import SEO from "../../components/seo"
+import { useLocation } from "@reach/router"
 import UsefulNews from "../../components/news/secondnewspage"
+import FullInfo from "../../components/news/fullNews"
 import { Select } from "antd"
 import newsDatas from "../../components/news/newsDatas"
 import moment from "moment"
@@ -15,11 +17,9 @@ import {
   SelectBox,
   NoResult,
   NoResultTitle,
-  NoResultText, NewsItems,
+  NoResultText,
+  NewsItems,
 } from "../../components/news/newsStyle"
-import { useLocation } from "@reach/router"
-import FullInfo from "../../components/news/fullNews"
-
 
 const { Option } = Select
 
@@ -36,6 +36,12 @@ const Index = ({ pageContext }) => {
     }
   }
 
+  const [windowInnerWidth, setWindowInnerWidth] = useState(window.innerWidth)
+  const removeNewsDatePickerIcon = () => {
+    setWindowInnerWidth(window.innerWidth);
+  }
+
+  window.addEventListener("resize", removeNewsDatePickerIcon)
   const hookComponent = () => {
     urlShared = getSharedUrl(pageContext.locale)
   }
@@ -46,10 +52,6 @@ const Index = ({ pageContext }) => {
   }
 
   hookComponent()
-
-  const showInput = e => e.target.classList.add("focus_input")
-
-  const noneInput = e => e.target.value.length === 0 ? e.target.classList.remove("focus_input") : ""
 
   const handleChange = date => {
     if(date){
@@ -62,19 +64,18 @@ const Index = ({ pageContext }) => {
         data.length > 6 && data.length % 6 < 6 && shownNewses === data.length
           ? setButtonDisplay(false)
           : setButtonDisplay(true);
-
-    (data.length < 1) ? setDisplay(true) : setDisplay(false)
+    // (data.length < 1) ? setDisplay(true) : setDisplay(false)
   }
   }
   const filteredDate = selectedDate.filter(item => item.id.includes(location.hash.substring(1)))
 
-  const [display, setDisplay] = useState(false)
+  // const [display, setDisplay] = useState(false)
 
   const onChange = (e) => {
     const data = newsDatas.filter(item => item.title.toLowerCase().includes(e.target.value.toLowerCase()))
     setData(data)
-    // (data.length < 1) ? setDisplay(true) : setDisplay(false)
   }
+
   return (
     <NewsPageWrapper>
       <SEO
@@ -86,22 +87,20 @@ const Index = ({ pageContext }) => {
             <SearchRow>
               <StyledForm>
                 <StyledForm.Item>
-            <span className="search_row">
-            <SearchInput
-              type="text"
-              onChange={onChange}
-              onFocus={showInput}
-              onBlur={noneInput}
-              placeholder="Փնտրել"
-            />
-            </span>
+                  <span className="search_row">
+                  <SearchInput
+                    type="text"
+                    onChange={onChange}
+                    placeholder="Փնտրել"
+                  />
+                  </span>
                 </StyledForm.Item>
               </StyledForm>
               <NewsDatePicker
                 format={"DD-MM-YYYY"}
                 defaultValue={moment()}
                 onChange={handleChange}
-                suffixIcon={
+                suffixIcon={(windowInnerWidth>=400) ?(
                   <span>
                     <svg width="18" height="21" viewBox="0 0 18 21" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path
@@ -109,10 +108,15 @@ const Index = ({ pageContext }) => {
                         fill="#555555" />
                     </svg>
                   </span>
+                ): ''
                 }
               > </NewsDatePicker>
               <SelectBox>
-                <Select defaultValue="Վերջին նորություններ" name="" id="">
+                <Select defaultValue="Վերջին նորություններ" suffixIcon={
+                  <svg width="6" height="5" viewBox="0 0 6 5" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M5.295 4.5L3 2.02767L0.705 4.5L-3.32702e-08 3.73887L3 0.5L6 3.73887L5.295 4.5Z" fill="#1C1D21"/>
+                  </svg>
+                }>
                   <Option value="Վերջին նորություններ">Վերջին նորություններ</Option>
                   <Option value="Շատ ընթերցված">Շատ ընթերցված</Option>
                 </Select>

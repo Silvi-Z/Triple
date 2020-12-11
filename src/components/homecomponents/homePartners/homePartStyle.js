@@ -48,7 +48,7 @@ export const PStyled = styled.p`
     font-size:16px;
   }
 `
-export const SeemoreWrapper = styled.div`
+export const SeemoreWrapper = styled.button`
   background-color:black;
   margin: 0 auto;
   display: flex;

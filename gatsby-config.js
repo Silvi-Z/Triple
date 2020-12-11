@@ -82,7 +82,7 @@ module.exports = {
         offset: 0,
       }
     }
-    // this (optional) plugin enables Progressive Web App + Offline functԿազմակերպության գրանցումionality
+    // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
   ],

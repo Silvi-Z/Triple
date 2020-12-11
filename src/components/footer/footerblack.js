@@ -213,7 +213,7 @@ const FooterBlack = ({ langtext }) => {
           <ViberWrapper src={ViberImg} />
           <TelegramWrapper src={TelegramImg} />
           <FooterNumberWrap>
-            <span>+374 98553533,+374 98553533</span>
+            <span>+374 98553533,+374 60407010</span>
           </FooterNumberWrap>
         </FooterNumberColumn>
         <FooterAdressColumn

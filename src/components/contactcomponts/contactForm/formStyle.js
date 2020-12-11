@@ -30,13 +30,13 @@ export const ContactPageWrapper = styled.div`
 export const UploadImg = styled.img`
   width: 20px;
   height: 20px;
-  color: "#009db8";
+  color: #009db8;
   margin-top: 2px;
 `;
 
 export const WhatsappWrapper = styled.img`
-  width: 22px;
-  height: 22px;
+  width: 20px;
+  height: 34px;
   margin-right:16px;
   @media only screen and (max-width: 292px){
     margin-right: 7px;
@@ -44,7 +44,7 @@ export const WhatsappWrapper = styled.img`
 `
 export const ViberWrapper = styled.img`
   width: 20px;
-  height: 21px;
+  height: 33px;
   margin-right:16px;
   @media only screen and (max-width: 292px){
     margin-right: 7px;
@@ -53,7 +53,7 @@ export const ViberWrapper = styled.img`
 export const TelegramWrapper = styled.img`
   width: 20px;
   margin-right:16px;
-  height: 20px;
+  height: 31px;
   @media only screen and (max-width: 292px){
     margin-right: 7px;
   }

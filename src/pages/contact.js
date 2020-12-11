@@ -82,10 +82,10 @@ const Contact = ({ pageContext }) => {
           </AdressColumn>
             <ContactColumn style={{display: 'flex', flexDirection: 'row', flexWrap:'wrap'}}>
             <H3Element style={{width:'100%'}}>Հեռ․</H3Element>
+              <PElement>+374 98553533  +374 60407010</PElement>
               <TelegramWrapper src={TelegramImg} />
               <ViberWrapper src={ViberImg} />
               <WhatsappWrapper src={WhatsappImg} />
-            <PElement>+374 98553533</PElement>
               </ContactColumn>
               <ShareColumn>
             <SharedWrapperCol>
@@ -114,7 +114,7 @@ const Contact = ({ pageContext }) => {
             <MapCol>
               <Mapiframe
                 frameborder="0"
-                src="https://maps.google.com/maps?q=Armenia%2C%20Yerevan%20Hrachya%20Qochar%2044%2F54&t=&z=17&ie=UTF8&iwloc=&output=embed"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3047.2318514992025!2d44.506425015644304!3d40.20390527647907!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x406abd5370b9bd47%3A0x65628145929fcd32!2sAlgorithm%20Solutions%20EVN!5e0!3m2!1sen!2s!4v1607688497470!5m2!1sen!2s"
               />
             </MapCol>
           </>

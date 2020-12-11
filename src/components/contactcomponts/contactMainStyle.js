@@ -15,7 +15,6 @@ export const H1Email = styled.h1`
   border-bottom: 1px solid #D0D0D0;
   padding-bottom:30px;
   margin-right:71px;
-  }
   @media only screen and (max-width: 1200px){
     margin-right:0;
     font-size:36px;
@@ -25,6 +24,8 @@ export const H1Email = styled.h1`
 export const PElement = styled.p`
   font-size:18px;
   margin-bottom:40px;
+  max-width: 150px;
+  line-height: 30px;
 `
 
 export const H3Element = styled.h3`
@@ -176,7 +177,7 @@ export const ShareColumn = styled.div`
   width:100%;
   margin-right:20px;
   @media only screen and (max-width: 1200px) {
-    width:19%!important;
+    width:20%!important;
     margin-right:0;
   }
   @media only screen and (max-width: 768px){

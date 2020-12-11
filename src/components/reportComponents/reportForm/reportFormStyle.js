@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { Form, Input, Tooltip, Select, Row, Col, Button, Spin } from 'antd';
-import { DatePicker, InputNumber } from 'antd';
+import { Form, Select, Row, Col, Button} from 'antd';
+import { DatePicker } from 'antd';
 
 export const StyledForm = styled(Form)`
   .ant-form-item-has-error .ant-select .ant-select-selector {
@@ -9,6 +9,7 @@ export const StyledForm = styled(Form)`
   .ant-form-item-has-error .ant-picker {
     border-color: #009db8 !important;
   }
+  
 `;
 export const ColAddress = styled(Col)`
   /* margin-top: 3.1%;
