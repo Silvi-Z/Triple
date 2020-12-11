@@ -1,7 +1,12 @@
 import styled from "styled-components"
 import WhiteDownloadingIcon from "../../../assets/useful_information/white-downloading-file.svg"
 import BlackDownloadingIcon from "../../../assets/useful_information/black-downloading-file.svg"
-
+import Pdf from "../../../assets/pdf.svg"
+import HoveredPdf from "../../../assets/bluePdf.svg"
+import Word from "../../../assets/word.svg"
+import HoveredWord from "../../../assets/blueWord.svg"
+import Excel from "../../../assets/excel.svg"
+import HoveredExcel from "../../../assets/blueExcel.svg"
 export const ContainerUseful = styled.div`
   width: 100%;
 `
@@ -33,21 +38,41 @@ export const H2text = styled.h2`
     font-size:14px;
   }
 `
-export const FormatsWrapper = styled.div`
-  display:flex;
-  *{
-    margin-left:10px;
-  }
-`
+
 export const FormatsIcons = styled.div`
   display: flex;
   width: 0;
   overflow:hidden;
+  position: relative;
+  align-items: center;
 `
-export const Image = styled.img`
+export const Image = styled.button`
+  opacity: 0;
+  border:none;
   transform: rotate(-90deg);
+  height: 18px;
+  width: 18px;
+  &:first-child{
+    background-image: url(${Pdf});
+    :hover{
+      background-image: url(${HoveredPdf});
+    }
+  }
+  &:nth-child(2){
+    background-image: url(${Word});
+    :hover{
+      background-image: url(${HoveredWord});
+    }
+  }
+  &:nth-child(3){
+    background-image: url(${Excel});
+    :hover{
+      background-image: url(${HoveredExcel});
+    }
+  }
+  
 `
-export const DownloadingIcon = styled.div`
+export const DownloadingIcon = styled.button`
   cursor:pointer;
   border:1px solid black;
   background-image:url("${WhiteDownloadingIcon}");
@@ -66,6 +91,12 @@ export const DownloadingIcon = styled.div`
     height:30px;
     width:30px;
     background-size:12px;
+  }
+`
+export const FormatsWrapper = styled.div`
+  display:flex;
+  *:not(${DownloadingIcon}){
+    margin-left:10px;
   }
 `
 export const LineWrapper = styled.div`

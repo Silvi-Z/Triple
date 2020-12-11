@@ -3,15 +3,14 @@ import styled from "styled-components"
 import { navigate } from "gatsby"
 import { Dropdown } from "antd"
 import { PhoneOutlined, CaretDownOutlined, EnvironmentOutlined } from "@ant-design/icons"
-import MainLogo from "../../assets/homeImages/3c.png"
 import BlackLogo from "../../assets/homeImages/3c1.png"
+import MainLogo from "../../assets/homeImages/3c.svg"
 import WhiteLogo  from "../../assets/homeImages/3c_white.png"
 import EnvironmentImg from "../../assets/footericons/location.svg"
 import "@fortawesome/fontawesome-free/css/all.css"
 import "@fortawesome/fontawesome-free/js/all.js"
 import "../layout.css"
 import {
-  Label,
   NavLink,
   LangSpan,
   PhoneSpan,

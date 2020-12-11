@@ -46,7 +46,7 @@ export const PStyled = styled.section`
     font-size:16px;
   }
 `
-export const SeemoreWrapper = styled.div`
+export const SeemoreWrapper = styled.button`
   letter-spacing: 1.15px;
   background-color: black;
   display: flex;
@@ -108,6 +108,9 @@ export const InfoAboutPartners = styled.div`
     margin-bottom:0;
     margin-top:15px;
     letter-spacing:0.15px;
+  }
+  @media only screen and (max-width: 768px){
+    font-size: 16px;
   }
 `
 export const ServiceNameWrapper = styled.div`

@@ -130,20 +130,21 @@ export const SeeMoreNews = styled(SeemoreWrapper)`
 `
 
 export const SearchInput = styled.input`
-  height: 30px;
-  width: 30px;
-  border: none;
+  height: 40px;
+  width: 100%;
   cursor: pointer;
   background-color: white;
   outline: none;
   position: absolute;
-  padding-left:40px;
+  padding-left:10px;
   border-radius: 10px;
-  &::placeholder{ color:transparent}
+  border: .5px solid white;
   @media only screen and (max-width: 839px){
     width: 100%;
     padding-left:10px;
-    &::placeholder{ color: #555555}
+  }
+  &:focus{
+    border: .5px solid #00B3C7;
   }
 `
 
@@ -152,6 +153,7 @@ export const StyledForm = styled(Form)`
   bottom:0;
   margin:auto;
   width:71%;
+  height: 40px;
   @media only screen and (max-width: 839px){
     margin-bottom: 40px;
     width: 100%;
@@ -181,19 +183,16 @@ export const H1Element = styled.h1`
 
 export const NewsDatePicker = styled(DatePicker)`
   height: 40px;
-  background: #f7f7f7;
+  background: white;
   box-sizing: border-box;
   border:none;
-  border-radius: 5px !important;
+  border-radius: 10px !important;
   .ant-picker-input > input{
     width: 75px !important;
     flex: unset !important;
   }
   .ant-picker-input{
     width:fit-content !important;
-  }
-  @media only screen and (max-width: 839px){
-    padding:0;
   }
 `
 
@@ -244,25 +243,39 @@ export const BigImageInfo = styled.div`
 `
 
 export const SelectBox = styled.div`
-    top: 0;
-    bottom: 0;
-    margin: auto;
-  .ant-select-selector{
-    width:180px !important;
+  top: 0;
+  bottom: 0;
+  margin: auto auto auto 30px;
+  .ant-select-selector {
+    width: 180px !important;
+    height: 40px !important;
+    border-radius: 10px !important;
     border: none !important;
-    background-color: #f7f7f7 !important;
+    background-color: white !important;
   }
-  .ant-select:not(.ant-select-disabled):hover .ant-select-selector{
-    box-shadow:none;
+  .ant-select:not(.ant-select-disabled):hover .ant-select-selector {
+    box-shadow: none;
   }
-  .ant-select-single.ant-select-show-arrow .ant-select-selection-item{
+  .ant-select-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: rotate(180deg);
+  }
+  .ant-select-single.ant-select-show-arrow .ant-select-selection-item {
+    display: flex;
+    align-items: center;
     color: #555555;
   }
-  .ant-select-item-option-selected:not(.ant-select-item-option-disabled){
-    background-color:white !important;
+  .ant-select-item-option-selected:not(.ant-select-item-option-disabled) {
+    background-color: white !important;
   }
-  @media only screen and (max-width: 839px){
-    margin-right:0;
+  .ant-select-open > span:last-child {
+    transform: rotate(0deg);
+  }
+  @media only screen and (max-width: 839px) {
+    margin-right: 0;
+    margin-left: 0;
   }
 `
 

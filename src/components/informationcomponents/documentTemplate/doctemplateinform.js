@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useState } from "react"
 import {
   H2text,
   TextWrapper,
@@ -11,12 +11,18 @@ import {
   Image,
 } from "./docStyle"
 import { Row } from "antd"
-import Pdf from "../../../assets/pdf.svg"
-import Word from "../../../assets/word.svg"
-import Excel from "../../../assets/excel.svg"
-import { element } from "prop-types"
 const DocTemplateInform = ({ usedata }) => {
 
+  const [ wrapperClass , setWrapperClass] = useState({})
+
+  const selectFormat = (e) => {
+    let element = e.target.id;
+    console.log(wrapperClass[element])
+    console.log(element);
+      (wrapperClass[element]===true)?
+      setWrapperClass({}):
+      setWrapperClass({[element]: true})
+  }
   return (
     <ContainerUseful>
       {usedata.data.links.map(({label, id}) => (
@@ -27,12 +33,12 @@ const DocTemplateInform = ({ usedata }) => {
                 <H2text>{label}</H2text>
               </TextWrapper>
               <FormatsWrapper>
-                <FormatsIcons>
-                  <Image src={Pdf} alt="pdf"/>
-                  <Image src={Word} alt="word"/>
-                  <Image src={Excel} alt="excel"/>
+                <FormatsIcons className={wrapperClass[id] ? 'shown' : ''}>
+                  <Image alt="pdf" className={wrapperClass[id] ? 'transform' : ''}/>
+                  <Image alt="word" className={wrapperClass[id] ? 'transform' : ''}/>
+                  <Image alt="excel" className={wrapperClass[id] ? 'transform' : ''}/>
                 </FormatsIcons>
-                <DownloadingIcon/>
+                <DownloadingIcon id={id} onClick={selectFormat}/>
               </FormatsWrapper>
             </LineWrapper>
           </Row>
