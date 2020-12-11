@@ -53,6 +53,16 @@ const phones = (
       />
       <span className="phonenumber">374 98 553533</span>
     </div>
+    <div className="phonebox">
+      <PhoneOutlined
+        style={{
+          fontSize: "14px",
+          marginRight: "4%",
+          transform: "rotate(90deg)",
+        }}
+      />
+      <span className="phonenumber">374 60 407010</span>
+    </div>
   </div>
 )
 

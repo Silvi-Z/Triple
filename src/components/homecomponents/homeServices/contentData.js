@@ -13,26 +13,22 @@ const contentData = [
   },
   {
     "link" : "services#test_4",
-    "serviceName" : "Կազմակերպության գրանցում"
-  },
-  {
-    "link" : "services#test_5",
     "serviceName" : "Ֆիզիկական անձինք"
   },
   {
-    "link" : "services#test_6",
+    "link" : "services#test_5",
     "serviceName" : "Մաքսային գործարքներ"
   },
   {
-    "link" : "services#test_7",
+    "link" : "services#test_6",
     "serviceName" : "Կադրային աշխատանք"
   },
   {
-    "link" : "services#test_8",
+    "link" : "services#test_7",
     "serviceName" : "Հաշվիչներ"
   },
   {
-    "link" : "services#test_9",
+    "link" : "services#test_8",
     "serviceName" : "???"
   },
 
