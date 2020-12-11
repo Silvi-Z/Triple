@@ -82,7 +82,7 @@ const Contact = ({ pageContext }) => {
           </AdressColumn>
             <ContactColumn style={{display: 'flex', flexDirection: 'row', flexWrap:'wrap'}}>
             <H3Element style={{width:'100%'}}>Հեռ․</H3Element>
-              <PElement>+374 98553533 , +374 60407010</PElement>
+              <PElement>+374 98553533  +374 60407010</PElement>
               <TelegramWrapper src={TelegramImg} />
               <ViberWrapper src={ViberImg} />
               <WhatsappWrapper src={WhatsappImg} />
