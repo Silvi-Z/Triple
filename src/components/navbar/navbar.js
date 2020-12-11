@@ -111,7 +111,7 @@ const activeStyle = {
   border: "1px solid #009db8",
 }
 
-const Navbar = ({ open, menuColor, setMenuColor, responseWrapper, setResponseWrapper,lang, langText, originalPath }) => {
+const Navbar = ({ open, color, setMenuColor, responseWrapper, setResponseWrapper,lang, langText, originalPath }) => {
   const [languageText, setLanguageText] = useState(["Հայ", "Eng", "Рус"])
 
   const language = (
@@ -184,7 +184,7 @@ const Navbar = ({ open, menuColor, setMenuColor, responseWrapper, setResponseWra
 
   return (
     <>
-      <ResponsiveNavWrapper menuColor={menuColor}>
+      <ResponsiveNavWrapper menuColor={color}>
         <div  style={{ textAlign: "center" , display: 'flex'}}>
           <RespNavLink to={`/${lang}/`} onClick={() => !responseWrapper ? open() : ''}>
             <HeadMainIcon src={!responseWrapper ?  WhiteLogo : BlackLogo} alt={"icon"} />

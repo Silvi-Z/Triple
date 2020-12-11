@@ -18,7 +18,7 @@ const CalculatorHomePage = () =>{
     <ResponsWrapper>
       <ContainerRow>
         {contentData.map(item => (
-          <ContentContainer>
+          <ContentContainer key={item.src}>
             <ContentLink to={item.link}>
               <CalcImagesWrapper>
                 <IconWrapper src={item.src} alt={"icon"}/>

@@ -22,7 +22,10 @@ const HomeServices = ({ langText, lang }) => {
       <ResponsWrapper>
         <ContainerRow>
           {contentData.map(item=>(
-            <ContentContainer>
+            <ContentContainer
+              key={item.link}
+              className="servicesContainer"
+            >
               <Link to={`/${lang}/${item.link}`} >
                 <ServiceNameWrapper>
                   {item.serviceName}

@@ -23,14 +23,6 @@ const contentData = [
     "link" : "services#test_6",
     "serviceName" : "Կադրային աշխատանք"
   },
-  {
-    "link" : "services#test_7",
-    "serviceName" : "Հաշվիչներ"
-  },
-  {
-    "link" : "services#test_8",
-    "serviceName" : "???"
-  },
 
 ]
 export default contentData

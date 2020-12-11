@@ -17,7 +17,11 @@ const Servicedrop = ({ data, showServiceForm }) => {
         <H2Wrapper>
           <ToggleH2Styled>{data.data.paragraph}</ToggleH2Styled>
         </H2Wrapper>
-          <ToggleButton isOpen={data.open} block onClick={() => showServiceForm(data)} >
+          <ToggleButton
+            onClick={() => showServiceForm(data)}
+            className={data.open ? 'whiteButton' : 'blackButton'}
+            block
+          >
             {data.open ? <UpOutlined/> :  <DownOutlined />}
           </ToggleButton>
       </DropWrapper>

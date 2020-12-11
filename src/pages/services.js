@@ -145,7 +145,7 @@ const Services = ({ location, pageContext }) => {
 
   function handleScroll() {
     const hash = location.hash
-    if (hash){
+    if (hash && '/'+pageContext.locale + pageContext.originalPath){
       const serviceDataNew = [...serviceData];
       const foundIndex = serviceDataNew.findIndex(el => "#" + el.data.scroll_id === hash)
       const foundElement = serviceDataNew[foundIndex];
