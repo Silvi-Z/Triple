@@ -43,13 +43,15 @@ const UnderLine = styled(Divider)`
 `;
 
 const NavLink = props => (
-  <Link
-    {...props}
-    getProps={({ isCurrent }) => {
+  <Link {...props} getProps={({ isCurrent }) => {
       return {
         style: {
-          color: isCurrent ? "#00B3C7" : "#000000",
-          textDecoration: "underline"
+          background: isCurrent ? '#BCE7EC' : 'inherit',
+          textDecoration: "none",
+          color: "#000000",
+          padding: '5px 10px',
+          borderRadius: '5px',
+          display: 'block'
         }
       };
     }}

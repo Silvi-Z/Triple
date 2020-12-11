@@ -6,23 +6,9 @@ import { pick, isNull, isEmpty, isEqual } from "lodash"
 import { Row, Col, Card, Form, Radio, Checkbox } from "antd"
 import GrossSalaryTable from "./calcComponents/GrossSalaryTable"
 import CalculatorCardResult from "./calcComponents/CalculatorCardResult"
-import {
-  Label,
-  UnderLine,
-  FormLabel,
-  RadioLabel,
-  CalculatorInput,
-  ButtonSubmit,
-  CalculatorSlider,
-  CalculatorDatePicker,
-} from "./styled"
-import {
-  schema,
-  SALARY_MAX, SALARY_MIN, SALARY_STEP,
-  TAX_FIELD_COMMON, TAX_FIELD_ENTERPRISE, TAX_FIELD_IT,
-  PENSION_FIELD_NO, PENSION_FIELD_YES, PENSION_FIELD_YES_VOLUNTEER,
-} from "./utilities/salary"
-import { holidays } from "./utilities/vacation"
+import { holidays, workingDaysInRange } from "./utilities/vacation"
+import { Label, UnderLine, FormLabel, RadioLabel, CalculatorInput, ButtonSubmit, CalculatorDatePicker } from "./styled"
+import { schema, SALARY_MIN, TAX_FIELD_COMMON, TAX_FIELD_ENTERPRISE, TAX_FIELD_IT, PENSION_FIELD_NO, PENSION_FIELD_YES, PENSION_FIELD_YES_VOLUNTEER } from "./utilities/salary"
 
 const radioStyle = {
   display: "block",
@@ -61,6 +47,7 @@ class VacationCalculator extends React.Component {
         pension_fee: 0,
         stamp_fee: 0,
         salary: 0,
+        vacation_salary: 0
       },
       monthAvgSalary: 0,
       calculated: false,
@@ -68,7 +55,7 @@ class VacationCalculator extends React.Component {
   }
 
   get rowElement() {
-    return ReactDOM.findDOMNode(this.row.current)
+    return ReactDOM.findDOMNode(/**@type Element*/this.row.current)
   }
 
   get rowElementOffsetTop() {
@@ -76,18 +63,18 @@ class VacationCalculator extends React.Component {
   }
 
   get colElement() {
-    return ReactDOM.findDOMNode(this.col.current)
+    return ReactDOM.findDOMNode(/**@type Element*/this.col.current)
   }
 
   get dateFromInput() {
     return ReactDOM
-      .findDOMNode(this.dateFromPicker.current)
+      .findDOMNode(/**@type Element*/ this.dateFromPicker.current)
       .querySelector("input")
   }
 
   get dateToInput() {
     return ReactDOM
-      .findDOMNode(this.dateToPicker.current)
+      .findDOMNode(/**@type Element*/ this.dateToPicker.current)
       .querySelector("input")
   }
 
@@ -103,6 +90,7 @@ class VacationCalculator extends React.Component {
 
       return Math.round(vacationSalary)
     }
+
     return 0
   }
 
@@ -178,25 +166,23 @@ class VacationCalculator extends React.Component {
   autocompleteVacationDays() {
     const { date_from, date_to, working_schedule } = this.state.form
 
-    const weekends = working_schedule === 5 ? [0, 6] : [6]
-
-    let vacation_days = 0, momentFrom = moment(date_from)
-
     if (isNull(date_to) || isNull(date_from)) {
       this.setState({ form: { ...this.state.form, vacation_days: null } })
     }
 
     if (date_from && date_to) {
-      while (momentFrom.isSameOrBefore(date_to)) {
-        if (!weekends.includes(momentFrom.day()) && !holidays.includes(momentFrom.format('YYYY-MM-DD'))) {
-          vacation_days++
-        }
-
-        momentFrom.add(1, "day")
-      }
-
-      this.setState({ form: { ...this.state.form, vacation_days } })
+      this.setField("vacation_days", workingDaysInRange({
+        start: moment(date_from),
+        end: moment(date_to)
+      }, working_schedule).length)
     }
+  }
+
+  autoCalculate(prevState) {
+    if (
+      (!isEqual(prevState.form, this.state.form) && this.state.calculated) ||
+      (!isEqual(prevState.monthAvgSalary, this.state.monthAvgSalary) && this.state.calculated)
+    ) this.handleSubmit()
   }
 
   setDateField(name, date) {
@@ -249,7 +235,7 @@ class VacationCalculator extends React.Component {
             stamp: false,
           },
         })
-        .then(res => this.setState({ result: res.data }))
+        .then(res => this.setState({ result: { ...res.data, vacation_salary: this.vacationSalary } }))
         .then(() => {
           if (!this.state.calculated) this.setState({ calculated: true })
         })
@@ -265,9 +251,7 @@ class VacationCalculator extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
-    if (!isEqual(prevState.form, this.state.form) && this.state.calculated) {
-      this.handleSubmit()
-    }
+    this.autoCalculate(prevState)
   }
 
   componentWillUnmount() {
@@ -306,7 +290,6 @@ class VacationCalculator extends React.Component {
                       placeholder={lang.date_from_placeholder}
                       value={this.dateFromValue}
                       ref={this.dateFromPicker}
-                      inputReadOnly={false}
                       format="DD.MM.YYYY"
                       name="date_from"
                       size="large"
@@ -336,7 +319,6 @@ class VacationCalculator extends React.Component {
                   style={{ width: "54px" }}
                   min={1}
                   name="vacation_days"
-                  type="number"
                   size="large"
                 />
               </Form.Item>
@@ -357,24 +339,14 @@ class VacationCalculator extends React.Component {
 
               <Form.Item label={<Label>{lang.salary_label}</Label>}>
                 <CalculatorInput
-                  formatter={value => value.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
-                  parser={value => value.replace(/\$\s?|(,*)/g, '')}
+                  formatter={v => `${v}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+                  parser={v => v.replace(/\$\s?|(,*)/g, '')}
                   onChange={v => this.setField("amount", v)}
                   value={form.amount}
                   min={SALARY_MIN}
+                  step={1000}
                   name="amount"
                   size="large"
-                />
-              </Form.Item>
-
-              <Form.Item>
-                <CalculatorSlider
-                  onChange={v => this.setField("amount", v)}
-                  value={form.amount}
-                  step={SALARY_STEP}
-                  min={SALARY_MIN}
-                  max={SALARY_MAX}
-                  name="amount"
                 />
               </Form.Item>
 
@@ -454,7 +426,7 @@ class VacationCalculator extends React.Component {
 
           <CalculatorCardResult
             title={lang.result["gross_vacation_amount"]}
-            text={this.vacationSalary}
+            text={result.vacation_salary}
           />
 
           <CalculatorCardResult

@@ -1,7 +1,14 @@
 import React from "react"
+import { Select } from "antd"
 import { cloneDeep } from "lodash"
-import { SALARY_MAX, SALARY_MIN } from "../utilities/salary"
-import { CalculatorCol, CalculatorInput, CalculatorTable, ColHeader } from "../styled"
+import {
+  PENSION_FIELD_NO,
+  PENSION_FIELD_YES,
+  PENSION_FIELD_YES_VOLUNTEER,
+  SALARY_MAX,
+  SALARY_MIN,
+} from "../utilities/salary"
+import { CalculatorCol, CalculatorInput, CalculatorSelect, CalculatorTable, ColHeader } from "../styled"
 
 class EmployeeSalaryTable extends React.Component {
   constructor(props) {
@@ -26,6 +33,7 @@ class EmployeeSalaryTable extends React.Component {
           <ColHeader>{lang.name}</ColHeader>
           <ColHeader>{lang.day}</ColHeader>
           <ColHeader>{lang.hour}</ColHeader>
+          <ColHeader>{lang.social_fee}</ColHeader>
           <ColHeader>{lang.salary}</ColHeader>
         </tr>
         </thead>
@@ -36,6 +44,18 @@ class EmployeeSalaryTable extends React.Component {
             <CalculatorCol>{employee.name}</CalculatorCol>
             <CalculatorCol>{employee.days}</CalculatorCol>
             <CalculatorCol>{employee.hours}</CalculatorCol>
+            <td width="150">
+              <CalculatorSelect
+                size="large"
+                style={{width: '100%'}}
+                value={employee.pension}
+                onChange={value => this.setField({ name: "pension", value, i })}
+              >
+                <Select.Option value={PENSION_FIELD_YES}>{lang.yes}</Select.Option>
+                <Select.Option value={PENSION_FIELD_YES_VOLUNTEER}>{lang.yes_volunteer}</Select.Option>
+                <Select.Option value={PENSION_FIELD_NO}>{lang.no}</Select.Option>
+              </CalculatorSelect>
+            </td>
             <td>
               <CalculatorInput
                 onChange={value => this.setField({ name: "amount", value, i })}

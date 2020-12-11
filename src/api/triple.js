@@ -1,7 +1,9 @@
 import axios from 'axios';
 
-const baseURL = 'http://triple-c-api.algorithm.am';
-// const baseURL = 'http://triplebe.loc/';
+// TODO: change api baseURL
+
+// const baseURL = 'http://triple-c-api.algorithm.am';
+const baseURL = 'http://triplebe.loc/';
 
 export default axios.create({
   baseURL,
