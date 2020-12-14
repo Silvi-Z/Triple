@@ -247,11 +247,11 @@ class VacationCalculator extends React.Component {
     this.dateFromInput.addEventListener("input", this.handlePickerInput)
     this.dateToInput.addEventListener("input", this.handlePickerInput)
 
-    window.addEventListener('scroll', this.handleWindowScroll)
+    // window.addEventListener('scroll', this.handleWindowScroll)
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
-    this.autoCalculate(prevState)
+    // this.autoCalculate(prevState)
   }
 
   componentWillUnmount() {
@@ -261,8 +261,8 @@ class VacationCalculator extends React.Component {
   render() {
     const { form, result } = this.state
     const { lang } = this.props
-    const width =  (typeof window !== `undefined`)
-      ? document.documentElement.clientWidth : 992
+    // const width =  (typeof window !== `undefined`)
+    //   ? document.documentElement.clientWidth : 992
 
     return (
       <Row align="start" gutter={20} ref={this.row}>
@@ -282,7 +282,7 @@ class VacationCalculator extends React.Component {
               size="large"
             >
               <Row gutter={10} align="middle">
-                <Col span={12}>
+                <Col span={8}>
                   <Form.Item label={<Label>{lang.start}</Label>}>
                     <CalculatorDatePicker
                       disabledDate={d => form.date_to && (d.isSameOrAfter(form.date_to, "day"))}
@@ -296,7 +296,7 @@ class VacationCalculator extends React.Component {
                     />
                   </Form.Item>
                 </Col>
-                <Col span={12}>
+                <Col span={8}>
                   <Form.Item label={<Label>{lang.end}</Label>}>
                     <CalculatorDatePicker
                       onChange={date => this.setDateField("date_to", date)}
@@ -419,7 +419,7 @@ class VacationCalculator extends React.Component {
           </Card>
         </Col>
 
-        <Col xs={24} sm={24} md={24} lg={8} xl={8} xxl={8} ref={this.col} className={width >= 992 ? 'calculator-result':'' }>
+        <Col xs={24} sm={24} md={24} lg={8} xl={8} xxl={8} ref={this.col}>
           <FormLabel style={{ margin: 0 }}>{lang.result.title}</FormLabel>
 
           <UnderLine />

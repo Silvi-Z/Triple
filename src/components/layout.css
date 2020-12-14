@@ -1312,3 +1312,11 @@ pre tt:after {
   margin-right: 9px;
   color: #000000;
 }
+
+a.calc-nav-item {
+  transition: background-color ease-in-out 0.1s;
+}
+a.calc-nav-item:hover {
+  background-color: #BCE7EC !important;
+  border-radius: 5px !important;
+}

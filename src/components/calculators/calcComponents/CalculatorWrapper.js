@@ -22,7 +22,7 @@ export const SharedWrapperCol = styled(Col)`
 `;
 
 const H1Styled = styled.h1`
-  font-family: ArialAMU;
+  font-family: ArialAMU,serif;
   font-style: normal;
   font-weight: bold;
   font-size: 24px;
@@ -30,9 +30,10 @@ const H1Styled = styled.h1`
   text-align: center;
   letter-spacing: 0.15px;
   color: #000000;
+  margin-top: 50px;
 `
 const TextStyled = styled.p`
-  font-family: ArialAMU;
+  font-family: ArialAMU,serif;
   font-style: normal;
   font-weight: normal;
   font-size: 18px;
@@ -46,7 +47,7 @@ const TextStyled = styled.p`
 const ShareLabel = styled.h3`
   width: 83px;
   height: 15px;
-  font-family: ArialAMU;
+  font-family: ArialAMU,serif;
   font-size: 16px;
   font-weight: normal;
   font-stretch: normal;
@@ -113,7 +114,7 @@ const CalculatorWrapper = ({ ctx, children }) => {
         <Col className="px-35" span={6}>
           <CalculatorNav t={calculator} locale={ctx.locale} />
         </Col>
-        <Col span={18}>
+        <Col span={18} style={{paddingRight: '35px'}}>
           {children}
         </Col>
       </Row>

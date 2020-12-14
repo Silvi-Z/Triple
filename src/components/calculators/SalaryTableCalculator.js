@@ -493,8 +493,8 @@ class SalaryTableCalculator extends React.Component {
     const { form, employees, result, loading } = this.state
 
     return (
-      <Row align="start" gutter={0}>
-        <Col className="px-35" span={16}>
+      <Row align="start" gutter={20}>
+        <Col span={16}>
           <Row align="center" style={{justifyContent: 'space-between'}}>
             <FormLabel>{lang.title}</FormLabel>
 
@@ -715,7 +715,7 @@ class SalaryTableCalculator extends React.Component {
           </Card>
         </Col>
 
-        <Col className="px-35" span={8}>
+        <Col span={8}>
           <FormLabel style={{margin: 0}}>{lang.result.title}</FormLabel>
 
           <UnderLine/>
