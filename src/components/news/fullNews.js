@@ -42,7 +42,9 @@ const FullInfo = ({ filteredData, data , lang , pageContext}) => {
   useEffect(() => {
     resize()
   });
-  window.addEventListener("resize", resize);
+  if (typeof window !== `undefined`) {
+    window.addEventListener("resize", resize);
+  }
 
   let urlShared;
 

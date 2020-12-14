@@ -63,16 +63,15 @@ export const InformationNavRow = styled.div`
   }
 `
 export const InformationUsfulCol = styled.button`
-  width: 286px;
-  max-width: 286px;
+  width: 303px;
+  max-width: 303px;
   background-color: ${props => props.active ? "white" : "black"};
   color: ${props => props.active ? "black" : "white"};
   height: 49px;
   display:flex;
   justify-content:center;
   align-items:center;
-  letter-spacing: 0.15px;
-  justify-content: center;
+  letter-spacing: 1.15px;
   margin-right:30px;
   @media only screen and (max-width: 657px){
     margin-right:0;
@@ -82,15 +81,15 @@ export const InformationUsfulCol = styled.button`
   
 `
 export const InformationDocumentCol = styled.button`
-  width: 286px;
-  max-width: 286px;
+  width: 303px;
+  max-width: 303px;
   background-color: ${props => props.active ? "white" : "black"};
   color: ${props => props.active ? "black" : "white"};
   height: 49px;
   display:flex;
   justify-content:center;
   align-items:center;
-  letter-spacing: 0.15px;
+  letter-spacing: 1.15px;
   @media only screen and (max-width: 657px){
     width:100%;
   }

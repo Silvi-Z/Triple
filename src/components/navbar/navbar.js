@@ -111,7 +111,7 @@ const activeStyle = {
   border: "1px solid #009db8",
 }
 
-const Navbar = ({ open, color, setMenuColor, responseWrapper, setResponseWrapper,lang, langText, originalPath }) => {
+const Navbar = ({ open, color, setMenuColorProp, responseWrapper, setResponseWrapper,lang, langText, originalPath }) => {
   const [languageText, setLanguageText] = useState(["Հայ", "Eng", "Рус"])
 
   const language = (
@@ -176,7 +176,9 @@ const Navbar = ({ open, color, setMenuColor, responseWrapper, setResponseWrapper
     const innerWidth = (window.innerWidth);
     (innerWidth>=1021 && !responseWrapper) ? setResponseWrapper(!responseWrapper) : null
   }
-  window.addEventListener("resize", resize);
+  if (typeof window !== `undefined`) {
+    window.addEventListener("resize", resize);
+  }
 
   useEffect(() => {
     checkDefaultLanguage(lang)
@@ -184,7 +186,7 @@ const Navbar = ({ open, color, setMenuColor, responseWrapper, setResponseWrapper
 
   return (
     <>
-      <ResponsiveNavWrapper menuColor={color}>
+      <ResponsiveNavWrapper menuColorProp={color}>
         <div  style={{ textAlign: "center" , display: 'flex'}}>
           <RespNavLink to={`/${lang}/`} onClick={() => !responseWrapper ? open() : ''}>
             <HeadMainIcon src={!responseWrapper ?  WhiteLogo : BlackLogo} alt={"icon"} />

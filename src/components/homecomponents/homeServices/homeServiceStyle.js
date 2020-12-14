@@ -76,7 +76,7 @@ export const PElement = styled.p`
   }
 `
 export const ContentLink = styled(Link)`
-  transition:0;
+  transition:unset;
   width:100%;
 `
 export const InfoAboutPartners = styled.div`

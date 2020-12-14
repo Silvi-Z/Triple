@@ -20,7 +20,7 @@ import {
 } from "../components/careercomponents/careerForm/formStyle"
 
 const Career = ({ pageContext }) => {
-  const [careerdata, setcareerdata] = useState([
+  const [careerdata, setCareerdata] = useState([
     {
       status: true,
       data: {
@@ -42,7 +42,7 @@ const Career = ({ pageContext }) => {
   const getCareerData = () => {
     let TransText = pageContext.localeResources.translation.career
     let newData = TransText.drop_content
-    setcareerdata(newData)
+    setCareerdata(newData)
   }
 
   useEffect(() => {
@@ -57,7 +57,7 @@ const Career = ({ pageContext }) => {
           ? { ...d, open: false }
           : { ...d, open: false }
     )
-    setcareerdata(data)
+    setCareerdata(data)
   }
   const getSharedUrl = lng => {
     if (lng === "en") {

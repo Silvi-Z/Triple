@@ -47,7 +47,7 @@ const UsefulNews = ({news, lang , buttonDisplay, setButtonDisplay }) => {
                   {/*<NavLink>*/}
                     <SeeMoreSingleNews
                       className="see_more_btn"
-                    > ԱՎԵԼԻՆ
+                    > տեսնել ավելին
                     </SeeMoreSingleNews>
                   {/*</NavLink>*/}
                 </MoreRow>

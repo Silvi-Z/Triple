@@ -142,10 +142,16 @@ const Services = ({ location, pageContext }) => {
     })
     setserviceData(data)
   }
+  useEffect(() => {
+    if (typeof window !== `undefined`){
+      window.addEventListener("scroll", handleScroll);
+      return () => window.removeEventListener("scroll", handleScroll)
+    }
+  }, [])
 
   function handleScroll() {
     const hash = location.hash
-    if (hash && '/'+pageContext.locale + pageContext.originalPath){
+    if (hash && typeof window !== `undefined`){
       const serviceDataNew = [...serviceData];
       const foundIndex = serviceDataNew.findIndex(el => "#" + el.data.scroll_id === hash)
       const foundElement = serviceDataNew[foundIndex];
@@ -157,15 +163,12 @@ const Services = ({ location, pageContext }) => {
         serviceDataNew[foundIndex] = {
           ...foundElement,
           open: true
-        }
+        };
         setserviceData(serviceDataNew)
-        window.removeEventListener("scroll", handleScroll);
       }
     }
   }
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll)
-  }, [])
+
 
   const toggleFromHomePage = state => {
     state === null ? (state = 0) : state
