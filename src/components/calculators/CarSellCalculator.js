@@ -102,7 +102,7 @@ class CarSellCalculator extends React.Component {
               size="large"
             >
               <Row gutter={10} align="middle">
-                <Col span={12}>
+                <Col span={10}>
                   <Form.Item label={<Label>{lang.achievement}</Label>}>
                     <CalculatorDatePicker
                       onChange={date => this.setField("achievementDate", date)}
@@ -112,7 +112,7 @@ class CarSellCalculator extends React.Component {
                     />
                   </Form.Item>
                 </Col>
-                <Col span={12}>
+                <Col span={8}>
                   <Form.Item label={<Label>{lang.alienation}</Label>}>
                     <CalculatorDatePicker
                       onChange={date => this.setField("alienationDate", date)}

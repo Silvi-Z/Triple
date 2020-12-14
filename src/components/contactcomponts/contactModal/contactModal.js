@@ -1,8 +1,9 @@
 import React from "react"
 import { Modal } from "antd"
-import ModalImg from "../../../assets/modal/email.png"
 import "./modalStyle.css"
 import { Img, H2, P } from "./modalStyle"
+import ModalImg from "../../../assets/modal/email.png"
+
 const CareerModal = ({ handleOk, modalVisible }) => {
     return (
         <div>

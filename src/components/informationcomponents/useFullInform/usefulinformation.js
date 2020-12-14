@@ -2,42 +2,47 @@ import React from "react"
 import { RightOutlined } from "@ant-design/icons"
 import {
   ContainerUseful,
+  DownloadLink,
+  IconWrapper,
+  GeneralLink,
   TextWrapper,
   ListWrapper,
   Hr,
-  IconWrapper,
 } from "./useStyle"
-import "./useStyle.css"
 
 const UsefulInform = ({ usedata }) => {
   // const linklist =
 
   return (
-    <a href={usedata.data.href}>
+
     <ContainerUseful>
-      <TextWrapper span={24}>
-        <a href={usedata.data.href} target="_blank">
+      <GeneralLink
+        to={usedata.data.href}
+        target="_blank"
+      >
+        <TextWrapper span={24}>
           <h2>{usedata.data.first_heading}</h2>
-        </a>
-        <IconWrapper><RightOutlined/></IconWrapper>
-      </TextWrapper>
-      <Hr/>
+          <IconWrapper/>
+        </TextWrapper>
+      </GeneralLink>
+      <Hr />
       <ListWrapper>
-        <ul>{usedata.data.links.map(({ link, id, label }) => (
-          <a
-            href={link}
-            download={link}
-            target="_blank"
-            key={id}
-          >
-            {label}
-          </a>
-        ))}
+        <ul>
+          {usedata.data.links.map(({ link, id, label }) => (
+            <DownloadLink
+              href={link}
+              download={link}
+              target="_blank"
+              key={id}
+            >
+              {label}
+            </DownloadLink>
+          ))}
         </ul>
       </ListWrapper>
 
     </ContainerUseful>
-    </a>
+
   )
 }
 

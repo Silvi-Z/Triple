@@ -1,34 +1,15 @@
-import React, { useState, useEffect } from "react"
-import { Row, Col } from "antd"
-import AlgorithmImg from "../../../assets/homeImages/partners/algorithm-logo.png"
-import BestSolutions from "../../../assets/homeImages/partners/best_solutions.png"
-import KochonImg from "../../../assets/homeImages/partners/kochon.png"
-import OSN from "../../../assets/homeImages/partners/osn.png"
-import AbcImg from "../../../assets/homeImages/partners/abc.png"
-import Sky from "../../../assets/homeImages/partners/sky.png"
-import Digilite from "../../../assets/homeImages/partners/digilite.png"
-import Elev8rPeach from "../../../assets/homeImages/partners/elev8r_peach.png"
-import Digilabs from "../../../assets/homeImages/partners/digilabs.png"
-import RightArrowImg from "../../../assets/homeImages/right-arrow.png"
+import React from "react"
+import contentData from "./contentData"
 import {
   NavLink,
-  PartnerspHeadingColumn,
-  H2Styled,
   PStyled,
-  SeemoreWrapper,
-  SeemoreColumn,
-  SeemoreSpan,
-  PartnersLogosFirstRow,
-  Seemoreimg,
+  H2Styled,
   IconWrapper,
+  SeemoreWrapper,
   ResponsWrapper,
-  IconWrapperCol,
-  IconWrapperColLast,
-  IconWrapperSecondLastCol,
-  IconWrapperSecondCol,
-  ContainerRow
+  PartnerspHeadingColumn,
 } from "./homePartStyle.js"
-import { Borders, ServiceNameWrapper } from "../homeServices/homeServiceStyle"
+import { ContentContainer, Div, InfoAboutPartners, ServiceNameWrapper } from "../homeServices/homeServiceStyle"
 
 const Homepartners = ({ langText, lang }) => {
   return (
@@ -40,68 +21,19 @@ const Homepartners = ({ langText, lang }) => {
         </PStyled>
       </PartnerspHeadingColumn>
       <ResponsWrapper>
-            <Borders
-              borderRight
-              borderBottom
-            >
+        {contentData.map(item => (
+          <ContentContainer>
+            <Div>
               <ServiceNameWrapper>
-                <IconWrapper src={AlgorithmImg} alt={"icon"}/>
+                <IconWrapper src={item.src} alt={"icon"}/>
               </ServiceNameWrapper>
-            </Borders>
-            <Borders
-              borderBottom
-              borderRight
-              borderLeft
-            ><ServiceNameWrapper>
-              <IconWrapper src={AbcImg} alt={"icon"}/>
-            </ServiceNameWrapper> </Borders>
-            <Borders
-              borderBottom
-              borderLeft
-            ><ServiceNameWrapper>
-              <IconWrapper src={KochonImg} alt={"icon"}/>
-            </ServiceNameWrapper> </Borders>
-            <Borders
-              borderBottom
-              borderRight
-              borderTop
-            ><ServiceNameWrapper>
-              <IconWrapper src={OSN} alt={"icon"}/>
-            </ServiceNameWrapper> </Borders>
-            <Borders
-              borderBottom
-              borderRight
-              borderTop
-              borderLeft
-            ><ServiceNameWrapper>
-              <IconWrapper src={BestSolutions} alt={"icon"}/>
-            </ServiceNameWrapper> </Borders>
-            <Borders
-              borderBottom
-              borderLeft
-              borderTop
-            ><ServiceNameWrapper>
-              <IconWrapper src={Sky} alt={"icon"}/>
-            </ServiceNameWrapper> </Borders>
-            <Borders
-              borderRight
-              borderTop
-            ><ServiceNameWrapper>
-              <IconWrapper src={Digilite} alt={"icon"}/>
-            </ServiceNameWrapper> </Borders>
-            <Borders
-              borderRight
-              borderLeft
-              borderTop
-            ><ServiceNameWrapper>
-              <IconWrapper src={Elev8rPeach} alt={"icon"}/>
-            </ServiceNameWrapper> </Borders>
-            <Borders
-              borderLeft
-              borderTop
-            ><ServiceNameWrapper>
-              <IconWrapper src={Digilabs} alt={"icon"}/>
-            </ServiceNameWrapper> </Borders>
+              <InfoAboutPartners>
+                {item.name}
+                <p>{item.sphere}</p>
+              </InfoAboutPartners>
+            </Div>
+          </ContentContainer>
+        ))}
       </ResponsWrapper>
       <NavLink to={`/${lang}/contact`}>
         <SeemoreWrapper

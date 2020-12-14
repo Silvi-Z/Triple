@@ -559,7 +559,7 @@ class SalaryTableCalculator extends React.Component {
               {form.by
                 ? <>
                   <Row gutter={10} align="start">
-                    <Col span={10}>
+                    <Col span={8}>
                       <Form.Item label={<Label>{lang.form.start}</Label>}>
                         <CalculatorDatePicker
                           disabledDate={this.handleDateFromDisabled}
@@ -575,7 +575,7 @@ class SalaryTableCalculator extends React.Component {
                         />
                       </Form.Item>
                     </Col>
-                    <Col span={10}>
+                    <Col span={8}>
                       <Form.Item label={<Label>{lang.form.end}</Label>}>
                         <CalculatorDatePicker
                           defaultPickerValue={this.dateFromValue}

@@ -1,21 +1,22 @@
 import React from "react"
 import {
-  H1Element,
+  Slogan,
   ImagePart,
   BigImage,
+  TripleIcon,
   SliderAboutUs,
   TextWrapper,
   PElement,
   TextComponent,
   TextOrder,
   InformationSection,
-  TripleIconWrapper,
+  TripleIconWrapper, SliderText,
 } from "./homeAboutUsStyle"
 import PhoneImg from "../../../assets/homeImages/phone.png"
-import TripleIcon from "../../../assets/homeImages/tripleIcon.png"
-// import "../../layout.css"
+import Icon from "../../../assets/homeImages/tripleIcon.png"
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
+import slides from "./sliderDatas"
 
 const HomeAboutUs = () => {
   const settings = {
@@ -45,9 +46,9 @@ const HomeAboutUs = () => {
 
   return (
     <>
-      <H1Element>
+      <Slogan>
         TRUST.DEAL.PROFIT!
-      </H1Element>
+      </Slogan>
       <InformationSection>
         <ImagePart>
           <BigImage src={PhoneImg} />
@@ -58,33 +59,15 @@ const HomeAboutUs = () => {
           </TextWrapper>
         </ImagePart>
         <TripleIconWrapper>
-          <img src={TripleIcon} />
+          <TripleIcon src={Icon} />
         </TripleIconWrapper>
         <SliderAboutUs {...settings}>
-          <TextComponent>
-            <TextOrder>01.</TextOrder>
-            <p>Թրիփլ Քոնսալթինգը հիմնադրվել է 2019 թ.-ին ։ Լինելով նոր և երիտասարդ կազմակերպություն ` հասցրել է գրանցել բազմաթիվ հաջողություններ և ձերք բերել հավատարիմ գործընկերներ։</p>
-          </TextComponent>
-          <TextComponent>
-            <TextOrder>02.</TextOrder>
-            <p>Թրիփլ Քոնսալթինգը հիմնադրվել է 2019 թ.-ին ։ Լինելով նոր և երիտասարդ կազմակերպություն ` հասցրել է գրանցել բազմաթիվ հաջողություններ և ձերք բերել հավատարիմ գործընկերներ։</p>
-          </TextComponent>
-          <TextComponent>
-            <TextOrder>03.</TextOrder>
-            <p>Թրիփլ Քոնսալթինգը հիմնադրվել է 2019 թ.-ին ։ Լինելով նոր և երիտասարդ կազմակերպություն ` հասցրել է գրանցել բազմաթիվ հաջողություններ և ձերք բերել հավատարիմ գործընկերներ։</p>
-          </TextComponent>
-          <TextComponent>
-            <TextOrder>01.</TextOrder>
-            <p>Թրիփլ Քոնսալթինգը հիմնադրվել է 2019 թ.-ին ։ Լինելով նոր և երիտասարդ կազմակերպություն ` հասցրել է գրանցել բազմաթիվ հաջողություններ և ձերք բերել հավատարիմ գործընկերներ։</p>
-          </TextComponent>
-          <TextComponent>
-            <TextOrder>02.</TextOrder>
-            <p>Թրիփլ Քոնսալթինգը հիմնադրվել է 2019 թ.-ին ։ Լինելով նոր և երիտասարդ կազմակերպություն ` հասցրել է գրանցել բազմաթիվ հաջողություններ և ձերք բերել հավատարիմ գործընկերներ։</p>
-          </TextComponent>
-          <TextComponent>
-            <TextOrder>03.</TextOrder>
-            <p>Թրիփլ Քոնսալթինգը հիմնադրվել է 2019 թ.-ին ։ Լինելով նոր և երիտասարդ կազմակերպություն ` հասցրել է գրանցել բազմաթիվ հաջողություններ և ձերք բերել հավատարիմ գործընկերներ։</p>
-          </TextComponent>
+          {slides.map((slide ,index)=>(
+            <TextComponent key={index}>
+              <TextOrder>{slide.order}</TextOrder>
+              <SliderText>{slide.context}</SliderText>
+            </TextComponent>
+          ))}
         </SliderAboutUs>
       </InformationSection>
     </>

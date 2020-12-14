@@ -1,31 +1,29 @@
 /*eslint-disable */
-import React, { useState, useEffect } from "react"
-import { Row, Col } from "antd"
-import ReportForm from "../components/reportComponents/reportForm/reportForm"
+import React, { useState } from "react"
+import { Col } from "antd"
 import ReportForm3 from "../components/reportComponents/reportForm3/reportForm3"
 import ReportForm2 from "../components/reportComponents/reportForm2/reportForm2"
+import ReportForm from "../components/reportComponents/reportForm/reportForm"
+import { FacebookShareButton, LinkedinShareButton } from "react-share"
 import { PlusOutlined, MinusOutlined } from "@ant-design/icons"
-import CarImg from "../assets/calcImages/carSell.png"
 import useTranslations from "../components/useTranslations"
+import CarImg from "../assets/calcImages/carSell.png"
 import SEO from "../components/seo"
 import {
   ReportParagraphRow,
-  H2Styled,
-  H3Styled,
-  PStyled,
-  HeadIcon,
-  ToggleButton,
+  SharedWrapperCol,
   ReportDropRow,
   ReportFormRow,
-  H3StyledForm,
-  SharedWrapperCol,
-  FaceLink,
-  ShareLabel,
-  LinkedinLink,
   FacebookIcon,
+  ToggleButton,
+  H3StyledForm,
   LinkdinIcon,
+  ShareLabel,
+  H2Styled,
+  H3Styled,
+  HeadIcon,
+  PStyled,
 } from "../components/reportComponents/reportStyle"
-import { FacebookShareButton, LinkedinShareButton } from "react-share"
 
 const Reports = ({ pageContext }) => {
   const [showForm, toggleForm] = useState(true)
@@ -171,7 +169,7 @@ const Reports = ({ pageContext }) => {
           <LinkedinShareButton
             children={<LinkdinIcon />}
             url={urlShared}
-          ></LinkedinShareButton>
+          > </LinkedinShareButton>
         </SharedWrapperCol>
       </ReportFormRow>
     </>

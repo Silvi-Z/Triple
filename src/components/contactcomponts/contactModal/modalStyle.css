@@ -12,9 +12,6 @@
 .ant-upload{
     width: 100%;
 }
-.ant-form-item-required{
-    margin-top: 30px!important;
-}
 
 .ant-upload-list.ant-upload-list-text {
     display: none;
@@ -50,14 +47,6 @@
  }
 .ant-input:hover{
     border-color:#D0D0D0;
-}
-.ant-input:-webkit-autofill,
-.ant-input:-webkit-autofill:hover,
-.ant-input:-webkit-autofill:focus,
-.ant-input:-webkit-autofill:active  {
-    -webkit-box-shadow: 0 0 0 30px black inset !important;
-    -webkit-text-fill-color: white;
-    caret-color: white;
 }
 .ant-form-item-has-error .ant-input, .ant-form-item-has-error .ant-input-affix-wrapper, .ant-form-item-has-error .ant-input:hover, .ant-form-item-has-error .ant-input-affix-wrapper:hover {
     background-color: transparent;

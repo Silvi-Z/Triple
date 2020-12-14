@@ -1,10 +1,9 @@
 import { Col } from "antd"
 import styled from "styled-components"
-import FbBlueIcon from "../../../assets/career/facebookBlueCareer.svg"
+import { FacebookShareButton, LinkedinShareButton } from "react-share"
 import FbBlackIcon from "../../../assets/career/facebookCareer.svg"
 import LinkdinBlackIcon from "../../../assets/career/linkedinCareer.svg"
-import LinkedinBlueIcon from "../../../assets/career/linkedinBlueCareer.svg"
-import { FacebookShareButton, LinkedinShareButton } from "react-share"
+
 export const ShareLabel = styled.h3`
   width: 100%;
   text-align: start !important;
@@ -22,6 +21,7 @@ export const ShareLabel = styled.h3`
   font-size:20px;
   }
 `
+
 export const SharedWrapperCol = styled(Col)`
   max-width:100%;
   flex-wrap:wrap;
@@ -29,22 +29,14 @@ export const SharedWrapperCol = styled(Col)`
   justify-content: end;
   margin-top: 30px;
   padding-left:20px;
-  @media only screen and (max-width: 768px){
-  padding-left:0;
-  }
-  .react-share__ShareButtonSharedWrapperCol {
-    all: unset;
-  }
+    @media only screen and (max-width: 768px){
+     padding-left:0;
+    }
+    .react-share__ShareButtonSharedWrapperCol {
+      all: unset;
+    }
 `
-export const FaceLink = styled.a`
-  color: black;
-  font-size: 32px;
-  margin-top: -4%;
-  &:hover {
-    cursor: pointer;
-    color: #009db8;
-  }
-`
+
 export const LinkedinLink = styled.a`
   color: black;
   font-size: 32px;
@@ -54,40 +46,44 @@ export const LinkedinLink = styled.a`
     color: #009db8;
   }
 `
+
 export const FacebookIcon = styled.div`
    height: 32px;
    width: 32px;
    background-image: url(${FbBlackIcon});
    cursor: pointer;
 `
+
 export const FacebookShare = styled(FacebookShareButton)`
-    outline:none;
-    background-image:url(${FbBlackIcon});
-    display: block;
-    background-position: 0 0;
-    background-repeat: no-repeat;
-  &:hover ${FacebookIcon}{
-    transition: all .3s ease;
-    transform: scale(1.5);
-    opacity: 0
-  }
+  outline:none;
+  background-image:url(${FbBlackIcon});
+  display: block;
+  background-position: 0 0;
+  background-repeat: no-repeat;
+    &:hover ${FacebookIcon}{
+      transition: all .3s ease;
+      transform: scale(1.5);
+      opacity: 0
+    }
 `
+
 export const LinkdinIcon = styled.div`
   height: 32px;
   width: 32px;
   background-image: url(${LinkdinBlackIcon});
   cursor: pointer;
 `
+
 export const LinkedinShare = styled(LinkedinShareButton)`
-    outline:none;
-    background-image:url(${LinkdinBlackIcon});
-    margin-left:19px;
-    display: block;
-    background-position: 0 0;
-    background-repeat: no-repeat;
-  &:hover ${LinkdinIcon}{
-    transition: all .3s ease;
-    transform: scale(1.5);
-    opacity: 0
-  }
+  outline:none;
+  background-image:url(${LinkdinBlackIcon});
+  margin-left:19px;
+  display: block;
+  background-position: 0 0;
+  background-repeat: no-repeat;
+    &:hover ${LinkdinIcon}{
+      transition: all .3s ease;
+      transform: scale(1.5);
+      opacity: 0
+    }
 `

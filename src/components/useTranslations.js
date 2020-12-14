@@ -34,6 +34,7 @@ const query = graphql`
             layout {
               header {
                 serveTitle
+                newsTitle
                 reportTitle
                 calcTitle
                 infoTitle
@@ -51,13 +52,6 @@ const query = graphql`
                 title
                 sub_title
                 button_text
-                serviceName_1
-                serviceName_2
-                serviceName_3
-                serviceName_4
-                serviceName_5
-                serviceName_6
-                serviceName_7
               }
               our_partners {
                 title
@@ -125,6 +119,7 @@ const query = graphql`
             }
             careerForm {
               textare_label
+              email_label
               file_label
               send_button
               share

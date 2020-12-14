@@ -17,8 +17,7 @@ const Main = styled(Content)`
   margin: 0 auto;
 `
 const FooterCust = styled(Footer)`
-padding:50px 115px;
-height:196px;
+  padding:50px 115px;
   // height: ${props => (props.backcolor === "true" ? "130px" : "208px")};
   background-color: ${props =>
     props.backcolor === "true" ? "#1c1d21" : "white"};
@@ -49,9 +48,12 @@ const Layout = ({ children, location, pageContext: { locale, originalPath, local
   }, [location, i18n, locale]);
 
   const [responseWrapper, setResponseWrapper] = useState(true)
+  const [menuColor , setMenuColor] = useState("")
   
   const openMenu = () => {
-    setResponseWrapper(!responseWrapper)
+    setResponseWrapper(!responseWrapper);
+    (menuColor==="") ? setMenuColor("#1C1D21"): setMenuColor("");
+    document.querySelector("body").classList.toggle("opened_response_menu")
   }
   
   return (
@@ -59,7 +61,10 @@ const Layout = ({ children, location, pageContext: { locale, originalPath, local
       <Navbar
         open={openMenu}
         originalPath={originalPath}
+        setMenuColor={setMenuColor}
+        menuColor={menuColor}
         responseWrapper={responseWrapper}
+        setResponseWrapper={setResponseWrapper}
         lang={locale}
         langText={localeResources.translation.layout}
       />

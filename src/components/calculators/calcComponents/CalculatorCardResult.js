@@ -9,7 +9,7 @@ const CardTitle = styled.h3`
   font-weight: bold;
   font-size: 16px;
   line-height: 25px;
-  letter-spacing: 0.15px;
+  letter-spacing: 1.15px;
   color: #000000;
   margin-bottom: 10px;
 `;
@@ -20,7 +20,7 @@ const CardSubtitle = styled.p`
   font-weight: normal;
   font-size: 12px;
   line-height: 25px;
-  letter-spacing: 0.15px;
+  letter-spacing: 1.15px;
   color: rgba(0,0,0,.45);
 `
 
@@ -30,7 +30,7 @@ const CardText = styled.p`
   font-weight: bold;
   font-size: 22px;
   line-height: 25px;
-  letter-spacing: 0.15px;
+  letter-spacing: 1.15px;
   color: #00B3C7;
   margin: 0;
 `

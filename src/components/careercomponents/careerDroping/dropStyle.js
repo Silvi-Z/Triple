@@ -1,58 +1,59 @@
-import { Col, Button, Row } from "antd"
+import {  Button } from "antd"
 import styled from "styled-components"
-import  '../../layout.css'
 
 export const ToggleH2Styled = styled.h2`
   font-family: ArialAMU;
   font-size: 24px;
   font-weight: bold;
-  font-stretch: normal;
-  font-style: normal;
   line-height: normal;
-  letter-spacing: normal;
   text-align: left;
   color: #000000;
   margin:0;
+  align-items: center;
+  display: flex;
+  max-width: 85%;
   @media only screen and (max-width:1024px){
   font-size:20px;
   }
 `
+
 export const SubmitButton = styled.button`
   position:relative;
   overflow: hidden;
-  background:${props => props.color ? "white" : "black"};
+  background:${props => props.buttonColorProp ? "white" : "black"};
   width:260px;
   height:49px ;
   outline:none;
   font-weight:bold;
   border-style: outset;
   border-radius: 30px;
-  border:1px solid ${props => props.color ? "white" : "black"};
+  border:1px solid ${props => props.buttonColorProp ? "white" : "black"};
   font-size:16px;
-  color: ${props => props.color ? "black" : "white"};
+  color: ${props => props.buttonColorProp ? "black" : "white"};
   background-position: 50% 50%;
   display: inline-block;
-  background-image:linear-gradient( ${props => props.color ? `#000000, #000000` : `#ffffff, #ffffff` });
+  background-image:linear-gradient( ${props => props.buttonColorProp ? `#000000, #000000` : `#ffffff, #ffffff` });
   background-repeat: no-repeat;
   transition: background-size .5s, color .5s;
   background-size: 0% 100%;
-  &:hover{
-  background-size: 100% 100%;
-  color: ${props => props.color ? "white" : "black"};
-  cursor:pointer;
-  outline:none;
-  }
-  &:focus{
-  outline:none;
-  }
-  @media only screen and (max-width:1024px){
-    margin-bottom:19px;
-  }
-  @media only screen and (max-width:320px){
-    margin-bottom:25px;
-    width:100%;
-  }
+    &:hover {
+      background-size: 100% 100%;
+      color: ${props => props.buttonColorProp ? "white" : "black"};
+      cursor:pointer;
+      outline:none;
+    }
+    &:focus {
+      outline:none;
+    }
+    @media only screen and (max-width:1024px){
+      margin-bottom:19px;
+    }
+    @media only screen and (max-width:320px){
+      margin-bottom:25px;
+      width:100%;
+    }
 `
+
 export const H2Styled = styled.h2`
   font-family: ArialAMU;
   font-size: 18px;
@@ -89,84 +90,85 @@ export const ToggleButton = styled(Button)`
     border-color: #1C1D21;
   }
 `
-export const HeadIcon = styled.img`
-  width: 30px;
-  height: 30px;
-  @media (min-width: 1024px) {
-    width: 40px;
-    height: 40px;
-  }
+
+export const DropHeadingTitle = styled.div`
+  display:flex;
+  width:100%;
+  justify-content:space-between;
 `
-export const DropHeadingTitle = styled.div``
+
 export const DropHeadingButton = styled.div``
+
 export const FormWrapper = styled.div`
   display:flex;
-  justify-content:space-between;
-  border-bottom:1px solid #D0D0D0;
   width:100%;
   border-top:1px solid black;
-  padding: 40px 100px 53px 0;
-  @media only screen and (max-width:1024px){
-  flex-direction:column;
-  padding: 40px 0 53px 0;
-  }
-  @media only screen and (max-width:320px){
-  padding-top: 30px;
-  }
+  padding: 40px 24px 53px 24px;
+  justify-content:space-between;
+  border-bottom:1px solid #D0D0D0;
+  .ant-input:-webkit-autofill,
+  .ant-input:-webkit-autofill:hover,
+  .ant-input:-webkit-autofill:focus,
+  .ant-input:-webkit-autofill:active  {
+    -webkit-box-shadow: 0 0 0 30px white inset !important;
+    -webkit-text-fill-color: black;
+    caret-color: black;
+}
+    @media only screen and (max-width:1024px){
+      flex-direction:column;
+      padding: 40px 0 53px 0;
+    }
+    @media only screen and (max-width:320px){
+      padding-top: 30px;
+    }
 `
+
 export const OrderListWrapper = styled.div`
   justify-content:flex-start;
-  padding:0 20px 30px 20px;
   display:flex;
   flex-direction:column;
-  @media only screen and (max-width: 1024px){
-  padding:0;
-  width:100%;
-  }
+    @media only screen and (max-width: 1024px){
+      padding:0;
+      width:100%;
+    }
 `
+
 export const OrderList = styled.ul`
   list-style-type: none;
   margin-left:0;
   margin-bottom:0;
-  li {
-    text-indent: -5px;
-  }
-  li:before {
-    content: " - ";
-    color: black;
-    text-indent: -5px;
-  }
+    li {
+      text-indent: -5px;
+    }
+    li:before {
+      content: " - ";
+      color: black;
+      text-indent: -5px;
+    }
 `
+
 export const OrderSection = styled.li`
   text-indent:0!important;
   font-family: ArialAMU;
   font-size: 18px;
-  font-weight: normal;
-  font-stretch: normal;
-  font-style: normal;
   line-height: 1.88;
-  letter-spacing: normal;
   text-align: left;
   color: #000000;
   @media only screen and (max-width: 375px) {
     font-family: ArialAMU;
-    font-weight: normal;
-    font-stretch: normal;
-    font-style: normal;
-    letter-spacing: normal;
-    text-align: left;
     color: #000000;
   }
 `
+
 export const DropCareer = styled.div`
-    padding: 48px 20px;
-    display:flex;
-    align-items:start;
-    justify-content:space-between;
-    border-bottom: 1px solid;
-    border-color: #d7d7d7;
-    position:relative;
-  @media only screen and (max-width: 1024px){
-    padding: 40px 0;
+  padding: 48px 24px;
+  display:flex;
+  align-items:start;
+  justify-content:space-between;
+  border-bottom: 1px solid;
+  border-color: #d7d7d7;
+  position:relative;
+    @media only screen and (max-width: 1024px){
+      padding: 40px 0;
     }
 `
