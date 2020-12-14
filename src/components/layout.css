@@ -1488,7 +1488,7 @@ pre tt:after {
 }
 .whiteButton:hover{
   background: #1C1D21;
-  color: #FFFFFF;
+  color: #FFFFFF !important;
 }
 .whiteButton.ant-btn:focus{
   background: #FFFFFF;

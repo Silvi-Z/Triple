@@ -42,6 +42,7 @@ export const ToggleH2Styled = styled.h2`
 export const ToggleButton = styled(Button)`
   border-color:#1C1D21;
   width: 40px !important;
+  transition: 0.3s !important;
   height: 40px !important;
   visibility: visible !important;
   box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
