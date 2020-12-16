@@ -200,7 +200,7 @@ export const ContentContainer = styled.div`
 export const HomePageWrapper = styled.div`
   max-width:1440px;
   margin:0 auto;
-  padding:50px 60px 90px 55px;
+  padding:80px 60px 90px 55px;
   @media only screen and (max-width: 1024px) {
     padding:0 20px 63px 20px;
   }
@@ -235,6 +235,6 @@ export const ContainerRow = styled(Row)`
   justify-content: end;
   width: 100%;
   height: auto;
-  margin: 37 auto;
+  margin: auto;
   
 `

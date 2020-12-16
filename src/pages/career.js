@@ -18,7 +18,6 @@ import {
   LinkdinIcon,
   ShareLabel,
 } from "../components/careercomponents/careerForm/formStyle"
-
 const Career = ({ pageContext }) => {
   const [careerdata, setCareerdata] = useState([
     {
@@ -106,7 +105,6 @@ const Career = ({ pageContext }) => {
           url={urlShared}
           children={<FacebookIcon />}
         />
-
         <LinkedinShare
           url={urlShared}
           children={<LinkdinIcon />}

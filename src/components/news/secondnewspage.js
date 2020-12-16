@@ -13,7 +13,6 @@ import {
   SeeMoreNews,
   SeeMoreSingleNews,
 } from "./newsStyle"
-import img from "../../assets/newsImages/news_img1.png"
 import { NavLink } from "../homecomponents/homePartners/homePartStyle"
 
 
@@ -44,12 +43,10 @@ const UsefulNews = ({news, lang , buttonDisplay, setButtonDisplay }) => {
                 <NewsText>{item.description}</NewsText>
                 <MoreRow>
                   <DataItem>{item.date}</DataItem>
-                  {/*<NavLink>*/}
                     <SeeMoreSingleNews
                       className="see_more_btn"
                     > տեսնել ավելին
                     </SeeMoreSingleNews>
-                  {/*</NavLink>*/}
                 </MoreRow>
               </TextPart>
             </NewsItems>

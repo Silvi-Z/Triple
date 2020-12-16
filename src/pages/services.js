@@ -143,16 +143,15 @@ const Services = ({ location, pageContext }) => {
     setserviceData(data)
   }
   useEffect(() => {
-    if (typeof window !== `undefined`){
+    if (location.hash && typeof window !== `undefined`){
       window.addEventListener("scroll", handleScroll);
-      return () => window.removeEventListener("scroll", handleScroll)
     }
   }, [])
 
   function handleScroll() {
-    const hash = location.hash
+    const hash = location.hash;
+    const serviceDataNew = [...serviceData];
     if (hash && typeof window !== `undefined`){
-      const serviceDataNew = [...serviceData];
       const foundIndex = serviceDataNew.findIndex(el => "#" + el.data.scroll_id === hash)
       const foundElement = serviceDataNew[foundIndex];
       const distance = document.getElementById(foundElement.data.scroll_id) && document.getElementById(foundElement.data.scroll_id).getBoundingClientRect()
@@ -166,6 +165,11 @@ const Services = ({ location, pageContext }) => {
         };
         setserviceData(serviceDataNew)
       }
+      serviceDataNew.map(elem=>{
+       if (elem.open===true){
+         window.removeEventListener("scroll", handleScroll)
+       }
+      })
     }
   }
 

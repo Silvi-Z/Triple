@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { DownOutlined, UpOutlined } from "@ant-design/icons"
 import {
   Text,
@@ -11,6 +11,7 @@ import {
 } from "./servicedropStyle.js"
 
 const Servicedrop = ({ data, showServiceForm }) => {
+
   return (
     <ServiceDropRow  id={data.data.scroll_id}>
       <DropWrapper>
@@ -25,12 +26,11 @@ const Servicedrop = ({ data, showServiceForm }) => {
             {data.open ? <UpOutlined/> :  <DownOutlined />}
           </ToggleButton>
       </DropWrapper>
-      {data.open ? (
-        <DropTextCol>
-          <Text>{data.data.text}</Text>
+        <DropTextCol className={data.open ? 'openTextCol' : ''} >
+          <Text >
+            {data.data.text}
+          </Text>
         </DropTextCol>
-      ) : null
-      }
     </ServiceDropRow>
   )
 }

@@ -1,4 +1,4 @@
-import styled from "styled-components"
+import styled  from "styled-components"
 import { Button, Row } from "antd"
 
 export const DropWrapper = styled.div`
@@ -45,7 +45,6 @@ export const ToggleButton = styled(Button)`
   transition: 0.3s !important;
   height: 40px !important;
   visibility: visible !important;
-  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
   border: 1px solid #1C1D21;
   box-sizing: border-box;
   border-radius:50%;
@@ -56,6 +55,9 @@ export const ToggleButton = styled(Button)`
   &:hover{
     border-color:#1C1D21;
   }
+  &.ant-btn{
+    box-shadow: none;
+  }
   &.ant-btn:focus{
     border-color: #1C1D21;
   }
@@ -63,6 +65,7 @@ export const ToggleButton = styled(Button)`
     width: 30px;
     height: 30px;
   }
+  
 `
 
 export const Text = styled.div`
@@ -85,13 +88,19 @@ export const Text = styled.div`
 `
 
 export const DropTextCol = styled.div`
-   border-top: 1px solid black;
-   display: flex;
-   width: 100%;
-   padding: 48px 24px;
-   justify-content: space-between;
-   @media only screen and (max-width:1024px){
-    padding: 40px 0;
-    flex-direction:column;
-   }
+  border-top: 1px solid black;
+  width: 100%;
+  transition: .3s ease-in-out;
+  max-height: 1px;
+  padding: 0 24px;
+  opacity: 0;
+  @media only screen and (max-width:1024px){
+   padding: 40px 0;
+   flex-direction:column;
+  }
+  &.openTextCol{
+    max-height: 300px;
+    padding: 48px 24px;
+    opacity:100%;
+  }
 `

@@ -1,5 +1,4 @@
 import React, { useState , useEffect } from "react"
-import img from "../../assets/newsImages/news_img1.png"
 import {
   SeeMoreSingleNews,
   SharedWrapperCol,
