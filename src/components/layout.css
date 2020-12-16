@@ -1490,3 +1490,13 @@ a.calc-nav-item:hover {
   background-color: #BCE7EC !important;
   border-radius: 5px !important;
 }
+
+.ant-picker-cell-holiday {
+  background-color: #ff4d4f;
+  color: #ffffff;
+}
+
+.ant-picker-cell-weekend {
+  background-color: #ffa39e;
+  color: #000000;
+}

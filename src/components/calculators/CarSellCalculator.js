@@ -37,13 +37,15 @@ class CarSellCalculator extends React.Component {
 
     if (powerType === ENGINE_HORSEPOWER) {
       powerValue = power * 150;
+
+      return contractValue > powerValue ? contractValue : powerValue;
     }
 
     if (powerType === ENGINE_KILOWATTS) {
-      powerValue = power * 1.36
+      return  power * 1.36
     }
 
-    return contractValue > powerValue ? contractValue : powerValue;
+    return null
   }
 
   get text() {

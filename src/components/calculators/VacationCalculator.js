@@ -6,7 +6,7 @@ import { pick, isNull, isEmpty, isEqual } from "lodash"
 import { Row, Col, Card, Form, Radio, Checkbox } from "antd"
 import GrossSalaryTable from "./calcComponents/GrossSalaryTable"
 import CalculatorCardResult from "./calcComponents/CalculatorCardResult"
-import { holidays, workingDaysInRange } from "./utilities/vacation"
+import { isHoliday, isWeekend, workingDaysInRange } from "./utilities/vacation"
 import { Label, UnderLine, FormLabel, RadioLabel, CalculatorInput, ButtonSubmit, CalculatorDatePicker } from "./styled"
 import { schema, SALARY_MIN, TAX_FIELD_COMMON, TAX_FIELD_ENTERPRISE, TAX_FIELD_IT, PENSION_FIELD_NO, PENSION_FIELD_YES, PENSION_FIELD_YES_VOLUNTEER } from "./utilities/salary"
 
@@ -52,6 +52,8 @@ class VacationCalculator extends React.Component {
       monthAvgSalary: 0,
       calculated: false,
     }
+    this.holidays = [];
+    this.holidaysByMonth = []
   }
 
   get rowElement() {
@@ -150,7 +152,7 @@ class VacationCalculator extends React.Component {
 
     if (date_from && vacation_days) {
       for (let i = 1; i < vacation_days; i++) {
-        if (weekends.includes(momentFrom.day()) || holidays.includes(momentFrom.format('YYYY-MM-DD'))) {
+        if (weekends.includes(momentFrom.day()) || this.holidays.includes(momentFrom.format('YYYY-MM-DD'))) {
           i--
         }
 
@@ -174,8 +176,17 @@ class VacationCalculator extends React.Component {
       this.setField("vacation_days", workingDaysInRange({
         start: moment(date_from),
         end: moment(date_to)
-      }, working_schedule).length)
+      }, working_schedule, this.holidaysByMonth).length)
     }
+  }
+
+  fetchHolidays() {
+    triple.get('/api/holidays')
+      .then(res => {
+        this.holidays = res.data.holidays
+        this.holidaysByMonth = res.data.holidaysByMonth
+      })
+      .catch(err => console.log(err))
   }
 
   autoCalculate(prevState) {
@@ -222,6 +233,51 @@ class VacationCalculator extends React.Component {
     }
   }
 
+  /**
+   * Render picker calendar cells
+   *
+   * @param {moment.Moment} date
+   * @param {moment.Moment} today
+   * @param {String} range - can be 'start' or 'end'
+   * @return {JSX.Element}
+   */
+  handlePickerRender = (date, today, range) => {
+    const { form } = this.state
+
+    const condition = range === 'start'
+      ? form.date_to && (date.isSameOrAfter(form.date_to, "day"))
+      : !form.date_from || (date.isSameOrBefore(form.date_from, "day"))
+
+    if (date.isSame(today, 'day')) {
+      return <div className={
+        !condition
+          ? 'ant-picker-cell-inner ant-picker-cell-today'
+          : 'ant-picker-cell-inner'
+      }>
+        {date.format('D')}
+      </div>
+    } else if (isHoliday(date, this.holidays)) {
+      return <div className={
+        !condition
+          ? 'ant-picker-cell-inner ant-picker-cell-holiday'
+          : 'ant-picker-cell-inner'
+      }>
+        {date.format('D')}
+      </div>
+    } else if (isWeekend(date, form.working_schedule)) {
+      return <div className={
+        !condition
+          ? 'ant-picker-cell-inner ant-picker-cell-weekend'
+          : 'ant-picker-cell-inner'
+      }>
+        {date.format('D')}
+      </div>
+    }
+    else {
+      return <div className="ant-picker-cell-inner">{date.format('D')}</div>
+    }
+  }
+
   handleSubmit = () => {
     const { form } = this.state
     const data = { ...pick(form, Object.keys(schema.fields)), amount: this.vacationSalary }
@@ -244,9 +300,9 @@ class VacationCalculator extends React.Component {
   }
 
   componentDidMount() {
-    this.dateFromInput.addEventListener("input", this.handlePickerInput)
+    this.fetchHolidays()
     this.dateToInput.addEventListener("input", this.handlePickerInput)
-
+    this.dateFromInput.addEventListener("input", this.handlePickerInput)
     // window.addEventListener('scroll', this.handleWindowScroll)
   }
 
@@ -286,6 +342,7 @@ class VacationCalculator extends React.Component {
                   <Form.Item label={<Label>{lang.start}</Label>}>
                     <CalculatorDatePicker
                       disabledDate={d => form.date_to && (d.isSameOrAfter(form.date_to, "day"))}
+                      dateRender={(date, today) => this.handlePickerRender(date, today, 'start')}
                       onChange={date => this.setDateField("date_from", date)}
                       placeholder={lang.date_from_placeholder}
                       value={this.dateFromValue}
@@ -299,8 +356,9 @@ class VacationCalculator extends React.Component {
                 <Col span={8}>
                   <Form.Item label={<Label>{lang.end}</Label>}>
                     <CalculatorDatePicker
-                      onChange={date => this.setDateField("date_to", date)}
                       disabledDate={d => !form.date_from || (d.isSameOrBefore(form.date_from, "day"))}
+                      dateRender={(date, today) => this.handlePickerRender(date, today, 'end')}
+                      onChange={date => this.setDateField("date_to", date)}
                       placeholder={lang.date_from_placeholder}
                       value={this.dateToValue}
                       ref={this.dateToPicker}

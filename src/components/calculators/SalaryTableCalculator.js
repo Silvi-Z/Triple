@@ -9,7 +9,7 @@ import { isNull, compact, isInteger, isEmpty, isEqual } from "lodash"
 import { DownloadOutlined, UploadOutlined } from "@ant-design/icons"
 import { Row, Col, Card, Form, Radio, Button, notification } from "antd"
 import { defineSchedule, urlToBase64, randomString } from "./utilities/tabel"
-import { endDate, workingDaysInMonth, workingDaysInRange } from "./utilities/vacation"
+import { endDate, isHoliday, isWeekend, workingDaysInMonth, workingDaysInRange } from "./utilities/vacation"
 import { CalculatorDatePicker, CalculatorInput, ButtonSubmit, RadioButton, RadioGroup, RadioLabel, UnderLine, FormLabel, Label } from "./styled"
 import {
   schemaBy,
@@ -94,26 +94,35 @@ class SalaryTableCalculator extends React.Component {
       const workbook = Excel.read(data, {type: 'array', cellStyles: true});
       /** @type {[][]} */
       const rows = Excel.utils.sheet_to_json(workbook.Sheets['WTimesheet'], { header: 1 })
-      const date = moment(compact(rows[9])[1], 'DD/MM/YY')
+      const date = moment(rows[9][12], 'DD/MM/YY')
       const employees = rows.reduce((acc, row, i) => {
         if (i >= 20 && isInteger(Number(row[0]))) {
-          const schedule = defineSchedule(row.slice(4, date.daysInMonth() + 4), date)
+          const schedule = defineSchedule(row.slice(4, date.daysInMonth() + 4), date, this.holidaysByMonth)
 
           acc.push({
             id: row[0],
             name: row[2],
             profession: row[1],
-            days: +row[date.daysInMonth() + 4], // workedDays
+            days: compact(row.slice(4, date.daysInMonth() + 4)).length, // workedDays
             hours: +row[date.daysInMonth() + 5], // workedHours
             pension: PENSION_FIELD_YES,
             amount: null,
             schedule,
-            workingDaysInMonth: workingDaysInMonth({ date, schedule }).length
+            workingDaysInMonth: workingDaysInMonth({ date, schedule }, this.holidaysByMonth).length
           })
         }
 
         return acc;
       }, [])
+
+      if (!date.isValid() || !employees.length) {
+        notification.error({
+          message: 'Սխալ ֆայլի ներբեռնում։',
+          description: 'Ձեր կողմից ներբեռնված ֆայլի սխալ ֆորմատի է։',
+        })
+
+        employees.splice(0, employees.length)
+      }
 
       this.setState({employees})
     };
@@ -122,7 +131,7 @@ class SalaryTableCalculator extends React.Component {
 
   handleSubmit = async () => {
     const { by, schedule, date_from } = this.state.form
-    const avgWorkingDays = workingDaysInMonth({ date: moment(date_from), schedule }).length
+    const avgWorkingDays = workingDaysInMonth({ date: moment(date_from), schedule }, this.holidaysByMonth).length
     const valid = await schemaBy.isValid({ ...this.state.form, employees: this.state.employees })
 
     schemaBy.validate({ ...this.state.form, employees: this.state.employees }).catch(function (err) {
@@ -220,7 +229,51 @@ class SalaryTableCalculator extends React.Component {
 
     const buffer = await wb.xlsx.writeBuffer();
 
-    saveAs(new Blob([buffer], {type: "application/octet-stream"}), 'գնագոյացում.xlsx')
+    saveAs(new Blob([buffer], {type: "application/octet-stream"}), 'աշխատավարձի հաշվարկ.xlsx')
+  }
+
+  /**
+   * Render picker calendar cells by weekends & holidays
+   *
+   * @param {moment.Moment} date
+   * @param {moment.Moment} today
+   * @param {String} range - can be 'start' or 'end'
+   * @return {JSX.Element}
+   */
+  handlePickerRender = (date, today, range) => {
+    const { form } = this.state
+
+    const condition = range === 'start'
+      ? form.date_to && (date.isSameOrAfter(form.date_to, "day"))
+      : !form.date_from || (date.isSameOrBefore(form.date_from, "day"))
+
+    if (date.isSame(today, 'day')) {
+      return <div className={
+        !condition
+          ? 'ant-picker-cell-inner ant-picker-cell-today'
+          : 'ant-picker-cell-inner'
+      }>
+        {date.format('D')}
+      </div>
+    } else if (isHoliday(date, this.holidays)) {
+      return <div className={
+        !condition
+          ? 'ant-picker-cell-inner ant-picker-cell-holiday'
+          : 'ant-picker-cell-inner'
+      }>
+        {date.format('D')}
+      </div>
+    } else if (isWeekend(date, form.schedule)) {
+      return <div className={
+        !condition
+          ? 'ant-picker-cell-inner ant-picker-cell-weekend'
+          : 'ant-picker-cell-inner'
+      }>
+        {date.format('D')}
+      </div>
+    } else {
+      return <div className="ant-picker-cell-inner">{date.format('D')}</div>
+    }
   }
 
   handleDateFromChange = date => {
@@ -292,7 +345,7 @@ class SalaryTableCalculator extends React.Component {
     return workingDaysInRange({
       start: date_from ? moment(date_from) : moment().startOf('month'),
       end: date_from ? moment(date_from).endOf('month') : moment().endOf('month'),
-    }, schedule).length
+    }, schedule, this.holidaysByMonth).length
   }
 
   get dateFromValue() {
@@ -318,6 +371,8 @@ class SalaryTableCalculator extends React.Component {
       result: {},
       excel: []
     }
+    this.holidays = []
+    this.holidaysByMonth = []
   }
 
   setField(name, value, cb) {
@@ -364,7 +419,7 @@ class SalaryTableCalculator extends React.Component {
 
     if (date_from && working_days) {
       const days = (working_days > this.maxWorkingDays) ? this.maxWorkingDays : working_days
-      const date_to = endDate(moment(date_from), days, schedule).format("YYYY-MM-DD")
+      const date_to = endDate(moment(date_from), days, schedule, this.holidays).format("YYYY-MM-DD")
 
       this.setField("date_to", date_to)
     }
@@ -383,7 +438,7 @@ class SalaryTableCalculator extends React.Component {
       const working_days = workingDaysInRange({
         start: moment(date_from),
         end: moment(date_to),
-      }, schedule).length
+      }, schedule, this.holidaysByMonth).length
 
       this.setField('working_days', working_days)
     }
@@ -408,7 +463,7 @@ class SalaryTableCalculator extends React.Component {
     const workingDays = workingDaysInRange({
       start: moment(date_from),
       end: moment(date_to)
-    }, schedule)
+    }, schedule, this.holidaysByMonth)
     const gross_salary = Math.round(amount / avgWorkingDays * workingDays.length)
 
     const res = await triple.post("/api/counter/salary", {
@@ -472,7 +527,16 @@ class SalaryTableCalculator extends React.Component {
     this.setState({ excel, result, loading: false, calculated: 2 })
   }
 
+  fetchHolidays() {
+    triple.get('/api/holidays').then(res => {
+      this.holidays = res.data.holidays
+      this.holidaysByMonth = res.data.holidaysByMonth
+    }).catch(err => console.log(err))
+  }
+
   componentDidMount() {
+    this.fetchHolidays()
+
     ReactDOM
       .findDOMNode(this.dateFromPicker.current)
       .querySelector("input")
@@ -562,6 +626,7 @@ class SalaryTableCalculator extends React.Component {
                     <Col span={8}>
                       <Form.Item label={<Label>{lang.form.start}</Label>}>
                         <CalculatorDatePicker
+                          dateRender={(date, today) => this.handlePickerRender(date, today, 'start')}
                           disabledDate={this.handleDateFromDisabled}
                           onChange={this.handleDateFromChange}
                           value={this.dateFromValue}
@@ -578,6 +643,7 @@ class SalaryTableCalculator extends React.Component {
                     <Col span={8}>
                       <Form.Item label={<Label>{lang.form.end}</Label>}>
                         <CalculatorDatePicker
+                          dateRender={(date, today) => this.handlePickerRender(date, today, 'start')}
                           defaultPickerValue={this.dateFromValue}
                           disabledDate={this.handleDateToDisabled}
                           onChange={this.handleDateToChange}
@@ -659,7 +725,6 @@ class SalaryTableCalculator extends React.Component {
                   {employees.length ? <EmployeeSalaryTable
                     items={employees}
                     lang={lang.table}
-                    style={{maxWidth: '569px'}}
                     onChange={employees => this.setState({employees})}
                   /> : null}
                 </>

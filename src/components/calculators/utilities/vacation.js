@@ -28,40 +28,15 @@ export const years = count => {
   return years
 }
 
-const jan = [
-  ...Array
-    .from(moment().range(new Date(2020, 0,1), new Date(2020, 0,7)).by("d"))
-    .map(d => d.format('YYYY-MM-DD')),
-  '2020-01-28'
-]
-const feb = []
-const mar = ['2020-03-08']
-const apr = ['2020-04-24']
-const may = ['2020-05-01', '2020-05-09', '2020-05-28']
-const jun = []
-const jul = []
-const aug = []
-const sep = ['2020-09-21']
-const oct = []
-const nov = []
-const dec = ['2020-12-31']
-
-export const holidaysByMonth = [
-  jan, feb, mar, apr, may, jun, jul, aug, sep, oct, nov, dec
-]
-
-export const holidays = [
-  ...jan, ...feb, ...mar, ...apr, ...may, ...jun, ...jul, ...aug, ...sep, ...oct, ...nov, ...dec
-]
-
 /**
  * Getting working days in given month
  *
  * @param {moment.Moment} date
  * @param {number} schedule
+ * @param {String[][]}holidaysByMonth
  * @return {moment.Moment[]}
  */
-export const workingDaysInMonth = ({ date, schedule }) => {
+export const workingDaysInMonth = ({ date, schedule }, holidaysByMonth) => {
   const weekend = schedule === 5 ? [0, 6] : [0]
   let days = [],
     daysInMonth = date.daysInMonth(),
@@ -87,14 +62,16 @@ export const workingDaysInMonth = ({ date, schedule }) => {
  * @param {moment.Moment} start - moment date
  * @param {moment.Moment} end - moment date
  * @param {Number} schedule - working schedule
+ * @param {String[][]}holidaysByMonth
  * @return {Array}
  */
-export const workingDaysInRange = ({start, end}, schedule) => {
+export const workingDaysInRange = ({start, end}, schedule, holidaysByMonth) => {
   const weekend = schedule === 5 ? [0, 6] : [0], days = []
 
   while (start.isSameOrBefore(end)) {
     if (
       !weekend.includes(start.day()) &&
+      holidaysByMonth[start.month()] &&
       holidaysByMonth[start.month()].every(holiday => !moment(holiday).isSame(start))
     ) days.push(start.clone().format('DD.MM.YYYY'));
 
@@ -110,9 +87,10 @@ export const workingDaysInRange = ({start, end}, schedule) => {
  * @param {moment.Moment} start - start date
  * @param {Number} days - number of worked days
  * @param {Number} schedule - working schedule (5 | 6)
+ * @param {String[]} holidays
  * @return {moment.Moment}
  */
-export const endDate = (start, days, schedule) => {
+export const endDate = (start, days, schedule, holidays) => {
   const weekends = schedule === 5 ? [0, 6] : [6]
   const end = start.clone()
 
@@ -125,4 +103,38 @@ export const endDate = (start, days, schedule) => {
   }
 
   return end
+}
+
+/**
+ * Checks if given date is working or not
+ *
+ * @param {moment.Moment} date
+ * @param {String[]} holidays
+ * @param {Number} schedule
+ * @return {boolean}
+ */
+export const isWorkingDay = (date, holidays, schedule) => {
+  const weekend = schedule === 5 ? [0, 6] : [0]
+
+  return !(holidays.includes(date.format('YYYY-MM-DD')) || weekend.includes(date.day()))
+}
+
+/**
+ * Checks if given date is holiday
+ *
+ * @param {moment.Moment} date
+ * @param {String[]} holidays
+ */
+export const isHoliday = (date, holidays) => holidays.includes(date.format('YYYY-MM-DD'))
+
+/**
+ * Checks if given date is weekend by schedule
+ * @param {moment.Moment} date
+ * @param {Number} schedule
+ * @return {boolean}
+ */
+export const isWeekend = (date, schedule) => {
+  const weekend = schedule === 5 ? [0, 6] : [0]
+
+  return weekend.includes(date.day())
 }
