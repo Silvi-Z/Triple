@@ -53,16 +53,12 @@ const UsefulNews = ({news, lang , buttonDisplay, setButtonDisplay }) => {
           ) : null
         ))}
       </NewsPage>
-      <NavLink
-        to={`/${lang}/news#`}
-      >
         <SeeMoreNews
           buttonDisplay ={buttonDisplay}
           onClick={addNews}
           className="see_more_btn"
         > ՏԵՍՆԵԼ ԱՎԵԼԻՆ
         </SeeMoreNews>
-      </NavLink>
     </ContainerNews>
   )
 }

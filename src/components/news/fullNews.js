@@ -103,7 +103,7 @@ const FullInfo = ({ filteredData, data , lang , pageContext}) => {
                     <DataItem>{item.date}</DataItem>
                       <SeeMoreSingleNews
                         className="see_more_btn"
-                      > ԱՎԵԼԻՆ
+                      > տեսնել ավելին
                       </SeeMoreSingleNews>
                   </MoreRow>
                 </TextPart>
