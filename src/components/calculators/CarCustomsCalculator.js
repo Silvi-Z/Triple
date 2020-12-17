@@ -1,13 +1,10 @@
 import React from "react"
-import moment from "moment"
 import { isEqual } from "lodash"
 import { Row, Col, Card, Form, Radio, Divider } from "antd"
 import { ButtonSubmit, CalculatorDatePicker, CalculatorInput, FormLabel, Label, UnderLine } from "./styled"
 import { calculate, convertToAMD, COUNTRY_EEU, COUNTRY_THIRD, PERSON_LEGAL, PERSON_PHYSICAL } from "./utilities/carcutom"
 import CalculatorCardResult from "./calcComponents/CalculatorCardResult"
 import triple from "../../api/triple"
-
-moment.locale('ru')
 
 const firstRadioButtonStyles = {
   borderTopLeftRadius: "5px",

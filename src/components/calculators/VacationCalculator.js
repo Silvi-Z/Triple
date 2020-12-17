@@ -3,12 +3,18 @@ import ReactDOM from "react-dom"
 import moment from "moment"
 import triple from "../../api/triple"
 import { pick, isNull, isEmpty, isEqual } from "lodash"
-import { Row, Col, Card, Form, Radio, Checkbox } from "antd"
+import { Row, Col, Card, Form, Radio, Checkbox, DatePicker, Space } from "antd"
 import GrossSalaryTable from "./calcComponents/GrossSalaryTable"
 import CalculatorCardResult from "./calcComponents/CalculatorCardResult"
 import { isHoliday, isWeekend, workingDaysInRange } from "./utilities/vacation"
 import { Label, UnderLine, FormLabel, RadioLabel, CalculatorInput, ButtonSubmit, CalculatorDatePicker } from "./styled"
 import { schema, SALARY_MIN, TAX_FIELD_COMMON, TAX_FIELD_ENTERPRISE, TAX_FIELD_IT, PENSION_FIELD_NO, PENSION_FIELD_YES, PENSION_FIELD_YES_VOLUNTEER } from "./utilities/salary"
+
+moment.locale('en', {
+  week: {
+    dow: 1,
+  },
+});
 
 const radioStyle = {
   display: "block",
@@ -52,8 +58,8 @@ class VacationCalculator extends React.Component {
       monthAvgSalary: 0,
       calculated: false,
     }
-    this.holidays = [];
-    this.holidaysByMonth = []
+    this.holidays = []
+    this.workdays = []
   }
 
   get rowElement() {
@@ -152,7 +158,7 @@ class VacationCalculator extends React.Component {
 
     if (date_from && vacation_days) {
       for (let i = 1; i < vacation_days; i++) {
-        if (weekends.includes(momentFrom.day()) || this.holidays.includes(momentFrom.format('YYYY-MM-DD'))) {
+        if (weekends.includes(momentFrom.day()) || this.holidays.map(day => day.date).includes(momentFrom.format('YYYY-MM-DD'))) {
           i--
         }
 
@@ -175,16 +181,19 @@ class VacationCalculator extends React.Component {
     if (date_from && date_to) {
       this.setField("vacation_days", workingDaysInRange({
         start: moment(date_from),
-        end: moment(date_to)
-      }, working_schedule, this.holidaysByMonth).length)
+        end: moment(date_to),
+        holidays: this.holidays,
+        workdays: this.workdays,
+        schedule: working_schedule
+      }).length)
     }
   }
 
-  fetchHolidays() {
-    triple.get('/api/holidays')
+  fetchDays() {
+    triple.get('/api/days')
       .then(res => {
         this.holidays = res.data.holidays
-        this.holidaysByMonth = res.data.holidaysByMonth
+        this.workdays = res.data.workdays
       })
       .catch(err => console.log(err))
   }
@@ -210,7 +219,7 @@ class VacationCalculator extends React.Component {
 
   setFromDate = date => this.setDateField("date_from", date)
 
-  handleWindowScroll = e => {
+  handleWindowScroll = () => {
     if (
       (window.scrollY + this.colElement.offsetHeight + this.rowElementOffsetTop) >=
       (this.rowElementOffsetTop + this.rowElement.offsetHeight)
@@ -300,7 +309,7 @@ class VacationCalculator extends React.Component {
   }
 
   componentDidMount() {
-    this.fetchHolidays()
+    this.fetchDays()
     this.dateToInput.addEventListener("input", this.handlePickerInput)
     this.dateFromInput.addEventListener("input", this.handlePickerInput)
     // window.addEventListener('scroll', this.handleWindowScroll)
@@ -338,13 +347,13 @@ class VacationCalculator extends React.Component {
               size="large"
             >
               <Row gutter={10} align="middle">
-                <Col span={8}>
+                <Col span={10}>
                   <Form.Item label={<Label>{lang.start}</Label>}>
                     <CalculatorDatePicker
                       disabledDate={d => form.date_to && (d.isSameOrAfter(form.date_to, "day"))}
                       dateRender={(date, today) => this.handlePickerRender(date, today, 'start')}
                       onChange={date => this.setDateField("date_from", date)}
-                      placeholder={lang.date_from_placeholder}
+                      placeholder={lang["date_from_placeholder"]}
                       value={this.dateFromValue}
                       ref={this.dateFromPicker}
                       format="DD.MM.YYYY"
@@ -353,13 +362,13 @@ class VacationCalculator extends React.Component {
                     />
                   </Form.Item>
                 </Col>
-                <Col span={8}>
+                <Col span={10}>
                   <Form.Item label={<Label>{lang.end}</Label>}>
                     <CalculatorDatePicker
                       disabledDate={d => !form.date_from || (d.isSameOrBefore(form.date_from, "day"))}
                       dateRender={(date, today) => this.handlePickerRender(date, today, 'end')}
                       onChange={date => this.setDateField("date_to", date)}
-                      placeholder={lang.date_from_placeholder}
+                      placeholder={lang["date_from_placeholder"]}
                       value={this.dateToValue}
                       ref={this.dateToPicker}
                       format="DD.MM.YYYY"
@@ -387,15 +396,15 @@ class VacationCalculator extends React.Component {
                   value={form.working_schedule}
                 >
                   <Radio value={5}>
-                    {<Label style={{ textTransform: "none" }}>{lang.five_days}</Label>}
+                    {<Label style={{ textTransform: "none" }}>{lang["five_days"]}</Label>}
                   </Radio>
                   <Radio value={6}>
-                    {<Label style={{ textTransform: "none" }}>{lang.six_days}</Label>}
+                    {<Label style={{ textTransform: "none" }}>{lang["six_days"]}</Label>}
                   </Radio>
                 </Radio.Group>
               </Form.Item>
 
-              <Form.Item label={<Label>{lang.salary_label}</Label>}>
+              <Form.Item label={<Label>{lang["salary_label"]}</Label>}>
                 <CalculatorInput
                   formatter={v => `${v}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
                   parser={v => v.replace(/\$\s?|(,*)/g, '')}
@@ -413,7 +422,7 @@ class VacationCalculator extends React.Component {
                   onChange={e => this.setField("static_salary", e.target.checked)}
                   checked={form.static_salary}
                 >
-                  <RadioLabel>{lang.static_salary_label}</RadioLabel>
+                  <RadioLabel>{lang["static_salary_label"]}</RadioLabel>
                 </Checkbox>
               </Form.Item>
 
@@ -427,7 +436,7 @@ class VacationCalculator extends React.Component {
                 : null}
 
               <Form.Item
-                label={<Label style={{ fontSize: "16px" }}>{lang.tax_label}</Label>}
+                label={<Label style={{ fontSize: "16px" }}>{lang["tax_label"]}</Label>}
                 labelCol={{ span: 24 }}
                 name="tax_field"
               >
@@ -436,19 +445,19 @@ class VacationCalculator extends React.Component {
                   value={form.tax_field}
                 >
                   <Radio style={radioStyle} value={TAX_FIELD_COMMON}>
-                    <RadioLabel>{lang.tax_label_common}</RadioLabel>
+                    <RadioLabel>{lang["tax_label_common"]}</RadioLabel>
                   </Radio>
                   <Radio style={radioStyle} value={TAX_FIELD_IT}>
-                    <RadioLabel>{lang.tax_label_it}</RadioLabel>
+                    <RadioLabel>{lang["tax_label_it"]}</RadioLabel>
                   </Radio>
                   <Radio style={radioStyle} value={TAX_FIELD_ENTERPRISE}>
-                    <RadioLabel>{lang.tax_label_enterprise}</RadioLabel>
+                    <RadioLabel>{lang["tax_label_enterprise"]}</RadioLabel>
                   </Radio>
                 </Radio.Group>
               </Form.Item>
 
               <Form.Item
-                label={<RadioLabel>{lang.pensioner_label}</RadioLabel>}
+                label={<RadioLabel>{lang["pensioner_label"]}</RadioLabel>}
                 labelCol={{ span: 24 }}
                 name="pension"
               >
@@ -457,20 +466,20 @@ class VacationCalculator extends React.Component {
                   value={form.pension}
                 >
                   <Radio value={PENSION_FIELD_YES}>
-                    <Label>{lang.yes}</Label>
+                    <Label>{lang["yes"]}</Label>
                   </Radio>
                   <Radio value={PENSION_FIELD_YES_VOLUNTEER}>
-                    <Label>{lang.yes_volunteer}</Label>
+                    <Label>{lang["yes_volunteer"]}</Label>
                   </Radio>
                   <Radio value={PENSION_FIELD_NO}>
-                    <Label>{lang.no}</Label>
+                    <Label>{lang["no"]}</Label>
                   </Radio>
                 </Radio.Group>
               </Form.Item>
 
               <Form.Item>
                 <ButtonSubmit htmlType="submit" shape="round" size="large">
-                  {lang.calculate}
+                  {lang["calculate"]}
                 </ButtonSubmit>
               </Form.Item>
             </Form>

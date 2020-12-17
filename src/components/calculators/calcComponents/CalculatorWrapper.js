@@ -111,7 +111,7 @@ const CalculatorWrapper = ({ ctx, children }) => {
       <TextStyled>{calculator.paragraph}</TextStyled>
 
       <Row gutter={0}>
-        <Col className="px-35" span={6}>
+        <Col span={6} style={{paddingRight: '10px', paddingLeft: '35px'}}>
           <CalculatorNav t={calculator} locale={ctx.locale} />
         </Col>
         <Col span={18} style={{paddingRight: '35px'}}>

@@ -786,9 +786,9 @@ pre tt:after {
 .ant-form-item-label > label{
   color: black !important;
 }
-.ant-picker-input:hover .ant-picker-clear{
-  display: none !important;
-}
+/*.ant-picker-input:hover .ant-picker-clear{*/
+/*  display: none !important;*/
+/*}*/
 
 @media only screen and (max-width: 375px) {
   #basic_companyname {
@@ -1499,4 +1499,53 @@ a.calc-nav-item:hover {
 .ant-picker-cell-weekend {
   background-color: #ffa39e;
   color: #000000;
+}
+
+@media
+only screen and (max-width: 1280px),
+(min-device-width: 768px) and (max-device-width: 1024px) {
+  table.gross {
+    border-collapse: separate;
+    border-spacing: 10px;
+    max-width: 100%;
+  }
+
+  table.gross td.gross-cell {
+    font-family: ArialAMU,serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 25px;
+    letter-spacing: 1.15px;
+    color: #555555;
+    padding: 8px 10px;
+    text-align: left;
+  }
+
+  table.gross th {
+    font-size: 14px;
+  }
+
+  /*
+  Label the data
+  */
+  table.gross th:nth-of-type(1) {
+
+  }
+
+  table.gross th:nth-of-type(2) {
+
+  }
+
+  table.gross th:nth-of-type(3) {
+    max-width: 100px;
+  }
+
+  table.gross th:nth-of-type(4) {
+    max-width: 100px;
+  }
+
+  table.gross th:nth-of-type(5) {
+    max-width: 100px;
+  }
 }

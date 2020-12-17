@@ -11,21 +11,15 @@ import { Row, Col, Card, Form, Radio, Button, notification } from "antd"
 import { defineSchedule, urlToBase64, randomString } from "./utilities/tabel"
 import { endDate, isHoliday, isWeekend, workingDaysInMonth, workingDaysInRange } from "./utilities/vacation"
 import { CalculatorDatePicker, CalculatorInput, ButtonSubmit, RadioButton, RadioGroup, RadioLabel, UnderLine, FormLabel, Label } from "./styled"
-import {
-  schemaBy,
-  BY_FIELD_DATE,
-  BY_FIELD_TABLE,
-  SALARY_MIN,
-  TAX_FIELD_IT,
-  TAX_FIELD_COMMON,
-  TAX_FIELD_ENTERPRISE,
-  PENSION_FIELD_NO,
-  PENSION_FIELD_YES,
-  PENSION_FIELD_YES_VOLUNTEER,
-  SALARY_STEP,
-} from "./utilities/salary"
+import { schemaBy, BY_FIELD_DATE, BY_FIELD_TABLE, SALARY_MIN, SALARY_STEP, TAX_FIELD_IT, TAX_FIELD_COMMON, TAX_FIELD_ENTERPRISE, PENSION_FIELD_NO, PENSION_FIELD_YES, PENSION_FIELD_YES_VOLUNTEER } from "./utilities/salary"
 import EmployeeSalaryTable from "./calcComponents/EmployeeSalaryTable"
 import CalculatorCardResult from "./calcComponents/CalculatorCardResult"
+
+moment.locale('en', {
+  week: {
+    dow: 1,
+  },
+});
 
 const form = {
   by: 1,
@@ -90,14 +84,20 @@ class SalaryTableCalculator extends React.Component {
     const reader = new FileReader();
 
     reader.onload = eve => {
-      const data = new Uint8Array(eve.target.result);
+      const data = new Uint8Array(/**@type ArrayBuffer*/ eve.target.result);
       const workbook = Excel.read(data, {type: 'array', cellStyles: true});
       /** @type {[][]} */
       const rows = Excel.utils.sheet_to_json(workbook.Sheets['WTimesheet'], { header: 1 })
       const date = moment(rows[9][12], 'DD/MM/YY')
       const employees = rows.reduce((acc, row, i) => {
         if (i >= 20 && isInteger(Number(row[0]))) {
-          const schedule = defineSchedule(row.slice(4, date.daysInMonth() + 4), date, this.holidaysByMonth)
+          const schedule = defineSchedule(row.slice(4, date.daysInMonth() + 4), date, this.holidays)
+          const workingDaysInMonth = workingDaysInMonth({
+            workdays: this.workdays,
+            holidays: this.holidays,
+            schedule,
+            date
+          }).length
 
           acc.push({
             id: row[0],
@@ -108,7 +108,7 @@ class SalaryTableCalculator extends React.Component {
             pension: PENSION_FIELD_YES,
             amount: null,
             schedule,
-            workingDaysInMonth: workingDaysInMonth({ date, schedule }, this.holidaysByMonth).length
+            workingDaysInMonth
           })
         }
 
@@ -131,7 +131,14 @@ class SalaryTableCalculator extends React.Component {
 
   handleSubmit = async () => {
     const { by, schedule, date_from } = this.state.form
-    const avgWorkingDays = workingDaysInMonth({ date: moment(date_from), schedule }, this.holidaysByMonth).length
+
+    const avgWorkingDays = workingDaysInMonth({
+      workdays: this.workdays,
+      holidays: this.holidays,
+      date: moment(date_from),
+      schedule
+    }).length
+
     const valid = await schemaBy.isValid({ ...this.state.form, employees: this.state.employees })
 
     schemaBy.validate({ ...this.state.form, employees: this.state.employees }).catch(function (err) {
@@ -345,7 +352,10 @@ class SalaryTableCalculator extends React.Component {
     return workingDaysInRange({
       start: date_from ? moment(date_from) : moment().startOf('month'),
       end: date_from ? moment(date_from).endOf('month') : moment().endOf('month'),
-    }, schedule, this.holidaysByMonth).length
+      workdays: this.workdays,
+      holidays: this.holidays,
+      schedule
+    }).length
   }
 
   get dateFromValue() {
@@ -372,7 +382,7 @@ class SalaryTableCalculator extends React.Component {
       excel: []
     }
     this.holidays = []
-    this.holidaysByMonth = []
+    this.workdays = []
   }
 
   setField(name, value, cb) {
@@ -419,7 +429,7 @@ class SalaryTableCalculator extends React.Component {
 
     if (date_from && working_days) {
       const days = (working_days > this.maxWorkingDays) ? this.maxWorkingDays : working_days
-      const date_to = endDate(moment(date_from), days, schedule, this.holidays).format("YYYY-MM-DD")
+      const date_to = endDate(moment(date_from), days, schedule, this.holidays, this.workdays).format("YYYY-MM-DD")
 
       this.setField("date_to", date_to)
     }
@@ -438,7 +448,10 @@ class SalaryTableCalculator extends React.Component {
       const working_days = workingDaysInRange({
         start: moment(date_from),
         end: moment(date_to),
-      }, schedule, this.holidaysByMonth).length
+        workdays: this.workdays,
+        holidays: this.holidays,
+        schedule
+      }).length
 
       this.setField('working_days', working_days)
     }
@@ -462,8 +475,11 @@ class SalaryTableCalculator extends React.Component {
     const { from, pension, tax_field, schedule, date_from, date_to, amount } = this.state.form
     const workingDays = workingDaysInRange({
       start: moment(date_from),
-      end: moment(date_to)
-    }, schedule, this.holidaysByMonth)
+      end: moment(date_to),
+      workdays: this.workdays,
+      holidays: this.holidays,
+      schedule
+    })
     const gross_salary = Math.round(amount / avgWorkingDays * workingDays.length)
 
     const res = await triple.post("/api/counter/salary", {
@@ -527,23 +543,23 @@ class SalaryTableCalculator extends React.Component {
     this.setState({ excel, result, loading: false, calculated: 2 })
   }
 
-  fetchHolidays() {
-    triple.get('/api/holidays').then(res => {
+  fetchDays() {
+    triple.get('/api/days').then(res => {
       this.holidays = res.data.holidays
-      this.holidaysByMonth = res.data.holidaysByMonth
+      this.workdays = res.data.workdays
     }).catch(err => console.log(err))
   }
 
   componentDidMount() {
-    this.fetchHolidays()
+    this.fetchDays()
 
     ReactDOM
-      .findDOMNode(this.dateFromPicker.current)
+      .findDOMNode(/** @type Element */this.dateFromPicker.current)
       .querySelector("input")
       .addEventListener("input", this.handleDateFromInput)
 
     ReactDOM
-      .findDOMNode(this.dateToPicker.current)
+      .findDOMNode(/** @type Element */this.dateToPicker.current)
       .querySelector("input")
       .addEventListener("input", this.handleDateToInput)
   }
@@ -583,7 +599,7 @@ class SalaryTableCalculator extends React.Component {
                 >
                   <Col span={10}>
                     <RadioButton value={1} size="large">
-                      {lang.form.dirty_salary}
+                      {lang.form["dirty_salary"]}
                     </RadioButton>
                   </Col>
                   <Col span={2} style={{textAlign: 'center'}}>
@@ -600,7 +616,7 @@ class SalaryTableCalculator extends React.Component {
                   </Col>
                   <Col span={10}>
                     <RadioButton value={2} size="large">
-                      {lang.form.clean_salary}
+                      {lang.form["clean_salary"]}
                     </RadioButton>
                   </Col>
                 </RadioGroup>
@@ -612,10 +628,10 @@ class SalaryTableCalculator extends React.Component {
                   value={form.by}
                 >
                   <Radio value={BY_FIELD_DATE}>
-                    {<Label style={{ textTransform: "none" }}>{lang.form.by_date}</Label>}
+                    {<Label style={{ textTransform: "none" }}>{lang.form["by_date"]}</Label>}
                   </Radio>
                   <Radio value={BY_FIELD_TABLE}>
-                    {<Label style={{ textTransform: "none" }}>{lang.form.by_table}</Label>}
+                    {<Label style={{ textTransform: "none" }}>{lang.form["by_table"]}</Label>}
                   </Radio>
                 </Radio.Group>
               </Form.Item>
@@ -623,7 +639,7 @@ class SalaryTableCalculator extends React.Component {
               {form.by
                 ? <>
                   <Row gutter={10} align="start">
-                    <Col span={8}>
+                    <Col span={10}>
                       <Form.Item label={<Label>{lang.form.start}</Label>}>
                         <CalculatorDatePicker
                           dateRender={(date, today) => this.handlePickerRender(date, today, 'start')}
@@ -636,14 +652,13 @@ class SalaryTableCalculator extends React.Component {
                           format="DD.MM.YYYY"
                           name="date_from"
                           size="large"
-                          allowClear
                         />
                       </Form.Item>
                     </Col>
-                    <Col span={8}>
+                    <Col span={10}>
                       <Form.Item label={<Label>{lang.form.end}</Label>}>
                         <CalculatorDatePicker
-                          dateRender={(date, today) => this.handlePickerRender(date, today, 'start')}
+                          dateRender={(date, today) => this.handlePickerRender(date, today, 'end')}
                           defaultPickerValue={this.dateFromValue}
                           disabledDate={this.handleDateToDisabled}
                           onChange={this.handleDateToChange}
@@ -654,7 +669,6 @@ class SalaryTableCalculator extends React.Component {
                           format="DD.MM.YYYY"
                           name="date_to"
                           size="large"
-                          allowClear
                         />
                       </Form.Item>
                     </Col>
@@ -681,10 +695,10 @@ class SalaryTableCalculator extends React.Component {
                       value={form.schedule}
                     >
                       <Radio value={5}>
-                        {<Label style={{ textTransform: "none" }}>{lang.form.five_days}</Label>}
+                        {<Label style={{ textTransform: "none" }}>{lang.form["five_days"]}</Label>}
                       </Radio>
                       <Radio value={6}>
-                        {<Label style={{ textTransform: "none" }}>{lang.form.six_days}</Label>}
+                        {<Label style={{ textTransform: "none" }}>{lang.form["six_days"]}</Label>}
                       </Radio>
                     </Radio.Group>
                   </Form.Item>
@@ -730,38 +744,38 @@ class SalaryTableCalculator extends React.Component {
                 </>
               }
               {/* tax field */}
-              <Form.Item label={<Label style={{fontSize: '16px'}}>{lang.form.tax_label}</Label>} labelCol={{ span: 24 }} name="tax_field">
+              <Form.Item label={<Label style={{fontSize: '16px'}}>{lang.form["tax_label"]}</Label>} labelCol={{ span: 24 }} name="tax_field">
                 <Radio.Group
                   onChange={e => this.setField("tax_field", e.target.value)}
                   value={form.tax_field}
                 >
                   <Radio style={radioStyle} value={TAX_FIELD_COMMON}>
-                    <RadioLabel>{lang.form.tax_common}</RadioLabel>
+                    <RadioLabel>{lang.form["tax_common"]}</RadioLabel>
                   </Radio>
                   <Radio style={radioStyle} value={TAX_FIELD_IT}>
-                    <RadioLabel>{lang.form.tax_it}</RadioLabel>
+                    <RadioLabel>{lang.form["tax_it"]}</RadioLabel>
                   </Radio>
                   <Radio style={radioStyle} value={TAX_FIELD_ENTERPRISE}>
-                    <RadioLabel>{lang.form.tax_enterprise}</RadioLabel>
+                    <RadioLabel>{lang.form["tax_enterprise"]}</RadioLabel>
                   </Radio>
                 </Radio.Group>
               </Form.Item>
               {/* pension field */}
               {form.by ?
-                <Form.Item label={<RadioLabel>{lang.form.pensioner}</RadioLabel>} name="pension">
+                <Form.Item label={<RadioLabel>{lang.form["pensioner"]}</RadioLabel>} name="pension">
                   <Radio.Group
                     onChange={e => this.setField("pension", e.target.value)}
                     value={form.pension}
                     size="large"
                   >
                     <Radio value={PENSION_FIELD_YES}>
-                      <Label>{lang.form.yes}</Label>
+                      <Label>{lang.form["yes"]}</Label>
                     </Radio>
                     <Radio value={PENSION_FIELD_YES_VOLUNTEER}>
-                      <Label>{lang.form.yes_volunteer}</Label>
+                      <Label>{lang.form["yes_volunteer"]}</Label>
                     </Radio>
                     <Radio value={PENSION_FIELD_NO}>
-                      <Label>{lang.form.no}</Label>
+                      <Label>{lang.form["no"]}</Label>
                     </Radio>
                   </Radio.Group>
                 </Form.Item>
@@ -773,7 +787,7 @@ class SalaryTableCalculator extends React.Component {
                   shape="round"
                   size="large"
                 >
-                  {lang.calculate}
+                  {lang["calculate"]}
                 </ButtonSubmit>
               </Form.Item>
             </Form>

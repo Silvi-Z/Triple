@@ -238,7 +238,7 @@ class FinalCalculator extends React.Component {
               size="large"
             >
               <Row gutter={10} align="middle">
-                <Col span={9}>
+                <Col span={11}>
                   <Form.Item label={<Label>{lang.form.acceptance}</Label>}>
                     <CalculatorDatePicker
                       onChange={date => this.setFormField("date_acceptance", date)}
@@ -252,7 +252,7 @@ class FinalCalculator extends React.Component {
                     />
                   </Form.Item>
                 </Col>
-                <Col span={9}>
+                <Col span={11}>
                   <Form.Item label={<Label>{lang.form.release}</Label>}>
                     <CalculatorDatePicker
                       onChange={date => this.setFormField("date_release", date)}
