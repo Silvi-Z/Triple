@@ -162,7 +162,7 @@ const Formfield = ({ langtext, lang }) => {
                     : "Խնդրում ենք լրացնել նշված դաշտերը",
               },
             ]}
-            style={{ marginBottom: "3px" }}
+            style={{ marginBottom: "3px" , cursor: "pointer"}}
           >
             <Upload
               accept=".jpeg,.png,.jpg,.doc,.pdf,.docx,.xlsx"

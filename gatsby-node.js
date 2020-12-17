@@ -12,9 +12,6 @@ exports.onCreatePage = async ({ page, actions: { createPage, deletePage, createR
   await Promise.all(
     config.siteMetadata.supportedLanguages.map(async lang => {
       const localizedPath = `/${lang}${page.path}`;
-
-      console.log('localizedPath')
-      console.log(localizedPath)
       // create a redirect based on the accept-language header
       createRedirect({
         fromPath: originalPath,
@@ -27,23 +24,23 @@ exports.onCreatePage = async ({ page, actions: { createPage, deletePage, createR
 
       const reg = new RegExp(`^${lang}/calculators`);
 
+
       if (page.path.match(/^\/arm\/calculators/)) {
         page.matchPath = `arm/calculators/*`
-
         // Update the page.
         await createPage(page);
-      } else {
-        await createPage({
-          ...page,
-          path: localizedPath,
-          context: {
-            ...page.context,
-            originalPath,
-            locale: lang,
-            localeResources: resources[lang] ? resources[lang] : {},
-          },
-        });
       }
+      console.log(resources[lang])
+      await createPage({
+        ...page,
+        path: localizedPath,
+        context: {
+          ...page.context,
+          originalPath,
+          locale: lang,
+          localeResources: resources[lang] ? resources[lang] : {},
+        },
+      });
     })
   );
 
