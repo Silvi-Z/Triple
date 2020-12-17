@@ -35,7 +35,7 @@ export const IconWrapper = styled.img`
     margin-bottom: 15px;
 `
 export const FormLabel = styled.h3`
-  font-family: ArialAMU;
+  font-family: ArialAMU,serif;
   font-style: normal;
   font-weight: bold;
   font-size: 16px;
@@ -132,7 +132,7 @@ export const RadioLabel = styled(Text)`
 
 export const ButtonSubmit = styled(Button)`
   background: #1C1D21;
-  font-family: ArialAMU;
+  font-family: ArialAMU,serif;
   font-style: normal;
   font-weight: bold;
   font-size: 16px;
@@ -169,7 +169,7 @@ export const CalculatorDatePicker = styled(DatePicker)`
 `;
 
 export const ColHeader = styled.th`
-  font-family: ArialAMU;
+  font-family: ArialAMU,serif;
   font-style: normal;
   font-weight: bold;
   font-size: 14px;
@@ -189,7 +189,7 @@ export const CalculatorTable = styled.table`
 export const CalculatorCol = styled.th`
   background: #F7F7F7;
   border-radius: 5px;
-  font-family: ArialAMU;
+  font-family: ArialAMU,serif;
   font-style: normal;
   font-weight: normal;
   font-size: 14px;

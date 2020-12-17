@@ -58,14 +58,14 @@ class GrossSalaryTable extends React.Component {
     const { items } = this.state
 
     return (
-      <CalculatorTable>
+      <CalculatorTable className="gross">
         <thead>
         <tr>
-          <ColHeader>{lang.month}</ColHeader>
-          <ColHeader>{lang.year}</ColHeader>
-          <ColHeader>{lang.gross_salary}</ColHeader>
-          <ColHeader>{lang.surcharge}</ColHeader>
-          <ColHeader>{lang.bonus}</ColHeader>
+          <th className="gross-cell">{lang.month}</th>
+          <th className="gross-cell">{lang.year}</th>
+          <th className="gross-cell">{lang.gross_salary}</th>
+          <th className="gross-cell">{lang.surcharge}</th>
+          <th className="gross-cell">{lang.bonus}</th>
         </tr>
         </thead>
         <tbody>
@@ -80,11 +80,11 @@ class GrossSalaryTable extends React.Component {
                 <td>
                   <CalculatorSelect
                     value={item.month}
-                    style={{ width: "120px" }}
+                    style={{ minWidth: "90px" }}
                     onChange={v => this.setField({ name: "month", v, i }, this.autoFillItems)}
                   >
                     {months.arm.map((month, i) => (
-                      <Select.Option value={i} key={`month-${month}`}>
+                      <Select.Option style={{textAlign: 'left'}} value={i} key={`month-${month}`}>
                         {month}
                       </Select.Option>
                     ))}
@@ -93,11 +93,11 @@ class GrossSalaryTable extends React.Component {
                 <td>
                   <CalculatorSelect
                     value={item.year}
-                    style={{ width: "100px" }}
+                    style={{ minWidth: "60px" }}
                     onChange={v => this.setField({ name: "year", v, i }, this.autoFillItems)}
                   >
                     {years(20).map(year => (
-                      <Select.Option value={year} key={`year-${year}`}>
+                      <Select.Option style={{textAlign: 'left'}} value={year} key={`year-${year}`}>
                         {year}
                       </Select.Option>
                     ))}

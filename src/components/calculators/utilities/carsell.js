@@ -3,7 +3,7 @@ import * as Yup from "yup"
 export const ENGINE_HORSEPOWER = 1
 export const ENGINE_KILOWATTS = 2
 
-export const CAR_SELL_MIN = 500000;
+export const CAR_SELL_MIN = 0;
 export const CAR_SELL_MAX = 300000000;
 export const CAR_SELL_STEP = 100000;
 

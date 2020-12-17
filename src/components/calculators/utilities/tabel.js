@@ -1,5 +1,4 @@
 import moment from "moment"
-import { holidaysByMonth } from "./vacation"
 
 /**
  * define working schedule based on array of days
@@ -7,13 +6,14 @@ import { holidaysByMonth } from "./vacation"
  *
  * @param {number[]} days
  * @param {moment.Moment} month
+ * @param {{title: String | null, date: String}[]} holidays
  * @return {number}
  */
-export const defineSchedule = (days, month) => {
+export const defineSchedule = (days, month, holidays) => {
   let empties = emptyIndexes(days), hasSaturday, hasSunday;
 
   empties.map(item => month.clone().date(item)).forEach(date => {
-    if (holidaysByMonth[date.month()].every(holiday => !moment(holiday).isSame(date))) {
+    if (holidays.every(holiday => !moment(holiday.date).isSame(date))) {
       if (date.day() === 0) hasSunday = true
 
       if (date.day() === 6) hasSaturday = true
