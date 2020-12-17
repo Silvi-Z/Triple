@@ -1508,7 +1508,7 @@ pre tt:after {
 }
 .servicesContainer:nth-child(n+4){
   border-bottom: none !important;
-
+}
 
 a.calc-nav-item {
   transition: background-color ease-in-out 0.1s;
