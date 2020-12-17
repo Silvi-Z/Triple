@@ -5,6 +5,8 @@ import { Link } from "gatsby"
 export const NavLink = styled(Link)`
   text-decoration: none;
   display: flex;
+  width: fit-content;
+  margin: auto;
   @media (max-width: 375px) {
     margin-top: auto;
   }

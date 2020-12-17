@@ -22,7 +22,7 @@ const Homepartners = ({ langText, lang }) => {
       </PartnerspHeadingColumn>
       <ResponsWrapper>
         {contentData.map(item => (
-          <ContentContainer>
+          <ContentContainer key={item.name}>
             <Div>
               <ServiceNameWrapper>
                 <IconWrapper src={item.src} alt={"icon"}/>

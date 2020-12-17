@@ -1,5 +1,4 @@
 import React, { useState , useEffect } from "react"
-import img from "../../assets/newsImages/news_img1.png"
 import {
   SeeMoreSingleNews,
   SharedWrapperCol,
@@ -42,7 +41,9 @@ const FullInfo = ({ filteredData, data , lang , pageContext}) => {
   useEffect(() => {
     resize()
   });
-  window.addEventListener("resize", resize);
+  if (typeof window !== `undefined`) {
+    window.addEventListener("resize", resize);
+  }
 
   let urlShared;
 
@@ -102,7 +103,7 @@ const FullInfo = ({ filteredData, data , lang , pageContext}) => {
                     <DataItem>{item.date}</DataItem>
                       <SeeMoreSingleNews
                         className="see_more_btn"
-                      > ԱՎԵԼԻՆ
+                      > տեսնել ավելին
                       </SeeMoreSingleNews>
                   </MoreRow>
                 </TextPart>

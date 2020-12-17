@@ -32,18 +32,18 @@ exports.onCreatePage = async ({ page, actions: { createPage, deletePage, createR
 
         // Update the page.
         await createPage(page);
+      } else {
+        await createPage({
+          ...page,
+          path: localizedPath,
+          context: {
+            ...page.context,
+            originalPath,
+            locale: lang,
+            localeResources: resources[lang] ? resources[lang] : {},
+          },
+        });
       }
-
-      await createPage({
-        ...page,
-        path: localizedPath,
-        context: {
-          ...page.context,
-          originalPath,
-          locale: lang,
-          localeResources: resources[lang] ? resources[lang] : {},
-        },
-      });
     })
   );
 

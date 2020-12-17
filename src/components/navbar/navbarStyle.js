@@ -192,11 +192,11 @@ export const HeadMainIcon = styled.img`
     height:100%;
   }
 `;
-export const ResponsiveNavWrapper = styled(Row)`
+export const ResponsiveNavWrapper = styled.div`
   display: none;
   width: 100%;
   height: 90px;
-  background-color: ${props=>props.menuColor};
+  background-color: ${props=>props.menuColorProp};
   @media only screen and (max-width: 1024px) {
     display: flex;
     justify-content:space-between;

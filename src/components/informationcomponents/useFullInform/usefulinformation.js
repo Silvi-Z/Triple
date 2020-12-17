@@ -30,7 +30,7 @@ const UsefulInform = ({ usedata }) => {
         <ul>
           {usedata.data.links.map(({ link, id, label }) => (
             <DownloadLink
-              href={link}
+              to={link}
               download={link}
               target="_blank"
               key={id}

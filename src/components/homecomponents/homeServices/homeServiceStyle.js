@@ -20,6 +20,8 @@ export const ServiceTitle = styled.div`
 export const NavLink = styled(Link)`
   text-decoration: none;
   display: flex;
+  width: fit-content;
+  margin: auto;
 `
 export const H2Styled = styled.section`
   font-family: ArialAMU;
@@ -52,7 +54,6 @@ export const SeemoreWrapper = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin:0 auto;
 `
 
 export const Seemoreimg = styled.img`
@@ -75,7 +76,7 @@ export const PElement = styled.p`
   }
 `
 export const ContentLink = styled(Link)`
-  transition:0;
+  transition:unset;
   width:100%;
 `
 export const InfoAboutPartners = styled.div`
@@ -199,7 +200,7 @@ export const ContentContainer = styled.div`
 export const HomePageWrapper = styled.div`
   max-width:1440px;
   margin:0 auto;
-  padding:50px 60px 90px 55px;
+  padding:80px 60px 90px 55px;
   @media only screen and (max-width: 1024px) {
     padding:0 20px 63px 20px;
   }
@@ -234,6 +235,6 @@ export const ContainerRow = styled(Row)`
   justify-content: end;
   width: 100%;
   height: auto;
-  margin: 37 auto;
+  margin: auto;
   
 `

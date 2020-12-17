@@ -48,11 +48,11 @@ const Layout = ({ children, location, pageContext: { locale, originalPath, local
   }, [location, i18n, locale]);
 
   const [responseWrapper, setResponseWrapper] = useState(true)
-  const [menuColor , setMenuColor] = useState("")
+  const [menuColorProp , setMenuColorProp] = useState("")
   
   const openMenu = () => {
     setResponseWrapper(!responseWrapper);
-    (menuColor==="") ? setMenuColor("#1C1D21"): setMenuColor("");
+    (menuColorProp==="") ? setMenuColorProp("#1C1D21"): setMenuColorProp("");
     document.querySelector("body").classList.toggle("opened_response_menu")
   }
   
@@ -61,8 +61,8 @@ const Layout = ({ children, location, pageContext: { locale, originalPath, local
       <Navbar
         open={openMenu}
         originalPath={originalPath}
-        setMenuColor={setMenuColor}
-        menuColor={menuColor}
+        setMenuColor={setMenuColorProp}
+        color={menuColorProp}
         responseWrapper={responseWrapper}
         setResponseWrapper={setResponseWrapper}
         lang={locale}

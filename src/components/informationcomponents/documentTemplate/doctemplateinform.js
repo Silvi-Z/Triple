@@ -17,8 +17,6 @@ const DocTemplateInform = ({ usedata }) => {
 
   const selectFormat = (e) => {
     let element = e.target.id;
-    console.log(wrapperClass[element])
-    console.log(element);
       (wrapperClass[element]===true)?
       setWrapperClass({}):
       setWrapperClass({[element]: true})

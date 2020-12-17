@@ -30,7 +30,10 @@ const CareerDropWrapper = ({
         <DropHeadingTitle>
           <ToggleH2Styled>{data.data.title}</ToggleH2Styled>
           <DropHeadingButton>
-            <ToggleButton isOpen={data.open} block onClick={() => showCareerForm(data)}>
+            <ToggleButton
+              className={data.open ? 'whiteButton' : 'blackButton'}
+              block onClick={() => showCareerForm(data)}
+            >
               {data.open ? <UpOutlined/> : <DownOutlined />}
             </ToggleButton>
           </DropHeadingButton>

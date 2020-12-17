@@ -1482,6 +1482,33 @@ pre tt:after {
   margin-right: 9px;
   color: #000000;
 }
+.whiteButton{
+  background: #FFFFFF;
+  color: #1C1D21;
+}
+.whiteButton:hover{
+  background: #1C1D21 !important;
+  color: #FFFFFF !important;
+}
+.whiteButton.ant-btn:focus{
+  background: #FFFFFF;
+  color: #1C1D21;
+}
+.blackButton{
+  background: #1C1D21;
+  color: #FFFFFF;
+}
+.blackButton:hover{
+  background: #FFFFFF !important;
+  color: #1C1D21 !important;
+}
+.blackButton.ant-btn:focus{
+  background: #1C1D21;
+  color: #FFFFFF;
+}
+.servicesContainer:nth-child(n+4){
+  border-bottom: none !important;
+
 
 a.calc-nav-item {
   transition: background-color ease-in-out 0.1s;
