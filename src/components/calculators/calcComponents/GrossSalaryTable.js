@@ -4,7 +4,7 @@ import { Select } from "antd"
 import { cloneDeep, isEqual, isNull } from "lodash"
 import { months, years } from "../utilities/vacation"
 import { SALARY_MAX, SALARY_MIN } from "../utilities/salary"
-import { ColHeader, CalculatorTable, CalculatorCol, CalculatorInput, CalculatorSelect } from "../styled"
+import { CalculatorTable, CalculatorCol, CalculatorInput, CalculatorSelect } from "../styled"
 
 class GrossSalaryTable extends React.Component {
   constructor(props) {

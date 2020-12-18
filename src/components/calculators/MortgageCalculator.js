@@ -133,6 +133,8 @@ class MortgageCalculator extends React.Component {
           console.log(e)
         } finally {
           this.setLoading(false)
+
+          document.body.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"})
         }
       }
     } else {
@@ -140,6 +142,8 @@ class MortgageCalculator extends React.Component {
         if (!this.state.calculated) {
           this.setState({calculated: true})
         }
+
+        document.body.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"})
       })
     }
   }
@@ -171,16 +175,16 @@ class MortgageCalculator extends React.Component {
               layout="horizontal"
               size="large"
             >
-              <Form.Item label={<Label style={{ fontSize: "16px" }}>{lang.salary_type_label}</Label>} labelCol={{ span: 24 }}>
+              <Form.Item label={<Label style={{ fontSize: "16px" }}>{lang["salary_type_label"]}</Label>} labelCol={{ span: 24 }}>
                 <Radio.Group
                   onChange={e => this.setField("salary_type", e.target.value)}
                   value={form.salary_type}
                 >
                   <Radio value={SALARY_TYPE_REGISTERED}>
-                    <Label>{lang.dirty_salary}</Label>
+                    <Label>{lang["dirty_salary"]}</Label>
                   </Radio>
                   <Radio value={SALARY_TYPE_NET}>
-                    <Label>{lang.clean_salary}</Label>
+                    <Label>{lang["clean_salary"]}</Label>
                   </Radio>
                 </Radio.Group>
               </Form.Item>
@@ -190,7 +194,7 @@ class MortgageCalculator extends React.Component {
                   onChange={e => this.setField("static_salary", e.target.checked)}
                   checked={form.static_salary}
                 >
-                  <RadioLabel>{lang.static_salary_label}</RadioLabel>
+                  <RadioLabel>{lang["static_salary_label"]}</RadioLabel>
                 </Checkbox>
               </Form.Item>
 
@@ -203,7 +207,7 @@ class MortgageCalculator extends React.Component {
                 : null}
 
               {form.static_salary ?
-                <Form.Item label={<Label>{lang.salary_label}</Label>} name="amount">
+                <Form.Item label={<Label>{lang["salary_label"]}</Label>} name="amount">
                   <CalculatorInput
                     formatter={v => `${v}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
                     parser={v => v.replace(/\$\s?|(,*)/g, '')}
@@ -216,7 +220,7 @@ class MortgageCalculator extends React.Component {
                 </Form.Item>
               : null}
 
-              <Form.Item label={<Label>{lang.interest_amount_label}</Label>} name="interest_amount">
+              <Form.Item label={<Label>{lang["interest_amount_label"]}</Label>} name="interest_amount">
                 <CalculatorInput
                   onChange={v => this.setField("interest_amount", v)}
                   value={form.interest_amount}
@@ -226,26 +230,26 @@ class MortgageCalculator extends React.Component {
                 />
               </Form.Item>
 
-              <Form.Item label={<Label style={{ fontSize: "16px" }}>{lang.tax_label}</Label>} labelCol={{ span: 24 }} name="tax_field">
+              <Form.Item label={<Label style={{ fontSize: "16px" }}>{lang["tax_label"]}</Label>} labelCol={{ span: 24 }} name="tax_field">
                 <Radio.Group
                   onChange={e => this.setField("tax_field", e.target.value)}
                   value={form.tax_field}
                 >
                   <Radio style={radioStyle} value={TAX_FIELD_COMMON}>
-                    <RadioLabel>{lang.tax_label_common}</RadioLabel>
+                    <RadioLabel>{lang["tax_label_common"]}</RadioLabel>
                   </Radio>
                   <Radio style={radioStyle} value={TAX_FIELD_IT}>
-                    <RadioLabel>{lang.tax_label_it}</RadioLabel>
+                    <RadioLabel>{lang["tax_label_it"]}</RadioLabel>
                   </Radio>
                   <Radio style={radioStyle} value={TAX_FIELD_ENTERPRISE}>
-                    <RadioLabel>{lang.tax_label_enterprise}</RadioLabel>
+                    <RadioLabel>{lang["tax_label_enterprise"]}</RadioLabel>
                   </Radio>
                 </Radio.Group>
               </Form.Item>
 
               {form.salary_type === SALARY_TYPE_NET ?
                 <Form.Item
-                  label={<RadioLabel>{lang.pensioner_label}</RadioLabel>}
+                  label={<RadioLabel>{lang["pensioner_label"]}</RadioLabel>}
                   labelCol={{ span: 24 }}
                   name="pension"
                 >
@@ -254,13 +258,13 @@ class MortgageCalculator extends React.Component {
                     value={form.pension}
                   >
                     <Radio value={PENSION_FIELD_YES}>
-                      <Label>{lang.yes}</Label>
+                      <Label>{lang["yes"]}</Label>
                     </Radio>
                     <Radio value={PENSION_FIELD_YES_VOLUNTEER}>
-                      <Label>{lang.yes_volunteer}</Label>
+                      <Label>{lang["yes_volunteer"]}</Label>
                     </Radio>
                     <Radio value={PENSION_FIELD_NO}>
-                      <Label>{lang.no}</Label>
+                      <Label>{lang["no"]}</Label>
                     </Radio>
                   </Radio.Group>
                 </Form.Item>
@@ -274,7 +278,7 @@ class MortgageCalculator extends React.Component {
                   shape="round"
                   size="large"
                 >
-                  {lang.calculate}
+                  {lang["calculate"]}
                 </ButtonSubmit>
               </Form.Item>
             </Form>
@@ -287,7 +291,8 @@ class MortgageCalculator extends React.Component {
           <UnderLine/>
 
           <CalculatorCardResult
-            title={lang.result.income_tax_back}
+            tooltip={form.tax_field === TAX_FIELD_ENTERPRISE ? 'prompt text': null}
+            title={lang.result["income_tax_back"]}
             loading={loading}
             text={tax}
           />

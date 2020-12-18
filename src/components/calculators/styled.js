@@ -186,7 +186,7 @@ export const CalculatorTable = styled.table`
   max-width: 100%;
 `
 
-export const CalculatorCol = styled.th`
+export const CalculatorCol = styled.td`
   background: #F7F7F7;
   border-radius: 5px;
   font-family: ArialAMU,serif;

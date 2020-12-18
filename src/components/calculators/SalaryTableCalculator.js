@@ -92,12 +92,6 @@ class SalaryTableCalculator extends React.Component {
       const employees = rows.reduce((acc, row, i) => {
         if (i >= 20 && isInteger(Number(row[0]))) {
           const schedule = defineSchedule(row.slice(4, date.daysInMonth() + 4), date, this.holidays)
-          const workingDaysInMonth = workingDaysInMonth({
-            workdays: this.workdays,
-            holidays: this.holidays,
-            schedule,
-            date
-          }).length
 
           acc.push({
             id: row[0],
@@ -108,7 +102,12 @@ class SalaryTableCalculator extends React.Component {
             pension: PENSION_FIELD_YES,
             amount: null,
             schedule,
-            workingDaysInMonth
+            workingDaysInMonth: workingDaysInMonth({
+              workdays: this.workdays,
+              holidays: this.holidays,
+              schedule,
+              date
+            }).length
           })
         }
 
@@ -123,6 +122,8 @@ class SalaryTableCalculator extends React.Component {
 
         employees.splice(0, employees.length)
       }
+
+      this.fileInput.current.value = null
 
       this.setState({employees})
     };

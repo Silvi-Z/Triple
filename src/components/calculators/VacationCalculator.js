@@ -3,7 +3,7 @@ import ReactDOM from "react-dom"
 import moment from "moment"
 import triple from "../../api/triple"
 import { pick, isNull, isEmpty, isEqual } from "lodash"
-import { Row, Col, Card, Form, Radio, Checkbox, DatePicker, Space } from "antd"
+import { Row, Col, Card, Form, Radio, Checkbox } from "antd"
 import GrossSalaryTable from "./calcComponents/GrossSalaryTable"
 import CalculatorCardResult from "./calcComponents/CalculatorCardResult"
 import { isHoliday, isWeekend, workingDaysInRange } from "./utilities/vacation"
@@ -305,6 +305,7 @@ class VacationCalculator extends React.Component {
           if (!this.state.calculated) this.setState({ calculated: true })
         })
         .catch(err => console.log(err))
+        .finally(() => document.body.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"}))
     })
   }
 
@@ -316,7 +317,7 @@ class VacationCalculator extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
-    // this.autoCalculate(prevState)
+    this.autoCalculate(prevState)
   }
 
   componentWillUnmount() {
@@ -499,6 +500,7 @@ class VacationCalculator extends React.Component {
           <CalculatorCardResult
             title={lang.result["income_tax"]}
             text={result.income_tax}
+            tooltip={form.tax_field === TAX_FIELD_ENTERPRISE ? 'prompt text': null}
           />
 
           <CalculatorCardResult

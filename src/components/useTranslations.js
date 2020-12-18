@@ -270,6 +270,7 @@ const query = graphql`
                   available_vacation_days
                   total_vacation_days
                   used_vacation_days
+                  unused_vacation_days
                   salary
                   static_salary
                   tax
