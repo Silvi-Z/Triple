@@ -9,17 +9,6 @@ export const SliderAboutUs = styled(Slider)`
     }
   }
 `
-export const Slogan = styled.h1`
-  font-weight: bold;
-  font-size: 44px;
-  display: flex;
-  margin-bottom:60px;
-  justify-content: center;
-  letter-spacing: 16.65px;
-  @media only screen and (max-width: 1094px) {
-    display:none;
-  }
- `
 export const InformationSection= styled.div`
   display:flex;
   position: relative;

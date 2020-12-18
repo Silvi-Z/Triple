@@ -46,7 +46,7 @@ const contentData = [
   {
     "src" : `${Elev8rPeach}`,
     "name" : "Էլեվեյթր Փիչ",
-    "sphere" : "Մարկեըինգային ծառայություններ"
+    "sphere" : "Մարկեինգային ծառայություններ"
   },
   {
     "src" : `${Digilabs}`,

@@ -20,26 +20,27 @@ export const ToggleH2Styled = styled.h2`
 export const SubmitButton = styled.button`
   position:relative;
   overflow: hidden;
-  background:${props => props.buttonColorProp ? "white" : "black"};
   width:260px;
   height:49px ;
   outline:none;
   font-weight:bold;
+  background: ${props=> props.backgroundColor === 'black'? 'black' : 'white'};
+  border:1px solid ${props=> props.backgroundColor === 'black'? 'black' : 'white'};
+  color: ${props=> props.backgroundColor === 'black'? 'white' : 'black'};
   border-style: outset;
   border-radius: 30px;
-  border:1px solid ${props => props.buttonColorProp ? "white" : "black"};
   font-size:16px;
-  color: ${props => props.buttonColorProp ? "black" : "white"};
   background-position: 50% 50%;
   display: inline-block;
-  background-image:linear-gradient( ${props => props.buttonColorProp ? `#000000, #000000` : `#ffffff, #ffffff` });
   background-repeat: no-repeat;
+  letter-spacing: 1.15px;
   transition: background-size .5s, color .5s;
-  background-size: 0% 100%;
+  background-image: linear-gradient(${props=>props.backgroundColor === 'black' ? '#FFFFFF , #FFFFFF' : '#000000 , #000000'});
+  background-size: 0 100%;
     &:hover {
       background-size: 100% 100%;
-      color: ${props => props.buttonColorProp ? "white" : "black"};
       cursor:pointer;
+      color: ${props=> props.backgroundColor === 'black'? 'black' : 'white'};
       outline:none;
     }
     &:focus {
@@ -68,25 +69,19 @@ export const H2Styled = styled.h2`
 `
 
 export const ToggleButton = styled(Button)`
-  background: ${(props) => props.isOpen ? '#FFFFFF' : '#1C1D21'};
-  border-color:#1C1D21;
   width: 40px;
   height: 40px;
   box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
-  color: ${(props) => props.isOpen ? '#1C1D21' : '#FFFFFF'};
   border: 1px solid #1C1D21;
   box-sizing: border-box;
   border-radius:50%;
   padding:0;
+  transition: unset;
   --antd-wave-shadow-color:none;
   &.ant-btn:hover{
-    background: ${(props) => props.isOpen ? '#1C1D21' : '#FFFFFF'};
-    color: ${(props) => props.isOpen ? '#FFFFFF' : '#1C1D21'};
     border-color:#1C1D21;
   }
   &.ant-btn:focus{
-    background: ${(props) => props.isOpen ? '#FFFFFF' : '#1C1D21'};
-    color: ${(props) => props.isOpen ? '#1C1D21' : '#FFFFFF'};
     border-color: #1C1D21;
   }
 `

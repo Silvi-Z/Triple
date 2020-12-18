@@ -12,6 +12,13 @@ export const StyledForm = styled(Form)`
     -webkit-box-shadow: 0 0 0 30px black inset !important;
     -webkit-text-fill-color: white;
     caret-color: white;
+  .ant-btn-primary:hover{
+    background: unset;
+    border-color: unset;
+  }
+  .ant-btn:hover{
+    color: unset ;
+  }
 }
 `
 

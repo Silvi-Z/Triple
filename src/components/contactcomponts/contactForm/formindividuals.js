@@ -34,7 +34,7 @@ const validateMessages = {
 const Formfield = ({ langtext, lang }) => {
   const [form] = Form.useForm()
   const [modalVisible, setmodalVisible] = useState(false)
-  const [loading, toggleLoading] = useState(false)
+  const [disabled, toggleDisabled] = useState(false)
   const [selectedFile, setSelectedFile] = useState(null)
   const [color, setColor] = useState(true)
 
@@ -69,8 +69,8 @@ const Formfield = ({ langtext, lang }) => {
       UploadFormData.append("file", values.file[0].originFileObj)
     }
     try {
-      console.log(toggleLoading)
-      toggleLoading(true)
+      console.log(toggleDisabled)
+      toggleDisabled(true)
       const res = await triple
         .post("/api/send_email/contact_us", UploadFormData, {
           headers: {
@@ -78,12 +78,12 @@ const Formfield = ({ langtext, lang }) => {
           },
         })
         .then(res => {
-          toggleLoading(false)
+          toggleDisabled(false)
           setmodalVisible(true)
         })
     } catch (e) {
       console.log("Error: ", e)
-      toggleLoading(false)
+      toggleDisabled(false)
     }
   }
 
@@ -162,7 +162,7 @@ const Formfield = ({ langtext, lang }) => {
                     : "Խնդրում ենք լրացնել նշված դաշտերը",
               },
             ]}
-            style={{ marginBottom: "3px" }}
+            style={{ marginBottom: "3px" , cursor: "pointer"}}
           >
             <Upload
               accept=".jpeg,.png,.jpg,.doc,.pdf,.docx,.xlsx"
@@ -222,11 +222,11 @@ const Formfield = ({ langtext, lang }) => {
       </>
       <StyledForm.Item>
         <SubmitButton
-          className="submit_button_style"
+          className="submit_button_style "
           type="primary"
           htmlType="submit"
-          loading={loading}
-          buttonColorProp={color}
+          disabled={false}
+          backgroundColor="white"
         >
           {langtext.send_button}
         </SubmitButton>

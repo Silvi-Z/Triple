@@ -116,8 +116,8 @@ export const DataItem = styled.p`
 `
 
 export const SeeMoreSingleNews = styled(SeemoreWrapper)`
-  width: 112px; 
-  height: 27px;
+  width: 140px; 
+  height: 28px;
   margin-top: 0;
   font-size:14px;
   font-weight: normal;

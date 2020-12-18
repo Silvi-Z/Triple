@@ -1,6 +1,5 @@
 import React from "react"
 import {
-  Slogan,
   ImagePart,
   BigImage,
   TripleIcon,
@@ -46,9 +45,6 @@ const HomeAboutUs = () => {
 
   return (
     <>
-      <Slogan>
-        TRUST.DEAL.PROFIT!
-      </Slogan>
       <InformationSection>
         <ImagePart>
           <BigImage src={PhoneImg} />

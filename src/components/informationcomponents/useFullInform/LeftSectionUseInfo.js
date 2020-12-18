@@ -12,7 +12,7 @@ const LeftSectionUseInform = ({ usedata }) => {
   return (
 
     <ContainerUseful>
-      <GeneralLink href={usedata.data.href} target="_blank">
+      <GeneralLink to={usedata.data.href} target="_blank">
       <TextWrapper span={24}>
           <h2>{usedata.data.first_heading}</h2>
         <IconWrapper/>

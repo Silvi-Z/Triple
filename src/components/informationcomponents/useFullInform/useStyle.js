@@ -24,7 +24,7 @@ export const IconWrapper = styled.button`
   height: 40px;
   width: 40px;
   cursor:pointer;
-  transition-duration: .5s;
+  transition-duration: .3s;
   background-color: black;
   border: 1px solid black;
   border-radius: 50%;

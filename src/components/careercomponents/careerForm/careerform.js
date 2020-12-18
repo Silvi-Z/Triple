@@ -14,12 +14,6 @@ const layout = {
   },
 }
 
-const tailLayout = {
-  wrapperCol: {
-    offset: 0,
-    span: 12,
-  },
-}
 
 
 
@@ -29,7 +23,7 @@ const Formfield = ({
                    }) => {
   const [form] = Form.useForm()
   const [modalVisible, setmodalVisible] = useState(false)
-  const [loading, toggleLoading] = useState(false)
+  const [disabled, toggleDisabled] = useState(false)
   const [uploadFile , setUploadFile] = useState(null)
 
   const handleOk = e => {
@@ -56,7 +50,7 @@ const Formfield = ({
     UploadFormData.append("email", values.email)
     UploadFormData.append("file", values.file[0].originFileObj)
     try {
-      toggleLoading(true)
+      toggleDisabled(true)
       const res = await triple
         .post("api/send_email/senior_accountant", UploadFormData, {
           headers: {
@@ -65,15 +59,15 @@ const Formfield = ({
         })
         .then(
           res => {
-            toggleLoading(false)
+            toggleDisabled(false)
             setmodalVisible(true)
           },
           reject => {
-            toggleLoading(false)
+            toggleDisabled(false)
           },
         )
     } catch (e) {
-      toggleLoading(false)
+      toggleDisabled(false)
     }
 
   }
@@ -151,14 +145,14 @@ const Formfield = ({
             </Form.Item>
           </Col>
           <Col
-            span={24}
             id="careersubmitcol"
           >
-            <Form.Item {...tailLayout}>
+            <Form.Item>
               <SubmitButton
                 type="primary"
                 htmlType="submit"
-                loading={loading}
+                backgroundColor="black"
+                disabled={false}
               >
                 {formlangtext.send_button}
               </SubmitButton>
