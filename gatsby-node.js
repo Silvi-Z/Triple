@@ -30,7 +30,6 @@ exports.onCreatePage = async ({ page, actions: { createPage, deletePage, createR
         // Update the page.
         await createPage(page);
       }
-      console.log(resources[lang])
       await createPage({
         ...page,
         path: localizedPath,
