@@ -249,11 +249,11 @@ class SalaryTableCalculator extends React.Component {
    * @return {JSX.Element}
    */
   handlePickerRender = (date, today, range) => {
-    const { form } = this.state
+    const { schedule } = this.state.form
 
     const condition = range === 'start'
-      ? form.date_to && (date.isSameOrAfter(form.date_to, "day"))
-      : !form.date_from || (date.isSameOrBefore(form.date_from, "day"))
+      ? this.handleDateFromDisabled(date)
+      : this.handleDateToDisabled(date)
 
     if (date.isSame(today, 'day')) {
       return <div className={
@@ -271,7 +271,7 @@ class SalaryTableCalculator extends React.Component {
       }>
         {date.format('D')}
       </div>
-    } else if (isWeekend(date, form.schedule)) {
+    } else if (isWeekend(date, schedule)) {
       return <div className={
         !condition
           ? 'ant-picker-cell-inner ant-picker-cell-weekend'
@@ -640,7 +640,7 @@ class SalaryTableCalculator extends React.Component {
               {form.by
                 ? <>
                   <Row gutter={10} align="start">
-                    <Col span={10}>
+                    <Col lg={10} xl={9} xxl={8}>
                       <Form.Item label={<Label>{lang.form.start}</Label>}>
                         <CalculatorDatePicker
                           dateRender={(date, today) => this.handlePickerRender(date, today, 'start')}
@@ -656,7 +656,7 @@ class SalaryTableCalculator extends React.Component {
                         />
                       </Form.Item>
                     </Col>
-                    <Col span={10}>
+                    <Col lg={10} xl={9} xxl={8}>
                       <Form.Item label={<Label>{lang.form.end}</Label>}>
                         <CalculatorDatePicker
                           dateRender={(date, today) => this.handlePickerRender(date, today, 'end')}

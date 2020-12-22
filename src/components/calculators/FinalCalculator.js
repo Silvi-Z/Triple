@@ -262,7 +262,7 @@ class FinalCalculator extends React.Component {
               size="large"
             >
               <Row gutter={10} align="middle">
-                <Col span={11}>
+                <Col lg={11} xl={9} xxl={8}>
                   <Form.Item label={<Label>{lang.form["acceptance"]}</Label>}>
                     <CalculatorDatePicker
                       onChange={date => this.setFormField("date_acceptance", date)}
@@ -276,7 +276,7 @@ class FinalCalculator extends React.Component {
                     />
                   </Form.Item>
                 </Col>
-                <Col span={11}>
+                <Col lg={11} xl={9} xxl={8}>
                   <Form.Item label={<Label>{lang.form.release}</Label>}>
                     <CalculatorDatePicker
                       onChange={date => this.setFormField("date_release", date)}
@@ -351,7 +351,7 @@ class FinalCalculator extends React.Component {
                 </Label>
               }>
                 <Input
-                  onChange={v => this.setFormField("unused_vacation_days", v, this.autoFillUsedVacationDays)}
+                  onChange={e => this.setFormField("unused_vacation_days", e.target.value, this.autoFillUsedVacationDays)}
                   value={form.unused_vacation_days}
                   style={{
                     border: '0.5px solid #555555',
@@ -359,6 +359,7 @@ class FinalCalculator extends React.Component {
                     borderRadius: '5px',
                     width: "54px"
                   }}
+                  max={this.totalVacationDays}
                   min={0}
                   name="unused_vacation_days"
                   type="number"

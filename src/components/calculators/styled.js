@@ -48,7 +48,7 @@ export const FormLabel = styled.h3`
 export const RadioGroup = styled(Radio.Group)`
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: start;
   width: 100%;
   min-height: 50px !important;
   margin-bottom: 25px;

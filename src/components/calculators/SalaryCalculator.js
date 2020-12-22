@@ -97,7 +97,10 @@ const SalaryCalculator = ({ langText }) => {
               value={formik.values.from}
               size="large"
             >
-              <Row align="middle" gutter={[10, 10]} style={{width: '100%', flexDirection: formik.values.from === 2 ? "row-reverse" : "row"}}>
+              <Row align="middle" justify="start" gutter={[10, 10]} style={{
+                width: '100%',
+                flexDirection: formik.values.from === 2 ? "row-reverse" : "row"
+              }}>
                 <Col span={11}>
                   <RadioButton value={1} size="large">
                     {langText["dirty_salary_button"]}

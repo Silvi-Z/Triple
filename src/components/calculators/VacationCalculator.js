@@ -348,7 +348,7 @@ class VacationCalculator extends React.Component {
               size="large"
             >
               <Row gutter={10} align="middle">
-                <Col span={10}>
+                <Col lg={10} xl={9} xxl={8}>
                   <Form.Item label={<Label>{lang.start}</Label>}>
                     <CalculatorDatePicker
                       disabledDate={d => form.date_to && (d.isSameOrAfter(form.date_to, "day"))}
@@ -363,7 +363,7 @@ class VacationCalculator extends React.Component {
                     />
                   </Form.Item>
                 </Col>
-                <Col span={10}>
+                <Col lg={10} xl={9} xxl={8}>
                   <Form.Item label={<Label>{lang.end}</Label>}>
                     <CalculatorDatePicker
                       disabledDate={d => !form.date_from || (d.isSameOrBefore(form.date_from, "day"))}

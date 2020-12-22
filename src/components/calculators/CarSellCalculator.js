@@ -66,9 +66,13 @@ class CarSellCalculator extends React.Component {
     const { form } = this.state;
 
     schema.isValid(form).then(valid => {
-      if (!valid) return
+      if (!valid) {
+        this.setState({tax: null})
 
-      this.setState({tax: this.tax}, () => {
+        return
+      }
+
+      this.setState({tax: Math.round(this.tax)}, () => {
         if (!this.state.calculated) {
           this.setState({calculated: true})
         }
@@ -104,7 +108,7 @@ class CarSellCalculator extends React.Component {
               size="large"
             >
               <Row gutter={10} align="middle">
-                <Col span={12}>
+                <Col lg={11} xl={10} xxl={10}>
                   <Form.Item label={<Label>{lang.achievement}</Label>}>
                     <CalculatorDatePicker
                       onChange={date => this.setField("achievementDate", date)}
@@ -114,7 +118,7 @@ class CarSellCalculator extends React.Component {
                     />
                   </Form.Item>
                 </Col>
-                <Col span={11}>
+                <Col lg={11} xl={10} xxl={8}>
                   <Form.Item label={<Label>{lang.alienation}</Label>}>
                     <CalculatorDatePicker
                       onChange={date => this.setField("alienationDate", date)}

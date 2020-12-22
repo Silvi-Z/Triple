@@ -70,13 +70,15 @@ class MortgageCalculator extends React.Component {
       quarterTax = 5000 * 3;
     }
 
-    return quarterTax > interest_amount ? interest_amount : quarterTax;
+    return quarterTax > interest_amount ? interest_amount : Math.round(quarterTax);
   }
 
   quarterTotalTax(percent) {
     const { items } = this.state
 
-    return items.reduce((t ,item) => t + (((item.salary || 0) + (item.bonus || 0) + (item.surcharge || 0)) * percent), 0)
+    const tax = items.reduce((t ,item) => t + (((item.salary || 0) + (item.bonus || 0) + (item.surcharge || 0)) * percent), 0)
+
+    return Math.round(tax)
   }
 
   setField(name, value, cb) {
@@ -123,6 +125,7 @@ class MortgageCalculator extends React.Component {
           }
 
           let tax = income_tax > interest_amount ? interest_amount : income_tax
+            tax = Math.round(tax)
 
           this.setState({ tax }, () => {
             if (!this.state.calculated) {
