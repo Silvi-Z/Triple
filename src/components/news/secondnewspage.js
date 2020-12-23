@@ -13,8 +13,9 @@ import {
   SeeMoreNews,
   SeeMoreSingleNews,
 } from "./newsStyle"
-import { NavLink } from "../homecomponents/homePartners/homePartStyle"
 
+import moment from "moment"
+import { NavLink } from "../homecomponents/homePartners/homePartStyle"
 
 const UsefulNews = ({news, lang , buttonDisplay, setButtonDisplay }) => {
 
@@ -32,6 +33,7 @@ const UsefulNews = ({news, lang , buttonDisplay, setButtonDisplay }) => {
           (index < items) ? (
             <NewsItems
               to={`/${lang}/news#${item.id}`}
+              state={{modal: true}}
               key={index}
               margin={item.margin}
             >
@@ -42,7 +44,7 @@ const UsefulNews = ({news, lang , buttonDisplay, setButtonDisplay }) => {
                 <Title>{item.title}</Title>
                 <NewsText>{item.description}</NewsText>
                 <MoreRow>
-                  <DataItem>{item.date}</DataItem>
+                  <DataItem>{moment(item.date).format("DD.MM.YYYY")}</DataItem>
                     <SeeMoreSingleNews
                       className="see_more_btn"
                     > տեսնել ավելին

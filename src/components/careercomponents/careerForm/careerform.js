@@ -151,7 +151,6 @@ const Formfield = ({
               <SubmitButton
                 type="primary"
                 htmlType="submit"
-                backgroundColor="black"
                 disabled={false}
               >
                 {formlangtext.send_button}

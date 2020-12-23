@@ -24,7 +24,7 @@ import {
   LinkedinShare,
   ShareLabel,
 } from "../careercomponents/careerForm/formStyle"
-
+import moment from "moment"
 const FullInfo = ({ filteredData, data , lang , pageContext}) => {
 
   const [size, setSize] = useState(3)
@@ -46,7 +46,6 @@ const FullInfo = ({ filteredData, data , lang , pageContext}) => {
   }
 
   let urlShared;
-
   const getSharedUrl = lng => {
     if (lng === "en") {
       return "http://triple-c.algorithm.am/en/news/"
@@ -60,7 +59,11 @@ const FullInfo = ({ filteredData, data , lang , pageContext}) => {
   const hookComponent = () => {
     urlShared = getSharedUrl(pageContext.locale)
   }
-
+  // let id = 1;
+  // fetch(`/api/news${id}`)
+  //   .then(response => response.json())
+  //   .then(json => console.log(json))
+  //   .catch(err => console.log('Request Failed', err));
   hookComponent()
   return (
     <>
@@ -100,7 +103,7 @@ const FullInfo = ({ filteredData, data , lang , pageContext}) => {
                   <Title>{item.title}</Title>
                   <NewsText>{item.description}</NewsText>
                   <MoreRow>
-                    <DataItem>{item.date}</DataItem>
+                    <DataItem>{moment(item.date).format("DD.MM.YYYY")}</DataItem>
                       <SeeMoreSingleNews
                         className="see_more_btn"
                       > տեսնել ավելին

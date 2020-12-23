@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Button, DatePicker, Divider, InputNumber, Radio, Select, Slider, Typography } from "antd"
+import { SubmitButton } from "../careercomponents/careerDroping/dropStyle"
 
 const { Text } = Typography;
 
@@ -130,30 +131,7 @@ export const RadioLabel = styled(Text)`
   overflow-wrap: break-word!important;
 `;
 
-export const ButtonSubmit = styled(Button)`
-  background: #1C1D21;
-  font-family: ArialAMU,serif;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 25px;
-  text-align: center;
-  letter-spacing: 1.15px;
-  text-transform: uppercase;
-  color: #FFFFFF;
-  width: 260px;
-  height: 50px;
-  &:hover:enabled {
-    color: #FFFFFF !important;
-    background: #1C1D21 !important;
-    border-color: #1C1D21 !important;
-  }
-  &:focus {
-    color: #FFFFFF !important;
-    background: #1C1D21 !important;
-    border-color: #1C1D21 !important;
-  }
-`;
+export const ButtonSubmit = styled(SubmitButton)``;
 
 export const UnderLine = styled(Divider)`
   margin: 5px 0 15px!important;

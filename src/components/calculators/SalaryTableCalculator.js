@@ -848,6 +848,7 @@ class SalaryTableCalculator extends React.Component {
               shape="round"
               size="large"
               block
+
             >
               {lang.result.download}
             </ButtonSubmit>

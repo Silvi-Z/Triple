@@ -712,10 +712,10 @@ pre tt:after {
 }
 .phonedrop {
   background: white;
-  width: 161px;
-  height: 64px;
   text-align: center;
-  margin-left: 7%;
+  top: 0;
+  border-bottom: 1px solid #EBEBEB;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1)
 }
 .phonenumber {
   width: 91px;
@@ -1506,8 +1506,10 @@ pre tt:after {
   background: #1C1D21;
   color: #FFFFFF;
 }
-.servicesContainer:nth-child(n+4){
-  border-bottom: none !important;
+.servicesContainer:last-child{
+  border-left: 1px solid #D0D0D0;
+  border-right: 1px solid #D0D0D0;
+  
 }
 
 a.calc-nav-item {

@@ -132,7 +132,6 @@ export const SeeMoreNews = styled(SeemoreWrapper)`
 export const SearchInput = styled.input`
   height: 40px;
   width: 100%;
-  cursor: pointer;
   background-color: white;
   outline: none;
   position: absolute;
@@ -187,12 +186,17 @@ export const NewsDatePicker = styled(DatePicker)`
   box-sizing: border-box;
   border:none;
   border-radius: 10px !important;
+  .ant-picker-suffix{
+    transition:opacity 0.3s;
+  }
   .ant-picker-input > input{
     width: 75px !important;
     flex: unset !important;
   }
-  .ant-picker-input{
-    width:fit-content !important;
+  .ant-picker-input:hover{
+    .ant-picker-suffix {
+        opacity: 0;
+    }
   }
 `
 

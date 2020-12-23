@@ -59,6 +59,7 @@ const NavLink = props => (
 );
 
 const CalculatorNav = ({ t, locale }) => {
+  console.log(locale)
   return (
     <NavCard
       bordered={false}

@@ -23,6 +23,10 @@ const contentData = [
     "link" : "services#test_6",
     "serviceName" : "Կադրային աշխատանք"
   },
+  {
+    "link" : "services#test_7",
+    "serviceName" : "Պետական և Միջազգային գնումներ"
+  },
 
 ]
 export default contentData

@@ -14,6 +14,11 @@ const contentData=[
     "text" : "Աշխատավարձի հաշվիչ"
   },
   {
+    "link" : "/arm/calculators/salary-table",
+    "src" : `${salaryTable}`,
+    "text" : "Աշխատավարձի հաշվիչ ըստ տաբելի"
+  },
+  {
     "link" : "/arm/calculators/vacation",
     "src" : `${vacation}`,
     "text" : "Արձակուրդայինի հաշվիչ"
@@ -39,21 +44,15 @@ const contentData=[
     "text" : "Ավտոմեքենայի վաճառքի հաշվիչ"
   },
   {
-    "link" : "/arm/calculators/car-tax",
-    "src" : `${carTax}`,
-    "text" : "Ավտոմեքենայի գույքահարկի հաշվիչ"
-  },
-  {
-    "link" : "/arm/calculators/salary-table",
-    "src" : `${salaryTable}`,
-    "text" : "Աշխատավարձի հաշվիչ ըստ տաբելի"
-  },
-  {
     "link" : "/arm/calculators/car-sell",
     "src" : `${calc_9}`,
     "text" : "Ավտոմեքենայի վաճառքի հաշվիչ"
   },
-
+  {
+    "link" : "/arm/calculators/car-tax",
+    "src" : `${carTax}`,
+    "text" : "Ավտոմեքենայի գույքահարկի հաշվիչ"
+  },
 ]
 
 export default contentData

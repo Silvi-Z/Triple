@@ -170,15 +170,20 @@ export const ContentContainer = styled.div`
   height: 258px;
   border-color: #D0D0D0;
   padding:20px 25px;
-  &:nth-child(3n+1):not(:nth-child(7)), &:nth-child(3n+2):not(:nth-child(8)){
-    border-right: 1px solid #D0D0D0;
-    border-bottom: 1px solid #D0D0D0;
+  border-collapse: collapse;
+  &:nth-child(5){
+     border-right: 1px solid #D0D0D0;
+     border-bottom: 1px solid #D0D0D0;
+     border-left: 1px solid #D0D0D0;
+     border-top: 1px solid #D0D0D0;
   }
-  &:nth-child(3n+0):not(:nth-child(9)){
-    border-bottom: 1px solid #D0D0D0;
-  }
-  &:nth-child(n+7):not(:nth-child(9)){
+  &:nth-child(8), &:nth-child(2){
+    border-left: 1px solid #D0D0D0;
     border-right: 1px solid #D0D0D0;
+  }
+  &:nth-child(-2n+6):not(:nth-child(2)){
+    border-bottom: 1px solid #D0D0D0;
+    border-top: 1px solid #D0D0D0;
   }
   @media only screen and (max-width: 1024px){
     &:nth-child(n){
@@ -232,9 +237,11 @@ export const IconWrapperSecondCol = styled(Col)`
 
 export const ContainerRow = styled(Row)`
   display: flex;
-  justify-content: end;
+  justify-content: center;
   width: 100%;
   height: auto;
   margin: auto;
-  
+  @media only screen and (max-width: 1024px){
+    justify-content:end;
+  }
 `

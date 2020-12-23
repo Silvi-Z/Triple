@@ -545,6 +545,7 @@ const RegistrationForm = ({
                 ]}
               >
                 <DatePickerCustom
+                  disabled={true}
                   onChange={getDate}
                   placeholder="Դեկտեմբեր 25, 1995 23:15:30"
                   format="DD-MM-YYYY"

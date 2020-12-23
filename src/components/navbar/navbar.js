@@ -70,6 +70,8 @@ const GridLang = styled.div`
   grid-area: lang;
 `
 const GridAddress = styled.div`
+  justify-content: space-between;
+  padding: 0 10px;
   grid-area: addr;
 `
 const GridBlank1 = styled.div`
