@@ -77,6 +77,11 @@ export const TextPart = styled.div`
 `
 
 export const Title = styled.h3`
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
   font-weight: bold;
   font-size: 16px;
   line-height: 25px;
@@ -84,17 +89,18 @@ export const Title = styled.h3`
   color: #000000;
   margin-bottom: 15px;
   max-height: 50px;
-  overflow: hidden;
   @media only screen and (max-width: 839px){
     font-size:14px;
   }
 `
 
 export const NewsText = styled.p`
-  margin-bottom:10px;
-  max-height: 50px;
   overflow: hidden;
-  line-height: 25px;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  margin-bottom:10px;
   @media only screen and (max-width: 839px){
     font-size:12px;
   }

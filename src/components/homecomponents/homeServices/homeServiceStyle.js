@@ -190,6 +190,8 @@ export const ContentContainer = styled.div`
       width:50%;
       border-bottom: none !important;
       border-right: none !important;
+      border-left: none !important;
+      border-top: none !important;
       padding:20px 30px;
       height:auto;
     }

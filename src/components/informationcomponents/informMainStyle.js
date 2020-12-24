@@ -38,7 +38,7 @@ export const H2Styled = styled.h2`
 `
 export const PStyled = styled.p`
   line-height:25px;
-  max-width: 621px;
+  width: 100%;
   font-family: ArialAMU;
   font-size: 18px;
   font-weight: normal;

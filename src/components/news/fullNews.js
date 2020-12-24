@@ -25,7 +25,7 @@ import {
   ShareLabel,
 } from "../careercomponents/careerForm/formStyle"
 import moment from "moment"
-const FullInfo = ({ filteredData, data , lang , pageContext}) => {
+const FullInfo = ({apiUrl, filteredData, data , lang , pageContext}) => {
 
   const [size, setSize] = useState(3)
 
@@ -59,22 +59,23 @@ const FullInfo = ({ filteredData, data , lang , pageContext}) => {
   const hookComponent = () => {
     urlShared = getSharedUrl(pageContext.locale)
   }
+  console.log(filteredData)
   // let id = 1;
-  // fetch(`/api/news${id}`)
+  // fetch(`/api/news${19}`)
   //   .then(response => response.json())
-  //   .then(json => console.log(json))
+  //   .then(json => filteredData=json)
   //   .catch(err => console.log('Request Failed', err));
   hookComponent()
   return (
     <>
         <BigImageInfo>
-          <Img src={filteredData[0].src} alt="" />
+          <Img src={apiUrl + filteredData[0].image}  alt="" />
         </BigImageInfo>
         <TitleRow>
-          <H2> {filteredData[0].title} </H2>
+          <H2> {filteredData[0].title_arm} </H2>
           <P>{filteredData[0].date}</P>
         </TitleRow>
-        <FullInfoText>{filteredData[0].description}</FullInfoText>
+        <FullInfoText>{filteredData[0].description_arm}</FullInfoText>
         <SharedWrapperCol>
           <ShareLabel>Կիսվել</ShareLabel>
           <FacebookShare
@@ -97,11 +98,11 @@ const FullInfo = ({ filteredData, data , lang , pageContext}) => {
                 margin={item.margin}
               >
                 <ImageWrapper>
-                  <img style={{ width: "100%" }} src={item.src} alt="" />
+                  <img style={{ width: "100%" }} src={apiUrl + item.image} alt="" />
                 </ImageWrapper>
                 <TextPart>
-                  <Title>{item.title}</Title>
-                  <NewsText>{item.description}</NewsText>
+                  <Title>{item.title_arm}</Title>
+                  <NewsText>{item.description_arm}</NewsText>
                   <MoreRow>
                     <DataItem>{moment(item.date).format("DD.MM.YYYY")}</DataItem>
                       <SeeMoreSingleNews

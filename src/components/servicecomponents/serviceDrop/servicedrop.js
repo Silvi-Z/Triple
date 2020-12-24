@@ -11,7 +11,7 @@ import {
 } from "./servicedropStyle.js"
 
 const Servicedrop = ({ data, showServiceForm }) => {
-
+  console.log(data.data.text)
   return (
     <ServiceDropRow  id={data.data.scroll_id}>
       <DropWrapper>

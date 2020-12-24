@@ -84,7 +84,7 @@ export const SliderText = styled.p`
   margin-bottom:40px;
 `
 export const PElement = styled.p`
-  max-width: 213px;
+  width: 100%;
   letter-spacing: 0.5px;
   line-height: 30px;
   font-weight: bold !important;

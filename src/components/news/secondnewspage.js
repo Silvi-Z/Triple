@@ -17,10 +17,11 @@ import {
 import moment from "moment"
 import { NavLink } from "../homecomponents/homePartners/homePartStyle"
 
-const UsefulNews = ({news, lang , buttonDisplay, setButtonDisplay }) => {
+const UsefulNews = ({news, lang , buttonDisplay, setButtonDisplay, apiUrl }) => {
 
-  let [items, setItems] = useState(6)
-
+  let [items, setItems] = useState(news.length<6 ? news.length : 6)
+  news.length < 6 && setButtonDisplay(false)
+  console.log(items)
   const addNews = () => {
     setItems(items + 6);
     items + news.length%items === news.length ? setButtonDisplay(false) : setButtonDisplay(true)
@@ -38,13 +39,13 @@ const UsefulNews = ({news, lang , buttonDisplay, setButtonDisplay }) => {
               margin={item.margin}
             >
               <ImageWrapper>
-                <img style={{ width: "100%" }} src={item.src} alt="" />
+                <img style={{ width: "100%" }} src={apiUrl + item.image} alt="" />
               </ImageWrapper>
               <TextPart>
-                <Title>{item.title}</Title>
-                <NewsText>{item.description}</NewsText>
+                <Title>{item.title_arm}</Title>
+                <NewsText>{item.description_arm}</NewsText>
                 <MoreRow>
-                  <DataItem>{moment(item.date).format("DD.MM.YYYY")}</DataItem>
+                  <DataItem>{moment(item.created_at.substring(0, 10)).format("DD.MM.YYYY")}</DataItem>
                     <SeeMoreSingleNews
                       className="see_more_btn"
                     > տեսնել ավելին

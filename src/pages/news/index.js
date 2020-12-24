@@ -1,6 +1,5 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import SEO from "../../components/seo"
-import { useLocation } from "@reach/router"
 import UsefulNews from "../../components/news/secondnewspage"
 import FullInfo from "../../components/news/fullNews"
 import { Select } from "antd"
@@ -8,6 +7,7 @@ import newsDatas from "../../components/news/newsDatas"
 import moment from "moment"
 import "moment/locale/zh-cn"
 import triple from "../../api/triple"
+import apiUrl from "../../api/api.json"
 import {
   NewsPageWrapper,
   NewsDatePicker,
@@ -25,9 +25,19 @@ import {
 const { Option } = Select
 
 const Index = ({location, pageContext }) => {
+
+  const [constData, setConstData] = useState([])
+  const [data, setData] = useState([])
+  useEffect(()=>{
+    triple.get('/api/news')
+      .then(res =>{
+        setConstData(res.data.data)
+        setData(res.data.data);
+      } )
+      .catch(err => console.log(err))
+  }, [])
   const [buttonDisplay, setButtonDisplay] = useState(true)
   let urlShared
-  const [data, setData] = useState(newsDatas)
   const [selectedDate, setSelectedDate] = useState(newsDatas)
   const getSharedUrl = lng => {
     if (lng) {
@@ -58,47 +68,43 @@ const Index = ({location, pageContext }) => {
 
   const handleChange = date => {
     if(date){
+      console.log(data)
       const selectedData = date.format("DD-MM-YYYY").replaceAll("-", ".")
-      const data = newsDatas.filter(item => moment(item.date).format("DD.MM.YYYY").includes(selectedData))
-      setData(data)
+      const newsDate = constData.filter(item => moment(item.created_at.substring(0, 10)).format("DD.MM.YYYY").includes(selectedData))
+      setData(newsDate)
       const shownNewses = document.querySelectorAll(NewsItems).length
-      data.length <= 6
+      newsDate.length <= 6
         ? setButtonDisplay(false) :
-        data.length > 6 && data.length % 6 < 6 && shownNewses === data.length
+        newsDate.length > 6 && newsDate.length % 6 < 6 && shownNewses === newsDate.length
           ? setButtonDisplay(false)
           : setButtonDisplay(true);
   }
     else {
       const shownNewses = document.querySelectorAll(NewsItems).length
-      setData(newsDatas)
-      newsDatas.length <= 6
+      setData(constData)
+      data.length <= 6
         ? setButtonDisplay(false) :
-        newsDatas.length > 6 && newsDatas.length % 6 < 6 && shownNewses === newsDatas.length
+        data.length > 6 && data.length % 6 < 6 && shownNewses === constData.length
           ? setButtonDisplay(false)
           : setButtonDisplay(true);
     }
   }
 
-  const filteredDate = selectedDate.filter(item => item.id.includes(location.hash.substring(1)))
+  const filteredDate = data.filter(item =>location.hash.substring(1).includes(item.id.toString()) )
   const onChange = (e) => {
-    const data = newsDatas.filter(item => item.title.toLowerCase().includes(e.target.value.toLowerCase()))
+    const data = constData.filter(item => item.title_arm.toLowerCase().includes(e.target.value.toLowerCase()))
     setData(data)
   }
 
   const showNews = (e) =>{
     if (e.target.parentNode.title==='Վերջին նորություններ'){
-      const sortedNews = newsDatas.slice().sort((a, b) => new Date(b.date) - new Date(a.date))
+      const sortedNews = constData.slice().sort((a, b) => new Date(b.date) - new Date(a.date))
       setData(sortedNews)
     }else if(e.target.parentNode.title==='Շատ ընթերցված'){
-      const sortedNews = newsDatas.slice().sort((a, b) => b.views - a.views)
+      const sortedNews = constData.slice().sort((a, b) => b.id - a.id)
       setData(sortedNews)
     }
   };
-
-  // triple.get('/api/news')
-  //   .then(res => console.log(res))
-  //   .catch(err => console.log(err))
-
 
   return (
     <NewsPageWrapper>
@@ -148,6 +154,7 @@ const Index = ({location, pageContext }) => {
             </SearchRow>
             {data.length ?
               <UsefulNews
+                apiUrl={apiUrl.apiUrl}
                 news={data}
                 lang={pageContext.locale}
                 buttonDisplay={buttonDisplay}
@@ -160,7 +167,7 @@ const Index = ({location, pageContext }) => {
             }
           </>
         ) :
-        <FullInfo filteredData={filteredDate} data={selectedDate} lang={pageContext.locale} pageContext={pageContext}/>
+        <FullInfo apiUrl={apiUrl.apiUrl} filteredData={filteredDate} data={data} lang={pageContext.locale} pageContext={pageContext}/>
 
       }
     </NewsPageWrapper>

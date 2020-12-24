@@ -44,14 +44,14 @@ const contentData=[
     "text" : "Ավտոմեքենայի վաճառքի հաշվիչ"
   },
   {
-    "link" : "/arm/calculators/car-sell",
-    "src" : `${calc_9}`,
-    "text" : "Ավտոմեքենայի վաճառքի հաշվիչ"
-  },
-  {
     "link" : "/arm/calculators/car-tax",
     "src" : `${carTax}`,
     "text" : "Ավտոմեքենայի գույքահարկի հաշվիչ"
+  },
+  {
+    "link" : "/arm/calculators/car-tax",
+    "src" : `${calc_9}`,
+    "text" : "Անաշխատունակության հաշվիչ"
   },
 ]
 

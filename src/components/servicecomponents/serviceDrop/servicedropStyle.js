@@ -69,6 +69,7 @@ export const ToggleButton = styled(Button)`
 `
 
 export const Text = styled.div`
+  white-space: pre-wrap;
   width:100%;
   font-family: ArialAMU;
   font-size: 18px;
@@ -99,7 +100,7 @@ export const DropTextCol = styled.div`
    flex-direction:column;
   }
   &.openTextCol{
-    max-height: 300px;
+    max-height: 420px;
     padding: 48px 24px;
     opacity:100%;
   }
