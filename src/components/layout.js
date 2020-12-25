@@ -15,6 +15,7 @@ const { Content, Footer } = CustomLayout
 
 const Main = styled(Content)`
   margin: 0 auto;
+  overflow: hidden;
 `
 const FooterCust = styled(Footer)`
   padding:50px 115px;

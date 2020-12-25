@@ -81,10 +81,7 @@ export const Text = styled.div`
   line-height: 40px;
   letter-spacing: 0.15px;
   @media only screen and (max-width:1024px){
-    margin-bottom:30px;
     font-size: 16px;
-    max-width: 100%;
-    width: 100%;
   }
 `
 
@@ -95,13 +92,15 @@ export const DropTextCol = styled.div`
   max-height: 1px;
   padding: 0 24px;
   opacity: 0;
-  @media only screen and (max-width:1024px){
-   padding: 40px 0;
-   flex-direction:column;
-  }
   &.openTextCol{
-    max-height: 420px;
+    max-height: 2000px;
     padding: 48px 24px;
     opacity:100%;
+  }
+  @media only screen and (max-width:1024px){
+   flex-direction:column;
+    &.openTextCol{
+      padding: 40px 0;
+    }
   }
 `

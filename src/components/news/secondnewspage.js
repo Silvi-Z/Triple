@@ -21,7 +21,6 @@ const UsefulNews = ({news, lang , buttonDisplay, setButtonDisplay, apiUrl }) => 
 
   let [items, setItems] = useState(news.length<6 ? news.length : 6)
   news.length < 6 && setButtonDisplay(false)
-  console.log(items)
   const addNews = () => {
     setItems(items + 6);
     items + news.length%items === news.length ? setButtonDisplay(false) : setButtonDisplay(true)
