@@ -1095,10 +1095,7 @@ pre tt:after {
   }
   .phonedrop {
     background: white;
-    width: 161px;
-    height: 63px;
     text-align: center;
-    margin-left: 20%;
   }
   #register_address {
     width: 77%;

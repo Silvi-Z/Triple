@@ -7,6 +7,7 @@ import BlackLogo from "../../assets/homeImages/3c1.png"
 import MainLogo from "../../assets/homeImages/3c.svg"
 import WhiteLogo  from "../../assets/homeImages/3c_white.png"
 import EnvironmentImg from "../../assets/footericons/location.svg"
+import TelegramIcon from "../../assets/footericons/brandIcons/telegram (header).svg"
 import "@fortawesome/fontawesome-free/css/all.css"
 import "@fortawesome/fontawesome-free/js/all.js"
 import "../layout.css"
@@ -26,17 +27,18 @@ import {
   ResponsiveMenuColumn,
   ResponsiveMenuInfoRow, Coll,
 } from "./navbarStyle.js"
+import TelegramImg from "../../assets/footericons/brandIcons/telegram (header).svg"
+import { TelegramWrapper } from "../contactcomponts/contactForm/formStyle"
 
 const phones = (
   <div className="phonedrop">
     <div className="phonebox">
-      <PhoneOutlined
-        style={{
-          fontSize: "14px",
-          marginRight: "4%",
-          transform: "rotate(90deg)",
-        }}
-      />
+      <TelegramWrapper src={TelegramIcon}
+         style={{
+           height: "14px",
+           marginRight: "4%",
+         }}>
+      </TelegramWrapper>
       <span className="phonenumber">374 98 553533</span>
     </div>
     <div className="phonebox">
@@ -71,7 +73,6 @@ const GridLang = styled.div`
 `
 const GridAddress = styled.div`
   justify-content: space-between;
-  padding: 0 10px;
   grid-area: addr;
 `
 const GridBlank1 = styled.div`
