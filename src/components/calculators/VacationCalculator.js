@@ -348,36 +348,32 @@ class VacationCalculator extends React.Component {
               size="large"
             >
               <Row gutter={10} align="middle">
-                <Col lg={10} xl={9} xxl={8}>
-                  <Form.Item label={<Label>{lang.start}</Label>}>
-                    <CalculatorDatePicker
-                      disabledDate={d => form.date_to && (d.isSameOrAfter(form.date_to, "day"))}
-                      dateRender={(date, today) => this.handlePickerRender(date, today, 'start')}
-                      onChange={date => this.setDateField("date_from", date)}
-                      placeholder={lang["date_from_placeholder"]}
-                      value={this.dateFromValue}
-                      ref={this.dateFromPicker}
-                      format="DD.MM.YYYY"
-                      name="date_from"
-                      size="large"
-                    />
-                  </Form.Item>
-                </Col>
-                <Col lg={10} xl={9} xxl={8}>
-                  <Form.Item label={<Label>{lang.end}</Label>}>
-                    <CalculatorDatePicker
-                      disabledDate={d => !form.date_from || (d.isSameOrBefore(form.date_from, "day"))}
-                      dateRender={(date, today) => this.handlePickerRender(date, today, 'end')}
-                      onChange={date => this.setDateField("date_to", date)}
-                      placeholder={lang["date_from_placeholder"]}
-                      value={this.dateToValue}
-                      ref={this.dateToPicker}
-                      format="DD.MM.YYYY"
-                      name="date_to"
-                      size="large"
-                    />
-                  </Form.Item>
-                </Col>
+                <Form.Item style={{marginRight: '25px'}} label={<Label>{lang.start}</Label>}>
+                  <CalculatorDatePicker
+                    disabledDate={d => form.date_to && (d.isSameOrAfter(form.date_to, "day"))}
+                    dateRender={(date, today) => this.handlePickerRender(date, today, 'start')}
+                    onChange={date => this.setDateField("date_from", date)}
+                    placeholder={lang["date_from_placeholder"]}
+                    value={this.dateFromValue}
+                    ref={this.dateFromPicker}
+                    format="DD.MM.YYYY"
+                    name="date_from"
+                    size="large"
+                  />
+                </Form.Item>
+                <Form.Item label={<Label>{lang.end}</Label>}>
+                  <CalculatorDatePicker
+                    disabledDate={d => !form.date_from || (d.isSameOrBefore(form.date_from, "day"))}
+                    dateRender={(date, today) => this.handlePickerRender(date, today, 'end')}
+                    onChange={date => this.setDateField("date_to", date)}
+                    placeholder={lang["date_from_placeholder"]}
+                    value={this.dateToValue}
+                    ref={this.dateToPicker}
+                    format="DD.MM.YYYY"
+                    name="date_to"
+                    size="large"
+                  />
+                </Form.Item>
               </Row>
 
               <Form.Item label={<Label>{lang.vacation_days}</Label>}>

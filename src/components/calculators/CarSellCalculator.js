@@ -108,27 +108,23 @@ class CarSellCalculator extends React.Component {
               size="large"
             >
               <Row gutter={10} align="middle">
-                <Col lg={11} xl={10} xxl={10}>
-                  <Form.Item label={<Label>{lang.achievement}</Label>}>
-                    <CalculatorDatePicker
-                      onChange={date => this.setField("achievementDate", date)}
-                      placeholder={null}
-                      format="DD.MM.YYYY"
-                      size="large"
-                    />
-                  </Form.Item>
-                </Col>
-                <Col lg={11} xl={10} xxl={8}>
-                  <Form.Item label={<Label>{lang.alienation}</Label>}>
-                    <CalculatorDatePicker
-                      onChange={date => this.setField("alienationDate", date)}
-                      disabledDate={d => !form.achievementDate || (d.isSameOrBefore(form.achievementDate, "day"))}
-                      placeholder={null}
-                      format="DD.MM.YYYY"
-                      size="large"
-                    />
-                  </Form.Item>
-                </Col>
+                <Form.Item style={{marginRight: '25px'}} label={<Label>{lang.achievement}</Label>}>
+                  <CalculatorDatePicker
+                    onChange={date => this.setField("achievementDate", date)}
+                    placeholder={null}
+                    format="DD.MM.YYYY"
+                    size="large"
+                  />
+                </Form.Item>
+                <Form.Item label={<Label>{lang.alienation}</Label>}>
+                  <CalculatorDatePicker
+                    onChange={date => this.setField("alienationDate", date)}
+                    disabledDate={d => !form.achievementDate || (d.isSameOrBefore(form.achievementDate, "day"))}
+                    placeholder={null}
+                    format="DD.MM.YYYY"
+                    size="large"
+                  />
+                </Form.Item>
               </Row>
 
               <Form.Item label={<Label>{lang.price}</Label>}>

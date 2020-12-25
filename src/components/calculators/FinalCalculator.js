@@ -118,10 +118,12 @@ class FinalCalculator extends React.Component {
   }
 
   get restVacationDays() {
-    const { used_vacation_days } = this.state.form
+    const { used_vacation_days, unused_vacation_days } = this.state.form
 
     if (this.totalVacationDays && used_vacation_days) {
       return this.totalVacationDays - used_vacation_days
+    } else if (unused_vacation_days) {
+      return unused_vacation_days
     }
 
     return null
@@ -261,35 +263,31 @@ class FinalCalculator extends React.Component {
               layout="horizontal"
               size="large"
             >
-              <Row gutter={10} align="middle">
-                <Col lg={11} xl={9} xxl={8}>
-                  <Form.Item label={<Label>{lang.form["acceptance"]}</Label>}>
-                    <CalculatorDatePicker
-                      onChange={date => this.setFormField("date_acceptance", date)}
-                      placeholder={lang.form["date_acceptance_placeholder"]}
-                      disabledDate={this.disabledAcceptanceDates}
-                      value={form.date_acceptance}
-                      ref={this.dateFromPicker}
-                      format="DD.MM.YYYY"
-                      name="date_acceptance"
-                      size="large"
-                    />
-                  </Form.Item>
-                </Col>
-                <Col lg={11} xl={9} xxl={8}>
-                  <Form.Item label={<Label>{lang.form.release}</Label>}>
-                    <CalculatorDatePicker
-                      onChange={date => this.setFormField("date_release", date)}
-                      placeholder={lang.form["date_release_placeholder"]}
-                      disabledDate={this.disabledReleasedDates}
-                      value={form.date_release}
-                      ref={this.dateToPicker}
-                      format="DD.MM.YYYY"
-                      name="date_release"
-                      size="large"
-                    />
-                  </Form.Item>
-                </Col>
+              <Row align="middle">
+                <Form.Item style={{marginRight: '25px'}} label={<Label>{lang.form["acceptance"]}</Label>}>
+                  <CalculatorDatePicker
+                    onChange={date => this.setFormField("date_acceptance", date)}
+                    placeholder={lang.form["date_acceptance_placeholder"]}
+                    disabledDate={this.disabledAcceptanceDates}
+                    value={form.date_acceptance}
+                    ref={this.dateFromPicker}
+                    format="DD.MM.YYYY"
+                    name="date_acceptance"
+                    size="large"
+                  />
+                </Form.Item>
+                <Form.Item label={<Label>{lang.form.release}</Label>}>
+                  <CalculatorDatePicker
+                    onChange={date => this.setFormField("date_release", date)}
+                    placeholder={lang.form["date_release_placeholder"]}
+                    disabledDate={this.disabledReleasedDates}
+                    value={form.date_release}
+                    ref={this.dateToPicker}
+                    format="DD.MM.YYYY"
+                    name="date_release"
+                    size="large"
+                  />
+                </Form.Item>
               </Row>
 
               <Form.Item label={<Label>{lang.form.working_schedule}</Label>} labelCol={{ span: 24 }}>

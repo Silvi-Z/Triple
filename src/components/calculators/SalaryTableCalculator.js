@@ -639,40 +639,36 @@ class SalaryTableCalculator extends React.Component {
               {/* date fields */}
               {form.by
                 ? <>
-                  <Row gutter={10} align="start">
-                    <Col lg={10} xl={9} xxl={8}>
-                      <Form.Item label={<Label>{lang.form.start}</Label>}>
-                        <CalculatorDatePicker
-                          dateRender={(date, today) => this.handlePickerRender(date, today, 'start')}
-                          disabledDate={this.handleDateFromDisabled}
-                          onChange={this.handleDateFromChange}
-                          value={this.dateFromValue}
-                          key={this.dateFromPickerKey}
-                          ref={this.dateFromPicker}
-                          placeholder={null}
-                          format="DD.MM.YYYY"
-                          name="date_from"
-                          size="large"
-                        />
-                      </Form.Item>
-                    </Col>
-                    <Col lg={10} xl={9} xxl={8}>
-                      <Form.Item label={<Label>{lang.form.end}</Label>}>
-                        <CalculatorDatePicker
-                          dateRender={(date, today) => this.handlePickerRender(date, today, 'end')}
-                          defaultPickerValue={this.dateFromValue}
-                          disabledDate={this.handleDateToDisabled}
-                          onChange={this.handleDateToChange}
-                          value={this.dateToValue}
-                          key={this.dateToPickerKey}
-                          ref={this.dateToPicker}
-                          placeholder={null}
-                          format="DD.MM.YYYY"
-                          name="date_to"
-                          size="large"
-                        />
-                      </Form.Item>
-                    </Col>
+                  <Row gutter={10} align="middle">
+                    <Form.Item style={{marginRight: '25px'}} label={<Label>{lang.form.start}</Label>}>
+                      <CalculatorDatePicker
+                        dateRender={(date, today) => this.handlePickerRender(date, today, 'start')}
+                        disabledDate={this.handleDateFromDisabled}
+                        onChange={this.handleDateFromChange}
+                        value={this.dateFromValue}
+                        key={this.dateFromPickerKey}
+                        ref={this.dateFromPicker}
+                        placeholder={null}
+                        format="DD.MM.YYYY"
+                        name="date_from"
+                        size="large"
+                      />
+                    </Form.Item>
+                    <Form.Item label={<Label>{lang.form.end}</Label>}>
+                      <CalculatorDatePicker
+                        dateRender={(date, today) => this.handlePickerRender(date, today, 'end')}
+                        defaultPickerValue={this.dateFromValue}
+                        disabledDate={this.handleDateToDisabled}
+                        onChange={this.handleDateToChange}
+                        value={this.dateToValue}
+                        key={this.dateToPickerKey}
+                        ref={this.dateToPicker}
+                        placeholder={null}
+                        format="DD.MM.YYYY"
+                        name="date_to"
+                        size="large"
+                      />
+                    </Form.Item>
                   </Row>
 
                   <Form.Item label={<Label>{lang.form.working_days}</Label>}>

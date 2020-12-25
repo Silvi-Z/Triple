@@ -361,8 +361,27 @@ const query = graphql`
                   title
                 }
               }
-              car_prop_tax_calculator {
+              car_tax {
                 title
+                calculate
+                form {
+                  vehicle {
+                    title
+                    car
+                    van
+                    truck
+                    motorcycle
+                    water_vehicle
+                  }
+                  year
+                  power
+                  horsepower
+                  kilowatts
+                }
+                result {
+                  title
+                  tax
+                }
               }
               share
             }

@@ -119,15 +119,15 @@ const CalculatorWrapper = ({ ctx, children }) => {
         </Col>
       </Row>
 
-      <Row style={{ marginTop: "25px" }}>
-        <Col span={6} offset={6}>
-          <ShareLabel>{calculator.share}</ShareLabel>
+      {/*<Row style={{ marginTop: "25px" }}>*/}
+      {/*  <Col span={6} offset={6}>*/}
+      {/*    <ShareLabel>{calculator.share}</ShareLabel>*/}
 
-          <FacebookShareButton url={urlShared} children={<FacebookIcon />} />
+      {/*    <FacebookShareButton url={urlShared} children={<FacebookIcon />} />*/}
 
-          <LinkedinShareButton children={<LinkedinIcon />} url={urlShared} />
-        </Col>
-      </Row>
+      {/*    <LinkedinShareButton children={<LinkedinIcon />} url={urlShared} />*/}
+      {/*  </Col>*/}
+      {/*</Row>*/}
     </>
   )
 }
