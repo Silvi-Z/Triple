@@ -239,11 +239,8 @@ export const IconWrapperSecondCol = styled(Col)`
 
 export const ContainerRow = styled(Row)`
   display: flex;
-  justify-content: center;
+  justify-content: end;
   width: 100%;
   height: auto;
   margin: auto;
-  @media only screen and (max-width: 1024px){
-    justify-content:end;
-  }
 `

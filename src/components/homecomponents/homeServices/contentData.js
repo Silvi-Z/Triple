@@ -27,6 +27,10 @@ const contentData = [
     "link" : "services#test_7",
     "serviceName" : "Պետական և Միջազգային գնումներ"
   },
+  {
+    "link" : "services#test_8",
+    "serviceName" : "Բիզնեսի ավտոմատացում"
+  },
 
 ]
 export default contentData
