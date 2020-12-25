@@ -76,7 +76,7 @@ const Layout = ({ children, location, pageContext: { locale, originalPath, local
         backcolor={responseWrapper.toString()}
         langtext={layout}
       >
-        {!responseWrapper ? <FooterWhite/> : <FooterBlack langtext={layout}/>}
+        {responseWrapper && <FooterBlack langtext={layout}/>}
       </FooterCust>
     </>
   )

@@ -99,6 +99,7 @@ export const DropTextCol = styled.div`
   }
   @media only screen and (max-width:1024px){
    flex-direction:column;
+    padding: 0;
     &.openTextCol{
       padding: 40px 0;
     }
