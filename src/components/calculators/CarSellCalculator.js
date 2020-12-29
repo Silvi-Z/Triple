@@ -1,51 +1,16 @@
 import React from "react"
 import { isNull, isEqual } from "lodash"
 import { Row, Col, Card, Form, Radio } from "antd"
+import VehicleSell from "../../calculators/VehicleSell"
 import CalculatorCardResult from "./calcComponents/CalculatorCardResult"
-import { schema, ENGINE_HORSEPOWER, ENGINE_KILOWATTS, CAR_SELL_MIN } from "./utilities/carsell"
 import { ButtonSubmit, FormLabel, Label, CalculatorInput, UnderLine, CalculatorDatePicker } from "./styled"
 
-const form = {
-  achievementDate: null,
-  alienationDate: null,
-  price: null,
-  power: null,
-  powerType: ENGINE_HORSEPOWER
-}
 
 class CarSellCalculator extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { form: { ...form }, tax: null, calculated: false }
-  }
-
-  /**
-   * Car sell tax
-   *
-   * @returns {number|String}
-   */
-  get tax() {
-    const {achievementDate, alienationDate, powerType, price, power} = this.state.form;
-
-    let contractValue = price * 0.01
-    let powerValue
-
-    if (alienationDate && achievementDate && alienationDate.diff(achievementDate, "year") >= 1) {
-      return 0
-    }
-
-    if (powerType === ENGINE_HORSEPOWER) {
-      powerValue = power * 150;
-
-      return contractValue > powerValue ? contractValue : powerValue;
-    }
-
-    if (powerType === ENGINE_KILOWATTS) {
-      return  power * 1.36
-    }
-
-    return null
+    this.state = { form: { ...VehicleSell.form }, tax: null, calculated: false }
   }
 
   get text() {
@@ -65,14 +30,17 @@ class CarSellCalculator extends React.Component {
   handleSubmit = () => {
     const { form } = this.state;
 
-    schema.isValid(form).then(valid => {
+    VehicleSell.schema.isValid(form).then(valid => {
       if (!valid) {
         this.setState({tax: null})
 
         return
       }
 
-      this.setState({tax: Math.round(this.tax)}, () => {
+      const calculator = new VehicleSell(form)
+      const tax = calculator.calculate()
+
+      this.setState({tax}, () => {
         if (!this.state.calculated) {
           this.setState({calculated: true})
         }
@@ -133,7 +101,7 @@ class CarSellCalculator extends React.Component {
                   parser={v => v.replace(/\$\s?|(,*)/g, '')}
                   onChange={v => this.setField("price", v)}
                   value={form.price}
-                  min={CAR_SELL_MIN}
+                  min={VehicleSell.MIN_PRICE}
                   size="large"
                 />
               </Form.Item>
@@ -153,16 +121,16 @@ class CarSellCalculator extends React.Component {
                   onChange={e => this.setField("powerType", e.target.value)}
                   value={form.powerType}
                 >
-                  <Radio value={ENGINE_HORSEPOWER}>
+                  <Radio value={VehicleSell.HORSEPOWER}>
                     <Label style={{textTransform: "none"}}>{lang.horsepower}</Label>
                   </Radio>
-                  <Radio value={ENGINE_KILOWATTS}>
+                  <Radio value={VehicleSell.KILOWATTS}>
                     <Label style={{textTransform: "none"}}>{lang.kilowatts}</Label>
                   </Radio>
                 </Radio.Group>
               </Form.Item>
 
-              <Form.Item>
+              <Form.Item style={{marginTop: '50px'}}>
                 <ButtonSubmit
                   htmlType="submit"
                   shape="round"

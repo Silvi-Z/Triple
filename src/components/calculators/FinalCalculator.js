@@ -442,7 +442,7 @@ class FinalCalculator extends React.Component {
                 </Radio.Group>
               </Form.Item>
 
-              <Form.Item>
+              <Form.Item style={{marginTop: '50px'}}>
                 <ButtonSubmit htmlType="submit" shape="round" size="large">
                   {lang.form["calculate"]}
                 </ButtonSubmit>

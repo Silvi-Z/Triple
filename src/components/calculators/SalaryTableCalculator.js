@@ -778,7 +778,7 @@ class SalaryTableCalculator extends React.Component {
                 </Form.Item>
               : null}
               {/* button */}
-              <Form.Item>
+              <Form.Item style={{marginTop: '50px'}}>
                 <ButtonSubmit
                   htmlType="submit"
                   shape="round"

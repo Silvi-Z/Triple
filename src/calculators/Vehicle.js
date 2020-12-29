@@ -1,41 +1,54 @@
 import * as Yup from "yup"
 
-const CAR = 1
-const VAN = 2
-const TRUCK = 3
-const MOTORCYCLE = 4
-const WATER_VEHICLE = 5
-
 class Vehicle {
   /**
-   * Vehicle constructor
-   *
-   * @param {Number} vehicle
-   * @param {Number} power
-   * @param {Number} year
+   * @type {number}
    */
-  constructor({vehicle, power, year}) {
-    this.vehicle = vehicle
-    this.power = power
-    this.year = year
-  }
+  static CAR = 1
+
+  /**
+   * @type {number}
+   */
+  static VAN = 2
+
+  /**
+   * @type {number}
+   */
+  static TRUCK = 3
+
+  /**
+   * @type {number}
+   */
+  static MOTORCYCLE = 4
+
+  /**
+   * @type {number}
+   */
+  static WATER_VEHICLE = 5
+
+  /**
+   * @type {number}
+   */
+  static KILOWATTS = 2
+
+  /**
+   * @type {number}
+   */
+  static HORSEPOWER = 1
 
   /**
    * Vehicle form fields
    *
-   * @type {{year: null|moment.Moment, power: null|number, vehicle: null|number}}
+   * @type {Object}
    */
-  static form = {
-    vehicle: null,
-    year: null,
-    power: null,
-  }
+  static form = {}
 
-  static schema = Yup.object().shape({
-    vehicle: Yup.number().oneOf([CAR, VAN, TRUCK, MOTORCYCLE, WATER_VEHICLE]).required(),
-    power: Yup.number().required(),
-    year: Yup.number().required(),
-  });
+  /**
+   * validation schema
+   *
+   * @type {Yup}
+   */
+  static schema = Yup.object().shape({})
 
   /**
    * Array of available vehicle types
@@ -43,14 +56,55 @@ class Vehicle {
    * @param {Object} lang
    * @return {{value: number, text: String}[]}
    */
-  static vehicles(lang) {
+  static types(lang) {
     return [
-      { value: CAR, text: lang.car },
-      { value: VAN, text: lang.van },
-      { value: TRUCK, text: lang.truck },
-      { value: MOTORCYCLE, text: lang.motorcycle },
-      { value: WATER_VEHICLE, text: lang.water_vehicle },
+      { value: Vehicle.CAR, text: lang.car },
+      { value: Vehicle.VAN, text: lang.van },
+      { value: Vehicle.TRUCK, text: lang.truck },
+      { value: Vehicle.MOTORCYCLE, text: lang.motorcycle },
+      { value: Vehicle.WATER_VEHICLE, text: lang.water_vehicle },
     ]
+  }
+
+  /**
+   * Generate Array of years
+   *
+   * @param {Number} to
+   * @return {Number[]}
+   */
+  static years(to) {
+    let years = []
+
+    for (let i = new Date().getFullYear(); i >= to; i--) years.push(i)
+
+    return years;
+  }
+
+  /**
+   * Vehicle constructor
+   *
+   * @param {Object} vehicle
+   * @param {Number|null} vehicle.type
+   * @param {Number|null} vehicle.price
+   * @param {Number|null} vehicle.capacity
+   * @param {Number|null} vehicle.power
+   * @param {Number|null} vehicle.powerType
+   * @param {moment.Moment|null} vehicle.date
+   */
+  constructor({
+    date,
+    type,
+    power,
+    price,
+    capacity,
+    powerType,
+  }) {
+    this.date = date || null
+    this.type = type || null
+    this.power = power || null
+    this.price = price || null
+    this.capacity = capacity || null
+    this.powerType = powerType || Vehicle.HORSEPOWER
   }
 
   /**
@@ -59,73 +113,26 @@ class Vehicle {
    * @return {number}
    */
   get age() {
-    return new Date().getFullYear() - this.year
-  }
-
-  get ageDiff() {
-    return Math.max(0, this.age - 3)
+    return new Date().getFullYear() - this.date.year()
   }
 
   /**
-   * Tax price for 1 horsepower depended on vehicle type
+   * is vehicle automobile
    *
-   * @return {null|number}
+   * @return {boolean}
    */
-  get price() {
-    let price = 0
-
-    if (this.vehicle === CAR) {
-      if (this.power <= 120) {
-        price = 200
-      } else if (this.power <= 250) {
-        price = 300
-      } else {
-        price = 500
-      }
-    }else if (this.vehicle === VAN) {
-      price = this.power > 200 ? 200 : 100
-    } else if (this.vehicle === TRUCK) {
-      price = this.age < 20 ? this.power <= 200 ? 100 : 200 : 0
-    } else if (this.vehicle === MOTORCYCLE) {
-      price = 40
-    } else if (this.vehicle === WATER_VEHICLE) {
-      price = 150
-    }
-
-    return price
-  }
-
-  /**
-   * Car overpower
-   *
-   * @return {number}
-   */
-  get overPower() {
-    return this.vehicle === CAR ? Math.max(0, this.power - 150) : 0
-  }
-
-  /**
-   * Amount for overpower
-   *
-   * @return {number}
-   */
-  get additionalAmount() {
-    return this.overPower * 1000
-  }
-
   get isAutomobile() {
-    return (this.vehicle === CAR || this.vehicle === VAN || this.vehicle === TRUCK)
+    return this.type && (this.type === Vehicle.CAR || this.type === Vehicle.VAN || this.type === Vehicle.TRUCK)
   }
 
-  calculateTax() {
-    let amount = this.power * this.price + this.additionalAmount
-    let discount = this.ageDiff && this.isAutomobile
-      ? ((amount * 0.1 * this.ageDiff) <= amount / 2)
-        ? amount * 0.1 * this.ageDiff
-        : amount / 2
-      : 0
-
-    return amount - discount
+  /**
+   * Age differance depend on value
+   *
+   * @param value
+   * @return {number}
+   */
+  ageGt(value) {
+    return Math.max(0, this.age - value)
   }
 }
 

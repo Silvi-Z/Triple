@@ -273,7 +273,7 @@ class MortgageCalculator extends React.Component {
                 </Form.Item>
               : null}
 
-              <Form.Item>
+              <Form.Item style={{marginTop: '50px'}}>
                 <ButtonSubmit
                   loading={loading}
                   disabled={loading}

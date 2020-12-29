@@ -174,7 +174,7 @@ const SalaryCalculator = ({ langText }) => {
               </Radio.Group>
             </Form.Item>
 
-            <Form.Item>
+            <Form.Item style={{marginTop: '50px'}}>
               <ButtonSubmit
                 disabled={!formik.isValid}
                 htmlType="submit"

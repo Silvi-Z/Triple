@@ -336,11 +336,13 @@ const query = graphql`
                   person_legal
                   year
                   capacity
+                  costs
                   price
                 }
                 result {
                   title
                   currency
+                  total
                   fee
                   tax
                   vat

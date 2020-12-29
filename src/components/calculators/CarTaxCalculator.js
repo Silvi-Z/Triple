@@ -3,7 +3,7 @@ import moment from "moment"
 import { isEqual } from "lodash"
 import { Card, Col, Form, Row, Select } from "antd"
 import { CalculatorDatePicker, CalculatorSelect, CalculatorInput, ButtonSubmit, FormLabel, UnderLine, Label } from "./styled"
-import Vehicle from "../../calculators/Vehicle"
+import VehicleTax from "../../calculators/VehicleTax"
 import CalculatorCardResult from "./calcComponents/CalculatorCardResult"
 
 class CarTaxCalculator extends React.Component {
@@ -16,24 +16,24 @@ class CarTaxCalculator extends React.Component {
   constructor(props) {
     super(props)
 
-    this.state = { form: { ...Vehicle.form }, tax: null, calculated: false }
+    this.state = { form: { ...VehicleTax.form }, tax: null, calculated: false }
   }
 
   setField(name, value, cb) {
     this.setState({ form: { ...this.state.form, [name]: value } }, cb)
   }
 
-  handleSubmit = () => Vehicle.schema.isValid(this.state.form).then(valid => {
+  handleSubmit = () => VehicleTax.schema.isValid(this.state.form).then(valid => {
     if (!valid) {
       this.setState({tax: null, calculator: false})
 
       return
     }
 
-    const calculator = new Vehicle(this.state.form)
+    const calculator = new VehicleTax(this.state.form)
 
     this.setState({
-      tax: calculator.calculateTax(),
+      tax: calculator.calculate(),
       calculated: true
     })
   })
@@ -68,11 +68,11 @@ class CarTaxCalculator extends React.Component {
               <Form.Item label={<Label>{lang.form.vehicle.title}</Label>}>
                 <CalculatorSelect
                   size="large"
-                  value={form.vehicle}
+                  value={form.type}
                   style={{maxWidth:'424px'}}
-                  onChange={value => this.setField("vehicle", value)}
+                  onChange={value => this.setField("type", value)}
                 >
-                  {Vehicle.vehicles(lang.form.vehicle).map(vehicle =>
+                  {VehicleTax.types(lang.form.vehicle).map(vehicle =>
                     <Select.Option value={vehicle.value} key={`vehicle-${vehicle.value}`}>
                       {vehicle.text}
                     </Select.Option>
@@ -82,8 +82,8 @@ class CarTaxCalculator extends React.Component {
 
               <Form.Item label={<Label>{lang.form.year}</Label>}>
                 <CalculatorDatePicker
-                  onChange={date => this.setField("year", date ? +date.format('YYYY') : date)}
-                  value={this.yearValue}
+                  onChange={date => this.setField("date", date)}
+                  value={form.date}
                   placeholder={null}
                   picker="year"
                   size="large"
@@ -106,7 +106,7 @@ class CarTaxCalculator extends React.Component {
                 </Label>
               </Form.Item>
 
-              <Form.Item>
+              <Form.Item style={{marginTop: '50px'}}>
                 <ButtonSubmit
                   htmlType="submit"
                   shape="round"
