@@ -326,6 +326,46 @@ const query = graphql`
                   income_tax_back
                 }
               }
+              subsidy {
+                title
+                calculate
+                form {
+                  type
+                  maternity
+                  disability
+                  dates_placeholder
+                  dates
+                  start
+                  end
+                  days
+                  hired
+                  self
+                  tax
+                  tax_common
+                  tax_it
+                  tax_enterprise
+                  schedule
+                  five_days
+                  six_days
+                  amount
+                  income
+                  static
+                }
+                gross {
+                  month
+                  year
+                  gross_salary
+                  bonus
+                  surcharge
+                }
+                result {
+                  title
+                  subsidy_emp
+                  subsidy_gov
+                  pure_subsidy
+                  income_tax
+                }
+              }
               car_customs {
                 title
                 calculate

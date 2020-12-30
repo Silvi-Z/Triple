@@ -45,6 +45,24 @@ export const FormLabel = styled.h3`
   margin-bottom: 15px;
 `;
 
+export const FormItemLabel = styled.p`
+  font-family: Arial AMU, serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 25px;
+  text-align: left;
+  position: relative;
+  &:after {
+    position: absolute;
+    content: "";
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    border: 1px solid #000000;
+  }
+`
+
 export const RadioGroup = styled(Radio.Group)`
   display: flex;
   align-items: center;
@@ -71,21 +89,6 @@ export const RadioButton = styled(Radio.Button)`
   &.ant-radio-button-wrapper-checked {
     border-radius: 5px !important;
   } 
-`;
-
-export const CalculatorSlider = styled(Slider)`
-  &:hover .ant-slider-rail {
-    background-color: #000000;
-  }
-  
-  .ant-slider-handle {
-    background-color: #72eded;
-    border: solid 3px #000000;
-  }
-  
-  .ant-slider-rail  {
-    background-color: #000000;
-  }
 `;
 
 export const CalculatorInput = styled(InputNumber)`

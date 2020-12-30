@@ -80,7 +80,7 @@ class GrossSalaryTable extends React.Component {
                 <td>
                   <CalculatorSelect
                     value={item.month}
-                    style={{ minWidth: "90px" }}
+                    style={{ minWidth: "130px" }}
                     onChange={v => this.setField({ name: "month", v, i }, this.autoFillItems)}
                   >
                     {months.arm.map((month, i) => (
@@ -93,7 +93,7 @@ class GrossSalaryTable extends React.Component {
                 <td>
                   <CalculatorSelect
                     value={item.year}
-                    style={{ minWidth: "60px" }}
+                    style={{ minWidth: "80px" }}
                     onChange={v => this.setField({ name: "year", v, i }, this.autoFillItems)}
                   >
                     {years(20).map(year => (
