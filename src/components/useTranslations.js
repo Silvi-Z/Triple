@@ -173,6 +173,7 @@ const query = graphql`
               }
               salary_table {
                 title
+                paragraph
                 calculate
                 form {
                   title
@@ -224,6 +225,7 @@ const query = graphql`
               }
               vacation {
                 title
+                paragraph
                 salary_label
                 static_salary_label
                 pensioner_label
@@ -260,6 +262,7 @@ const query = graphql`
               }
               final {
                 title
+                paragraph
                 form {
                   acceptance
                   release
@@ -302,6 +305,7 @@ const query = graphql`
               }
               mortgage {
                 title
+                paragraph
                 clean_salary
                 dirty_salary
                 salary_label

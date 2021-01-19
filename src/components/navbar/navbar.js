@@ -179,9 +179,11 @@ const Navbar = ({ open, color, setMenuColorProp, responseWrapper, setResponseWra
     const innerWidth = (window.innerWidth);
     (innerWidth>=1021 && !responseWrapper) ? setResponseWrapper(!responseWrapper) : null
   }
-  if (typeof window !== `undefined`) {
-    window.addEventListener("resize", resize);
-  }
+ useEffect(()=>{
+   if (typeof window !== `undefined`) {
+     window.addEventListener("resize", resize);
+   }
+ })
 
   useEffect(() => {
     checkDefaultLanguage(lang)

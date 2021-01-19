@@ -5,7 +5,7 @@ import MortgageTable from "./calcComponents/MortgageTable"
 import CalculatorCardResult from "./calcComponents/CalculatorCardResult"
 import { Row, Col, Card, Form, Radio, Checkbox } from "antd"
 import { SALARY_TYPE_NET, SALARY_TYPE_REGISTERED } from "./utilities/mortgage"
-import { ButtonSubmit, FormLabel, Label, RadioLabel, CalculatorInput, UnderLine } from "./styled"
+import { ButtonSubmit, FormLabel, Label, RadioLabel, CalculatorInput, UnderLine, H1Styled, TextStyled } from "./styled"
 import {
   SALARY_MIN,
   TAX_FIELD_COMMON, TAX_FIELD_ENTERPRISE, TAX_FIELD_IT,
@@ -158,7 +158,10 @@ class MortgageCalculator extends React.Component {
       <Row align="start" gutter={20}>
         <Col xs={24} sm={24} md={24} lg={16} xl={16} xxl={16}>
           <Row align="center" style={{ justifyContent: "space-between" }}>
-            <FormLabel>{lang.title}</FormLabel>
+            <div>
+              <H1Styled>{lang.title}</H1Styled>
+              <TextStyled>{lang.paragraph}</TextStyled>
+            </div>
 
             <FormLabel>{(new Date()).getFullYear()}թ.</FormLabel>
           </Row>

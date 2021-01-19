@@ -90,7 +90,6 @@ useEffect(()=>{
       />
 
       <Row gutter={0}>
-        {console.log(ctx)}
         <Col className="calculatorsMenu" span={6} style={{paddingRight: '10px', paddingLeft: '35px'}}>
           <CalculatorNav t={calculator} locale={ctx.locale} />
         </Col>

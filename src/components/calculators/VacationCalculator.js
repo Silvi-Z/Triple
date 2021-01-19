@@ -7,7 +7,16 @@ import { Row, Col, Card, Form, Radio, Checkbox, DatePicker, Space } from "antd"
 import GrossSalaryTable from "./calcComponents/GrossSalaryTable"
 import CalculatorCardResult from "./calcComponents/CalculatorCardResult"
 import { isHoliday, isWeekend, workingDaysInRange } from "./utilities/vacation"
-import { Label, UnderLine, FormLabel, RadioLabel, CalculatorInput, ButtonSubmit, CalculatorDatePicker } from "./styled"
+import {
+  Label,
+  UnderLine,
+  FormLabel,
+  RadioLabel,
+  CalculatorInput,
+  ButtonSubmit,
+  CalculatorDatePicker,
+  H1Styled, TextStyled,
+} from "./styled"
 import { schema, SALARY_MIN, TAX_FIELD_COMMON, TAX_FIELD_ENTERPRISE, TAX_FIELD_IT, PENSION_FIELD_NO, PENSION_FIELD_YES, PENSION_FIELD_YES_VOLUNTEER } from "./utilities/salary"
 
 moment.locale('en', {
@@ -333,7 +342,10 @@ class VacationCalculator extends React.Component {
       <Row align="start" gutter={20} ref={this.row}>
         <Col xs={24} sm={24} md={24} lg={16} xl={16} xxl={16}>
           <Row align="center" style={{ justifyContent: "space-between" }}>
-            <FormLabel>{lang.title}</FormLabel>
+            <div>
+              <H1Styled>{lang.title}</H1Styled>
+              <TextStyled>{lang.paragraph}</TextStyled>
+            </div>
 
             <FormLabel>{(new Date()).getFullYear()}թ.</FormLabel>
           </Row>
@@ -486,7 +498,7 @@ class VacationCalculator extends React.Component {
           </Card>
         </Col>
 
-        <Col xs={24} sm={24} md={24} lg={8} xl={8} xxl={8} ref={this.col}>
+        <Col xs={24} sm={24} md={24} lg={8} xl={8} xxl={8} className="result" style={{"--height":'365px' , marginTop:"var(--height)"}} ref={this.col}>
           <FormLabel style={{ margin: 0 }}>{lang.result.title}</FormLabel>
 
           <UnderLine />

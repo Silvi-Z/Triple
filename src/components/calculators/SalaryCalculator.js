@@ -194,7 +194,7 @@ const SalaryCalculator = ({ langText }) => {
         </Card>
       </Col >
 
-      <Col className="result" span={8} style={{"--height":'308px' , marginTop:"var(--height)"}}>
+      <Col className="result" span={8} style={{"--height":'315px' , marginTop:"var(--height)"}}>
         <FormLabel style={{ margin: 0 }}>{langText.result_title}</FormLabel>
 
         <UnderLine />

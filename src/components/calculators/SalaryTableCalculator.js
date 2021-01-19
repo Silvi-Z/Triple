@@ -577,12 +577,10 @@ class SalaryTableCalculator extends React.Component {
       <Row align="start" gutter={20}>
         <Col span={16}>
           <div>
-            {console.log(lang)}
-            <H1Styled>{lang.toString()}</H1Styled>
-            {/*<TextStyled>{langText.paragraph}</TextStyled>*/}
+            <H1Styled>{lang.title}</H1Styled>
+            <TextStyled>{lang.paragraph}</TextStyled>
           </div>
           <Row align="center" style={{justifyContent: 'space-between'}}>
-            <FormLabel>{lang.title}</FormLabel>
 
             <FormLabel>{(new Date()).getFullYear()}թ.</FormLabel>
           </Row>
@@ -800,7 +798,7 @@ class SalaryTableCalculator extends React.Component {
           </Card>
         </Col>
 
-        <Col span={8} className="result" style={{"--height":'308px' , marginTop:"var(--height)"}}>
+        <Col span={8} className="result" style={{"--height":'415px' , marginTop:"var(--height)"}}>
           <FormLabel style={{margin: 0}}>{lang.result.title}</FormLabel>
 
           <UnderLine/>

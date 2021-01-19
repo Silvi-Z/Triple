@@ -41,9 +41,11 @@ const FullInfo = ({apiUrl, filteredData, data , lang , pageContext}) => {
   useEffect(() => {
     resize()
   });
-  if (typeof window !== `undefined`) {
-    window.addEventListener("resize", resize);
-  }
+  useEffect(()=>{
+    if ( typeof window !== `undefined`) {
+      window.addEventListener("resize", resize);
+    }
+  })
 
   let urlShared;
   const getSharedUrl = lng => {

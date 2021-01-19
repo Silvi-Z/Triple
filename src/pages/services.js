@@ -161,7 +161,7 @@ const Services = ({ location, pageContext }) => {
   function handleScroll() {
     const hash = location.hash;
     const serviceDataNew = [...serviceData];
-    if (hash && typeof window !== `undefined`){
+    if (hash && window &&  typeof window !== `undefined`){
       const foundIndex = serviceDataNew.findIndex(el => "#" + el.data.scroll_id === hash)
       const foundElement = serviceDataNew[foundIndex];
       const distance = document.getElementById(foundElement.data.scroll_id) && document.getElementById(foundElement.data.scroll_id).getBoundingClientRect()

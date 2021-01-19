@@ -6,7 +6,7 @@ import styled from "styled-components";
 const NavCard = styled(Card)`
   background: transparent;
   box-sizing: border-box;
-  padding: 10px 20px;
+  padding: 0 20px;
   margin-bottom: 10px;
   min-height: 80px;
   width: 100%;
@@ -71,11 +71,10 @@ const CalculatorNav = ({ t, locale }) => {
 
       <List bordered={false} itemLayout="vertical">
         <NavItem>
-          {console.log(location)}
-          <NavLink className="calc-nav-item" to={`/arm/calculators/salary`}>{t.salary.title}</NavLink>
+          <NavLink className="calc-nav-item" to={`/${locale}/calculators/salary`}>{t.salary.title}</NavLink>
         </NavItem>
         <NavItem>
-          <NavLink className="calc-nav-item" to={`/arm/calculators/salary-table/`}>{t.salary_table.title}</NavLink>
+          <NavLink className="calc-nav-item" to={`/${locale}/calculators/salary-table/`}>{t.salary_table.title}</NavLink>
         </NavItem>
         <NavItem>
           <NavLink className="calc-nav-item" to={`/${locale}/calculators/vacation/`}>{t.vacation.title}</NavLink>

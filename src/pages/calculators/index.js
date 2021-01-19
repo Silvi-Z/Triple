@@ -49,7 +49,7 @@ const Index = ({ pageContext }) => {
       <CalcPageWrapper ctx={pageContext}>
         <H1Element>Հաշվիչներ</H1Element>
         <PElement>Ստորև կարող եք ծանոթանալ մեր կողմից մշակված մի շարք գործիքներին, որոնք նպատակ ունեն պարզեցնել Ձեր կողմից կատարվող հաշվարկներ:</PElement>
-        <CalculatorHomePage > </CalculatorHomePage>
+        <CalculatorHomePage pageContext={pageContext.locale} > </CalculatorHomePage>
       </CalcPageWrapper>
       </>
   )

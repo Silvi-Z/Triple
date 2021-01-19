@@ -44,16 +44,18 @@ const Index = ({location, pageContext }) => {
       return `http://triple-c.algorithm.am/${lng}/news${location.hash}`
     }
   }
-  const [windowInnerWidth, setWindowInnerWidth] = useState(window.innerWidth)
+  const [windowInnerWidth, setWindowInnerWidth] = useState(typeof window !==`undefined` && window.innerWidth)
 
-  if (typeof window !== `undefined`) {
+  useEffect(()=>{
+    if ( typeof window !== `undefined`) {
 
-    const removeNewsDatePickerIcon = () => {
-      setWindowInnerWidth(window.innerWidth);
+      const removeNewsDatePickerIcon = () => {
+        setWindowInnerWidth(window.innerWidth);
+      }
+
+      window.addEventListener("resize", removeNewsDatePickerIcon)
     }
-
-    window.addEventListener("resize", removeNewsDatePickerIcon)
-  }
+  })
 
   const hookComponent = () => {
     urlShared = getSharedUrl(pageContext.locale)

@@ -12,14 +12,14 @@ import {
   PElement
 } from "../homecomponents/homeServices/homeServiceStyle"
 
-const CalculatorHomePage = () =>{
+const CalculatorHomePage = (pageContext) =>{
   return(
     <>
     <ResponsWrapper>
       <ContainerRow>
         {contentData.map(item => (
           <ContentContainer key={item.src}>
-            <ContentLink to={item.link}>
+            <ContentLink to={`/${pageContext.pageContext}${item.link}`}>
               <CalcImagesWrapper>
                 <IconWrapper src={item.src} alt={"icon"}/>
                 <PElement>{item.text}</PElement>

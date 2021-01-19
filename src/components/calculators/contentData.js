@@ -9,47 +9,47 @@ import salaryTable from "../../assets/calcImages/salary-table.svg"
 import calc_9 from "../../assets/calcImages/calc_9.svg"
 const contentData=[
   {
-    "link" : "/arm/calculators/salary",
+    "link" : "/calculators/salary",
     "src" : `${salary}`,
     "text" : "Աշխատավարձի հաշվիչ"
   },
   {
-    "link" : "/arm/calculators/salary-table",
+    "link" : "/calculators/salary-table",
     "src" : `${salaryTable}`,
     "text" : "Աշխատավարձի հաշվիչ ըստ տաբելի"
   },
   {
-    "link" : "/arm/calculators/vacation",
+    "link" : "/calculators/vacation",
     "src" : `${vacation}`,
     "text" : "Արձակուրդայինի հաշվիչ"
   },
   {
-    "link" : "/arm/calculators/final",
+    "link" : "/calculators/final",
     "src" : `${final}`,
     "text" : "Վերջնահաշվարկի հաշվիչ"
   },
   {
-    "link" : "/arm/calculators/mortgage",
+    "link" : "/calculators/mortgage",
     "src" : `${mortgage}`,
     "text" : "Հիփոթեքի տոկոսագումարի ետ վերադարձի հաշվիչ"
   },
   {
-    "link" : "/arm/calculators/car-customs",
+    "link" : "/calculators/car-customs",
     "src" : `${carCustoms}`,
     "text" : "Ավտոմեքենայի մաքսազերծման վճարի հաշվիչ"
   },
   {
-    "link" : "/arm/calculators/car-sell",
+    "link" : "/calculators/car-sell",
     "src" : `${carSell}`,
     "text" : "Ավտոմեքենայի վաճառքի հաշվիչ"
   },
   {
-    "link" : "/arm/calculators/car-tax",
+    "link" : "/calculators/car-tax",
     "src" : `${carTax}`,
     "text" : "Ավտոմեքենայի գույքահարկի հաշվիչ"
   },
   {
-    "link" : "/arm/calculators/car-tax",
+    "link" : "/calculators/car-tax",
     "src" : `${calc_9}`,
     "text" : "Անաշխատունակության հաշվիչ"
   },
