@@ -1,14 +1,8 @@
 import React from "react"
 import { Select } from "antd"
 import { cloneDeep } from "lodash"
-import {
-  PENSION_FIELD_NO,
-  PENSION_FIELD_YES,
-  PENSION_FIELD_YES_VOLUNTEER,
-  SALARY_MAX,
-  SALARY_MIN,
-} from "../utilities/salary"
 import { CalculatorCol, CalculatorInput, CalculatorSelect, CalculatorTable, ColHeader } from "../styled"
+import { PENSION_FIELD_NO,PENSION_FIELD_YES, PENSION_FIELD_YES_VOLUNTEER, SALARY_MAX, SALARY_MIN, } from "../utilities/salary"
 
 class EmployeeSalaryTable extends React.Component {
   constructor(props) {

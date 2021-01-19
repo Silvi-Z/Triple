@@ -74,7 +74,7 @@ const SalaryCalculator = ({ langText }) => {
 
   useEffect(() => {
     // Auto calculation
-    // if (calculated) formik.handleSubmit()
+    if (calculated) formik.handleSubmit()
     const { tax_field, pension, from } = { ...formik.values }
 
     if (from === 1) setMin(Salary.minAmount(tax_field, pension))
@@ -97,10 +97,13 @@ const SalaryCalculator = ({ langText }) => {
               value={formik.values.from}
               size="large"
             >
-              <Row align="middle" gutter={[10, 10]} style={{width: '100%', flexDirection: formik.values.from === 2 ? "row-reverse" : "row"}}>
+              <Row align="middle" justify="start" gutter={[10, 10]} style={{
+                width: '100%',
+                flexDirection: formik.values.from === 2 ? "row-reverse" : "row"
+              }}>
                 <Col span={11}>
                   <RadioButton value={1} size="large">
-                    {langText.dirty_salary_button}
+                    {langText["dirty_salary_button"]}
                   </RadioButton>
                 </Col>
                 <Col span={2} style={{ textAlign: "center" }}>
@@ -117,14 +120,14 @@ const SalaryCalculator = ({ langText }) => {
                 </Col>
                 <Col span={11}>
                   <RadioButton value={2} size="large">
-                    {langText.clean_salary_button}
+                    {langText["clean_salary_button"]}
                   </RadioButton>
                 </Col>
               </Row>
             </RadioGroup>
 
 
-            <Form.Item label={<Label>{langText.salary_label}</Label>} name="amount">
+            <Form.Item label={<Label>{langText["salary_label"]}</Label>} name="amount">
               <CalculatorInput
                 formatter={v => `${v}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                 parser={v => v.replace(/\$\s?|(,*)/g, "")}
@@ -137,48 +140,48 @@ const SalaryCalculator = ({ langText }) => {
               />
             </Form.Item>
 
-            <Form.Item label={<Label style={{ fontSize: "16px" }}>{langText.tax_label}</Label>} labelCol={{ span: 24 }} name="tax_field">
+            <Form.Item label={<Label style={{ fontSize: "16px" }}>{langText["tax_label"]}</Label>} labelCol={{ span: 24 }} name="tax_field">
               <Radio.Group
                 onChange={(e) => formik.setFieldValue("tax_field", e.target.value)}
                 value={formik.values.tax_field}
               >
                 <Radio style={radioStyle} value={TAX_FIELD_COMMON}>
-                  <RadioLabel>{langText.tax_label_common}</RadioLabel>
+                  <RadioLabel>{langText["tax_label_common"]}</RadioLabel>
                 </Radio>
                 <Radio style={radioStyle} value={TAX_FIELD_IT}>
-                  <RadioLabel>{langText.tax_label_it}</RadioLabel>
+                  <RadioLabel>{langText["tax_label_it"]}</RadioLabel>
                 </Radio>
                 <Radio style={radioStyle} value={TAX_FIELD_ENTERPRISE}>
-                  <RadioLabel>{langText.tax_label_enterprise}</RadioLabel>
+                  <RadioLabel>{langText["tax_label_enterprise"]}</RadioLabel>
                 </Radio>
               </Radio.Group>
             </Form.Item>
 
-            <Form.Item label={<RadioLabel>{langText.pensioner_label}</RadioLabel>} name="pension">
+            <Form.Item label={<RadioLabel>{langText["pensioner_label"]}</RadioLabel>} name="pension">
               <Radio.Group
                 onChange={(e) => formik.setFieldValue("pension", e.target.value)}
                 value={formik.values.pension}
               >
                 <Radio value={PENSION_FIELD_YES}>
-                  <Label>{langText.yes}</Label>
+                  <Label>{langText["yes"]}</Label>
                 </Radio>
                 <Radio value={PENSION_FIELD_YES_VOLUNTEER}>
-                  <Label>{langText.yes_volunteer}</Label>
+                  <Label>{langText["yes_volunteer"]}</Label>
                 </Radio>
                 <Radio value={PENSION_FIELD_NO}>
-                  <Label>{langText.no}</Label>
+                  <Label>{langText["no"]}</Label>
                 </Radio>
               </Radio.Group>
             </Form.Item>
 
-            <Form.Item>
+            <Form.Item style={{marginTop: '50px'}}>
               <ButtonSubmit
                 disabled={!formik.isValid}
                 htmlType="submit"
                 shape="round"
                 size="large"
               >
-                {langText.count_button}
+                {langText["count_button"]}
               </ButtonSubmit>
             </Form.Item>
           </Form>
@@ -186,35 +189,35 @@ const SalaryCalculator = ({ langText }) => {
       </Col>
 
       <Col span={8}>
-        <FormLabel style={{ margin: 0 }}>{langText.result_title}</FormLabel>
+        <FormLabel style={{ margin: 0 }}>{langText["result_title"]}</FormLabel>
 
         <UnderLine />
 
         <CalculatorCardResult
-          title={formik.values.from === 1 ? langText.dirty_to_clean_salary : langText.clean_dirty_to_salary}
+          title={formik.values.from === 1 ? langText["dirty_to_clean_salary"] : langText["clean_dirty_to_salary"]}
           text={result.salary}
           loading={loading}
         />
         <CalculatorCardResult
-          title={langText.income_tax_label}
+          title={langText["income_tax_label"]}
           text={result.income_tax}
           loading={loading}
-          tooltip
+          tooltip={formik.values.tax_field === TAX_FIELD_ENTERPRISE ? 'prompt text': null}
         />
         <CalculatorCardResult
-          title={langText.pension_paymet_label}
+          title={langText["pension_paymet_label"]}
           text={result.pension_fee}
           loading={loading}
           tooltip
         />
         <CalculatorCardResult
-          title={langText.stamp_duty_label}
+          title={langText["stamp_duty_label"]}
           text={result.stamp_fee}
           loading={loading}
           tooltip
         />
         <CalculatorCardResult
-          title={langText.general_storage_label}
+          title={langText["general_storage_label"]}
           text={result.total_fee}
           loading={loading}
         />

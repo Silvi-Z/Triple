@@ -2,7 +2,8 @@ import React from "react"
 import ReactDOM from "react-dom"
 import triple from "../../api/triple"
 import { isEqual, pick } from "lodash"
-import { Row, Col, Card, Form, Radio, Checkbox } from "antd"
+import { InfoCircleTwoTone } from "@ant-design/icons"
+import { Row, Col, Card, Form, Radio, Checkbox, Input, Tooltip } from "antd"
 import GrossSalaryTable from "./calcComponents/GrossSalaryTable"
 import CalculatorCardResult from "./calcComponents/CalculatorCardResult"
 import { Label, FormLabel, UnderLine, RadioLabel, ButtonSubmit, CalculatorInput, CalculatorDatePicker } from "./styled"
@@ -20,6 +21,7 @@ const form = {
   available_vacation_days: 20,
   total_vacation_days: null,
   used_vacation_days: null,
+  unused_vacation_days: null,
   from: 1,
   salary: null,
   pension: PENSION_FIELD_YES,
@@ -42,7 +44,7 @@ class FinalCalculator extends React.Component {
 
   setReleaseDate = date => this.setFormField("date_release", date.add(1, "month"))
 
-  handleWindowScroll = e => {
+  handleWindowScroll = () => {
     if (
       (window.scrollY + this.colElement.offsetHeight + this.rowElementOffsetTop) >=
       (this.rowElementOffsetTop + this.rowElement.offsetHeight)
@@ -85,12 +87,16 @@ class FinalCalculator extends React.Component {
           if (!this.state.calculated) this.setState({ calculated: true })
         })
         .catch(err => console.log(err))
-        .finally(() => this.setState({ loading: false }))
+        .finally(() => {
+          this.setState({ loading: false })
+
+          document.body.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"});
+        })
     }).catch(err => console.log(err))
   }
 
   get rowElement() {
-    return ReactDOM.findDOMNode(this.row.current)
+    return ReactDOM.findDOMNode(/**@type Element */this.row.current)
   }
 
   get rowElementOffsetTop() {
@@ -98,7 +104,7 @@ class FinalCalculator extends React.Component {
   }
 
   get colElement() {
-    return ReactDOM.findDOMNode(this.col.current)
+    return ReactDOM.findDOMNode(/**@type Element */this.col.current)
   }
 
   get totalVacationDays() {
@@ -112,10 +118,12 @@ class FinalCalculator extends React.Component {
   }
 
   get restVacationDays() {
-    const { used_vacation_days } = this.state.form
+    const { used_vacation_days, unused_vacation_days } = this.state.form
 
     if (this.totalVacationDays && used_vacation_days) {
       return this.totalVacationDays - used_vacation_days
+    } else if (unused_vacation_days) {
+      return unused_vacation_days
     }
 
     return null
@@ -175,13 +183,13 @@ class FinalCalculator extends React.Component {
 
   get dateFromInput() {
     return ReactDOM
-      .findDOMNode(this.dateFromPicker.current)
+      .findDOMNode(/**@type Element */this.dateFromPicker.current)
       .querySelector("input")
   }
 
   get dateToInput() {
     return ReactDOM
-      .findDOMNode(this.dateToPicker.current)
+      .findDOMNode(/**@type Element */this.dateToPicker.current)
       .querySelector("input")
   }
 
@@ -216,6 +224,24 @@ class FinalCalculator extends React.Component {
     }
   }
 
+  autoFillUnusedVacationDays() {
+    const { used_vacation_days } = this.state.form
+
+    if (this.totalVacationDays && used_vacation_days) {
+      this.setFormField('unused_vacation_days', this.totalVacationDays - used_vacation_days)
+    } else if (this.totalVacationDays && !used_vacation_days) {
+      this.setFormField('unused_vacation_days', this.totalVacationDays)
+    }
+  }
+
+  autoFillUsedVacationDays() {
+    const { unused_vacation_days } = this.state.form
+
+    if (this.totalVacationDays && unused_vacation_days) {
+      this.setFormField('used_vacation_days', this.totalVacationDays - unused_vacation_days)
+    }
+  }
+
   render() {
     const { form, result, loading, calculated } = this.state
     const { lang } = this.props
@@ -237,35 +263,31 @@ class FinalCalculator extends React.Component {
               layout="horizontal"
               size="large"
             >
-              <Row gutter={10} align="middle">
-                <Col span={11}>
-                  <Form.Item label={<Label>{lang.form.acceptance}</Label>}>
-                    <CalculatorDatePicker
-                      onChange={date => this.setFormField("date_acceptance", date)}
-                      placeholder={lang.form.date_acceptance_placeholder}
-                      disabledDate={this.disabledAcceptanceDates}
-                      value={form.date_acceptance}
-                      ref={this.dateFromPicker}
-                      format="DD.MM.YYYY"
-                      name="date_acceptance"
-                      size="large"
-                    />
-                  </Form.Item>
-                </Col>
-                <Col span={11}>
-                  <Form.Item label={<Label>{lang.form.release}</Label>}>
-                    <CalculatorDatePicker
-                      onChange={date => this.setFormField("date_release", date)}
-                      placeholder={lang.form.date_release_placeholder}
-                      disabledDate={this.disabledReleasedDates}
-                      value={form.date_release}
-                      ref={this.dateToPicker}
-                      format="DD.MM.YYYY"
-                      name="date_release"
-                      size="large"
-                    />
-                  </Form.Item>
-                </Col>
+              <Row align="middle">
+                <Form.Item style={{marginRight: '25px'}} label={<Label>{lang.form["acceptance"]}</Label>}>
+                  <CalculatorDatePicker
+                    onChange={date => this.setFormField("date_acceptance", date)}
+                    placeholder={lang.form["date_acceptance_placeholder"]}
+                    disabledDate={this.disabledAcceptanceDates}
+                    value={form.date_acceptance}
+                    ref={this.dateFromPicker}
+                    format="DD.MM.YYYY"
+                    name="date_acceptance"
+                    size="large"
+                  />
+                </Form.Item>
+                <Form.Item label={<Label>{lang.form.release}</Label>}>
+                  <CalculatorDatePicker
+                    onChange={date => this.setFormField("date_release", date)}
+                    placeholder={lang.form["date_release_placeholder"]}
+                    disabledDate={this.disabledReleasedDates}
+                    value={form.date_release}
+                    ref={this.dateToPicker}
+                    format="DD.MM.YYYY"
+                    name="date_release"
+                    size="large"
+                  />
+                </Form.Item>
               </Row>
 
               <Form.Item label={<Label>{lang.form.working_schedule}</Label>} labelCol={{ span: 24 }}>
@@ -274,10 +296,10 @@ class FinalCalculator extends React.Component {
                   value={form.working_schedule}
                 >
                   <Radio value={5}>
-                    {<Label style={{ textTransform: "none" }}>{lang.form.five_days}</Label>}
+                    {<Label style={{ textTransform: "none" }}>{lang.form["five_days"]}</Label>}
                   </Radio>
                   <Radio value={6}>
-                    {<Label style={{ textTransform: "none" }}>{lang.form.six_days}</Label>}
+                    {<Label style={{ textTransform: "none" }}>{lang.form["six_days"]}</Label>}
                   </Radio>
                 </Radio.Group>
               </Form.Item>
@@ -298,8 +320,8 @@ class FinalCalculator extends React.Component {
                 <CalculatorInput
                   value={this.totalVacationDays}
                   style={{ width: "54px" }}
-                  min={SALARY_MIN}
                   readOnly={true}
+                  min={0}
                   type="number"
                   size="large"
                 />
@@ -307,11 +329,37 @@ class FinalCalculator extends React.Component {
 
               <Form.Item label={<Label style={{ textTransform: "none" }}>{lang.form.used_vacation_days}</Label>}>
                 <CalculatorInput
-                  onChange={v => this.setFormField("used_vacation_days", v)}
+                  onChange={v => this.setFormField("used_vacation_days", v, this.autoFillUnusedVacationDays)}
                   value={form.used_vacation_days}
                   style={{ width: "54px" }}
-                  min={SALARY_MIN}
+                  max={this.totalVacationDays}
+                  min={0}
                   name="used_vacation_days"
+                  type="number"
+                  size="large"
+                />
+              </Form.Item>
+
+              <Form.Item label={
+                <Label style={{ textTransform: "none" }}>
+                  {lang.form.unused_vacation_days}
+                  <Tooltip title="prompt text" color="black">
+                    <InfoCircleTwoTone twoToneColor="#00B3C7" style={{marginLeft: 5}} />
+                  </Tooltip>
+                </Label>
+              }>
+                <Input
+                  onChange={e => this.setFormField("unused_vacation_days", e.target.value, this.autoFillUsedVacationDays)}
+                  value={form.unused_vacation_days}
+                  style={{
+                    border: '0.5px solid #555555',
+                    background: '#FFFFFF',
+                    borderRadius: '5px',
+                    width: "54px"
+                  }}
+                  max={this.totalVacationDays}
+                  min={0}
+                  name="unused_vacation_days"
                   type="number"
                   size="large"
                 />
@@ -362,19 +410,19 @@ class FinalCalculator extends React.Component {
                   value={form.tax_field}
                 >
                   <Radio style={radioStyle} value={TAX_FIELD_COMMON}>
-                    <RadioLabel>{lang.form.tax_common}</RadioLabel>
+                    <RadioLabel>{lang.form["tax_common"]}</RadioLabel>
                   </Radio>
                   <Radio style={radioStyle} value={TAX_FIELD_IT}>
-                    <RadioLabel>{lang.form.tax_it}</RadioLabel>
+                    <RadioLabel>{lang.form["tax_it"]}</RadioLabel>
                   </Radio>
                   <Radio style={radioStyle} value={TAX_FIELD_ENTERPRISE}>
-                    <RadioLabel>{lang.form.tax_enterprise}</RadioLabel>
+                    <RadioLabel>{lang.form["tax_enterprise"]}</RadioLabel>
                   </Radio>
                 </Radio.Group>
               </Form.Item>
 
               <Form.Item
-                label={<RadioLabel>{lang.form.pensioner}</RadioLabel>}
+                label={<RadioLabel>{lang.form["pensioner"]}</RadioLabel>}
                 labelCol={{ span: 24 }}
                 name="pension"
               >
@@ -383,20 +431,20 @@ class FinalCalculator extends React.Component {
                   value={form.pension}
                 >
                   <Radio value={PENSION_FIELD_YES}>
-                    <Label>{lang.form.yes}</Label>
+                    <Label>{lang.form["yes"]}</Label>
                   </Radio>
                   <Radio value={PENSION_FIELD_YES_VOLUNTEER}>
-                    <Label>{lang.form.yes_volunteer}</Label>
+                    <Label>{lang.form["yes_volunteer"]}</Label>
                   </Radio>
                   <Radio value={PENSION_FIELD_NO}>
-                    <Label>{lang.form.no}</Label>
+                    <Label>{lang.form["no"]}</Label>
                   </Radio>
                 </Radio.Group>
               </Form.Item>
 
-              <Form.Item>
+              <Form.Item style={{marginTop: '50px'}}>
                 <ButtonSubmit htmlType="submit" shape="round" size="large">
-                  {lang.form.calculate}
+                  {lang.form["calculate"]}
                 </ButtonSubmit>
               </Form.Item>
             </Form>
@@ -418,6 +466,7 @@ class FinalCalculator extends React.Component {
             title={lang.result["income_tax"]}
             text={result.income_tax}
             loading={loading}
+            tooltip={form.tax_field === TAX_FIELD_ENTERPRISE ? 'prompt text': null}
           />
 
           <CalculatorCardResult
