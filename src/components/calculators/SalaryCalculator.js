@@ -25,6 +25,8 @@ import {
   PENSION_FIELD_YES,
   PENSION_FIELD_YES_VOLUNTEER,
 } from "./utilities/salary"
+import { H1Styled , TextStyled } from "./styled"
+import styled from "styled-components"
 
 const radioStyle = {
   display: "block",
@@ -81,9 +83,16 @@ const SalaryCalculator = ({ langText }) => {
     else setMin(1)
   }, [formik.values])
 
+
+
   return (
+<>
     <Row align="start" gutter={20}>
       <Col span={16}>
+        <div>
+          <H1Styled>{langText.title}</H1Styled>
+          <TextStyled>{langText.paragraph}</TextStyled>
+        </div>
         <Row align="center" style={{ justifyContent: "space-between" }}>
           <FormLabel>{langText.title}</FormLabel>
 
@@ -183,9 +192,9 @@ const SalaryCalculator = ({ langText }) => {
             </Form.Item>
           </Form>
         </Card>
-      </Col>
+      </Col >
 
-      <Col span={8}>
+      <Col className="result" span={8} style={{"--height":'308px' , marginTop:"var(--height)"}}>
         <FormLabel style={{ margin: 0 }}>{langText.result_title}</FormLabel>
 
         <UnderLine />
@@ -220,6 +229,7 @@ const SalaryCalculator = ({ langText }) => {
         />
       </Col>
     </Row>
+</>
   )
 }
 

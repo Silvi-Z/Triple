@@ -177,3 +177,26 @@ export const CalculatorCol = styled.th`
   padding: 8px 10px;
   text-align: left; 
 `
+export const H1Styled = styled.h1`
+  font-family: ArialAMU,serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 25px;
+  text-align: center;
+  letter-spacing: 1.15px;
+  color: #000000;
+  margin-top: 50px;
+`
+export const TextStyled = styled.p`
+  font-family: ArialAMU,serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 25px;
+  text-align: center;
+  letter-spacing: 1.15px;
+  color: #000000;
+  margin: 0 auto 50px;
+  max-width: 734;
+`

@@ -147,6 +147,7 @@ const query = graphql`
               }
               salary {
                 title
+                paragraph
                 clean_salary_button
                 dirty_salary_button
                 tax_label

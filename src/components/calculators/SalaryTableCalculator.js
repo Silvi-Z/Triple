@@ -14,6 +14,7 @@ import { CalculatorDatePicker, CalculatorInput, ButtonSubmit, RadioButton, Radio
 import { schemaBy, BY_FIELD_DATE, BY_FIELD_TABLE, SALARY_MIN, SALARY_STEP, TAX_FIELD_IT, TAX_FIELD_COMMON, TAX_FIELD_ENTERPRISE, PENSION_FIELD_NO, PENSION_FIELD_YES, PENSION_FIELD_YES_VOLUNTEER } from "./utilities/salary"
 import EmployeeSalaryTable from "./calcComponents/EmployeeSalaryTable"
 import CalculatorCardResult from "./calcComponents/CalculatorCardResult"
+import { H1Styled , TextStyled } from "./styled"
 
 moment.locale('en', {
   week: {
@@ -575,6 +576,11 @@ class SalaryTableCalculator extends React.Component {
     return (
       <Row align="start" gutter={20}>
         <Col span={16}>
+          <div>
+            {console.log(lang)}
+            <H1Styled>{lang.toString()}</H1Styled>
+            {/*<TextStyled>{langText.paragraph}</TextStyled>*/}
+          </div>
           <Row align="center" style={{justifyContent: 'space-between'}}>
             <FormLabel>{lang.title}</FormLabel>
 
@@ -794,7 +800,7 @@ class SalaryTableCalculator extends React.Component {
           </Card>
         </Col>
 
-        <Col span={8}>
+        <Col span={8} className="result" style={{"--height":'308px' , marginTop:"var(--height)"}}>
           <FormLabel style={{margin: 0}}>{lang.result.title}</FormLabel>
 
           <UnderLine/>

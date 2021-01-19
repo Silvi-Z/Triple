@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react"
 import { Row, Col } from "antd";
 import styled from "styled-components";
 import FbBlueIcon from "../../../assets/career/facebookBlueCareer.svg";
@@ -21,29 +21,7 @@ export const SharedWrapperCol = styled(Col)`
   }
 `;
 
-const H1Styled = styled.h1`
-  font-family: ArialAMU,serif;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 24px;
-  line-height: 25px;
-  text-align: center;
-  letter-spacing: 1.15px;
-  color: #000000;
-  margin-top: 50px;
-`
-const TextStyled = styled.p`
-  font-family: ArialAMU,serif;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 18px;
-  line-height: 25px;
-  text-align: center;
-  letter-spacing: 1.15px;
-  color: #000000;
-  margin: 0 auto 50px;
-  width: 555px;
-`
+
 const ShareLabel = styled.h3`
   width: 83px;
   height: 15px;
@@ -95,7 +73,12 @@ const CalculatorWrapper = ({ ctx, children }) => {
   const hookComponent = () => {
     urlShared = getSharedUrl(ctx.locale)
   };
-
+useEffect(()=>{
+  if (document.querySelector('.result')){
+    let marTop = document.querySelector('.result').style.getPropertyValue('--height');
+    document.querySelector('.calculatorsMenu').style.marginTop = marTop;
+  }
+})
   hookComponent();
 
   return (
@@ -106,12 +89,9 @@ const CalculatorWrapper = ({ ctx, children }) => {
         pageContext={ctx}
       />
 
-      <H1Styled>{calculator.title}</H1Styled>
-
-      <TextStyled>{calculator.paragraph}</TextStyled>
-
       <Row gutter={0}>
-        <Col span={6} style={{paddingRight: '10px', paddingLeft: '35px'}}>
+        {console.log(ctx)}
+        <Col className="calculatorsMenu" span={6} style={{paddingRight: '10px', paddingLeft: '35px'}}>
           <CalculatorNav t={calculator} locale={ctx.locale} />
         </Col>
         <Col span={18} style={{paddingRight: '35px'}}>
