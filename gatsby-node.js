@@ -44,7 +44,6 @@ exports.onCreatePage = async ({ page, actions: { createPage, deletePage, createR
   );
 
 
-
   // Create a fallback redirect if the language is not supported or the
   // Accept-Language header is missing for some reason
   createRedirect({

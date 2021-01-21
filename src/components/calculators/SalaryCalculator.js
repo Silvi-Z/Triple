@@ -12,7 +12,7 @@ import {
   RadioLabel,
   RadioButton,
   CalculatorInput,
-  ButtonSubmit,
+  ButtonSubmit, CalculatorsCard,
 } from "./styled"
 import {
   schema,
@@ -25,6 +25,8 @@ import {
   PENSION_FIELD_YES,
   PENSION_FIELD_YES_VOLUNTEER,
 } from "./utilities/salary"
+import { H1Styled , TextStyled } from "./styled"
+import styled from "styled-components"
 
 const radioStyle = {
   display: "block",
@@ -38,7 +40,7 @@ const initialValues = {
   tax_field: TAX_FIELD_COMMON,
 }
 
-const SalaryCalculator = ({ langText }) => {
+const SalaryCalculator = ({ langText, sameMargin }) => {
   const [result, setResult] = useState({
     total_fee: 0,
     income_tax: 0,
@@ -81,16 +83,17 @@ const SalaryCalculator = ({ langText }) => {
     else setMin(1)
   }, [formik.values])
 
+
+
   return (
+<>
     <Row align="start" gutter={20}>
       <Col span={16}>
-        <Row align="center" style={{ justifyContent: "space-between" }}>
-          <FormLabel>{langText.title}</FormLabel>
-
-          <FormLabel>{(new Date()).getFullYear()}թ.</FormLabel>
-        </Row>
-
-        <Card bordered={false}>
+        <div className="textSec">
+          <H1Styled>{langText.title}</H1Styled>
+          <TextStyled>{langText.paragraph}</TextStyled>
+        </div>
+        <CalculatorsCard bordered={false}>
           <Form onFinish={formik.handleSubmit} initialValues={initialValues} layout="horizontal" colon={false}>
             <RadioGroup
               onChange={(e) => formik.setFieldValue("from", e.target.value)}
@@ -185,11 +188,16 @@ const SalaryCalculator = ({ langText }) => {
               </ButtonSubmit>
             </Form.Item>
           </Form>
-        </Card>
-      </Col>
+        </CalculatorsCard>
+      </Col >
 
+<<<<<<< HEAD
       <Col span={8}>
         <FormLabel style={{ margin: 0 }}>{langText["result_title"]}</FormLabel>
+=======
+      <Col span={8} className="result">
+        <FormLabel style={{ margin: 0 }}>{langText.result_title}</FormLabel>
+>>>>>>> news-page
 
         <UnderLine />
 
@@ -223,6 +231,7 @@ const SalaryCalculator = ({ langText }) => {
         />
       </Col>
     </Row>
+</>
   )
 }
 

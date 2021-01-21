@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    supportedLanguages: ["ru", "en", "arm"],
+    supportedLanguages: ["en", "arm"],
     defaultLanguage: "arm",
     title: "Triple Consulting",
     description:

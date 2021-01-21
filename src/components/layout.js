@@ -15,6 +15,7 @@ const { Content, Footer } = CustomLayout
 
 const Main = styled(Content)`
   margin: 0 auto;
+  overflow: hidden;
 `
 const FooterCust = styled(Footer)`
   margin-top: 90px;
@@ -76,7 +77,7 @@ const Layout = ({ children, location, pageContext: { locale, originalPath, local
         backcolor={responseWrapper.toString()}
         langtext={layout}
       >
-        {!responseWrapper ? <FooterWhite/> : <FooterBlack langtext={layout}/>}
+        {responseWrapper && <FooterBlack langtext={layout}/>}
       </FooterCust>
     </>
   )

@@ -10,10 +10,22 @@ import { DownloadOutlined, UploadOutlined } from "@ant-design/icons"
 import { Row, Col, Card, Form, Radio, Button, notification } from "antd"
 import { defineSchedule, urlToBase64, randomString } from "./utilities/tabel"
 import { endDate, isHoliday, isWeekend, workingDaysInMonth, workingDaysInRange } from "./utilities/vacation"
-import { CalculatorDatePicker, CalculatorInput, ButtonSubmit, RadioButton, RadioGroup, RadioLabel, UnderLine, FormLabel, Label } from "./styled"
+import {
+  CalculatorDatePicker,
+  CalculatorInput,
+  ButtonSubmit,
+  RadioButton,
+  RadioGroup,
+  RadioLabel,
+  UnderLine,
+  FormLabel,
+  Label,
+  CalculatorsCard,
+} from "./styled"
 import { schemaBy, BY_FIELD_DATE, BY_FIELD_TABLE, SALARY_MIN, SALARY_STEP, TAX_FIELD_IT, TAX_FIELD_COMMON, TAX_FIELD_ENTERPRISE, PENSION_FIELD_NO, PENSION_FIELD_YES, PENSION_FIELD_YES_VOLUNTEER } from "./utilities/salary"
 import EmployeeSalaryTable from "./calcComponents/EmployeeSalaryTable"
 import CalculatorCardResult from "./calcComponents/CalculatorCardResult"
+import { H1Styled , TextStyled } from "./styled"
 
 moment.locale('en', {
   week: {
@@ -576,13 +588,12 @@ class SalaryTableCalculator extends React.Component {
     return (
       <Row align="start" gutter={20}>
         <Col span={16}>
-          <Row align="center" style={{justifyContent: 'space-between'}}>
-            <FormLabel>{lang.title}</FormLabel>
+          <div className="textSec">
+            <H1Styled>{lang.title}</H1Styled>
+            <TextStyled>{lang.paragraph}</TextStyled>
+          </div>
 
-            <FormLabel>{(new Date()).getFullYear()}թ.</FormLabel>
-          </Row>
-
-          <Card bordered={false}>
+          <CalculatorsCard bordered={false}>
             <Form
               onFinish={this.handleSubmit}
               initialValues={form}
@@ -788,10 +799,10 @@ class SalaryTableCalculator extends React.Component {
                 </ButtonSubmit>
               </Form.Item>
             </Form>
-          </Card>
+          </CalculatorsCard>
         </Col>
 
-        <Col span={8}>
+        <Col span={8} className="result">
           <FormLabel style={{margin: 0}}>{lang.result.title}</FormLabel>
 
           <UnderLine/>
@@ -845,6 +856,7 @@ class SalaryTableCalculator extends React.Component {
               shape="round"
               size="large"
               block
+
             >
               {lang.result.download}
             </ButtonSubmit>

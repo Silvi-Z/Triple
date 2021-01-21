@@ -1,7 +1,20 @@
 import React from "react"
 import { isEqual } from "lodash"
 import { Row, Col, Card, Form, Radio, Divider } from "antd"
+<<<<<<< HEAD
 import { ButtonSubmit, CalculatorDatePicker, CalculatorInput, FormLabel, Label, UnderLine } from "./styled"
+=======
+import {
+  ButtonSubmit,
+  CalculatorDatePicker,
+  CalculatorInput, CalculatorsCard,
+  FormLabel,
+  H1Styled,
+  Label,
+  TextStyled,
+  UnderLine,
+} from "./styled"
+>>>>>>> news-page
 import VehicleCustoms from "../../calculators/VehicleCustoms"
 import CalculatorCardResult from "./calcComponents/CalculatorCardResult"
 import triple from "../../api/triple"
@@ -16,8 +29,10 @@ const lastRadioButtonStyles = {
 }
 
 class CarCustomsCalculator extends React.Component {
+
   handleSubmit = () => {
     const { form, rates } = this.state
+<<<<<<< HEAD
 
     VehicleCustoms.schema
       .validate(form)
@@ -40,13 +55,36 @@ class CarCustomsCalculator extends React.Component {
   reset = field => {
     const { form } = this.state
 
+=======
+
+    VehicleCustoms.schema
+      .validate(form)
+      .then(() => {
+        const calculator = new VehicleCustoms(form, rates)
+        const result = calculator.calculate()
+
+        this.setState({ result: { ...result }, calculated: true })
+      })
+      .catch(err => {
+        this.setState({
+          result: { fee: null, tax: null, vat: null },
+          calculated: false
+        })
+
+        console.log(err)
+      });
+  }
+
+  reset = field => {
+    const { form } = this.state
+
+>>>>>>> news-page
     if (form.hasOwnProperty(field))
       this.setField(field, VehicleCustoms.form[field])
   }
 
   constructor(props) {
     super(props)
-
     this.state = {
       form: { ...VehicleCustoms.form },
       result: { fee: null, tax: null, vat: null },
@@ -86,18 +124,23 @@ class CarCustomsCalculator extends React.Component {
 
   render() {
     const { lang } = this.props
+<<<<<<< HEAD
+=======
+    const { sameMarginTop } = this.props
+>>>>>>> news-page
     const { form, result, rates, calculated } = this.state
 
     return (
       <Row align="start" gutter={20}>
         <Col xs={24} sm={24} md={24} lg={16} xl={16} xxl={16}>
           <Row align="center" style={{ justifyContent: "space-between" }}>
-            <FormLabel>{lang.title}</FormLabel>
-
-            <FormLabel>{(new Date()).getFullYear()}թ.</FormLabel>
+            <div className="textSec">
+              <H1Styled>{lang.title}</H1Styled>
+              <TextStyled>{lang.paragraph}</TextStyled>
+            </div>
           </Row>
 
-          <Card bordered={false}>
+          <CalculatorsCard bordered={false} style={{marginTop: '30px'}}>
             <Form
               onFinish={this.handleSubmit}
               initialValues={form}
@@ -199,10 +242,10 @@ class CarCustomsCalculator extends React.Component {
                 </ButtonSubmit>
               </Form.Item>
             </Form>
-          </Card>
+          </CalculatorsCard>
         </Col>
-
-        <Col xs={24} sm={24} md={24} lg={8} xl={8} xxl={8}>
+        {console.log(this.props)}
+        <Col xs={24} sm={24} md={24} lg={8} xl={8} xxl={8} className="result">
           <FormLabel style={{ margin: 0 }}>{lang.result.title}</FormLabel>
 
           <UnderLine />

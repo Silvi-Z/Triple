@@ -77,6 +77,11 @@ export const TextPart = styled.div`
 `
 
 export const Title = styled.h3`
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
   font-weight: bold;
   font-size: 16px;
   line-height: 25px;
@@ -84,17 +89,18 @@ export const Title = styled.h3`
   color: #000000;
   margin-bottom: 15px;
   max-height: 50px;
-  overflow: hidden;
   @media only screen and (max-width: 839px){
     font-size:14px;
   }
 `
 
 export const NewsText = styled.p`
-  margin-bottom:10px;
-  max-height: 50px;
   overflow: hidden;
-  line-height: 25px;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  margin-bottom:10px;
   @media only screen and (max-width: 839px){
     font-size:12px;
   }
@@ -132,7 +138,6 @@ export const SeeMoreNews = styled(SeemoreWrapper)`
 export const SearchInput = styled.input`
   height: 40px;
   width: 100%;
-  cursor: pointer;
   background-color: white;
   outline: none;
   position: absolute;
@@ -187,12 +192,17 @@ export const NewsDatePicker = styled(DatePicker)`
   box-sizing: border-box;
   border:none;
   border-radius: 10px !important;
+  .ant-picker-suffix{
+    transition:opacity 0.3s;
+  }
   .ant-picker-input > input{
     width: 75px !important;
     flex: unset !important;
   }
-  .ant-picker-input{
-    width:fit-content !important;
+  .ant-picker-input:hover{
+    .ant-picker-suffix {
+        opacity: 0;
+    }
   }
 `
 

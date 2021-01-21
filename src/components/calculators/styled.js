@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import { Button, DatePicker, Divider, InputNumber, Radio, Select, Slider, Typography } from "antd"
+import { Button, Card, DatePicker, Divider, InputNumber, Radio, Select, Slider, Typography } from "antd"
+import { SubmitButton } from "../careercomponents/careerDroping/dropStyle"
 
 const { Text } = Typography;
 
@@ -133,30 +134,7 @@ export const RadioLabel = styled(Text)`
   overflow-wrap: break-word!important;
 `;
 
-export const ButtonSubmit = styled(Button)`
-  background: #1C1D21;
-  font-family: ArialAMU,serif;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 25px;
-  text-align: center;
-  letter-spacing: 1.15px;
-  text-transform: uppercase;
-  color: #FFFFFF;
-  width: 260px;
-  height: 50px;
-  &:hover:enabled {
-    color: #FFFFFF !important;
-    background: #1C1D21 !important;
-    border-color: #1C1D21 !important;
-  }
-  &:focus {
-    color: #FFFFFF !important;
-    background: #1C1D21 !important;
-    border-color: #1C1D21 !important;
-  }
-`;
+export const ButtonSubmit = styled(SubmitButton)``;
 
 export const UnderLine = styled(Divider)`
   margin: 5px 0 15px!important;
@@ -201,4 +179,31 @@ export const CalculatorCol = styled.td`
   color: #555555;
   padding: 8px 10px;
   text-align: left; 
+`
+export const H1Styled = styled.h1`
+  font-family: ArialAMU,serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 25px;
+  text-align: center;
+  letter-spacing: 1.15px;
+  color: #000000;
+ padding-top: 50px;
+`
+export const TextStyled = styled.p`
+  font-family: ArialAMU,serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 25px;
+  text-align: center;
+  letter-spacing: 1.15px;
+  color: #000000;
+  padding-bottom: 50px;
+  max-width: 734px;
+  margin-bottom: 0;
+`
+export const CalculatorsCard = styled(Card)`
+  margin-top: 30px;
 `

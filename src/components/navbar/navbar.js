@@ -7,6 +7,7 @@ import BlackLogo from "../../assets/homeImages/3c1.png"
 import MainLogo from "../../assets/homeImages/3c.svg"
 import WhiteLogo  from "../../assets/homeImages/3c_white.png"
 import EnvironmentImg from "../../assets/footericons/location.svg"
+import TelegramIcon from "../../assets/footericons/brandIcons/telegram (header).svg"
 import "@fortawesome/fontawesome-free/css/all.css"
 import "@fortawesome/fontawesome-free/js/all.js"
 import "../layout.css"
@@ -26,17 +27,18 @@ import {
   ResponsiveMenuColumn,
   ResponsiveMenuInfoRow, Coll,
 } from "./navbarStyle.js"
+import TelegramImg from "../../assets/footericons/brandIcons/telegram (header).svg"
+import { TelegramWrapper } from "../contactcomponts/contactForm/formStyle"
 
 const phones = (
   <div className="phonedrop">
     <div className="phonebox">
-      <PhoneOutlined
-        style={{
-          fontSize: "14px",
-          marginRight: "4%",
-          transform: "rotate(90deg)",
-        }}
-      />
+      <TelegramWrapper src={TelegramIcon}
+         style={{
+           height: "14px",
+           marginRight: "4%",
+         }}>
+      </TelegramWrapper>
       <span className="phonenumber">374 98 553533</span>
     </div>
     <div className="phonebox">
@@ -70,6 +72,7 @@ const GridLang = styled.div`
   grid-area: lang;
 `
 const GridAddress = styled.div`
+  justify-content: space-between;
   grid-area: addr;
 `
 const GridBlank1 = styled.div`
@@ -112,7 +115,7 @@ const activeStyle = {
 }
 
 const Navbar = ({ open, color, setMenuColorProp, responseWrapper, setResponseWrapper,lang, langText, originalPath }) => {
-  const [languageText, setLanguageText] = useState(["Հայ", "Eng", "Рус"])
+  const [languageText, setLanguageText] = useState(["Հայ", "Eng"])
 
   const language = (
     <div className="languagedrop">
@@ -125,15 +128,6 @@ const Navbar = ({ open, color, setMenuColorProp, responseWrapper, setResponseWra
           {languageText[1]}
         </span>
       </div>
-      <div className="languagebox">
-        <span
-          onClick={e => handleChangeLanguage(e, "langeRu")}
-          className="languagetext"
-          id="langeRu"
-        >
-          {languageText[2]}
-        </span>
-      </div>
     </div>
   )
 
@@ -141,9 +135,7 @@ const Navbar = ({ open, color, setMenuColorProp, responseWrapper, setResponseWra
     let lang
     if (defaultLang === "en") {
       lang = "Eng"
-    } else if (defaultLang === "ru") {
-      lang = "Рус"
-    } else if (defaultLang === "arm") {
+    }else if (defaultLang === "arm") {
       lang = "Հայ"
     }
     let newtext = languageText.filter(text => text !== lang)
@@ -160,9 +152,7 @@ const Navbar = ({ open, color, setMenuColorProp, responseWrapper, setResponseWra
   }
   const handleChangeLanguage = (e, id) => {
     let elem = document.getElementById(id)
-    if (elem.innerText === "Рус") {
-      navigate(`/ru${originalPath}`)
-    } else if (elem.innerText === "Eng") {
+    if (elem.innerText === "Eng") {
       navigate(`/en${originalPath}`)
     } else if (elem.innerText === "Հայ") {
       navigate(`/arm${originalPath}`)
@@ -176,9 +166,11 @@ const Navbar = ({ open, color, setMenuColorProp, responseWrapper, setResponseWra
     const innerWidth = (window.innerWidth);
     (innerWidth>=1021 && !responseWrapper) ? setResponseWrapper(!responseWrapper) : null
   }
-  if (typeof window !== `undefined`) {
-    window.addEventListener("resize", resize);
-  }
+ useEffect(()=>{
+   if (typeof window !== `undefined`) {
+     window.addEventListener("resize", resize);
+   }
+ })
 
   useEffect(() => {
     checkDefaultLanguage(lang)

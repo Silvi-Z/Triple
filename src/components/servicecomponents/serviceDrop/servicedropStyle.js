@@ -79,6 +79,7 @@ export const Text = styled.div`
   font-size: 18px;
   line-height: 40px;
   letter-spacing: 0.15px;
+  white-space: pre-wrap;
   @media only screen and (max-width:1024px){
     margin-bottom:30px;
     font-size: 16px;
@@ -95,13 +96,17 @@ export const DropTextCol = styled.div`
   padding: 0 24px;
   opacity: 0;
   @media only screen and (max-width:1024px){
+<<<<<<< HEAD
     &.openTextCol {
       padding: 40px 0;
       flex-direction:column;
     }
+=======
+   flex-direction:column;
+>>>>>>> news-page
   }
   &.openTextCol{
-    max-height: 300px;
+    max-height: 1000px;
     padding: 48px 24px;
     opacity:100%;
   }

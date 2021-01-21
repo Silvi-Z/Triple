@@ -27,7 +27,7 @@ export const SubmitButton = ({disabled, loading, onClick, submitter}) => {
             block
             htmlType="submit"
           >
-            {loading ? <Spin /> : 'Հաշվել'}
+            {loading ? <Spin /> : 'ՀԱՇՎԵԼ'}
           </CustomButton>
         </Col>
       </Row>
@@ -49,7 +49,7 @@ export const SubmitButton = ({disabled, loading, onClick, submitter}) => {
           block
           onClick={onClick}
         >
-          {loading ? <Spin /> : 'Հաշվել'}
+          {loading ? <Spin /> : 'ՀԱՇՎԵԼ'}
         </CustomButton>
       </Col>
     </Row>

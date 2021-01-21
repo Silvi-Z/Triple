@@ -388,9 +388,7 @@ const RegistrationForm = ({
               message:
                 lang === "en"
                   ? "Please fill in the fields provided"
-                  : lang === "ru"
-                    ? "Пожалуйста, заполните необходимые поля"
-                    : "Խնդրում ենք լրացնել նշված դաշտերը",
+                  : "Խնդրում ենք լրացնել նշված դաշտերը",
               whitespace: true,
             },
           ]}
@@ -453,9 +451,7 @@ const RegistrationForm = ({
                   message:
                     lang === "en"
                       ? "Please fill in the fields provided"
-                      : lang === "ru"
-                        ? "Пожалуйста, заполните необходимые поля"
-                        : "Խնդրում ենք լրացնել նշված դաշտերը",
+                      : "Խնդրում ենք լրացնել նշված դաշտերը",
                 },
               ]}
             >
@@ -515,9 +511,7 @@ const RegistrationForm = ({
                     message:
                       lang === "en"
                         ? "Please fill in the fields, it must contain 3 characters"
-                        : lang === "ru"
-                          ? "Пожалуйста, заполните поля, они должны содержать 3 символов"
-                          : "Խնդրում ենք լրացնել նշված դաշտերը այն պետք է պարունակի 3 նիշ",
+                        : "Խնդրում ենք լրացնել նշված դաշտերը այն պետք է պարունակի 3 նիշ",
                     whitespace: true,
                     max: 3,
                     len: 3,
@@ -545,6 +539,7 @@ const RegistrationForm = ({
                 ]}
               >
                 <DatePickerCustom
+                  disabled={true}
                   onChange={getDate}
                   placeholder="Դեկտեմբեր 25, 1995 23:15:30"
                   format="DD-MM-YYYY"
@@ -564,9 +559,7 @@ const RegistrationForm = ({
                       message:
                         lang === "en"
                           ? "Please fill in the fields, it must contain 9 characters"
-                          : lang === "ru"
-                            ? "Пожалуйста, заполните поля, они должны содержать 9 символов"
-                            : "Խնդրում ենք լրացնել նշված դաշտերը այն պետք է պարունակի 9 նիշ",
+                          : "Խնդրում ենք լրացնել նշված դաշտերը այն պետք է պարունակի 9 նիշ",
                       whitespace: true,
                       max: 9,
                       len: 9,
@@ -608,9 +601,7 @@ const RegistrationForm = ({
               message:
                 lang === "en"
                   ? "Please fill in the fields, it must contain 10 characters"
-                  : lang === "ru"
-                    ? "Пожалуйста, заполните поля, они должны содержать 10 символов"
-                    : "Խնդրում ենք լրացնել նշված դաշտերը այն պետք է պարունակի 10 նիշ",
+                  : "Խնդրում ենք լրացնել նշված դաշտերը այն պետք է պարունակի 10 նիշ",
               whitespace: true,
               max: 10,
               len: 10,
@@ -650,9 +641,7 @@ const RegistrationForm = ({
               message:
                 lang === "en"
                   ? "Please fill in the specified field, the number must start with a +374 numeric code"
-                  : lang === "ru"
-                    ? "Пожалуйста, заполните поле выше, номер должен начинаться с цифрового кода +374"
-                    : "Խնդրում ենք լրացնել նշված դաշտը, համարը պետք է սկսվի +374 թվային կոդով",
+                  : "Խնդրում ենք լրացնել նշված դաշտը, համարը պետք է սկսվի +374 թվային կոդով",
               pattern: /^(\+|374)[0-9]{4,4}[0-9]{4,4}(?:x.+)?$/,
               max: 11,
               len: 11,
@@ -687,9 +676,7 @@ const RegistrationForm = ({
               message:
                 lang === "en"
                   ? "Please fill in the fields provided"
-                  : lang === "ru"
-                    ? "Пожалуйста, заполните необходимые поля"
-                    : "Խնդրում ենք լրացնել նշված դաշտերը",
+                  : "Խնդրում ենք լրացնել նշված դաշտերը",
             },
           ]}
         >

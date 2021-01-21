@@ -13,7 +13,7 @@ const contentData = [
   },
   {
     "link" : "services#test_4",
-    "serviceName" : "Ֆիզիկական անձինք"
+    "serviceName" : "Ֆիզիկական անձանց մատուցվող ծառայություններ"
   },
   {
     "link" : "services#test_5",
@@ -22,6 +22,14 @@ const contentData = [
   {
     "link" : "services#test_6",
     "serviceName" : "Կադրային աշխատանք"
+  },
+  {
+    "link" : "services#test_7",
+    "serviceName" : "Պետական և Միջազգային գնումներ"
+  },
+  {
+    "link" : "services#test_8",
+    "serviceName" : "Բիզնեսի ավտոմատացում"
   },
 
 ]

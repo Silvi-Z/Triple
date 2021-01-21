@@ -40,8 +40,9 @@ export const H1Styled = styled.h1`
 `
 
 export const PStyled = styled.p`
-  margin-bottom:0px;
-  width: 620px;
+  white-space: pre-wrap;
+  margin-bottom:0;
+  width: 100%;
   font-family: ArialAMU;
   font-size: 18px;
   text-align: center;

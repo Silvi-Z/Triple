@@ -6,7 +6,7 @@ import styled from "styled-components";
 const NavCard = styled(Card)`
   background: transparent;
   box-sizing: border-box;
-  padding: 10px 20px;
+  padding: 0 20px;
   margin-bottom: 10px;
   min-height: 80px;
   width: 100%;
@@ -70,31 +70,38 @@ const CalculatorNav = ({ t, locale }) => {
 
       <List bordered={false} itemLayout="vertical">
         <NavItem>
-          <NavLink className="calc-nav-item" to={`${locale}/calculators/salary`}>{t.salary.title}</NavLink>
+          <NavLink className="calc-nav-item" to={`/${locale}/calculators/salary/`}>{t.salary.title}</NavLink>
         </NavItem>
         <NavItem>
-          <NavLink className="calc-nav-item" to={`${locale}/calculators/salary-table`}>{t.salary_table.title}</NavLink>
+          <NavLink className="calc-nav-item" to={`/${locale}/calculators/salary-table/`}>{t.salary_table.title}</NavLink>
         </NavItem>
         <NavItem>
-          <NavLink className="calc-nav-item" to={`${locale}/calculators/vacation`}>{t.vacation.title}</NavLink>
+          <NavLink className="calc-nav-item" to={`/${locale}/calculators/vacation/`}>{t.vacation.title}</NavLink>
         </NavItem>
         <NavItem>
-          <NavLink className="calc-nav-item" to={`${locale}/calculators/final`}>{t.final.title}</NavLink>
+          <NavLink className="calc-nav-item" to={`/${locale}/calculators/final/`}>{t.final.title}</NavLink>
         </NavItem>
         <NavItem>
-          <NavLink className="calc-nav-item" to={`${locale}/calculators/mortgage`}>{t.mortgage.title}</NavLink>
+          <NavLink className="calc-nav-item" to={`/${locale}/calculators/mortgage/`}>{t.mortgage.title}</NavLink>
         </NavItem>
         <NavItem>
-          <NavLink className="calc-nav-item" to={`${locale}/calculators/car-customs`}>{t.car_customs.title}</NavLink>
+          <NavLink className="calc-nav-item" to={`/${locale}/calculators/car-customs/`}>{t.car_customs.title}</NavLink>
         </NavItem>
         <NavItem>
-          <NavLink className="calc-nav-item" to={`${locale}/calculators/car-sell`}>{t.car_sell.title}</NavLink>
+          <NavLink className="calc-nav-item" to={`/${locale}/calculators/car-sell/`}>{t.car_sell.title}</NavLink>
         </NavItem>
         <NavItem>
+<<<<<<< HEAD
           <NavLink className="calc-nav-item" to={`${locale}/calculators/car-tax`}>{t.car_tax.title}</NavLink>
         </NavItem>
         <NavItem>
           <NavLink className="calc-nav-item" to={`${locale}/calculators/subsidy`}>{t.subsidy.title}</NavLink>
+=======
+          <NavLink className="calc-nav-item" to={`/${locale}/calculators/car-tax/`}>{t.car_tax.title}</NavLink>
+        </NavItem>
+        <NavItem>
+          <NavLink className="calc-nav-item" to={`/${locale}/calculators/subsidy/`}>{t.subsidy.title}</NavLink>
+>>>>>>> news-page
         </NavItem>
       </List>
     </NavCard>

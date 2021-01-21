@@ -87,7 +87,17 @@ const Services = ({ location, pageContext }) => {
         scroll_id: "test_7",
         paragraph: "Պետական և Միջազգային գնումներ",
         text:
-          "Մենք կհեշտացնենք Ձեր կազմակերպության աշխատանքը՝ ամբողջությամբ մեզվրա վերցնելով կադրային աշխատանքի վարումը: Մենք առաջարկում ենք հետեւյալ ծառայությունները ՝ աշխատանքային եւ ծառայությունների մատուցման պայմանագրերի, ինչպես նաեւ համաձայնագրերի կազմում, գործատուի ներքին եւ անհատական իրավական ակտերի կազմում, աշխատաժամանակի եւ աշխատավարձի հաշվարկում, տեղեկագրերի կազմում,եկամտային հարկի եւ սոցիալական վճարի անձնավորված հաշվառում։",
+          "Մրցույթի մասնակից կազմակերպություններին Թրիփլ Քոնսալթինգի մասնագետները կաջակցեն էլեկտրոնային գնումների՝ ինչպես ARMEPS, այնպես էլ այլ էլեկտրոնային հարթակներում հայտարարված տեղական և միջազգային ֆինանսավորմամբ մրցույթներին մասնակցելու գործընթացում՝ ապահովելով գնումներին վերաբերվող ողջ փաստաթղթաշրջանառությունը։",
+      },
+      open: false,
+    },
+    {
+      data: {
+        id: 7,
+        scroll_id: "test_8",
+        paragraph: "Բիզնեսի ավտոմատացում",
+        text:
+          "Բիզնեսի ավտոմատացումը 21-րդ դարի  բիզնեսի կառավարման կարևորագույն մարտահրավերներից է, որը անասելի առավելություններ է տալիս՝ ավտոմատացված կառավարման համակարգերի ճիշտ և գրագետ ներդրման դեպքում: Թրիփլ Քոնսալթինգի մասնագետները, լիարժեք ուսումնասիրելով Ձեր բիզնեսի, կառավարչական հաշվառման առանձնահատկությունները, ինչպես նաև ներքին համակարգերն ու պրոցեսները, կնախագծեն և մշակեն ծրագրային փաթեթներ (վեբ ծրագրեր, համակարգչային հավելվածներ և մշակված ու տվյալ գործունեությանը ադապտացված EXCEL ֆորմատի էլեկտրոնային փաստաթղթեր)։ Մշակնած գործիքները  հնարավորություն կտան կրճատել գործառնական ծախսերը, արագացնել և օտիմալացնել բիզնես գործընթացները և պրոցեսները, ինչպես նաև նվազեցնել ռիսկերը ու բարելավել ընդհանուր կառավարման համակարգը։",
       },
       open: false,
     },
@@ -96,9 +106,7 @@ const Services = ({ location, pageContext }) => {
   const getSharedTitle = lng => {
     if (lng === "en") {
       return "Services"
-    } else if (lng === "ru") {
-      return "Сервисы"
-    } else {
+    }else {
       return "Ծառայություններ"
     }
   }
@@ -151,7 +159,7 @@ const Services = ({ location, pageContext }) => {
   function handleScroll() {
     const hash = location.hash;
     const serviceDataNew = [...serviceData];
-    if (hash && typeof window !== `undefined`){
+    if (hash && window &&  typeof window !== `undefined`){
       const foundIndex = serviceDataNew.findIndex(el => "#" + el.data.scroll_id === hash)
       const foundElement = serviceDataNew[foundIndex];
       const distance = document.getElementById(foundElement.data.scroll_id) && document.getElementById(foundElement.data.scroll_id).getBoundingClientRect()
@@ -195,10 +203,9 @@ const Services = ({ location, pageContext }) => {
         pageContext={pageContext} />
       <HeadingParagraphRow>
         <H2Styled>{services.title}</H2Styled>
-
-
         <PStyled>{services.paragraph}</PStyled>
       </HeadingParagraphRow>
+      {console.log(pageContext)}
       {serviceData.map((d, id) => (
         <ServiceDropWrap showServiceForm={toggle} data={d} key={id} />
       ))}

@@ -3,7 +3,20 @@ import { isNull, isEqual } from "lodash"
 import { Row, Col, Card, Form, Radio } from "antd"
 import VehicleSell from "../../calculators/VehicleSell"
 import CalculatorCardResult from "./calcComponents/CalculatorCardResult"
+<<<<<<< HEAD
 import { ButtonSubmit, FormLabel, Label, CalculatorInput, UnderLine, CalculatorDatePicker } from "./styled"
+=======
+import {
+  ButtonSubmit,
+  FormLabel,
+  Label,
+  CalculatorInput,
+  UnderLine,
+  CalculatorDatePicker,
+  H1Styled,
+  TextStyled, CalculatorsCard,
+} from "./styled"
+>>>>>>> news-page
 
 
 class CarSellCalculator extends React.Component {
@@ -36,10 +49,17 @@ class CarSellCalculator extends React.Component {
 
         return
       }
+<<<<<<< HEAD
 
       const calculator = new VehicleSell(form)
       const tax = calculator.calculate()
 
+=======
+
+      const calculator = new VehicleSell(form)
+      const tax = calculator.calculate()
+
+>>>>>>> news-page
       this.setState({tax}, () => {
         if (!this.state.calculated) {
           this.setState({calculated: true})
@@ -62,12 +82,13 @@ class CarSellCalculator extends React.Component {
       <Row align="start" gutter={20}>
         <Col xs={24} sm={24} md={24} lg={16} xl={16} xxl={16}>
           <Row align="center" style={{justifyContent: 'space-between'}}>
-            <FormLabel>{lang.title}</FormLabel>
-
-            <FormLabel>{(new Date()).getFullYear()}թ.</FormLabel>
+            <div className="textSec">
+              <H1Styled>{lang.title}</H1Styled>
+              <TextStyled>{lang.paragraph}</TextStyled>
+            </div>
           </Row>
 
-          <Card bordered={false}>
+          <CalculatorsCard bordered={false} className="calculatorsCard">
             <Form
               onFinish={this.handleSubmit}
               initialValues={form}
@@ -140,10 +161,10 @@ class CarSellCalculator extends React.Component {
                 </ButtonSubmit>
               </Form.Item>
             </Form>
-          </Card>
+          </CalculatorsCard>
         </Col>
 
-        <Col xs={24} sm={24} md={24} lg={8} xl={8} xxl={8}>
+        <Col xs={24} sm={24} md={24} lg={8} xl={8} xxl={8} className="result">
           <FormLabel style={{ margin: 0 }}>{lang.result.title}</FormLabel>
 
           <UnderLine />

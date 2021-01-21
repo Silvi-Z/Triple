@@ -7,7 +7,7 @@ const mortgage = ({ pageContext }) => {
   const { calculator } = useTranslations();
 
   return (
-    <CalculatorWrapper ctx={pageContext}>
+    <CalculatorWrapper ctx={pageContext} >
       <MortgageCalculator lang={calculator.mortgage} />
     </CalculatorWrapper>
   )

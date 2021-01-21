@@ -147,6 +147,7 @@ const query = graphql`
               }
               salary {
                 title
+                paragraph
                 clean_salary_button
                 dirty_salary_button
                 tax_label
@@ -172,6 +173,7 @@ const query = graphql`
               }
               salary_table {
                 title
+                paragraph
                 calculate
                 form {
                   title
@@ -223,6 +225,7 @@ const query = graphql`
               }
               vacation {
                 title
+                paragraph
                 salary_label
                 static_salary_label
                 pensioner_label
@@ -259,6 +262,7 @@ const query = graphql`
               }
               final {
                 title
+                paragraph
                 form {
                   acceptance
                   release
@@ -302,6 +306,7 @@ const query = graphql`
               }
               mortgage {
                 title
+                paragraph
                 clean_salary
                 dirty_salary
                 salary_label
@@ -328,6 +333,10 @@ const query = graphql`
               }
               subsidy {
                 title
+<<<<<<< HEAD
+=======
+                paragraph
+>>>>>>> news-page
                 calculate
                 form {
                   type
@@ -368,6 +377,7 @@ const query = graphql`
               }
               car_customs {
                 title
+                paragraph
                 calculate
                 form {
                   imported_eeu
@@ -389,7 +399,8 @@ const query = graphql`
                 }
               }
               car_sell {
-                title,
+                title
+                paragraph
                 achievement
                 alienation
                 price

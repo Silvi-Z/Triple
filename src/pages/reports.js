@@ -44,8 +44,6 @@ const Reports = ({ pageContext }) => {
   const getSharedUrl = lng => {
     if (lng === "en") {
       return "http://triple-c.algorithm.am/en/reports/"
-    } else if (lng === "ru") {
-      return "http://triple-c.algorithm.am/ru/reports"
     } else {
       return "http://triple-c.algorithm.am/arm/reports/"
     }

@@ -3,7 +3,7 @@ import Slider from "react-slick"
 export const TripleIcon = styled.img``
 export const SliderAboutUs = styled(Slider)`
  height:fit-content;
-  @media only screen and (max-width: 1094px) {
+  @media only screen and (max-width: 1165px) {
     .slick-slide {
       display:flex;
     }
@@ -14,7 +14,7 @@ export const InformationSection= styled.div`
   position: relative;
   height: fit-content;
   justify-content: space-between;
-  @media only screen and (max-width: 1094px) {
+  @media only screen and (max-width: 1165px) {
     flex-direction: column;
     justify-content:center;
   }
@@ -26,7 +26,7 @@ export const TripleIconWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  @media only screen and (max-width: 1094px){
+  @media only screen and (max-width: 1165px){
    display:none;
   }
 `
@@ -36,7 +36,7 @@ export const ImagePart = styled.div`
   align-items: center;
   display: flex;
   width: 50%;
-  @media only screen and (max-width: 1094px){
+  @media only screen and (max-width: 1165px){
    position: inherit;
    width:100%;
    justify-content: center;
@@ -52,21 +52,23 @@ export const BigImage = styled.img`
   position: absolute;
   z-index: 1;
   margin-bottom:0;
-  @media only screen and (max-width: 1094px){
+  @media only screen and (max-width: 1165px){
    position: inherit;
    z-index:-1;
   }
  `
 export const TextWrapper = styled.div`
   height: 666px;
-  width: 363px;
+  width: 413px;
   background-color:white;
   position: absolute;
   top: 0;
   left: 280px;
   z-index: 0;
-  padding: 127px 40px 126px 110px;
-  @media only screen and (max-width: 1094px){
+  padding: 80px 40px 126px 110px;
+ display: flex;
+ align-items: center;
+  @media only screen and (max-width: 1165px){
     position: initial;
     background-color: transparent;
     height: auto;
@@ -84,13 +86,14 @@ export const SliderText = styled.p`
   margin-bottom:40px;
 `
 export const PElement = styled.p`
-  max-width: 213px;
+  width: 100%;
   letter-spacing: 0.5px;
   line-height: 30px;
   font-weight: bold !important;
   font-size:16px;
   color:black;
-  @media only screen and (max-width: 1094px){
+ margin-bottom: 0;
+  @media only screen and (max-width: 1165px){
    max-width: 280px;
    width:100%
   }
@@ -99,7 +102,7 @@ export const PElement = styled.p`
   }
  `
 export const TextComponent = styled.div`
-  @media only screen and (max-width: 1094px){
+  @media only screen and (max-width: 1165px){
   padding:0 17px;
    p{
     width:100%;

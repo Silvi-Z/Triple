@@ -195,7 +195,7 @@
       "yes_volunteer": "Այո (կամավոր)",
       "yes": "Այո",
       "no": "Ոչ",
-      "count_button": "Հաշվել",
+      "count_button": "ՀԱՇՎԵԼ",
       "result_title": "Արդյունք",
       "general_storage_label": "Ընդհանուր պահում",
       "income_tax_label": "Եկամտային հարկ",
@@ -207,7 +207,7 @@
     },
     "salary_table": {
       "title": "Աշխատավարձի հաշվիչ ըստ տաբելի",
-      "calculate": "Հաշվել",
+      "calculate": "ՀԱՇՎԵԼ",
       "form": {
         "title": "Աշխատավարձի հաշվիչ",
         "by_date": "Հաշվարկ ըստ օրացույցի",
@@ -426,7 +426,11 @@
     },
     "car_tax": {
       "calculate": "ՀԱՇՎԵԼ",
+<<<<<<< HEAD
       "title": "Ավտոմեքենայի գույքահարկի հաշվիչ",
+=======
+      "title": "Գույքահարկի հաշվիչ",
+>>>>>>> news-page
       "form": {
         "vehicle": {
           "title": "ՏՄ տեսակը",

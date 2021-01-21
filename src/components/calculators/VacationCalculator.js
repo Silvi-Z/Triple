@@ -7,7 +7,16 @@ import { Row, Col, Card, Form, Radio, Checkbox } from "antd"
 import GrossSalaryTable from "./calcComponents/GrossSalaryTable"
 import CalculatorCardResult from "./calcComponents/CalculatorCardResult"
 import { isHoliday, isWeekend, workingDaysInRange } from "./utilities/vacation"
-import { Label, UnderLine, FormLabel, RadioLabel, CalculatorInput, ButtonSubmit, CalculatorDatePicker } from "./styled"
+import {
+  Label,
+  UnderLine,
+  FormLabel,
+  RadioLabel,
+  CalculatorInput,
+  ButtonSubmit,
+  CalculatorDatePicker,
+  H1Styled, TextStyled, CalculatorsCard,
+} from "./styled"
 import { schema, SALARY_MIN, TAX_FIELD_COMMON, TAX_FIELD_ENTERPRISE, TAX_FIELD_IT, PENSION_FIELD_NO, PENSION_FIELD_YES, PENSION_FIELD_YES_VOLUNTEER } from "./utilities/salary"
 
 moment.locale('en', {
@@ -327,6 +336,7 @@ class VacationCalculator extends React.Component {
   render() {
     const { form, result } = this.state
     const { lang } = this.props
+    const { sameMarginTop } = this.props
     // const width =  (typeof window !== `undefined`)
     //   ? document.documentElement.clientWidth : 992
 
@@ -334,12 +344,13 @@ class VacationCalculator extends React.Component {
       <Row align="start" gutter={20} ref={this.row}>
         <Col xs={24} sm={24} md={24} lg={16} xl={16} xxl={16}>
           <Row align="center" style={{ justifyContent: "space-between" }}>
-            <FormLabel>{lang.title}</FormLabel>
-
-            <FormLabel>{(new Date()).getFullYear()}թ.</FormLabel>
+            <div className="textSec">
+              <H1Styled>{lang.title}</H1Styled>
+              <TextStyled>{lang.paragraph}</TextStyled>
+            </div>
           </Row>
 
-          <Card bordered={false}>
+          <CalculatorsCard bordered={false}>
             <Form
               onFinish={this.handleSubmit}
               initialValues={form}
@@ -480,10 +491,10 @@ class VacationCalculator extends React.Component {
                 </ButtonSubmit>
               </Form.Item>
             </Form>
-          </Card>
+          </CalculatorsCard>
         </Col>
 
-        <Col xs={24} sm={24} md={24} lg={8} xl={8} xxl={8} ref={this.col}>
+        <Col xs={24} sm={24} md={24} lg={8} xl={8} xxl={8} className="result" ref={this.col}>
           <FormLabel style={{ margin: 0 }}>{lang.result.title}</FormLabel>
 
           <UnderLine />

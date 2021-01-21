@@ -239,7 +239,8 @@ export const Label = styled.label`
 `;
 export const EnvironmentWrapper = styled.img`
   width: 14px;
-  // @media (min-width: 1600px) {
-  //   margin-top: 11%;
-  // }
+  margin-right: 10px;
+   @media (max-width: 1200px) {
+     margin-right: 2px;
+   }
 `;

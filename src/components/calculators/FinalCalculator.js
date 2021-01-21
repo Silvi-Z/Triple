@@ -6,7 +6,16 @@ import { InfoCircleTwoTone } from "@ant-design/icons"
 import { Row, Col, Card, Form, Radio, Checkbox, Input, Tooltip } from "antd"
 import GrossSalaryTable from "./calcComponents/GrossSalaryTable"
 import CalculatorCardResult from "./calcComponents/CalculatorCardResult"
-import { Label, FormLabel, UnderLine, RadioLabel, ButtonSubmit, CalculatorInput, CalculatorDatePicker } from "./styled"
+import {
+  Label,
+  FormLabel,
+  UnderLine,
+  RadioLabel,
+  ButtonSubmit,
+  CalculatorInput,
+  CalculatorDatePicker,
+  H1Styled, TextStyled, CalculatorsCard,
+} from "./styled"
 import { schema, SALARY_MIN, TAX_FIELD_IT, TAX_FIELD_COMMON, TAX_FIELD_ENTERPRISE, PENSION_FIELD_NO, PENSION_FIELD_YES, PENSION_FIELD_YES_VOLUNTEER } from "./utilities/salary"
 
 const radioStyle = {
@@ -250,12 +259,14 @@ class FinalCalculator extends React.Component {
       <Row align="start" gutter={20}>
         <Col xs={24} sm={24} md={24} lg={16} xl={16} xxl={16} ref={this.row}>
           <Row align="center" style={{ justifyContent: "space-between" }}>
-            <FormLabel>{lang.title}</FormLabel>
+            <div className="textSec">
+              <H1Styled>{lang.title}</H1Styled>
+              <TextStyled>{lang.paragraph}</TextStyled>
+            </div>
 
-            <FormLabel>{(new Date()).getFullYear()}թ.</FormLabel>
           </Row>
 
-          <Card bordered={false}>
+          <CalculatorsCard bordered={false}>
             <Form
               onFinish={this.handleSubmit}
               initialValues={form}
@@ -448,10 +459,10 @@ class FinalCalculator extends React.Component {
                 </ButtonSubmit>
               </Form.Item>
             </Form>
-          </Card>
+          </CalculatorsCard>
         </Col>
         {/*className="calculator-result"*/}
-        <Col xs={24} sm={24} md={24} lg={8} xl={8} xxl={8} ref={this.col}>
+        <Col xs={24} sm={24} md={24} lg={8} xl={8} xxl={8} className="result" ref={this.col}>
           <FormLabel style={{ margin: 0 }}>{lang.result.title}</FormLabel>
 
           <UnderLine />

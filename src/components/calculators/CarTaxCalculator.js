@@ -2,7 +2,20 @@ import React from "react"
 import moment from "moment"
 import { isEqual } from "lodash"
 import { Card, Col, Form, Row, Select } from "antd"
+<<<<<<< HEAD
 import { CalculatorDatePicker, CalculatorSelect, CalculatorInput, ButtonSubmit, FormLabel, UnderLine, Label } from "./styled"
+=======
+import {
+  CalculatorDatePicker,
+  CalculatorSelect,
+  CalculatorInput,
+  ButtonSubmit,
+  FormLabel,
+  UnderLine,
+  Label,
+  H1Styled, TextStyled, CalculatorsCard,
+} from "./styled"
+>>>>>>> news-page
 import VehicleTax from "../../calculators/VehicleTax"
 import CalculatorCardResult from "./calcComponents/CalculatorCardResult"
 
@@ -52,12 +65,22 @@ class CarTaxCalculator extends React.Component {
       <Row align="start" gutter={20}>
         <Col xs={24} sm={24} md={24} lg={16} xl={16} xxl={16}>
           <Row align="center" style={{ justifyContent: "space-between" }}>
+<<<<<<< HEAD
             <FormLabel>{lang.title}</FormLabel>
 
             <FormLabel>{(new Date()).getFullYear()}թ.</FormLabel>
           </Row>
 
           <Card bordered={false}>
+=======
+            <div className="textSec">
+              <H1Styled>{lang.title}</H1Styled>
+              <TextStyled>{lang.paragraph}</TextStyled>
+            </div>
+          </Row>
+
+          <CalculatorsCard bordered={false}>
+>>>>>>> news-page
             <Form
               onFinish={this.handleSubmit}
               initialValues={form}
@@ -116,10 +139,17 @@ class CarTaxCalculator extends React.Component {
                 </ButtonSubmit>
               </Form.Item>
             </Form>
+<<<<<<< HEAD
           </Card>
         </Col>
 
         <Col xs={24} sm={24} md={24} lg={8} xl={8} xxl={8}>
+=======
+          </CalculatorsCard>
+        </Col>
+
+        <Col xs={24} sm={24} md={24} lg={8} xl={8} xxl={8} className="result">
+>>>>>>> news-page
           <FormLabel style={{ margin: 0 }}>{lang.result.title}</FormLabel>
 
           <UnderLine />

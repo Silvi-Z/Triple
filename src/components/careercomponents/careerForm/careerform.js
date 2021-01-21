@@ -106,8 +106,6 @@ const Formfield = ({
               message:
                 lang === "en"
                   ? "Please fill in the fields provided"
-                  : lang === "ru"
-                  ? "Пожалуйста, заполните необходимые поля"
                   : "Խնդրում ենք լրացնել նշված դաշտերը",
             },
           ]}
@@ -151,7 +149,6 @@ const Formfield = ({
               <SubmitButton
                 type="primary"
                 htmlType="submit"
-                backgroundColor="black"
                 disabled={false}
               >
                 {formlangtext.send_button}

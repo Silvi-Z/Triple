@@ -24,23 +24,20 @@ export const SubmitButton = styled.button`
   height:49px ;
   outline:none;
   font-weight:bold;
-  background: ${props=> props.backgroundColor === 'black'? 'black' : 'white'};
-  border:1px solid ${props=> props.backgroundColor === 'black'? 'black' : 'white'};
-  color: ${props=> props.backgroundColor === 'black'? 'white' : 'black'};
-  border-style: outset;
+  background: ${props=> props.backgroundColor === 'white'? 'white' : 'black'};
+  border:1px outset ${props=> props.backgroundColor === 'white'? 'white' : 'black'};
+  color: ${props=> props.backgroundColor === 'white'? 'black' : 'white'};
   border-radius: 30px;
   font-size:16px;
-  background-position: 50% 50%;
   display: inline-block;
-  background-repeat: no-repeat;
   letter-spacing: 1.15px;
   transition: background-size .5s, color .5s;
-  background-image: linear-gradient(${props=>props.backgroundColor === 'black' ? '#FFFFFF , #FFFFFF' : '#000000 , #000000'});
+  background: ${props=> props.backgroundColor === 'white'? 'white' : 'black'} linear-gradient(${props=>props.backgroundColor === 'white' ? '#000000 , #000000' :'#FFFFFF , #FFFFFF'}) no-repeat 50% 50%;
   background-size: 0 100%;
     &:hover {
       background-size: 100% 100%;
       cursor:pointer;
-      color: ${props=> props.backgroundColor === 'black'? 'black' : 'white'};
+      color: ${props=> props.backgroundColor === 'white'? 'white' : 'black'};
       outline:none;
     }
     &:focus {
@@ -76,7 +73,7 @@ export const ToggleButton = styled(Button)`
   box-sizing: border-box;
   border-radius:50%;
   padding:0;
-  transition: unset;
+  transition: 0.3s;
   --antd-wave-shadow-color:none;
   &.ant-btn:hover{
     border-color:#1C1D21;
