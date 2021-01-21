@@ -59,7 +59,6 @@ const NavLink = props => (
 );
 
 const CalculatorNav = ({ t, locale }) => {
-  console.log(locale)
   return (
     <NavCard
       bordered={false}
@@ -71,7 +70,7 @@ const CalculatorNav = ({ t, locale }) => {
 
       <List bordered={false} itemLayout="vertical">
         <NavItem>
-          <NavLink className="calc-nav-item" to={`/${locale}/calculators/salary`}>{t.salary.title}</NavLink>
+          <NavLink className="calc-nav-item" to={`/${locale}/calculators/salary/`}>{t.salary.title}</NavLink>
         </NavItem>
         <NavItem>
           <NavLink className="calc-nav-item" to={`/${locale}/calculators/salary-table/`}>{t.salary_table.title}</NavLink>
@@ -92,7 +91,10 @@ const CalculatorNav = ({ t, locale }) => {
           <NavLink className="calc-nav-item" to={`/${locale}/calculators/car-sell/`}>{t.car_sell.title}</NavLink>
         </NavItem>
         <NavItem>
-          <NavLink className="calc-nav-item" to={`/${locale}/calculators/car-tax/`}>{t.car_prop_tax_calculator.title}</NavLink>
+          <NavLink className="calc-nav-item" to={`/${locale}/calculators/car-tax/`}>{t.car_tax.title}</NavLink>
+        </NavItem>
+        <NavItem>
+          <NavLink className="calc-nav-item" to={`/${locale}/calculators/subsidy/`}>{t.subsidy.title}</NavLink>
         </NavItem>
       </List>
     </NavCard>

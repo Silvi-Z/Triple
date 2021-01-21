@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Button, DatePicker, Divider, InputNumber, Radio, Select, Slider, Typography } from "antd"
+import { Button, Card, DatePicker, Divider, InputNumber, Radio, Select, Slider, Typography } from "antd"
 import { SubmitButton } from "../careercomponents/careerDroping/dropStyle"
 
 const { Text } = Typography;
@@ -46,10 +46,28 @@ export const FormLabel = styled.h3`
   margin-bottom: 15px;
 `;
 
+export const FormItemLabel = styled.p`
+  font-family: Arial AMU, serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 25px;
+  text-align: left;
+  position: relative;
+  &:after {
+    position: absolute;
+    content: "";
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    border: 1px solid #000000;
+  }
+`
+
 export const RadioGroup = styled(Radio.Group)`
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: start;
   width: 100%;
   min-height: 50px !important;
   margin-bottom: 25px;
@@ -72,21 +90,6 @@ export const RadioButton = styled(Radio.Button)`
   &.ant-radio-button-wrapper-checked {
     border-radius: 5px !important;
   } 
-`;
-
-export const CalculatorSlider = styled(Slider)`
-  &:hover .ant-slider-rail {
-    background-color: #000000;
-  }
-  
-  .ant-slider-handle {
-    background-color: #72eded;
-    border: solid 3px #000000;
-  }
-  
-  .ant-slider-rail  {
-    background-color: #000000;
-  }
 `;
 
 export const CalculatorInput = styled(InputNumber)`
@@ -164,7 +167,7 @@ export const CalculatorTable = styled.table`
   max-width: 100%;
 `
 
-export const CalculatorCol = styled.th`
+export const CalculatorCol = styled.td`
   background: #F7F7F7;
   border-radius: 5px;
   font-family: ArialAMU,serif;
@@ -186,7 +189,7 @@ export const H1Styled = styled.h1`
   text-align: center;
   letter-spacing: 1.15px;
   color: #000000;
-  margin-top: 50px;
+ padding-top: 50px;
 `
 export const TextStyled = styled.p`
   font-family: ArialAMU,serif;
@@ -197,6 +200,10 @@ export const TextStyled = styled.p`
   text-align: center;
   letter-spacing: 1.15px;
   color: #000000;
-  margin: 0 auto 50px;
-  max-width: 734;
+  padding-bottom: 50px;
+  max-width: 734px;
+  margin-bottom: 0;
+`
+export const CalculatorsCard = styled(Card)`
+  margin-top: 30px;
 `

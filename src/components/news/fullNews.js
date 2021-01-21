@@ -51,9 +51,7 @@ const FullInfo = ({apiUrl, filteredData, data , lang , pageContext}) => {
   const getSharedUrl = lng => {
     if (lng === "en") {
       return "http://triple-c.algorithm.am/en/news/"
-    } else if (lng === "ru") {
-      return "http://triple-c.algorithm.am/ru/news"
-    } else {
+    }else {
       return "http://triple-c.algorithm.am/arm/news/"
     }
   }

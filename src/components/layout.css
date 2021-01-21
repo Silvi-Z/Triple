@@ -7,8 +7,6 @@ html {
   /*scroll-behavior: smooth;*/
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
-}
-html {
   --antd-wave-shadow-color: none;
   --scroll-bar: 0;
   --header-height:100px;
@@ -966,6 +964,7 @@ pre tt:after {
   }
 }
 .languagetext {
+  cursor:pointer;
   width: 18px;
   height: 13px;
   font-family: ArialAMU;
@@ -980,7 +979,7 @@ pre tt:after {
 }
 .languagedrop {
   width: 63px;
-  height: 52px;
+  height: 28px;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
   border: solid 1px #ebebeb;
   background-color: #ffffff;
@@ -1180,7 +1179,7 @@ pre tt:after {
   left: 41px!important;
   bottom: -31px!important;
 }
-@media (max-width: 1094px){
+@media (max-width: 1165px){
   .slick-initialized{
     max-width: 100%;
     width: 100%;
@@ -1518,12 +1517,12 @@ a.calc-nav-item:hover {
 }
 
 .ant-picker-cell-holiday {
-  background-color: #ff4d4f;
+  background-color: #00779C;
   color: #ffffff;
 }
 
 .ant-picker-cell-weekend {
-  background-color: #ffa39e;
+  background-color: #CDF5FA;
   color: #000000;
 }
 

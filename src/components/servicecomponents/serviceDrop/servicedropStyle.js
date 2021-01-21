@@ -69,7 +69,6 @@ export const ToggleButton = styled(Button)`
 `
 
 export const Text = styled.div`
-  white-space: pre-wrap;
   width:100%;
   font-family: ArialAMU;
   font-size: 18px;
@@ -80,8 +79,12 @@ export const Text = styled.div`
   font-size: 18px;
   line-height: 40px;
   letter-spacing: 0.15px;
+  white-space: pre-wrap;
   @media only screen and (max-width:1024px){
+    margin-bottom:30px;
     font-size: 16px;
+    max-width: 100%;
+    width: 100%;
   }
 `
 
@@ -92,16 +95,12 @@ export const DropTextCol = styled.div`
   max-height: 1px;
   padding: 0 24px;
   opacity: 0;
-  &.openTextCol{
-    max-height: 2000px;
-    padding: 48px 24px;
-    opacity:100%;
-  }
   @media only screen and (max-width:1024px){
    flex-direction:column;
-    padding: 0;
-    &.openTextCol{
-      padding: 40px 0;
-    }
+  }
+  &.openTextCol{
+    max-height: 1000px;
+    padding: 48px 24px;
+    opacity:100%;
   }
 `

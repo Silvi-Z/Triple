@@ -109,8 +109,6 @@ const Formfield = ({ langtext, lang }) => {
                 message:
                   lang === "en"
                     ? "Please fill in the fields provided"
-                    : lang === "ru"
-                    ? "Пожалуйста, заполните необходимые поля"
                     : "Խնդրում ենք լրացնել նշված դաշտերը",
               },
             ]}
@@ -157,8 +155,6 @@ const Formfield = ({ langtext, lang }) => {
                 message:
                   lang === "en"
                     ? "Please fill in the fields provided"
-                    : lang === "ru"
-                    ? "Пожалуйста, заполните необходимые поля"
                     : "Խնդրում ենք լրացնել նշված դաշտերը",
               },
             ]}
@@ -207,8 +203,6 @@ const Formfield = ({ langtext, lang }) => {
                 message:
                   lang === "en"
                     ? "Please fill in the fields provided"
-                    : lang === "ru"
-                    ? "Пожалуйста, заполните необходимые поля"
                     : "Խնդրում ենք լրացնել նշված դաշտերը",
               },
             ]}

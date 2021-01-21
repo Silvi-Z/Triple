@@ -61,9 +61,7 @@ const Career = ({ pageContext }) => {
   const getSharedUrl = lng => {
     if (lng === "en") {
       return "http://triple-c.algorithm.am/en/career/"
-    } else if (lng === "ru") {
-      return "http://triple-c.algorithm.am/ru/career"
-    } else {
+    }else {
       return "http://triple-c.algorithm.am/arm/career/"
     }
   }

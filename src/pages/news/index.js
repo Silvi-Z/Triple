@@ -103,7 +103,7 @@ const Index = ({location, pageContext }) => {
       const sortedNews = constData.slice().sort((a, b) => new Date(b.date) - new Date(a.date))
       setData(sortedNews)
     }else if(e.target.parentNode.title==='Շատ ընթերցված'){
-      const sortedNews = constData.slice().sort((a, b) => b.id - a.id)
+      const sortedNews = constData.slice().sort((a, b) => b.views - a.views)
       setData(sortedNews)
     }
   };

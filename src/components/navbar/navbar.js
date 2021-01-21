@@ -115,7 +115,7 @@ const activeStyle = {
 }
 
 const Navbar = ({ open, color, setMenuColorProp, responseWrapper, setResponseWrapper,lang, langText, originalPath }) => {
-  const [languageText, setLanguageText] = useState(["Հայ", "Eng", "Рус"])
+  const [languageText, setLanguageText] = useState(["Հայ", "Eng"])
 
   const language = (
     <div className="languagedrop">
@@ -128,15 +128,6 @@ const Navbar = ({ open, color, setMenuColorProp, responseWrapper, setResponseWra
           {languageText[1]}
         </span>
       </div>
-      <div className="languagebox">
-        <span
-          onClick={e => handleChangeLanguage(e, "langeRu")}
-          className="languagetext"
-          id="langeRu"
-        >
-          {languageText[2]}
-        </span>
-      </div>
     </div>
   )
 
@@ -144,9 +135,7 @@ const Navbar = ({ open, color, setMenuColorProp, responseWrapper, setResponseWra
     let lang
     if (defaultLang === "en") {
       lang = "Eng"
-    } else if (defaultLang === "ru") {
-      lang = "Рус"
-    } else if (defaultLang === "arm") {
+    }else if (defaultLang === "arm") {
       lang = "Հայ"
     }
     let newtext = languageText.filter(text => text !== lang)
@@ -163,9 +152,7 @@ const Navbar = ({ open, color, setMenuColorProp, responseWrapper, setResponseWra
   }
   const handleChangeLanguage = (e, id) => {
     let elem = document.getElementById(id)
-    if (elem.innerText === "Рус") {
-      navigate(`/ru${originalPath}`)
-    } else if (elem.innerText === "Eng") {
+    if (elem.innerText === "Eng") {
       navigate(`/en${originalPath}`)
     } else if (elem.innerText === "Հայ") {
       navigate(`/arm${originalPath}`)

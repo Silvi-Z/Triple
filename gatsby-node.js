@@ -30,7 +30,6 @@ exports.onCreatePage = async ({ page, actions: { createPage, deletePage, createR
         // Update the page.
         await createPage(page);
       }
-      console.log(resources[lang])
       await createPage({
         ...page,
         path: localizedPath,
@@ -43,20 +42,6 @@ exports.onCreatePage = async ({ page, actions: { createPage, deletePage, createR
       });
     })
   );
-  exports.onCreateWebpackConfig = ({ stage, loaders, actions }) => {
-    if (stage === "build-html") {
-      actions.setWebpackConfig({
-        module: {
-          rules: [
-            {
-              test: /gatsby-ssr.js/,
-              use: loaders.null(),
-            },
-          ],
-        },
-      })
-    }
-  }
 
 
   // Create a fallback redirect if the language is not supported or the

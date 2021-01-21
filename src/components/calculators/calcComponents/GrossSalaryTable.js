@@ -4,7 +4,7 @@ import { Select } from "antd"
 import { cloneDeep, isEqual, isNull } from "lodash"
 import { months, years } from "../utilities/vacation"
 import { SALARY_MAX, SALARY_MIN } from "../utilities/salary"
-import { ColHeader, CalculatorTable, CalculatorCol, CalculatorInput, CalculatorSelect } from "../styled"
+import { CalculatorTable, CalculatorCol, CalculatorInput, CalculatorSelect } from "../styled"
 
 class GrossSalaryTable extends React.Component {
   constructor(props) {
@@ -80,7 +80,7 @@ class GrossSalaryTable extends React.Component {
                 <td>
                   <CalculatorSelect
                     value={item.month}
-                    style={{ minWidth: "90px" }}
+                    style={{ minWidth: "130px" }}
                     onChange={v => this.setField({ name: "month", v, i }, this.autoFillItems)}
                   >
                     {months.arm.map((month, i) => (
@@ -93,7 +93,7 @@ class GrossSalaryTable extends React.Component {
                 <td>
                   <CalculatorSelect
                     value={item.year}
-                    style={{ minWidth: "60px" }}
+                    style={{ minWidth: "80px" }}
                     onChange={v => this.setField({ name: "year", v, i }, this.autoFillItems)}
                   >
                     {years(20).map(year => (

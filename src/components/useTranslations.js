@@ -274,6 +274,7 @@ const query = graphql`
                   available_vacation_days
                   total_vacation_days
                   used_vacation_days
+                  unused_vacation_days
                   salary
                   static_salary
                   tax
@@ -330,8 +331,50 @@ const query = graphql`
                   income_tax_back
                 }
               }
+              subsidy {
+                title
+                paragraph
+                calculate
+                form {
+                  type
+                  maternity
+                  disability
+                  dates_placeholder
+                  dates
+                  start
+                  end
+                  days
+                  hired
+                  self
+                  tax
+                  tax_common
+                  tax_it
+                  tax_enterprise
+                  schedule
+                  five_days
+                  six_days
+                  amount
+                  income
+                  static
+                }
+                gross {
+                  month
+                  year
+                  gross_salary
+                  bonus
+                  surcharge
+                }
+                result {
+                  title
+                  subsidy_emp
+                  subsidy_gov
+                  pure_subsidy
+                  income_tax
+                }
+              }
               car_customs {
                 title
+                paragraph
                 calculate
                 form {
                   imported_eeu
@@ -340,18 +383,21 @@ const query = graphql`
                   person_legal
                   year
                   capacity
+                  costs
                   price
                 }
                 result {
                   title
                   currency
+                  total
                   fee
                   tax
                   vat
                 }
               }
               car_sell {
-                title,
+                title
+                paragraph
                 achievement
                 alienation
                 price
@@ -365,8 +411,27 @@ const query = graphql`
                   title
                 }
               }
-              car_prop_tax_calculator {
+              car_tax {
                 title
+                calculate
+                form {
+                  vehicle {
+                    title
+                    car
+                    van
+                    truck
+                    motorcycle
+                    water_vehicle
+                  }
+                  year
+                  power
+                  horsepower
+                  kilowatts
+                }
+                result {
+                  title
+                  tax
+                }
               }
               share
             }

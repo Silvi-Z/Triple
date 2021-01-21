@@ -37,11 +37,11 @@
   },
   "services": {
     "title": "Services",
-    "paragraph": "Forget about accounting issues with accounting services provided by Triple Consulting, avoid the extra tax burden, and save time by dedicating it to promoting your business. You can get acquainted with the services provided by our company",
+    "paragraph": "Our team is willing to be with you from the very  beginning of your journey, to help and support you, encourage and empower every step you take, making your way to success effortless and smooth.\nWe help organizations and individuals create the value they are looking for, by delivering quality in Accounting, Tax and Advisory services. The wide range of its services includes accounting, tax audit, HR accounting, and business, financial, legal advisory and many more. \n",
     "contentData": [
       {
         "paragraph": "Accounting",
-        "text": "Accurate accounting is one of the most important functions of a business, which helps to avoid various financial losses. Accounting is carried out in accordance with international standards through AS and 1C accounting software."
+        "text": "Our team offers a wide range Accurate accounting is one of the most important functions of a business, which helps to avoid various financial losses. Accounting is carried out in accordance with international standards through AS and 1C accounting software.of accounting services that allows a company to summarize, analyze and report financial transactions to oversight agencies, regulators and tax collection entities․ Our services include:\nEstablishment of accounting policy,\nFinancial and tax accounting,\nAccounting documentation management,\nFinancial, tax and other purposes reporting,\nTax optimisation.\n"
       },
       {
         "paragraph": "Tax audit and accounting",
@@ -182,6 +182,7 @@
     },
     "salary": {
       "title": "Salary calculator",
+      "paragraph": "Salary calculator will facilitate all the necessary calculations concerning the gross and net salary. The tool can be used to calculate the salaries of employees working in the companies of general tax field, micro-enterprises as well as in the companies that have IT tax exemption.",
       "clean_salary_button": "Մաքուր",
       "dirty_salary_button": "Կեղտոտ",
       "tax_label": "Ընտրել ՀԱՐԿՄԱՆ ԴԱՇՏԸ",
@@ -206,7 +207,8 @@
       "result_duty_bonus": "Կեղտոտ պարգևավճար"
     },
     "salary_table": {
-      "title": "Աշխատավարձի հաշվիչ ըստ տաբելի",
+      "title": "Salary Calculator (based on the employee time record sheet)",
+      "paragraph": "With this tool you can simultaneously calculate the salary of more than one employee by exporting employee time record sheet from Armenian Software and then importing on our platform. Based on the imported employee time record sheet, the tool automatically decides the work schedule of each employee, executes the calculation of the salary for worked days,  income tax and social charges. Moreover, the result can be imported as an Excel file.",
       "calculate": "ՀԱՇՎԵԼ",
       "form": {
         "title": "Աշխատավարձի հաշվիչ",
@@ -258,6 +260,7 @@
     },
     "vacation": {
       "title": "Vacation calculator",
+      "paragraph": "According to the Tax code of RA and other legal acts, the tool calculates vacation pay corresponding to the number of vacation days available to employees as well as deductions required by law.Fulfill the starting and ending day, and the tool ill automatically decide number of vacation days taking into the consideration weekend, holidays and days off announced by RA Gouvernement.",
       "salary_label": "ԳՐԱՆՑՎԱԾ Աշխատավարձ",
       "static_salary_label": "Աշխատավարձը անփոփոխ է եղել վերջին 12 ամիսների ընթացքում, չեն հատկացվել հավելավճարներ և պարգևավճարներ։",
       "pensioner_label": "Մասնակցում ե՞ք կուտակային կենսաթոշակային համակարգին",
@@ -294,6 +297,7 @@
     },
     "final": {
       "title": "Final settlement calculator",
+      "paragraph": "The final settlement calculator allows you to get the final settlement amount in a few simple steps.\nEnter admission and employment termination dates, work schedule and the calculator will automatically calculate the total number of vacation days. Fill in the vacation days already used and the amount of salary (and if the amount of salary is not fixed or has been changed or bonuses have been provided, fill in the relevant table), and the instrument will calculate the final settlement and all deductions required by law.\n",
       "form": {
         "acceptance": "ԸՆԴՈՒՆՈՒՄ",
         "release": "ԱԶԱՏՈՒՄ",
@@ -303,6 +307,7 @@
         "total_vacation_days": "Ընդհանուր արձակուրդային օրեր",
         "general_vacation_days": "Ընդհանուր արձակուրդային օրեր",
         "used_vacation_days": "Օգտագործված արձակուրդային օրեր",
+        "unused_vacation_days": "Չօգտագործված արձակուրդային օրեր",
         "salary": "ԳՐԱՆՑՎԱԾ Աշխատավարձ",
         "static_salary": "Աշխատավարձը անփոփոխ է եղել վերջին 12 ամիսների ընթացքում, չեն հատկացվել հավելավճարներ և պարգևավճարներ։",
         "tax": "Ընտրել ՀԱՐԿՄԱՆ ԴԱՇՏԸ",
@@ -358,8 +363,37 @@
         "income_tax_back": "Վերադարձվող եկամտային հարկ"
       }
     },
+    "subsidy": {
+      "title": "Նպաստների հաշվիչ",
+      "form": {
+        "type": "Նպաստի տեսակ",
+        "maternity": "Մայրության",
+        "disability": "Անաշխատունակության",
+        "start": "ՍԿԻԶԲ",
+        "end": "ԱՎԱՐՏ",
+        "days": "Ընդամենը օրերի քանակ",
+        "hired": "Վարձու աշխատող",
+        "self": "Ինքնազբաղ անձ",
+        "tax": "Ընտրել հարկման դաշտը",
+        "tax_common": "Ընդհանուր հարկման դաշտի սուբյեկտ հանդիսացող կազմակերպություն",
+        "tax_it": "Միկրոձեռնարկության սուբյեկտ հանդիսացող կազմակերպություն",
+        "tax_enterprise": "ՏՏ ոլորտի հավաստագրված կազմակերպություն",
+        "schedule": "Աշխատանքային գրաֆիկ",
+        "five_days": "Հնգօրյա",
+        "six_days": "Վեցօրյա",
+        "amount": "ամսական Աշխատավարձ",
+        "income": "այլ գործատուների կողմից վճարված եկամուտներ",
+        "static": "Աշխատավարձը անփոփոխ է եղել վերջին 12 ամիսների ընթացքում, չեն հատկացվել հավելավճարներ և պարգևավճարներ։"
+      },
+      "result": {
+        "title": "Արդյունք",
+        "calculate": "ՀԱՇՎԵԼ",
+        "subsidy": "Գործատուի կողմից վճարման ենթակա նպաստ"
+      }
+    },
     "car_customs": {
       "title": "Car customs clearance fee calculator",
+      "paragraph": "With the help of the car customs clearance fee calculator you can easily calculate the customs fees for a car imported from third countries. Enter the value of the car, the date of issue and engine power, and the tool, based on the requirements of the RA tax and customs codes and other legal normative acts, the customs clearance fee and the environmental tax to be paid will be calculated.",
       "calculate": "ՀԱՇՎԵԼ",
       "form": {
         "imported_eeu": "ԵԱՏՄ երկրներից ներմուծում",
@@ -368,6 +402,7 @@
         "person_legal": "Իրավաբանական անձ",
         "year": "ԹՈՂԱՐԿՄԱՆ ՏԱՐԵԹԻՎ",
         "capacity": "ՇԱՐԺԻՉԻ ԱՇԽԱՏԱՆՔԱՅԻՆ ԾԱՎԱԼ (խսմ)",
+        "costs": "Մաքսային արժեքի մեջ ներառվող այլ ծախսեր",
         "price": "ԱՎՏՈՄԵՔԵՆԱՅԻ ԱՐԺԵՔ"
       },
       "result": {
@@ -375,11 +410,13 @@
         "currency": "Փոխարժեքն այս պահին",
         "fee": "Վճարման ենթակա մաքսազերծման վճար",
         "tax": "Վճարման ենթակա Բնապահպանական հարկ",
-        "vat": "Վճարման ենթակա ԱԱՀ"
+        "vat": "Վճարման ենթակա ԱԱՀ",
+        "total": "Վճարման ենթակա ընդհանուր մաքսազերծման գումար"
       }
     },
     "car_sell": {
       "title": "Car sales calculator",
+      "paragraph": "According to the Tax code of RA, if the car is purchased and sold in the same fiscal year, the individual is required to pay income tax. Simply fulfill the necessary fields, and the tool will calculate the amount of income tax payable \n",
       "achievement": "ՁԵՌՔԲԵՐՈՒՄ",
       "alienation": "ՕՏԱՐՈՒՄ",
       "price": "վաճառքի գին",
@@ -393,8 +430,27 @@
         "title": "Արդյունք"
       }
     },
-    "car_prop_tax_calculator": {
-      "title": "Car property tax calculator"
+    "car_tax": {
+      "calculate": "ՀԱՇՎԵԼ",
+      "title": "Ավտոմեքենայի գույքահարկի հաշվիչ",
+      "form": {
+        "vehicle": {
+          "title": "ՏՄ տեսակը",
+          "car": "Մինչև 10 նստատեղ ունեցող մարդատար ավտոմեքենա",
+          "van": "10 և ավել նստատեղ ունեցող մարդատար ավտոմեքենա",
+          "truck": "Բեռնատար ավտոմեքենա",
+          "motorcycle": "Մոտոցիկլետ",
+          "water_vehicle": "Ջրային փոխադրամիջոց"
+        },
+        "year": "ԹՈՂԱՐԿՄԱՆ ՏԱՐԵԹԻՎ",
+        "power": "ՇԱՐԺԻՉԻ ՀԶՈՐՈՒԹՅՈՒՆ",
+        "horsepower": "Ձիաուժ",
+        "kilowatts": "Կիլովատ"
+      },
+      "result": {
+        "title": "Արդյունք",
+        "tax": "Վճարման ենթակա գույքահարկի վճար"
+      }
     }
   }
 }

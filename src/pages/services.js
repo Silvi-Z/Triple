@@ -106,9 +106,7 @@ const Services = ({ location, pageContext }) => {
   const getSharedTitle = lng => {
     if (lng === "en") {
       return "Services"
-    } else if (lng === "ru") {
-      return "Сервисы"
-    } else {
+    }else {
       return "Ծառայություններ"
     }
   }
@@ -207,6 +205,7 @@ const Services = ({ location, pageContext }) => {
         <H2Styled>{services.title}</H2Styled>
         <PStyled>{services.paragraph}</PStyled>
       </HeadingParagraphRow>
+      {console.log(pageContext)}
       {serviceData.map((d, id) => (
         <ServiceDropWrap showServiceForm={toggle} data={d} key={id} />
       ))}

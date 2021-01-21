@@ -12,7 +12,7 @@ import {
   RadioLabel,
   RadioButton,
   CalculatorInput,
-  ButtonSubmit,
+  ButtonSubmit, CalculatorsCard,
 } from "./styled"
 import {
   schema,
@@ -40,7 +40,7 @@ const initialValues = {
   tax_field: TAX_FIELD_COMMON,
 }
 
-const SalaryCalculator = ({ langText }) => {
+const SalaryCalculator = ({ langText, sameMargin }) => {
   const [result, setResult] = useState({
     total_fee: 0,
     income_tax: 0,
@@ -89,17 +89,11 @@ const SalaryCalculator = ({ langText }) => {
 <>
     <Row align="start" gutter={20}>
       <Col span={16}>
-        <div>
+        <div className="textSec">
           <H1Styled>{langText.title}</H1Styled>
           <TextStyled>{langText.paragraph}</TextStyled>
         </div>
-        <Row align="center" style={{ justifyContent: "space-between" }}>
-          <FormLabel>{langText.title}</FormLabel>
-
-          <FormLabel>{(new Date()).getFullYear()}թ.</FormLabel>
-        </Row>
-
-        <Card bordered={false}>
+        <CalculatorsCard bordered={false}>
           <Form onFinish={formik.handleSubmit} initialValues={initialValues} layout="horizontal" colon={false}>
             <RadioGroup
               onChange={(e) => formik.setFieldValue("from", e.target.value)}
@@ -191,10 +185,10 @@ const SalaryCalculator = ({ langText }) => {
               </ButtonSubmit>
             </Form.Item>
           </Form>
-        </Card>
+        </CalculatorsCard>
       </Col >
 
-      <Col className="result" span={8} style={{"--height":'315px' , marginTop:"var(--height)"}}>
+      <Col span={8} className="result">
         <FormLabel style={{ margin: 0 }}>{langText.result_title}</FormLabel>
 
         <UnderLine />

@@ -1,16 +1,16 @@
 import React from "react";
 import useTranslations from "../../components/useTranslations";
-import CarTaxCalculator from "../../components/calculators/CarTaxCalculator";
+import SubsidyCalculator from "../../components/calculators/SubsidyCalculator"
 import CalculatorWrapper from "../../components/calculators/calcComponents/CalculatorWrapper";
 
-const carTax = ({ pageContext }) => {
+const vacation = ({pageContext}) => {
   const { calculator } = useTranslations();
 
   return (
     <CalculatorWrapper ctx={pageContext}>
-      <CarTaxCalculator lang={calculator.car_tax} />
+      <SubsidyCalculator lang={calculator.subsidy}/>
     </CalculatorWrapper>
   )
 };
 
-export default carTax;
+export default vacation;

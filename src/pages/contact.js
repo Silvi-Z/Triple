@@ -44,9 +44,7 @@ const Contact = ({ pageContext }) => {
   const getSharedUrl = lng => {
     if (lng === "en") {
       return "http://triple-c.algorithm.am/en/contact/"
-    } else if (lng === "ru") {
-      return "http://triple-c.algorithm.am/ru/contact"
-    } else {
+    }else {
       return "http://triple-c.algorithm.am/arm/contact/"
     }
   }

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React, { useEffect, useState } from "react"
 import { Row, Col } from "antd";
 import styled from "styled-components";
 import FbBlueIcon from "../../../assets/career/facebookBlueCareer.svg";
@@ -56,16 +56,14 @@ const LinkedinIcon = styled.div`
   }
 `
 
-const CalculatorWrapper = ({ ctx, children }) => {
+const CalculatorWrapper = ({ ctx, children}) => {
   const { calculator } = useTranslations();
   let urlShared;
 
   const getSharedUrl = lng => {
     if (lng === "en") {
       return "http://triple-c.algorithm.am/en/calculators/"
-    } else if (lng === "ru") {
-      return "http://triple-c.algorithm.am/ru/calculators"
-    } else {
+    }else {
       return "http://triple-c.algorithm.am/arm/calculators/"
     }
   };
@@ -73,12 +71,20 @@ const CalculatorWrapper = ({ ctx, children }) => {
   const hookComponent = () => {
     urlShared = getSharedUrl(ctx.locale)
   };
-useEffect(()=>{
-  if (document.querySelector('.result')){
-    let marTop = document.querySelector('.result').style.getPropertyValue('--height');
-    document.querySelector('.calculatorsMenu').style.marginTop = marTop;
-  }
-})
+  const [sameMarginTop, setSameMarginTop] = useState( '10px')
+
+  console.log(sameMarginTop)
+  useEffect(()=>{
+    setSameMarginTop(document.querySelector('.textSec').clientHeight+'px');
+    document.querySelector(".result").style.marginTop = sameMarginTop
+  })
+  // useEffect(()=>{
+//   if (document.querySelector('.result')){
+//     console.log();
+//     let marTop = document.querySelector('.textSec').style.getPropertyValue('--height');
+//     document.querySelector('.calculatorsMenu').style.marginTop = marTop;
+//   }
+// })
   hookComponent();
 
   return (
@@ -90,7 +96,7 @@ useEffect(()=>{
       />
 
       <Row gutter={0}>
-        <Col className="calculatorsMenu" span={6} style={{paddingRight: '10px', paddingLeft: '35px'}}>
+        <Col className="calculatorsMenu" span={6} style={{paddingRight: '10px', paddingLeft: '35px', marginTop:sameMarginTop}}>
           <CalculatorNav t={calculator} locale={ctx.locale} />
         </Col>
         <Col span={18} style={{paddingRight: '35px'}}>
@@ -98,15 +104,15 @@ useEffect(()=>{
         </Col>
       </Row>
 
-      <Row style={{ marginTop: "25px" }}>
-        <Col span={6} offset={6}>
-          <ShareLabel>{calculator.share}</ShareLabel>
+      {/*<Row style={{ marginTop: "25px" }}>*/}
+      {/*  <Col span={6} offset={6}>*/}
+      {/*    <ShareLabel>{calculator.share}</ShareLabel>*/}
 
-          <FacebookShareButton url={urlShared} children={<FacebookIcon />} />
+      {/*    <FacebookShareButton url={urlShared} children={<FacebookIcon />} />*/}
 
-          <LinkedinShareButton children={<LinkedinIcon />} url={urlShared} />
-        </Col>
-      </Row>
+      {/*    <LinkedinShareButton children={<LinkedinIcon />} url={urlShared} />*/}
+      {/*  </Col>*/}
+      {/*</Row>*/}
     </>
   )
 }

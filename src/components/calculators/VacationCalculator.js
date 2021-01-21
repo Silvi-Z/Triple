@@ -3,7 +3,7 @@ import ReactDOM from "react-dom"
 import moment from "moment"
 import triple from "../../api/triple"
 import { pick, isNull, isEmpty, isEqual } from "lodash"
-import { Row, Col, Card, Form, Radio, Checkbox, DatePicker, Space } from "antd"
+import { Row, Col, Card, Form, Radio, Checkbox } from "antd"
 import GrossSalaryTable from "./calcComponents/GrossSalaryTable"
 import CalculatorCardResult from "./calcComponents/CalculatorCardResult"
 import { isHoliday, isWeekend, workingDaysInRange } from "./utilities/vacation"
@@ -15,7 +15,7 @@ import {
   CalculatorInput,
   ButtonSubmit,
   CalculatorDatePicker,
-  H1Styled, TextStyled,
+  H1Styled, TextStyled, CalculatorsCard,
 } from "./styled"
 import { schema, SALARY_MIN, TAX_FIELD_COMMON, TAX_FIELD_ENTERPRISE, TAX_FIELD_IT, PENSION_FIELD_NO, PENSION_FIELD_YES, PENSION_FIELD_YES_VOLUNTEER } from "./utilities/salary"
 
@@ -314,6 +314,7 @@ class VacationCalculator extends React.Component {
           if (!this.state.calculated) this.setState({ calculated: true })
         })
         .catch(err => console.log(err))
+        .finally(() => document.body.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"}))
     })
   }
 
@@ -325,7 +326,7 @@ class VacationCalculator extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
-    // this.autoCalculate(prevState)
+    this.autoCalculate(prevState)
   }
 
   componentWillUnmount() {
@@ -335,6 +336,7 @@ class VacationCalculator extends React.Component {
   render() {
     const { form, result } = this.state
     const { lang } = this.props
+    const { sameMarginTop } = this.props
     // const width =  (typeof window !== `undefined`)
     //   ? document.documentElement.clientWidth : 992
 
@@ -342,15 +344,13 @@ class VacationCalculator extends React.Component {
       <Row align="start" gutter={20} ref={this.row}>
         <Col xs={24} sm={24} md={24} lg={16} xl={16} xxl={16}>
           <Row align="center" style={{ justifyContent: "space-between" }}>
-            <div>
+            <div className="textSec">
               <H1Styled>{lang.title}</H1Styled>
               <TextStyled>{lang.paragraph}</TextStyled>
             </div>
-
-            <FormLabel>{(new Date()).getFullYear()}թ.</FormLabel>
           </Row>
 
-          <Card bordered={false}>
+          <CalculatorsCard bordered={false}>
             <Form
               onFinish={this.handleSubmit}
               initialValues={form}
@@ -359,36 +359,32 @@ class VacationCalculator extends React.Component {
               size="large"
             >
               <Row gutter={10} align="middle">
-                <Col span={10}>
-                  <Form.Item label={<Label>{lang.start}</Label>}>
-                    <CalculatorDatePicker
-                      disabledDate={d => form.date_to && (d.isSameOrAfter(form.date_to, "day"))}
-                      dateRender={(date, today) => this.handlePickerRender(date, today, 'start')}
-                      onChange={date => this.setDateField("date_from", date)}
-                      placeholder={lang["date_from_placeholder"]}
-                      value={this.dateFromValue}
-                      ref={this.dateFromPicker}
-                      format="DD.MM.YYYY"
-                      name="date_from"
-                      size="large"
-                    />
-                  </Form.Item>
-                </Col>
-                <Col span={10}>
-                  <Form.Item label={<Label>{lang.end}</Label>}>
-                    <CalculatorDatePicker
-                      disabledDate={d => !form.date_from || (d.isSameOrBefore(form.date_from, "day"))}
-                      dateRender={(date, today) => this.handlePickerRender(date, today, 'end')}
-                      onChange={date => this.setDateField("date_to", date)}
-                      placeholder={lang["date_from_placeholder"]}
-                      value={this.dateToValue}
-                      ref={this.dateToPicker}
-                      format="DD.MM.YYYY"
-                      name="date_to"
-                      size="large"
-                    />
-                  </Form.Item>
-                </Col>
+                <Form.Item style={{marginRight: '25px'}} label={<Label>{lang.start}</Label>}>
+                  <CalculatorDatePicker
+                    disabledDate={d => form.date_to && (d.isSameOrAfter(form.date_to, "day"))}
+                    dateRender={(date, today) => this.handlePickerRender(date, today, 'start')}
+                    onChange={date => this.setDateField("date_from", date)}
+                    placeholder={lang["date_from_placeholder"]}
+                    value={this.dateFromValue}
+                    ref={this.dateFromPicker}
+                    format="DD.MM.YYYY"
+                    name="date_from"
+                    size="large"
+                  />
+                </Form.Item>
+                <Form.Item label={<Label>{lang.end}</Label>}>
+                  <CalculatorDatePicker
+                    disabledDate={d => !form.date_from || (d.isSameOrBefore(form.date_from, "day"))}
+                    dateRender={(date, today) => this.handlePickerRender(date, today, 'end')}
+                    onChange={date => this.setDateField("date_to", date)}
+                    placeholder={lang["date_from_placeholder"]}
+                    value={this.dateToValue}
+                    ref={this.dateToPicker}
+                    format="DD.MM.YYYY"
+                    name="date_to"
+                    size="large"
+                  />
+                </Form.Item>
               </Row>
 
               <Form.Item label={<Label>{lang.vacation_days}</Label>}>
@@ -489,16 +485,16 @@ class VacationCalculator extends React.Component {
                 </Radio.Group>
               </Form.Item>
 
-              <Form.Item>
+              <Form.Item style={{marginTop: '50px'}}>
                 <ButtonSubmit htmlType="submit" shape="round" size="large">
                   {lang["calculate"]}
                 </ButtonSubmit>
               </Form.Item>
             </Form>
-          </Card>
+          </CalculatorsCard>
         </Col>
 
-        <Col xs={24} sm={24} md={24} lg={8} xl={8} xxl={8} className="result" style={{"--height":'365px' , marginTop:"var(--height)"}} ref={this.col}>
+        <Col xs={24} sm={24} md={24} lg={8} xl={8} xxl={8} className="result" ref={this.col}>
           <FormLabel style={{ margin: 0 }}>{lang.result.title}</FormLabel>
 
           <UnderLine />
@@ -511,6 +507,7 @@ class VacationCalculator extends React.Component {
           <CalculatorCardResult
             title={lang.result["income_tax"]}
             text={result.income_tax}
+            tooltip={form.tax_field === TAX_FIELD_ENTERPRISE ? 'prompt text': null}
           />
 
           <CalculatorCardResult

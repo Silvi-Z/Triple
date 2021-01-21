@@ -18,7 +18,8 @@ const Main = styled(Content)`
   overflow: hidden;
 `
 const FooterCust = styled(Footer)`
-  padding:50px 115px;
+  margin-top: 90px;
+  padding: 50px 115px;
   // height: ${props => (props.backcolor === "true" ? "130px" : "208px")};
   background-color: ${props =>
     props.backcolor === "true" ? "#1c1d21" : "white"};

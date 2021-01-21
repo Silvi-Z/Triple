@@ -10,7 +10,18 @@ import { DownloadOutlined, UploadOutlined } from "@ant-design/icons"
 import { Row, Col, Card, Form, Radio, Button, notification } from "antd"
 import { defineSchedule, urlToBase64, randomString } from "./utilities/tabel"
 import { endDate, isHoliday, isWeekend, workingDaysInMonth, workingDaysInRange } from "./utilities/vacation"
-import { CalculatorDatePicker, CalculatorInput, ButtonSubmit, RadioButton, RadioGroup, RadioLabel, UnderLine, FormLabel, Label } from "./styled"
+import {
+  CalculatorDatePicker,
+  CalculatorInput,
+  ButtonSubmit,
+  RadioButton,
+  RadioGroup,
+  RadioLabel,
+  UnderLine,
+  FormLabel,
+  Label,
+  CalculatorsCard,
+} from "./styled"
 import { schemaBy, BY_FIELD_DATE, BY_FIELD_TABLE, SALARY_MIN, SALARY_STEP, TAX_FIELD_IT, TAX_FIELD_COMMON, TAX_FIELD_ENTERPRISE, PENSION_FIELD_NO, PENSION_FIELD_YES, PENSION_FIELD_YES_VOLUNTEER } from "./utilities/salary"
 import EmployeeSalaryTable from "./calcComponents/EmployeeSalaryTable"
 import CalculatorCardResult from "./calcComponents/CalculatorCardResult"
@@ -93,12 +104,6 @@ class SalaryTableCalculator extends React.Component {
       const employees = rows.reduce((acc, row, i) => {
         if (i >= 20 && isInteger(Number(row[0]))) {
           const schedule = defineSchedule(row.slice(4, date.daysInMonth() + 4), date, this.holidays)
-          const workingDaysInMonth = workingDaysInMonth({
-            workdays: this.workdays,
-            holidays: this.holidays,
-            schedule,
-            date
-          }).length
 
           acc.push({
             id: row[0],
@@ -109,7 +114,12 @@ class SalaryTableCalculator extends React.Component {
             pension: PENSION_FIELD_YES,
             amount: null,
             schedule,
-            workingDaysInMonth
+            workingDaysInMonth: workingDaysInMonth({
+              workdays: this.workdays,
+              holidays: this.holidays,
+              schedule,
+              date
+            }).length
           })
         }
 
@@ -124,6 +134,8 @@ class SalaryTableCalculator extends React.Component {
 
         employees.splice(0, employees.length)
       }
+
+      this.fileInput.current.value = null
 
       this.setState({employees})
     };
@@ -249,11 +261,11 @@ class SalaryTableCalculator extends React.Component {
    * @return {JSX.Element}
    */
   handlePickerRender = (date, today, range) => {
-    const { form } = this.state
+    const { schedule } = this.state.form
 
     const condition = range === 'start'
-      ? form.date_to && (date.isSameOrAfter(form.date_to, "day"))
-      : !form.date_from || (date.isSameOrBefore(form.date_from, "day"))
+      ? this.handleDateFromDisabled(date)
+      : this.handleDateToDisabled(date)
 
     if (date.isSame(today, 'day')) {
       return <div className={
@@ -271,7 +283,7 @@ class SalaryTableCalculator extends React.Component {
       }>
         {date.format('D')}
       </div>
-    } else if (isWeekend(date, form.schedule)) {
+    } else if (isWeekend(date, schedule)) {
       return <div className={
         !condition
           ? 'ant-picker-cell-inner ant-picker-cell-weekend'
@@ -576,16 +588,12 @@ class SalaryTableCalculator extends React.Component {
     return (
       <Row align="start" gutter={20}>
         <Col span={16}>
-          <div>
+          <div className="textSec">
             <H1Styled>{lang.title}</H1Styled>
             <TextStyled>{lang.paragraph}</TextStyled>
           </div>
-          <Row align="center" style={{justifyContent: 'space-between'}}>
 
-            <FormLabel>{(new Date()).getFullYear()}թ.</FormLabel>
-          </Row>
-
-          <Card bordered={false}>
+          <CalculatorsCard bordered={false}>
             <Form
               onFinish={this.handleSubmit}
               initialValues={form}
@@ -642,40 +650,36 @@ class SalaryTableCalculator extends React.Component {
               {/* date fields */}
               {form.by
                 ? <>
-                  <Row gutter={10} align="start">
-                    <Col span={10}>
-                      <Form.Item label={<Label>{lang.form.start}</Label>}>
-                        <CalculatorDatePicker
-                          dateRender={(date, today) => this.handlePickerRender(date, today, 'start')}
-                          disabledDate={this.handleDateFromDisabled}
-                          onChange={this.handleDateFromChange}
-                          value={this.dateFromValue}
-                          key={this.dateFromPickerKey}
-                          ref={this.dateFromPicker}
-                          placeholder={null}
-                          format="DD.MM.YYYY"
-                          name="date_from"
-                          size="large"
-                        />
-                      </Form.Item>
-                    </Col>
-                    <Col span={10}>
-                      <Form.Item label={<Label>{lang.form.end}</Label>}>
-                        <CalculatorDatePicker
-                          dateRender={(date, today) => this.handlePickerRender(date, today, 'end')}
-                          defaultPickerValue={this.dateFromValue}
-                          disabledDate={this.handleDateToDisabled}
-                          onChange={this.handleDateToChange}
-                          value={this.dateToValue}
-                          key={this.dateToPickerKey}
-                          ref={this.dateToPicker}
-                          placeholder={null}
-                          format="DD.MM.YYYY"
-                          name="date_to"
-                          size="large"
-                        />
-                      </Form.Item>
-                    </Col>
+                  <Row gutter={10} align="middle">
+                    <Form.Item style={{marginRight: '25px'}} label={<Label>{lang.form.start}</Label>}>
+                      <CalculatorDatePicker
+                        dateRender={(date, today) => this.handlePickerRender(date, today, 'start')}
+                        disabledDate={this.handleDateFromDisabled}
+                        onChange={this.handleDateFromChange}
+                        value={this.dateFromValue}
+                        key={this.dateFromPickerKey}
+                        ref={this.dateFromPicker}
+                        placeholder={null}
+                        format="DD.MM.YYYY"
+                        name="date_from"
+                        size="large"
+                      />
+                    </Form.Item>
+                    <Form.Item label={<Label>{lang.form.end}</Label>}>
+                      <CalculatorDatePicker
+                        dateRender={(date, today) => this.handlePickerRender(date, today, 'end')}
+                        defaultPickerValue={this.dateFromValue}
+                        disabledDate={this.handleDateToDisabled}
+                        onChange={this.handleDateToChange}
+                        value={this.dateToValue}
+                        key={this.dateToPickerKey}
+                        ref={this.dateToPicker}
+                        placeholder={null}
+                        format="DD.MM.YYYY"
+                        name="date_to"
+                        size="large"
+                      />
+                    </Form.Item>
                   </Row>
 
                   <Form.Item label={<Label>{lang.form.working_days}</Label>}>
@@ -785,7 +789,7 @@ class SalaryTableCalculator extends React.Component {
                 </Form.Item>
               : null}
               {/* button */}
-              <Form.Item>
+              <Form.Item style={{marginTop: '50px'}}>
                 <ButtonSubmit
                   htmlType="submit"
                   shape="round"
@@ -795,10 +799,10 @@ class SalaryTableCalculator extends React.Component {
                 </ButtonSubmit>
               </Form.Item>
             </Form>
-          </Card>
+          </CalculatorsCard>
         </Col>
 
-        <Col span={8} className="result" style={{"--height":'415px' , marginTop:"var(--height)"}}>
+        <Col span={8} className="result">
           <FormLabel style={{margin: 0}}>{lang.result.title}</FormLabel>
 
           <UnderLine/>

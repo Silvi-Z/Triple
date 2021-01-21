@@ -13,7 +13,7 @@ const contentData = [
   },
   {
     "link" : "services#test_4",
-    "serviceName" : "Ֆիզիկական անձինք"
+    "serviceName" : "Ֆիզիկական անձանց մատուցվող ծառայություններ"
   },
   {
     "link" : "services#test_5",
