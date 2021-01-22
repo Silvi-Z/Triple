@@ -104,7 +104,6 @@ class CarTaxCalculator extends React.Component {
                   onChange={v => this.setField("power", v)}
                   style={{ marginRight: "10px" }}
                   value={form.power}
-                  max={2000}
                   min={1}
                   size="large"
                   type="number"
