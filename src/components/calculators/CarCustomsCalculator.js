@@ -1,9 +1,6 @@
 import React from "react"
 import { isEqual } from "lodash"
 import { Row, Col, Card, Form, Radio, Divider } from "antd"
-<<<<<<< HEAD
-import { ButtonSubmit, CalculatorDatePicker, CalculatorInput, FormLabel, Label, UnderLine } from "./styled"
-=======
 import {
   ButtonSubmit,
   CalculatorDatePicker,
@@ -14,7 +11,6 @@ import {
   TextStyled,
   UnderLine,
 } from "./styled"
->>>>>>> news-page
 import VehicleCustoms from "../../calculators/VehicleCustoms"
 import CalculatorCardResult from "./calcComponents/CalculatorCardResult"
 import triple from "../../api/triple"
@@ -32,8 +28,6 @@ class CarCustomsCalculator extends React.Component {
 
   handleSubmit = () => {
     const { form, rates } = this.state
-<<<<<<< HEAD
-
     VehicleCustoms.schema
       .validate(form)
       .then(() => {
@@ -55,30 +49,6 @@ class CarCustomsCalculator extends React.Component {
   reset = field => {
     const { form } = this.state
 
-=======
-
-    VehicleCustoms.schema
-      .validate(form)
-      .then(() => {
-        const calculator = new VehicleCustoms(form, rates)
-        const result = calculator.calculate()
-
-        this.setState({ result: { ...result }, calculated: true })
-      })
-      .catch(err => {
-        this.setState({
-          result: { fee: null, tax: null, vat: null },
-          calculated: false
-        })
-
-        console.log(err)
-      });
-  }
-
-  reset = field => {
-    const { form } = this.state
-
->>>>>>> news-page
     if (form.hasOwnProperty(field))
       this.setField(field, VehicleCustoms.form[field])
   }
@@ -124,10 +94,6 @@ class CarCustomsCalculator extends React.Component {
 
   render() {
     const { lang } = this.props
-<<<<<<< HEAD
-=======
-    const { sameMarginTop } = this.props
->>>>>>> news-page
     const { form, result, rates, calculated } = this.state
 
     return (

@@ -3,9 +3,6 @@ import { isNull, isEqual } from "lodash"
 import { Row, Col, Card, Form, Radio } from "antd"
 import VehicleSell from "../../calculators/VehicleSell"
 import CalculatorCardResult from "./calcComponents/CalculatorCardResult"
-<<<<<<< HEAD
-import { ButtonSubmit, FormLabel, Label, CalculatorInput, UnderLine, CalculatorDatePicker } from "./styled"
-=======
 import {
   ButtonSubmit,
   FormLabel,
@@ -16,7 +13,6 @@ import {
   H1Styled,
   TextStyled, CalculatorsCard,
 } from "./styled"
->>>>>>> news-page
 
 
 class CarSellCalculator extends React.Component {
@@ -49,17 +45,10 @@ class CarSellCalculator extends React.Component {
 
         return
       }
-<<<<<<< HEAD
 
       const calculator = new VehicleSell(form)
       const tax = calculator.calculate()
 
-=======
-
-      const calculator = new VehicleSell(form)
-      const tax = calculator.calculate()
-
->>>>>>> news-page
       this.setState({tax}, () => {
         if (!this.state.calculated) {
           this.setState({calculated: true})

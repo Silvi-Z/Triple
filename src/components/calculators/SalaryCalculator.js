@@ -191,13 +191,8 @@ const SalaryCalculator = ({ langText, sameMargin }) => {
         </CalculatorsCard>
       </Col >
 
-<<<<<<< HEAD
-      <Col span={8}>
-        <FormLabel style={{ margin: 0 }}>{langText["result_title"]}</FormLabel>
-=======
       <Col span={8} className="result">
         <FormLabel style={{ margin: 0 }}>{langText.result_title}</FormLabel>
->>>>>>> news-page
 
         <UnderLine />
 

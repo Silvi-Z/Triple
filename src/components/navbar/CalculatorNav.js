@@ -91,17 +91,10 @@ const CalculatorNav = ({ t, locale }) => {
           <NavLink className="calc-nav-item" to={`/${locale}/calculators/car-sell/`}>{t.car_sell.title}</NavLink>
         </NavItem>
         <NavItem>
-<<<<<<< HEAD
-          <NavLink className="calc-nav-item" to={`${locale}/calculators/car-tax`}>{t.car_tax.title}</NavLink>
-        </NavItem>
-        <NavItem>
-          <NavLink className="calc-nav-item" to={`${locale}/calculators/subsidy`}>{t.subsidy.title}</NavLink>
-=======
           <NavLink className="calc-nav-item" to={`/${locale}/calculators/car-tax/`}>{t.car_tax.title}</NavLink>
         </NavItem>
         <NavItem>
           <NavLink className="calc-nav-item" to={`/${locale}/calculators/subsidy/`}>{t.subsidy.title}</NavLink>
->>>>>>> news-page
         </NavItem>
       </List>
     </NavCard>

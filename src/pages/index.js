@@ -41,7 +41,7 @@ const IndexPage = ({ pageContext }) => {
     <HomePageWrapper>
       <SEO title='Triple Consulting' meta={siteMetada} pageContext={pageContext} />
       <HomeAboutUs pageContext={pageContext}/>
-      <HomeServices langText={home.services} lang={pageContext.locale} />
+      <HomeServices pageContext={pageContext.localeResources.translation.services.contentData} langText={home.services} lang={pageContext.locale} />
       <Homepartners langText={home.our_partners} lang={pageContext.locale} />
     </HomePageWrapper>
   )

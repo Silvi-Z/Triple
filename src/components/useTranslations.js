@@ -333,10 +333,7 @@ const query = graphql`
               }
               subsidy {
                 title
-<<<<<<< HEAD
-=======
                 paragraph
->>>>>>> news-page
                 calculate
                 form {
                   type

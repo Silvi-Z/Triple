@@ -118,6 +118,7 @@ const Formfield = ({ langtext, lang }) => {
               name="username"
               placeholder={`${langtext.name_label_first} ${langtext.name_label_second}`}
             />
+            {console.log(langtext)}
           </StyledForm.Item>
         </InputWrapper>
         <InputWrapper>
