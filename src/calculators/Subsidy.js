@@ -21,13 +21,11 @@ class Subsidy extends Salary {
     income: null,
     start: null,
     days: null,
-    end: null
+    end: null,
   }
 
   // TODO : define validation rules
-  static schema = Yup.object().shape({
-
-  })
+  static schema = Yup.object().shape({})
 
   /**
    * Subsidy constructor
@@ -64,15 +62,15 @@ class Subsidy extends Salary {
    */
   get avgMonthSalary() {
     const avg = this.isSalaryStatic
-      ? this.fields.amount + Math.round((this.fields.income || 0) / 12)
-      : this.avg + Math.round((this.fields.income || 0) / 12)
+      ? this.fields.amount + ((this.fields.income || 0) / 12)
+      : this.avg + ((this.fields.income || 0) / 12)
 
     if (avg > Salary.MIN * 15) {
-      return Math.round(Salary.MIN * 15)
+      return (Salary.MIN * 15)
     } else if (avg < Salary.MIN * 0.5) {
-      return Math.round(Salary.MIN * 0.5)
+      return (Salary.MIN * 0.5)
     } else {
-      return Math.round(avg)
+      return (avg)
     }
   }
 
@@ -82,7 +80,7 @@ class Subsidy extends Salary {
    * @return {number}
    */
   get avgDailySalary() {
-    return Math.round(this.avgMonthSalary / 30.4)
+    return (this.avgMonthSalary / 30.4)
   }
 
   /**
@@ -116,7 +114,7 @@ class Subsidy extends Salary {
     if (Object.keys(fields).every(field => Object.keys(Subsidy.form).includes(field)))
       this.fields = Object.assign({}, this.fields, fields)
     else
-      throw Error('Incorrect fields passed.')
+      throw Error("Incorrect fields passed.")
   }
 
   /**
@@ -125,7 +123,7 @@ class Subsidy extends Salary {
    * @return {number}
    */
   calculate() {
-    return this.avgDailySalary * this.fields.days
+    return Math.round(this.avgDailySalary * this.fields.days)
   }
 }
 

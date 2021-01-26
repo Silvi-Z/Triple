@@ -1,12 +1,12 @@
-import Moment from 'moment';
-import { extendMoment } from 'moment-range';
+import Moment from "moment"
+import { extendMoment } from "moment-range"
 
-const moment = extendMoment(Moment);
+const moment = extendMoment(Moment)
 
 export const months = {
   arm: ["Հունվար", "Փետրվար", "Մարտ", "Ապրիլ", "Մայիս", "Հունիս", "Հուլիս", "Օգոստոս", "Սեպտեմբեր", "Հոկտեմբեր", "Նոյեմբեր", "Դեկտեմբեր"],
   en: [],
-  ru: []
+  ru: [],
 }
 
 /**
@@ -18,11 +18,11 @@ export const months = {
 export const years = count => {
   const years = []
   const dateEnd = moment()
-  const dateStart = moment().subtract(count, 'y')
+  const dateStart = moment().subtract(count, "y")
 
-  while (dateEnd.diff(dateStart, 'years') >= 0) {
-    years.unshift(dateStart.format('YYYY'))
-    dateStart.add(1, 'year')
+  while (dateEnd.diff(dateStart, "years") >= 0) {
+    years.unshift(dateStart.format("YYYY"))
+    dateStart.add(1, "year")
   }
 
   return years
@@ -38,15 +38,37 @@ export const years = count => {
  * @param {{title: String|null, date: String}[]} holidays
  * @return {Array}
  */
-export const workingDaysInRange = ({start, end, holidays, workdays, schedule}) => {
+export const workingDaysInRange = ({ start, end, holidays, workdays, schedule }) => {
   const days = []
 
   while (start.isSameOrBefore(end)) {
     if (isWorkDay(start, holidays, workdays, schedule)) {
-      days.push(start.clone().format('YYYY-MM-DD'));
+      days.push(start.clone().format("YYYY-MM-DD"))
     }
 
-    start.add(1, 'day');
+    start.add(1, "day")
+  }
+
+  return days
+}
+
+
+/**
+ * Getting working dates between two dates
+ *
+ * @param {moment.Moment} start - moment date
+ * @param {moment.Moment} end - moment date
+ * @param {Number} schedule - working schedule
+ * @param {{title: String|null, date: String}[]} workdays
+ * @param {{title: String|null, date: String}[]} holidays
+ * @return {Array}
+ */
+export const workingDaysInRangeForSubsidy = ({ start, end, holidays, workdays, schedule }) => {
+  const days = []
+
+  while (start.isSameOrBefore(end)) {
+    days.push(start.clone().format("YYYY-MM-DD"))
+    start.add(1, "day")
   }
 
   return days
@@ -61,12 +83,12 @@ export const workingDaysInRange = ({start, end, holidays, workdays, schedule}) =
  * @param {{title: String|null, date: String}[]} holidays
  * @return {Array}
  */
-export const workingDaysInMonth = ({date, holidays, workdays, schedule}) => workingDaysInRange({
-  start: date.clone().startOf('month'),
-  end: date.clone().endOf('month'),
+export const workingDaysInMonth = ({ date, holidays, workdays, schedule }) => workingDaysInRange({
+  start: date.clone().startOf("month"),
+  end: date.clone().endOf("month"),
   holidays,
   workdays,
-  schedule
+  schedule,
 })
 
 /**
@@ -82,7 +104,7 @@ export const workingDaysInMonth = ({date, holidays, workdays, schedule}) => work
 export const endDate = (start, days, schedule, holidays, workdays) => {
   for (let i = 1; i < days; i++) {
     if (
-      (isWeekend(start, schedule) && !workdays.map(day => day.date).includes(start.format('YYYY-MM-DD'))) ||
+      (isWeekend(start, schedule) && !workdays.map(day => day.date).includes(start.format("YYYY-MM-DD"))) ||
       isHoliday(start, holidays)
     ) {
       i--
@@ -104,7 +126,7 @@ export const endDate = (start, days, schedule, holidays, workdays) => {
  * @return {boolean}
  */
 export const isWorkDay = (date, holidays, workdays, schedule) => {
-  return (!isWeekend(date, schedule) || (isWeekend(date, schedule) && workdays.map(day => day.date).includes(date.format('YYYY-MM-DD')))) && !isHoliday(date, holidays);
+  return (!isWeekend(date, schedule) || (isWeekend(date, schedule) && workdays.map(day => day.date).includes(date.format("YYYY-MM-DD")))) && !isHoliday(date, holidays)
 }
 
 /**
@@ -113,7 +135,7 @@ export const isWorkDay = (date, holidays, workdays, schedule) => {
  * @param {moment.Moment} date
  * @param {{title: String|null, date: String}[]} holidays
  */
-export const isHoliday = (date, holidays) => holidays.map(day => day.date).includes(date.format('YYYY-MM-DD'))
+export const isHoliday = (date, holidays) => holidays.map(day => day.date).includes(date.format("YYYY-MM-DD"))
 
 /**
  * Checks if given date is weekend by schedule

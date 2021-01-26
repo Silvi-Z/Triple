@@ -186,6 +186,7 @@
       "clean_salary_button": "Մաքուր",
       "dirty_salary_button": "Կեղտոտ",
       "tax_label": "Ընտրել ՀԱՐԿՄԱՆ ԴԱՇՏԸ",
+      "gross_salary": "Գրանցված աշխատավարձ (ըստ աշխատած օրերի)",
       "tax_label_common": "Աշխատում ե՞ք ընդհանուր հարկման դաշտի սուբյեկտ հանդիսացող կազմակերպությունում։",
       "tax_label_enterprise": "Աշխատում ե՞ք միկրոձեռնարկության սուբյեկտ հանդիսացող կազմակերպությունում։",
       "tax_label_it": "Աշխատում ե՞ք ՏՏ ոլորտի հավաստագրված կազմակերպությունում։",
@@ -204,7 +205,18 @@
       "stamp_duty_label": "Դրոշմանիշային վճար",
       "dirty_to_clean_salary": "Զուտ աշխատավարձ",
       "clean_dirty_to_salary": "Գրանցված աշխատավարձ",
-      "result_duty_bonus": "Կեղտոտ պարգևավճար"
+      "result_duty_bonus": "Կեղտոտ պարգևավճար",
+      "form": {
+        "by_date": "Հաշվարկ ըստ ամբողջական ամսվա",
+        "by_table": "Հաշվարկ ըստ օրացույցի",
+        "start": "ՍԿԻԶԲ",
+        "end": "ԱՎԱՐՏ",
+        "working_days": "Աշխատանքային օրեր",
+        "working_schedule": "Աշխատանքային գրաֆիկ",
+        "five_days": "Հնգօրյա",
+        "six_days": "Վեցօրյա",
+        "salary": "Աշխատավարձ"
+      }
     },
     "salary_table": {
       "title": "Salary Calculator (based on the employee time record sheet)",
@@ -255,7 +267,7 @@
         "dirty_to_clean_salary": "Զուտ աշխատավարձ",
         "clean_to_dirty_salary": "Գրանցված աշխատավարձ",
         "duty_bonus": "Կեղտոտ պարգևավճար",
-        "download": "Ներբեռնել արդյունթը"
+        "download": "Ներբեռնել արդյունքը"
       }
     },
     "vacation": {

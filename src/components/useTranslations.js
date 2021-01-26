@@ -150,6 +150,7 @@ const query = graphql`
                 paragraph
                 clean_salary_button
                 dirty_salary_button
+                gross_salary
                 tax_label
                 tax_label_common
                 tax_label_enterprise
@@ -170,6 +171,17 @@ const query = graphql`
                 dirty_to_clean_salary
                 clean_dirty_to_salary
                 result_duty_bonus
+                form {
+                  by_date
+                  by_table
+                  start
+                  end
+                  working_days
+                  working_schedule
+                  five_days
+                  six_days
+                  salary
+                }
               }
               salary_table {
                 title
