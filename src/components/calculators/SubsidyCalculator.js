@@ -6,7 +6,6 @@ import {
   ButtonSubmit,
   CalculatorDatePicker,
   CalculatorInput,
-  FormItemLabel,
   FormLabel,
   H1Styled,
   Label,
@@ -88,11 +87,7 @@ class SubsidyCalculator extends React.Component {
     const { pension, tax_field, days, type } = this.state.form
 
     Subsidy.schema.isValid(this.state.form).then(valid => {
-      if (!valid) {
-        this.setState({ form: Subsidy.form })
-
-        return
-      }
+      if (!valid) return
 
       triple.post("/api/counter/salary", {
         from: 1,
@@ -218,7 +213,7 @@ class SubsidyCalculator extends React.Component {
               size="large"
             >
               {/* type field */}
-              <Form.Item label={lang.form.type} labelCol={{ span: 24 }}>
+              <Form.Item label={<Label>{lang.form.type}</Label>} labelCol={{ span: 24 }}>
                 <Radio.Group
                   onChange={e => this.setField("type", e.target.value, this.resetSchedule)}
                   value={form.type}
@@ -232,32 +227,32 @@ class SubsidyCalculator extends React.Component {
                 </Radio.Group>
               </Form.Item>
 
-              <FormItemLabel>{lang.form.dates}</FormItemLabel>
-
               {/* start-end dates fields */}
-              <Row gutter={10} align="middle">
-                <Form.Item style={{ marginRight: "25px" }} label={<Label>{lang.form.start}</Label>}>
-                  <CalculatorDatePicker
-                    onChange={date => this.setField("start", date, this.autocompleteDays)}
-                    placeholder={lang.form.dates_placeholder}
-                    value={form.start}
-                    format="DD.MM.YYYY"
-                    name="start"
-                    size="large"
-                  />
-                </Form.Item>
+              <Form.Item label={<Label>{lang.form.dates}</Label>} labelCol={{ span: 24 }}>
+                <Row gutter={10} align="middle">
+                  <Form.Item style={{ marginRight: "25px" }} label={<Label>{lang.form.start}</Label>}>
+                    <CalculatorDatePicker
+                      onChange={date => this.setField("start", date, this.autocompleteDays)}
+                      placeholder={lang.form.dates_placeholder}
+                      value={form.start}
+                      format="DD.MM.YYYY"
+                      name="start"
+                      size="large"
+                    />
+                  </Form.Item>
 
-                <Form.Item label={<Label>{lang.form.end}</Label>}>
-                  <CalculatorDatePicker
-                    onChange={date => this.setField("end", date, this.autocompleteDays)}
-                    placeholder={lang.form.dates_placeholder}
-                    value={form.end}
-                    format="DD.MM.YYYY"
-                    size="large"
-                    name="end"
-                  />
-                </Form.Item>
-              </Row>
+                  <Form.Item label={<Label>{lang.form.end}</Label>}>
+                    <CalculatorDatePicker
+                      onChange={date => this.setField("end", date, this.autocompleteDays)}
+                      placeholder={lang.form.dates_placeholder}
+                      value={form.end}
+                      format="DD.MM.YYYY"
+                      size="large"
+                      name="end"
+                    />
+                  </Form.Item>
+                </Row>
+              </Form.Item>
 
               {/* days field */}
               <Form.Item label={<Label>{lang.form.days}</Label>}>

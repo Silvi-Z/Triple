@@ -25,7 +25,29 @@ class Subsidy extends Salary {
   }
 
   // TODO : define validation rules
-  static schema = Yup.object().shape({})
+  static schema = Yup.object().shape({
+    tax_field: Yup.number().oneOf([Subsidy.TAX_COMMON, Subsidy.TAX_IT, Subsidy.TAX_ENTERPRISE]).required(),
+    pension: Yup.number().oneOf([Salary.PENSION_NO, Salary.PENSION_YES, Salary.PENSION_YES_VOLUNTEER]).required(),
+    type: Yup.number().oneOf([this.DISABILITY, this.MATERNITY]).required(),
+    work: Yup.number().oneOf([this.HIRED, this.SELF_EMPLOYED]).required(),
+    static: Yup.boolean().oneOf([true, false]).required(),
+    schedule: Yup.number().oneOf([5, 6]).required(),
+    amount: Yup.number().nullable().when("static", {
+      is: true,
+      then: Yup.number().required(),
+    }),
+    income: Yup.number().nullable(),
+    start: Yup.date().nullable().when("days", {
+      is: null,
+      then: Yup.date().required(),
+    }),
+    end: Yup.date().nullable().when("days", {
+      is: null,
+      then: Yup.date().required(),
+
+    }),
+    days: Yup.number().required(),
+  })
 
   /**
    * Subsidy constructor
