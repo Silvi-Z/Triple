@@ -61,13 +61,21 @@ export const workingDaysInRange = ({ start, end, holidays, workdays, schedule })
  * @param {Number} schedule - working schedule
  * @param {{title: String|null, date: String}[]} workdays
  * @param {{title: String|null, date: String}[]} holidays
+ * @param {Number} type
  * @return {Array}
  */
-export const workingDaysInRangeForSubsidy = ({ start, end, holidays, workdays, schedule }) => {
+export const workingDaysInRangeForSubsidy = ({ start, end, holidays, workdays, schedule, type }) => {
   const days = []
 
   while (start.isSameOrBefore(end)) {
-    days.push(start.clone().format("YYYY-MM-DD"))
+    if (type === 1) {
+      days.push(start.clone().format("YYYY-MM-DD"))
+    } else {
+      if (isWorkDay(start, holidays, workdays, schedule)) {
+        days.push(start.clone().format("YYYY-MM-DD"))
+      }
+    }
+
     start.add(1, "day")
   }
 

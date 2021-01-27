@@ -85,7 +85,7 @@ class SubsidyCalculator extends React.Component {
 
   handleSubmit = () => {
     const amount = this.calculator.calculate()
-    const { pension, tax_field } = this.state.form
+    const { pension, tax_field, days, type } = this.state.form
 
     Subsidy.schema.isValid(this.state.form).then(valid => {
       if (!valid) {
@@ -101,11 +101,15 @@ class SubsidyCalculator extends React.Component {
         tax_field,
       }).then(res => {
         const { income_tax, salary } = res.data
+        const subsidy_emp = type === 2 ? Math.round((amount - income_tax - 1000) / (days - 1)) * 5 : 0
+        const subsidy_gov = type === 2 ? Math.round(amount - income_tax - subsidy_emp - 1000) : (amount - income_tax - 1000)
 
         this.setState({
           result: {
             income_tax,
             subsidy: amount,
+            subsidy_gov,
+            subsidy_emp,
             pure_subsidy: salary,
           },
         })
@@ -114,30 +118,36 @@ class SubsidyCalculator extends React.Component {
   }
 
   setField(name, value, cb) {
-    this.setState({ form: { ...this.state.form, [name]: value } }, cb)
+    this.setState(prevState => (
+      { form: { ...prevState.form, [name]: value } }
+    ), cb)
   }
 
   resetSchedule() {
+    this.autocompleteDays()
     if (this.isTypeMaternity) {
       this.setField("schedule", 5)
     }
   }
 
   autocompleteDays() {
-    const { start, end, schedule } = this.state.form
+    const { start, end, type } = this.state.form
 
     if (isNull(start) || isNull(end)) {
       this.setState({ form: { ...this.state.form, days: null } })
     }
 
     if (start && end) {
-      this.setField("days", workingDaysInRangeForSubsidy({
+      const daysCount = workingDaysInRangeForSubsidy({
         holidays: [],
         workdays: [],
         schedule: 5,
-        start,
-        end,
-      }).length)
+        start: start.clone(),
+        end: end.clone(),
+        type,
+      })
+
+      this.setField("days", daysCount.length)
     }
   }
 
@@ -374,8 +384,18 @@ class SubsidyCalculator extends React.Component {
           <UnderLine />
 
           <CalculatorCardResult
-            title={lang.result["subsidy_gov"]}
+            title={lang.result["all_pure_subsidy"]}
             text={result.subsidy}
+          />
+
+          <CalculatorCardResult
+            title={lang.result["subsidy_emp"]}
+            text={result.subsidy_emp}
+          />
+
+          <CalculatorCardResult
+            title={lang.result["subsidy_gov"]}
+            text={result.subsidy_gov}
           />
 
           <CalculatorCardResult

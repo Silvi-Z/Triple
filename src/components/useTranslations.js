@@ -381,6 +381,7 @@ const query = graphql`
                   subsidy_emp
                   subsidy_gov
                   pure_subsidy
+                  all_pure_subsidy
                   income_tax
                 }
               }

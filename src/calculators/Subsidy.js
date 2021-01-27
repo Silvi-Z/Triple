@@ -38,15 +38,6 @@ class Subsidy extends Salary {
   }
 
   /**
-   * Setting 12 months average amount
-   *
-   * @param {Number} avg
-   */
-  setAvg(avg) {
-    this.avg = avg
-  }
-
-  /**
    * was salary static at last 12 months
    *
    * @return {Boolean}
@@ -65,12 +56,31 @@ class Subsidy extends Salary {
       ? this.fields.amount + ((this.fields.income || 0) / 12)
       : this.avg + ((this.fields.income || 0) / 12)
 
-    if (avg > Salary.MIN * 15) {
-      return (Salary.MIN * 15)
-    } else if (avg < Salary.MIN * 0.5) {
-      return (Salary.MIN * 0.5)
-    } else {
-      return (avg)
+    return (avg)
+  }
+
+  /**
+   * Compare month average salary limit
+   *
+   * @returns {number}
+   */
+  get compareAvgMonthly() {
+    if (this.fields.type === 1) {
+      return this.compareMaternity
+    } else if (this.fields.type === 2) {
+      return this.compareDisability
+    }
+  }
+
+  /**
+   * Setting days for counting daily salary
+   * @returns {number}
+   */
+  get monthlyDaysCount() {
+    if (this.fields.type === 1) {
+      return 30.4
+    } else if (this.fields.type === 2) {
+      return this.fields.schedule === 5 ? 21 : 25
     }
   }
 
@@ -80,7 +90,7 @@ class Subsidy extends Salary {
    * @return {number}
    */
   get avgDailySalary() {
-    return (this.avgMonthSalary / 30.4)
+    return (this.compareAvgMonthly / this.monthlyDaysCount)
   }
 
   /**
@@ -90,6 +100,51 @@ class Subsidy extends Salary {
    */
   get isTypeDisability() {
     return this.fields.type === Subsidy.DISABILITY
+  }
+
+  /**
+   * Compare maternity subsidy limit
+   * @returns {number}
+   */
+  get compareMaternity() {
+    let avg = this.avgMonthSalary
+    if (avg < Salary.MATERNITY_SUBSIDY_MIN) {
+      return Salary.MATERNITY_SUBSIDY_MIN
+    } else if (avg > Salary.MATERNITY_SUBSIDY_MAX) {
+      return Salary.MATERNITY_SUBSIDY_MAX
+    } else {
+      return avg
+    }
+  }
+
+  /**
+   * Compare disability subsidy limit
+   * @returns {number}
+   */
+  get compareDisability() {
+    let avg = this.avgMonthSalary * 0.8
+    if (avg > Salary.DISABILITY_SUBSIDY_MAX) {
+      return Salary.DISABILITY_SUBSIDY_MAX
+    } else {
+      return avg
+    }
+  }
+
+  get daysForCalculate() {
+    if (this.fields.type === 1) {
+      return this.fields.days
+    } else if (this.fields.type === 2) {
+      return (this.fields.days - 1)
+    }
+  }
+
+  /**
+   * Setting 12 months average amount
+   *
+   * @param {Number} avg
+   */
+  setAvg(avg) {
+    this.avg = avg
   }
 
   /**
@@ -123,7 +178,7 @@ class Subsidy extends Salary {
    * @return {number}
    */
   calculate() {
-    return Math.round(this.avgDailySalary * this.fields.days)
+    return Math.round(this.avgDailySalary * this.daysForCalculate)
   }
 }
 
