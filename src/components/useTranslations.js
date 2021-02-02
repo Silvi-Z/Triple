@@ -1,5 +1,5 @@
 import React from "react"
-import { useStaticQuery, graphql } from "gatsby"
+import { graphql, useStaticQuery } from "gatsby"
 import LocaleContext from "../localeContext"
 
 function useTranslations() {
@@ -428,6 +428,9 @@ const query = graphql`
                 title
                 calculate
                 form {
+                type
+                car
+                realEstate
                   vehicle {
                     title
                     car
@@ -435,6 +438,13 @@ const query = graphql`
                     truck
                     motorcycle
                     water_vehicle
+                  }
+                  estate {
+                    title
+                    cadastralValue
+                    residential
+                    public_production
+                    garage
                   }
                   year
                   power
