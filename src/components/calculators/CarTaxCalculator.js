@@ -101,7 +101,7 @@ class CarTaxCalculator extends React.Component {
 
               {this.isTypeCar ?
                 <>
-                  <Form.Item label={<Label>{lang.form.estate.title}</Label>}>
+                  <Form.Item label={<Label>{lang.form.vehicle.title}</Label>}>
                     <CalculatorSelect
                       size="large"
                       value={form.type}
