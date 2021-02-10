@@ -456,6 +456,66 @@ const query = graphql`
                   tax
                 }
               }
+              calendar{
+                title
+                calculate
+                chooseDaysRange
+                working_schedule
+                calendar {
+                  months {
+                    january
+                    february
+                    march
+                    april
+                    may
+                    june
+                    july
+                    august
+                    september
+                    october
+                    november
+                    december
+                  }
+                  daysOfWeek {
+                    monday
+                    tuesday
+                    wednesday
+                    thursday
+                    friday
+                    saturday
+                    sunday
+                  }
+                  additionalInformation {
+                    calendarDays
+                    workDays
+                    workHours
+                    five_days
+                    six_days
+                  }
+                }
+                result {
+                  title
+                  calendarDays
+                  workDays
+                  workHours
+                  nonWorkingDays
+                }
+              }
+              currency {
+                title
+                calculate
+                currency {
+                  amd
+                  usd
+                  rub
+                }
+                form {
+                  date
+                }
+                result {
+                  currency
+                }
+              }
               share
             }
             link

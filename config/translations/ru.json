@@ -472,6 +472,83 @@
         "title": "Արդյունք",
         "tax": "Վճարման ենթակա գույքահարկի վճար"
       }
+    },
+    "calendar": {
+      "title": "Աշխատանքային օրացույց",
+      "calculate": "ՀԱՇՎԵԼ",
+      "chooseDaysRange": "Ընտրել աշխատանքային օրացույցի օրերը",
+      "working_schedule": "Նշել աշխատանքային գրաֆիկը",
+      "calendar": {
+        "months": {
+          "january": "Հունվար",
+          "february": "Փետրվար",
+          "march": "Մարտ",
+          "april": "Ապրիլ",
+          "may": "Մայիս",
+          "june": "Հունիս",
+          "july": "Հուլիս",
+          "august": "Օգոստոս",
+          "september": "Սեպտեմբեր",
+          "october": "Հոկտեմբեր",
+          "november": "Նոյեմբեր",
+          "december": "Դեկտեմբեր"
+        },
+        "daysOfWeek": {
+          "monday": "Երկ",
+          "tuesday": "Երք",
+          "wednesday": "Չոր",
+          "thursday": "Հնգ",
+          "friday": "Ուր",
+          "saturday": "Շբթ",
+          "sunday": "Կիր"
+        },
+        "additionalInformation": {
+          "calendarDays": "Օրացույցային օրեր",
+          "workDays": "Աշխատանքային օրեր",
+          "workHours": "Աշխատանքային ժամեր",
+          "five_days": "Հնգօրյա",
+          "six_days": "Վեցօրյա"
+        }
+      },
+      "form": {
+        "type": "Գույքահարկի տեսակ",
+        "car": "Ավտոմեքենայի",
+        "realEstate": "Անշարժ գույքի",
+        "vehicle": {
+          "title": "ՏՄ տեսակը",
+          "car": "Մինչև 10 նստատեղ ունեցող մարդատար ավտոմեքենա",
+          "van": "10 և ավել նստատեղ ունեցող մարդատար ավտոմեքենա",
+          "truck": "Բեռնատար ավտոմեքենա",
+          "motorcycle": "Մոտոցիկլետ",
+          "water_vehicle": "Ջրային փոխադրամիջոց"
+        },
+        "year": "ԹՈՂԱՐԿՄԱՆ ՏԱՐԵԹԻՎ",
+        "power": "ՇԱՐԺԻՉԻ ՀԶՈՐՈՒԹՅՈՒՆ",
+        "horsepower": "Ձիաուժ",
+        "kilowatts": "Կիլովատ"
+      },
+      "result": {
+        "title": "Արդյունք",
+        "calendarDays": "Օրացույցային օրեր",
+        "workDays": "Աշխատանքային օրեր",
+        "workHours": "Աշխատանքային ժամեր",
+        "nonWorkingDays": "Ոչ աշխատանքային օրեր"
+      }
+    },
+    "currency": {
+      "title": "Փոխարժեքի հաշվիչ",
+      "calculate": "ՀԱՇՎԵԼ",
+      "currency": {
+        "amd": "AMD",
+        "usd": "USD",
+        "rub": "RUB"
+      },
+      "form": {
+        "date": "ԴՐՈՒԹՅԱՄԲ"
+      },
+      "result": {
+        "currency": "Փոխարժեքն այս պահին"
+      }
     }
   },
   "link": "Go back to the homepage"

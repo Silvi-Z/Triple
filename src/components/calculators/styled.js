@@ -1,8 +1,8 @@
-import styled from "styled-components";
-import { Button, Card, DatePicker, Divider, InputNumber, Radio, Select, Slider, Typography } from "antd"
+import styled from "styled-components"
+import { Card, Checkbox, DatePicker, Divider, InputNumber, Radio, Select, Typography } from "antd"
 import { SubmitButton } from "../careercomponents/careerDroping/dropStyle"
 
-const { Text } = Typography;
+const { Text } = Typography
 
 export const CalcImagesWrapper = styled.div`
   color:black;
@@ -44,7 +44,7 @@ export const FormLabel = styled.h3`
   letter-spacing: 1.15px;
   color: #000000;
   margin-bottom: 15px;
-`;
+`
 
 export const FormItemLabel = styled.p`
   font-family: Arial AMU, serif;
@@ -71,7 +71,7 @@ export const RadioGroup = styled(Radio.Group)`
   width: 100%;
   min-height: 50px !important;
   margin-bottom: 25px;
-`;
+`
 
 export const RadioButton = styled(Radio.Button)`
   font-weight: bold;
@@ -90,7 +90,7 @@ export const RadioButton = styled(Radio.Button)`
   &.ant-radio-button-wrapper-checked {
     border-radius: 5px !important;
   } 
-`;
+`
 
 export const CalculatorInput = styled(InputNumber)`
   background: #FFFFFF;
@@ -98,7 +98,13 @@ export const CalculatorInput = styled(InputNumber)`
   box-sizing: border-box;
   border-radius: 5px !important;
   width: 136px;
-`;
+  
+  &.currencyInput{
+    width: 65%;
+    border-bottom-right-radius: 0 !important;
+    border-top-right-radius: 0 !important;
+  }
+`
 
 export const CalculatorSelect = styled(Select)`
   background: #FFFFFF;
@@ -111,6 +117,23 @@ export const CalculatorSelect = styled(Select)`
     border-radius: 5px !important;
     background-color: transparent !important; 
   }
+  
+  &.currencySelect{
+     width: 35%;
+     background-color: #555555;
+     border-bottom-left-radius: 0 !important;
+    border-top-left-radius: 0 !important;
+    border: none !important;
+    height: 45px;
+    color: white !important;
+    position: absolute;
+    right: 0;
+    height: 40px;
+  }
+  
+  .ant-select-arrow .anticon > svg{
+    fill: white;
+  }
 `
 
 export const Label = styled(Text)`
@@ -121,7 +144,7 @@ export const Label = styled(Text)`
   text-transform: uppercase;
   color: #000000;
   font-weight: bold;
-`;
+`
 
 export const RadioLabel = styled(Text)`
   font-style: normal;
@@ -132,14 +155,14 @@ export const RadioLabel = styled(Text)`
   color: #000000;
   word-break: break-word!important;
   overflow-wrap: break-word!important;
-`;
+`
 
-export const ButtonSubmit = styled(SubmitButton)``;
+export const ButtonSubmit = styled(SubmitButton)``
 
 export const UnderLine = styled(Divider)`
   margin: 5px 0 15px!important;
   border-top: 1px solid #000000;
-`;
+`
 
 export const CalculatorDatePicker = styled(DatePicker)`
   width: 150px;
@@ -147,7 +170,11 @@ export const CalculatorDatePicker = styled(DatePicker)`
   background: #FFFFFF;
   box-sizing: border-box;
   border-radius: 5px !important;
-`;
+  
+  &.currencyDate{
+    margin-right: 10px;
+  }
+`
 
 export const ColHeader = styled.th`
   font-family: ArialAMU,serif;
@@ -206,4 +233,197 @@ export const TextStyled = styled.p`
 `
 export const CalculatorsCard = styled(Card)`
   margin-top: 30px;
+`
+export const CalendarWrapper = styled.div`
+  width: 100%;
+  border: 0.5px solid #555555;
+  padding-bottom: 10px;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  overflow: hidden;
+`
+export const CalendarInfo = styled.div`
+  width: 100%;
+  height: 158px;
+  border: 0.5px solid #555555;
+  border-radius: 10px;
+  margin-bottom: 25px;
+  overflow: hidden;
+  
+  tbody td, tbody th {
+    padding: 0 5px;
+    border: 1px solid #555555;   
+    height: 40px; 
+  }
+      
+  tbody th{
+    border-left: unset;
+  }
+  
+  tbody tr:last-of-type td,
+  tbody tr:last-of-type th {
+    border-bottom: unset;
+  }  
+  
+  tbody td{
+    text-align: center;
+    letter-spacing: 0.15px;
+    color: #000000;
+    font-family: Arial AMU;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 15px;
+  }
+`
+export const CalendarTable = styled.table`
+  height: 206px;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  
+  thead tr:last-child td {
+    border: unset;
+  }
+`
+export const CalendarTitle = styled.td`
+  font-family: Arial AMU;
+  padding: 10px 0;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 15px;
+  text-align: center;
+  letter-spacing: 0.15px;
+  color: #000000;
+  border-bottom: 1px solid #C4C4C4;
+  
+  &.additionalInformation{
+    font-family: Arial AMU;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 15px;
+    letter-spacing: 0.15px;
+    color: #555555;
+    padding-left: 5px; 
+    padding-right: 5px; 
+  }
+`
+export const DayWrapper = styled.td`
+  padding: 2.5px 5px;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+`
+export const InformationTitles = styled.th`
+  font-family: Arial AMU;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 15px;
+  letter-spacing: 0.15px;
+  color: #555555;
+`
+export const CheckboxField = styled(Checkbox)`
+  font-family: Arial AMU;
+  width: 20px;
+  border: none;
+  outline: none;
+  height: 20px;
+  border-radius: 2px;
+  line-height: 20px;
+  text-align: center;
+  background-color: transparent;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  color: #000000;
+  letter-spacing: 0.15px;
+  padding: 0;
+  cursor: pointer;
+  display: block;
+  margin: auto;
+  position: relative;
+  
+  span:last-of-type{
+    position: absolute;
+    z-index: 11;
+  }
+  
+  &:hover {
+    background-color: #85c1dc
+  }
+  
+  &.weekend {
+    background: #CDF5FA;
+    
+    &.workday{
+      background: transparent;
+      color:#000000; 
+    }
+  }
+  
+  &.workday {
+    background: transparent;
+  }
+  
+  &.holiday {
+    background: #00779C;
+    color: #FFFFFF;
+    
+    &.weekend{
+      background: #CDF5FA;
+      color:#000000; 
+    }
+  }
+  
+  span{
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    display: block;
+  }
+  
+  .ant-checkbox{
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    display: inline;
+    height: 100%;
+    width: 100%;
+    
+    &.ant-checkbox-checked{
+      &:after{
+        content: unset;
+      }
+    }
+    
+    .ant-checkbox-inner{
+      height: 100%;
+      width: 100%;
+      background-color: inherit;
+      border: none;
+      border-radius: inherit;
+      
+      &:after{
+        content: unset;
+      }
+    }
+
+    input{
+    display: none;
+    
+      &:checked{
+        & + .ant-checkbox-inner{
+          box-shadow: 0px 0px 4px #b3b3b3;
+          background-color: #85c1dc;
+          border: 1px solid #76b0ca;
+          // border-radius: 2px;
+        }
+      }
+    }
+  }
 `

@@ -210,7 +210,6 @@ class CarCustomsCalculator extends React.Component {
             </Form>
           </CalculatorsCard>
         </Col>
-        {console.log(this.props)}
         <Col xs={24} sm={24} md={24} lg={8} xl={8} xxl={8} className="result">
           <FormLabel style={{ margin: 0 }}>{lang.result.title}</FormLabel>
 
