@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import { Card, Checkbox, DatePicker, Divider, InputNumber, Radio, Select, Typography } from "antd"
+import { Card, Checkbox, DatePicker, Divider, InputNumber, Radio, Row, Select, Typography } from "antd"
 import { SubmitButton } from "../careercomponents/careerDroping/dropStyle"
 
 const { Text } = Typography
@@ -240,7 +240,6 @@ export const CalendarWrapper = styled.div`
   padding-bottom: 10px;
   border-radius: 10px;
   margin-bottom: 15px;
-  overflow: hidden;
 `
 export const CalendarInfo = styled.div`
   width: 100%;
@@ -346,35 +345,121 @@ export const CheckboxField = styled(Checkbox)`
   margin: auto;
   position: relative;
   
+    &:hover {
+    
+      .day_title{
+        display: block
+      }
+      .ant-checkbox-inner{
+        background-color: #85c1dc
+      }
+    }
+  
   span:last-of-type{
     position: absolute;
     z-index: 11;
   }
   
-  &:hover {
-    background-color: #85c1dc
-  }
+  .day_title{
+      position: absolute;
+      bottom: calc(100% + 5px);
+      display: block;
+      left: 0;
+      right: 0;
+      height: fit-content;
+      padding: 5px 10px;
+      background-color: white;
+      border: 0.5px solid #555555;
+      width: fit-content;
+      border-radius: 5px;
+      margin: auto;
+      color: #555555;
+      display: none;
+      max-width: 70px;
+      
+      // &:after {
+      //   content: '';
+      //   width: 0; 
+      //   height: 0; 
+      //   border-left: 20px solid transparent;
+      //   border-right: 20px solid transparent;
+      //   border-top: 20px solid #f00;
+      // }
+    }
+    
+    .ant-checkbox-inner{
+      height: 100%;
+      width: 100%;
+      background-color: inherit;
+      border: none;
+      border-radius: 2px;
+      
+      &:after{
+        content: unset;
+      }
+    }
+  
+
   
   &.weekend {
-    background: #CDF5FA;
     
+    .ant-checkbox-inner{
+      background-color: #CDF5FA;
+    }
     &.workday{
-      background: transparent;
-      color:#000000; 
+      color:#000000;
+    
+    .ant-checkbox-inner{
+      background-color: transparent;
+    }
+      
+    }
+    
+    &:hover {
+      .ant-checkbox-inner{
+        background-color: #85c1dc
+      }
     }
   }
   
   &.workday {
-    background: transparent;
+    .ant-checkbox-inner{
+      background-color: transparent;
+    }
+    
+    &:hover {
+      .ant-checkbox-inner{
+        background-color: #85c1dc
+      }
+    }
   }
   
   &.holiday {
-    background: #00779C;
-    color: #FFFFFF;
+      color: #FFFFFF;
+    .ant-checkbox-inner{
+      background-color: #00779C;
+    }
+    
+    &:hover {
+      color: #000000;
+
+      .ant-checkbox-inner{
+        background-color: #85c1dc
+      }
+    }
+    
     
     &.weekend{
-      background: #CDF5FA;
-      color:#000000; 
+        color:#000000;
+      .ant-checkbox-inner{
+        background: #CDF5FA;
+      }
+      
+      &:hover {
+      .ant-checkbox-inner{
+        background-color: #85c1dc
+      }
+    }
     }
   }
   
@@ -400,18 +485,6 @@ export const CheckboxField = styled(Checkbox)`
         content: unset;
       }
     }
-    
-    .ant-checkbox-inner{
-      height: 100%;
-      width: 100%;
-      background-color: inherit;
-      border: none;
-      border-radius: inherit;
-      
-      &:after{
-        content: unset;
-      }
-    }
 
     input{
     display: none;
@@ -421,9 +494,47 @@ export const CheckboxField = styled(Checkbox)`
           box-shadow: 0px 0px 4px #b3b3b3;
           background-color: #85c1dc;
           border: 1px solid #76b0ca;
-          // border-radius: 2px;
+          border-radius: 2px;
         }
       }
     }
   }
+`
+
+export const YearField = styled(Row)`
+  margin-bottom: 25px;
+
+  button{
+    background: #00779C;
+    height: 20px;
+    width: 20px;
+    outline: none;
+    border: none;
+    border-radius: 2px;
+    text-align: center;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    img{
+      height: 80%;
+      object-fit: contain;
+    }
+    
+    &[data-action='next']{
+      transform: rotate(180deg)
+    }
+  }
+  
+  p{
+      text-align: center;
+      letter-spacing: 0.15px;
+      color: #000000;
+      font-family: Arial AMU;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 14px;
+      margin: 0 15px
+    }
 `

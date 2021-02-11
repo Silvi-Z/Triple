@@ -9,6 +9,31 @@ class Currency {
   /**
    * @type {number}
    */
+  static EUR = "EUR"
+
+  /**
+   * @type {number}
+   */
+  static CNY = "CNY"
+
+  /**
+   * @type {number}
+   */
+  static GBP = "GBP"
+
+  /**
+   * @type {number}
+   */
+  static GEL = "GEL"
+
+  /**
+   * @type {number}
+   */
+  static IRR = "IRR"
+
+  /**
+   * @type {number}
+   */
   static AMD = "AMD"
 
   /**
@@ -36,7 +61,7 @@ class Currency {
     }),
     amount_right: Yup.number().nullable(),
     date: Yup.string().required(),
-    from: Yup.string().oneOf([Currency.USD, Currency.AMD]).test(
+    from: Yup.string().oneOf([Currency.USD, Currency.AMD, Currency.IRR, Currency.GEL, Currency.GBP, Currency.CNY, Currency.EUR, Currency.RUB]).test(
       "from",
       function(item) {
         if (this.parent.to === item) {
@@ -45,7 +70,7 @@ class Currency {
           return (item)
         }
       }).required(),
-    to: Yup.string().oneOf([Currency.USD, Currency.AMD]).test(
+    to: Yup.string().oneOf([Currency.USD, Currency.AMD, Currency.IRR, Currency.GEL, Currency.GBP, Currency.CNY, Currency.EUR, Currency.RUB]).test(
       "to",
       function(item) {
         if (this.parent.from === item) {
@@ -81,15 +106,6 @@ class Currency {
   }
 
   /**
-   * is vehicle automobile
-   *
-   * @return {boolean}
-   */
-  get isAutomobile() {
-    return this.type && (this.type === Vehicle.CAR || this.type === Vehicle.VAN || this.type === Vehicle.TRUCK)
-  }
-
-  /**
    * Array of available vehicle types
    *
    * @param {Object} lang
@@ -99,6 +115,12 @@ class Currency {
     return [
       { value: Currency.AMD, text: lang.amd },
       { value: Currency.USD, text: lang.usd },
+      { value: Currency.RUB, text: lang.rub },
+      { value: Currency.EUR, text: lang.eur },
+      { value: Currency.CNY, text: lang.cny },
+      { value: Currency.GBP, text: lang.gbp },
+      { value: Currency.GEL, text: lang.gel },
+      { value: Currency.IRR, text: lang.irr },
     ]
   }
 

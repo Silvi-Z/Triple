@@ -1830,3 +1830,13 @@ div.currencyField {
     margin-bottom: 0;
 }
 
+.dateRange {
+    font-family: Arial AMU;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 25px;
+    letter-spacing: 0.15px;
+    color: #555555;
+}
+

@@ -461,6 +461,11 @@ const query = graphql`
                 calculate
                 chooseDaysRange
                 working_schedule
+                year
+                form{
+                  start
+                  end
+                }
                 calendar {
                   months {
                     january
@@ -508,6 +513,11 @@ const query = graphql`
                   amd
                   usd
                   rub
+                  eur
+                  cny
+                  gbp
+                  gel
+                  irr
                 }
                 form {
                   date

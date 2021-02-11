@@ -1,6 +1,6 @@
 import React from "react"
 import moment from "moment"
-import { isEmpty, isNull } from "lodash"
+import { isEmpty, isEqual, isNull } from "lodash"
 import { Card, Checkbox, Col, Form, Radio, Row } from "antd"
 import {
   ButtonSubmit,
@@ -38,6 +38,7 @@ class SubsidyCalculator extends React.Component {
     this.state = {
       form: { ...Subsidy.form },
       result: { subsidy: null },
+      calculated: false
     }
     this.calculator = new Subsidy()
   }
@@ -95,9 +96,9 @@ class SubsidyCalculator extends React.Component {
         pension,
         tax_field,
       }).then(res => {
-        const { income_tax, salary } = res.data
-        const subsidy_emp = type === 2 ? Math.round((amount - income_tax - 1000) / (days - 1)) * 5 : 0
-        const subsidy_gov = type === 2 ? Math.round(amount - income_tax - subsidy_emp - 1000) : (amount - income_tax - 1000)
+        const { income_tax, salary, stamp_fee } = res.data
+        const subsidy_emp = type === 2 ? Math.round((salary + income_tax + stamp_fee) / (days - 1)) * 5 : 0
+        const subsidy_gov = type === 2 ? Math.round((salary + income_tax + stamp_fee) - subsidy_emp) : (salary + income_tax + stamp_fee)
 
         this.setState({
           result: {
@@ -105,8 +106,9 @@ class SubsidyCalculator extends React.Component {
             subsidy: amount,
             subsidy_gov,
             subsidy_emp,
-            pure_subsidy: salary,
+            pure_subsidy: salary + stamp_fee,
           },
+          calculated: true
         })
       })
     })
@@ -185,6 +187,12 @@ class SubsidyCalculator extends React.Component {
     }
 
     this.setField(inputName, inputValue)
+  }
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if (!isEqual(prevState.form, this.state.form) && this.state.calculated) {
+      this.handleSubmit()
+    }
   }
 
   render() {

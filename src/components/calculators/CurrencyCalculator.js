@@ -266,7 +266,8 @@ class CurrencyCalculator extends React.Component {
                       onChange={value => this.setField("from", value)}
                     >
                       {Currency.types(lang.currency).map(currency =>
-                        <Select.Option value={currency.value} key={`currency-${currency.value}`}>
+                        <Select.Option value={currency.value} disabled={form.to === currency.value}
+                                       key={`currency-${currency.value}`}>
                           {currency.text}
                         </Select.Option>,
                       )}
@@ -305,7 +306,8 @@ class CurrencyCalculator extends React.Component {
                       onChange={value => this.setField("to", value)}
                     >
                       {Currency.types(lang.currency).map(currency =>
-                        <Select.Option value={currency.value} key={`currency-${currency.value}`}>
+                        <Select.Option value={currency.value} disabled={form.from === currency.value}
+                                       key={`currency-${currency.value}`}>
                           {currency.text}
                         </Select.Option>,
                       )}
