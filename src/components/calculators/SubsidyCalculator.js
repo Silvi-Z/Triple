@@ -38,7 +38,7 @@ class SubsidyCalculator extends React.Component {
     this.state = {
       form: { ...Subsidy.form },
       result: { subsidy: null },
-      calculated: false
+      calculated: false,
     }
     this.calculator = new Subsidy()
   }
@@ -95,6 +95,7 @@ class SubsidyCalculator extends React.Component {
         amount,
         pension,
         tax_field,
+        stamp: false,
       }).then(res => {
         const { income_tax, salary, stamp_fee } = res.data
         const subsidy_emp = type === 2 ? Math.round((salary + income_tax + stamp_fee) / (days - 1)) * 5 : 0
@@ -108,7 +109,7 @@ class SubsidyCalculator extends React.Component {
             subsidy_emp,
             pure_subsidy: salary + stamp_fee,
           },
-          calculated: true
+          calculated: true,
         })
       })
     })
