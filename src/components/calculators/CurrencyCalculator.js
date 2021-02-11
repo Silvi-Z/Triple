@@ -44,6 +44,8 @@ class CurrencyCalculator extends React.Component {
       form: { ...form },
       rates: {},
       changedAmount: true,
+      calculated: false,
+      valid: false,
     }
     this.holidays = []
     this.workdays = []
@@ -142,6 +144,7 @@ class CurrencyCalculator extends React.Component {
       this.dateToPickerKey = randomString()
 
     })
+    this.state.valid && this.setState({ calculated: true })
   }
 
   setFields(fields, cb) {
@@ -184,31 +187,47 @@ class CurrencyCalculator extends React.Component {
         .get(`api/rates/byDate?amount=${changedAmount ? form.amount : form.amount_right}&date=${form.date}&from=${changedAmount ? form.from : form.to}&to=${changedAmount ? form.to : form.from}`)
         .then(res => {
           if (changedAmount) {
-            this.setState({ form: { ...this.state.form, amount_right: parseFloat(res.data.result).toFixed(2) } })
+            this.setState({
+              form: { ...this.state.form, amount_right: parseFloat(res.data.result).toFixed(2) },
+              calculated: false,
+            })
           } else if (!changedAmount) {
-            this.setState({ form: { ...this.state.form, amount: parseFloat(res.data.result).toFixed(2) } })
+            this.setState({
+              form: { ...this.state.form, amount: parseFloat(res.data.result).toFixed(2) },
+              calculated: false,
+            })
           }
         })
         .then(() => {
-          if (!this.state.calculated) this.setState({ calculated: true })
+          this.setState({ calculated: false })
         })
         .catch(err => console.log(err))
         .finally(() => {
-          this.setState({ loading: false })
+          this.setState({ loading: false, calculated: false })
 
           document.body.scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" })
         })
     }).catch(err => console.log(err))
   }
 
+  onBlur = () => {
+    if (this.state.valid) {
+      this.handleSubmit()
+    }
+  }
+
   componentDidUpdate(prevProps, prevState, snapshot) {
-    if (!isEqual(prevState.form, this.state.form) && this.state.calculated) {
+    if (!isEqual(prevState.form, this.state.form) && this.state.calculated && this.state.valid) {
       this.handleSubmit()
     }
   }
 
   componentDidMount() {
     this.getCBARates()
+  }
+
+  changeState = () => {
+    this.setState({ valid: true })
   }
 
   render() {
@@ -233,7 +252,6 @@ class CurrencyCalculator extends React.Component {
                   onChange={this.handleDateFromChange}
                   value={this.dateFromValue}
                   key={this.dateFromPickerKey}
-                  suffixIcon={false}
                   ref={this.dateFromPicker}
                   placeholder={null}
                   className={"currencyDate"}
@@ -256,6 +274,7 @@ class CurrencyCalculator extends React.Component {
                       min={0}
                       className={"currencyInput"}
                       size="large"
+                      onBlur={this.onBlur}
                       type="number"
                     />
                     <CalculatorSelect
@@ -296,6 +315,7 @@ class CurrencyCalculator extends React.Component {
                       min={0}
                       className={"currencyInput"}
                       size="large"
+                      onBlur={this.onBlur}
                       type="number"
                     />
                     <CalculatorSelect
@@ -318,6 +338,7 @@ class CurrencyCalculator extends React.Component {
 
               <Form.Item style={{ marginTop: "50px" }}>
                 <ButtonSubmit
+                  onClick={this.changeState}
                   htmlType="submit"
                   shape="round"
                   size="large"
