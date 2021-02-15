@@ -61,7 +61,7 @@ class VehicleTax extends Vehicle {
       } else {
         price = 500
       }
-    }else if (this.type === Vehicle.VAN) {
+    } else if (this.type === Vehicle.VAN) {
       price = this.power > 200 ? 200 : 100
     } else if (this.type === Vehicle.TRUCK) {
       price = this.age < 20 ? this.power <= 200 ? 100 : 200 : 0
@@ -98,7 +98,7 @@ class VehicleTax extends Vehicle {
    * @return {number}
    */
   calculate() {
-    let amount = this.powerPrice * this.price + this.additionalAmount
+    let amount = this.powerPrice * this.power + this.additionalAmount
     let discount = this.ageGt(3) && this.isAutomobile
       ? ((amount * 0.1 * this.ageGt(3)) <= amount / 2)
         ? amount * 0.1 * this.ageGt(3)

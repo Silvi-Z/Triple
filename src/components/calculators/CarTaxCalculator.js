@@ -66,7 +66,6 @@ class CarTaxCalculator extends React.Component {
               <TextStyled>{lang.paragraph}</TextStyled>
             </div>
           </Row>
-
           <CalculatorsCard bordered={false}>
             <Form
               onFinish={this.handleSubmit}
@@ -105,7 +104,6 @@ class CarTaxCalculator extends React.Component {
                   onChange={v => this.setField("power", v)}
                   style={{ marginRight: "10px" }}
                   value={form.power}
-                  max={2000}
                   min={1}
                   size="large"
                   type="number"
@@ -128,7 +126,6 @@ class CarTaxCalculator extends React.Component {
             </Form>
           </CalculatorsCard>
         </Col>
-
         <Col xs={24} sm={24} md={24} lg={8} xl={8} xxl={8} className="result">
           <FormLabel style={{ margin: 0 }}>{lang.result.title}</FormLabel>
 

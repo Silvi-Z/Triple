@@ -11,8 +11,7 @@ import {
   ContainerRow,
   ServiceTitle
 } from "./homeServiceStyle.js"
-import contentData from "./contentData"
-const HomeServices = ({ langText, lang }) => {
+const HomeServices = ({pageContext, langText, lang }) => {
   return (
     <>
       <ServiceTitle>
@@ -21,14 +20,14 @@ const HomeServices = ({ langText, lang }) => {
       </ServiceTitle>
       <ResponsWrapper>
         <ContainerRow>
-          {contentData.map(item=>(
+          {pageContext.map(item=>(
             <ContentContainer
               key={item.link}
               className="servicesContainer"
             >
               <Link to={`/${lang}/${item.link}`} >
                 <ServiceNameWrapper>
-                  {item.serviceName}
+                  {item.paragraph}
                 </ServiceNameWrapper>
               </Link>
             </ContentContainer>

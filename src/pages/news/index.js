@@ -116,7 +116,7 @@ const Index = ({location, pageContext }) => {
       />
       {!setlocationHash ? (
           <>
-            <H1Element>Նորություններ</H1Element>
+            <H1Element>{pageContext.localeResources.translation.news.title}</H1Element>
             <SearchRow>
               <StyledForm>
                 <StyledForm.Item>
@@ -124,14 +124,14 @@ const Index = ({location, pageContext }) => {
                   <SearchInput
                     type="text"
                     onChange={onChange}
-                    placeholder="Փնտրել"
+                    placeholder={pageContext.localeResources.translation.news.search_input}
                   />
                   </span>
                   {console.log(pageContext.localeResources.translation)}
                 </StyledForm.Item>
               </StyledForm>
               <NewsDatePicker
-                placeholder={'ամսաթիվ'}
+                // placeholder={pageContext.localeResources.translation.news.date}
                 format={"DD-MM-YYYY"}
                 defaultValue={moment()}
                 onChange={handleChange}
@@ -151,8 +151,8 @@ const Index = ({location, pageContext }) => {
                     <path d="M5.295 4.5L3 2.02767L0.705 4.5L-3.32702e-08 3.73887L3 0.5L6 3.73887L5.295 4.5Z" fill="#1C1D21"/>
                   </svg>
                 }>
-                  <Option value="Վերջին նորություններ">Վերջին նորություններ</Option>
-                  <Option value="Շատ ընթերցված">Շատ ընթերցված</Option>
+                  <Option value="Վերջին նորություններ">{pageContext.localeResources.translation.news.latest_news}</Option>
+                  <Option value="Շատ ընթերցված">{pageContext.localeResources.translation.news.popular}</Option>
                 </Select>
               </SelectBox>
             </SearchRow>
@@ -165,8 +165,8 @@ const Index = ({location, pageContext }) => {
                 setButtonDisplay={setButtonDisplay}
               />
               : <NoResult>
-                <NoResultTitle>Ներողություն, ոչ մի հոդված չի գտնվել</NoResultTitle>
-                <NoResultText>Փորձեք որոնել նորից </NoResultText>
+                <NoResultTitle>{pageContext.localeResources.translation.news.no_result[0].info_title}</NoResultTitle>
+                <NoResultText>{pageContext.localeResources.translation.news.no_result[0].info_text}</NoResultText>
               </NoResult>
             }
           </>

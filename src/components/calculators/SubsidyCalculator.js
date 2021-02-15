@@ -10,7 +10,10 @@ import {
   RadioLabel,
   UnderLine,
   FormLabel,
-  Label, H1Styled, TextStyled, CalculatorsCard,
+  Label,
+  H1Styled,
+  TextStyled,
+  CalculatorsCard,
 } from "./styled"
 import triple from "../../api/triple"
 import Subsidy from "../../calculators/Subsidy"
@@ -169,13 +172,14 @@ class SubsidyCalculator extends React.Component {
       <Row align="start" gutter={20}>
         <Col xs={24} sm={24} md={24} lg={16} xl={16} xxl={16}>
           <Row align="center" style={{ justifyContent: "space-between" }}>
+
             <div className="textSec">
               <H1Styled>{lang.title}</H1Styled>
               <TextStyled>{lang.paragraph}</TextStyled>
             </div>
-          </Row>
+      </Row>
 
-          <CalculatorsCard bordered={false}>
+          <Card bordered={false}>
             <Form
               onFinish={this.handleSubmit}
               initialValues={form}
@@ -339,7 +343,7 @@ class SubsidyCalculator extends React.Component {
                 </ButtonSubmit>
               </Form.Item>
             </Form>
-          </CalculatorsCard>
+          </Card>
         </Col>
 
         <Col xs={24} sm={24} md={24} lg={8} xl={8} xxl={8} className="result">

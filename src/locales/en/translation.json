@@ -65,41 +65,49 @@
     "contentData": [
       {
         "scroll_id": "test_1",
+        "link" : "services#test_1",
         "paragraph": "Accounting",
         "text": "Our team offers a wide range of accounting services that allows a company to summarize, analyze and report financial transactions to oversight agencies, regulators and tax collection entities․ Our services include:\n● Establishment of accounting policy,\n● Financial and tax accounting,\n● Accounting documentation management,\n● Financial, tax and other purposes reporting,\n● Tax optimisation."
       },
       {
         "scroll_id": "test_2",
+        "link" : "services#test_2",
         "paragraph": "Tax audit",
         "text": "Tax audit carried out by our qualified specialists permit to verify the accuracy of previously submitted tax reports, make all necessary changes in order to avoid additional fiscal responsibilities and various penalties."
       },
       {
         "scroll_id": "test_3",
+        "link" : "services#test_3",
         "paragraph": "Advisor services",
         "text": "Our team offers advisory services aiming to support and assisting organisations to operate as efficient as possible and reach all their potential. Our advisory services include:\n● Profit and financial analysis,\n● Financial transaction consulting,\n● Accounting records consulting,\n● Legal and tax consulting,\n● Business plan analysis and consulting, \n● Business registration and liquidation support."
       },
       {
         "scroll_id": "test_4",
-        "paragraph": "Company registration",
+        "link" : "services#test_4",
+        "paragraph": "Services provided to individuals",
         "text": "In reality, individuals are also involved in transactions that may evoke any sort of tax liabilities and  requirements to submit tax reports. Our specialists are willing to support individuals throughout that process from simple consulting till the submission of all required documents."
       },
       {
         "scroll_id": "test_5",
+        "link" : "services#test_5",
         "paragraph": "Customs clearance",
         "text": "Our specialists provide a wide range of customs support for standard as well as non-routine customs-clearance processes including:\n● Preparation of documents needed to be submitted to the customs authorities,\n● Submission of export and import declarations.\n● Preparation of other necessary documents for relevant state bodies"
       },
       {
         "scroll_id": "test_6",
+        "link" : "services#test_6",
         "paragraph": "Customs transactions",
         "text": "We believe that the efficient documentation of a company employee movement is crucial for businesses of all sizes. Thus, we offer these services: preparation of the employment contracts, agreements, internal legal acts, calculation of working time and salary, income tax and social charges."
       },
       {
         "scroll_id": "test_7",
+        "link" : "services#test_7",
         "paragraph": "Public and Private procurement",
         "text": "The specialists of Triple Consulting support bidders taking part in local and international tenders announced on ARMEPS and other equivalent platforms. Our offer includes services starting from the preparation of the bidding documents, ending up with the full procedure implementation of the entire procurement."
       },
       {
         "scroll_id": "test_8",
+        "link" : "services#test_8",
         "paragraph": "Business automation",
         "text": "Excellence and workflow automation: these are critical aspects for customer satisfaction and growing revenue. By identifying all your needs, analysing specificities of your business and your management accounting as well as internal systems and processes, specialists of Triple Consulting will design and develop software packages (web applications, computer applications, EXCEL format documents developed and adapted to the given activity). The developed tools will reduce operating costs, speed up and optimize business processes, as well as reduce possible risks and improve the overall management system."
       }
@@ -152,21 +160,21 @@
     "news_button": "News",
     "useInf_button": "Useful information",
     "doc_button": "Sample documents",
-    "news": [
-      {
-        "heading": "Cash register insertion office",
-        "paragraph": "Պետական եկամուտների կոմիտեն տեղեկացնում է, որ Հայաստանի Հանրապետությունում առկա իրավիճակով պայմանավորված՝ «Հսկիչ-դրամարկղային մեքենաների ներդրման գրասենյակ» ՊՈԱԿ-ը 2020թ. մարտի 24-ից դադարեցնում է թղթային տարբերակով դիմումների և գրությունների ընդունումը։"
-      },
-      {
-        "heading": "Cash register insertion office",
-        "paragraph": "Կառավարությունը 2016 թվականի ապրիլի 28-ի N 429 - Ն որոշմամբ ուժը կորցրած է ճանաչել  2014 թվականի սեպտեմբերի 4-ի N 980-Ն որոշումը, ինչի արդյունքում օրենքով սահմանված դրույթներին համապատասխան պիտանելիության ժամկետը լրացած, սահմանված կարգով դուրս գրված ապրանքների դրոշմապիտակների գծով պարտավորություններ չեն հաշվարկվի:"
-      },
-      {
-        "heading": "Cash register insertion office",
-        "paragraph": "2016 թվականի ապրիլի 28-ի 413-Ն որոշմամաբ առաջարկվում է նոր սերնդի ՀԴՄ-ների ներ Հիշեցնենք, որ ըստ կառավարության 2013թ. սեպտեմբերի 5-ի որոշման ս.թ մայիսի 1-ից նոր սերնդի ՀԴՄ-ների ներդրումը պարտադիր է 2014թ. արդյունքներով 10.0 մլն դրամից մինչև 58.35 մլն դրամ կամ 2015թ. արդյունքներով 10.0 մլն դրամից մինչև 115.0 մլն դրամ իրացումից հասույթ ունեցող հարկ վճարողների համար:"
-      }
-    ],
     "share": "Share"
+  },
+  "news": {
+    "title": "News",
+    "search_input": "Search",
+    "latest_news": "Latest news",
+    "popular": "Popular",
+    "see_more": "see more",
+    "date": "date",
+    "no_result": [
+      {
+        "info_title": "Sorry, there are no results",
+        "info_text": "Please search again"
+      }
+    ]
   },
   "career": {
     "title": "Join us",
@@ -190,6 +198,7 @@
   },
   "careerForm": {
     "textare_label": "Your message",
+    "email_label": "E-mail",
     "file_label": "Upload CV *",
     "send_button": "Send",
     "share": "Share"
@@ -198,7 +207,8 @@
     "title": "Contact us",
     "paragraph": "In case of questions, fill in the necessary information and we will be happy to contact you.",
     "form_content": {
-      "name_label": "Name / Surname (Company Name)",
+      "name_label_first":"* Name / Surname ( Name of company )",
+      "name_label_second": "( Name of company )",
       "email_label": "E-mail",
       "file_label": "Attach the file",
       "title_label": "Title",

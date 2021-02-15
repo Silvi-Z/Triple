@@ -28,7 +28,6 @@ class CarCustomsCalculator extends React.Component {
 
   handleSubmit = () => {
     const { form, rates } = this.state
-
     VehicleCustoms.schema
       .validate(form)
       .then(() => {
@@ -95,7 +94,6 @@ class CarCustomsCalculator extends React.Component {
 
   render() {
     const { lang } = this.props
-    const { sameMarginTop } = this.props
     const { form, result, rates, calculated } = this.state
 
     return (
