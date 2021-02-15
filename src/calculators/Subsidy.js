@@ -153,13 +153,29 @@ class Subsidy extends Salary {
    */
   get compareMaternityForHired() {
     let avg = this.avgMonthSalaryForHired
-    if (avg < Salary.MATERNITY_SUBSIDY_MIN) {
-      return Salary.MATERNITY_SUBSIDY_MIN
-    } else if (avg > Salary.MATERNITY_SUBSIDY_MAX) {
-      return Salary.MATERNITY_SUBSIDY_MAX
-    } else {
+
+    if (this.fields.tax_field === Subsidy.TAX_ENTERPRISE) {
+      avg = this.isSalaryStatic
+        ? ((this.fields.amount * Salary.MINWITHTAX / 2) + (this.fields.income || 0)) / 12
+        : (this.avg + (this.fields.income || 0)) / 12
+
+      if (avg > Salary.MINWITHTAX * 15) {
+        avg = Salary.MINWITHTAX * 15
+      } else if (avg < Salary.MINWITHTAX * 50 / 100) {
+        avg = Salary.MINWITHTAX * 50 / 100
+      }
+
       return avg
+    } else {
+      if (avg < Salary.MATERNITY_SUBSIDY_MIN) {
+        return Salary.MATERNITY_SUBSIDY_MIN
+      } else if (avg > Salary.MATERNITY_SUBSIDY_MAX) {
+        return Salary.MATERNITY_SUBSIDY_MAX
+      } else {
+        return avg
+      }
     }
+
   }
 
   /**
@@ -242,15 +258,7 @@ class Subsidy extends Salary {
       return avg
 
     } else if (tax_field === Subsidy.TAX_ENTERPRISE) {
-      avg = this.isSalaryStatic
-        ? ((this.fields.amount * Salary.MINWITHTAX / 2) + (this.fields.income || 0)) / 12 * 80 / 100
-        : (this.avg + (this.fields.income || 0)) / 12 * 80 / 100
-
-      if (avg > Salary.MINWITHTAX * 5) {
-        avg = Salary.MINWITHTAX * 5
-      } else if (avg < Salary.MINWITHTAX * 50 / 100) {
-        avg = Salary.MINWITHTAX * 50 / 100
-      }
+      avg = 0
 
       return avg
     }

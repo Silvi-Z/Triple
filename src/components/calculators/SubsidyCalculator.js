@@ -119,7 +119,7 @@ class SubsidyCalculator extends React.Component {
         return this.props.lang.form.amount
       }
     } else {
-      if (this.isTypeDisability && this.isWorkHired && this.isTaxEnterprise) {
+      if (this.isWorkHired && this.isTaxEnterprise) {
         return this.props.lang.form.amount_self_enterprise
       } else {
         return this.props.lang.form.amount
