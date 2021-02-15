@@ -73,7 +73,10 @@ export const Seemoreimg = styled.img`
   }
 `
 export const IconWrapper = styled.img`
-    margin-bottom:0
+    margin-bottom:0;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
 `
 
 export const ResponsWrapper = styled.div`

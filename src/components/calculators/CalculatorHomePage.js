@@ -11,8 +11,10 @@ import {
   ContentLink,
   PElement
 } from "../homecomponents/homeServices/homeServiceStyle"
+import useTranslations from "../useTranslations"
 
 const CalculatorHomePage = ({ pageContext }) => {
+  const { calculator } = useTranslations();
   return(
     <>
     <ResponsWrapper>
@@ -22,7 +24,7 @@ const CalculatorHomePage = ({ pageContext }) => {
             <ContentLink to={`/${pageContext}${item.link}`}>
               <CalcImagesWrapper>
                 <IconWrapper src={item.src} alt={"icon"}/>
-                <PElement>{item.title[0][pageContext]}</PElement>
+                <PElement>{item.title[0][`${pageContext}`]}</PElement>
               </CalcImagesWrapper>
             </ContentLink>
           </ContentContainer>

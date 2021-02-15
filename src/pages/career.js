@@ -18,46 +18,38 @@ import {
   LinkdinIcon,
   ShareLabel,
 } from "../components/careercomponents/careerForm/formStyle"
+import triple from "../api/triple"
 const Career = ({ pageContext }) => {
-  const [careerdata, setCareerdata] = useState([
-    {
-      status: true,
-      data: {
-        id: 0,
-        title: "Ավագ",
-        sub_title: "Պահանջվող հմտություններ",
-        description_1: "Առնվազն 2 տարվա աշխատանքային փորձ",
-        description_2: "Հաշվապահական հաշվառման գիտելիքներ,",
-        description_3: "Հարկային օրենսգրքի իմացություն,",
-        description_4: "Հայկական Ծրագրերի իմացություն",
-      },
-      open: true,
-    },
-  ])
 
+  const [careerdata, setCareerdata] = useState([])
+  useEffect(()=>{
+    triple.get('/api/join_our_team')
+      .then(res =>{
+        makeOpened(res)
+      } )
+      .catch(err => console.log(err))
+  }, [])
+
+    function makeOpened (res){
+      for(let i = 0; i<res.data.data.length; i++){
+        res.data.data[i]['open'] = false;
+      }
+      setCareerdata(res.data.data)
+    }
   const { career, careerForm } = useTranslations()
   let urlShared
 
-  const getCareerData = () => {
-    let TransText = pageContext.localeResources.translation.career
-    let newData = TransText.drop_content
-    setCareerdata(newData)
-  }
-
-  useEffect(() => {
-    getCareerData()
-  }, [])
-
-  const toggle = current => {
+  const toggle = (current)=> {
     const data = careerdata.map(d =>
-      d.data.id === current.data.id && d.open === false
-        ? { ...d, open: true }
-        : d.data.id !== current.data.id && d.open === true
-          ? { ...d, open: false }
-          : { ...d, open: false }
+      d.id === current.id && d.open === false
+            ? { ...d, open: true }
+            : d.id !== current.id && d.open === true
+              ? { ...d, open: false }
+              : { ...d, open: false }
     )
-    setCareerdata(data)
+    setCareerdata(data);
   }
+
   const getSharedUrl = lng => {
     if (lng === "en") {
       return "http://triple-c.algorithm.am/en/career/"

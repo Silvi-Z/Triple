@@ -153,6 +153,15 @@
       }
     ]
   },
+  "news": {
+    "title": "News",
+    "search": "Search",
+    "date": "date",
+    "latestNews": "Latest news",
+    "popular": "Popular",
+    "noResult": "Sorry, there are no results",
+    "text": "Please, try again"
+  },
   "careerForm": {
     "textare_label": "Ваше сообщение",
     "file_label": "Загрузить резюме *",

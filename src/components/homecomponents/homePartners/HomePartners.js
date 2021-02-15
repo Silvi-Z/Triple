@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import contentData from "./contentData"
 import {
   NavLink,
@@ -10,8 +10,18 @@ import {
   PartnerspHeadingColumn,
 } from "./homePartStyle.js"
 import { ContentContainer, Div, InfoAboutPartners, ServiceNameWrapper } from "../homeServices/homeServiceStyle"
+import triple from "../../../api/triple"
+import apiUrl from "../../../api/api.json"
 
 const Homepartners = ({ langText, lang }) => {
+  const [partners, setPartners] = useState([])
+  useEffect(()=>{
+    triple.get('/api/partner')
+      .then(res =>{
+        setPartners(res.data.data)
+      } )
+      .catch(err => console.log(err))
+  }, [])
   return (
     <>
       <PartnerspHeadingColumn>
@@ -21,15 +31,15 @@ const Homepartners = ({ langText, lang }) => {
         </PStyled>
       </PartnerspHeadingColumn>
       <ResponsWrapper>
-        {contentData.map(item => (
-          <ContentContainer key={item.name}>
+        {partners.map(item => (
+          <ContentContainer key={item.name_arm}>
             <Div>
               <ServiceNameWrapper>
-                <IconWrapper src={item.src} alt={"icon"}/>
+                <IconWrapper src={apiUrl.apiUrl + item.image} alt={"icon"}/>
               </ServiceNameWrapper>
               <InfoAboutPartners>
-                {item.name}
-                <p>{item.sphere}</p>
+                {item.name_arm}
+                <p>{item.sphere_arm}</p>
               </InfoAboutPartners>
             </Div>
           </ContentContainer>
