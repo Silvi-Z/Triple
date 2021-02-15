@@ -41,8 +41,6 @@ class CarCustomsCalculator extends React.Component {
           result: { fee: null, tax: null, vat: null },
           calculated: false
         })
-
-        console.log(err)
       });
   }
 

@@ -13,7 +13,6 @@ const carCustoms = ({ pageContext}) => {
   })
   return (
     <CalculatorWrapper ctx={pageContext} >
-      {console.log(sameMarginTop)}
       <CarCustomsCalculator lang={calculator.car_customs} sameMarginTop={sameMarginTop}/>
     </CalculatorWrapper>
   )

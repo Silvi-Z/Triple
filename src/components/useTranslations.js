@@ -360,12 +360,17 @@ const query = graphql`
                   self
                   tax
                   tax_common
+                  tax_common_for_self_employed
+                  tax_turnover_for_self_employed
                   tax_it
                   tax_enterprise
                   schedule
                   five_days
                   six_days
                   amount
+                  amount_self_common
+                  amount_self_turnover
+                  amount_self_enterprise
                   income
                   static
                 }

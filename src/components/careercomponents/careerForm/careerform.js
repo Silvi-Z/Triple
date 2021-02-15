@@ -44,7 +44,6 @@ const Formfield = ({
   }
 
   const onFinish = async values => {
-    console.log("values", values)
     let UploadFormData = new FormData()
     UploadFormData.append("message", values.textarea)
     UploadFormData.append("email", values.email)

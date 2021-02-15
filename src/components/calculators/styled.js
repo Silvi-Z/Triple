@@ -240,6 +240,9 @@ export const CalendarWrapper = styled.div`
   padding-bottom: 10px;
   border-radius: 10px;
   margin-bottom: 15px;
+  min-width: 250px;
+  width: 250px;
+  max-width: 250px;
 `
 export const CalendarInfo = styled.div`
   width: 100%;
@@ -248,6 +251,9 @@ export const CalendarInfo = styled.div`
   border-radius: 10px;
   margin-bottom: 25px;
   overflow: hidden;
+  min-width: 250px;
+  width: 250px;
+  max-width: 250px;
   
   tbody td, tbody th {
     padding: 0 5px;

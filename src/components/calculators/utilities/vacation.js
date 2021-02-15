@@ -1,5 +1,6 @@
 import Moment from "moment"
 import { extendMoment } from "moment-range"
+import Subsidy from "../../../calculators/Subsidy"
 
 const moment = extendMoment(Moment)
 
@@ -62,18 +63,19 @@ export const workingDaysInRange = ({ start, end, holidays, workdays, schedule })
  * @param {{title: String|null, date: String}[]} workdays
  * @param {{title: String|null, date: String}[]} holidays
  * @param {Number} type
+ * @param {Number} work
  * @return {Array}
  */
-export const workingDaysInRangeForSubsidy = ({ start, end, holidays, workdays, schedule, type }) => {
+export const workingDaysInRangeForSubsidy = ({ start, end, holidays, workdays, schedule, type, work }) => {
   const days = []
 
   while (start.isSameOrBefore(end)) {
-    if (type === 1) {
-      days.push(start.clone().format("YYYY-MM-DD"))
-    } else {
+    if (type === Subsidy.DISABILITY && work === Subsidy.HIRED) {
       if (isWorkDay(start, holidays, workdays, schedule)) {
         days.push(start.clone().format("YYYY-MM-DD"))
       }
+    } else {
+      days.push(start.clone().format("YYYY-MM-DD"))
     }
 
     start.add(1, "day")

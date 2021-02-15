@@ -370,7 +370,7 @@ const CalendarCalculatorExample = ({ lang }) => {
 
   return (
     <Row align="start" gutter={20}>
-      <Col xs={24} sm={24} md={24} lg={16} xl={16} xxl={16}>
+      <Col xs={24} sm={24} md={24} lg={24} xl={24} xxl={24}>
         <Row align="center" style={{ justifyContent: "space-between" }}>
           <div className="textSec">
             <H1Styled>{lang.title}</H1Styled>
@@ -409,7 +409,7 @@ const CalendarCalculatorExample = ({ lang }) => {
                   width: "100%",
                 }}>
                 {initialState.data.length > 0 && initialState.data.map((month, index) => (
-                  <Col className={"calendarCol"} key={`month_${index}`}>
+                  <Col xxl={6} xl={8} lg={8} md={12} sm={24} xs={24} className={"calendarCol"} key={`month_${index}`}>
                     <CalendarWrapper>
                       <CalendarTable>
                         <thead>
@@ -500,99 +500,106 @@ const CalendarCalculatorExample = ({ lang }) => {
               </Row>
             </Checkbox.Group>
 
-            <Form.Item label={lang.working_schedule} labelCol={{ span: 24 }}>
-              <Radio.Group
-                onChange={e => setField("schedule", e.target.value)}
-                value={form.schedule}
-              >
-                <Radio value={5}>
-                  {<Label
-                    style={{ textTransform: "none" }}>{lang.calendar.additionalInformation["five_days"]}</Label>}
-                </Radio>
-                <Radio value={6}>
-                  {<Label style={{ textTransform: "none" }}>{lang.calendar.additionalInformation["six_days"]}</Label>}
-                </Radio>
-              </Radio.Group>
-            </Form.Item>
+            <Row align="start"
+                 justify="space-between">
+              <Col xxl={16} xl={14} lg={16} md={24} sm={24} xs={24}>
+                <Form.Item label={lang.working_schedule} labelCol={{ span: 24 }}>
+                  <Radio.Group
+                    onChange={e => setField("schedule", e.target.value)}
+                    value={form.schedule}
+                  >
+                    <Radio value={5}>
+                      {<Label
+                        style={{ textTransform: "none" }}>{lang.calendar.additionalInformation["five_days"]}</Label>}
+                    </Radio>
+                    <Radio value={6}>
+                      {<Label
+                        style={{ textTransform: "none" }}>{lang.calendar.additionalInformation["six_days"]}</Label>}
+                    </Radio>
+                  </Radio.Group>
+                </Form.Item>
 
-            <Row gutter={10} align="middle">
-              <Form.Item style={{ marginRight: "25px" }} label={<Label>{lang.form.start}</Label>}>
-                <CalculatorDatePicker
-                  dateRender={(date, today) => handlePickerRender(date, today, "start")}
-                  disabledDate={handleDateFromDisabled}
-                  onChange={handleDateFromChange}
-                  value={form.date_from}
-                  key={dateFromPickerKey}
-                  ref={dateFromPicker}
-                  placeholder={null}
-                  format="DD.MM.YYYY"
-                  name="date_from"
-                  size="large"
-                />
-              </Form.Item>
-              <Form.Item label={<Label>{lang.form.end}</Label>}>
-                <CalculatorDatePicker
-                  dateRender={(date, today) => handlePickerRender(date, today, "end")}
-                  defaultPickerValue={form.date_from}
-                  disabledDate={handleDateToDisabled}
-                  onChange={handleDateToChange}
-                  value={form.date_to}
-                  key={dateToPickerKey}
-                  ref={dateToPicker}
-                  placeholder={null}
-                  format="DD.MM.YYYY"
-                  name="date_to"
-                  size="large"
-                />
-              </Form.Item>
-            </Row>
+                <Row gutter={10} align="middle">
+                  <Form.Item style={{ marginRight: "25px" }} label={<Label>{lang.form.start}</Label>}>
+                    <CalculatorDatePicker
+                      dateRender={(date, today) => handlePickerRender(date, today, "start")}
+                      disabledDate={handleDateFromDisabled}
+                      onChange={handleDateFromChange}
+                      value={form.date_from}
+                      key={dateFromPickerKey}
+                      ref={dateFromPicker}
+                      placeholder={null}
+                      format="DD.MM.YYYY"
+                      name="date_from"
+                      size="large"
+                    />
+                  </Form.Item>
+                  <Form.Item label={<Label>{lang.form.end}</Label>}>
+                    <CalculatorDatePicker
+                      dateRender={(date, today) => handlePickerRender(date, today, "end")}
+                      defaultPickerValue={form.date_from}
+                      disabledDate={handleDateToDisabled}
+                      onChange={handleDateToChange}
+                      value={form.date_to}
+                      key={dateToPickerKey}
+                      ref={dateToPicker}
+                      placeholder={null}
+                      format="DD.MM.YYYY"
+                      name="date_to"
+                      size="large"
+                    />
+                  </Form.Item>
+                </Row>
 
-            <Form.Item style={{ marginTop: "50px" }}>
-              <ButtonSubmit
-                htmlType="submit"
-                shape="round"
-                size="large"
-              >
-                {lang.calculate}
-              </ButtonSubmit>
-            </Form.Item>
-
-          </Form>
-        </CalculatorsCard>
-      </Col>
-      <Col xs={24} sm={24} md={24} lg={8} xl={8} xxl={8} className="result">
-        <FormLabel style={{ margin: 0 }}>
-          {lang.result.title}
-          {rangeDates.start && rangeDates.end &&
-          <span className={"dateRange"}>
+                <Form.Item style={{ marginTop: "50px" }}>
+                  <ButtonSubmit
+                    htmlType="submit"
+                    shape="round"
+                    size="large"
+                  >
+                    {lang.calculate}
+                  </ButtonSubmit>
+                </Form.Item>
+              </Col>
+              <Col xxl={8} xl={8} lg={8} md={24} sm={24} xs={24} className={"result calendarResult"}>
+                <FormLabel style={{ margin: 0, minHeight: "40px", lineHeight: "40px" }}>
+                  {lang.result.title}
+                  {rangeDates.start && rangeDates.end &&
+                  <span className={"dateRange"}>
               {` (${moment(rangeDates.start).format("DD.MM.YY")}${lang.year} -
           ${moment(rangeDates.end).format("DD.MM.YY")}${lang.year})`}
             </span>
 
-          }
-        </FormLabel>
+                  }
+                </FormLabel>
 
-        <UnderLine />
+                <UnderLine />
 
-        <CalculatorCardResult
-          title={lang.result.calendarDays}
-          text={initialState.result.overallDays}
-        />
+                <CalculatorCardResult
+                  title={lang.result.calendarDays}
+                  text={initialState.result.overallDays}
+                />
 
-        <CalculatorCardResult
-          title={lang.result.workDays}
-          text={initialState.result.workingDays}
-        />
+                <CalculatorCardResult
+                  title={lang.result.workDays}
+                  text={initialState.result.workingDays}
+                />
 
-        <CalculatorCardResult
-          title={lang.result.nonWorkingDays}
-          text={initialState.result.nonWorkingDays}
-        />
+                <CalculatorCardResult
+                  title={lang.result.nonWorkingDays}
+                  text={initialState.result.nonWorkingDays}
+                />
 
-        <CalculatorCardResult
-          title={lang.result.workHours}
-          text={initialState.result.workingHours}
-        />
+                <CalculatorCardResult
+                  title={lang.result.workHours}
+                  text={initialState.result.workingHours}
+                />
+              </Col>
+            </Row>
+
+
+          </Form>
+        </CalculatorsCard>
       </Col>
     </Row>
   )

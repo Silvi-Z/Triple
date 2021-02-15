@@ -1840,3 +1840,7 @@ div.currencyField {
     color: #555555;
 }
 
+.result.calendarResult {
+    margin-top: 0 !important;
+}
+

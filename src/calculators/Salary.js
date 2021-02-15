@@ -1,5 +1,6 @@
 class Salary {
   static MIN = 68000
+  static MINWITHTAX = 88311.688
   static MATERNITY_SUBSIDY_MIN = 44155.8441558;
   static MATERNITY_SUBSIDY_MAX = 1324675.32467;
   static DISABILITY_SUBSIDY_MAX = 883166.883116;
@@ -10,6 +11,7 @@ class Salary {
   static TAX_IT = 3;
   static TAX_COMMON = 1;
   static TAX_ENTERPRISE = 2;
+  static TAX_TURNOVER = 4;
 }
 
 export default Salary

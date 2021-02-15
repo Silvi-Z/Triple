@@ -26,7 +26,7 @@ class Subsidy extends Salary {
 
   // TODO : define validation rules
   static schema = Yup.object().shape({
-    tax_field: Yup.number().oneOf([Subsidy.TAX_COMMON, Subsidy.TAX_IT, Subsidy.TAX_ENTERPRISE]).required(),
+    tax_field: Yup.number().oneOf([Subsidy.TAX_COMMON, Subsidy.TAX_IT, Subsidy.TAX_ENTERPRISE, Subsidy.TAX_TURNOVER]).required(),
     pension: Yup.number().oneOf([Salary.PENSION_NO, Salary.PENSION_YES, Salary.PENSION_YES_VOLUNTEER]).required(),
     type: Yup.number().oneOf([this.DISABILITY, this.MATERNITY]).required(),
     work: Yup.number().oneOf([this.HIRED, this.SELF_EMPLOYED]).required(),
@@ -73,7 +73,7 @@ class Subsidy extends Salary {
    *
    * @return {number}
    */
-  get avgMonthSalary() {
+  get avgMonthSalaryForHired() {
     const avg = this.isSalaryStatic
       ? this.fields.amount + ((this.fields.income || 0) / 12)
       : this.avg + ((this.fields.income || 0) / 12)
@@ -87,10 +87,33 @@ class Subsidy extends Salary {
    * @returns {number}
    */
   get compareAvgMonthly() {
-    if (this.fields.type === 1) {
-      return this.compareMaternity
-    } else if (this.fields.type === 2) {
-      return this.compareDisability
+    if (this.fields.work === Subsidy.SELF_EMPLOYED) {
+      return (this.selfEmployedAmount / 30.4)
+    } else if (this.fields.work === Subsidy.HIRED) {
+      return (this.hiredAmount / this.monthlyDaysCount)
+    }
+
+  }
+
+  get selfEmployedAmount() {
+    if (this.fields.type === Subsidy.MATERNITY) {
+      return this.compareMaternityForSelfEmployed
+    } else if (this.fields.type === Subsidy.DISABILITY) {
+      return this.compareDisabilityForSelfEmployed
+    }
+  }
+
+  /**
+   *
+   * Count amount for hired employee
+   *
+   * @returns {number}
+   */
+  get hiredAmount() {
+    if (this.fields.type === Subsidy.MATERNITY) {
+      return this.compareMaternityForHired
+    } else if (this.fields.type === Subsidy.DISABILITY) {
+      return this.compareDisabilityForHired
     }
   }
 
@@ -99,9 +122,9 @@ class Subsidy extends Salary {
    * @returns {number}
    */
   get monthlyDaysCount() {
-    if (this.fields.type === 1) {
+    if (this.fields.type === Subsidy.MATERNITY) {
       return 30.4
-    } else if (this.fields.type === 2) {
+    } else if (this.fields.type === Subsidy.DISABILITY) {
       return this.fields.schedule === 5 ? 21 : 25
     }
   }
@@ -112,7 +135,7 @@ class Subsidy extends Salary {
    * @return {number}
    */
   get avgDailySalary() {
-    return (this.compareAvgMonthly / this.monthlyDaysCount)
+    return this.compareAvgMonthly
   }
 
   /**
@@ -125,11 +148,11 @@ class Subsidy extends Salary {
   }
 
   /**
-   * Compare maternity subsidy limit
+   * Compare maternity subsidy limit for hired employee
    * @returns {number}
    */
-  get compareMaternity() {
-    let avg = this.avgMonthSalary
+  get compareMaternityForHired() {
+    let avg = this.avgMonthSalaryForHired
     if (avg < Salary.MATERNITY_SUBSIDY_MIN) {
       return Salary.MATERNITY_SUBSIDY_MIN
     } else if (avg > Salary.MATERNITY_SUBSIDY_MAX) {
@@ -140,23 +163,132 @@ class Subsidy extends Salary {
   }
 
   /**
-   * Compare disability subsidy limit
+   * Compare maternity subsidy limit for self employed employee
    * @returns {number}
    */
-  get compareDisability() {
-    let avg = this.avgMonthSalary * 0.8
-    if (avg > Salary.DISABILITY_SUBSIDY_MAX) {
-      return Salary.DISABILITY_SUBSIDY_MAX
-    } else {
+  get compareMaternityForSelfEmployed() {
+    let avg
+    let { tax_field } = this.fields
+
+    if (tax_field === Subsidy.TAX_COMMON || tax_field === Subsidy.TAX_IT) {
+      avg = this.isSalaryStatic
+        ? (this.fields.amount + (this.fields.income || 0)) / 12
+        : (this.avg + (this.fields.income || 0)) / 12
+
+      if (avg > Salary.MINWITHTAX * 5) {
+        avg = Salary.MINWITHTAX * 5
+      } else if (avg < Salary.MINWITHTAX * 50 / 100) {
+        avg = Salary.MINWITHTAX * 50 / 100
+      }
+
+      return avg
+
+    } else if (tax_field === Subsidy.TAX_TURNOVER) {
+      avg = this.isSalaryStatic
+        ? ((this.fields.amount / 5000) * (Salary.MINWITHTAX / 2) + (this.fields.income || 0)) / 12
+        : (this.avg + (this.fields.income || 0)) / 12
+
+      if (avg > Salary.MINWITHTAX * 5) {
+        avg = Salary.MINWITHTAX * 5
+      } else if (avg < Salary.MINWITHTAX * 50 / 100) {
+        avg = Salary.MINWITHTAX * 50 / 100
+      }
+
+      return avg
+
+    } else if (tax_field === Subsidy.TAX_ENTERPRISE) {
+      avg = this.isSalaryStatic
+        ? ((this.fields.amount * Salary.MINWITHTAX / 2) + (this.fields.income || 0)) / 12
+        : (this.avg + (this.fields.income || 0)) / 12
+
+      if (avg > Salary.MINWITHTAX * 5) {
+        avg = Salary.MINWITHTAX * 5
+      } else if (avg < Salary.MINWITHTAX * 50 / 100) {
+        avg = Salary.MINWITHTAX * 50 / 100
+      }
+
       return avg
     }
   }
 
+  /**
+   * Compare disability subsidy limit for self employed employee
+   * @returns {number}
+   */
+  get compareDisabilityForSelfEmployed() {
+    let avg
+    let { tax_field } = this.fields
+
+    if (tax_field === Subsidy.TAX_COMMON || tax_field === Subsidy.TAX_IT) {
+      avg = this.isSalaryStatic
+        ? (this.fields.amount + (this.fields.income || 0)) / 12 * 80 / 100
+        : (this.avg + (this.fields.income || 0)) / 12 * 80 / 100
+
+      if (avg > Salary.MINWITHTAX * 5) {
+        avg = Salary.MINWITHTAX * 5
+      }
+
+      return avg
+
+    } else if (tax_field === Subsidy.TAX_TURNOVER) {
+      avg = this.isSalaryStatic
+        ? ((this.fields.amount / 5000) * (Salary.MINWITHTAX / 2) + (this.fields.income || 0)) / 12 * 80 / 100
+        : (this.avg + (this.fields.income || 0)) / 12 * 80 / 100
+
+      if (avg > Salary.MINWITHTAX * 5) {
+        avg = Salary.MINWITHTAX * 5
+      }
+
+      return avg
+
+    } else if (tax_field === Subsidy.TAX_ENTERPRISE) {
+      avg = this.isSalaryStatic
+        ? ((this.fields.amount * Salary.MINWITHTAX / 2) + (this.fields.income || 0)) / 12 * 80 / 100
+        : (this.avg + (this.fields.income || 0)) / 12 * 80 / 100
+
+      if (avg > Salary.MINWITHTAX * 5) {
+        avg = Salary.MINWITHTAX * 5
+      } else if (avg < Salary.MINWITHTAX * 50 / 100) {
+        avg = Salary.MINWITHTAX * 50 / 100
+      }
+
+      return avg
+    }
+  }
+
+  /**
+   * Compare disability subsidy limit  for hired employee
+   * @returns {number}
+   */
+  get compareDisabilityForHired() {
+    let avg = this.avgMonthSalaryForHired * 80 / 100
+    if (this.fields.tax_field === Subsidy.TAX_ENTERPRISE) {
+      avg = this.isSalaryStatic
+        ? ((this.fields.amount * Salary.MINWITHTAX / 2) + (this.fields.income || 0)) / 12 * 80 / 100
+        : (this.avg + ((this.fields.income || 0) / 12)) * 80 / 100
+
+      if (avg > Salary.MINWITHTAX * 10) {
+        avg = Salary.MINWITHTAX * 10
+      }
+
+      return avg
+    } else {
+      if (avg > Salary.DISABILITY_SUBSIDY_MAX) {
+        return Salary.DISABILITY_SUBSIDY_MAX
+      } else {
+        return avg
+      }
+    }
+  }
+
   get daysForCalculate() {
-    if (this.fields.type === 1) {
-      return this.fields.days
-    } else if (this.fields.type === 2) {
+    if (this.fields.type === Subsidy.DISABILITY && this.fields.work === Subsidy.HIRED) {
+      if (this.fields.tax_field === Subsidy.TAX_ENTERPRISE) {
+        return this.fields.days
+      }
       return (this.fields.days - 1)
+    } else {
+      return this.fields.days
     }
   }
 
