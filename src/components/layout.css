@@ -1844,3 +1844,20 @@ div.currencyField {
     margin-top: 0 !important;
 }
 
+.ant-row.subsidyAmount {
+    flex-wrap: wrap;
+}
+
+.ant-row.subsidyAmount label {
+    white-space: normal;
+    text-align: left;
+    height: fit-content !important;
+}
+
+.ant-row.subsidyAmount > div:first-of-type {
+    max-width: 70%;
+}
+
+.ant-row.subsidyAmount > div:last-of-type {
+    width: fit-content;
+}

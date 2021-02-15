@@ -407,7 +407,7 @@ class SubsidyCalculator extends React.Component {
               {/* amount input */}
               {
                 this.isStatic ?
-                  <Form.Item label={<Label>{this.changeAmountFieldTitle}</Label>}>
+                  <Form.Item className={"subsidyAmount"} label={<Label>{this.changeAmountFieldTitle}</Label>}>
                     <CalculatorInput
                       formatter={v => `${v}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                       onChange={v => this.setField("amount", v)}
