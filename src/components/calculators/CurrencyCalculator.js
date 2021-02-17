@@ -68,7 +68,7 @@ class CurrencyCalculator extends React.Component {
     if (this.state.rates.length) return
 
     const rates = {}
-    const config = { params: { filters: ["USD", "EUR"] } }
+    const config = { params: { filters: ["USD", "EUR", "RUB", "GEL", "GBP", "CNY"] } }
 
     triple.get("/api/rates/last", config)
       .then(res => {
@@ -175,6 +175,24 @@ class CurrencyCalculator extends React.Component {
     }
   }
 
+  checkSelectedValue = (name, value) => {
+    if (name === "from") {
+      if (value === this.state.form.to) {
+        this.setField("to", this.state.form.from)
+        this.setField("from", value)
+      } else {
+        this.setField("from", value)
+      }
+    } else if (name === "to") {
+      if (value === this.state.form.from) {
+        this.setField("from", this.state.form.to)
+        this.setField("to", value)
+      } else {
+        this.setField("to", value)
+      }
+    }
+  }
+
   handleSubmit = () => {
     const { form, changedAmount } = this.state
 
@@ -274,6 +292,7 @@ class CurrencyCalculator extends React.Component {
                       min={0}
                       className={"currencyInput"}
                       size="large"
+                      step='any'
                       onBlur={this.onBlur}
                       type="number"
                     />
@@ -282,10 +301,10 @@ class CurrencyCalculator extends React.Component {
                       className={"currencySelect"}
                       value={form.from}
                       style={{ maxWidth: "424px" }}
-                      onChange={value => this.setField("from", value)}
+                      onChange={value => this.checkSelectedValue("from", value)}
                     >
                       {Currency.types(lang.currency).map(currency =>
-                        <Select.Option value={currency.value} disabled={form.to === currency.value}
+                        <Select.Option value={currency.value}
                                        key={`currency-${currency.value}`}>
                           {currency.text}
                         </Select.Option>,
@@ -313,6 +332,7 @@ class CurrencyCalculator extends React.Component {
                       onChange={v => this.setField("amount_right", v)}
                       value={form.amount_right}
                       min={0}
+                      step='any'
                       className={"currencyInput"}
                       size="large"
                       onBlur={this.onBlur}
@@ -323,10 +343,10 @@ class CurrencyCalculator extends React.Component {
                       className={"currencySelect"}
                       value={form.to}
                       style={{ maxWidth: "424px" }}
-                      onChange={value => this.setField("to", value)}
+                      onChange={value => this.checkSelectedValue("to", value)}
                     >
                       {Currency.types(lang.currency).map(currency =>
-                        <Select.Option value={currency.value} disabled={form.from === currency.value}
+                        <Select.Option value={currency.value}
                                        key={`currency-${currency.value}`}>
                           {currency.text}
                         </Select.Option>,
@@ -363,7 +383,15 @@ class CurrencyCalculator extends React.Component {
                 <Col span={12} className="currency">
                   <span
                     className="c-label sym"
-                    dangerouslySetInnerHTML={{ __html: `${(currency === "EUR" ? "&#8364;" : "&#36;")}` }}
+                    dangerouslySetInnerHTML={{
+                      __html: `${(currency === "EUR" && "&#8364;"
+                        || currency === "USD" && "&#36;"
+                        || currency === "GBP" && "&#163;"
+                        || currency === "RUB" && "&#8381;"
+                        || currency === "GEL" && "&#8382;"
+                        || currency === "CNY" && "&#20803;"
+                      )}`,
+                    }}
                   />
 
                   <span className="c-label">{currency}</span>

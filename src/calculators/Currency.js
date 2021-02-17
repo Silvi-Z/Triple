@@ -115,11 +115,11 @@ class Currency {
     return [
       { value: Currency.AMD, text: lang.amd },
       { value: Currency.USD, text: lang.usd },
-      { value: Currency.RUB, text: lang.rub },
       { value: Currency.EUR, text: lang.eur },
-      { value: Currency.CNY, text: lang.cny },
-      { value: Currency.GBP, text: lang.gbp },
+      { value: Currency.RUB, text: lang.rub },
       { value: Currency.GEL, text: lang.gel },
+      { value: Currency.GBP, text: lang.gbp },
+      { value: Currency.CNY, text: lang.cny },
       { value: Currency.IRR, text: lang.irr },
     ]
   }

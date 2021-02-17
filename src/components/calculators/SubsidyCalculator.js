@@ -127,6 +127,10 @@ class SubsidyCalculator extends React.Component {
     }
   }
 
+  get amountMaxValue() {
+    return this.isTaxEnterprise && 12
+  }
+
   handleSubmit = () => {
     const amount = this.calculator.calculate()
     let { pension, tax_field, days, type, work } = this.state.form
@@ -135,28 +139,41 @@ class SubsidyCalculator extends React.Component {
     Subsidy.schema.isValid(this.state.form).then(valid => {
       if (!valid) return
 
-      triple.post("/api/counter/salary", {
-        from: 1,
-        amount,
-        pension,
-        tax_field,
-        stamp: false,
-      }).then(res => {
-        const { income_tax, salary, stamp_fee } = res.data
-        const subsidy_emp = type === 2 ? Math.round((salary + income_tax + stamp_fee) / (days - 1)) * 5 : 0
-        const subsidy_gov = type === 2 ? Math.round((salary + income_tax + stamp_fee) - subsidy_emp) : (salary + income_tax + stamp_fee)
-
+      if (this.isTypeDisability && this.isWorkSelfEmployed && this.isTaxEnterprise) {
         this.setState({
           result: {
-            income_tax,
-            subsidy: amount,
-            subsidy_gov,
-            subsidy_emp,
-            pure_subsidy: salary + stamp_fee,
+            income_tax: 0,
+            subsidy: 0,
+            subsidy_gov: 0,
+            subsidy_emp: 0,
+            pure_subsidy: 0,
           },
           calculated: true,
         })
-      })
+      } else {
+        triple.post("/api/counter/salary", {
+          from: 1,
+          amount,
+          pension,
+          tax_field,
+          stamp: false,
+        }).then(res => {
+          const { income_tax, salary, stamp_fee } = res.data
+          const subsidy_emp = type === 2 ? ((salary + income_tax + stamp_fee) / (days - 1)) * 5 : 0
+          const subsidy_gov = type === 2 ? ((salary + income_tax + stamp_fee) - subsidy_emp) : (salary + income_tax + stamp_fee)
+
+          this.setState({
+            result: {
+              income_tax: Math.round(income_tax),
+              subsidy: Math.round(amount),
+              subsidy_gov: Math.round(subsidy_gov),
+              subsidy_emp: Math.round(subsidy_emp),
+              pure_subsidy: Math.round(salary + stamp_fee),
+            },
+            calculated: true,
+          })
+        })
+      }
     })
   }
 
@@ -390,19 +407,20 @@ class SubsidyCalculator extends React.Component {
               }
 
               {/* schedule field */}
-              {this.isTypeDisability ? <Form.Item label={lang.form.schedule} labelCol={{ span: 24 }}>
-                <Radio.Group
-                  onChange={e => this.setField("schedule", e.target.value)}
-                  value={form.schedule}
-                >
-                  <Radio value={5}>
-                    {<Label style={{ textTransform: "none" }}>{lang.form["five_days"]}</Label>}
-                  </Radio>
-                  <Radio value={6}>
-                    {<Label style={{ textTransform: "none" }}>{lang.form["six_days"]}</Label>}
-                  </Radio>
-                </Radio.Group>
-              </Form.Item> : null}
+              {this.isTypeDisability && this.isWorkHired ?
+                <Form.Item label={lang.form.schedule} labelCol={{ span: 24 }}>
+                  <Radio.Group
+                    onChange={e => this.setField("schedule", e.target.value)}
+                    value={form.schedule}
+                  >
+                    <Radio value={5}>
+                      {<Label style={{ textTransform: "none" }}>{lang.form["five_days"]}</Label>}
+                    </Radio>
+                    <Radio value={6}>
+                      {<Label style={{ textTransform: "none" }}>{lang.form["six_days"]}</Label>}
+                    </Radio>
+                  </Radio.Group>
+                </Form.Item> : null}
 
               {/* amount input */}
               {
@@ -413,6 +431,7 @@ class SubsidyCalculator extends React.Component {
                       onChange={v => this.setField("amount", v)}
                       parser={v => v.replace(/\$\s?|(,*)/g, "")}
                       value={form.amount}
+                      max={this.amountMaxValue ? this.amountMaxValue : undefined}
                       step={1000}
                       name="amount"
                       size="large"
