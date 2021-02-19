@@ -700,6 +700,76 @@
         "currency": "Փոխարժեքն այս պահին"
 >>>>>>> bde333cf25517a93034eccdf48996f7e211d4b6c
       }
+    },
+    "calendar": {
+      "title": "Աշխատանքային օրացույց",
+      "calculate": "ՀԱՇՎԵԼ",
+      "chooseDaysRange": "Ընտրել աշխատանքային օրացույցի օրերը",
+      "working_schedule": "Նշել աշխատանքային գրաֆիկը",
+      "year": "թ․",
+      "calendar": {
+        "months": {
+          "january": "Հունվար",
+          "february": "Փետրվար",
+          "march": "Մարտ",
+          "april": "Ապրիլ",
+          "may": "Մայիս",
+          "june": "Հունիս",
+          "july": "Հուլիս",
+          "august": "Օգոստոս",
+          "september": "Սեպտեմբեր",
+          "october": "Հոկտեմբեր",
+          "november": "Նոյեմբեր",
+          "december": "Դեկտեմբեր"
+        },
+        "daysOfWeek": {
+          "monday": "Երկ",
+          "tuesday": "Երք",
+          "wednesday": "Չոր",
+          "thursday": "Հնգ",
+          "friday": "Ուր",
+          "saturday": "Շբթ",
+          "sunday": "Կիր"
+        },
+        "additionalInformation": {
+          "calendarDays": "Օրացույցային օրեր",
+          "workDays": "Աշխատանքային օրեր",
+          "workHours": "Աշխատանքային ժամեր",
+          "five_days": "Հնգօրյա",
+          "six_days": "Վեցօրյա"
+        }
+      },
+      "form": {
+        "start": "ՍԿԻԶԲ",
+        "end": "ԱՎԱՐՏ"
+      },
+      "result": {
+        "title": "Արդյունք",
+        "calendarDays": "Օրացույցային օրեր",
+        "workDays": "Աշխատանքային օրեր",
+        "workHours": "Աշխատանքային ժամեր",
+        "nonWorkingDays": "Ոչ աշխատանքային օրեր"
+      }
+    },
+    "currency": {
+      "title": "Փոխարժեքի հաշվիչ",
+      "calculate": "ՀԱՇՎԵԼ",
+      "currency": {
+        "amd": "AMD",
+        "usd": "USD",
+        "rub": "RUB",
+        "eur": "EUR",
+        "cny": "CNY",
+        "gbp": "GBP",
+        "gel": "GEL",
+        "irr": "IRR"
+      },
+      "form": {
+        "date": "ԴՐՈՒԹՅԱՄԲ"
+      },
+      "result": {
+        "currency": "Փոխարժեքն այս պահին"
+      }
     }
   }
 }
