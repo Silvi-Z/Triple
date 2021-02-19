@@ -1,25 +1,23 @@
 import React from "react"
 import moment from "moment"
-import { isEmpty, isNull } from "lodash"
+import { isEmpty, isEqual, isNull } from "lodash"
 import { Card, Checkbox, Col, Form, Radio, Row } from "antd"
 import {
+  ButtonSubmit,
   CalculatorDatePicker,
   CalculatorInput,
-  FormItemLabel,
-  ButtonSubmit,
-  RadioLabel,
-  UnderLine,
   FormLabel,
-  Label,
   H1Styled,
+  Label,
+  RadioLabel,
   TextStyled,
-  CalculatorsCard,
+  UnderLine,
 } from "./styled"
 import triple from "../../api/triple"
 import Subsidy from "../../calculators/Subsidy"
 import GrossSalaryTable from "./calcComponents/GrossSalaryTable"
 import CalculatorCardResult from "./calcComponents/CalculatorCardResult"
-import { workingDaysInRange } from "./utilities/vacation"
+import { workingDaysInRangeForSubsidy } from "./utilities/vacation"
 
 moment.locale("en", {
   week: {
@@ -34,50 +32,33 @@ const radioStyle = {
 }
 
 class SubsidyCalculator extends React.Component {
-  handleSubmit = () => {
-    const amount = this.calculator.calculate()
-    const { pension, tax_field } = this.state.form
+  constructor(props) {
+    super(props)
 
-    Subsidy.schema.isValid(this.state.form).then(valid => {
-      if (!valid) {
-        this.setState({form: Subsidy.form})
-
-        return
-      }
-
-      triple.post("/api/counter/salary", {
-        from: 1,
-        amount,
-        pension,
-        tax_field,
-      }).then(res => {
-        const {income_tax, salary} = res.data
-
-        this.setState({result: {
-            income_tax,
-            subsidy: amount,
-            pure_subsidy: salary
-          }
-        })
-      })
-    })
+    this.state = {
+      form: { ...Subsidy.form },
+      result: { subsidy: null },
+      calculated: false,
+    }
+    this.calculator = new Subsidy()
   }
 
   get amounts() {
     const { amount, start } = this.state.form
-    const endMonth = start ? start.clone().add(11, "months") : null
+    const endMonth = start ? moment(start).subtract(12, "months") : null
 
     return start ? Array
-      .from(moment.range(start, endMonth)
-        .by("month"))
-      .map(month => ({
-        month: month.month(),
-        year: month.year(),
-        bonus: null,
-        surcharge: null,
-        salary: amount || null,
-      }))
-    : [{
+        .from(moment.range(endMonth, moment(start).subtract(1, "months"))
+          .by("month"))
+        .reverse()
+        .map(month => ({
+          month: month.month(),
+          year: month.year(),
+          bonus: null,
+          surcharge: null,
+          salary: amount || null,
+        }))
+      : [{
         month: null,
         year: null,
         bonus: null,
@@ -102,41 +83,133 @@ class SubsidyCalculator extends React.Component {
     return this.state.form.type === Subsidy.MATERNITY
   }
 
-  constructor(props) {
-    super(props)
+  get isWorkSelfEmployed() {
+    return this.state.form.work === Subsidy.SELF_EMPLOYED
+  }
 
-    this.state = {
-      form: { ...Subsidy.form },
-      result: { subsidy: null },
+  get isWorkHired() {
+    return this.state.form.work === Subsidy.HIRED
+  }
+
+  get isTaxCommon() {
+    return this.state.form.tax_field === Subsidy.TAX_COMMON
+  }
+
+  get isTaxTurnover() {
+    return this.state.form.tax_field === Subsidy.TAX_TURNOVER
+  }
+
+  get isTaxIt() {
+    return this.state.form.tax_field === Subsidy.TAX_IT
+  }
+
+  get isTaxEnterprise() {
+    return this.state.form.tax_field === Subsidy.TAX_ENTERPRISE
+  }
+
+  get changeAmountFieldTitle() {
+    if (this.isWorkSelfEmployed) {
+      if (this.isTaxCommon || this.isTaxIt) {
+        return this.props.lang.form.amount_self_common
+      } else if (this.isTaxTurnover) {
+        return this.props.lang.form.amount_self_turnover
+      } else if (this.isTaxEnterprise) {
+        return this.props.lang.form.amount_self_enterprise
+      } else {
+        return this.props.lang.form.amount
+      }
+    } else {
+      if (this.isWorkHired && this.isTaxEnterprise) {
+        return this.props.lang.form.amount_self_enterprise
+      } else {
+        return this.props.lang.form.amount
+      }
     }
-    this.calculator = new Subsidy()
+  }
+
+  get amountMaxValue() {
+    return this.isTaxEnterprise && 12
+  }
+
+  handleSubmit = () => {
+    const amount = this.calculator.calculate()
+    let { pension, tax_field, days, type, work } = this.state.form
+    tax_field = tax_field === Subsidy.TAX_IT ? Subsidy.TAX_COMMON : tax_field
+
+    Subsidy.schema.isValid(this.state.form).then(valid => {
+      if (!valid) return
+
+      if (this.isTypeDisability && this.isWorkSelfEmployed && this.isTaxEnterprise) {
+        this.setState({
+          result: {
+            income_tax: 0,
+            subsidy: 0,
+            subsidy_gov: 0,
+            subsidy_emp: 0,
+            pure_subsidy: 0,
+          },
+          calculated: true,
+        })
+      } else {
+        triple.post("/api/counter/salary", {
+          from: 1,
+          amount,
+          pension,
+          tax_field,
+          stamp: false,
+        }).then(res => {
+          const { income_tax, salary, stamp_fee } = res.data
+          const subsidy_emp = type === 2 ? ((salary + income_tax + stamp_fee) / (days - 1)) * 5 : 0
+          const subsidy_gov = type === 2 ? ((salary + income_tax + stamp_fee) - subsidy_emp) : (salary + income_tax + stamp_fee)
+
+          this.setState({
+            result: {
+              income_tax: Math.round(income_tax),
+              subsidy: Math.round(amount),
+              subsidy_gov: Math.round(subsidy_gov),
+              subsidy_emp: Math.round(subsidy_emp),
+              pure_subsidy: Math.round(salary + stamp_fee),
+            },
+            calculated: true,
+          })
+        })
+      }
+    })
   }
 
   setField(name, value, cb) {
-    this.setState({ form: { ...this.state.form, [name]: value } }, cb)
+    this.setState(prevState => (
+      { form: { ...prevState.form, [name]: value } }
+    ), cb)
   }
 
   resetSchedule() {
+    this.autocompleteDays()
     if (this.isTypeMaternity) {
-      this.setField('schedule', 5)
+      this.setField("schedule", 5)
+      this.autocompleteDays()
     }
   }
 
   autocompleteDays() {
-    const { start, end, schedule } = this.state.form
+    const { start, end, type, work } = this.state.form
 
     if (isNull(start) || isNull(end)) {
       this.setState({ form: { ...this.state.form, days: null } })
     }
 
     if (start && end) {
-      this.setField("days", workingDaysInRange({
+      const daysCount = workingDaysInRangeForSubsidy({
         holidays: [],
         workdays: [],
         schedule: 5,
-        start,
-        end
-      }).length)
+        start: start.clone(),
+        end: end.clone(),
+        type,
+        work,
+      })
+
+      this.setField("days", daysCount.length)
     }
   }
 
@@ -146,7 +219,7 @@ class SubsidyCalculator extends React.Component {
     const weekends = schedule === 5 ? [0, 6] : [6]
 
     if (isEmpty(days)) {
-      this.setField('end', null)
+      this.setField("end", null)
     }
 
     if (start && days) {
@@ -159,6 +232,31 @@ class SubsidyCalculator extends React.Component {
       }
 
       this.setState({ form: { ...this.state.form, end } })
+    }
+  }
+
+  handleInputValue(e) {
+    let inputValue = e.target.value
+    const inputName = e.target.name
+    const inputMaxVal = e.target.max
+    const inputMinVal = e.target.min
+
+    if (Number(inputValue) > Number(inputMaxVal)) {
+      e.target.value = inputMaxVal
+      return false
+    } else if (Number(inputValue) < Number(inputMinVal)) {
+      e.target.value = inputMinVal
+      return false
+    } else {
+      e.target.value = inputValue
+    }
+
+    this.setField(inputName, inputValue)
+  }
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if (!isEqual(prevState.form, this.state.form) && this.state.calculated) {
+      this.handleSubmit()
     }
   }
 
@@ -177,7 +275,7 @@ class SubsidyCalculator extends React.Component {
               <H1Styled>{lang.title}</H1Styled>
               <TextStyled>{lang.paragraph}</TextStyled>
             </div>
-      </Row>
+          </Row>
 
           <Card bordered={false}>
             <Form
@@ -188,7 +286,7 @@ class SubsidyCalculator extends React.Component {
               size="large"
             >
               {/* type field */}
-              <Form.Item label={lang.form.type} labelCol={{ span: 24 }}>
+              <Form.Item label={<Label>{lang.form.type}</Label>} labelCol={{ span: 24 }}>
                 <Radio.Group
                   onChange={e => this.setField("type", e.target.value, this.resetSchedule)}
                   value={form.type}
@@ -202,32 +300,32 @@ class SubsidyCalculator extends React.Component {
                 </Radio.Group>
               </Form.Item>
 
-              <FormItemLabel>{lang.form.dates}</FormItemLabel>
-
               {/* start-end dates fields */}
-              <Row gutter={10} align="middle">
-                <Form.Item style={{ marginRight: "25px" }} label={<Label>{lang.form.start}</Label>}>
-                  <CalculatorDatePicker
-                    onChange={date => this.setField("start", date, this.autocompleteDays)}
-                    placeholder={lang.form.dates_placeholder}
-                    value={form.start}
-                    format="DD.MM.YYYY"
-                    name="start"
-                    size="large"
-                  />
-                </Form.Item>
+              <Form.Item label={<Label>{lang.form.dates}</Label>} labelCol={{ span: 24 }}>
+                <Row gutter={10} align="middle">
+                  <Form.Item style={{ marginRight: "25px" }} label={<Label>{lang.form.start}</Label>}>
+                    <CalculatorDatePicker
+                      onChange={date => this.setField("start", date, this.autocompleteDays)}
+                      placeholder={lang.form.dates_placeholder}
+                      value={form.start}
+                      format="DD.MM.YYYY"
+                      name="start"
+                      size="large"
+                    />
+                  </Form.Item>
 
-                <Form.Item label={<Label>{lang.form.end}</Label>}>
-                  <CalculatorDatePicker
-                    onChange={date => this.setField("end", date, this.autocompleteDays)}
-                    placeholder={lang.form.dates_placeholder}
-                    value={form.end}
-                    format="DD.MM.YYYY"
-                    size="large"
-                    name="end"
-                  />
-                </Form.Item>
-              </Row>
+                  <Form.Item label={<Label>{lang.form.end}</Label>}>
+                    <CalculatorDatePicker
+                      onChange={date => this.setField("end", date, this.autocompleteDays)}
+                      placeholder={lang.form.dates_placeholder}
+                      value={form.end}
+                      format="DD.MM.YYYY"
+                      size="large"
+                      name="end"
+                    />
+                  </Form.Item>
+                </Row>
+              </Form.Item>
 
               {/* days field */}
               <Form.Item label={<Label>{lang.form.days}</Label>}>
@@ -235,16 +333,18 @@ class SubsidyCalculator extends React.Component {
                   onChange={v => this.setField("days", v, this.autocompleteEnd)}
                   style={{ width: "54px" }}
                   value={form.days}
+                  onInput={e => this.handleInputValue(e)}
                   name="days"
                   size="large"
                   min={1}
+                  max={180}
                 />
               </Form.Item>
 
               {/* work field */}
               <Form.Item labelCol={{ span: 24 }}>
                 <Radio.Group
-                  onChange={e => this.setField("work", e.target.value)}
+                  onChange={e => this.setField("work", e.target.value, this.autocompleteDays)}
                   value={form.work}
                 >
                   <Radio value={Subsidy.HIRED}>
@@ -255,8 +355,9 @@ class SubsidyCalculator extends React.Component {
                   </Radio>
                 </Radio.Group>
               </Form.Item>
-
               {/* tax field */}
+
+              {this.isWorkHired &&
               <Form.Item
                 label={<Label style={{ fontSize: "16px" }}>{lang.form.tax}</Label>}
                 labelCol={{ span: 24 }}
@@ -270,43 +371,77 @@ class SubsidyCalculator extends React.Component {
                     <RadioLabel>{lang.form.tax_common}</RadioLabel>
                   </Radio>
                   <Radio style={radioStyle} value={Subsidy.TAX_IT}>
-                    <RadioLabel>{lang.form.tax_it}</RadioLabel>
+                    <RadioLabel>{lang.form.tax_enterprise}</RadioLabel>
                   </Radio>
                   <Radio style={radioStyle} value={Subsidy.TAX_ENTERPRISE}>
-                    <RadioLabel>{lang.form.tax_enterprise}</RadioLabel>
+                    <RadioLabel>{lang.form.tax_it}</RadioLabel>
                   </Radio>
                 </Radio.Group>
               </Form.Item>
+              }
 
-              {/* schedule field */}
-              {this.isTypeDisability ? <Form.Item label={lang.form.schedule} labelCol={{ span: 24 }}>
+              {this.isWorkSelfEmployed &&
+              <Form.Item
+                label={<Label style={{ fontSize: "16px" }}>{lang.form.tax}</Label>}
+                labelCol={{ span: 24 }}
+                name="tax_field"
+              >
                 <Radio.Group
-                  onChange={e => this.setField("schedule", e.target.value)}
-                  value={form.schedule}
+                  onChange={e => this.setField("tax_field", e.target.value)}
+                  value={form.tax_field}
                 >
-                  <Radio value={5}>
-                    {<Label style={{ textTransform: "none" }}>{lang.form["five_days"]}</Label>}
+                  <Radio style={radioStyle} value={Subsidy.TAX_COMMON}>
+                    <RadioLabel>{lang.form.tax_common_for_self_employed}</RadioLabel>
                   </Radio>
-                  <Radio value={6}>
-                    {<Label style={{ textTransform: "none" }}>{lang.form["six_days"]}</Label>}
+                  <Radio style={radioStyle} value={Subsidy.TAX_TURNOVER}>
+                    <RadioLabel>{lang.form.tax_turnover_for_self_employed}</RadioLabel>
+                  </Radio>
+                  <Radio style={radioStyle} value={Subsidy.TAX_IT}>
+                    <RadioLabel>{lang.form.tax_enterprise}</RadioLabel>
+                  </Radio>
+                  <Radio style={radioStyle} value={Subsidy.TAX_ENTERPRISE}>
+                    <RadioLabel>{lang.form.tax_it}</RadioLabel>
                   </Radio>
                 </Radio.Group>
-              </Form.Item> : null}
+              </Form.Item>
+              }
+
+              {/* schedule field */}
+              {this.isTypeDisability && this.isWorkHired ?
+                <Form.Item label={lang.form.schedule} labelCol={{ span: 24 }}>
+                  <Radio.Group
+                    onChange={e => this.setField("schedule", e.target.value)}
+                    value={form.schedule}
+                  >
+                    <Radio value={5}>
+                      {<Label style={{ textTransform: "none" }}>{lang.form["five_days"]}</Label>}
+                    </Radio>
+                    <Radio value={6}>
+                      {<Label style={{ textTransform: "none" }}>{lang.form["six_days"]}</Label>}
+                    </Radio>
+                  </Radio.Group>
+                </Form.Item> : null}
 
               {/* amount input */}
-              {this.isStatic ? <Form.Item label={<Label>{lang.form.amount}</Label>}>
-                <CalculatorInput
-                  formatter={v => `${v}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
-                  onChange={v => this.setField("amount", v)}
-                  parser={v => v.replace(/\$\s?|(,*)/g, "")}
-                  value={form.amount}
-                  step={1000}
-                  name="amount"
-                  size="large"
-                />
-              </Form.Item> : null}
+              {
+                this.isStatic ?
+                  <Form.Item className={"subsidyAmount"} label={<Label>{this.changeAmountFieldTitle}</Label>}>
+                    <CalculatorInput
+                      formatter={v => `${v}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                      onChange={v => this.setField("amount", v)}
+                      parser={v => v.replace(/\$\s?|(,*)/g, "")}
+                      value={form.amount}
+                      max={this.amountMaxValue ? this.amountMaxValue : undefined}
+                      step={1000}
+                      name="amount"
+                      size="large"
+                    />
+                  </Form.Item>
+                  : null
+              }
 
               {/* income input */}
+              {this.isTypeMaternity &&
               <Form.Item label={<Label>{lang.form.income}</Label>}>
                 <CalculatorInput
                   formatter={v => `${v}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
@@ -318,6 +453,7 @@ class SubsidyCalculator extends React.Component {
                   size="large"
                 />
               </Form.Item>
+              }
 
               {/* static field */}
               <Form.Item>
@@ -352,8 +488,18 @@ class SubsidyCalculator extends React.Component {
           <UnderLine />
 
           <CalculatorCardResult
-            title={lang.result["subsidy_gov"]}
+            title={lang.result["all_pure_subsidy"]}
             text={result.subsidy}
+          />
+
+          <CalculatorCardResult
+            title={lang.result["subsidy_emp"]}
+            text={result.subsidy_emp}
+          />
+
+          <CalculatorCardResult
+            title={lang.result["subsidy_gov"]}
+            text={result.subsidy_gov}
           />
 
           <CalculatorCardResult

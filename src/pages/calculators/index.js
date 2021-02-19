@@ -48,10 +48,6 @@ const Index = ({ pageContext }) => {
   return(
     <>
       <CalcPageWrapper ctx={pageContext}>
-<<<<<<< HEAD
-=======
-        {console.log()}
->>>>>>> develop
         <H1Element>{pageContext.localeResources.translation.calculator.title}</H1Element>
         <PElement>{pageContext.localeResources.translation.calculator.paragraph}</PElement>
         <CalculatorHomePage pageContext={pageContext.locale}/>

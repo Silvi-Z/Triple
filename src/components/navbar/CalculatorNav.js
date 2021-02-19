@@ -82,19 +82,25 @@ const CalculatorNav = ({ t, locale }) => {
           <NavLink className="calc-nav-item" to={`/${locale}/calculators/final/`}>{t.final.title}</NavLink>
         </NavItem>
         <NavItem>
-          <NavLink className="calc-nav-item" to={`/${locale}/calculators/mortgage/`}>{t.mortgage.title}</NavLink>
+          <NavLink className="calc-nav-item" to={`/${locale}/calculators/subsidy/`}>{t.subsidy.title}</NavLink>
         </NavItem>
         <NavItem>
           <NavLink className="calc-nav-item" to={`/${locale}/calculators/car-customs/`}>{t.car_customs.title}</NavLink>
         </NavItem>
         <NavItem>
-          <NavLink className="calc-nav-item" to={`/${locale}/calculators/car-sell/`}>{t.car_sell.title}</NavLink>
-        </NavItem>
-        <NavItem>
           <NavLink className="calc-nav-item" to={`/${locale}/calculators/car-tax/`}>{t.car_tax.title}</NavLink>
         </NavItem>
         <NavItem>
-          <NavLink className="calc-nav-item" to={`/${locale}/calculators/subsidy/`}>{t.subsidy.title}</NavLink>
+          <NavLink className="calc-nav-item" to={`/${locale}/calculators/car-sell/`}>{t.car_sell.title}</NavLink>
+        </NavItem>
+        <NavItem>
+          <NavLink className="calc-nav-item" to={`/${locale}/calculators/mortgage/`}>{t.mortgage.title}</NavLink>
+        </NavItem>
+        <NavItem>
+          <NavLink className="calc-nav-item" to={`/${locale}/calculators/calendar/`}>{t.calendar.title}</NavLink>
+        </NavItem>
+        <NavItem>
+          <NavLink className="calc-nav-item" to={`/${locale}/calculators/currency/`}>{t.currency.title}</NavLink>
         </NavItem>
       </List>
     </NavCard>

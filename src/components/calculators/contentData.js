@@ -7,95 +7,96 @@ import carSell from "../../assets/calcImages/car-sell.svg"
 import carTax from "../../assets/calcImages/car-tax.svg"
 import salaryTable from "../../assets/calcImages/salary-table.svg"
 import calc_9 from "../../assets/calcImages/calc_9.svg"
-const contentData=[
+
+const contentData = [
   {
-    "link" : "/calculators/salary",
-    "src" : `${salary}`,
-    "title" : [
+    "link": "/calculators/salary",
+    "src": `${salary}`,
+    "title": [
       {
         "en": "Salary Calculator ",
-        "arm": "Աշխատավարձի հաշվիչ"
-      }
+        "arm": "Աշխատավարձի հաշվիչ",
+      },
     ],
   },
   {
-    "link" : "/calculators/salary-table",
-    "src" : `${salaryTable}`,
-    "title" : [
+    "link": "/calculators/salary-table",
+    "src": `${salaryTable}`,
+    "title": [
       {
         "en": "Salary Calculator (based on the employee time record sheet)",
-        "arm": "Աշխատավարձի հաշվիչ ըստ տաբելի"
-      }
+        "arm": "Աշխատավարձի հաշվիչ ըստ տաբելի",
+      },
     ],
   },
   {
-    "link" : "/calculators/vacation",
-    "src" : `${vacation}`,
-    "title" : [
+    "link": "/calculators/vacation",
+    "src": `${vacation}`,
+    "title": [
       {
         "en": "Vacation Pay Calculator",
-        "arm": "Արձակուրդայինի հաշվիչ"
-      }
+        "arm": "Արձակուրդայինի հաշվիչ",
+      },
     ],
   },
   {
-    "link" : "/calculators/final",
-    "src" : `${final}`,
-    "title" : [
+    "link": "/calculators/final",
+    "src": `${final}`,
+    "title": [
       {
         "en": "Calculator of final settlement of employee",
-        "arm": "Վերջնահաշվարկի հաշվիչ"
-      }
+        "arm": "Վերջնահաշվարկի հաշվիչ",
+      },
     ],
   },
   {
-    "link" : "/calculators/mortgage",
-    "src" : `${mortgage}`,
-    "title" : [
-      {
-        "en": "Return of Income tax",
-        "arm": "Եկամտային հարկի վերադարձ\n"
-      }
-    ],
-  },
-  {
-    "link" : "/calculators/car-customs",
-    "src" : `${carCustoms}`,
-    "title" : [
-      {
-        "en": "Car customs clearance fee calculator",
-        "arm": "Ավտոմեքենայի մաքսազերծման վճարի հաշվիչ"
-      }
-    ],
-  },
-  {
-    "link" : "/calculators/car-sell",
-    "src" : `${carSell}`,
-    "title" : [
-      {
-        "en": "Car sales calculator",
-        "arm": "Ավտոմեքենայի վաճառքի հաշվիչ\n"
-      }
-    ],
-  },
-  {
-    "link" : "/calculators/car-tax",
-    "src" : `${carTax}`,
-    "title" : [
-      {
-        "en": "car-tax",
-        "arm": "fffff"
-      }
-    ],
-  },
-  {
-    "link" : "/calculators/subsidy",
-    "src" : `${calc_9}`,
-    "title" : [
+    "link": "/calculators/subsidy",
+    "src": `${calc_9}`,
+    "title": [
       {
         "en": "subsidy",
-        "arm": "fffff"
-      }
+        "arm": "Նպաստների հաշվիչ",
+      },
+    ],
+  },
+  {
+    "link": "/calculators/car-customs",
+    "src": `${carCustoms}`,
+    "title": [
+      {
+        "en": "Car customs clearance fee calculator",
+        "arm": "Ավտոմեքենայի մաքսազերծման վճարի հաշվիչ",
+      },
+    ],
+  },
+  {
+    "link": "/calculators/car-tax",
+    "src": `${carTax}`,
+    "title": [
+      {
+        "en": "car-tax",
+        "arm": "Գույքահարկի հաշվիչ\n",
+      },
+    ],
+  },
+  {
+    "link": "/calculators/car-sell",
+    "src": `${carSell}`,
+    "title": [
+      {
+        "en": "Car sales calculator",
+        "arm": "Ավտոմեքենայի վաճառքի հաշվիչ\n",
+      },
+    ],
+  },
+  {
+    "link": "/calculators/mortgage",
+    "src": `${mortgage}`,
+    "title": [
+      {
+        "en": "Return of Income tax",
+        "arm": "Եկամտային հարկի վերադարձ",
+      },
     ],
   },
 ]

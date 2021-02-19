@@ -1,5 +1,5 @@
 import React from "react"
-import { useStaticQuery, graphql } from "gatsby"
+import { graphql, useStaticQuery } from "gatsby"
 import LocaleContext from "../localeContext"
 
 function useTranslations() {
@@ -192,6 +192,7 @@ const query = graphql`
                 paragraph
                 clean_salary_button
                 dirty_salary_button
+                gross_salary
                 tax_label
                 tax_label_common
                 tax_label_enterprise
@@ -212,6 +213,17 @@ const query = graphql`
                 dirty_to_clean_salary
                 clean_dirty_to_salary
                 result_duty_bonus
+                form {
+                  by_date
+                  by_table
+                  start
+                  end
+                  working_days
+                  working_schedule
+                  five_days
+                  six_days
+                  salary
+                }
               }
               salary_table {
                 title
@@ -390,12 +402,17 @@ const query = graphql`
                   self
                   tax
                   tax_common
+                  tax_common_for_self_employed
+                  tax_turnover_for_self_employed
                   tax_it
                   tax_enterprise
                   schedule
                   five_days
                   six_days
                   amount
+                  amount_self_common
+                  amount_self_turnover
+                  amount_self_enterprise
                   income
                   static
                 }
@@ -411,6 +428,7 @@ const query = graphql`
                   subsidy_emp
                   subsidy_gov
                   pure_subsidy
+                  all_pure_subsidy
                   income_tax
                 }
               }
@@ -457,6 +475,9 @@ const query = graphql`
                 title
                 calculate
                 form {
+                type
+                car
+                realEstate
                   vehicle {
                     title
                     car
@@ -464,6 +485,13 @@ const query = graphql`
                     truck
                     motorcycle
                     water_vehicle
+                  }
+                  estate {
+                    title
+                    cadastralValue
+                    residential
+                    public_production
+                    garage
                   }
                   year
                   power
@@ -473,6 +501,76 @@ const query = graphql`
                 result {
                   title
                   tax
+                }
+              }
+              calendar{
+                title
+                calculate
+                chooseDaysRange
+                working_schedule
+                year
+                form{
+                  start
+                  end
+                }
+                calendar {
+                  months {
+                    january
+                    february
+                    march
+                    april
+                    may
+                    june
+                    july
+                    august
+                    september
+                    october
+                    november
+                    december
+                  }
+                  daysOfWeek {
+                    monday
+                    tuesday
+                    wednesday
+                    thursday
+                    friday
+                    saturday
+                    sunday
+                  }
+                  additionalInformation {
+                    calendarDays
+                    workDays
+                    workHours
+                    five_days
+                    six_days
+                  }
+                }
+                result {
+                  title
+                  calendarDays
+                  workDays
+                  workHours
+                  nonWorkingDays
+                }
+              }
+              currency {
+                title
+                calculate
+                currency {
+                  amd
+                  usd
+                  rub
+                  eur
+                  cny
+                  gbp
+                  gel
+                  irr
+                }
+                form {
+                  date
+                }
+                result {
+                  currency
                 }
               }
               share

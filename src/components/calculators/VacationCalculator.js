@@ -2,28 +2,39 @@ import React from "react"
 import ReactDOM from "react-dom"
 import moment from "moment"
 import triple from "../../api/triple"
-import { pick, isNull, isEmpty, isEqual } from "lodash"
-import { Row, Col, Card, Form, Radio, Checkbox } from "antd"
+import { isEmpty, isEqual, isNull, pick } from "lodash"
+import { Checkbox, Col, Form, Radio, Row } from "antd"
 import GrossSalaryTable from "./calcComponents/GrossSalaryTable"
 import CalculatorCardResult from "./calcComponents/CalculatorCardResult"
 import { isHoliday, isWeekend, workingDaysInRange } from "./utilities/vacation"
 import {
-  Label,
-  UnderLine,
-  FormLabel,
-  RadioLabel,
-  CalculatorInput,
   ButtonSubmit,
   CalculatorDatePicker,
-  H1Styled, TextStyled, CalculatorsCard,
+  CalculatorInput,
+  CalculatorsCard,
+  FormLabel,
+  H1Styled,
+  Label,
+  RadioLabel,
+  TextStyled,
+  UnderLine,
 } from "./styled"
-import { schema, SALARY_MIN, TAX_FIELD_COMMON, TAX_FIELD_ENTERPRISE, TAX_FIELD_IT, PENSION_FIELD_NO, PENSION_FIELD_YES, PENSION_FIELD_YES_VOLUNTEER } from "./utilities/salary"
+import {
+  PENSION_FIELD_NO,
+  PENSION_FIELD_YES,
+  PENSION_FIELD_YES_VOLUNTEER,
+  SALARY_MIN,
+  schema,
+  TAX_FIELD_COMMON,
+  TAX_FIELD_ENTERPRISE,
+  TAX_FIELD_IT,
+} from "./utilities/salary"
 
-moment.locale('en', {
+moment.locale("en", {
   week: {
     dow: 1,
   },
-});
+})
 
 const radioStyle = {
   display: "block",
@@ -62,7 +73,7 @@ class VacationCalculator extends React.Component {
         pension_fee: 0,
         stamp_fee: 0,
         salary: 0,
-        vacation_salary: 0
+        vacation_salary: 0,
       },
       monthAvgSalary: 0,
       calculated: false,
@@ -125,7 +136,7 @@ class VacationCalculator extends React.Component {
 
   get amounts() {
     const { amount, date_from } = this.state.form
-    const momentFrom = moment(date_from)
+    const momentFrom = moment(date_from).subtract(1, "months")
     let items = []
 
     if (!date_from) {
@@ -140,7 +151,7 @@ class VacationCalculator extends React.Component {
       return items
     }
 
-    while (moment(date_from).diff(momentFrom, "months") < 12) {
+    while (moment(date_from).diff(momentFrom, "months") <= 12) {
       items.push({
         month: momentFrom.month(),
         year: momentFrom.year(),
@@ -167,7 +178,7 @@ class VacationCalculator extends React.Component {
 
     if (date_from && vacation_days) {
       for (let i = 1; i < vacation_days; i++) {
-        if (weekends.includes(momentFrom.day()) || this.holidays.map(day => day.date).includes(momentFrom.format('YYYY-MM-DD'))) {
+        if (weekends.includes(momentFrom.day()) || this.holidays.map(day => day.date).includes(momentFrom.format("YYYY-MM-DD"))) {
           i--
         }
 
@@ -193,13 +204,13 @@ class VacationCalculator extends React.Component {
         end: moment(date_to),
         holidays: this.holidays,
         workdays: this.workdays,
-        schedule: working_schedule
+        schedule: working_schedule,
       }).length)
     }
   }
 
   fetchDays() {
-    triple.get('/api/days')
+    triple.get("/api/days")
       .then(res => {
         this.holidays = res.data.holidays
         this.workdays = res.data.workdays
@@ -233,9 +244,9 @@ class VacationCalculator extends React.Component {
       (window.scrollY + this.colElement.offsetHeight + this.rowElementOffsetTop) >=
       (this.rowElementOffsetTop + this.rowElement.offsetHeight)
     ) {
-      this.colElement.classList.add('abs')
+      this.colElement.classList.add("abs")
     } else {
-      this.colElement.classList.remove('abs')
+      this.colElement.classList.remove("abs")
     }
   }
 
@@ -262,37 +273,36 @@ class VacationCalculator extends React.Component {
   handlePickerRender = (date, today, range) => {
     const { form } = this.state
 
-    const condition = range === 'start'
+    const condition = range === "start"
       ? form.date_to && (date.isSameOrAfter(form.date_to, "day"))
       : !form.date_from || (date.isSameOrBefore(form.date_from, "day"))
 
-    if (date.isSame(today, 'day')) {
+    if (date.isSame(today, "day")) {
       return <div className={
         !condition
-          ? 'ant-picker-cell-inner ant-picker-cell-today'
-          : 'ant-picker-cell-inner'
+          ? "ant-picker-cell-inner ant-picker-cell-today"
+          : "ant-picker-cell-inner"
       }>
-        {date.format('D')}
+        {date.format("D")}
       </div>
     } else if (isHoliday(date, this.holidays)) {
       return <div className={
         !condition
-          ? 'ant-picker-cell-inner ant-picker-cell-holiday'
-          : 'ant-picker-cell-inner'
+          ? "ant-picker-cell-inner ant-picker-cell-holiday"
+          : "ant-picker-cell-inner"
       }>
-        {date.format('D')}
+        {date.format("D")}
       </div>
     } else if (isWeekend(date, form.working_schedule)) {
       return <div className={
         !condition
-          ? 'ant-picker-cell-inner ant-picker-cell-weekend'
-          : 'ant-picker-cell-inner'
+          ? "ant-picker-cell-inner ant-picker-cell-weekend"
+          : "ant-picker-cell-inner"
       }>
-        {date.format('D')}
+        {date.format("D")}
       </div>
-    }
-    else {
-      return <div className="ant-picker-cell-inner">{date.format('D')}</div>
+    } else {
+      return <div className="ant-picker-cell-inner">{date.format("D")}</div>
     }
   }
 
@@ -314,7 +324,7 @@ class VacationCalculator extends React.Component {
           if (!this.state.calculated) this.setState({ calculated: true })
         })
         .catch(err => console.log(err))
-        .finally(() => document.body.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"}))
+        .finally(() => document.body.scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" }))
     })
   }
 
@@ -330,7 +340,7 @@ class VacationCalculator extends React.Component {
   }
 
   componentWillUnmount() {
-    window.removeEventListener('scroll', this.handleWindowScroll)
+    window.removeEventListener("scroll", this.handleWindowScroll)
   }
 
   render() {
@@ -359,10 +369,10 @@ class VacationCalculator extends React.Component {
               size="large"
             >
               <Row gutter={10} align="middle">
-                <Form.Item style={{marginRight: '25px'}} label={<Label>{lang.start}</Label>}>
+                <Form.Item style={{ marginRight: "25px" }} label={<Label>{lang.start}</Label>}>
                   <CalculatorDatePicker
                     disabledDate={d => form.date_to && (d.isSameOrAfter(form.date_to, "day"))}
-                    dateRender={(date, today) => this.handlePickerRender(date, today, 'start')}
+                    dateRender={(date, today) => this.handlePickerRender(date, today, "start")}
                     onChange={date => this.setDateField("date_from", date)}
                     placeholder={lang["date_from_placeholder"]}
                     value={this.dateFromValue}
@@ -375,7 +385,7 @@ class VacationCalculator extends React.Component {
                 <Form.Item label={<Label>{lang.end}</Label>}>
                   <CalculatorDatePicker
                     disabledDate={d => !form.date_from || (d.isSameOrBefore(form.date_from, "day"))}
-                    dateRender={(date, today) => this.handlePickerRender(date, today, 'end')}
+                    dateRender={(date, today) => this.handlePickerRender(date, today, "end")}
                     onChange={date => this.setDateField("date_to", date)}
                     placeholder={lang["date_from_placeholder"]}
                     value={this.dateToValue}
@@ -414,8 +424,8 @@ class VacationCalculator extends React.Component {
 
               <Form.Item label={<Label>{lang["salary_label"]}</Label>}>
                 <CalculatorInput
-                  formatter={v => `${v}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
-                  parser={v => v.replace(/\$\s?|(,*)/g, '')}
+                  formatter={v => `${v}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                  parser={v => v.replace(/\$\s?|(,*)/g, "")}
                   onChange={v => this.setField("amount", v)}
                   value={form.amount}
                   min={SALARY_MIN}
@@ -485,7 +495,7 @@ class VacationCalculator extends React.Component {
                 </Radio.Group>
               </Form.Item>
 
-              <Form.Item style={{marginTop: '50px'}}>
+              <Form.Item style={{ marginTop: "50px" }}>
                 <ButtonSubmit htmlType="submit" shape="round" size="large">
                   {lang["calculate"]}
                 </ButtonSubmit>
@@ -507,7 +517,7 @@ class VacationCalculator extends React.Component {
           <CalculatorCardResult
             title={lang.result["income_tax"]}
             text={result.income_tax}
-            tooltip={form.tax_field === TAX_FIELD_ENTERPRISE ? 'prompt text': null}
+            tooltip={form.tax_field === TAX_FIELD_ENTERPRISE ? "prompt text" : null}
           />
 
           <CalculatorCardResult
