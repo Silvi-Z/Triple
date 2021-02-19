@@ -73,7 +73,6 @@ const CalculatorWrapper = ({ ctx, children}) => {
   };
   const [sameMarginTop, setSameMarginTop] = useState( '10px')
 
-  console.log(sameMarginTop)
   useEffect(()=>{
     setSameMarginTop(document.querySelector('.textSec').clientHeight+'px');
     document.querySelector(".result").style.marginTop = sameMarginTop

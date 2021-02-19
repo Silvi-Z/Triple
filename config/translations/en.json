@@ -299,6 +299,7 @@
       "clean_salary_button": "Մաքուր",
       "dirty_salary_button": "Կեղտոտ",
       "tax_label": "Ընտրել ՀԱՐԿՄԱՆ ԴԱՇՏԸ",
+      "gross_salary": "Գրանցված աշխատավարձ (ըստ աշխատած օրերի)",
       "tax_label_common": "Աշխատում ե՞ք ընդհանուր հարկման դաշտի սուբյեկտ հանդիսացող կազմակերպությունում։",
       "tax_label_enterprise": "Աշխատում ե՞ք միկրոձեռնարկության սուբյեկտ հանդիսացող կազմակերպությունում։",
       "tax_label_it": "Աշխատում ե՞ք ՏՏ ոլորտի հավաստագրված կազմակերպությունում։",
@@ -317,7 +318,18 @@
       "stamp_duty_label": "Դրոշմանիշային վճար",
       "dirty_to_clean_salary": "Զուտ աշխատավարձ",
       "clean_dirty_to_salary": "Գրանցված աշխատավարձ",
-      "result_duty_bonus": "Կեղտոտ պարգևավճար"
+      "result_duty_bonus": "Կեղտոտ պարգևավճար",
+      "form": {
+        "by_date": "Հաշվարկ ըստ ամբողջական ամսվա",
+        "by_table": "Հաշվարկ ըստ օրացույցի",
+        "start": "ՍԿԻԶԲ",
+        "end": "ԱՎԱՐՏ",
+        "working_days": "Աշխատանքային օրեր",
+        "working_schedule": "Աշխատանքային գրաֆիկ",
+        "five_days": "Հնգօրյա",
+        "six_days": "Վեցօրյա",
+        "salary": "Աշխատավարձ"
+      }
     },
     "salary_table": {
       "title": "Salary Calculator (based on the employee time record sheet)",
@@ -368,7 +380,7 @@
         "dirty_to_clean_salary": "Զուտ աշխատավարձ",
         "clean_to_dirty_salary": "Գրանցված աշխատավարձ",
         "duty_bonus": "Կեղտոտ պարգևավճար",
-        "download": "Ներբեռնել արդյունթը"
+        "download": "Ներբեռնել արդյունքը"
       }
     },
     "vacation": {
@@ -519,6 +531,9 @@
       "calculate": "ՀԱՇՎԵԼ",
       "title": "Property tax calculator",
       "form": {
+        "type": "Գույքահարկի տեսակ",
+        "car": "Ավտոմեքենայի",
+        "realEstate": "Անշարժ գույքի",
         "vehicle": {
           "title": "ՏՄ տեսակը",
           "car": "Մինչև 10 նստատեղ ունեցող մարդատար ավտոմեքենա",
@@ -526,6 +541,13 @@
           "truck": "Բեռնատար ավտոմեքենա",
           "motorcycle": "Մոտոցիկլետ",
           "water_vehicle": "Ջրային փոխադրամիջոց"
+        },
+        "estate": {
+          "title": "ԱՆՇԱՐԺ ԳՈՒՅՔԻ տեսակը",
+          "cadastralValue": "ԿԱԴԱՍՏՐԱՅԻՆ ԱՐԺԵՔԸ",
+          "residential": "Բնակելի նշանակության շինություններ",
+          "public_production": "Հասարակական և արտադրական նշանակության շինություններ",
+          "garage": "Ավտոտնակներ"
         },
         "year": "ԹՈՂԱՐԿՄԱՆ ՏԱՐԵԹԻՎ",
         "power": "ՇԱՐԺԻՉԻ ՀԶՈՐՈՒԹՅՈՒՆ",
@@ -563,6 +585,76 @@
         "title": "Արդյունք",
         "calculate": "ՀԱՇՎԵԼ",
         "subsidy": "Գործատուի կողմից վճարման ենթակա նպաստ"
+      }
+    },
+    "calendar": {
+      "title": "Աշխատանքային օրացույց",
+      "calculate": "ՀԱՇՎԵԼ",
+      "chooseDaysRange": "Ընտրել աշխատանքային օրացույցի օրերը",
+      "working_schedule": "Նշել աշխատանքային գրաֆիկը",
+      "year": "թ․",
+      "calendar": {
+        "months": {
+          "january": "Հունվար",
+          "february": "Փետրվար",
+          "march": "Մարտ",
+          "april": "Ապրիլ",
+          "may": "Մայիս",
+          "june": "Հունիս",
+          "july": "Հուլիս",
+          "august": "Օգոստոս",
+          "september": "Սեպտեմբեր",
+          "october": "Հոկտեմբեր",
+          "november": "Նոյեմբեր",
+          "december": "Դեկտեմբեր"
+        },
+        "daysOfWeek": {
+          "monday": "Երկ",
+          "tuesday": "Երք",
+          "wednesday": "Չոր",
+          "thursday": "Հնգ",
+          "friday": "Ուր",
+          "saturday": "Շբթ",
+          "sunday": "Կիր"
+        },
+        "additionalInformation": {
+          "calendarDays": "Օրացույցային օրեր",
+          "workDays": "Աշխատանքային օրեր",
+          "workHours": "Աշխատանքային ժամեր",
+          "five_days": "Հնգօրյա",
+          "six_days": "Վեցօրյա"
+        }
+      },
+      "form": {
+        "start": "ՍԿԻԶԲ",
+        "end": "ԱՎԱՐՏ"
+      },
+      "result": {
+        "title": "Արդյունք",
+        "calendarDays": "Օրացույցային օրեր",
+        "workDays": "Աշխատանքային օրեր",
+        "workHours": "Աշխատանքային ժամեր",
+        "nonWorkingDays": "Ոչ աշխատանքային օրեր"
+      }
+    },
+    "currency": {
+      "title": "Փոխարժեքի հաշվիչ",
+      "calculate": "ՀԱՇՎԵԼ",
+      "currency": {
+        "amd": "AMD",
+        "usd": "USD",
+        "rub": "RUB",
+        "eur": "EUR",
+        "cny": "CNY",
+        "gbp": "GBP",
+        "gel": "GEL",
+        "irr": "IRR"
+      },
+      "form": {
+        "date": "ԴՐՈՒԹՅԱՄԲ"
+      },
+      "result": {
+        "currency": "Փոխարժեքն այս պահին"
       }
     }
   }

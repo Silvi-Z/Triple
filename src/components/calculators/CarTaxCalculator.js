@@ -1,31 +1,41 @@
 import React from "react"
 import moment from "moment"
 import { isEqual } from "lodash"
-import { Card, Col, Form, Row, Select } from "antd"
+import { Col, Form, Radio, Row, Select } from "antd"
 import {
-  CalculatorDatePicker,
-  CalculatorSelect,
-  CalculatorInput,
   ButtonSubmit,
+  CalculatorDatePicker,
+  CalculatorInput,
+  CalculatorsCard,
+  CalculatorSelect,
   FormLabel,
-  UnderLine,
+  H1Styled,
   Label,
-  H1Styled, TextStyled, CalculatorsCard,
+  TextStyled,
+  UnderLine,
 } from "./styled"
 import VehicleTax from "../../calculators/VehicleTax"
 import CalculatorCardResult from "./calcComponents/CalculatorCardResult"
 
 class CarTaxCalculator extends React.Component {
-  get yearValue() {
-    const { year } = this.state.form
-
-    year ? moment({year}) : null
-  }
-
   constructor(props) {
     super(props)
 
     this.state = { form: { ...VehicleTax.form }, tax: null, calculated: false }
+  }
+
+  get yearValue() {
+    const { year } = this.state.form
+
+    year ? moment({ year }) : null
+  }
+
+  get isTypeCar() {
+    return this.state.form.taxType === VehicleTax.TAX_CAR
+  }
+
+  get isTypeRealEstate() {
+    return this.state.form.taxType === VehicleTax.TAX_REAL_ESTATE
   }
 
   setField(name, value, cb) {
@@ -34,7 +44,7 @@ class CarTaxCalculator extends React.Component {
 
   handleSubmit = () => VehicleTax.schema.isValid(this.state.form).then(valid => {
     if (!valid) {
-      this.setState({tax: null, calculator: false})
+      this.setState({ tax: null, calculator: false })
 
       return
     }
@@ -43,7 +53,7 @@ class CarTaxCalculator extends React.Component {
 
     this.setState({
       tax: calculator.calculate(),
-      calculated: true
+      calculated: true,
     })
   })
 
@@ -74,47 +84,98 @@ class CarTaxCalculator extends React.Component {
               layout="horizontal"
               size="large"
             >
-              <Form.Item label={<Label>{lang.form.vehicle.title}</Label>}>
-                <CalculatorSelect
-                  size="large"
-                  value={form.type}
-                  style={{maxWidth:'424px'}}
-                  onChange={value => this.setField("type", value)}
+              {/* type field */}
+              <Form.Item label={<Label>{lang.form.type}</Label>} labelCol={{ span: 24 }}>
+                <Radio.Group
+                  onChange={e => this.setField("taxType", e.target.value)}
+                  value={form.taxType}
                 >
-                  {VehicleTax.types(lang.form.vehicle).map(vehicle =>
-                    <Select.Option value={vehicle.value} key={`vehicle-${vehicle.value}`}>
-                      {vehicle.text}
-                    </Select.Option>
-                  )}
-                </CalculatorSelect>
+                  <Radio value={VehicleTax.TAX_CAR}>
+                    {<Label style={{ textTransform: "none" }}>{lang.form.car}</Label>}
+                  </Radio>
+                  <Radio value={VehicleTax.TAX_REAL_ESTATE}>
+                    {<Label style={{ textTransform: "none" }}>{lang.form.realEstate}</Label>}
+                  </Radio>
+                </Radio.Group>
               </Form.Item>
 
-              <Form.Item label={<Label>{lang.form.year}</Label>}>
-                <CalculatorDatePicker
-                  onChange={date => this.setField("date", date)}
-                  value={form.date}
-                  placeholder={null}
-                  picker="year"
-                  size="large"
-                />
-              </Form.Item>
+              {this.isTypeCar ?
+                <>
+                  <Form.Item label={<Label>{lang.form.vehicle.title}</Label>}>
+                    <CalculatorSelect
+                      size="large"
+                      value={form.type}
+                      style={{ maxWidth: "424px" }}
+                      onChange={value => this.setField("type", value)}
+                    >
+                      {VehicleTax.types(lang.form.vehicle).map(vehicle =>
+                        <Select.Option value={vehicle.value} key={`vehicle-${vehicle.value}`}>
+                          {vehicle.text}
+                        </Select.Option>,
+                      )}
+                    </CalculatorSelect>
+                  </Form.Item>
 
-              <Form.Item label={<Label>{lang.form.power}</Label>}>
-                <CalculatorInput
-                  onChange={v => this.setField("power", v)}
-                  style={{ marginRight: "10px" }}
-                  value={form.power}
-                  min={1}
-                  size="large"
-                  type="number"
-                />
+                  <Form.Item label={<Label>{lang.form.year}</Label>}>
+                    <CalculatorDatePicker
+                      onChange={date => this.setField("date", date)}
+                      value={form.date}
+                      placeholder={null}
+                      picker="year"
+                      size="large"
+                    />
+                  </Form.Item>
 
-                <Label style={{ textTransform: "none" }}>
-                  {lang.form.horsepower}
-                </Label>
-              </Form.Item>
+                  <Form.Item label={<Label>{lang.form.power}</Label>}>
+                    <CalculatorInput
+                      onChange={v => this.setField("power", v)}
+                      style={{ marginRight: "10px" }}
+                      value={form.power}
+                      min={1}
+                      size="large"
+                      type="number"
+                    />
 
-              <Form.Item style={{marginTop: '50px'}}>
+                    <Label style={{ textTransform: "none" }}>
+                      {lang.form.horsepower}
+                    </Label>
+                  </Form.Item>
+
+                </>
+                : null
+              }
+
+              {this.isTypeRealEstate ?
+                <>
+                  <Form.Item label={<Label>{lang.form.estate.title}</Label>}>
+                    <CalculatorSelect
+                      size="large"
+                      value={form.estateType}
+                      style={{ maxWidth: "424px" }}
+                      onChange={value => this.setField("estateType", value)}
+                    >
+                      {VehicleTax.estateTypes(lang.form.estate).map(vehicle =>
+                        <Select.Option value={vehicle.value} key={`vehicle-${vehicle.value}`}>
+                          {vehicle.text}
+                        </Select.Option>,
+                      )}
+                    </CalculatorSelect>
+                  </Form.Item>
+
+                  <Form.Item label={<Label>{lang.form.estate.cadastralValue}</Label>}>
+                    <CalculatorInput
+                      onChange={v => this.setField("estateValue", v)}
+                      style={{ marginRight: "10px" }}
+                      value={form.estateValue}
+                      min={1}
+                      size="large"
+                      type="number"
+                    />
+                  </Form.Item>
+                </>
+                : null}
+
+              <Form.Item style={{ marginTop: "50px" }}>
                 <ButtonSubmit
                   htmlType="submit"
                   shape="round"
