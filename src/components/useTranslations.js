@@ -176,6 +176,7 @@ const query = graphql`
                   by_table
                   start
                   end
+                  year
                   working_days
                   working_schedule
                   five_days
@@ -211,6 +212,7 @@ const query = graphql`
                   working_schedule
                   five_days
                   six_days
+                  year
                 }
                 table {
                   name
@@ -262,6 +264,9 @@ const query = graphql`
                 five_days
                 six_days
                 calculate
+                form{
+                  year
+                }
                 result {
                   title
                   gross_vacation_amount
@@ -298,6 +303,7 @@ const query = graphql`
                   yes
                   no
                   calculate   
+                  year
                 }
                 table {
                   hint
@@ -338,6 +344,7 @@ const query = graphql`
                 bonus
                 surcharge
                 calculate
+                year
                 result {
                   title
                   income_tax_back
@@ -356,6 +363,7 @@ const query = graphql`
                   start
                   end
                   days
+                  year
                   hired
                   self
                   tax

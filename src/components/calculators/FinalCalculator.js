@@ -3,20 +3,31 @@ import ReactDOM from "react-dom"
 import triple from "../../api/triple"
 import { isEqual, pick } from "lodash"
 import { InfoCircleTwoTone } from "@ant-design/icons"
-import { Row, Col, Card, Form, Radio, Checkbox, Input, Tooltip } from "antd"
+import { Checkbox, Col, Form, Input, Radio, Row, Tooltip } from "antd"
 import GrossSalaryTable from "./calcComponents/GrossSalaryTable"
 import CalculatorCardResult from "./calcComponents/CalculatorCardResult"
 import {
-  Label,
-  FormLabel,
-  UnderLine,
-  RadioLabel,
   ButtonSubmit,
-  CalculatorInput,
   CalculatorDatePicker,
-  H1Styled, TextStyled, CalculatorsCard,
+  CalculatorInput,
+  CalculatorsCard,
+  FormLabel,
+  H1Styled,
+  Label,
+  RadioLabel,
+  TextStyled,
+  UnderLine,
 } from "./styled"
-import { schema, SALARY_MIN, TAX_FIELD_IT, TAX_FIELD_COMMON, TAX_FIELD_ENTERPRISE, PENSION_FIELD_NO, PENSION_FIELD_YES, PENSION_FIELD_YES_VOLUNTEER } from "./utilities/salary"
+import {
+  PENSION_FIELD_NO,
+  PENSION_FIELD_YES,
+  PENSION_FIELD_YES_VOLUNTEER,
+  SALARY_MIN,
+  schema,
+  TAX_FIELD_COMMON,
+  TAX_FIELD_ENTERPRISE,
+  TAX_FIELD_IT,
+} from "./utilities/salary"
 
 const radioStyle = {
   display: "block",
@@ -47,61 +58,21 @@ class FinalCalculator extends React.Component {
 
   col = React.createRef()
 
-  disabledAcceptanceDates = date => (this.state.form.date_release && (date.isSameOrAfter(this.state.form.date_release, "day")))
+  constructor(props) {
+    super(props)
 
-  disabledReleasedDates = date => (!this.state.form.date_acceptance || (date.isSameOrBefore(this.state.form.date_acceptance, "day")))
-
-  setReleaseDate = date => this.setFormField("date_release", date.add(1, "month"))
-
-  handleWindowScroll = () => {
-    if (
-      (window.scrollY + this.colElement.offsetHeight + this.rowElementOffsetTop) >=
-      (this.rowElementOffsetTop + this.rowElement.offsetHeight)
-    ) {
-      this.colElement.classList.add('abs')
-    } else {
-      this.colElement.classList.remove('abs')
+    this.state = {
+      form: { ...form },
+      result: {
+        total_fee: 0,
+        income_tax: 0,
+        pension_fee: 0,
+        stamp_fee: 0,
+        salary: 0,
+      },
+      calculated: false,
+      loading: false,
     }
-  }
-
-  handlePickerInput = e => {
-    const { value, name } = e.target
-
-    if (!value) {
-      this.setFormField(name, null)
-
-      name === "date_acceptance"
-        ? this.dateFromPicker.current.blur()
-        : this.dateFromPicker.current.blur()
-    }
-  }
-
-  handleSubmit = () => {
-    const { form } = this.state
-    const data = { ...pick(form, Object.keys(schema.fields)), amount: this.amount }
-
-    schema.isValid(data).then(valid => {
-      if (!valid) return
-
-      this.setState({ loading: true })
-
-      triple
-        .post("/api/counter/salary", data, {
-          params: {
-            stamp: false,
-          },
-        })
-        .then(res => this.setState({ result: res.data }))
-        .then(() => {
-          if (!this.state.calculated) this.setState({ calculated: true })
-        })
-        .catch(err => console.log(err))
-        .finally(() => {
-          this.setState({ loading: false })
-
-          document.body.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"});
-        })
-    }).catch(err => console.log(err))
   }
 
   get rowElement() {
@@ -202,21 +173,66 @@ class FinalCalculator extends React.Component {
       .querySelector("input")
   }
 
-  constructor(props) {
-    super(props)
+  disabledAcceptanceDates = date => (this.state.form.date_release && (date.isSameOrAfter(this.state.form.date_release, "day")))
 
-    this.state = {
-      form: { ...form },
-      result: {
-        total_fee: 0,
-        income_tax: 0,
-        pension_fee: 0,
-        stamp_fee: 0,
-        salary: 0,
-      },
-      calculated: false,
-      loading: false,
+  disabledReleasedDates = date => (!this.state.form.date_acceptance || (date.isSameOrBefore(this.state.form.date_acceptance, "day")))
+
+  setReleaseDate = date => this.setFormField("date_release", date.add(1, "month"))
+
+  handleWindowScroll = () => {
+    if (
+      (window.scrollY + this.colElement.offsetHeight + this.rowElementOffsetTop) >=
+      (this.rowElementOffsetTop + this.rowElement.offsetHeight)
+    ) {
+      this.colElement.classList.add("abs")
+    } else {
+      this.colElement.classList.remove("abs")
     }
+  }
+
+  handlePickerInput = e => {
+    const { value, name } = e.target
+
+    if (!value) {
+      this.setFormField(name, null)
+
+      name === "date_acceptance"
+        ? this.dateFromPicker.current.blur()
+        : this.dateFromPicker.current.blur()
+    }
+  }
+
+  handleSubmit = () => {
+    const { form } = this.state
+    const { date_release } = this.state.form
+    let data = { ...pick(form, Object.keys(schema.fields)), amount: this.amount }
+
+    schema.isValid(data).then(valid => {
+      if (!valid) return
+      data = {
+        ...data,
+        year: Number(date_release.format("YYYY")),
+      }
+
+      this.setState({ loading: true })
+
+      triple
+        .post("/api/counter/salary", data, {
+          params: {
+            stamp: false,
+          },
+        })
+        .then(res => this.setState({ result: res.data }))
+        .then(() => {
+          if (!this.state.calculated) this.setState({ calculated: true })
+        })
+        .catch(err => console.log(err))
+        .finally(() => {
+          this.setState({ loading: false })
+
+          document.body.scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" })
+        })
+    }).catch(err => console.log(err))
   }
 
   setFormField(name, value, cb) {
@@ -237,9 +253,9 @@ class FinalCalculator extends React.Component {
     const { used_vacation_days } = this.state.form
 
     if (this.totalVacationDays && used_vacation_days) {
-      this.setFormField('unused_vacation_days', this.totalVacationDays - used_vacation_days)
+      this.setFormField("unused_vacation_days", this.totalVacationDays - used_vacation_days)
     } else if (this.totalVacationDays && !used_vacation_days) {
-      this.setFormField('unused_vacation_days', this.totalVacationDays)
+      this.setFormField("unused_vacation_days", this.totalVacationDays)
     }
   }
 
@@ -247,7 +263,7 @@ class FinalCalculator extends React.Component {
     const { unused_vacation_days } = this.state.form
 
     if (this.totalVacationDays && unused_vacation_days) {
-      this.setFormField('used_vacation_days', this.totalVacationDays - unused_vacation_days)
+      this.setFormField("used_vacation_days", this.totalVacationDays - unused_vacation_days)
     }
   }
 
@@ -275,7 +291,7 @@ class FinalCalculator extends React.Component {
               size="large"
             >
               <Row align="middle">
-                <Form.Item style={{marginRight: '25px'}} label={<Label>{lang.form["acceptance"]}</Label>}>
+                <Form.Item style={{ marginRight: "25px" }} label={<Label>{lang.form["acceptance"]}</Label>}>
                   <CalculatorDatePicker
                     onChange={date => this.setFormField("date_acceptance", date)}
                     placeholder={lang.form["date_acceptance_placeholder"]}
@@ -355,7 +371,7 @@ class FinalCalculator extends React.Component {
                 <Label style={{ textTransform: "none" }}>
                   {lang.form.unused_vacation_days}
                   <Tooltip title="prompt text" color="black">
-                    <InfoCircleTwoTone twoToneColor="#00B3C7" style={{marginLeft: 5}} />
+                    <InfoCircleTwoTone twoToneColor="#00B3C7" style={{ marginLeft: 5 }} />
                   </Tooltip>
                 </Label>
               }>
@@ -363,10 +379,10 @@ class FinalCalculator extends React.Component {
                   onChange={e => this.setFormField("unused_vacation_days", e.target.value, this.autoFillUsedVacationDays)}
                   value={form.unused_vacation_days}
                   style={{
-                    border: '0.5px solid #555555',
-                    background: '#FFFFFF',
-                    borderRadius: '5px',
-                    width: "54px"
+                    border: "0.5px solid #555555",
+                    background: "#FFFFFF",
+                    borderRadius: "5px",
+                    width: "54px",
                   }}
                   max={this.totalVacationDays}
                   min={0}
@@ -379,8 +395,8 @@ class FinalCalculator extends React.Component {
               {form.static_salary ?
                 <Form.Item label={<Label>{lang.form.salary}</Label>}>
                   <CalculatorInput
-                    formatter={v => `${v}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
-                    parser={v => v.replace(/\$\s?|(,*)/g, '')}
+                    formatter={v => `${v}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                    parser={v => v.replace(/\$\s?|(,*)/g, "")}
                     onChange={v => this.setFormField("salary", v)}
                     value={form.salary}
                     min={SALARY_MIN}
@@ -389,7 +405,7 @@ class FinalCalculator extends React.Component {
                     size="large"
                   />
                 </Form.Item>
-              : null}
+                : null}
 
               <Form.Item>
                 <Checkbox
@@ -453,7 +469,7 @@ class FinalCalculator extends React.Component {
                 </Radio.Group>
               </Form.Item>
 
-              <Form.Item style={{marginTop: '50px'}}>
+              <Form.Item style={{ marginTop: "50px" }}>
                 <ButtonSubmit htmlType="submit" shape="round" size="large">
                   {lang.form["calculate"]}
                 </ButtonSubmit>
@@ -477,7 +493,7 @@ class FinalCalculator extends React.Component {
             title={lang.result["income_tax"]}
             text={result.income_tax}
             loading={loading}
-            tooltip={form.tax_field === TAX_FIELD_ENTERPRISE ? 'prompt text': null}
+            tooltip={form.tax_field === TAX_FIELD_ENTERPRISE ? "prompt text" : null}
           />
 
           <CalculatorCardResult
@@ -505,11 +521,11 @@ class FinalCalculator extends React.Component {
     this.dateFromInput.addEventListener("input", this.handlePickerInput)
     this.dateToInput.addEventListener("input", this.handlePickerInput)
 
-    window.addEventListener('scroll', this.handleWindowScroll)
+    window.addEventListener("scroll", this.handleWindowScroll)
   }
 
   componentWillUnmount() {
-    window.removeEventListener('scroll', this.handleWindowScroll)
+    window.removeEventListener("scroll", this.handleWindowScroll)
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {

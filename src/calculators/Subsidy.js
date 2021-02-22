@@ -36,6 +36,8 @@ class Subsidy extends Salary {
       function(item) {
         if (this.parent.tax_field === Subsidy.TAX_ENTERPRISE && item > 12) {
           return false
+        } else if (this.parent.tax_field === Subsidy.TAX_TURNOVER && this.parent.work === Subsidy.SELF_EMPLOYED && item > (12 * 5000)) {
+          return false
         } else {
           return item
         }
@@ -65,6 +67,10 @@ class Subsidy extends Salary {
 
     this.avg = null
     this.fields = Subsidy.form
+  }
+
+  get minSalaryAmount() {
+    return this.fields.year >= 2021 ? Salary.MINWITHTAXSINCE2021 : Salary.MINWITHTAXBEFORE2021
   }
 
   /**
@@ -164,21 +170,21 @@ class Subsidy extends Salary {
 
     if (this.fields.tax_field === Subsidy.TAX_ENTERPRISE) {
       avg = this.isSalaryStatic
-        ? ((this.fields.amount * Salary.MINWITHTAX / 2) + (this.fields.income || 0)) / 12
+        ? ((this.fields.amount * this.minSalaryAmount / 2) + (this.fields.income || 0)) / 12
         : (this.avg + (this.fields.income || 0)) / 12
 
-      if (avg > Salary.MINWITHTAX * 15) {
-        avg = Salary.MINWITHTAX * 15
-      } else if (avg < Salary.MINWITHTAX * 50 / 100) {
-        avg = Salary.MINWITHTAX * 50 / 100
+      if (avg > this.minSalaryAmount * 15) {
+        avg = this.minSalaryAmount * 15
+      } else if (avg < this.minSalaryAmount * 50 / 100) {
+        avg = this.minSalaryAmount * 50 / 100
       }
 
       return avg
     } else {
-      if (avg < Salary.MATERNITY_SUBSIDY_MIN) {
-        return Salary.MATERNITY_SUBSIDY_MIN
-      } else if (avg > Salary.MATERNITY_SUBSIDY_MAX) {
-        return Salary.MATERNITY_SUBSIDY_MAX
+      if (avg < this.minSalaryAmount / 2) {
+        return this.minSalaryAmount / 2
+      } else if (avg > this.minSalaryAmount * 15) {
+        return this.minSalaryAmount * 15
       } else {
         return avg
       }
@@ -199,36 +205,36 @@ class Subsidy extends Salary {
         ? (this.fields.amount + (this.fields.income || 0)) / 12
         : (this.avg + (this.fields.income || 0)) / 12
 
-      if (avg > Salary.MINWITHTAX * 5) {
-        avg = Salary.MINWITHTAX * 5
-      } else if (avg < Salary.MINWITHTAX * 50 / 100) {
-        avg = Salary.MINWITHTAX * 50 / 100
+      if (avg > this.minSalaryAmount * 5) {
+        avg = this.minSalaryAmount * 5
+      } else if (avg < this.minSalaryAmount * 50 / 100) {
+        avg = this.minSalaryAmount * 50 / 100
       }
 
       return avg
 
     } else if (tax_field === Subsidy.TAX_TURNOVER) {
       avg = this.isSalaryStatic
-        ? ((this.fields.amount / 5000) * (Salary.MINWITHTAX / 2) + (this.fields.income || 0)) / 12
+        ? ((this.fields.amount / 5000) * (this.minSalaryAmount / 2) + (this.fields.income || 0)) / 12
         : (this.avg + (this.fields.income || 0)) / 12
 
-      if (avg > Salary.MINWITHTAX * 5) {
-        avg = Salary.MINWITHTAX * 5
-      } else if (avg < Salary.MINWITHTAX * 50 / 100) {
-        avg = Salary.MINWITHTAX * 50 / 100
+      if (avg > this.minSalaryAmount * 5) {
+        avg = this.minSalaryAmount * 5
+      } else if (avg < this.minSalaryAmount * 50 / 100) {
+        avg = this.minSalaryAmount * 50 / 100
       }
 
       return avg
 
     } else if (tax_field === Subsidy.TAX_ENTERPRISE) {
       avg = this.isSalaryStatic
-        ? ((this.fields.amount * Salary.MINWITHTAX / 2) + (this.fields.income || 0)) / 12
+        ? ((this.fields.amount * this.minSalaryAmount / 2) + (this.fields.income || 0)) / 12
         : (this.avg + (this.fields.income || 0)) / 12
 
-      if (avg > Salary.MINWITHTAX * 5) {
-        avg = Salary.MINWITHTAX * 5
-      } else if (avg < Salary.MINWITHTAX * 50 / 100) {
-        avg = Salary.MINWITHTAX * 50 / 100
+      if (avg > this.minSalaryAmount * 5) {
+        avg = this.minSalaryAmount * 5
+      } else if (avg < this.minSalaryAmount * 50 / 100) {
+        avg = this.minSalaryAmount * 50 / 100
       }
 
       return avg
@@ -248,19 +254,18 @@ class Subsidy extends Salary {
         ? (this.fields.amount + (this.fields.income || 0)) / 12 * 80 / 100
         : (this.avg + (this.fields.income || 0)) / 12 * 80 / 100
 
-      if (avg > Salary.MINWITHTAX * 5) {
-        avg = Salary.MINWITHTAX * 5
+      if (avg > this.minSalaryAmount * 5) {
+        avg = this.minSalaryAmount * 5
       }
-
       return avg
 
     } else if (tax_field === Subsidy.TAX_TURNOVER) {
       avg = this.isSalaryStatic
-        ? ((this.fields.amount / 5000) * (Salary.MINWITHTAX / 2) + (this.fields.income || 0)) / 12 * 80 / 100
+        ? ((this.fields.amount / 5000) * (this.minSalaryAmount / 2) + (this.fields.income || 0)) / 12 * 80 / 100
         : (this.avg + (this.fields.income || 0)) / 12 * 80 / 100
 
-      if (avg > Salary.MINWITHTAX * 5) {
-        avg = Salary.MINWITHTAX * 5
+      if (avg > this.minSalaryAmount * 5) {
+        avg = this.minSalaryAmount * 5
       }
 
       return avg
@@ -280,17 +285,17 @@ class Subsidy extends Salary {
     let avg = this.avgMonthSalaryForHired * 80 / 100
     if (this.fields.tax_field === Subsidy.TAX_ENTERPRISE) {
       avg = this.isSalaryStatic
-        ? ((this.fields.amount * Salary.MINWITHTAX / 2) + (this.fields.income || 0)) / 12 * 80 / 100
+        ? ((this.fields.amount * this.minSalaryAmount / 2) + (this.fields.income || 0)) / 12 * 80 / 100
         : (this.avg + ((this.fields.income || 0) / 12)) * 80 / 100
 
-      if (avg > Salary.MINWITHTAX * 10) {
-        avg = Salary.MINWITHTAX * 10
+      if (avg > this.minSalaryAmount * 10) {
+        avg = this.minSalaryAmount * 10
       }
 
       return avg
     } else {
-      if (avg > Salary.DISABILITY_SUBSIDY_MAX) {
-        return Salary.DISABILITY_SUBSIDY_MAX
+      if (avg > this.minSalaryAmount * 10) {
+        return this.minSalaryAmount * 10
       } else {
         return avg
       }
