@@ -110,12 +110,54 @@ const query = graphql`
               paragraph
               news_button
               useInf_button
+              usefulInformation{
+                data{
+                  id
+                  title
+                  url
+                  status
+                  order
+                  first_heading
+                  href
+                  links{
+                    id
+                    label
+                    link
+                  }
+                }
+              }
+              dataUseInfo{
+                status
+                data{
+                  id
+                  title
+                  url
+                  status
+                  order
+                  first_heading
+                  href
+                  links{
+                    id
+                    label
+                    link
+                  }
+                }
+              }
               doc_button
               share 
             }
             career {
               title
               paragraph
+            }
+            news{
+              title
+              search
+              date
+              latestNews
+              popular
+              noResult
+              text
             }
             careerForm {
               textare_label

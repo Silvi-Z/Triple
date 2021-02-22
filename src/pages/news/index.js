@@ -29,6 +29,7 @@ const Index = ({location, pageContext }) => {
   const [constData, setConstData] = useState([])
   const [data, setData] = useState([])
   useEffect(()=>{
+    console.log(triple)
     triple.get('/api/news')
       .then(res =>{
         setConstData(res.data.data)
@@ -40,6 +41,7 @@ const Index = ({location, pageContext }) => {
   let urlShared
   const [selectedDate, setSelectedDate] = useState(newsDatas)
   const getSharedUrl = lng => {
+
     if (lng) {
       return `http://triple-c.algorithm.am/${lng}/news${location.hash}`
     }
@@ -70,7 +72,6 @@ const Index = ({location, pageContext }) => {
 
   const handleChange = date => {
     if(date){
-      console.log(data)
       const selectedData = date.format("DD-MM-YYYY").replaceAll("-", ".")
       const newsDate = constData.filter(item => moment(item.created_at.substring(0, 10)).format("DD.MM.YYYY").includes(selectedData))
       setData(newsDate)
@@ -126,6 +127,7 @@ const Index = ({location, pageContext }) => {
                     placeholder={pageContext.localeResources.translation.news.search_input}
                   />
                   </span>
+                  {console.log(pageContext.localeResources.translation)}
                 </StyledForm.Item>
               </StyledForm>
               <NewsDatePicker

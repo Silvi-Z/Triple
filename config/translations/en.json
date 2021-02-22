@@ -113,10 +113,114 @@
   },
   "information": {
     "title": "Useful information",
-    "paragraph": "Our company considers it its duty to share with its customers the useful information it possesses, thus contributing to the important function of being informed and prepared by the customers.",
+    "paragraph": "Our specialists, aiming to contribute in future and constante development of our clients and partners, are always willing to share any useful information concerning the taxation in RA, changes in fiscal legislation. Moreover, we always try to raise all the issues currently worrying in finance and accounting.",
     "news_button": "News",
     "useInf_button": "Useful information",
     "doc_button": "Sample documents",
+    "usefulInformation": [
+      {
+        "data": {
+          "id": 0,
+          "title": "string",
+          "url": "string",
+          "status": true,
+          "order": 0,
+          "first_heading": "www.petekamutner.am",
+          "href": "https://www.petekamutner.am/",
+          "links": [
+            {
+              "id": 1,
+              "label": "Download e-voicing software",
+              "link": "https://e-invoice.taxservice.am/invoice-homepage/"
+            },
+            {
+              "id": 2,
+              "label": "Tax reporting and payment deadlines",
+              "link": "https://www.petekamutner.am/tsOS_TaxCalendar.aspx"
+            },
+            {
+              "id": 3,
+              "label": "Summary of tax payment accounts",
+              "link": "https://www.petekamutner.am/Content.aspx?itn=tsTITaxFeesBankAccounts"
+            },
+            {
+              "id": 4,
+              "label": "Audit plan of ra state revenue committee",
+              "link": "https://www.petekamutner.am/Content.aspx?itn=tsTIVerificationsPlan"
+            },
+            {
+              "id": 5,
+              "label": "Classifier of economic activity",
+              "link": "https://www.petekamutner.am/tsOS_EAClassifier.aspx"
+            },
+            {
+              "id": 6,
+              "label": "RA taxpayers search system",
+              "link": "https://www.petekamutner.am/tsOS_Taxpayers.aspx"
+            }
+          ]
+        }
+      }
+    ],
+    "dataUseInfo": [
+      {
+        "status": true,
+        "data": {
+          "id": 0,
+          "title": "string",
+          "url": "string",
+          "status": true,
+          "order": 0,
+          "first_heading": "www.parliament.am",
+          "href": "http://www.parliament.am/",
+          "links": [
+            {
+              "id": 1,
+              "label": "RA laws and its changes, law projects as well as already accepted legal acts.",
+              "link": "http://www.parliament.am/drafts.php?sel=approved&lang=arm"
+            }
+          ]
+        }
+      },
+      {
+        "status": true,
+        "data": {
+          "id": 1,
+          "title": "string",
+          "url": "string",
+          "status": true,
+          "order": 0,
+          "first_heading": "www.arlis.am",
+          "href": "https://www.arlis.am/",
+          "links": [
+            {
+              "id": 1,
+              "label": "Labor, ciliv, tax codes of RA as well as other legal acts, decisions and clarifications.",
+              "link": "https://www.arlis.am/"
+            }
+          ]
+        }
+      },
+      {
+        "status": true,
+        "data": {
+          "id": 2,
+          "title": "string",
+          "url": "string",
+          "status": true,
+          "order": 0,
+          "first_heading": "www.e-gov.am",
+          "href": "https://www.e-gov.am/",
+          "links": [
+            {
+              "id": 1,
+              "label": "Decisions of RA Gouvernement as well as decision archive",
+              "link": "https://www.e-register.am/am/"
+            }
+          ]
+        }
+      }
+    ],
     "news": [
       {
         "heading": "Cash register insertion office",
@@ -153,6 +257,15 @@
       }
     ]
   },
+  "news": {
+    "title": "News",
+    "search": "Search",
+    "date": "date",
+    "latestNews": "Latest news",
+    "popular": "Popular",
+    "noResult": "Sorry, there are no results",
+    "text": "Please, try again"
+  },
   "careerForm": {
     "textare_label": "Your message",
     "file_label": "Upload CV *",
@@ -178,7 +291,7 @@
     "paragraph": "Triple Consulting company provides Calculators service, through which you can make online calculations.",
     "share": "Share",
     "nav": {
-      "title": "Հաշվիչներ"
+      "title": "Calculators"
     },
     "salary": {
       "title": "Salary calculator",
@@ -300,7 +413,7 @@
       "six_days": "Վեցօրյա",
       "calculate": "ՀԱՇՎԵԼ",
       "result": {
-        "title" : "Արդյունք",
+        "title": "Արդյունք",
         "gross_vacation_amount": "Համախառն արձակուրդային գումար",
         "income_tax": "Եկամտային հարկ",
         "pension_fee": "Կենսաթոշակային վճար",
@@ -378,7 +491,7 @@
       "calculate": "ՀԱՇՎԵԼ",
       "year": "Տարեթիվ",
       "result": {
-        "title" : "Արդյունք",
+        "title": "Արդյունք",
         "income_tax_back": "Վերադարձվող եկամտային հարկ"
       }
     },

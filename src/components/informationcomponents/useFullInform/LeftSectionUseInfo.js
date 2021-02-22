@@ -10,7 +10,6 @@ import {
 
 const LeftSectionUseInform = ({ usedata }) => {
   return (
-
     <ContainerUseful>
       <GeneralLink to={usedata.data.href} target="_blank">
       <TextWrapper span={24}>

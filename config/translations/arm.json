@@ -108,10 +108,114 @@
   },
   "information": {
     "title": "Օգտակար տեղեկություններ",
-    "paragraph": "Մեր մասնագետները, նպատակ ունենալով իրենց լուման ներդնել հաճախորդների տեղեկացված և պատրաստված լինելու կարևոր գործում, իրենց պարտքն են համարում կիսվել վերջիններիս հետ օգտակար տեղեկատվությամբ, պարզաբանել հարկային, ֆինանսական և հաշվապահական ոլորտում առկա հարցերը և խնդիրները՝ փորձելով առաջարկել դրանց գործնական լուծումները։",
+    "paragraph": "Մեր մասնագետները, նպատակ ունենալով իրենց լուման ներդնել հաճախորդների տեղեկացված և պատրաստված լինելու գործում, իրենց պարտքն են համարում  կիսվել վերջիններիս հետ օգտակար տեղեկատվությամբ, պարզաբանել հարկային, ֆինանսական և հաշվապահական ոլորտում առկա հարցերը և խնդիրները՝ փորձելով առաջարկել դրանց գործնական լուծումները։",
     "news_button": "Նորություններ",
     "useInf_button": "ՕԳՏԱԿԱՐ ՀՂՈԻՄՆԵՐ",
     "doc_button": "ՓԱՍՏԱԹՂԹԵՐԻ ՁԵՎԱՆՄՈՒՇՆԵՐ",
+    "usefulInformation": [
+      {
+        "data": {
+          "id": 0,
+          "title": "string",
+          "url": "string",
+          "status": true,
+          "order": 0,
+          "first_heading": "www.petekamutner.am",
+          "href": "https://www.petekamutner.am/",
+          "links": [
+            {
+              "id": 1,
+              "label": "Բեռնել e-invoicing ծրագիրը",
+              "link": "https://e-invoice.taxservice.am/invoice-homepage/"
+            },
+            {
+              "id": 2,
+              "label": "Հարկային հաշվետվությունների և վճարումների վերջնաժամկետները",
+              "link": "https://www.petekamutner.am/tsOS_TaxCalendar.aspx"
+            },
+            {
+              "id": 3,
+              "label": "Հարկերի վճարման հաշվեհամարների համառոտ ցանկը",
+              "link": "https://www.petekamutner.am/Content.aspx?itn=tsTITaxFeesBankAccounts"
+            },
+            {
+              "id": 4,
+              "label": "ՊԵԿ-ի կողմից նախատեսվող ստուգումների պլանը",
+              "link": "https://www.petekamutner.am/Content.aspx?itn=tsTIVerificationsPlan"
+            },
+            {
+              "id": 5,
+              "label": "Տնտեսական գործունեության տեսակների դասակարգիչներ",
+              "link": "https://www.petekamutner.am/tsOS_EAClassifier.aspx"
+            },
+            {
+              "id": 6,
+              "label": "Փնտրել հարկ վճարողներին ըստ իրենց անվանման  կամ ՀՎՀՀ-ի",
+              "link": "https://www.petekamutner.am/tsOS_Taxpayers.aspx"
+            }
+          ]
+        }
+      }
+    ],
+    "dataUseInfo": [
+      {
+        "status": true,
+        "data": {
+          "id": 0,
+          "title": "string",
+          "url": "string",
+          "status": true,
+          "order": 0,
+          "first_heading": "www.parliament.am",
+          "href": "http://www.parliament.am/",
+          "links": [
+            {
+              "id": 1,
+              "label": "ՀՀ օրենքները և դրանց փոփոխությունները, ինչպես նաև նախագծեր/ամբողջությամբ ընդունվածներ բաժնում ամբողջությամբ ընդունված նախաձեռնությունները: ",
+              "link": "http://www.parliament.am/drafts.php?sel=approved&lang=arm"
+            }
+          ]
+        }
+      },
+      {
+        "status": true,
+        "data": {
+          "id": 1,
+          "title": "string",
+          "url": "string",
+          "status": true,
+          "order": 0,
+          "first_heading": "www.arlis.am",
+          "href": "https://www.arlis.am/",
+          "links": [
+            {
+              "id": 1,
+              "label": "ՀՀ աշխատանքային , քաղաքացիական, վարչական իրավախախտումների վերաբերյալ, մաքսային և մի շարք այլ օրենսգրքեր, ինչպես նաև ՀՀ օրենքներ, որոշումներ, պարզաբանումներ:",
+              "link": "https://www.arlis.am/"
+            }
+          ]
+        }
+      },
+      {
+        "status": true,
+        "data": {
+          "id": 2,
+          "title": "string",
+          "url": "string",
+          "status": true,
+          "order": 0,
+          "first_heading": "www.e-gov.am",
+          "href": "https://www.e-gov.am/",
+          "links": [
+            {
+              "id": 1,
+              "label": "Այս կայքում դուք կարող եք գտնել կառավարության ընդունած վերջին որոշումները, ինչպես նաև որոշումների արխիվը:",
+              "link": "https://www.e-register.am/am/"
+            }
+          ]
+        }
+      }
+    ],
     "news": [
       {
         "heading": "Աշխատաժամանակի հաշվարկի տեղեկագիր",
@@ -148,6 +252,15 @@
       }
     ]
   },
+  "news": {
+    "title": "Նորություններ",
+    "search": "Փնտրել",
+    "date": "ամսաթիվ",
+    "latestNews": "Վերջին նորություններ",
+    "popular": "Շատ ընթերցված",
+    "noResult": "Ներողություն, ոչ մի հոդված չի գտնվել",
+    "text": "Փորձեք որոնել նորից"
+  },
   "careerForm": {
     "textare_label": "Ձեր հաղորդագրությունը",
     "email_label": "Էլ․ հասցե",
@@ -177,6 +290,8 @@
       "title": "Հաշվիչներ"
     },
     "salary": {
+      "src" : "../../assets/calcImages/salary.svg",
+      "link" : "/calculators/salary",
       "title": "Աշխատավարձի հաշվիչ",
       "paragraph": "Աշխատավարձի հաշվիչի օգնությամբ դուք կարող եք հեշտությամբ հաշվարկել Ձեր զուտ  (առձեռն ստացվող) կամ գրանցված աշխատավարձը։ Գործիքը կիրառելի է ընդհանուր և հատուկ հարկային դաշտերում աշխատող, ՏՏ արտոնագիր ունեցող  կազմակերպություններում, ինչպես նաև միկրոձեռնարկություններում ներգրավված աշխատակիցների աշխատավարձը հեշտությամբ հաշվարկելու համար։",
       "clean_salary_button": "Զուտ աշխատավարձ",

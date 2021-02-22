@@ -1,4 +1,4 @@
-import {  Button } from "antd"
+import { Button } from "antd"
 import styled from "styled-components"
 
 export const ToggleH2Styled = styled.h2`
@@ -24,20 +24,20 @@ export const SubmitButton = styled.button`
   height:49px ;
   outline:none;
   font-weight:bold;
-  background: ${props=> props.backgroundColor === 'white'? 'white' : 'black'};
-  border:1px outset ${props=> props.backgroundColor === 'white'? 'white' : 'black'};
-  color: ${props=> props.backgroundColor === 'white'? 'black' : 'white'};
+  background: ${props => props.backgroundColor === "white" ? "white" : "black"};
+  border:1px outset ${props => props.backgroundColor === "white" ? "white" : "black"};
+  color: ${props => props.backgroundColor === "white" ? "black" : "white"};
   border-radius: 30px;
   font-size:16px;
   display: inline-block;
   letter-spacing: 1.15px;
   transition: background-size .5s, color .5s;
-  background: ${props=> props.backgroundColor === 'white'? 'white' : 'black'} linear-gradient(${props=>props.backgroundColor === 'white' ? '#000000 , #000000' :'#FFFFFF , #FFFFFF'}) no-repeat 50% 50%;
+  background: ${props => props.backgroundColor === "white" ? "white" : "black"} linear-gradient(${props => props.backgroundColor === "white" ? "#000000 , #000000" : "#FFFFFF , #FFFFFF"}) no-repeat 50% 50%;
   background-size: 0 100%;
     &:hover {
       background-size: 100% 100%;
       cursor:pointer;
-      color: ${props=> props.backgroundColor === 'white'? 'white' : 'black'};
+      color: ${props => props.backgroundColor === "white" ? "white" : "black"};
       outline:none;
     }
     &:focus {
@@ -115,7 +115,7 @@ export const FormWrapper = styled.div`
     }
 `
 
-export const OrderListWrapper = styled.div`
+export const CareerWrapper = styled.div`
   justify-content:flex-start;
   display:flex;
   flex-direction:column;
@@ -125,21 +125,10 @@ export const OrderListWrapper = styled.div`
     }
 `
 
-export const OrderList = styled.ul`
-  list-style-type: none;
-  margin-left:0;
-  margin-bottom:0;
-    li {
-      text-indent: -5px;
-    }
-    li:before {
-      content: " - ";
-      color: black;
-      text-indent: -5px;
-    }
-`
 
-export const OrderSection = styled.li`
+export const CareerSection = styled.p`
+  max-width: 600px;
+  margin-right: 50px;
   text-indent:0!important;
   font-family: ArialAMU;
   font-size: 18px;
