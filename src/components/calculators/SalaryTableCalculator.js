@@ -132,6 +132,8 @@ class SalaryTableCalculator extends React.Component {
       /** @type {[][]} */
       const rows = Excel.utils.sheet_to_json(workbook.Sheets["WTimesheet"], { header: 1 })
       const date = moment(rows[9][12], "DD/MM/YY")
+      const year = moment(rows[9][12])
+      this.setField("year", year)
       const employees = rows.reduce((acc, row, i) => {
         if (i >= 20 && isInteger(Number(row[0]))) {
           const schedule = defineSchedule(row.slice(4, date.daysInMonth() + 4), date, this.holidays)
@@ -296,7 +298,7 @@ class SalaryTableCalculator extends React.Component {
 
   async calculateByTable() {
     const { employees } = this.state
-    const { from, tax_field } = this.state.form
+    const { from, tax_field, year } = this.state.form
 
     this.setState({ loading: true })
 
@@ -304,6 +306,7 @@ class SalaryTableCalculator extends React.Component {
       .map(employee => ({
         from,
         tax_field,
+        year: year.year(),
         pension: employee.pension,
         amount: (employee.workingDaysInMonth === employee.days)
           ? employee.amount
@@ -405,6 +408,7 @@ class SalaryTableCalculator extends React.Component {
                   onChange={employees => this.setState({ employees })}
                 /> : null}
               </>
+
               {/* tax field */}
               <Form.Item label={<Label style={{ fontSize: "16px" }}>{lang.form["tax_label"]}</Label>}
                          labelCol={{ span: 24 }} name="tax_field">

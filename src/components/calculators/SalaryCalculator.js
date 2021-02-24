@@ -42,10 +42,11 @@ const radioStyle = {
 }
 
 const form = {
-  by: 0,
+  by: 1,
   schedule: 5,
   date_to: null,
   date_from: null,
+  year: moment(),
   working_days: null,
   from: 1,
   amount: null,
@@ -110,13 +111,21 @@ class SalaryCalculator extends React.Component {
   }
 
   get dateFromValue() {
-    const { date_from } = this.state.form
+    const { date_from, year } = this.state.form
+
+    // if (year) {
+    //   return isNull(date_from) ? year : moment(date_from)
+    // }
 
     return isNull(date_from) ? date_from : moment(date_from)
   }
 
   get dateToValue() {
-    const { date_to } = this.state.form
+    const { date_to, year } = this.state.form
+
+    // if (year) {
+    //   return isNull(date_to) ? year : moment(date_to)
+    // }
 
     return isNull(date_to) ? date_to : moment(date_to)
   }
@@ -216,15 +225,38 @@ class SalaryCalculator extends React.Component {
   }
 
   handleDateFromDisabled = d => {
-    const { date_to } = this.state.form
+    const { date_to, year } = this.state.form
 
-    return date_to && (d.isSameOrAfter(date_to, "day")) && (!d.isSame(date_to, "month"))
+    if (date_to) {
+      return d.isSameOrAfter(date_to, "day") && !d.isSame(date_to, "month")
+    } else {
+      return d && d.year() !== year.year()
+    }
   }
 
   handleDateToDisabled = d => {
-    const { date_from } = this.state.form
+    const { date_from, year } = this.state.form
 
-    return !date_from || !d || (d.isBefore(date_from, "day")) || (!d.isSame(date_from, "month"))
+    if (date_from) {
+      return d.isBefore(date_from, "day")
+    } else {
+      return d && d.year() !== year.year()
+    }
+  }
+
+  disableYear = d => {
+    return d && d > moment()
+  }
+
+  changeRange = () => {
+    const { date_from, date_to, year } = this.state.form
+
+    const diff = date_from ? moment(date_from).year() - year.year() : moment(date_to).year() - year.year()
+
+    this.setFields({
+      date_from: date_from ? moment(date_from).subtract(diff, "years").format("YYYY-MM-DD") : null,
+      date_to: date_to ? moment(date_to).subtract(diff, "years").format("YYYY-MM-DD") : null,
+    })
   }
 
   handleDateFromInput = e => {
@@ -332,7 +364,7 @@ class SalaryCalculator extends React.Component {
   async calculateByDate(avgWorkingDays) {
     this.setState({ loading: true })
 
-    const { from, pension, tax_field, schedule, date_from, date_to, amount } = this.state.form
+    const { from, pension, tax_field, schedule, date_from, date_to, amount, year } = this.state.form
     const workingDays = workingDaysInRange({
       start: moment(date_from),
       end: moment(date_to),
@@ -340,6 +372,7 @@ class SalaryCalculator extends React.Component {
       holidays: this.holidays,
       schedule,
     })
+
     const gross_salary = Math.round(amount / avgWorkingDays * workingDays.length)
 
     const res = await triple.post("/api/counter/salary", {
@@ -347,6 +380,7 @@ class SalaryCalculator extends React.Component {
       pension,
       tax_field,
       amount: gross_salary,
+      year: year.year(),
     })
 
     const result = Object.assign({}, res.data, { gross_salary })
@@ -355,7 +389,12 @@ class SalaryCalculator extends React.Component {
   }
 
   async calculateByTable() {
-    const { form } = this.state
+    let { form } = this.state
+    let { year } = this.state.form
+    form = {
+      ...form,
+      year: year.year(),
+    }
     const res = await triple.post("/api/counter/salary", form)
     this.setState({ result: res.data, loading: false, calculated: 2 })
   }
@@ -370,11 +409,13 @@ class SalaryCalculator extends React.Component {
   componentDidMount() {
     this.fetchDays()
 
+    this.dateFromPicker.current &&
     ReactDOM
       .findDOMNode(/** @type Element */this.dateFromPicker.current)
       .querySelector("input")
       .addEventListener("input", this.handleDateFromInput)
 
+    this.dateToPicker.current &&
     ReactDOM
       .findDOMNode(/** @type Element */this.dateToPicker.current)
       .querySelector("input")
@@ -439,11 +480,11 @@ class SalaryCalculator extends React.Component {
                     onChange={e => this.setField("by", e.target.value, this.handleByFieldChange)}
                     value={form.by}
                   >
-                    <Radio value={BY_FIELD_TABLE}>
-                      {<Label style={{ textTransform: "none" }}>{langText.form["by_table"]}</Label>}
-                    </Radio>
                     <Radio value={BY_FIELD_DATE}>
                       {<Label style={{ textTransform: "none" }}>{langText.form["by_date"]}</Label>}
+                    </Radio>
+                    <Radio value={BY_FIELD_TABLE}>
+                      {<Label style={{ textTransform: "none" }}>{langText.form["by_table"]}</Label>}
                     </Radio>
                   </Radio.Group>
                 </Form.Item>
@@ -463,6 +504,17 @@ class SalaryCalculator extends React.Component {
                   </Form.Item>
                   :
                   <>
+                    <Form.Item label={<Label>{langText.form.year}</Label>}>
+                      <CalculatorDatePicker
+                        onChange={date => this.setField("year", date, this.changeRange)}
+                        value={form.year}
+                        disabledDate={this.disableYear}
+                        placeholder={null}
+                        picker="year"
+                        size="large"
+                      />
+                    </Form.Item>
+
                     <Row gutter={10} align="middle">
                       <Form.Item style={{ marginRight: "25px" }} label={<Label>{langText.form.start}</Label>}>
                         <CalculatorDatePicker

@@ -191,6 +191,7 @@ class CurrencyCalculator extends React.Component {
         this.setField("to", value)
       }
     }
+    this.setState({ calculated: true })
   }
 
   handleSubmit = () => {
@@ -206,12 +207,12 @@ class CurrencyCalculator extends React.Component {
         .then(res => {
           if (changedAmount) {
             this.setState({
-              form: { ...this.state.form, amount_right: parseFloat(res.data.result).toFixed(2) },
+              form: { ...this.state.form, amount_right: parseFloat(res.data.result).toFixed(4) },
               calculated: false,
             })
           } else if (!changedAmount) {
             this.setState({
-              form: { ...this.state.form, amount: parseFloat(res.data.result).toFixed(2) },
+              form: { ...this.state.form, amount: parseFloat(res.data.result).toFixed(4) },
               calculated: false,
             })
           }

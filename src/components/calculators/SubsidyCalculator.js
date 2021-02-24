@@ -128,12 +128,18 @@ class SubsidyCalculator extends React.Component {
   }
 
   get amountMaxValue() {
-    return this.isTaxEnterprise && 12
+    if (this.isTaxEnterprise) {
+      return 12
+    } else if (this.isTypeDisability && this.isWorkSelfEmployed && this.isTaxTurnover) {
+      return (12 * 5000)
+    } else {
+      return undefined
+    }
   }
 
   handleSubmit = () => {
     const amount = this.calculator.calculate()
-    let { pension, tax_field, days, type, work } = this.state.form
+    let { pension, tax_field, days, type, start, end } = this.state.form
     tax_field = tax_field === Subsidy.TAX_IT ? Subsidy.TAX_COMMON : tax_field
 
     Subsidy.schema.isValid(this.state.form).then(valid => {
@@ -157,21 +163,35 @@ class SubsidyCalculator extends React.Component {
           pension,
           tax_field,
           stamp: false,
+          year: this.isTypeMaternity ? start.year() : end.year(),
         }).then(res => {
           const { income_tax, salary, stamp_fee } = res.data
-          const subsidy_emp = type === 2 ? ((salary + income_tax + stamp_fee) / (days - 1)) * 5 : 0
-          const subsidy_gov = type === 2 ? ((salary + income_tax + stamp_fee) - subsidy_emp) : (salary + income_tax + stamp_fee)
 
-          this.setState({
-            result: {
-              income_tax: Math.round(income_tax),
-              subsidy: Math.round(amount),
-              subsidy_gov: Math.round(subsidy_gov),
-              subsidy_emp: Math.round(subsidy_emp),
-              pure_subsidy: Math.round(salary + stamp_fee),
-            },
-            calculated: true,
-          })
+          if (this.isWorkHired) {
+            const subsidy_emp = type === 2 ? ((salary + income_tax + stamp_fee) / (days - 1)) * 5 : 0
+            const subsidy_gov = type === 2 ? ((salary + income_tax + stamp_fee) - subsidy_emp) : (salary + income_tax + stamp_fee)
+            this.setState({
+              result: {
+                income_tax: Math.round(income_tax),
+                subsidy: Math.round(amount),
+                subsidy_gov: Math.round(subsidy_gov),
+                subsidy_emp: Math.round(subsidy_emp),
+                pure_subsidy: Math.round(salary + stamp_fee),
+              },
+              calculated: true,
+            })
+          } else {
+            this.setState({
+              result: {
+                income_tax: Math.round(income_tax),
+                subsidy: Math.round(amount),
+                subsidy_gov: Math.round(income_tax + salary),
+                subsidy_emp: 0,
+                pure_subsidy: Math.round(salary + stamp_fee),
+              },
+              calculated: true,
+            })
+          }
         })
       }
     })
@@ -431,7 +451,7 @@ class SubsidyCalculator extends React.Component {
                       onChange={v => this.setField("amount", v)}
                       parser={v => v.replace(/\$\s?|(,*)/g, "")}
                       value={form.amount}
-                      max={this.amountMaxValue ? this.amountMaxValue : undefined}
+                      max={this.amountMaxValue}
                       step={1000}
                       name="amount"
                       size="large"
@@ -456,14 +476,18 @@ class SubsidyCalculator extends React.Component {
               }
 
               {/* static field */}
-              <Form.Item>
-                <Checkbox
-                  onChange={e => this.setField("static", e.target.checked)}
-                  checked={form.static}
-                >
-                  <RadioLabel>{lang.form.static}</RadioLabel>
-                </Checkbox>
-              </Form.Item>
+              {this.isWorkHired ?
+                <Form.Item>
+                  <Checkbox
+                    onChange={e => this.setField("static", e.target.checked)}
+                    checked={form.static}
+                  >
+                    <RadioLabel>{lang.form.static}</RadioLabel>
+                  </Checkbox>
+                </Form.Item>
+                :
+                null}
+
 
               {this.isNotStatic ? <GrossSalaryTable
                 lang={lang.gross}
