@@ -230,7 +230,7 @@ class SalaryCalculator extends React.Component {
     if (date_to) {
       return d.isSameOrAfter(date_to, "day") && !d.isSame(date_to, "month")
     } else {
-      return d && d < moment(year).startOf("year")
+      return d && d.year() !== year.year()
     }
   }
 
@@ -240,7 +240,7 @@ class SalaryCalculator extends React.Component {
     if (date_from) {
       return d.isBefore(date_from, "day")
     } else {
-      return d && d > moment(year).endOf("year")
+      return d && d.year() !== year.year()
     }
   }
 
@@ -251,7 +251,7 @@ class SalaryCalculator extends React.Component {
   changeRange = () => {
     const { date_from, date_to, year } = this.state.form
 
-    const diff = date_from ? moment(date_from).format("YYYY") - year.format("YYYY") : moment(date_to).format("YYYY") - year.format("YYYY")
+    const diff = date_from ? moment(date_from).year() - year.year() : moment(date_to).year() - year.year()
 
     this.setFields({
       date_from: date_from ? moment(date_from).subtract(diff, "years").format("YYYY-MM-DD") : null,
@@ -380,7 +380,7 @@ class SalaryCalculator extends React.Component {
       pension,
       tax_field,
       amount: gross_salary,
-      year: Number(year.format("YYYY")),
+      year: year.year(),
     })
 
     const result = Object.assign({}, res.data, { gross_salary })
@@ -393,7 +393,7 @@ class SalaryCalculator extends React.Component {
     let { year } = this.state.form
     form = {
       ...form,
-      year: Number(year.format("YYYY")),
+      year: year.year(),
     }
     const res = await triple.post("/api/counter/salary", form)
     this.setState({ result: res.data, loading: false, calculated: 2 })
@@ -429,8 +429,6 @@ class SalaryCalculator extends React.Component {
   render() {
     const { langText } = this.props
     const { form, result, loading } = this.state
-
-    console.log(form)
 
     return (
       <>

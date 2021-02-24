@@ -63,9 +63,7 @@ class MortgageCalculator extends React.Component {
   }
 
   get backIncomeTax() {
-    const { amount, interest_amount, static_salary, tax_field, date } = this.state.form
-
-    const year = Number(date.format("YYYY"))
+    const { amount, interest_amount, static_salary, tax_field, year } = this.state.form
 
     if (!interest_amount)
       return null
@@ -74,7 +72,7 @@ class MortgageCalculator extends React.Component {
 
     switch (tax_field) {
       case TAX_FIELD_COMMON:
-        percent = year >= 2021 ? 0.22 : 0.23
+        percent = year.year() >= 2021 ? 0.22 : 0.23
         break
       case TAX_FIELD_IT:
         percent = 0.1
@@ -133,7 +131,7 @@ class MortgageCalculator extends React.Component {
         amount: a,
         tax_field,
         pension,
-        year: Number(year.format("YYYY")),
+        year: year.year()
       }
       const valid = await schema.isValid(data)
 

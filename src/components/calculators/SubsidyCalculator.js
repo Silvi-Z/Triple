@@ -163,7 +163,7 @@ class SubsidyCalculator extends React.Component {
           pension,
           tax_field,
           stamp: false,
-          year: this.isTypeMaternity ? Number(start.format("YYYY")) : Number(end.format("YYYY")),
+          year: this.isTypeMaternity ? start.year() : end.year(),
         }).then(res => {
           const { income_tax, salary, stamp_fee } = res.data
 

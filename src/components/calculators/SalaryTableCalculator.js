@@ -306,7 +306,7 @@ class SalaryTableCalculator extends React.Component {
       .map(employee => ({
         from,
         tax_field,
-        year: Number(year.format("YYYY")),
+        year: year.year(),
         pension: employee.pension,
         amount: (employee.workingDaysInMonth === employee.days)
           ? employee.amount

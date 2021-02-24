@@ -211,7 +211,7 @@ class FinalCalculator extends React.Component {
       if (!valid) return
       data = {
         ...data,
-        year: Number(date_release.format("YYYY")),
+        year: date_release.year(),
       }
 
       this.setState({ loading: true })

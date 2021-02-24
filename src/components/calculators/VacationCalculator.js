@@ -315,7 +315,7 @@ class VacationCalculator extends React.Component {
       if (!valid) return
       data = {
         ...data,
-        year: Number(moment(date_from).format("YYYY")),
+        year: moment(date_from).year(),
       }
 
       triple
