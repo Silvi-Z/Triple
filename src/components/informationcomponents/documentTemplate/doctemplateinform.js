@@ -11,19 +11,20 @@ import {
   Image,
 } from "./docStyle"
 import { Row } from "antd"
+
 const DocTemplateInform = ({ usedata }) => {
 
-  const [ wrapperClass , setWrapperClass] = useState({})
+  const [wrapperClass, setWrapperClass] = useState({})
 
   const selectFormat = (e) => {
     let element = e.target.id;
-      (wrapperClass[element]===true)?
-      setWrapperClass({}):
-      setWrapperClass({[element]: true})
+    (wrapperClass[element] === true) ?
+      setWrapperClass({}) :
+      setWrapperClass({ [element]: true })
   }
   return (
     <ContainerUseful>
-      {usedata.data.links.map(({label, id}) => (
+      {usedata.links.map(({ label, id }) => (
         <ContainerNews key={id}>
           <Row>
             <LineWrapper>
@@ -31,12 +32,12 @@ const DocTemplateInform = ({ usedata }) => {
                 <H2text>{label}</H2text>
               </TextWrapper>
               <FormatsWrapper>
-                <FormatsIcons className={wrapperClass[id] ? 'shown' : ''}>
-                  <Image alt="pdf" className={wrapperClass[id] ? 'transform' : ''}/>
-                  <Image alt="word" className={wrapperClass[id] ? 'transform' : ''}/>
-                  <Image alt="excel" className={wrapperClass[id] ? 'transform' : ''}/>
+                <FormatsIcons className={wrapperClass[id] ? "shown" : ""}>
+                  <Image alt="pdf" className={wrapperClass[id] ? "transform" : ""} />
+                  <Image alt="word" className={wrapperClass[id] ? "transform" : ""} />
+                  <Image alt="excel" className={wrapperClass[id] ? "transform" : ""} />
                 </FormatsIcons>
-                <DownloadingIcon id={id} onClick={selectFormat}/>
+                <DownloadingIcon id={id} onClick={selectFormat} />
               </FormatsWrapper>
             </LineWrapper>
           </Row>

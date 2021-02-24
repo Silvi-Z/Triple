@@ -94,18 +94,27 @@ export const DropHeadingButton = styled.div``
 export const FormWrapper = styled.div`
   display:flex;
   width:100%;
+  transition: .3s ease-in-out;
+  max-height: 1px;
   border-top:1px solid black;
-  padding: 40px 24px 53px 24px;
   justify-content:space-between;
+  padding: 0 24px;
   border-bottom:1px solid #D0D0D0;
+  opacity: 0;
+  &.openTextCol{
+    max-height: 1000px;
+    padding: 48px 24px;
+    opacity:100%;
+  }
   .ant-input:-webkit-autofill,
   .ant-input:-webkit-autofill:hover,
   .ant-input:-webkit-autofill:focus,
+  
   .ant-input:-webkit-autofill:active  {
     -webkit-box-shadow: 0 0 0 30px white inset !important;
     -webkit-text-fill-color: black;
     caret-color: black;
-}
+  }
     @media only screen and (max-width:1024px){
       flex-direction:column;
       padding: 40px 0 53px 0;
