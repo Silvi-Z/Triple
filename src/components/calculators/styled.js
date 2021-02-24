@@ -230,6 +230,7 @@ export const TextStyled = styled.p`
   padding-bottom: 50px;
   max-width: 734px;
   margin-bottom: 0;
+  margin: auto;
 `
 export const CalculatorsCard = styled(Card)`
   margin-top: 30px;

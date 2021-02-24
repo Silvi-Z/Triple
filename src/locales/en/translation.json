@@ -84,7 +84,7 @@
       {
         "scroll_id": "test_4",
         "link" : "services#test_4",
-        "paragraph": "Services provided to individuals",
+        "paragraph": "Company registration",
         "text": "In reality, individuals are also involved in transactions that may evoke any sort of tax liabilities and  requirements to submit tax reports. Our specialists are willing to support individuals throughout that process from simple consulting till the submission of all required documents."
       },
       {
@@ -152,15 +152,15 @@
       "subParagraph_1": "This is your query number.",
       "subParagraph_2": "Please save this code.",
       "closeButton": "Close"
-    }
+    },
+    "share": "Share"
   },
   "information": {
     "title": "Useful information",
     "paragraph": "Our specialists, aiming to contribute in future and constante development of our clients and partners, are always willing to share any useful information concerning the taxation in RA, changes in fiscal legislation. Moreover, we always try to raise all the issues currently worrying in finance and accounting.",
     "news_button": "News",
     "useInf_button": "Useful information",
-    "doc_button": "Sample documents",
-    "share": "Share"
+    "doc_button": "Sample documents"
   },
   "news": {
     "title": "News",
@@ -177,7 +177,7 @@
     ]
   },
   "career": {
-    "title": "Join us",
+    "title": "Join Us",
     "paragraph": "We are always happy to expand our team with highly qualified specialists. If you want to join us, you can send your CV.\nWe will be happy to see the best among us.\nOur recruiters will keep you up-to-date on vacancies and on what is happening at Triple Consulting.\n",
     "drop_content": [
       {
@@ -198,7 +198,6 @@
   },
   "careerForm": {
     "textare_label": "Your message",
-    "email_label": "E-mail",
     "file_label": "Upload CV *",
     "send_button": "Send",
     "share": "Share"
@@ -207,8 +206,7 @@
     "title": "Contact us",
     "paragraph": "In case of questions, fill in the necessary information and we will be happy to contact you.",
     "form_content": {
-      "name_label_first":"* Name / Surname ( Name of company )",
-      "name_label_second": "( Name of company )",
+      "name_label": "Name / Surname (Company Name)",
       "email_label": "E-mail",
       "file_label": "Attach the file",
       "title_label": "Title",
@@ -221,7 +219,383 @@
   "calculator": {
     "title": "Calculators",
     "paragraph": "Below you can get acquainted with numerous tools created by our specialists that can facilitate all the calculations you carry out.",
-    "share": "Share"
-  },
-  "link": "Go back to the homepage"
+    "share": "Share",
+    "nav": {
+      "title": "Հաշվիչներ"
+    },
+    "salary": {
+      "title": "Salary calculator",
+      "paragraph": "Salary calculator will facilitate all the necessary calculations concerning the gross and net salary. The tool can be used to calculate the salaries of employees working in the companies of general tax field, micro-enterprises as well as in the companies that have IT tax exemption.",
+      "clean_salary_button": "Մաքուր",
+      "dirty_salary_button": "Կեղտոտ",
+      "tax_label": "Ընտրել ՀԱՐԿՄԱՆ ԴԱՇՏԸ",
+      "gross_salary": "Գրանցված աշխատավարձ (ըստ աշխատած օրերի)",
+      "tax_label_common": "Աշխատում ե՞ք ընդհանուր հարկման դաշտի սուբյեկտ հանդիսացող կազմակերպությունում։",
+      "tax_label_enterprise": "Աշխատում ե՞ք միկրոձեռնարկության սուբյեկտ հանդիսացող կազմակերպությունում։",
+      "tax_label_it": "Աշխատում ե՞ք ՏՏ ոլորտի հավաստագրված կազմակերպությունում։",
+      "salary_label": "Աշխատավարձ",
+      "bonus_label": "Պարգևավճար",
+      "pensioner_label": "Մասնակցու՞մ եք կուտակային կենսաթոշակայինին",
+      "stamp_label": "Վճարե՞լ եք արդեն դրոշմանիշային վճարը",
+      "yes_volunteer": "Այո (կամավոր)",
+      "yes": "Այո",
+      "no": "Ոչ",
+      "count_button": "ՀԱՇՎԵԼ",
+      "result_title": "Արդյունք",
+      "general_storage_label": "Ընդհանուր պահում",
+      "income_tax_label": "Եկամտային հարկ",
+      "pension_paymet_label": "Կենսաթոշակային վճար",
+      "stamp_duty_label": "Դրոշմանիշային վճար",
+      "dirty_to_clean_salary": "Զուտ աշխատավարձ",
+      "clean_dirty_to_salary": "Գրանցված աշխատավարձ",
+      "result_duty_bonus": "Կեղտոտ պարգևավճար",
+      "form": {
+        "by_date": "Հաշվարկ ըստ ամբողջական ամսվա",
+        "by_table": "Հաշվարկ ըստ օրացույցի",
+        "start": "ՍԿԻԶԲ",
+        "end": "ԱՎԱՐՏ",
+        "working_days": "Աշխատանքային օրեր",
+        "working_schedule": "Աշխատանքային գրաֆիկ",
+        "five_days": "Հնգօրյա",
+        "six_days": "Վեցօրյա",
+        "salary": "Աշխատավարձ"
+      }
+    },
+    "salary_table": {
+      "title": "Salary Calculator (based on the employee time record sheet)",
+      "paragraph": "With this tool you can simultaneously calculate the salary of more than one employee by exporting employee time record sheet from Armenian Software and then importing on our platform. Based on the imported employee time record sheet, the tool automatically decides the work schedule of each employee, executes the calculation of the salary for worked days,  income tax and social charges. Moreover, the result can be imported as an Excel file.",
+      "calculate": "ՀԱՇՎԵԼ",
+      "form": {
+        "title": "Աշխատավարձի հաշվիչ",
+        "by_date": "Հաշվարկ ըստ օրացույցի",
+        "by_table": "Հաշվարկ ըստ տաբելի",
+        "upload": "Ներբեռնել տաբելը",
+        "start": "ՍԿԻԶԲ",
+        "end": "ԱՎԱՐՏ",
+        "working_days": "Աշխատանքային օրեր",
+        "clean_salary": "Զուտ աշխատավարձ",
+        "dirty_salary": "Գրանցված աշխատավարձ",
+        "tax_label": "Ընտրել ՀԱՐԿՄԱՆ ԴԱՇՏԸ",
+        "tax_common": "Ընդհանուր հարկման դաշտի սուբյեկտ հանդիսացող կազմակերպություն",
+        "tax_enterprise": "Միկրոձեռնարկության սուբյեկտ հանդիսացող կազմակերպություն",
+        "tax_it": "ՏՏ ոլորտի հավաստագրված կազմակերպություն",
+        "salary": "Աշխատավարձ",
+        "bonus": "Պարգևավճար",
+        "pensioner": "Մասնակցու՞մ եք կուտակային կենսաթոշակային համակարգին։",
+        "stamp": "Վճարե՞լ եք արդեն դրոշմանիշային վճարը",
+        "yes_volunteer": "Այո (կամավոր)",
+        "yes": "Այո",
+        "no": "Ոչ",
+        "working_schedule": "Աշխատանքային գրաֆիկ",
+        "five_days": "Հնգօրյա",
+        "six_days": "Վեցօրյա"
+      },
+      "table": {
+        "name": "ԱՆՈՒՆ / ԱԶԳԱՆՈՒՆ",
+        "day": "ՕՐ",
+        "hour": "ԺԱՄ",
+        "social_fee": "ՍՈՑԻԱԼԱԿԱՆ ՎՃԱՐ",
+        "salary": "ԳՐԱՆՑՎԱԾ աշխԱՏԱՎԱՐՁ",
+        "yes_volunteer": "Այո (կամավոր)",
+        "yes": "Այո",
+        "no": "Ոչ"
+      },
+      "result": {
+        "title": "Արդյունք",
+        "gross_salary": "Գրանցված աշխատավարձ (ըստ աշխատած օրերի)",
+        "total_fee": "Ընդհանուր պահում",
+        "income_tax": "Եկամտային հարկ",
+        "stamp_fee": "Դրոշմանիշային վճար",
+        "pension_fee": "Կենսաթոշակային վճար",
+        "dirty_to_clean_salary": "Զուտ աշխատավարձ",
+        "clean_to_dirty_salary": "Գրանցված աշխատավարձ",
+        "duty_bonus": "Կեղտոտ պարգևավճար",
+        "download": "Ներբեռնել արդյունքը"
+      }
+    },
+    "vacation": {
+      "title": "Vacation calculator",
+      "paragraph": "According to the Tax code of RA and other legal acts, the tool calculates vacation pay corresponding to the number of vacation days available to employees as well as deductions required by law.Fulfill the starting and ending day, and the tool ill automatically decide number of vacation days taking into the consideration weekend, holidays and days off announced by RA Gouvernement.",
+      "salary_label": "ԳՐԱՆՑՎԱԾ Աշխատավարձ",
+      "static_salary_label": "Աշխատավարձը անփոփոխ է եղել վերջին 12 ամիսների ընթացքում, չեն հատկացվել հավելավճարներ և պարգևավճարներ։",
+      "pensioner_label": "Մասնակցում ե՞ք կուտակային կենսաթոշակային համակարգին",
+      "tax_label_common": "Ընդհանուր հարկման դաշտի սուբյեկտ հանդիսացող կազմակերպություն",
+      "tax_label_enterprise": "Միկրոձեռնարկության սուբյեկտ հանդիսացող կազմակերպություն",
+      "tax_label_it": "ՏՏ ոլորտի հավաստագրված կազմակերպություն",
+      "tax_label": "Ընտրել ՀԱՐԿՄԱՆ ԴԱՇՏԸ",
+      "yes_volunteer": "Այո (կամավոր)",
+      "yes": "Այո",
+      "no": "Ոչ",
+      "start": "ՍԿԻԶԲ",
+      "end": "ԱՎԱՐՏ",
+      "month": "Ամիս",
+      "year": "Տարի",
+      "gross_salary": "Համախառն աշխատավարձ",
+      "bonus": "Պարգևավճար",
+      "surcharge": "Հավելավճար",
+      "date_from_placeholder": "ամսաթիվ",
+      "date_to_placeholder": "ամսաթիվ",
+      "vacation_days": "Արձակուրդային օրեր",
+      "working_schedule": "Աշխատանքային գրաֆիկ",
+      "five_days": "Հնգօրյա",
+      "six_days": "Վեցօրյա",
+      "calculate": "ՀԱՇՎԵԼ",
+      "result": {
+        "title" : "Արդյունք",
+        "gross_vacation_amount": "Համախառն արձակուրդային գումար",
+        "income_tax": "Եկամտային հարկ",
+        "pension_fee": "Կենսաթոշակային վճար",
+        "stamp_fee": "Դրոշմանիշային վճար",
+        "total_fee": "Ընդհանուր պահում",
+        "pure_vacation_amount": "Զուտ արձակուրդային գումար"
+      }
+    },
+    "final": {
+      "title": "Final settlement calculator",
+      "paragraph": "The final settlement calculator allows you to get the final settlement amount in a few simple steps.\nEnter admission and employment termination dates, work schedule and the calculator will automatically calculate the total number of vacation days. Fill in the vacation days already used and the amount of salary (and if the amount of salary is not fixed or has been changed or bonuses have been provided, fill in the relevant table), and the instrument will calculate the final settlement and all deductions required by law.\n",
+      "form": {
+        "acceptance": "ԸՆԴՈՒՆՈՒՄ",
+        "release": "ԱԶԱՏՈՒՄ",
+        "working_schedule": "Աշխատանքային գրաֆիկ",
+        "five_days": "Հնգօրյա",
+        "six_days": "Վեցօրյա",
+        "total_vacation_days": "Ընդհանուր արձակուրդային օրեր",
+        "general_vacation_days": "Ընդհանուր արձակուրդային օրեր",
+        "used_vacation_days": "Օգտագործված արձակուրդային օրեր",
+        "unused_vacation_days": "Չօգտագործված արձակուրդային օրեր",
+        "salary": "ԳՐԱՆՑՎԱԾ Աշխատավարձ",
+        "static_salary": "Աշխատավարձը անփոփոխ է եղել վերջին 12 ամիսների ընթացքում, չեն հատկացվել հավելավճարներ և պարգևավճարներ։",
+        "tax": "Ընտրել ՀԱՐԿՄԱՆ ԴԱՇՏԸ",
+        "tax_common": "Ընդհանուր հարկման դաշտի սուբյեկտ հանդիսացող կազմակերպություն",
+        "tax_enterprise": "Միկրոձեռնարկության սուբյեկտ հանդիսացող կազմակերպություն",
+        "tax_it": "ՏՏ ոլորտի հավաստագրված կազմակերպություն",
+        "pensioner": "Մասնակցու՞մ եք կուտակային կենսաթոշակային համակարգին։",
+        "yes_volunteer": "Այո (կամավոր)",
+        "yes": "Այո",
+        "no": "Ոչ",
+        "calculate": "ՀԱՇՎԵԼ"
+      },
+      "table": {
+        "hint": "Այն ամիս(ներ)ը, երբ աշխատակիցը գտնվել է արձակուրդում, անաշխատունակության մեջ կամ այլ պատճառով բացակայել է աշխատանքից, չլրացնել",
+        "month": "Ամիս",
+        "year": "Տարի",
+        "gross_salary": "Համախառն աշխատավարձ",
+        "bonus": "ՊԱՐԳԵՎԱՎՃԱՐ",
+        "surcharge": "Հավելավճար"
+      },
+      "result": {
+        "title": "Արդյունք",
+        "total_amount": "Ընդհանուր վերջնահաշվարկի գումար",
+        "income_tax": "Եկամտային հարկ",
+        "pension_fee": "Կենսաթոշակային վճար",
+        "total_fee": "Ընդհանուր պահում",
+        "net_amount": "Զուտ վերջնահաշվարկի գումար"
+      }
+    },
+    "mortgage": {
+      "title": "Mortgage repayment calculator",
+      "clean_salary": "Զուտ աշխատավարձ",
+      "dirty_salary": "Գրանցված աշխատավարձ",
+      "salary_label": "ԱՄՍԱԿԱՆ Աշխատավարձ",
+      "salary_type_label": "Հաշվարկի համար հիմք ընդունել",
+      "static_salary_label": "Աշխատավարձը անփոփոխ է եղել վերջին 3 ամիսների ընթացքում, չեն հատկացվել հավելավճարներ և պարգևավճարներ։",
+      "pensioner_label": "Մասնակցում ե՞ք կուտակային կենսաթոշակային համակարգին",
+      "interest_amount_label": "Հաշվետու եռամսյակում վճարած տոկոսագումար",
+      "tax_label_common": "Ընդհանուր հարկման դաշտի սուբյեկտ հանդիսացող կազմակերպություն",
+      "tax_label_enterprise": "Միկրոձեռնարկության սուբյեկտ հանդիսացող կազմակերպություն",
+      "tax_label_it": "ՏՏ ոլորտի հավաստագրված կազմակերպություն",
+      "tax_label": "Ընտրել ՀԱՐԿՄԱՆ ԴԱՇՏԸ",
+      "yes_volunteer": "Այո (կամավոր)",
+      "yes": "Այո",
+      "no": "Ոչ",
+      "quarter_months": "եռամսյակի ամիսներ",
+      "gross_salary": "Համախառն աշխատավարձ",
+      "bonus": "Պարգևավճար",
+      "surcharge": "Հավելավճար",
+      "calculate": "ՀԱՇՎԵԼ",
+      "result": {
+        "title" : "Արդյունք",
+        "income_tax_back": "Վերադարձվող եկամտային հարկ"
+      }
+    },
+    "subsidy": {
+      "title": "Նպաստների հաշվիչ",
+      "form": {
+        "type": "Նպաստի տեսակ",
+        "maternity": "Մայրության",
+        "disability": "Անաշխատունակության",
+        "start": "ՍԿԻԶԲ",
+        "end": "ԱՎԱՐՏ",
+        "days": "Ընդամենը օրերի քանակ",
+        "hired": "Վարձու աշխատող",
+        "self": "Ինքնազբաղ անձ",
+        "tax": "Ընտրել հարկման դաշտը",
+        "tax_common": "Ընդհանուր հարկման դաշտի սուբյեկտ հանդիսացող կազմակերպություն",
+        "tax_common_for_self_employed": "Շահութահարկ վճարող կազմակերպություն",
+        "tax_turnover_for_self_employed": "Շրջանառության հարկ վճարող կազմակերպություն",
+        "tax_it": "Միկրոձեռնարկության սուբյեկտ հանդիսացող կազմակերպություն",
+        "tax_enterprise": "ՏՏ ոլորտի հավաստագրված կազմակերպություն",
+        "schedule": "Աշխատանքային գրաֆիկ",
+        "five_days": "Հնգօրյա",
+        "six_days": "Վեցօրյա",
+        "amount": "ամսական Աշխատավարձ",
+        "amount_self_common": "Նախորդող տարվա շահութահարկի հարկման բազա համարվող եկամուտ",
+        "amount_self_turnover": "Նախորդող տարվա շահութահարկի գումարը",
+        "amount_self_enterprise": "Նախորդող տարվա ընթացքում գործունեություն իրականացրած ամիսների քանակ",
+        "income": "այլ գործատուների կողմից վճարված եկամուտներ",
+        "static": "Աշխատավարձը անփոփոխ է եղել վերջին 12 ամիսների ընթացքում, չեն հատկացվել հավելավճարներ և պարգևավճարներ։"
+      },
+      "result": {
+        "title": "Արդյունք",
+        "calculate": "ՀԱՇՎԵԼ",
+        "subsidy": "Գործատուի կողմից վճարման ենթակա նպաստ",
+        "pure_subsidy": "Զուտ նպաստի գումար",
+        "all_pure_subsidy": "Ընդամենը նպաստի գումար",
+        "subsidy_gov": "ՀՀ պետական բյուջեի\nմիջոցների հաշվին \nվճարման ենթակա նպաստ",
+        "subsidy_emp": "Գործատուի կողմից վճարման ենթակա նպաստ",
+        "income_tax": "Եկամտային հարկ"
+      }
+    },
+    "car_customs": {
+      "title": "Car customs clearance fee calculator",
+      "paragraph": "With the help of the car customs clearance fee calculator you can easily calculate the customs fees for a car imported from third countries. Enter the value of the car, the date of issue and engine power, and the tool, based on the requirements of the RA tax and customs codes and other legal normative acts, the customs clearance fee and the environmental tax to be paid will be calculated.",
+      "calculate": "ՀԱՇՎԵԼ",
+      "form": {
+        "imported_eeu": "ԵԱՏՄ երկրներից ներմուծում",
+        "imported_third": "Երրորդ երկրից ներմուծում",
+        "person_physical": "Ֆիզիկական անձ",
+        "person_legal": "Իրավաբանական անձ",
+        "year": "ԹՈՂԱՐԿՄԱՆ ՏԱՐԵԹԻՎ",
+        "capacity": "ՇԱՐԺԻՉԻ ԱՇԽԱՏԱՆՔԱՅԻՆ ԾԱՎԱԼ (խսմ)",
+        "costs": "Մաքսային արժեքի մեջ ներառվող այլ ծախսեր",
+        "price": "ԱՎՏՈՄԵՔԵՆԱՅԻ ԱՐԺԵՔ"
+      },
+      "result": {
+        "title": "Արդյունք",
+        "currency": "Փոխարժեքն այս պահին",
+        "fee": "Վճարման ենթակա մաքսազերծման վճար",
+        "tax": "Վճարման ենթակա Բնապահպանական հարկ",
+        "vat": "Վճարման ենթակա ԱԱՀ",
+        "total": "Վճարման ենթակա ընդհանուր մաքսազերծման գումար"
+      }
+    },
+    "car_sell": {
+      "title": "Car sales calculator",
+      "paragraph": "According to the Tax code of RA, if the car is purchased and sold in the same fiscal year, the individual is required to pay income tax. Simply fulfill the necessary fields, and the tool will calculate the amount of income tax payable \n",
+      "achievement": "ՁԵՌՔԲԵՐՈՒՄ",
+      "alienation": "ՕՏԱՐՈՒՄ",
+      "price": "վաճառքի գին",
+      "power": "ՇԱՐԺԻՉԻ ՀԶՈՐՈՒԹՅՈՒՆ",
+      "horsepower": "Ձիաուժ",
+      "kilowatts": "Կիլովատ",
+      "calculate": "ՀԱՇՎԵԼ",
+      "tax_label": "Վճարման ենթակա եկամտային հարկ",
+      "tax_body": "Վաճառքը տեղի չի ունեցել ձեռքբերումից 365 օրվա ընթացքում։ Հետևաբար գործարքը եկամտային հարկով հարկման ենթակա չէ։",
+      "result": {
+        "title": "Արդյունք"
+      }
+    },
+    "car_tax": {
+      "calculate": "ՀԱՇՎԵԼ",
+      "title": "Ավտոմեքենայի գույքահարկի հաշվիչ",
+      "form": {
+        "type": "Գույքահարկի տեսակ",
+        "car": "Ավտոմեքենայի",
+        "realEstate": "Անշարժ գույքի",
+        "vehicle": {
+          "title": "ՏՄ տեսակը",
+          "car": "Մինչև 10 նստատեղ ունեցող մարդատար ավտոմեքենա",
+          "van": "10 և ավել նստատեղ ունեցող մարդատար ավտոմեքենա",
+          "truck": "Բեռնատար ավտոմեքենա",
+          "motorcycle": "Մոտոցիկլետ",
+          "water_vehicle": "Ջրային փոխադրամիջոց"
+        },
+        "estate": {
+          "title": "ԱՆՇԱՐԺ ԳՈՒՅՔԻ տեսակը",
+          "cadastralValue": "ԿԱԴԱՍՏՐԱՅԻՆ ԱՐԺԵՔԸ",
+          "residential": "Բնակելի նշանակության շինություններ",
+          "public_production": "Հասարակական և արտադրական նշանակության շինություններ",
+          "garage": "Ավտոտնակներ"
+        },
+        "year": "ԹՈՂԱՐԿՄԱՆ ՏԱՐԵԹԻՎ",
+        "power": "ՇԱՐԺԻՉԻ ՀԶՈՐՈՒԹՅՈՒՆ",
+        "horsepower": "Ձիաուժ",
+        "kilowatts": "Կիլովատ"
+      },
+      "result": {
+        "title": "Արդյունք",
+        "tax": "Վճարման ենթակա գույքահարկի վճար"
+      }
+    },
+    "calendar": {
+      "title": "Աշխատանքային օրացույց",
+      "calculate": "ՀԱՇՎԵԼ",
+      "chooseDaysRange": "Ընտրել աշխատանքային օրացույցի օրերը",
+      "working_schedule": "Նշել աշխատանքային գրաֆիկը",
+      "year": "թ․",
+      "calendar": {
+        "months": {
+          "january": "Հունվար",
+          "february": "Փետրվար",
+          "march": "Մարտ",
+          "april": "Ապրիլ",
+          "may": "Մայիս",
+          "june": "Հունիս",
+          "july": "Հուլիս",
+          "august": "Օգոստոս",
+          "september": "Սեպտեմբեր",
+          "october": "Հոկտեմբեր",
+          "november": "Նոյեմբեր",
+          "december": "Դեկտեմբեր"
+        },
+        "daysOfWeek": {
+          "monday": "Երկ",
+          "tuesday": "Երք",
+          "wednesday": "Չոր",
+          "thursday": "Հնգ",
+          "friday": "Ուր",
+          "saturday": "Շբթ",
+          "sunday": "Կիր"
+        },
+        "additionalInformation": {
+          "calendarDays": "Օրացույցային օրեր",
+          "workDays": "Աշխատանքային օրեր",
+          "workHours": "Աշխատանքային ժամեր",
+          "five_days": "Հնգօրյա",
+          "six_days": "Վեցօրյա"
+        }
+      },
+      "form": {
+        "start": "ՍԿԻԶԲ",
+        "end": "ԱՎԱՐՏ"
+      },
+      "result": {
+        "title": "Արդյունք",
+        "calendarDays": "Օրացույցային օրեր",
+        "workDays": "Աշխատանքային օրեր",
+        "workHours": "Աշխատանքային ժամեր",
+        "nonWorkingDays": "Ոչ աշխատանքային օրեր"
+      }
+    },
+    "currency": {
+      "title": "Փոխարժեքի հաշվիչ",
+      "calculate": "ՀԱՇՎԵԼ",
+      "currency": {
+        "amd": "AMD",
+        "usd": "USD",
+        "rub": "RUB",
+        "eur": "EUR",
+        "cny": "CNY",
+        "gbp": "GBP",
+        "gel": "GEL",
+        "irr": "IRR"
+      },
+      "form": {
+        "date": "ԴՐՈՒԹՅԱՄԲ"
+      },
+      "result": {
+        "currency": "Փոխարժեքն այս պահին"
+      }
+    }
+  }
 }

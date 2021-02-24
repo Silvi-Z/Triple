@@ -74,12 +74,12 @@ const Contact = ({ pageContext }) => {
           <InfoColumn>
             <H1Email>info@triple-c.am</H1Email>
             <Row>
-          <AdressColumn >
-            <H3Element>Հասցե</H3Element>
-            <PElement>Հր․ Քոչար 44/54</PElement>
+          <AdressColumn>
+            <H3Element>{contact.contact_address}</H3Element>
+            <PElement>{contact.address}</PElement>
           </AdressColumn>
             <ContactColumn style={{display: 'flex', flexDirection: 'row', flexWrap:'wrap'}}>
-            <H3Element style={{width:'100%'}}>Հեռ․</H3Element>
+            <H3Element style={{width:'100%'}}>{contact.tel}</H3Element>
               <PElement>+374 98553533  +374 60407010</PElement>
               <TelegramWrapper src={TelegramImg} />
               <ViberWrapper src={ViberImg} />
@@ -87,7 +87,7 @@ const Contact = ({ pageContext }) => {
               </ContactColumn>
               <ShareColumn>
             <SharedWrapperCol>
-              <H3Element>Հետևեք մեզ</H3Element>
+              <H3Element>{contact.follow_us}</H3Element>
               <FacebookShare
                 url={urlShared}
                 children={<FacebookIcon />}

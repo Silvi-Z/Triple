@@ -7,6 +7,8 @@ import carSell from "../../assets/calcImages/car-sell.svg"
 import carTax from "../../assets/calcImages/car-tax.svg"
 import salaryTable from "../../assets/calcImages/salary-table.svg"
 import calc_9 from "../../assets/calcImages/calc_9.svg"
+import calendar from "../../assets/calcImages/calendar.svg"
+import currency from "../../assets/calcImages/currency.svg"
 
 const contentData = [
   {
@@ -99,6 +101,26 @@ const contentData = [
       },
     ],
   },
+  {
+    "link": "/calculators/calendar",
+    "src": `${calendar}`,
+    "title": [
+      {
+        "en": "Return of Income tax",
+        "arm": "Աշխատանքային օրացույց",
+      },
+    ],
+  },
+  {
+    "link": "/calculators/currency",
+    "src": `${currency}`,
+    "title": [
+      {
+        "en": "Return of Income tax",
+        "arm": "Փոխարժեքի հաշվիչ",
+      },
+    ],
+  }
 ]
 
 export default contentData

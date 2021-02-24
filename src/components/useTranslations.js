@@ -126,6 +126,12 @@ const query = graphql`
                   }
                 }
               }
+              documents{
+                links{
+                  id
+                  label
+                }
+              }
               dataUseInfo{
                 status
                 data{
@@ -169,6 +175,9 @@ const query = graphql`
             contact {
               title
               paragraph
+              contact_address
+              tel
+              follow_us
               form_content {
                 name_label_first
                 name_label_second

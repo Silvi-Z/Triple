@@ -332,7 +332,7 @@ const Information = ({ pageContext }) => {
         </InformSectionRow>
       ) : openDocTemp ? (
         <InformSectionRow>
-          {dataDoctempInfo.map((d, id) => (
+          {information.documents.map((d, id) => (
             <InformDocTemplate usedata={d} key={id} />
           ))}
         </InformSectionRow>

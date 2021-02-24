@@ -28,7 +28,6 @@ const Servicedrop = ({ data, showServiceForm }) => {
         <DropTextCol className={data.open ? 'openTextCol' : ''} >
           <Text >
             {data.data.text}
-            {console.log(data)}
           </Text>
         </DropTextCol>
     </ServiceDropRow>

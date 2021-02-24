@@ -1,11 +1,25 @@
-import { Row } from 'antd';
-import { Link } from 'gatsby';
-import styled from 'styled-components';
+import { Row } from "antd"
+import { Link } from "gatsby"
+import styled from "styled-components"
+import React from "react"
 
-export const NavLink = styled(Link)`
+const NavLink = props => (
+  <Link {...props} getProps={({ isPartiallyCurrent }) => {
+    return {
+      style: {
+        color: isPartiallyCurrent ? "#22c8d4" : "#000",
+      },
+
+    }
+  }
+  }
+  />
+)
+
+export const NavLinkMain = styled(NavLink)`
   flex-grow: 1;
-  flex-basis: 80px;
-  height:fit-content !important;
+  flex-basis: "80px";
+  height:fit-content;
   display: flex;
   justify-content: center;
   align-items: left;
@@ -22,12 +36,18 @@ export const NavLink = styled(Link)`
   @media only screen and (max-width: 768px){
    font-size:16px;
   }
-`;
+`
+export const LogoNavLink = styled(NavLinkMain)`
+height:100%
+`
+
+
+
 export const RespNavLink = styled(Link)`
   align-items: center;
   text-decoration: none;
   text-align: center;
-`;
+`
 export const ResponsiveMenuWrapper = styled.div`
   width: 100%;
   height: 87%;
@@ -49,7 +69,7 @@ export const ResponsiveMenuWrapper = styled.div`
     padding-left: 20px;
     padding-right: 20px;
   }
-`;
+`
 export const Coll = styled.div`
   height: 100%;
   overflow: hidden;  
@@ -76,7 +96,7 @@ export const AddressSpan = styled.span`
   letter-spacing: normal;
   text-align: center;
   color: #000000;
-`;
+`
 export const PhoneSpan = styled.span`
   width: 93px;
   height: 10px;
@@ -89,7 +109,7 @@ export const PhoneSpan = styled.span`
   letter-spacing: normal;
   text-align: center;
   color: #000000;
-`;
+`
 export const ResponsiveMenuInfoRow = styled.div`
    display:flex;
    justify-content:space-between;
@@ -144,7 +164,7 @@ export const LangSpan = styled.span`
   letter-spacing: normal;
   text-align: center;
   color: #000000;
-`;
+`
 
 export const GridWrapper = styled.nav`
   padding: 1px;
@@ -169,7 +189,7 @@ export const GridWrapper = styled.nav`
   @media only screen and (max-width: 1024px) {
     display: none;
   }
-`;
+`
 export const HeadIcon = styled.img`
   width: 30px;
   height: 30px;
@@ -180,7 +200,7 @@ export const HeadIcon = styled.img`
     margin-top: 35%;
     margin-left: 5%;
   }
-`;
+`
 export const HeadMainIcon = styled.img`
     border-color: #ebebeb;
     margin:0 !important;
@@ -191,12 +211,12 @@ export const HeadMainIcon = styled.img`
   @media only screen and (max-width: 768px) {
     height:100%;
   }
-`;
+`
 export const ResponsiveNavWrapper = styled.div`
   display: none;
   width: 100%;
   height: 90px;
-  background-color: ${props=>props.menuColorProp};
+  background-color: ${props => props.menuColorProp};
   @media only screen and (max-width: 1024px) {
     display: flex;
     justify-content:space-between;
@@ -213,8 +233,8 @@ export const ResponsiveNavWrapper = styled.div`
   @media only screen and (max-width: 768px){
     padding: 0px 20px;
   }
-`;
-export const ResponsiveMenuButton =  styled.div`
+`
+export const ResponsiveMenuButton = styled.div`
    height: 40px;
    width: 40px;
    background-color: black;
@@ -225,7 +245,7 @@ export const ResponsiveMenuButton =  styled.div`
    justify-content: center;
    flex-direction: column;
    text-align: end;
-   background-color: ${props=> props.responseWrapper ?  "white": "black"}
+   background-color: ${props => props.responseWrapper ? "white" : "black"}
 `
 export const Label = styled.label`
   position:absolute;
@@ -236,11 +256,11 @@ export const Label = styled.label`
   font-family: ArialAMU;
   line-height: 70px;
   float: right;
-`;
+`
 export const EnvironmentWrapper = styled.img`
   width: 14px;
   margin-right: 10px;
    @media (max-width: 1200px) {
      margin-right: 2px;
    }
-`;
+`
