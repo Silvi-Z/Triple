@@ -4,13 +4,13 @@ import { cloneDeep, isEqual, isNull } from "lodash"
 import moment from "moment"
 import MortgageTable from "./calcComponents/MortgageTable"
 import CalculatorCardResult from "./calcComponents/CalculatorCardResult"
-import { Checkbox, Col, Form, Radio, Row } from "antd"
+import { Checkbox, Col, Form, Radio, Row, Select } from "antd"
 import { SALARY_TYPE_NET, SALARY_TYPE_REGISTERED } from "./utilities/mortgage"
 import {
   ButtonSubmit,
-  CalculatorDatePicker,
   CalculatorInput,
   CalculatorsCard,
+  CalculatorSelect,
   FormLabel,
   H1Styled,
   Label,
@@ -42,8 +42,10 @@ const form = {
   salary_type: SALARY_TYPE_REGISTERED,
   tax_field: TAX_FIELD_COMMON,
   pension: PENSION_FIELD_YES,
-  year: moment(),
+  year: moment().year(),
 }
+
+const availableYears = [2019, 2020, 2021]
 
 class MortgageCalculator extends React.Component {
   constructor(props) {
@@ -72,7 +74,7 @@ class MortgageCalculator extends React.Component {
 
     switch (tax_field) {
       case TAX_FIELD_COMMON:
-        percent = year.year() >= 2021 ? 0.22 : 0.23
+        percent = year >= 2021 ? 0.22 : 0.23
         break
       case TAX_FIELD_IT:
         percent = 0.1
@@ -131,7 +133,7 @@ class MortgageCalculator extends React.Component {
         amount: a,
         tax_field,
         pension,
-        year: year.year()
+        year,
       }
       const valid = await schema.isValid(data)
 
@@ -216,14 +218,20 @@ class MortgageCalculator extends React.Component {
                 </Radio.Group>
               </Form.Item>
 
-              <Form.Item label={<Label>{lang.year}</Label>}>
-                <CalculatorDatePicker
-                  onChange={date => this.setField("year", date)}
-                  value={form.year}
-                  placeholder={null}
-                  picker="year"
+              <Form.Item>
+                <CalculatorSelect
                   size="large"
-                />
+                  value={form.year}
+                  className={"yearSelect"}
+                  style={{ maxWidth: "424px", width: "90px" }}
+                  onChange={value => this.setField("year", value)}
+                >
+                  {availableYears.map(year =>
+                    <Select.Option value={year} key={`vehicle-${year}`}>
+                      {year}
+                    </Select.Option>,
+                  )}
+                </CalculatorSelect>
               </Form.Item>
 
               <Form.Item>
