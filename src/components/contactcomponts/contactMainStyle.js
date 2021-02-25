@@ -29,6 +29,7 @@ export const PElement = styled.p`
 `
 
 export const H3Element = styled.h3`
+  width:100%;
   font-size: 24px;
   font-style: normal;
   font-weight: bold;
@@ -248,6 +249,7 @@ export const FacebookIcon = styled.div`
 
 export const FacebookShare = styled(FacebookShareButton)`
     outline:none;
+    height:fit-content;
     background-image:url(${FbBlackIcon});
     display: block;
     background-position: 0 0;

@@ -37,8 +37,8 @@ const CareerDropWrapper = ({
           </DropHeadingButton>
         </DropHeadingTitle>
       </DropCareer>
-      { data.open ? (
       <FormWrapper
+        className={data.open ? 'openTextCol' : ''}
         xxl={{ span: 19, offset: 5 }}
         xl={{ span: 22, offset: 3 }}
         lg={{ span: 22, offset: 2 }}
@@ -57,8 +57,6 @@ const CareerDropWrapper = ({
           lang={lang}
         />
       </FormWrapper>
-      ) : null
-      }
     </>
   )
 }

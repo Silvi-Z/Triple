@@ -40,32 +40,52 @@
     "paragraph": "Our team is willing to be with you from the very  beginning of your journey, to help and support you, encourage and empower every step you take, making your way to success effortless and smooth.\nWe help organizations and individuals create the value they are looking for, by delivering quality in Accounting, Tax and Advisory services. The wide range of its services includes accounting, tax audit, HR accounting, and business, financial, legal advisory and many more. \n",
     "contentData": [
       {
+        "scroll_id": "test_1",
+        "link" : "services#test_1",
         "paragraph": "Accounting",
-        "text": "Our team offers a wide range Accurate accounting is one of the most important functions of a business, which helps to avoid various financial losses. Accounting is carried out in accordance with international standards through AS and 1C accounting software.of accounting services that allows a company to summarize, analyze and report financial transactions to oversight agencies, regulators and tax collection entities․ Our services include:\nEstablishment of accounting policy,\nFinancial and tax accounting,\nAccounting documentation management,\nFinancial, tax and other purposes reporting,\nTax optimisation.\n"
+        "text": "Our team offers a wide range of accounting services that allows a company to summarize, analyze and report financial transactions to oversight agencies, regulators and tax collection entities․ Our services include:\n● Establishment of accounting policy,\n● Financial and tax accounting,\n● Accounting documentation management,\n● Financial, tax and other purposes reporting,\n● Tax optimisation."
       },
       {
-        "paragraph": "Tax audit and accounting",
-        "text": "Carrying out a tax audit, we will check the accuracy of tax reports, identify tax risky transactions, help you choose the most profitable tax field for your company and plan taxes correctly, avoiding additional tax liabilities, various penalties and fines."
+        "scroll_id": "test_2",
+        "link" : "services#test_2",
+        "paragraph": "Tax audit",
+        "text": "Tax audit carried out by our qualified specialists permit to verify the accuracy of previously submitted tax reports, make all necessary changes in order to avoid additional fiscal responsibilities and various penalties."
       },
       {
-        "paragraph": "Consultation",
-        "text": "You can contact us for advice on issues you are interested in, and we will provide high-quality professional advice."
+        "scroll_id": "test_3",
+        "link" : "services#test_3",
+        "paragraph": "Advisor services",
+        "text": "Our team offers advisory services aiming to support and assisting organisations to operate as efficient as possible and reach all their potential. Our advisory services include:\n● Profit and financial analysis,\n● Financial transaction consulting,\n● Accounting records consulting,\n● Legal and tax consulting,\n● Business plan analysis and consulting, \n● Business registration and liquidation support."
       },
       {
+        "scroll_id": "test_4",
+        "link" : "services#test_4",
         "paragraph": "Company registration",
-        "text": "The most common way to do business is to register an organization, mainly an LLC. The expediency of doing business through the registration of an LLC is primarily due to the legal possibility of bearing limited liability. Our specialists will help your organization to act on its behalf, to have property attached to it with the right of ownership, to be responsible only for that property. From the moment you receive state registration, your organization will acquire rights and responsibilities."
+        "text": "In reality, individuals are also involved in transactions that may evoke any sort of tax liabilities and  requirements to submit tax reports. Our specialists are willing to support individuals throughout that process from simple consulting till the submission of all required documents."
       },
       {
-        "paragraph": "Individuals",
-        "text": "According to the Tax Code, certain transactions made by individuals result in tax liabilities for which appropriate reports must be submitted. We offer reporting and tax services."
+        "scroll_id": "test_5",
+        "link" : "services#test_5",
+        "paragraph": "Customs clearance",
+        "text": "Our specialists provide a wide range of customs support for standard as well as non-routine customs-clearance processes including:\n● Preparation of documents needed to be submitted to the customs authorities,\n● Submission of export and import declarations.\n● Preparation of other necessary documents for relevant state bodies"
       },
       {
+        "scroll_id": "test_6",
+        "link" : "services#test_6",
         "paragraph": "Customs transactions",
-        "text": "Contact us to prepare the necessary tax and customs documents for import and export transactions and submit them to the relevant state bodies."
+        "text": "We believe that the efficient documentation of a company employee movement is crucial for businesses of all sizes. Thus, we offer these services: preparation of the employment contracts, agreements, internal legal acts, calculation of working time and salary, income tax and social charges."
       },
       {
-        "paragraph": "Human Resources",
-        "text": "We will facilitate the work of your organization by taking full control of the personnel work. We offer the following services: drafting employment and service contracts, as well as agreements, drafting internal and individual legal acts of the employer, calculation of working hours and salary, compilation of newsletters, personalized accounting of income tax and social payment."
+        "scroll_id": "test_7",
+        "link" : "services#test_7",
+        "paragraph": "Public and Private procurement",
+        "text": "The specialists of Triple Consulting support bidders taking part in local and international tenders announced on ARMEPS and other equivalent platforms. Our offer includes services starting from the preparation of the bidding documents, ending up with the full procedure implementation of the entire procurement."
+      },
+      {
+        "scroll_id": "test_8",
+        "link" : "services#test_8",
+        "paragraph": "Business automation",
+        "text": "Excellence and workflow automation: these are critical aspects for customer satisfaction and growing revenue. By identifying all your needs, analysing specificities of your business and your management accounting as well as internal systems and processes, specialists of Triple Consulting will design and develop software packages (web applications, computer applications, EXCEL format documents developed and adapted to the given activity). The developed tools will reduce operating costs, speed up and optimize business processes, as well as reduce possible risks and improve the overall management system."
       }
     ],
     "share": "Share"
@@ -162,6 +182,96 @@
         }
       }
     ],
+    "documents": [
+      {
+        "links": [
+          {
+            "id": 0,
+            "label": "Employee time record sheet"
+          },
+          {
+            "id": 1,
+            "label": "Corporate minutes: Change in particulars of shareholders"
+          },
+          {
+            "id": 2,
+            "label": "Truck route sheet"
+          },
+          {
+            "id": 3,
+            "label": "Business trip certificate"
+          },
+          {
+            "id": 4,
+            "label":"Debit cash voucher (exported from Armenian Software)"
+          },
+          {
+            "id": 5,
+            "label": "Credit cash voucher (exported from Armenian Software)"
+          },
+          {
+            "id": 6,
+            "label": "Contract for services"
+          },
+          {
+            "id": 7,
+            "label": "Power of attorney"
+          },
+          {
+            "id": 8,
+            "label":"Declaration example form of information pasting by taxpayer"
+          },
+          {
+            "id": 9,
+            "label":"Invoice (exported from Armenian Software)"
+          },
+          {
+            "id": 10,
+            "label": "Issued invoice cancelation act"
+          },
+          {
+            "id": 11,
+            "label": "Founders agreement"
+          },
+          {
+            "id": 12,
+            "label": "Announcement of the dissolution of a company"
+          },
+          {
+            "id": 13,
+            "label":"Payment order (exported from Armenian Software)"
+          },
+          {
+            "id": 14,
+            "label": "Passenger car route sheet"
+          },
+          {
+            "id": 15,
+            "label": "Decision: Change of sole shareholders"
+          },
+          {
+            "id": 16,
+            "label": "Content sheet"
+          },
+          {
+            "id": 17,
+            "label": "Payment record template (exported from Armenian Software)"
+          },
+          {
+            "id": 18,
+            "label": "Certificate of employment (English)"
+          },
+          {
+            "id": 19,
+            "label": "Certificate of employment (Armenian)"
+          },
+          {
+            "id": 20,
+            "label": "INFORMATION: Submission of statistical documents and reports by email"
+          }
+        ]
+      }
+    ],
     "dataUseInfo": [
       {
         "status": true,
@@ -239,7 +349,7 @@
   },
   "career": {
     "title": "Join Us",
-    "paragraph": "Մենք միշտ ուրախ ենք ընդլայնել մեր թիմը լավագույն մասնագետներով։ Եթե ունեք ցանկություն միանալու մեզ, ապա ուղարկեք Ձեր ինքնակենսագրականը, մենք ուրախ ենք տեսնել լավագույններին մեր կազմում։Ստորեւ կարող եք ծանոթանալ թափուր աշխատատեղերին։",
+    "paragraph": "We are always happy to expand our team with highly qualified specialists. If you want to join us, you can send your CV.\nWe will be happy to see the best among us.\nOur recruiters will keep you up-to-date on vacancies and on what is happening at Triple Consulting.\n",
     "drop_content": [
       {
         "status": true,
@@ -275,6 +385,9 @@
   "contact": {
     "title": "Contact us",
     "paragraph": "For questions and suggestions you can fill in the necessary information and we will be happy to contact you.",
+    "contact_address": "Address",
+    "tel": "Tel․",
+    "follow_us": "Follow us",
     "form_content": {
       "name_label": "Name / Surname (Company Name)",
       "email_label": "E-mail",
@@ -491,12 +604,12 @@
       "calculate": "ՀԱՇՎԵԼ",
       "year": "Տարեթիվ",
       "result": {
-        "title": "Արդյունք",
+        "title" : "Արդյունք",
         "income_tax_back": "Վերադարձվող եկամտային հարկ"
       }
     },
     "subsidy": {
-      "title": "Նպաստների հաշվիչ",
+      "title": "Social benefits calculator",
       "form": {
         "type": "Նպաստի տեսակ",
         "maternity": "Մայրության",
@@ -606,7 +719,7 @@
       }
     },
     "calendar": {
-      "title": "Աշխատանքային օրացույց",
+      "title": "Business calendar",
       "calculate": "ՀԱՇՎԵԼ",
       "chooseDaysRange": "Ընտրել աշխատանքային օրացույցի օրերը",
       "working_schedule": "Նշել աշխատանքային գրաֆիկը",
@@ -656,7 +769,7 @@
       }
     },
     "currency": {
-      "title": "Փոխարժեքի հաշվիչ",
+      "title": "Currency Converter",
       "calculate": "ՀԱՇՎԵԼ",
       "currency": {
         "amd": "AMD",
