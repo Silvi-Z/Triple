@@ -196,6 +196,21 @@ class MortgageCalculator extends React.Component {
           </Row>
 
           <CalculatorsCard bordered={false}>
+            <Form.Item>
+              <CalculatorSelect
+                size="large"
+                value={form.year}
+                className={"yearSelect"}
+                style={{ maxWidth: "424px", width: "90px" }}
+                onChange={value => this.setField("year", value)}
+              >
+                {availableYears.map(year =>
+                  <Select.Option value={year} key={`vehicle-${year}`}>
+                    {year}
+                  </Select.Option>,
+                )}
+              </CalculatorSelect>
+            </Form.Item>
             <Form
               onFinish={this.handleSubmit}
               initialValues={form}
@@ -218,21 +233,6 @@ class MortgageCalculator extends React.Component {
                 </Radio.Group>
               </Form.Item>
 
-              <Form.Item>
-                <CalculatorSelect
-                  size="large"
-                  value={form.year}
-                  className={"yearSelect"}
-                  style={{ maxWidth: "424px", width: "90px" }}
-                  onChange={value => this.setField("year", value)}
-                >
-                  {availableYears.map(year =>
-                    <Select.Option value={year} key={`vehicle-${year}`}>
-                      {year}
-                    </Select.Option>,
-                  )}
-                </CalculatorSelect>
-              </Form.Item>
 
               <Form.Item>
                 <Checkbox

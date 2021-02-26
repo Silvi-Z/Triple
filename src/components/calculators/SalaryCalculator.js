@@ -414,8 +414,6 @@ class SalaryCalculator extends React.Component {
     const { langText } = this.props
     const { form, result, loading } = this.state
 
-    console.log(form)
-
     return (
       <>
         <Row align="start" gutter={20}>
@@ -426,6 +424,21 @@ class SalaryCalculator extends React.Component {
             </div>
 
             <CalculatorsCard bordered={false}>
+              <Form.Item>
+                <CalculatorSelect
+                  size="large"
+                  className={'yearSelect'}
+                  value={form.year}
+                  style={{ maxWidth: "424px", width: "90px" }}
+                  onChange={value => this.setField("year", value, this.changeRange)}
+                >
+                  {availableYears.map(year =>
+                    <Select.Option value={year} key={`vehicle-${year}`}>
+                      {year}
+                    </Select.Option>,
+                  )}
+                </CalculatorSelect>
+              </Form.Item>
               <Form onFinish={this.handleSubmit} initialValues={form} layout="horizontal" colon={false}>
                 <RadioGroup
                   onChange={(e) => this.setField("from", e.target.value)}
@@ -477,22 +490,6 @@ class SalaryCalculator extends React.Component {
 
                 {form.by ?
                   <>
-                    <Form.Item>
-                      <CalculatorSelect
-                        size="large"
-                        className={'yearSelect'}
-                        value={form.year}
-                        style={{ maxWidth: "424px", width: "90px" }}
-                        onChange={value => this.setField("year", value, this.changeRange)}
-                      >
-                        {availableYears.map(year =>
-                          <Select.Option value={year} key={`vehicle-${year}`}>
-                            {year}
-                          </Select.Option>,
-                        )}
-                      </CalculatorSelect>
-                    </Form.Item>
-
                     <Form.Item label={<Label>{langText["salary_label"]}</Label>} name="amount">
                       <CalculatorInput
                         formatter={v => `${v}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
@@ -515,22 +512,6 @@ class SalaryCalculator extends React.Component {
                   </>
                   :
                   <>
-                    <Form.Item>
-                      <CalculatorSelect
-                        size="large"
-                        value={form.year}
-                        className={'yearSelect'}
-                        style={{ maxWidth: "424px", width: "90px" }}
-                        onChange={value => this.setField("year", value, this.changeRange)}
-                      >
-                        {availableYears.map(year =>
-                          <Select.Option value={year} key={`vehicle-${year}`}>
-                            {year}
-                          </Select.Option>,
-                        )}
-                      </CalculatorSelect>
-                    </Form.Item>
-
                     <Row gutter={10} align="middle">
                       <Form.Item style={{ marginRight: "25px" }} label={<Label>{langText.form.start}</Label>}>
                         <CalculatorDatePicker
