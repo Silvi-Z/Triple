@@ -196,7 +196,7 @@ class MortgageCalculator extends React.Component {
           </Row>
 
           <CalculatorsCard bordered={false}>
-            <Form.Item>
+            <Form.Item style={{textAlign:"right"}}>
               <CalculatorSelect
                 size="large"
                 value={form.year}

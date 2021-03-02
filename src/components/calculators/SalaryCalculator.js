@@ -424,7 +424,7 @@ class SalaryCalculator extends React.Component {
             </div>
 
             <CalculatorsCard bordered={false}>
-              <Form.Item>
+              <Form.Item style={{textAlign:"right"}}>
                 <CalculatorSelect
                   size="large"
                   className={'yearSelect'}
