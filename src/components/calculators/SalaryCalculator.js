@@ -370,6 +370,8 @@ class SalaryCalculator extends React.Component {
       tax_field,
       year,
       amount: gross_salary,
+    }).finally(() => {
+      document.body.scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" })
     })
 
     const result = Object.assign({}, res.data, { gross_salary })
@@ -379,7 +381,9 @@ class SalaryCalculator extends React.Component {
 
   async calculateByTable() {
     let { form } = this.state
-    const res = await triple.post("/api/counter/salary", form)
+    const res = await triple.post("/api/counter/salary", form).finally(() => {
+      document.body.scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" })
+    })
     this.setState({ result: res.data, loading: false, calculated: 2 })
   }
 
@@ -424,10 +428,10 @@ class SalaryCalculator extends React.Component {
             </div>
 
             <CalculatorsCard bordered={false}>
-              <Form.Item style={{textAlign:"right"}}>
+              <Form.Item style={{ textAlign: "right" }}>
                 <CalculatorSelect
                   size="large"
-                  className={'yearSelect'}
+                  className={"yearSelect"}
                   value={form.year}
                   style={{ maxWidth: "424px", width: "90px" }}
                   onChange={value => this.setField("year", value, this.changeRange)}

@@ -11,7 +11,8 @@ import {
   ButtonSubmit,
   CalculatorDatePicker,
   CalculatorInput,
-  CalculatorsCard, CalculatorSelect,
+  CalculatorsCard,
+  CalculatorSelect,
   FormLabel,
   H1Styled,
   Label,
@@ -207,8 +208,23 @@ class VacationCalculator extends React.Component {
         holidays: this.holidays,
         workdays: this.workdays,
         schedule: working_schedule,
-      }).length)
+      }).length, this.changeYear)
+    } else {
+      this.changeYear()
     }
+  }
+
+  changeYear() {
+    const { date_from } = this.state.form
+    date_from && this.setField("year", moment(date_from).year())
+  }
+
+  changeDates() {
+    const fields = {
+      date_from: null,
+      date_to: null,
+    }
+    this.setFields(fields)
   }
 
   fetchDays() {
@@ -235,6 +251,10 @@ class VacationCalculator extends React.Component {
 
   setField(name, value, cb) {
     this.setState({ form: { ...this.state.form, [name]: value } }, cb)
+  }
+
+  setFields(fields, cb) {
+    this.setState({ form: { ...this.state.form, ...fields } }, cb)
   }
 
   calcVacationAmount = monthAvgSalary => this.setState({ monthAvgSalary })
@@ -310,7 +330,6 @@ class VacationCalculator extends React.Component {
 
   handleSubmit = () => {
     const { form } = this.state
-    const { date_from } = this.state.form
     let data = { ...pick(form, Object.keys(schema.fields)), amount: this.vacationSalary }
 
     schema.isValid(data).then(valid => {
@@ -335,23 +354,15 @@ class VacationCalculator extends React.Component {
     this.fetchDays()
     this.dateToInput.addEventListener("input", this.handlePickerInput)
     this.dateFromInput.addEventListener("input", this.handlePickerInput)
-    // window.addEventListener('scroll', this.handleWindowScroll)
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
     this.autoCalculate(prevState)
   }
 
-  componentWillUnmount() {
-    window.removeEventListener("scroll", this.handleWindowScroll)
-  }
-
   render() {
     const { form, result } = this.state
     const { lang } = this.props
-    const { sameMarginTop } = this.props
-    // const width =  (typeof window !== `undefined`)
-    //   ? document.documentElement.clientWidth : 992
 
     return (
       <Row align="start" gutter={20} ref={this.row}>
@@ -377,7 +388,7 @@ class VacationCalculator extends React.Component {
                   value={form.year}
                   className={"yearSelect"}
                   style={{ maxWidth: "424px", width: "90px" }}
-                  onChange={value => this.setField("year", value)}
+                  onChange={value => this.setField("year", value, this.changeDates)}
                 >
                   {this.availableYears.map(year =>
                     <Select.Option value={year} key={`vehicle-${year}`}>

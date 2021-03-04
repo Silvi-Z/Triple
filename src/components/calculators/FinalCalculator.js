@@ -92,6 +92,8 @@ class FinalCalculator extends React.Component {
 
     if (date_acceptance && date_release && available_vacation_days) {
       return Math.round(date_release.diff(date_acceptance, "days") / 365 * available_vacation_days)
+    } else {
+      return undefined
     }
 
     return null
@@ -239,6 +241,25 @@ class FinalCalculator extends React.Component {
     this.setState({ form: { ...this.state.form, [name]: value } }, cb)
   }
 
+  handleInputValue(e) {
+    const inputValue = e.target.value
+    const inputName = e.target.name
+    const inputMaxVal = e.target.max
+    const inputMinVal = e.target.min
+
+    if (inputMaxVal && Number(inputValue) > Number(inputMaxVal)) {
+      e.target.value = inputMaxVal
+      return false
+    } else if (inputMinVal && Number(inputValue) < Number(inputMinVal)) {
+      e.target.value = inputMinVal
+      return false
+    } else {
+      e.target.value = inputValue
+    }
+
+    this.setFormField(inputName, inputValue)
+  }
+
   autoFillAvailableVacationDays() {
     const { working_schedule } = this.state.form
 
@@ -361,6 +382,7 @@ class FinalCalculator extends React.Component {
                   style={{ width: "54px" }}
                   max={this.totalVacationDays}
                   min={0}
+                  onInput={e => this.handleInputValue(e)}
                   name="used_vacation_days"
                   type="number"
                   size="large"
@@ -386,6 +408,7 @@ class FinalCalculator extends React.Component {
                   }}
                   max={this.totalVacationDays}
                   min={0}
+                  onInput={e => this.handleInputValue(e)}
                   name="unused_vacation_days"
                   type="number"
                   size="large"
