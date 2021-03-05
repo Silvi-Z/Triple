@@ -308,10 +308,15 @@ class VacationCalculator extends React.Component {
 
   handleSubmit = () => {
     const { form } = this.state
-    const data = { ...pick(form, Object.keys(schema.fields)), amount: this.vacationSalary }
+    const { date_from } = this.state.form
+    let data = { ...pick(form, Object.keys(schema.fields)), amount: this.vacationSalary }
 
     schema.isValid(data).then(valid => {
       if (!valid) return
+      data = {
+        ...data,
+        year: moment(date_from).year(),
+      }
 
       triple
         .post("/api/counter/salary", data, {
@@ -368,6 +373,7 @@ class VacationCalculator extends React.Component {
               layout="horizontal"
               size="large"
             >
+
               <Row gutter={10} align="middle">
                 <Form.Item style={{ marginRight: "25px" }} label={<Label>{lang.start}</Label>}>
                   <CalculatorDatePicker

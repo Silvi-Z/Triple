@@ -1,4 +1,4 @@
-import React from "react";
+import React from "react"
 import styled from "styled-components"
 import CalculatorHomePage from "../../components/calculators/CalculatorHomePage"
 
@@ -45,12 +45,12 @@ const PElement = styled.p`
 `
 
 const Index = ({ pageContext }) => {
-  return(
+  return (
     <>
       <CalcPageWrapper ctx={pageContext}>
         <H1Element>{pageContext.localeResources.translation.calculator.title}</H1Element>
         <PElement>{pageContext.localeResources.translation.calculator.paragraph}</PElement>
-        <CalculatorHomePage pageContext={pageContext.locale}/>
+        <CalculatorHomePage pageContext={pageContext.locale} />
       </CalcPageWrapper>
     </>
   )
