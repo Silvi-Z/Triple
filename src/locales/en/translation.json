@@ -174,7 +174,8 @@
         "info_title": "Sorry, there are no results",
         "info_text": "Please search again"
       }
-    ]
+    ],
+    "share": "Share"
   },
   "career": {
     "title": "Join Us",
@@ -528,7 +529,8 @@
       }
     },
     "calendar": {
-      "title": "Աշխատանքային օրացույց",
+      "title": "Business calendar",
+      "paragraph": "In the business calendar you can find working and non-working days, days preceding holidays, remembrance days, as well as the total sum of the working and calendar days, working hours. The calendar is based on the RA Law \"On holidays and memorial days\" and the relevant decisions of the RA Government.\n\nWith the help of the business calendar you can easily calculate the number of calendar days, working days, non-working days, working hours between the two dates, in accordance with the selected work schedule.\n",
       "calculate": "ՀԱՇՎԵԼ",
       "chooseDaysRange": "Ընտրել աշխատանքային օրացույցի օրերը",
       "working_schedule": "Նշել աշխատանքային գրաֆիկը",
@@ -578,7 +580,8 @@
       }
     },
     "currency": {
-      "title": "Փոխարժեքի հաշվիչ",
+      "title": "Currency Converter",
+      "paragraph": "The Currency Converter executes the necessary conversions in the preferred currency based on the exchange rate announced by the Central Bank for a  given date.\nTo get started, enter the transaction values and date, relevant currencies and calculate exchange rates for any two currencies for any date you will possibly need.\n",
       "calculate": "ՀԱՇՎԵԼ",
       "currency": {
         "amd": "AMD",

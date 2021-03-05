@@ -25,7 +25,10 @@ body {
 nav {
     height: calc(var(--header-height));
 }
-
+.textSec{
+    flex-direction: column;
+    justify-content: center;
+}
 
 main {
     min-height: calc(100vh - (var(--header-height) + var(--footer-height))) !important;

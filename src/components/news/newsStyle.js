@@ -133,6 +133,7 @@ export const SeeMoreSingleNews = styled(SeemoreWrapper)`
 export const SeeMoreNews = styled(SeemoreWrapper)`
   display: ${props => props.buttonDisplay ? 'flex' :'none'};
   letter-spacing: 1.15px;
+  text-transform: uppercase;
 `
 
 export const SearchInput = styled.input`

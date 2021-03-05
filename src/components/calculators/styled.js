@@ -222,15 +222,15 @@ export const TextStyled = styled.p`
   font-family: ArialAMU,serif;
   font-style: normal;
   font-weight: normal;
-  font-size: 18px;
+  font-size: 16px;
   line-height: 25px;
   text-align: center;
   letter-spacing: 1.15px;
   color: #000000;
-  padding-bottom: 50px;
-  max-width: 734px;
-  margin-bottom: 0;
-  margin: auto;
+  margin: 0 40px 50px;
+  background: white;
+  border-radius: 5px;
+  padding: 25px 35px;
 `
 export const CalculatorsCard = styled(Card)`
   margin-top: 30px;

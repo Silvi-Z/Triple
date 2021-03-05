@@ -365,10 +365,10 @@ class SalaryTableCalculator extends React.Component {
     return (
       <Row align="start" gutter={20}>
         <Col span={16}>
-          <div className="textSec">
-            <H1Styled>{lang.title}</H1Styled>
-            <TextStyled>{lang.paragraph}</TextStyled>
-          </div>
+          {/*<div className="textSec">*/}
+          {/*  <H1Styled>{lang.title}</H1Styled>*/}
+          {/*  <TextStyled>{lang.paragraph}</TextStyled>*/}
+          {/*</div>*/}
 
           <CalculatorsCard bordered={false}>
             <Form

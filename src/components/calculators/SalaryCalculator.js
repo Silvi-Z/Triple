@@ -393,10 +393,14 @@ class SalaryCalculator extends React.Component {
       <>
         <Row align="start" gutter={20}>
           <Col span={16}>
-            <div className="textSec">
-              <H1Styled>{langText.title}</H1Styled>
-              <TextStyled>{langText.paragraph}</TextStyled>
-            </div>
+            {/*<Row align="center" style={{ justifyContent: "space-between" }}>*/}
+            {/*  <H1Styled>{langText.title}</H1Styled>*/}
+            {/*  <TextStyled>{langText.paragraph}</TextStyled>*/}
+            {/*</Row>*/}
+            {/*<div className="textSec">*/}
+            {/*  <H1Styled>{langText.title}</H1Styled>*/}
+            {/*  <TextStyled>{langText.paragraph}</TextStyled>*/}
+            {/*</div>*/}
 
             <CalculatorsCard bordered={false}>
               <Form onFinish={this.handleSubmit} initialValues={form} layout="horizontal" colon={false}>
