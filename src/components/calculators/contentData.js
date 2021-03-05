@@ -22,7 +22,7 @@ const contentData = [
     ],
   },
   {
-    "link": "/calculators/salary-table",
+    "link": "/calculators/salary_table",
     "src": `${salaryTable}`,
     "title": [
       {
