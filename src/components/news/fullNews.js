@@ -29,7 +29,7 @@ import triple from "../../api/triple"
 const FullInfo = ({apiUrl, data , lang , pageContext}) => {
 
   const [size, setSize] = useState(3)
-
+// test
   const resize = () =>{
     if(window.innerWidth >= 1111){
       setSize(3)
