@@ -1,5 +1,5 @@
 import React from "react"
-import { Col, Form, Radio, Row } from "antd"
+import { Col, Form, Radio, Row, Select } from "antd"
 import ReactDOM from "react-dom"
 import triple from "../../api/triple"
 import CalculatorCardResult from "./calcComponents/CalculatorCardResult"
@@ -8,6 +8,7 @@ import {
   CalculatorDatePicker,
   CalculatorInput,
   CalculatorsCard,
+  CalculatorSelect,
   FormLabel,
   H1Styled,
   Label,
@@ -46,7 +47,7 @@ const form = {
   schedule: 5,
   date_to: null,
   date_from: null,
-  year: moment(),
+  year: moment().year(),
   working_days: null,
   from: 1,
   amount: null,
@@ -54,9 +55,9 @@ const form = {
   tax_field: TAX_FIELD_COMMON,
 }
 
-class SalaryCalculator extends React.Component {
-  fileInput = React.createRef()
+const availableYears = [2019, 2020, 2021]
 
+class SalaryCalculator extends React.Component {
   daysInput = React.createRef()
 
   dateToPicker = React.createRef()
@@ -111,21 +112,13 @@ class SalaryCalculator extends React.Component {
   }
 
   get dateFromValue() {
-    const { date_from, year } = this.state.form
-
-    // if (year) {
-    //   return isNull(date_from) ? year : moment(date_from)
-    // }
+    const { date_from } = this.state.form
 
     return isNull(date_from) ? date_from : moment(date_from)
   }
 
   get dateToValue() {
-    const { date_to, year } = this.state.form
-
-    // if (year) {
-    //   return isNull(date_to) ? year : moment(date_to)
-    // }
+    const { date_to } = this.state.form
 
     return isNull(date_to) ? date_to : moment(date_to)
   }
@@ -230,7 +223,7 @@ class SalaryCalculator extends React.Component {
     if (date_to) {
       return d.isSameOrAfter(date_to, "day") && !d.isSame(date_to, "month")
     } else {
-      return d && d.year() !== year.year()
+      return d && d.year() !== year
     }
   }
 
@@ -240,18 +233,14 @@ class SalaryCalculator extends React.Component {
     if (date_from) {
       return d.isBefore(date_from, "day")
     } else {
-      return d && d.year() !== year.year()
+      return d && d.year() !== year
     }
-  }
-
-  disableYear = d => {
-    return d && d > moment()
   }
 
   changeRange = () => {
     const { date_from, date_to, year } = this.state.form
 
-    const diff = date_from ? moment(date_from).year() - year.year() : moment(date_to).year() - year.year()
+    const diff = date_from ? moment(date_from).year() - year : moment(date_to).year() - year
 
     this.setFields({
       date_from: date_from ? moment(date_from).subtract(diff, "years").format("YYYY-MM-DD") : null,
@@ -379,8 +368,10 @@ class SalaryCalculator extends React.Component {
       from,
       pension,
       tax_field,
+      year,
       amount: gross_salary,
-      year: year.year(),
+    }).finally(() => {
+      document.body.scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" })
     })
 
     const result = Object.assign({}, res.data, { gross_salary })
@@ -390,12 +381,9 @@ class SalaryCalculator extends React.Component {
 
   async calculateByTable() {
     let { form } = this.state
-    let { year } = this.state.form
-    form = {
-      ...form,
-      year: year.year(),
-    }
-    const res = await triple.post("/api/counter/salary", form)
+    const res = await triple.post("/api/counter/salary", form).finally(() => {
+      document.body.scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" })
+    })
     this.setState({ result: res.data, loading: false, calculated: 2 })
   }
 
@@ -444,6 +432,21 @@ class SalaryCalculator extends React.Component {
             {/*</div>*/}
 
             <CalculatorsCard bordered={false}>
+              <Form.Item style={{ textAlign: "right" }}>
+                <CalculatorSelect
+                  size="large"
+                  className={"yearSelect"}
+                  value={form.year}
+                  style={{ maxWidth: "424px", width: "90px" }}
+                  onChange={value => this.setField("year", value, this.changeRange)}
+                >
+                  {availableYears.map(year =>
+                    <Select.Option value={year} key={`vehicle-${year}`}>
+                      {year}
+                    </Select.Option>,
+                  )}
+                </CalculatorSelect>
+              </Form.Item>
               <Form onFinish={this.handleSubmit} initialValues={form} layout="horizontal" colon={false}>
                 <RadioGroup
                   onChange={(e) => this.setField("from", e.target.value)}
@@ -494,31 +497,29 @@ class SalaryCalculator extends React.Component {
                 </Form.Item>
 
                 {form.by ?
-                  <Form.Item label={<Label>{langText["salary_label"]}</Label>} name="amount">
-                    <CalculatorInput
-                      formatter={v => `${v}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
-                      parser={v => v.replace(/\$\s?|(,*)/g, "")}
-                      onChange={v => this.setField("amount", v)}
-                      value={form.amount}
-                      step={SALARY_STEP}
-                      min={SALARY_MIN}
-                      name="amount"
-                      size="large"
-                    />
-                  </Form.Item>
-                  :
                   <>
-                    <Form.Item label={<Label>{langText.form.year}</Label>}>
-                      <CalculatorDatePicker
-                        onChange={date => this.setField("year", date, this.changeRange)}
-                        value={form.year}
-                        disabledDate={this.disableYear}
-                        placeholder={null}
-                        picker="year"
+                    <Form.Item label={<Label>{langText["salary_label"]}</Label>} name="amount">
+                      <CalculatorInput
+                        formatter={v => `${v}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                        parser={v => v.replace(/\$\s?|(,*)/g, "")}
+                        onChange={v => this.setField("amount", v)}
+                        value={form.amount}
+                        suffix={true}
+                        suffixIcon={
+                          <svg width="6" height="5" viewBox="0 0 6 5" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5.295 4.5L3 2.02767L0.705 4.5L-3.32702e-08 3.73887L3 0.5L6 3.73887L5.295 4.5Z"
+                                  fill="black" />
+                          </svg>
+                        }
+                        step={SALARY_STEP}
+                        min={SALARY_MIN}
+                        name="amount"
                         size="large"
                       />
                     </Form.Item>
-
+                  </>
+                  :
+                  <>
                     <Row gutter={10} align="middle">
                       <Form.Item style={{ marginRight: "25px" }} label={<Label>{langText.form.start}</Label>}>
                         <CalculatorDatePicker

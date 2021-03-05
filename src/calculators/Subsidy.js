@@ -1,5 +1,6 @@
 import * as Yup from "yup"
 import Salary from "./Salary"
+import moment from "moment"
 
 class Subsidy extends Salary {
   static HIRED = 1
@@ -22,6 +23,7 @@ class Subsidy extends Salary {
     start: null,
     days: null,
     end: null,
+    year: moment().year(),
   }
 
   // TODO : define validation rules

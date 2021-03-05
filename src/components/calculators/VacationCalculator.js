@@ -3,7 +3,7 @@ import ReactDOM from "react-dom"
 import moment from "moment"
 import triple from "../../api/triple"
 import { isEmpty, isEqual, isNull, pick } from "lodash"
-import { Checkbox, Col, Form, Radio, Row } from "antd"
+import { Checkbox, Col, Form, Radio, Row, Select } from "antd"
 import GrossSalaryTable from "./calcComponents/GrossSalaryTable"
 import CalculatorCardResult from "./calcComponents/CalculatorCardResult"
 import { isHoliday, isWeekend, workingDaysInRange } from "./utilities/vacation"
@@ -12,6 +12,7 @@ import {
   CalculatorDatePicker,
   CalculatorInput,
   CalculatorsCard,
+  CalculatorSelect,
   FormLabel,
   H1Styled,
   Label,
@@ -51,6 +52,7 @@ const initialValues = {
   pension: PENSION_FIELD_YES,
   static_salary: true,
   tax_field: TAX_FIELD_COMMON,
+  year: moment().year(),
 }
 
 class VacationCalculator extends React.Component {
@@ -80,6 +82,7 @@ class VacationCalculator extends React.Component {
     }
     this.holidays = []
     this.workdays = []
+    this.availableYears = [2019, 2020, 2021]
   }
 
   get rowElement() {
@@ -205,8 +208,23 @@ class VacationCalculator extends React.Component {
         holidays: this.holidays,
         workdays: this.workdays,
         schedule: working_schedule,
-      }).length)
+      }).length, this.changeYear)
+    } else {
+      this.changeYear()
     }
+  }
+
+  changeYear() {
+    const { date_from } = this.state.form
+    date_from && this.setField("year", moment(date_from).year())
+  }
+
+  changeDates() {
+    const fields = {
+      date_from: null,
+      date_to: null,
+    }
+    this.setFields(fields)
   }
 
   fetchDays() {
@@ -233,6 +251,10 @@ class VacationCalculator extends React.Component {
 
   setField(name, value, cb) {
     this.setState({ form: { ...this.state.form, [name]: value } }, cb)
+  }
+
+  setFields(fields, cb) {
+    this.setState({ form: { ...this.state.form, ...fields } }, cb)
   }
 
   calcVacationAmount = monthAvgSalary => this.setState({ monthAvgSalary })
@@ -308,15 +330,10 @@ class VacationCalculator extends React.Component {
 
   handleSubmit = () => {
     const { form } = this.state
-    const { date_from } = this.state.form
     let data = { ...pick(form, Object.keys(schema.fields)), amount: this.vacationSalary }
 
     schema.isValid(data).then(valid => {
       if (!valid) return
-      data = {
-        ...data,
-        year: moment(date_from).year(),
-      }
 
       triple
         .post("/api/counter/salary", data, {
@@ -337,23 +354,15 @@ class VacationCalculator extends React.Component {
     this.fetchDays()
     this.dateToInput.addEventListener("input", this.handlePickerInput)
     this.dateFromInput.addEventListener("input", this.handlePickerInput)
-    // window.addEventListener('scroll', this.handleWindowScroll)
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
     this.autoCalculate(prevState)
   }
 
-  componentWillUnmount() {
-    window.removeEventListener("scroll", this.handleWindowScroll)
-  }
-
   render() {
     const { form, result } = this.state
     const { lang } = this.props
-    const { sameMarginTop } = this.props
-    // const width =  (typeof window !== `undefined`)
-    //   ? document.documentElement.clientWidth : 992
 
     return (
       <Row align="start" gutter={20} ref={this.row}>
@@ -373,6 +382,21 @@ class VacationCalculator extends React.Component {
               layout="horizontal"
               size="large"
             >
+              <Form.Item style={{ textAlign: "right" }}>
+                <CalculatorSelect
+                  size="large"
+                  value={form.year}
+                  className={"yearSelect"}
+                  style={{ maxWidth: "424px", width: "90px" }}
+                  onChange={value => this.setField("year", value, this.changeDates)}
+                >
+                  {this.availableYears.map(year =>
+                    <Select.Option value={year} key={`vehicle-${year}`}>
+                      {year}
+                    </Select.Option>,
+                  )}
+                </CalculatorSelect>
+              </Form.Item>
 
               <Row gutter={10} align="middle">
                 <Form.Item style={{ marginRight: "25px" }} label={<Label>{lang.start}</Label>}>

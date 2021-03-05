@@ -40,7 +40,7 @@ export const schemaTABLE = Yup.object().shape({
 export const schemaBy = Yup.object().shape({
   by: Yup.number().oneOf([BY_FIELD_DATE, BY_FIELD_TABLE]).required(),
   from: Yup.number().oneOf([1, 2]).required(),
-  year: Yup.date().nullable(),
+  year: Yup.number().required(),
   schedule: Yup.number().oneOf([5, 6]).required(),
   amount: Yup.number().min(1).required(),
   working_days: Yup.number().nullable().when("by", {

@@ -1,11 +1,12 @@
 import React from "react"
 import moment from "moment"
 import { isEmpty, isEqual, isNull } from "lodash"
-import { Card, Checkbox, Col, Form, Radio, Row } from "antd"
+import { Card, Checkbox, Col, Form, Radio, Row, Select } from "antd"
 import {
   ButtonSubmit,
   CalculatorDatePicker,
   CalculatorInput,
+  CalculatorSelect,
   FormLabel,
   H1Styled,
   Label,
@@ -18,6 +19,7 @@ import Subsidy from "../../calculators/Subsidy"
 import GrossSalaryTable from "./calcComponents/GrossSalaryTable"
 import CalculatorCardResult from "./calcComponents/CalculatorCardResult"
 import { workingDaysInRangeForSubsidy } from "./utilities/vacation"
+import ReactDOM from "react-dom"
 
 moment.locale("en", {
   week: {
@@ -32,6 +34,10 @@ const radioStyle = {
 }
 
 class SubsidyCalculator extends React.Component {
+  col = React.createRef()
+
+  row = React.createRef()
+
   constructor(props) {
     super(props)
 
@@ -41,6 +47,7 @@ class SubsidyCalculator extends React.Component {
       calculated: false,
     }
     this.calculator = new Subsidy()
+    this.availableYears = [2019, 2020, 2021]
   }
 
   get amounts() {
@@ -137,9 +144,21 @@ class SubsidyCalculator extends React.Component {
     }
   }
 
+  get colElement() {
+    return ReactDOM.findDOMNode(/**@type Element */this.col.current)
+  }
+
+  get rowElement() {
+    return ReactDOM.findDOMNode(/**@type Element */this.row.current)
+  }
+
+  get rowElementOffsetTop() {
+    return this.rowElement.getBoundingClientRect().top
+  }
+
   handleSubmit = () => {
     const amount = this.calculator.calculate()
-    let { pension, tax_field, days, type, start, end } = this.state.form
+    let { pension, tax_field, days, type, year } = this.state.form
     tax_field = tax_field === Subsidy.TAX_IT ? Subsidy.TAX_COMMON : tax_field
 
     Subsidy.schema.isValid(this.state.form).then(valid => {
@@ -163,7 +182,7 @@ class SubsidyCalculator extends React.Component {
           pension,
           tax_field,
           stamp: false,
-          year: this.isTypeMaternity ? start.year() : end.year(),
+          year,
         }).then(res => {
           const { income_tax, salary, stamp_fee } = res.data
 
@@ -193,14 +212,32 @@ class SubsidyCalculator extends React.Component {
             })
           }
         })
+          .finally(() => {
+            document.body.scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" })
+          })
       }
     })
+  }
+
+  handleWindowScroll = () => {
+    if (
+      (window.scrollY + this.colElement.offsetHeight + this.rowElementOffsetTop) >=
+      (this.rowElementOffsetTop + this.rowElement.offsetHeight)
+    ) {
+      this.colElement.classList.add("abs")
+    } else {
+      this.colElement.classList.remove("abs")
+    }
   }
 
   setField(name, value, cb) {
     this.setState(prevState => (
       { form: { ...prevState.form, [name]: value } }
     ), cb)
+  }
+
+  setFields(fields, cb) {
+    this.setState({ form: { ...this.state.form, ...fields } }, cb)
   }
 
   resetSchedule() {
@@ -228,9 +265,27 @@ class SubsidyCalculator extends React.Component {
         type,
         work,
       })
-
-      this.setField("days", daysCount.length)
+      this.setField("days", daysCount.length, this.changeYear)
+    } else {
+      this.changeYear()
     }
+  }
+
+  changeYear() {
+    const { start, end } = this.state.form
+    if (this.isTypeMaternity && start) {
+      this.setField("year", start.year())
+    } else if (this.isTypeDisability && end) {
+      this.setField("year", end.year())
+    }
+  }
+
+  changeDates() {
+    const fields = {
+      start: null,
+      end: null,
+    }
+    this.setFields(fields)
   }
 
   autocompleteEnd() {
@@ -280,6 +335,14 @@ class SubsidyCalculator extends React.Component {
     }
   }
 
+  componentDidMount() {
+    window.addEventListener("scroll", this.handleWindowScroll)
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("scroll", this.handleWindowScroll)
+  }
+
   render() {
     const { lang } = this.props
     const { form, result } = this.state
@@ -290,7 +353,6 @@ class SubsidyCalculator extends React.Component {
       <Row align="start" gutter={20}>
         <Col xs={24} sm={24} md={24} lg={16} xl={16} xxl={16}>
           {/*<Row align="center" style={{ justifyContent: "space-between" }}>*/}
-
           {/*  <div className="textSec">*/}
           {/*    <H1Styled>{lang.title}</H1Styled>*/}
           {/*    <TextStyled>{lang.paragraph}</TextStyled>*/}
@@ -305,6 +367,23 @@ class SubsidyCalculator extends React.Component {
               layout="horizontal"
               size="large"
             >
+
+              <Form.Item style={{ textAlign: "right" }}>
+                <CalculatorSelect
+                  size="large"
+                  value={form.year}
+                  className={"yearSelect"}
+                  style={{ maxWidth: "424px", width: "90px" }}
+                  onChange={value => this.setField("year", value, this.changeDates)}
+                >
+                  {this.availableYears.map(year =>
+                    <Select.Option value={year} key={`vehicle-${year}`}>
+                      {year}
+                    </Select.Option>,
+                  )}
+                </CalculatorSelect>
+              </Form.Item>
+
               {/* type field */}
               <Form.Item label={<Label>{lang.form.type}</Label>} labelCol={{ span: 24 }}>
                 <Radio.Group
@@ -506,7 +585,7 @@ class SubsidyCalculator extends React.Component {
           </Card>
         </Col>
 
-        <Col xs={24} sm={24} md={24} lg={8} xl={8} xxl={8} className="result">
+        <Col xs={24} sm={24} md={24} lg={8} xl={8} xxl={8} className="result" ref={this.col}>
           <FormLabel style={{ margin: 0 }}>{lang.result.title}</FormLabel>
 
           <UnderLine />

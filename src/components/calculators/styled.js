@@ -131,6 +131,10 @@ export const CalculatorSelect = styled(Select)`
     height: 40px;
   }
   
+  &.yearSelect .ant-select-arrow .anticon > svg{
+    fill: black;
+  }
+  
   .ant-select-arrow .anticon > svg{
     fill: white;
   }
