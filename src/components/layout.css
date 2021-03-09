@@ -26,7 +26,7 @@ nav {
     height: calc(var(--header-height));
 }
 .textSec{
-    flex-direction: column;
+    flex-direction: column!important;
     justify-content: center;
 }
 

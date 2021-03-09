@@ -491,6 +491,7 @@ const query = graphql`
               }
               car_tax {
                 title
+                paragraph
                 calculate
                 form {
                 type

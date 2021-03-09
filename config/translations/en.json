@@ -689,7 +689,8 @@
     },
     "car_tax": {
       "calculate": "ՀԱՇՎԵԼ",
-      "title": "Ավտոմեքենայի գույքահարկի հաշվիչ",
+      "title": "Property tax calculator",
+      "paragraph": "With the help of the property tax calculator you can easily calculate the property tax of your car. Just enter the type of vehicle, year of issue, engine power and the amount of property tax of the given vehicle will be calculated, according to the requirements of the Tax code of RA.",
       "form": {
         "type": "Գույքահարկի տեսակ",
         "car": "Ավտոմեքենայի",
