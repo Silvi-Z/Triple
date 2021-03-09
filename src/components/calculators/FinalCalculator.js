@@ -324,13 +324,13 @@ class FinalCalculator extends React.Component {
     return (
       <Row align="start" gutter={20}>
         <Col xs={24} sm={24} md={24} lg={16} xl={16} xxl={16} ref={this.row}>
-          <Row align="center" style={{ justifyContent: "space-between" }}>
-            <div className="textSec">
-              <H1Styled>{lang.title}</H1Styled>
-              <TextStyled>{lang.paragraph}</TextStyled>
-            </div>
+          {/*<Row align="center" style={{ justifyContent: "space-between" }}>*/}
+          {/*  <div className="textSec">*/}
+          {/*    <H1Styled>{lang.title}</H1Styled>*/}
+          {/*    <TextStyled>{lang.paragraph}</TextStyled>*/}
+          {/*  </div>*/}
 
-          </Row>
+          {/*</Row>*/}
 
           <CalculatorsCard bordered={false}>
             <Form

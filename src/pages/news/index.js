@@ -93,7 +93,8 @@ const Index = ({location, pageContext }) => {
     }
   }
 
-  const filteredDate = data.filter(item =>location.hash.substring(1).includes(item.id.toString()) )
+  const filteredDate =data.filter(item =>location.hash.substring(1).includes(item.id.toString()))
+  // console.log("filteredDate", filteredDate)
   const onChange = (e) => {
     const data = constData.filter(item => item.title_arm.toLowerCase().includes(e.target.value.toLowerCase()))
     setData(data)
@@ -127,7 +128,6 @@ const Index = ({location, pageContext }) => {
                     placeholder={pageContext.localeResources.translation.news.search_input}
                   />
                   </span>
-                  {console.log(pageContext.localeResources.translation)}
                 </StyledForm.Item>
               </StyledForm>
               <NewsDatePicker
@@ -163,6 +163,7 @@ const Index = ({location, pageContext }) => {
                 lang={pageContext.locale}
                 buttonDisplay={buttonDisplay}
                 setButtonDisplay={setButtonDisplay}
+                pageContext={pageContext}
               />
               : <NoResult>
                 <NoResultTitle>{pageContext.localeResources.translation.news.no_result[0].info_title}</NoResultTitle>
@@ -171,7 +172,7 @@ const Index = ({location, pageContext }) => {
             }
           </>
         ) :
-        <FullInfo apiUrl={apiUrl.apiUrl} filteredData={filteredDate} data={data} lang={pageContext.locale} pageContext={pageContext}/>
+        <FullInfo apiUrl={apiUrl.apiUrl} data={data} lang={pageContext.locale} pageContext={pageContext}/>
 
       }
     </NewsPageWrapper>

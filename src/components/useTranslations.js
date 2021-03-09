@@ -164,6 +164,7 @@ const query = graphql`
               popular
               noResult
               text
+              share
             }
             careerForm {
               textare_label
@@ -522,6 +523,7 @@ const query = graphql`
               }
               calendar{
                 title
+                paragraph
                 calculate
                 chooseDaysRange
                 working_schedule
@@ -572,6 +574,7 @@ const query = graphql`
               }
               currency {
                 title
+                paragraph
                 calculate
                 currency {
                   amd

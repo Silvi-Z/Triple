@@ -25,10 +25,11 @@ import {
   ShareLabel,
 } from "../careercomponents/careerForm/formStyle"
 import moment from "moment"
-const FullInfo = ({apiUrl, filteredData, data , lang , pageContext}) => {
+import triple from "../../api/triple"
+const FullInfo = ({apiUrl, data , lang , pageContext}) => {
 
   const [size, setSize] = useState(3)
-
+// test
   const resize = () =>{
     if(window.innerWidth >= 1111){
       setSize(3)
@@ -46,7 +47,16 @@ const FullInfo = ({apiUrl, filteredData, data , lang , pageContext}) => {
       window.addEventListener("resize", resize);
     }
   })
-
+  const [news, setNews] = useState([])
+  useEffect(()=>{
+    console.log(triple)
+    triple.get('/api/news')
+      .then(res =>{
+        setNews(res.data.data)
+      } )
+      .catch(err => console.log(err))
+  }, [])
+  console.log(pageContext)
   let urlShared;
   const getSharedUrl = lng => {
     if (lng === "en") {
@@ -55,11 +65,12 @@ const FullInfo = ({apiUrl, filteredData, data , lang , pageContext}) => {
       return "http://triple-c.algorithm.am/arm/news/"
     }
   }
-
+  console.log("news", news)
+  const filteredData = news.filter(item =>location.hash.substring(1).includes(item.id.toString()))
+  console.log(filteredData && filteredData)
   const hookComponent = () => {
     urlShared = getSharedUrl(pageContext.locale)
   }
-  console.log(filteredData)
   // let id = 1;
   // fetch(`/api/news${19}`)
   //   .then(response => response.json())
@@ -69,15 +80,15 @@ const FullInfo = ({apiUrl, filteredData, data , lang , pageContext}) => {
   return (
     <>
         <BigImageInfo>
-          <Img src={apiUrl + filteredData[0].image}  alt="" />
+          <Img src={filteredData[0] && apiUrl + filteredData[0].image}  alt="" />
         </BigImageInfo>
         <TitleRow>
-          <H2> {filteredData[0].title_arm} </H2>
-          <P>{filteredData[0].date}</P>
+          <H2> {filteredData[0] && filteredData[0].title_arm} </H2>
+          <P>{filteredData[0] && filteredData[0].date}</P>
         </TitleRow>
-        <FullInfoText>{filteredData[0].description_arm}</FullInfoText>
+        <FullInfoText>{filteredData[0] && filteredData[0].description_arm}</FullInfoText>
         <SharedWrapperCol>
-          <ShareLabel>Կիսվել</ShareLabel>
+          <ShareLabel>{pageContext.localeResources.translation.news.share}</ShareLabel>
           <FacebookShare
             url={urlShared}
             children={<FacebookIcon />}
@@ -107,7 +118,7 @@ const FullInfo = ({apiUrl, filteredData, data , lang , pageContext}) => {
                     <DataItem>{moment(item.date).format("DD.MM.YYYY")}</DataItem>
                       <SeeMoreSingleNews
                         className="see_more_btn"
-                      > տեսնել ավելին
+                      > {pageContext.localeResources.translation.news.see_more}
                       </SeeMoreSingleNews>
                   </MoreRow>
                 </TextPart>
@@ -116,6 +127,7 @@ const FullInfo = ({apiUrl, filteredData, data , lang , pageContext}) => {
           ))}
         </FullNewsPage>
     </>
+
   )
 }
 export default FullInfo

@@ -17,7 +17,7 @@ import {
 import moment from "moment"
 import { NavLink } from "../homecomponents/homePartners/homePartStyle"
 
-const UsefulNews = ({news, lang , buttonDisplay, setButtonDisplay, apiUrl }) => {
+const UsefulNews = ({news, lang , buttonDisplay, setButtonDisplay, apiUrl,pageContext }) => {
 
   let [items, setItems] = useState(news.length<6 ? news.length : 6)
   news.length < 6 && setButtonDisplay(false)
@@ -47,7 +47,7 @@ const UsefulNews = ({news, lang , buttonDisplay, setButtonDisplay, apiUrl }) => 
                   <DataItem>{moment(item.created_at.substring(0, 10)).format("DD.MM.YYYY")}</DataItem>
                     <SeeMoreSingleNews
                       className="see_more_btn"
-                    > տեսնել ավելին
+                    > {pageContext.localeResources.translation.news.see_more}
                     </SeeMoreSingleNews>
                 </MoreRow>
               </TextPart>
@@ -59,7 +59,7 @@ const UsefulNews = ({news, lang , buttonDisplay, setButtonDisplay, apiUrl }) => 
           buttonDisplay ={buttonDisplay}
           onClick={addNews}
           className="see_more_btn"
-        > ՏԵՍՆԵԼ ԱՎԵԼԻՆ
+        > {pageContext.localeResources.translation.news.see_more}
         </SeeMoreNews>
     </ContainerNews>
   )

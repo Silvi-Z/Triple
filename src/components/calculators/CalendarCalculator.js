@@ -371,12 +371,12 @@ const CalendarCalculatorExample = ({ lang }) => {
   return (
     <Row align="start" gutter={20}>
       <Col xs={24} sm={24} md={24} lg={24} xl={24} xxl={24}>
-        <Row align="center" style={{ justifyContent: "space-between" }}>
-          <div className="textSec">
-            <H1Styled>{lang.title}</H1Styled>
-            <TextStyled>{lang.paragraph}</TextStyled>
-          </div>
-        </Row>
+        {/*<Row align="center" style={{ justifyContent: "space-between" }}>*/}
+        {/*  <div className="textSec">*/}
+        {/*    <H1Styled>{lang.title}</H1Styled>*/}
+        {/*    <TextStyled>{lang.paragraph}</TextStyled>*/}
+        {/*  </div>*/}
+        {/*</Row>*/}
         <CalculatorsCard bordered={false} className={"calendarBody"}>
           <Form.Item label={<Label>{lang.chooseDaysRange}</Label>} labelCol={{ span: 24 }}>
           </Form.Item>

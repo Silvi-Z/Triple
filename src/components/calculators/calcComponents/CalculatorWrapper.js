@@ -9,6 +9,7 @@ import SEO from "../../../components/seo";
 import CalculatorNav from "../../../components/navbar/CalculatorNav";
 import useTranslations from "../../../components/useTranslations";
 import { FacebookShareButton, LinkedinShareButton } from "react-share";
+import { H1Styled, TextStyled } from "../styled"
 
 //share button container
 export const SharedWrapperCol = styled(Col)`
@@ -73,10 +74,10 @@ const CalculatorWrapper = ({ ctx, children}) => {
   };
   const [sameMarginTop, setSameMarginTop] = useState( '10px')
 
-  useEffect(()=>{
-    setSameMarginTop(document.querySelector('.textSec').clientHeight+'px');
-    document.querySelector(".result").style.marginTop = sameMarginTop
-  })
+  // useEffect(()=>{
+  //   setSameMarginTop(document.querySelector('.textSec').clientHeight+'px');
+  //   document.querySelector(".result").style.marginTop = sameMarginTop
+  // })
   // useEffect(()=>{
 //   if (document.querySelector('.result')){
 //     console.log();
@@ -85,7 +86,9 @@ const CalculatorWrapper = ({ ctx, children}) => {
 //   }
 // })
   hookComponent();
+  // const [selectCalculator, setSelectCalculator] = useState()
 
+  const selectCalculator = calculator[ctx.originalPath.split('/')[2].replace('-' , '_')]
   return (
     <>
       <SEO
@@ -93,9 +96,17 @@ const CalculatorWrapper = ({ ctx, children}) => {
         description={calculator.paragraph}
         pageContext={ctx}
       />
-
+      <Row className="textSec">
+        <H1Styled>{selectCalculator.title}</H1Styled>
+        <TextStyled>{selectCalculator.paragraph}</TextStyled>
+      </Row>
       <Row gutter={0}>
-        <Col className="calculatorsMenu" span={6} style={{paddingRight: '10px', paddingLeft: '35px', marginTop:sameMarginTop}}>
+        {/*{console.log(calculator)}*/}
+        {/*{console.log(ctx)}*/}
+        {/*{console.log([ctx.originalPath.split('/')[2].replace('-' , '_')])}*/}
+        {/*{console.log(selectCalculator.title)}*/}
+
+        <Col className="calculatorsMenu" span={6} style={{paddingRight: '10px', paddingLeft: '35px'}}>
           <CalculatorNav t={calculator} locale={ctx.locale} />
         </Col>
         <Col span={18} style={{paddingRight: '35px'}}>
