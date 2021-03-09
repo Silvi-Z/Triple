@@ -19,7 +19,6 @@ import Subsidy from "../../calculators/Subsidy"
 import GrossSalaryTable from "./calcComponents/GrossSalaryTable"
 import CalculatorCardResult from "./calcComponents/CalculatorCardResult"
 import { workingDaysInRangeForSubsidy } from "./utilities/vacation"
-import ReactDOM from "react-dom"
 
 moment.locale("en", {
   week: {
@@ -45,6 +44,7 @@ class SubsidyCalculator extends React.Component {
       form: { ...Subsidy.form },
       result: { subsidy: null },
       calculated: false,
+      valid: false,
     }
     this.calculator = new Subsidy()
     this.availableYears = [2019, 2020, 2021]
@@ -144,18 +144,6 @@ class SubsidyCalculator extends React.Component {
     }
   }
 
-  get colElement() {
-    return ReactDOM.findDOMNode(/**@type Element */this.col.current)
-  }
-
-  get rowElement() {
-    return ReactDOM.findDOMNode(/**@type Element */this.row.current)
-  }
-
-  get rowElementOffsetTop() {
-    return this.rowElement.getBoundingClientRect().top
-  }
-
   handleSubmit = () => {
     const amount = this.calculator.calculate()
     let { pension, tax_field, days, type, year } = this.state.form
@@ -174,6 +162,7 @@ class SubsidyCalculator extends React.Component {
             pure_subsidy: 0,
           },
           calculated: true,
+          valid: false,
         })
       } else {
         triple.post("/api/counter/salary", {
@@ -198,6 +187,7 @@ class SubsidyCalculator extends React.Component {
                 pure_subsidy: Math.round(salary + stamp_fee),
               },
               calculated: true,
+              valid: false,
             })
           } else {
             this.setState({
@@ -209,6 +199,7 @@ class SubsidyCalculator extends React.Component {
                 pure_subsidy: Math.round(salary + stamp_fee),
               },
               calculated: true,
+              valid: false,
             })
           }
         })
@@ -217,17 +208,6 @@ class SubsidyCalculator extends React.Component {
           })
       }
     })
-  }
-
-  handleWindowScroll = () => {
-    if (
-      (window.scrollY + this.colElement.offsetHeight + this.rowElementOffsetTop) >=
-      (this.rowElementOffsetTop + this.rowElement.offsetHeight)
-    ) {
-      this.colElement.classList.add("abs")
-    } else {
-      this.colElement.classList.remove("abs")
-    }
   }
 
   setField(name, value, cb) {
@@ -246,6 +226,7 @@ class SubsidyCalculator extends React.Component {
       this.setField("schedule", 5)
       this.autocompleteDays()
     }
+    this.onBlur()
   }
 
   autocompleteDays() {
@@ -269,14 +250,15 @@ class SubsidyCalculator extends React.Component {
     } else {
       this.changeYear()
     }
+
   }
 
   changeYear() {
     const { start, end } = this.state.form
     if (this.isTypeMaternity && start) {
-      this.setField("year", start.year())
+      this.setField("year", start.year(), this.onBlur)
     } else if (this.isTypeDisability && end) {
-      this.setField("year", end.year())
+      this.setField("year", end.year(), this.onBlur)
     }
   }
 
@@ -285,7 +267,7 @@ class SubsidyCalculator extends React.Component {
       start: null,
       end: null,
     }
-    this.setFields(fields)
+    this.setFields(fields, this.onBlur)
   }
 
   autocompleteEnd() {
@@ -310,6 +292,12 @@ class SubsidyCalculator extends React.Component {
     }
   }
 
+  onBlur = () => {
+    this.setState(prevState => (
+      { valid: true }
+    ), this.state.calculated ? this.handleSubmit : null)
+  }
+
   handleInputValue(e) {
     let inputValue = e.target.value
     const inputName = e.target.name
@@ -329,18 +317,14 @@ class SubsidyCalculator extends React.Component {
     this.setField(inputName, inputValue)
   }
 
+  changeState = () => {
+    this.setState({ valid: true })
+  }
+
   componentDidUpdate(prevProps, prevState, snapshot) {
-    if (!isEqual(prevState.form, this.state.form) && this.state.calculated) {
+    if (!isEqual(prevState.form, this.state.form) && this.state.calculated && this.state.valid) {
       this.handleSubmit()
     }
-  }
-
-  componentDidMount() {
-    window.addEventListener("scroll", this.handleWindowScroll)
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener("scroll", this.handleWindowScroll)
   }
 
   render() {
@@ -374,6 +358,7 @@ class SubsidyCalculator extends React.Component {
                   size="large"
                   value={form.year}
                   className={"yearSelect"}
+                  onBlur={this.onBlur}
                   style={{ maxWidth: "424px", width: "90px" }}
                   onChange={value => this.setField("year", value, this.changeDates)}
                 >
@@ -408,6 +393,7 @@ class SubsidyCalculator extends React.Component {
                       onChange={date => this.setField("start", date, this.autocompleteDays)}
                       placeholder={lang.form.dates_placeholder}
                       value={form.start}
+                      onBlur={this.onBlur}
                       format="DD.MM.YYYY"
                       name="start"
                       size="large"
@@ -419,6 +405,7 @@ class SubsidyCalculator extends React.Component {
                       onChange={date => this.setField("end", date, this.autocompleteDays)}
                       placeholder={lang.form.dates_placeholder}
                       value={form.end}
+                      onBlur={this.onBlur}
                       format="DD.MM.YYYY"
                       size="large"
                       name="end"
@@ -435,6 +422,7 @@ class SubsidyCalculator extends React.Component {
                   value={form.days}
                   onInput={e => this.handleInputValue(e)}
                   name="days"
+                  onBlur={this.onBlur}
                   size="large"
                   min={1}
                   max={180}
@@ -464,7 +452,7 @@ class SubsidyCalculator extends React.Component {
                 name="tax_field"
               >
                 <Radio.Group
-                  onChange={e => this.setField("tax_field", e.target.value)}
+                  onChange={e => this.setField("tax_field", e.target.value, this.onBlur)}
                   value={form.tax_field}
                 >
                   <Radio style={radioStyle} value={Subsidy.TAX_COMMON}>
@@ -487,7 +475,7 @@ class SubsidyCalculator extends React.Component {
                 name="tax_field"
               >
                 <Radio.Group
-                  onChange={e => this.setField("tax_field", e.target.value)}
+                  onChange={e => this.setField("tax_field", e.target.value, this.onBlur)}
                   value={form.tax_field}
                 >
                   <Radio style={radioStyle} value={Subsidy.TAX_COMMON}>
@@ -510,7 +498,7 @@ class SubsidyCalculator extends React.Component {
               {this.isTypeDisability && this.isWorkHired ?
                 <Form.Item label={lang.form.schedule} labelCol={{ span: 24 }}>
                   <Radio.Group
-                    onChange={e => this.setField("schedule", e.target.value)}
+                    onChange={e => this.setField("schedule", e.target.value, this.onBlur)}
                     value={form.schedule}
                   >
                     <Radio value={5}>
@@ -531,6 +519,7 @@ class SubsidyCalculator extends React.Component {
                       onChange={v => this.setField("amount", v)}
                       parser={v => v.replace(/\$\s?|(,*)/g, "")}
                       value={form.amount}
+                      onBlur={this.onBlur}
                       max={this.amountMaxValue}
                       step={1000}
                       name="amount"
@@ -548,6 +537,7 @@ class SubsidyCalculator extends React.Component {
                   onChange={v => this.setField("income", v)}
                   parser={v => v.replace(/\$\s?|(,*)/g, "")}
                   value={form.income}
+                  onBlur={this.onBlur}
                   step={1000}
                   name="income"
                   size="large"
@@ -572,13 +562,14 @@ class SubsidyCalculator extends React.Component {
               {this.isNotStatic ? <GrossSalaryTable
                 lang={lang.gross}
                 items={this.amounts}
+                onBlur={this.onBlur}
                 onChange={avg => this.calculator.setAvg(avg)}
                 setDate={date => this.setField("start", date)}
               /> : null}
 
               {/* Submit button */}
               <Form.Item style={{ marginTop: "50px" }}>
-                <ButtonSubmit htmlType="submit" shape="round" size="large">
+                <ButtonSubmit onClick={this.changeState} htmlType="submit" shape="round" size="large">
                   {lang.calculate}
                 </ButtonSubmit>
               </Form.Item>

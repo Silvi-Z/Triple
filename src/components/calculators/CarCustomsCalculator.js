@@ -39,9 +39,9 @@ class CarCustomsCalculator extends React.Component {
       .catch(err => {
         this.setState({
           result: { fee: null, tax: null, vat: null },
-          calculated: false
+          calculated: false,
         })
-      });
+      })
   }
 
   reset = field => {
@@ -104,7 +104,7 @@ class CarCustomsCalculator extends React.Component {
             </div>
           </Row>
 
-          <CalculatorsCard bordered={false} style={{marginTop: '30px'}}>
+          <CalculatorsCard bordered={false} style={{ marginTop: "30px" }}>
             <Form
               onFinish={this.handleSubmit}
               initialValues={form}
@@ -189,7 +189,7 @@ class CarCustomsCalculator extends React.Component {
                     size="large"
                   />
                 </Form.Item>
-              : null}
+                : null}
 
               <Form.Item label={<Label>{lang.form.capacity}</Label>}>
                 <CalculatorInput
@@ -200,7 +200,7 @@ class CarCustomsCalculator extends React.Component {
                 />
               </Form.Item>
 
-              <Form.Item style={{marginTop: '50px'}}>
+              <Form.Item style={{ marginTop: "50px" }}>
                 <ButtonSubmit htmlType="submit" shape="round" size="large">
                   {lang.calculate}
                 </ButtonSubmit>
@@ -226,19 +226,20 @@ class CarCustomsCalculator extends React.Component {
                         dangerouslySetInnerHTML={{ __html: result[key][form.currency].sym }}
                       />
                       {result[key][form.currency].amount}
+                      <br />
                     </span>
-                  : null}
+                    : null}
 
-                  {(calculated && result[key].hasOwnProperty(form.currency) && form.currency !== 'AMD') ?
+                  {(calculated && result[key].hasOwnProperty(form.currency) && form.currency !== "AMD") ?
                     <span>
                       <span
                         className="currency-symbol"
-                        style={{marginLeft: '14px'}}
-                        dangerouslySetInnerHTML={{__html: '&#1423;'}}
+                        style={{ marginLeft: "14px" }}
+                        dangerouslySetInnerHTML={{ __html: "&#1423;" }}
                       />
-                      {result[key]['AMD'].amount}
+                      {result[key]["AMD"].amount}
                     </span>
-                  : null }
+                    : null}
                 </>
               }
             />,

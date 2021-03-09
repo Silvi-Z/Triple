@@ -76,6 +76,7 @@ class SalaryCalculator extends React.Component {
       loading: false,
       form: { ...form },
       employees: [],
+      valid: false,
       result: {},
       excel: [],
     }
@@ -127,7 +128,6 @@ class SalaryCalculator extends React.Component {
     this.setState({ loading: true })
 
     const { by, schedule, date_from } = this.state.form
-
     const avgWorkingDays = workingDaysInMonth({
       workdays: this.workdays,
       holidays: this.holidays,
@@ -141,19 +141,29 @@ class SalaryCalculator extends React.Component {
       console.log(err)
     })
 
-    if (!valid) return
+    if (!valid) {
+      this.setState({ loading: false, valid: false })
+      return
+    } else {
+      this.setState({ loading: true, valid: false })
+      by ? await this.calculateByTable() : await this.calculateByDate(avgWorkingDays)
+    }
+  }
 
-    by ? await this.calculateByTable() : await this.calculateByDate(avgWorkingDays)
+  onBlur = () => {
+    this.setState(prevState => (
+      { valid: true }
+    ), this.state.calculated ? this.handleSubmit : null)
   }
 
   handleByFieldChange = () => {
     const { form } = this.state
-
     const state = !form.by
-      ? { form: { ...form, from: 1 }, result: {}, calculated: 0 }
-      : { result: {}, calculated: 0 }
+      ? { form: { ...form, from: 1 }, result: {}, calculated: 1 }
+      : { result: {}, calculated: 1 }
 
     this.setState(state)
+    this.onBlur()
   }
 
   /**
@@ -245,7 +255,7 @@ class SalaryCalculator extends React.Component {
     this.setFields({
       date_from: date_from ? moment(date_from).subtract(diff, "years").format("YYYY-MM-DD") : null,
       date_to: date_to ? moment(date_to).subtract(diff, "years").format("YYYY-MM-DD") : null,
-    })
+    }, this.onBlur)
   }
 
   handleDateFromInput = e => {
@@ -376,7 +386,7 @@ class SalaryCalculator extends React.Component {
 
     const result = Object.assign({}, res.data, { gross_salary })
 
-    this.setState({ result, loading: false, calculated: 1 })
+    this.setState({ result, loading: false, calculated: 1, valid: false })
   }
 
   async calculateByTable() {
@@ -384,7 +394,7 @@ class SalaryCalculator extends React.Component {
     const res = await triple.post("/api/counter/salary", form).finally(() => {
       document.body.scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" })
     })
-    this.setState({ result: res.data, loading: false, calculated: 2 })
+    this.setState({ result: res.data, loading: false, calculated: 2, valid: false })
   }
 
   fetchDays() {
@@ -445,7 +455,7 @@ class SalaryCalculator extends React.Component {
               </Form.Item>
               <Form onFinish={this.handleSubmit} initialValues={form} layout="horizontal" colon={false}>
                 <RadioGroup
-                  onChange={(e) => this.setField("from", e.target.value)}
+                  onChange={(e) => this.setField("from", e.target.value, this.onBlur)}
                   value={form.from}
                   size="large"
                 >
@@ -507,6 +517,7 @@ class SalaryCalculator extends React.Component {
                                   fill="black" />
                           </svg>
                         }
+                        onBlur={this.onBlur}
                         step={SALARY_STEP}
                         min={SALARY_MIN}
                         name="amount"
@@ -525,6 +536,7 @@ class SalaryCalculator extends React.Component {
                           value={this.dateFromValue}
                           key={this.dateFromPickerKey}
                           ref={this.dateFromPicker}
+                          onBlur={this.onBlur}
                           placeholder={null}
                           format="DD.MM.YYYY"
                           name="date_from"
@@ -539,6 +551,7 @@ class SalaryCalculator extends React.Component {
                           onChange={this.handleDateToChange}
                           value={this.dateToValue}
                           key={this.dateToPickerKey}
+                          onBlur={this.onBlur}
                           ref={this.dateToPicker}
                           placeholder={null}
                           format="DD.MM.YYYY"
@@ -555,6 +568,7 @@ class SalaryCalculator extends React.Component {
                         style={{ width: "54px" }}
                         ref={this.daysInput}
                         max={this.maxWorkingDays}
+                        onBlur={this.onBlur}
                         min={1}
                         name="working_days"
                         type="number"
@@ -584,6 +598,7 @@ class SalaryCalculator extends React.Component {
                         onChange={v => this.setField("amount", v)}
                         value={form.amount}
                         step={SALARY_STEP}
+                        onBlur={this.onBlur}
                         min={SALARY_MIN}
                         name="amount"
                         size="large"
@@ -595,7 +610,7 @@ class SalaryCalculator extends React.Component {
                 <Form.Item label={<Label style={{ fontSize: "16px" }}>{langText["tax_label"]}</Label>}
                            labelCol={{ span: 24 }} name="tax_field">
                   <Radio.Group
-                    onChange={(e) => this.setField("tax_field", e.target.value)}
+                    onChange={(e) => this.setField("tax_field", e.target.value, this.onBlur)}
                     value={form.tax_field}
                   >
                     <Radio style={radioStyle} value={TAX_FIELD_COMMON}>
@@ -612,7 +627,7 @@ class SalaryCalculator extends React.Component {
 
                 <Form.Item label={<RadioLabel>{langText["pensioner_label"]}</RadioLabel>} name="pension">
                   <Radio.Group
-                    onChange={(e) => this.setField("pension", e.target.value)}
+                    onChange={(e) => this.setField("pension", e.target.value, this.onBlur)}
                     value={form.pension}
                   >
                     <Radio value={PENSION_FIELD_YES}>

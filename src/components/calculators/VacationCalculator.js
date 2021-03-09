@@ -79,6 +79,7 @@ class VacationCalculator extends React.Component {
       },
       monthAvgSalary: 0,
       calculated: false,
+      valid: false,
     }
     this.holidays = []
     this.workdays = []
@@ -87,14 +88,6 @@ class VacationCalculator extends React.Component {
 
   get rowElement() {
     return ReactDOM.findDOMNode(/**@type Element*/this.row.current)
-  }
-
-  get rowElementOffsetTop() {
-    return this.rowElement.getBoundingClientRect().top
-  }
-
-  get colElement() {
-    return ReactDOM.findDOMNode(/**@type Element*/this.col.current)
   }
 
   get dateFromInput() {
@@ -217,6 +210,7 @@ class VacationCalculator extends React.Component {
   changeYear() {
     const { date_from } = this.state.form
     date_from && this.setField("year", moment(date_from).year())
+    this.onBlur()
   }
 
   changeDates() {
@@ -224,7 +218,7 @@ class VacationCalculator extends React.Component {
       date_from: null,
       date_to: null,
     }
-    this.setFields(fields)
+    this.setFields(fields, this.onBlur)
   }
 
   fetchDays() {
@@ -238,8 +232,8 @@ class VacationCalculator extends React.Component {
 
   autoCalculate(prevState) {
     if (
-      (!isEqual(prevState.form, this.state.form) && this.state.calculated) ||
-      (!isEqual(prevState.monthAvgSalary, this.state.monthAvgSalary) && this.state.calculated)
+      (!isEqual(prevState.form, this.state.form) && this.state.calculated && this.state.valid) ||
+      (!isEqual(prevState.monthAvgSalary, this.state.monthAvgSalary) && this.state.calculated && this.state.valid)
     ) this.handleSubmit()
   }
 
@@ -260,17 +254,6 @@ class VacationCalculator extends React.Component {
   calcVacationAmount = monthAvgSalary => this.setState({ monthAvgSalary })
 
   setFromDate = date => this.setDateField("date_from", date)
-
-  handleWindowScroll = () => {
-    if (
-      (window.scrollY + this.colElement.offsetHeight + this.rowElementOffsetTop) >=
-      (this.rowElementOffsetTop + this.rowElement.offsetHeight)
-    ) {
-      this.colElement.classList.add("abs")
-    } else {
-      this.colElement.classList.remove("abs")
-    }
-  }
 
   handlePickerInput = e => {
     const { value, name } = e.target
@@ -341,13 +324,19 @@ class VacationCalculator extends React.Component {
             stamp: false,
           },
         })
-        .then(res => this.setState({ result: { ...res.data, vacation_salary: this.vacationSalary } }))
+        .then(res => this.setState({ result: { ...res.data, vacation_salary: this.vacationSalary }, valid: false }))
         .then(() => {
-          if (!this.state.calculated) this.setState({ calculated: true })
+          if (!this.state.calculated) this.setState({ calculated: true, valid: false })
         })
         .catch(err => console.log(err))
         .finally(() => document.body.scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" }))
     })
+  }
+
+  onBlur = () => {
+    this.setState(prevState => (
+      { valid: true }
+    ), this.state.calculated ? this.handleSubmit : null)
   }
 
   componentDidMount() {
@@ -407,6 +396,7 @@ class VacationCalculator extends React.Component {
                     placeholder={lang["date_from_placeholder"]}
                     value={this.dateFromValue}
                     ref={this.dateFromPicker}
+                    onBlur={this.onBlur}
                     format="DD.MM.YYYY"
                     name="date_from"
                     size="large"
@@ -420,6 +410,7 @@ class VacationCalculator extends React.Component {
                     placeholder={lang["date_from_placeholder"]}
                     value={this.dateToValue}
                     ref={this.dateToPicker}
+                    onBlur={this.onBlur}
                     format="DD.MM.YYYY"
                     name="date_to"
                     size="large"
@@ -433,6 +424,7 @@ class VacationCalculator extends React.Component {
                   value={form.vacation_days}
                   style={{ width: "54px" }}
                   min={1}
+                  onBlur={this.onBlur}
                   name="vacation_days"
                   size="large"
                 />
@@ -458,6 +450,7 @@ class VacationCalculator extends React.Component {
                   parser={v => v.replace(/\$\s?|(,*)/g, "")}
                   onChange={v => this.setField("amount", v)}
                   value={form.amount}
+                  onBlur={this.onBlur}
                   min={SALARY_MIN}
                   step={1000}
                   name="amount"
@@ -477,6 +470,7 @@ class VacationCalculator extends React.Component {
               {!form.static_salary ?
                 <GrossSalaryTable
                   lang={lang}
+                  onBlur={this.onBlur}
                   items={this.amounts}
                   onChange={this.calcVacationAmount}
                   setDate={this.setFromDate}
@@ -489,7 +483,7 @@ class VacationCalculator extends React.Component {
                 name="tax_field"
               >
                 <Radio.Group
-                  onChange={e => this.setField("tax_field", e.target.value)}
+                  onChange={e => this.setField("tax_field", e.target.value, this.onBlur)}
                   value={form.tax_field}
                 >
                   <Radio style={radioStyle} value={TAX_FIELD_COMMON}>
@@ -510,7 +504,7 @@ class VacationCalculator extends React.Component {
                 name="pension"
               >
                 <Radio.Group
-                  onChange={e => this.setField("pension", e.target.value)}
+                  onChange={e => this.setField("pension", e.target.value, this.onBlur)}
                   value={form.pension}
                 >
                   <Radio value={PENSION_FIELD_YES}>
