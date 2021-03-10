@@ -34,8 +34,6 @@ class CurrencyCalculator extends React.Component {
 
   dateFromPicker = React.createRef()
 
-  daysInput = React.createRef()
-
   constructor(props) {
     super(props)
 

@@ -146,7 +146,6 @@ class CarCustomsCalculator extends React.Component {
                   value={form.date}
                   placeholder={null}
                   allowClear={true}
-                  format="DD.MM.YYYY"
                   size="large"
                 />
               </Form.Item>
