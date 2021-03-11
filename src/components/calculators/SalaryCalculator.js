@@ -10,12 +10,10 @@ import {
   CalculatorsCard,
   CalculatorSelect,
   FormLabel,
-  H1Styled,
   Label,
   RadioButton,
   RadioGroup,
   RadioLabel,
-  TextStyled,
   UnderLine,
 } from "./styled"
 import {
@@ -177,6 +175,8 @@ class SalaryCalculator extends React.Component {
   handlePickerRender = (date, today, range) => {
     const { schedule } = this.state.form
 
+    console.log(this.holidays)
+
     const condition = range === "start"
       ? this.handleDateFromDisabled(date)
       : this.handleDateToDisabled(date)
@@ -188,6 +188,19 @@ class SalaryCalculator extends React.Component {
           : "ant-picker-cell-inner"
       }>
         {date.format("D")}
+        {this.workdays.length > 0
+        && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD"))
+        && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title &&
+        <span className={"day_title"}>
+                  {this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title}
+                </span>
+        || this.holidays.length > 0
+        && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD"))
+        && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title &&
+        <span className={"day_title"}>
+                  {this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title}
+                </span>
+        }
       </div>
     } else if (isHoliday(date, this.holidays)) {
       return <div className={
@@ -196,6 +209,19 @@ class SalaryCalculator extends React.Component {
           : "ant-picker-cell-inner"
       }>
         {date.format("D")}
+        {this.workdays.length > 0
+        && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD"))
+        && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title &&
+        <span className={"day_title"}>
+                  {this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title}
+                </span>
+        || this.holidays.length > 0
+        && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD"))
+        && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title &&
+        <span className={"day_title"}>
+                  {this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title}
+                </span>
+        }
       </div>
     } else if (isWeekend(date, schedule)) {
       return <div className={
@@ -204,9 +230,37 @@ class SalaryCalculator extends React.Component {
           : "ant-picker-cell-inner"
       }>
         {date.format("D")}
+        {this.workdays.length > 0
+        && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD"))
+        && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title &&
+        <span className={"day_title"}>
+                  {this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title}
+                </span>
+        || this.holidays.length > 0
+        && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD"))
+        && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title &&
+        <span className={"day_title"}>
+                  {this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title}
+                </span>
+        }
       </div>
     } else {
-      return <div className="ant-picker-cell-inner">{date.format("D")}</div>
+      return <div className="ant-picker-cell-inner">
+        {date.format("D")}
+        {this.workdays.length > 0
+        && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD"))
+        && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title &&
+        <span className={"day_title"}>
+                  {this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title}
+                </span>
+        || this.holidays.length > 0
+        && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD"))
+        && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title &&
+        <span className={"day_title"}>
+                  {this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title}
+                </span>
+        }
+      </div>
     }
   }
 
@@ -662,6 +716,12 @@ class SalaryCalculator extends React.Component {
             <FormLabel style={{ margin: 0 }}>{langText.result_title}</FormLabel>
 
             <UnderLine />
+            <CalculatorCardResult
+              title={form.from === 1 ? langText["dirty_to_clean_salary"] : langText["clean_dirty_to_salary"]}
+              text={result.salary}
+              loading={loading}
+            />
+
             {result.gross_salary &&
             <CalculatorCardResult
               title={langText.gross_salary}
@@ -692,12 +752,6 @@ class SalaryCalculator extends React.Component {
             <CalculatorCardResult
               title={langText["general_storage_label"]}
               text={result.total_fee}
-              loading={loading}
-            />
-
-            <CalculatorCardResult
-              title={form.from === 1 ? langText["dirty_to_clean_salary"] : langText["clean_dirty_to_salary"]}
-              text={result.salary}
               loading={loading}
             />
 

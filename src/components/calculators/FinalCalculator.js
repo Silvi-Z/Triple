@@ -12,10 +12,8 @@ import {
   CalculatorInput,
   CalculatorsCard,
   FormLabel,
-  H1Styled,
   Label,
   RadioLabel,
-  TextStyled,
   UnderLine,
 } from "./styled"
 import {
@@ -28,6 +26,7 @@ import {
   TAX_FIELD_ENTERPRISE,
   TAX_FIELD_IT,
 } from "./utilities/salary"
+import { isHoliday, isWeekend } from "./utilities/vacation"
 
 const radioStyle = {
   display: "block",
@@ -76,6 +75,9 @@ class FinalCalculator extends React.Component {
       loading: false,
       valid: false,
     }
+
+    this.holidays = []
+    this.workdays = []
   }
 
   get rowElement() {
@@ -191,6 +193,15 @@ class FinalCalculator extends React.Component {
       .querySelector("input")
   }
 
+  fetchDays() {
+    triple.get("/api/days")
+      .then(res => {
+        this.holidays = res.data.holidays
+        this.workdays = res.data.workdays
+      })
+      .catch(err => console.log(err))
+  }
+
   disabledAcceptanceDates = date => (this.state.form.date_release && (date.isSameOrAfter(this.state.form.date_release, "day")))
 
   disabledReleasedDates = date => (!this.state.form.date_acceptance || (date.isSameOrBefore(this.state.form.date_acceptance, "day")))
@@ -303,6 +314,97 @@ class FinalCalculator extends React.Component {
     }
   }
 
+  handlePickerRender(date, today, range) {
+    const { form } = this.state
+
+    const condition = range === "start"
+      ? form.date_release && (date.isSameOrAfter(form.date_release, "day"))
+      : !form.date_acceptance || (date.isSameOrBefore(form.date_acceptance, "day"))
+
+    if (date.isSame(today, "day")) {
+      return <div className={
+        !condition
+          ? "ant-picker-cell-inner ant-picker-cell-today"
+          : "ant-picker-cell-inner"
+      }>
+        {date.format("D")}
+        {this.workdays.length > 0
+        && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD"))
+        && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title &&
+        <span className={"day_title"}>
+                  {this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title}
+                </span>
+        || this.holidays.length > 0
+        && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD"))
+        && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title &&
+        <span className={"day_title"}>
+                  {this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title}
+                </span>
+        }
+      </div>
+    } else if (isHoliday(date, this.holidays)) {
+      return <div className={
+        !condition
+          ? "ant-picker-cell-inner ant-picker-cell-holiday"
+          : "ant-picker-cell-inner"
+      }>
+        {date.format("D")}
+        {this.workdays.length > 0
+        && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD"))
+        && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title &&
+        <span className={"day_title"}>
+                  {this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title}
+                </span>
+        || this.holidays.length > 0
+        && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD"))
+        && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title &&
+        <span className={"day_title"}>
+                  {this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title}
+                </span>
+        }
+      </div>
+    } else if (isWeekend(date, form.working_schedule)) {
+      return <div className={
+        !condition
+          ? "ant-picker-cell-inner ant-picker-cell-weekend"
+          : "ant-picker-cell-inner"
+      }>
+        {date.format("D")}
+        {this.workdays.length > 0
+        && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD"))
+        && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title &&
+        <span className={"day_title"}>
+                  {this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title}
+                </span>
+        || this.holidays.length > 0
+        && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD"))
+        && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title &&
+        <span className={"day_title"}>
+                  {this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title}
+                </span>
+        }
+      </div>
+    } else {
+      return <div className="ant-picker-cell-inner">
+        {date.format("D")}
+        {this.workdays.length > 0
+        && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD"))
+        && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title &&
+        <span className={"day_title"}>
+                  {this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title}
+                </span>
+        || this.holidays.length > 0
+        && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD"))
+        && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title &&
+        <span className={"day_title"}>
+                  {this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title}
+                </span>
+        }
+      </div>
+    }
+  }
+
+
   onBlur = () => {
     this.setState(prevState => (
       { valid: true }
@@ -344,6 +446,7 @@ class FinalCalculator extends React.Component {
                 <Form.Item style={{ marginRight: "25px" }} label={<Label>{lang.form["acceptance"]}</Label>}>
                   <CalculatorDatePicker
                     onChange={date => this.setFormField("date_acceptance", date, this.onBlur)}
+                    dateRender={(date, today) => this.handlePickerRender(date, today, "start")}
                     placeholder={lang.form["date_acceptance_placeholder"]}
                     disabledDate={this.disabledAcceptanceDates}
                     value={form.date_acceptance}
@@ -356,6 +459,7 @@ class FinalCalculator extends React.Component {
                 <Form.Item label={<Label>{lang.form.release}</Label>}>
                   <CalculatorDatePicker
                     onChange={date => this.setFormField("date_release", date, this.onBlur)}
+                    dateRender={(date, today) => this.handlePickerRender(date, today, "end")}
                     placeholder={lang.form["date_release_placeholder"]}
                     disabledDate={this.disabledReleasedDates}
                     value={form.date_release}
@@ -576,6 +680,7 @@ class FinalCalculator extends React.Component {
   }
 
   componentDidMount() {
+    this.fetchDays()
     this.dateFromInput.addEventListener("input", this.handlePickerInput)
     this.dateToInput.addEventListener("input", this.handlePickerInput)
 

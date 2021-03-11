@@ -205,6 +205,19 @@ const CalendarCalculator = ({ lang }) => {
           : "ant-picker-cell-inner"
       }>
         {date.format("D")}
+        {initialState.workdays.length > 0
+        && initialState.workdays.find(workday => workday.date === date.format("YYYY-MM-DD"))
+        && initialState.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title &&
+        <span className={"day_title"}>
+                  {initialState.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title}
+                </span>
+        || initialState.holidays.length > 0
+        && initialState.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD"))
+        && initialState.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title &&
+        <span className={"day_title"}>
+                  {initialState.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title}
+                </span>
+        }
       </div>
     } else if (isHoliday(date, holidays)) {
       return <div className={
@@ -213,6 +226,19 @@ const CalendarCalculator = ({ lang }) => {
           : "ant-picker-cell-inner"
       }>
         {date.format("D")}
+        {initialState.workdays.length > 0
+        && initialState.workdays.find(workday => workday.date === date.format("YYYY-MM-DD"))
+        && initialState.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title &&
+        <span className={"day_title"}>
+                  {initialState.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title}
+                </span>
+        || initialState.holidays.length > 0
+        && initialState.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD"))
+        && initialState.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title &&
+        <span className={"day_title"}>
+                  {initialState.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title}
+                </span>
+        }
       </div>
     } else if (isWeekend(date, schedule)) {
       return <div className={
@@ -221,9 +247,37 @@ const CalendarCalculator = ({ lang }) => {
           : "ant-picker-cell-inner"
       }>
         {date.format("D")}
+        {initialState.workdays.length > 0
+        && initialState.workdays.find(workday => workday.date === date.format("YYYY-MM-DD"))
+        && initialState.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title &&
+        <span className={"day_title"}>
+                  {initialState.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title}
+                </span>
+        || initialState.holidays.length > 0
+        && initialState.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD"))
+        && initialState.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title &&
+        <span className={"day_title"}>
+                  {initialState.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title}
+                </span>
+        }
       </div>
     } else {
-      return <div className="ant-picker-cell-inner">{date.format("D")}</div>
+      return <div className="ant-picker-cell-inner">
+        {date.format("D")}
+        {initialState.workdays.length > 0
+        && initialState.workdays.find(workday => workday.date === date.format("YYYY-MM-DD"))
+        && initialState.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title &&
+        <span className={"day_title"}>
+                  {initialState.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title}
+                </span>
+        || initialState.holidays.length > 0
+        && initialState.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD"))
+        && initialState.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title &&
+        <span className={"day_title"}>
+                  {initialState.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title}
+                </span>
+        }
+      </div>
     }
   }
 

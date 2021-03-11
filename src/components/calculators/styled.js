@@ -375,6 +375,7 @@ export const CheckboxField = styled(Checkbox)`
       position: absolute;
       bottom: calc(100% + 5px);
       display: block;
+      word-wrap: normal;
       left: 0;
       right: 0;
       height: fit-content;

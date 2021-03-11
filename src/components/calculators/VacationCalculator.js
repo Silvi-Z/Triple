@@ -14,10 +14,8 @@ import {
   CalculatorsCard,
   CalculatorSelect,
   FormLabel,
-  H1Styled,
   Label,
   RadioLabel,
-  TextStyled,
   UnderLine,
 } from "./styled"
 import {
@@ -84,10 +82,6 @@ class VacationCalculator extends React.Component {
     this.holidays = []
     this.workdays = []
     this.availableYears = [2019, 2020, 2021]
-  }
-
-  get rowElement() {
-    return ReactDOM.findDOMNode(/**@type Element*/this.row.current)
   }
 
   get dateFromInput() {
@@ -289,6 +283,19 @@ class VacationCalculator extends React.Component {
           : "ant-picker-cell-inner"
       }>
         {date.format("D")}
+        {this.workdays.length > 0
+        && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD"))
+        && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title &&
+        <span className={"day_title"}>
+                  {this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title}
+                </span>
+        || this.holidays.length > 0
+        && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD"))
+        && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title &&
+        <span className={"day_title"}>
+                  {this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title}
+                </span>
+        }
       </div>
     } else if (isHoliday(date, this.holidays)) {
       return <div className={
@@ -297,6 +304,19 @@ class VacationCalculator extends React.Component {
           : "ant-picker-cell-inner"
       }>
         {date.format("D")}
+        {this.workdays.length > 0
+        && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD"))
+        && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title &&
+        <span className={"day_title"}>
+                  {this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title}
+                </span>
+        || this.holidays.length > 0
+        && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD"))
+        && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title &&
+        <span className={"day_title"}>
+                  {this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title}
+                </span>
+        }
       </div>
     } else if (isWeekend(date, form.working_schedule)) {
       return <div className={
@@ -305,9 +325,37 @@ class VacationCalculator extends React.Component {
           : "ant-picker-cell-inner"
       }>
         {date.format("D")}
+        {this.workdays.length > 0
+        && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD"))
+        && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title &&
+        <span className={"day_title"}>
+                  {this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title}
+                </span>
+        || this.holidays.length > 0
+        && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD"))
+        && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title &&
+        <span className={"day_title"}>
+                  {this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title}
+                </span>
+        }
       </div>
     } else {
-      return <div className="ant-picker-cell-inner">{date.format("D")}</div>
+      return <div className="ant-picker-cell-inner">
+        {date.format("D")}
+        {this.workdays.length > 0
+        && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD"))
+        && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title &&
+        <span className={"day_title"}>
+                  {this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title}
+                </span>
+        || this.holidays.length > 0
+        && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD"))
+        && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title &&
+        <span className={"day_title"}>
+                  {this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title}
+                </span>
+        }
+      </div>
     }
   }
 

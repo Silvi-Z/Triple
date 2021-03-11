@@ -25,7 +25,8 @@ body {
 nav {
     height: calc(var(--header-height));
 }
-.textSec{
+
+.textSec {
     flex-direction: column;
     justify-content: center;
 }
@@ -1756,6 +1757,32 @@ a.calc-nav-item:hover {
 .ant-picker-cell-weekend {
     background-color: #CDF5FA;
     color: #000000;
+}
+
+.day_title {
+    position: absolute;
+    bottom: calc(100% + 5px);
+    left: 0;
+    right: 0;
+    height: fit-content;
+    padding: 5px 10px;
+    background-color: white;
+    border: 0.5px solid #555555;
+    width: fit-content;
+    border-radius: 5px;
+    margin: auto;
+    color: #555555;
+    display: none;
+    overflow: hidden;
+    word-wrap: normal;
+}
+
+.ant-picker-cell-inner:hover .day_title{
+    display: block;
+}
+
+.ant-picker-panel-container{
+    overflow: visible !important;
 }
 
 @media only screen and (max-width: 1280px),

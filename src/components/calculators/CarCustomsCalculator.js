@@ -1,19 +1,19 @@
 import React from "react"
 import { isEqual } from "lodash"
-import { Row, Col, Card, Form, Radio, Divider } from "antd"
+import { Col, Divider, Form, Radio, Row } from "antd"
 import {
   ButtonSubmit,
   CalculatorDatePicker,
-  CalculatorInput, CalculatorsCard,
+  CalculatorInput,
+  CalculatorsCard,
   FormLabel,
-  H1Styled,
   Label,
-  TextStyled,
   UnderLine,
 } from "./styled"
 import VehicleCustoms from "../../calculators/VehicleCustoms"
 import CalculatorCardResult from "./calcComponents/CalculatorCardResult"
 import triple from "../../api/triple"
+import { isHoliday, isWeekend } from "./utilities/vacation"
 
 const firstRadioButtonStyles = {
   borderTopLeftRadius: "5px",
@@ -59,10 +59,21 @@ class CarCustomsCalculator extends React.Component {
       rates: {},
       calculated: false,
     }
+    this.holidays = []
+    this.workdays = []
   }
 
   setField(name, value, cb) {
     this.setState({ form: { ...this.state.form, [name]: value } }, cb)
+  }
+
+  fetchDays() {
+    triple.get("/api/days")
+      .then(res => {
+        this.holidays = res.data.holidays
+        this.workdays = res.data.workdays
+      })
+      .catch(err => console.log(err))
   }
 
   getCBARates() {
@@ -80,8 +91,98 @@ class CarCustomsCalculator extends React.Component {
       .catch(err => console.log(err))
   }
 
+  handlePickerRender(date, today, range) {
+    const { form } = this.state
+
+    const condition = range === "start"
+      && form.date && (date.isSameOrAfter(form.date, "day"))
+
+    if (date.isSame(today, "day")) {
+      return <div className={
+        !condition
+          ? "ant-picker-cell-inner ant-picker-cell-today"
+          : "ant-picker-cell-inner"
+      }>
+        {date.format("D")}
+        {this.workdays.length > 0
+        && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD"))
+        && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title &&
+        <span className={"day_title"}>
+                  {this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title}
+                </span>
+        || this.holidays.length > 0
+        && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD"))
+        && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title &&
+        <span className={"day_title"}>
+                  {this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title}
+                </span>
+        }
+      </div>
+    } else if (isHoliday(date, this.holidays)) {
+      return <div className={
+        !condition
+          ? "ant-picker-cell-inner ant-picker-cell-holiday"
+          : "ant-picker-cell-inner"
+      }>
+        {date.format("D")}
+        {this.workdays.length > 0
+        && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD"))
+        && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title &&
+        <span className={"day_title"}>
+                  {this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title}
+                </span>
+        || this.holidays.length > 0
+        && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD"))
+        && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title &&
+        <span className={"day_title"}>
+                  {this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title}
+                </span>
+        }
+      </div>
+    } else if (isWeekend(date, 5)) {
+      return <div className={
+        !condition
+          ? "ant-picker-cell-inner ant-picker-cell-weekend"
+          : "ant-picker-cell-inner"
+      }>
+        {date.format("D")}
+        {this.workdays.length > 0
+        && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD"))
+        && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title &&
+        <span className={"day_title"}>
+                  {this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title}
+                </span>
+        || this.holidays.length > 0
+        && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD"))
+        && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title &&
+        <span className={"day_title"}>
+                  {this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title}
+                </span>
+        }
+      </div>
+    } else {
+      return <div className="ant-picker-cell-inner">
+        {date.format("D")}
+        {this.workdays.length > 0
+        && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD"))
+        && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title &&
+        <span className={"day_title"}>
+                  {this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title}
+                </span>
+        || this.holidays.length > 0
+        && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD"))
+        && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title &&
+        <span className={"day_title"}>
+                  {this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title}
+                </span>
+        }
+      </div>
+    }
+  }
+
   componentDidMount() {
     this.getCBARates()
+    this.fetchDays()
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
@@ -143,6 +244,7 @@ class CarCustomsCalculator extends React.Component {
               <Form.Item label={<Label>{lang.form.year}</Label>}>
                 <CalculatorDatePicker
                   onChange={date => this.setField("date", date)}
+                  dateRender={(date, today) => this.handlePickerRender(date, today, "start")}
                   value={form.date}
                   placeholder={null}
                   allowClear={true}
