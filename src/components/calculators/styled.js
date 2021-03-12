@@ -279,7 +279,7 @@ export const CalendarInfo = styled.div`
     text-align: center;
     letter-spacing: 0.15px;
     color: #000000;
-    font-family: Arial AMU;
+    font-family: ArialAMU, serif;
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
@@ -297,7 +297,7 @@ export const CalendarTable = styled.table`
   }
 `
 export const CalendarTitle = styled.td`
-  font-family: Arial AMU;
+  font-family: ArialAMU, serif;
   padding: 10px 0;
   font-style: normal;
   font-weight: normal;
@@ -309,7 +309,7 @@ export const CalendarTitle = styled.td`
   border-bottom: 1px solid #C4C4C4;
   
   &.additionalInformation{
-    font-family: Arial AMU;
+    font-family: ArialAMU, serif;
     font-style: normal;
     font-weight: normal;
     font-size: 12px;
@@ -327,7 +327,7 @@ export const DayWrapper = styled.td`
   text-align: center;
 `
 export const InformationTitles = styled.th`
-  font-family: Arial AMU;
+  font-family: ArialAMU, serif;
   font-style: normal;
   font-weight: normal;
   font-size: 12px;
@@ -336,7 +336,7 @@ export const InformationTitles = styled.th`
   color: #555555;
 `
 export const CheckboxField = styled(Checkbox)`
-  font-family: Arial AMU;
+  font-family: ArialAMU, serif;
   width: 20px;
   border: none;
   outline: none;
@@ -375,6 +375,7 @@ export const CheckboxField = styled(Checkbox)`
       position: absolute;
       bottom: calc(100% + 5px);
       display: block;
+      word-wrap: normal;
       left: 0;
       right: 0;
       height: fit-content;
@@ -542,7 +543,7 @@ export const YearField = styled(Row)`
       text-align: center;
       letter-spacing: 0.15px;
       color: #000000;
-      font-family: Arial AMU;
+      font-family: ArialAMU, serif;
       font-style: normal;
       font-weight: normal;
       font-size: 14px;

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react"
+import React, { useEffect, useMemo, useRef, useState } from "react"
 import moment from "moment"
 import { Checkbox, Col, Form, Radio, Row } from "antd"
 import {
@@ -9,13 +9,9 @@ import {
   CalendarTable,
   CalendarTitle,
   CalendarWrapper,
-  CheckboxField,
-  DayWrapper,
   FormLabel,
-  H1Styled,
   InformationTitles,
   Label,
-  TextStyled,
   UnderLine,
   YearField,
 } from "./styled"
@@ -23,15 +19,14 @@ import CalculatorCardResult from "./calcComponents/CalculatorCardResult"
 import triple from "../../api/triple"
 import Calendar from "../../calculators/Calendar"
 import { isHoliday, isWeekend } from "./utilities/vacation"
-import { isNull } from "lodash"
-import { randomString } from "./utilities/tabel"
 import arrow from "../../assets/arrowForCalendar.svg"
+import { getCalendarDates } from "./utilities/calendar"
+import CalendarItem from "./calcComponents/Calendar"
 
-const CalendarCalculatorExample = ({ lang }) => {
+const CalendarCalculator = ({ lang }) => {
   const [form, setForm] = useState({
     dates: [],
     schedule: 5,
-    someFlag: false,
     date_to: null,
     date_from: null,
   })
@@ -86,10 +81,7 @@ const CalendarCalculatorExample = ({ lang }) => {
     },
   ]
   const [year, setYear] = useState(moment().year())
-  const [rangeDates, setRangeDates] = useState({
-    start: null,
-    end: null,
-  })
+  const calendar = useMemo(() => getCalendarDates(year), [year])
   const [initialState, setInitialState] = useState({
     calculated: false,
     data: [],
@@ -97,10 +89,8 @@ const CalendarCalculatorExample = ({ lang }) => {
     workdays: [],
     workingDaysAndHours: [],
     result: {},
-    checkedDates: [],
   })
   const holidays = []
-  const [check, setCheck] = useState([])
 
   const getHolidays = () => {
     triple.get(`/api/days?year=${year}&calculated=1`).then(res => {
@@ -118,7 +108,13 @@ const CalendarCalculatorExample = ({ lang }) => {
     setForm((state) => ({
       ...state,
       [name]: value,
-      someFlag: true,
+    }))
+  }
+
+  const setFields = (fields) => {
+    setForm((state) => ({
+      ...state,
+      ...fields,
     }))
   }
 
@@ -131,7 +127,7 @@ const CalendarCalculatorExample = ({ lang }) => {
     }
   }
 
-  const handleSubmit = () => Calendar.schema.isValid(form).then(valid => {
+  const handleSubmit = async () => Calendar.schema.isValid(form).then(valid => {
     if (!valid) {
       setInitialState((state) => ({
         ...state,
@@ -141,167 +137,59 @@ const CalendarCalculatorExample = ({ lang }) => {
       return
     }
 
-    let start = moment(form.dates[form.dates.length - 1]).isBefore(moment(form.dates[0])) ? form.dates[form.dates.length - 1] : form.dates[0]
-    let end = moment(form.dates[form.dates.length - 1]).isBefore(moment(form.dates[0])) ? form.dates[form.dates.length - 2] : form.dates[form.dates.length - 1]
+    calculateDates(form.date_from.format("YYYY-MM-DD"), form.date_to.format("YYYY-MM-DD"))
+  })
 
+  const calculateDates = (start, end) => {
     triple.get(`/api/days/calculate?from=${start}&to=${end}&schedule=${form.schedule}`).then(res => {
       setInitialState((state) => ({
         ...state,
         result: res.data,
         calculated: true,
       }))
-      setRangeDates(state => ({
-        ...state,
-        start: start,
-        end: end,
-      }))
     }).catch(err => console.log(err))
-
-  })
-
-  const monthDays = (month) => {
-    let weeks = [], days = []
-
-    for (let i = 1; i <= month.daysInMonth(); i++) {
-      let date = moment({ date: i, month: month.month(), year: month.year() })
-
-      days[date.day()] = { date: date }
-
-      if (date.day() === 6) {
-        weeks.push(days.slice())
-        days = []
-      }
-    }
-
-    if (days.length) {
-      days = days.concat(Array(7 - days.length).fill(undefined))
-
-      weeks.push(days)
-    }
-
-    return weeks
   }
 
   useEffect(() => {
-    handleSubmit()
-  }, [initialState.calculated])
-
-  const getCalendarDatas = () => {
-    let start = moment({ year: year }).startOf("year")
-    let end = moment({ year: year }).endOf("year")
-    let range = moment.range(start, end)
-    const months = Array
-      .from(range.by("month"))
-      .map(month => monthDays(month))
-    setForm(state => ({
-      ...state,
-      dates: [],
-    }))
-    setInitialState((state) => ({
-      ...state,
-      data: months,
-    }))
-  }
-
-  useEffect(() => {
-    getCalendarDatas()
     getHolidays()
   }, [year])
 
   useEffect(() => {
-
-    initialState.calculated && handleSubmit()
-
-    form.dates.length > 1 && form.someFlag && addCheckedDataRange()
-
+    if (initialState.calculated) {
+      handleSubmit()
+    }
   }, [form])
 
-  const addCheckedDataRange = () => {
-    let start
-    let end
-    if (check.length > 0) {
-      if (check[0] === form.dates[0] && check[check.length - 1] === form.dates[form.dates.length - 1]) {
-        let checkedDate
-        for (let i = 0; i < check.length - 1; i++) {
-          if (!form.dates.includes(check[i])) {
-            checkedDate = check[i]
+  const addCheckedDataRange = (date) => {
+    if (date) {
+      let checked = form.dates
+      let start = moment(date[date.length - 1]).isBefore(moment(date[0]))
+        ? moment(date[date.length - 1])
+        : moment(date[0])
+      let end = moment(date[date.length - 1]).isBefore(moment(date[0]))
+        ? moment(date[date.length - 2])
+        : moment(date[date.length - 1])
+
+      if (date[0] === form.dates[0] && date[date.length - 1] === form.dates[form.dates.length - 1]) {
+        let checkedDate = end
+        for (let i = 0; i < checked.length - 1; i++) {
+          if (!date.includes(checked[i])) {
+            checkedDate = checked[i]
           }
         }
-        start = check[0]
+        start = checked[0]
         end = checkedDate
-      } else {
-        start = moment(form.dates[form.dates.length - 1]).isBefore(moment(form.dates[0])) ? moment(form.dates[form.dates.length - 1]) : moment(form.dates[0])
-        end = moment(form.dates[form.dates.length - 1]).isBefore(moment(form.dates[0])) ? moment(form.dates[form.dates.length - 2]) : moment(form.dates[form.dates.length - 1])
       }
-    } else {
-      start = moment(form.dates[form.dates.length - 1]).isBefore(moment(form.dates[0])) ? moment(form.dates[form.dates.length - 1]) : moment(form.dates[0])
-      end = moment(form.dates[form.dates.length - 1]).isBefore(moment(form.dates[0])) ? moment(form.dates[form.dates.length - 2]) : moment(form.dates[form.dates.length - 1])
+      const range = moment().range(start, end)
+      const checkedDates = []
+      Array.from(range.by("days")).map(element => checkedDates.push(element.format("YYYY-MM-DD")))
+      setFields({
+        dates: checkedDates,
+        date_from: moment(start),
+        date_to: moment(end),
+      })
     }
-    const range = moment().range(start, end)
-    const checkedDates = []
-    Array.from(range.by("days")).map(element => checkedDates.push(element.format("YYYY-MM-DD")))
-
-    setForm((state) => ({
-      ...state,
-      dates: checkedDates,
-      someFlag: false,
-      date_from: moment(start),
-      date_to: moment(end),
-    }))
-    setCheck(checkedDates)
   }
-
-  const CalendarItem = ({ item }) => {
-    let days = []
-
-    for (let i = 0; i < item.length; i++) {
-      const day = item[i]
-        ?
-        <DayWrapper
-          key={`day_${item[i].date.format("YYYY-MM-DD")}`}
-          align={"center"}
-          id={`day_${item[i].date.format("YYYY-MM-DD")}`}
-        >
-          <CheckboxField
-            className={`${item[i].date.day() === 0 || item[i].date.day() === 6 ? "weekend" : ""}
-            ${initialState.workdays.length > 0 && initialState.workdays.find(workday => workday.date === item[i].date.format("YYYY-MM-DD")) ? "workday" : ""}
-          ${initialState.holidays.length > 0 && initialState.holidays.find(holiday => holiday.date === item[i].date.format("YYYY-MM-DD")) ? "holiday" : ""}`
-            }
-            type="checkbox"
-            value={`${item[i].date.format("YYYY-MM-DD")}`}
-            id={`${item[i].date.format("YYYY-MM-DD")}`}>
-            {item[i].date.format("D")}
-            {initialState.workdays.length > 0
-            && initialState.workdays.find(workday => workday.date === item[i].date.format("YYYY-MM-DD"))
-            && initialState.workdays.find(workday => workday.date === item[i].date.format("YYYY-MM-DD")).title &&
-            <span className={"day_title"}>
-                {initialState.workdays.find(workday => workday.date === item[i].date.format("YYYY-MM-DD")).title}
-              </span>
-            }
-            {initialState.holidays.length > 0
-            && initialState.holidays.find(holiday => holiday.date === item[i].date.format("YYYY-MM-DD"))
-            && initialState.holidays.find(holiday => holiday.date === item[i].date.format("YYYY-MM-DD")).title &&
-            <span className={"day_title"}>
-                {initialState.holidays.find(holiday => holiday.date === item[i].date.format("YYYY-MM-DD")).title}
-              </span>
-            }
-          </CheckboxField>
-        </DayWrapper>
-        : <td />
-
-      days.push(day)
-    }
-
-    return days
-  }
-
-  let dateFromPickerKey = randomString()
-
-  let dateFromPicker = useRef()
-
-  let dateToPicker = useRef()
-
-  let dateToPickerKey = randomString()
 
   const handlePickerRender = (date, today, range) => {
     const { schedule } = form
@@ -317,6 +205,19 @@ const CalendarCalculatorExample = ({ lang }) => {
           : "ant-picker-cell-inner"
       }>
         {date.format("D")}
+        {initialState.workdays.length > 0
+        && initialState.workdays.find(workday => workday.date === date.format("YYYY-MM-DD"))
+        && initialState.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title &&
+        <span className={"day_title"}>
+                  {initialState.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title}
+                </span>
+        || initialState.holidays.length > 0
+        && initialState.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD"))
+        && initialState.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title &&
+        <span className={"day_title"}>
+                  {initialState.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title}
+                </span>
+        }
       </div>
     } else if (isHoliday(date, holidays)) {
       return <div className={
@@ -325,6 +226,19 @@ const CalendarCalculatorExample = ({ lang }) => {
           : "ant-picker-cell-inner"
       }>
         {date.format("D")}
+        {initialState.workdays.length > 0
+        && initialState.workdays.find(workday => workday.date === date.format("YYYY-MM-DD"))
+        && initialState.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title &&
+        <span className={"day_title"}>
+                  {initialState.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title}
+                </span>
+        || initialState.holidays.length > 0
+        && initialState.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD"))
+        && initialState.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title &&
+        <span className={"day_title"}>
+                  {initialState.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title}
+                </span>
+        }
       </div>
     } else if (isWeekend(date, schedule)) {
       return <div className={
@@ -333,39 +247,72 @@ const CalendarCalculatorExample = ({ lang }) => {
           : "ant-picker-cell-inner"
       }>
         {date.format("D")}
+        {initialState.workdays.length > 0
+        && initialState.workdays.find(workday => workday.date === date.format("YYYY-MM-DD"))
+        && initialState.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title &&
+        <span className={"day_title"}>
+                  {initialState.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title}
+                </span>
+        || initialState.holidays.length > 0
+        && initialState.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD"))
+        && initialState.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title &&
+        <span className={"day_title"}>
+                  {initialState.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title}
+                </span>
+        }
       </div>
     } else {
-      return <div className="ant-picker-cell-inner">{date.format("D")}</div>
+      return <div className="ant-picker-cell-inner">
+        {date.format("D")}
+        {initialState.workdays.length > 0
+        && initialState.workdays.find(workday => workday.date === date.format("YYYY-MM-DD"))
+        && initialState.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title &&
+        <span className={"day_title"}>
+                  {initialState.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title}
+                </span>
+        || initialState.holidays.length > 0
+        && initialState.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD"))
+        && initialState.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title &&
+        <span className={"day_title"}>
+                  {initialState.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title}
+                </span>
+        }
+      </div>
     }
-  }
-
-  const handleDateToChange = date => {
-    date = isNull(date) ? date : date
-    setField("date_to", date)
-
-    const arr = [...form.dates]
-    arr.push(moment(date).format("YYYY-MM-DD"))
-    setField("dates", arr)
   }
 
   const handleDateFromDisabled = d => {
     const { date_to } = form
-    return date_to && (d.isAfter(date_to, "day")) && (!d.isSame(date_to, "month"))
-
+    return date_to && (d.isAfter(date_to, "day"))
   }
+
   const handleDateToDisabled = d => {
     const { date_from } = form
-    return !date_from || !d || (d.isBefore(date_from, "day")) || (!d.isSame(date_from, "month"))
+    return !date_from || !d || (d.isBefore(date_from, "day"))
   }
 
   const handleDateFromChange = date => {
-    const fields = !date ? { date_from: date, date_to: date } : { date_from: date }
-    if (!date) dateFromPickerKey = randomString()
-    setField("date_from", fields.date_from)
+    const { date_to } = form
+    const range = moment().range(date, date_to ? date_to : date)
+    const checkedDates = []
+    Array.from(range.by("days")).map(element => checkedDates.push(element.format("YYYY-MM-DD")))
 
-    const arr = [...form.dates]
-    arr.unshift(moment(fields.date_from).format("YYYY-MM-DD"))
-    setField("dates", arr)
+    setFields({
+      dates: checkedDates,
+      date_from: date,
+    })
+  }
+
+  const handleDateToChange = date => {
+    const { date_from } = form
+    const range = moment().range(date_from, date)
+    const checkedDates = []
+    Array.from(range.by("days")).map(element => checkedDates.push(element.format("YYYY-MM-DD")))
+
+    setFields({
+      date_to: date,
+      dates: checkedDates,
+    })
   }
 
   return (
@@ -378,8 +325,8 @@ const CalendarCalculatorExample = ({ lang }) => {
         {/*  </div>*/}
         {/*</Row>*/}
         <CalculatorsCard bordered={false} className={"calendarBody"}>
-          <Form.Item label={<Label>{lang.chooseDaysRange}</Label>} labelCol={{ span: 24 }}>
-          </Form.Item>
+          {/*<Form.Item label={<Label>{lang.chooseDaysRange}</Label>} labelCol={{ span: 24 }}>*/}
+          {/*</Form.Item>*/}
           <Form
             onFinish={handleSubmit}
             initialValues={form}
@@ -387,6 +334,100 @@ const CalendarCalculatorExample = ({ lang }) => {
             layout="horizontal"
             size="large"
           >
+            <Row align="start"
+                 justify="space-between">
+              <Col xxl={16} xl={14} lg={16} md={24} sm={24} xs={24}>
+                <Form.Item label={<Label>{lang.chooseDaysRange}</Label>} labelCol={{ span: 24 }}>
+                </Form.Item>
+                <Form.Item label={lang.working_schedule} labelCol={{ span: 24 }}>
+                  <Radio.Group
+                    onChange={e => setField("schedule", e.target.value)}
+                    value={form.schedule}
+                  >
+                    <Radio value={5}>
+                      {<Label
+                        style={{ textTransform: "none" }}>{lang.calendar.additionalInformation["five_days"]}</Label>}
+                    </Radio>
+                    <Radio value={6}>
+                      {<Label
+                        style={{ textTransform: "none" }}>{lang.calendar.additionalInformation["six_days"]}</Label>}
+                    </Radio>
+                  </Radio.Group>
+                </Form.Item>
+                <Row gutter={10} align="middle">
+                  <Form.Item style={{ marginRight: "25px" }} label={<Label>{lang.form.start}</Label>}>
+                    <CalculatorDatePicker
+                      dateRender={(date, today) => handlePickerRender(date, today, "start")}
+                      disabledDate={handleDateFromDisabled}
+                      onChange={handleDateFromChange}
+                      value={form.date_from}
+                      placeholder={null}
+                      allowClear={false}
+                      format="DD.MM.YYYY"
+                      name="date_from"
+                      size="large"
+                    />
+                  </Form.Item>
+                  <Form.Item label={<Label>{lang.form.end}</Label>}>
+                    <CalculatorDatePicker
+                      dateRender={(date, today) => handlePickerRender(date, today, "end")}
+                      defaultPickerValue={form.date_from}
+                      disabledDate={handleDateToDisabled}
+                      onChange={handleDateToChange}
+                      value={form.date_to}
+                      allowClear={false}
+                      placeholder={null}
+                      format="DD.MM.YYYY"
+                      name="date_to"
+                      size="large"
+                    />
+                  </Form.Item>
+                </Row>
+                <Form.Item style={{ marginTop: "50px" }}>
+                  <ButtonSubmit
+                    htmlType="submit"
+                    shape="round"
+                    size="large"
+                  >
+                    {lang.calculate}
+                  </ButtonSubmit>
+                </Form.Item>
+              </Col>
+              <Col xxl={8} xl={8} lg={8} md={24} sm={24} xs={24} className={"result calendarResult"}>
+                <FormLabel style={{ margin: 0, minHeight: "40px", lineHeight: "40px" }}>
+                  {lang.result.title}
+                  {Object.keys(initialState.result).length > 0 && form.date_from && form.date_to &&
+                  <span className={"dateRange"}>
+              {` (${moment(form.date_from).format("DD.MM.YY")}${lang.year} -
+          ${moment(form.date_to).format("DD.MM.YY")}${lang.year})`}
+            </span>
+
+                  }
+                </FormLabel>
+
+                <UnderLine />
+
+                <CalculatorCardResult
+                  title={lang.result.calendarDays}
+                  text={initialState.result.overallDays}
+                />
+
+                <CalculatorCardResult
+                  title={lang.result.workDays}
+                  text={initialState.result.workingDays}
+                />
+
+                <CalculatorCardResult
+                  title={lang.result.nonWorkingDays}
+                  text={initialState.result.nonWorkingDays}
+                />
+
+                <CalculatorCardResult
+                  title={lang.result.workHours}
+                  text={initialState.result.workingHours}
+                />
+              </Col>
+            </Row>
             <YearField align="middle">
               <button onClick={setNewYear} data-action={"prev"} type={"button"}>
                 <img src={arrow} alt="arrow" />
@@ -399,7 +440,7 @@ const CalendarCalculatorExample = ({ lang }) => {
 
             <Checkbox.Group
               style={{ width: "100%" }}
-              onChange={(v) => setField("dates", v)}
+              onChange={(v) => addCheckedDataRange(v)}
               name={"dates[]"}
               value={form.dates}>
               <Row
@@ -408,7 +449,7 @@ const CalendarCalculatorExample = ({ lang }) => {
                 style={{
                   width: "100%",
                 }}>
-                {initialState.data.length > 0 && initialState.data.map((month, index) => (
+                {calendar.length > 0 && calendar.map((month, index) => (
                   <Col xxl={6} xl={8} lg={8} md={12} sm={24} xs={24} className={"calendarCol"} key={`month_${index}`}>
                     <CalendarWrapper>
                       <CalendarTable>
@@ -447,7 +488,11 @@ const CalendarCalculatorExample = ({ lang }) => {
                         <tbody>
                         {month.map((week, i) => (
                           <tr key={`calendar_${index}_week_${i}`}>
-                            <CalendarItem item={week} />
+                            <CalendarItem
+                              week={week}
+                              holidays={initialState.holidays}
+                              workdays={initialState.workdays}
+                            />
                           </tr>
                         ))}
                         </tbody>
@@ -499,105 +544,6 @@ const CalendarCalculatorExample = ({ lang }) => {
                 ))}
               </Row>
             </Checkbox.Group>
-
-            <Row align="start"
-                 justify="space-between">
-              <Col xxl={16} xl={14} lg={16} md={24} sm={24} xs={24}>
-                <Form.Item label={lang.working_schedule} labelCol={{ span: 24 }}>
-                  <Radio.Group
-                    onChange={e => setField("schedule", e.target.value)}
-                    value={form.schedule}
-                  >
-                    <Radio value={5}>
-                      {<Label
-                        style={{ textTransform: "none" }}>{lang.calendar.additionalInformation["five_days"]}</Label>}
-                    </Radio>
-                    <Radio value={6}>
-                      {<Label
-                        style={{ textTransform: "none" }}>{lang.calendar.additionalInformation["six_days"]}</Label>}
-                    </Radio>
-                  </Radio.Group>
-                </Form.Item>
-
-                <Row gutter={10} align="middle">
-                  <Form.Item style={{ marginRight: "25px" }} label={<Label>{lang.form.start}</Label>}>
-                    <CalculatorDatePicker
-                      dateRender={(date, today) => handlePickerRender(date, today, "start")}
-                      disabledDate={handleDateFromDisabled}
-                      onChange={handleDateFromChange}
-                      value={form.date_from}
-                      key={dateFromPickerKey}
-                      ref={dateFromPicker}
-                      placeholder={null}
-                      format="DD.MM.YYYY"
-                      name="date_from"
-                      size="large"
-                    />
-                  </Form.Item>
-                  <Form.Item label={<Label>{lang.form.end}</Label>}>
-                    <CalculatorDatePicker
-                      dateRender={(date, today) => handlePickerRender(date, today, "end")}
-                      defaultPickerValue={form.date_from}
-                      disabledDate={handleDateToDisabled}
-                      onChange={handleDateToChange}
-                      value={form.date_to}
-                      key={dateToPickerKey}
-                      ref={dateToPicker}
-                      placeholder={null}
-                      format="DD.MM.YYYY"
-                      name="date_to"
-                      size="large"
-                    />
-                  </Form.Item>
-                </Row>
-
-                <Form.Item style={{ marginTop: "50px" }}>
-                  <ButtonSubmit
-                    htmlType="submit"
-                    shape="round"
-                    size="large"
-                  >
-                    {lang.calculate}
-                  </ButtonSubmit>
-                </Form.Item>
-              </Col>
-              <Col xxl={8} xl={8} lg={8} md={24} sm={24} xs={24} className={"result calendarResult"}>
-                <FormLabel style={{ margin: 0, minHeight: "40px", lineHeight: "40px" }}>
-                  {lang.result.title}
-                  {rangeDates.start && rangeDates.end &&
-                  <span className={"dateRange"}>
-              {` (${moment(rangeDates.start).format("DD.MM.YY")}${lang.year} -
-          ${moment(rangeDates.end).format("DD.MM.YY")}${lang.year})`}
-            </span>
-
-                  }
-                </FormLabel>
-
-                <UnderLine />
-
-                <CalculatorCardResult
-                  title={lang.result.calendarDays}
-                  text={initialState.result.overallDays}
-                />
-
-                <CalculatorCardResult
-                  title={lang.result.workDays}
-                  text={initialState.result.workingDays}
-                />
-
-                <CalculatorCardResult
-                  title={lang.result.nonWorkingDays}
-                  text={initialState.result.nonWorkingDays}
-                />
-
-                <CalculatorCardResult
-                  title={lang.result.workHours}
-                  text={initialState.result.workingHours}
-                />
-              </Col>
-            </Row>
-
-
           </Form>
         </CalculatorsCard>
       </Col>
@@ -605,4 +551,4 @@ const CalendarCalculatorExample = ({ lang }) => {
   )
 }
 
-export default CalendarCalculatorExample
+export default CalendarCalculator

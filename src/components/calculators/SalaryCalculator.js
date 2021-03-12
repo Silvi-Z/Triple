@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React from "react"
 import { Col, Form, Radio, Row, Select } from "antd"
 import ReactDOM from "react-dom"
 import triple from "../../api/triple"
@@ -10,12 +10,10 @@ import {
   CalculatorsCard,
   CalculatorSelect,
   FormLabel,
-  H1Styled,
   Label,
   RadioButton,
   RadioGroup,
   RadioLabel,
-  TextStyled,
   UnderLine,
 } from "./styled"
 import {
@@ -80,6 +78,7 @@ class SalaryCalculator extends React.Component {
       loading: false,
       form: { ...form },
       employees: [],
+      valid: false,
       result: {},
       excel: [],
     }
@@ -128,10 +127,9 @@ class SalaryCalculator extends React.Component {
   }
 
   handleSubmit = async () => {
-    this.setState({ loading: true })
+    // this.setState({ loading: true })
 
     const { by, schedule, date_from } = this.state.form
-
     const avgWorkingDays = workingDaysInMonth({
       workdays: this.workdays,
       holidays: this.holidays,
@@ -145,19 +143,29 @@ class SalaryCalculator extends React.Component {
       console.log(err)
     })
 
-    if (!valid) return
+    if (!valid) {
+      this.setState({ loading: false, valid: false })
+      return
+    } else {
+      // this.setState({ loading: true, valid: false })
+      by ? await this.calculateByTable() : await this.calculateByDate(avgWorkingDays)
+    }
+  }
 
-    by ? await this.calculateByTable() : await this.calculateByDate(avgWorkingDays)
+  onBlur = () => {
+    this.setState(prevState => (
+      { valid: true }
+    ), this.state.calculated ? this.handleSubmit : null)
   }
 
   handleByFieldChange = () => {
     const { form } = this.state
-
     const state = !form.by
-      ? { form: { ...form, from: 1 }, result: {}, calculated: 0 }
-      : { result: {}, calculated: 0 }
+      ? { form: { ...form, from: 1 }, result: {}, calculated: 1 }
+      : { result: {}, calculated: 1 }
 
     this.setState(state)
+    this.onBlur()
   }
 
   /**
@@ -171,6 +179,8 @@ class SalaryCalculator extends React.Component {
   handlePickerRender = (date, today, range) => {
     const { schedule } = this.state.form
 
+    console.log(this.holidays)
+
     const condition = range === "start"
       ? this.handleDateFromDisabled(date)
       : this.handleDateToDisabled(date)
@@ -182,6 +192,19 @@ class SalaryCalculator extends React.Component {
           : "ant-picker-cell-inner"
       }>
         {date.format("D")}
+        {this.workdays.length > 0
+        && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD"))
+        && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title &&
+        <span className={"day_title"}>
+                  {this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title}
+                </span>
+        || this.holidays.length > 0
+        && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD"))
+        && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title &&
+        <span className={"day_title"}>
+                  {this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title}
+                </span>
+        }
       </div>
     } else if (isHoliday(date, this.holidays)) {
       return <div className={
@@ -190,6 +213,19 @@ class SalaryCalculator extends React.Component {
           : "ant-picker-cell-inner"
       }>
         {date.format("D")}
+        {this.workdays.length > 0
+        && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD"))
+        && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title &&
+        <span className={"day_title"}>
+                  {this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title}
+                </span>
+        || this.holidays.length > 0
+        && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD"))
+        && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title &&
+        <span className={"day_title"}>
+                  {this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title}
+                </span>
+        }
       </div>
     } else if (isWeekend(date, schedule)) {
       return <div className={
@@ -198,9 +234,37 @@ class SalaryCalculator extends React.Component {
           : "ant-picker-cell-inner"
       }>
         {date.format("D")}
+        {this.workdays.length > 0
+        && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD"))
+        && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title &&
+        <span className={"day_title"}>
+                  {this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title}
+                </span>
+        || this.holidays.length > 0
+        && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD"))
+        && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title &&
+        <span className={"day_title"}>
+                  {this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title}
+                </span>
+        }
       </div>
     } else {
-      return <div className="ant-picker-cell-inner">{date.format("D")}</div>
+      return <div className="ant-picker-cell-inner">
+        {date.format("D")}
+        {this.workdays.length > 0
+        && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD"))
+        && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title &&
+        <span className={"day_title"}>
+                  {this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title}
+                </span>
+        || this.holidays.length > 0
+        && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD"))
+        && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title &&
+        <span className={"day_title"}>
+                  {this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title}
+                </span>
+        }
+      </div>
     }
   }
 
@@ -249,7 +313,7 @@ class SalaryCalculator extends React.Component {
     this.setFields({
       date_from: date_from ? moment(date_from).subtract(diff, "years").format("YYYY-MM-DD") : null,
       date_to: date_to ? moment(date_to).subtract(diff, "years").format("YYYY-MM-DD") : null,
-    })
+    }, this.onBlur)
   }
 
   handleDateFromInput = e => {
@@ -378,7 +442,7 @@ class SalaryCalculator extends React.Component {
 
     const result = Object.assign({}, res.data, { gross_salary })
 
-    this.setState({ result, loading: false, calculated: 1 })
+    this.setState({ result, loading: false, calculated: 1, valid: false })
   }
 
   async calculateByTable() {
@@ -395,6 +459,14 @@ class SalaryCalculator extends React.Component {
   }
 
   componentDidMount() {
+    window.onscroll = () => {
+      if (this.top.current.getBoundingClientRect().top <= 0) {
+        this.top.current.classList.add("fixed")
+        this.top.current.children[0].style.width = this.distance.current.clientWidth*33.3333333/100-20+ 'px'
+      }else{
+        this.top.current.classList.remove('fixed')
+      }
+    }
     this.fetchDays()
 
     this.dateFromPicker.current &&
@@ -414,15 +486,7 @@ class SalaryCalculator extends React.Component {
     this.autoCalculate(prevState)
   }
 
-  componentDidMount() {
-    window.onscroll = () => {
-      if (this.top.current.getBoundingClientRect().top <= 0) {
-        this.top.current.classList.add("fixed")
-      }else{
-        this.top.current.classList.remove('fixed')
-      }
-    }
-  }
+
 
   render() {
     const { langText } = this.props
@@ -457,7 +521,7 @@ class SalaryCalculator extends React.Component {
               </Form.Item>
               <Form onFinish={this.handleSubmit} initialValues={form} layout="horizontal" colon={false}>
                 <RadioGroup
-                  onChange={(e) => this.setField("from", e.target.value)}
+                  onChange={(e) => this.setField("from", e.target.value, this.onBlur)}
                   value={form.from}
                   size="large"
                 >
@@ -519,6 +583,7 @@ class SalaryCalculator extends React.Component {
                                   fill="black" />
                           </svg>
                         }
+                        onBlur={this.onBlur}
                         step={SALARY_STEP}
                         min={SALARY_MIN}
                         name="amount"
@@ -537,6 +602,7 @@ class SalaryCalculator extends React.Component {
                           value={this.dateFromValue}
                           key={this.dateFromPickerKey}
                           ref={this.dateFromPicker}
+                          onBlur={this.onBlur}
                           placeholder={null}
                           format="DD.MM.YYYY"
                           name="date_from"
@@ -551,6 +617,7 @@ class SalaryCalculator extends React.Component {
                           onChange={this.handleDateToChange}
                           value={this.dateToValue}
                           key={this.dateToPickerKey}
+                          onBlur={this.onBlur}
                           ref={this.dateToPicker}
                           placeholder={null}
                           format="DD.MM.YYYY"
@@ -567,6 +634,7 @@ class SalaryCalculator extends React.Component {
                         style={{ width: "54px" }}
                         ref={this.daysInput}
                         max={this.maxWorkingDays}
+                        onBlur={this.onBlur}
                         min={1}
                         name="working_days"
                         type="number"
@@ -596,6 +664,7 @@ class SalaryCalculator extends React.Component {
                         onChange={v => this.setField("amount", v)}
                         value={form.amount}
                         step={SALARY_STEP}
+                        onBlur={this.onBlur}
                         min={SALARY_MIN}
                         name="amount"
                         size="large"
@@ -607,7 +676,7 @@ class SalaryCalculator extends React.Component {
                 <Form.Item label={<Label style={{ fontSize: "16px" }}>{langText["tax_label"]}</Label>}
                            labelCol={{ span: 24 }} name="tax_field">
                   <Radio.Group
-                    onChange={(e) => this.setField("tax_field", e.target.value)}
+                    onChange={(e) => this.setField("tax_field", e.target.value, this.onBlur)}
                     value={form.tax_field}
                   >
                     <Radio style={radioStyle} value={TAX_FIELD_COMMON}>
@@ -624,7 +693,7 @@ class SalaryCalculator extends React.Component {
 
                 <Form.Item label={<RadioLabel>{langText["pensioner_label"]}</RadioLabel>} name="pension">
                   <Radio.Group
-                    onChange={(e) => this.setField("pension", e.target.value)}
+                    onChange={(e) => this.setField("pension", e.target.value, this.onBlur)}
                     value={form.pension}
                   >
                     <Radio value={PENSION_FIELD_YES}>
@@ -655,47 +724,46 @@ class SalaryCalculator extends React.Component {
             <div>
               <FormLabel style={{ margin: 0 }}>{langText.result_title}</FormLabel>
 
-              <UnderLine />
-              {result.gross_salary &&
-              <CalculatorCardResult
-                title={langText.gross_salary}
-                text={result.gross_salary}
-                loading={loading}
-                tooltip
-              />
-              }
+            <UnderLine />
+            <CalculatorCardResult
+              title={form.from === 1 ? langText["dirty_to_clean_salary"] : langText["clean_dirty_to_salary"]}
+              text={result.salary}
+              loading={loading}
+            />
 
-              <CalculatorCardResult
-                title={langText["income_tax_label"]}
-                text={result.income_tax}
-                loading={loading}
-                tooltip={form.tax_field === TAX_FIELD_ENTERPRISE ? "prompt text" : null}
-              />
-              <CalculatorCardResult
-                title={langText["pension_paymet_label"]}
-                text={result.pension_fee}
-                loading={loading}
-                tooltip
-              />
-              <CalculatorCardResult
-                title={langText["stamp_duty_label"]}
-                text={result.stamp_fee}
-                loading={loading}
-                tooltip
-              />
-              <CalculatorCardResult
-                title={langText["general_storage_label"]}
-                text={result.total_fee}
-                loading={loading}
-              />
+            {result.gross_salary &&
+            <CalculatorCardResult
+              title={langText.gross_salary}
+              text={result.gross_salary}
+              loading={loading}
+              tooltip
+            />
+            }
 
-              <CalculatorCardResult
-                title={form.from === 1 ? langText["dirty_to_clean_salary"] : langText["clean_dirty_to_salary"]}
-                text={result.salary}
-                loading={loading}
-              />
+            <CalculatorCardResult
+              title={langText["income_tax_label"]}
+              text={result.income_tax}
+              loading={loading}
+              tooltip={form.tax_field === TAX_FIELD_ENTERPRISE ? "prompt text" : null}
+            />
+            <CalculatorCardResult
+              title={langText["pension_paymet_label"]}
+              text={result.pension_fee}
+              loading={loading}
+              tooltip
+            />
+            <CalculatorCardResult
+              title={langText["stamp_duty_label"]}
+              text={result.stamp_fee}
+              loading={loading}
+              tooltip
+            />
+            <CalculatorCardResult
+              title={langText["general_storage_label"]}
+              text={result.total_fee}
+              loading={loading}
+            />
             </div>
-
           </Col>
         </Row>
       </>

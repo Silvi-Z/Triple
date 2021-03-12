@@ -18,6 +18,7 @@ const layout = {
 
 
 const Formfield = ({
+                      data,
                      formlangtext,
                      lang,
                    }) => {
@@ -45,6 +46,7 @@ const Formfield = ({
 
   const onFinish = async values => {
     let UploadFormData = new FormData()
+    UploadFormData.append("title", data[`title_${lang}`])
     UploadFormData.append("message", values.textarea)
     UploadFormData.append("email", values.email)
     UploadFormData.append("file", values.file[0].originFileObj)
@@ -68,7 +70,6 @@ const Formfield = ({
     } catch (e) {
       toggleDisabled(false)
     }
-
   }
 
   return (

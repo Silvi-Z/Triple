@@ -12,10 +12,8 @@ import {
   CalculatorInput,
   CalculatorsCard,
   FormLabel,
-  H1Styled,
   Label,
   RadioLabel,
-  TextStyled,
   UnderLine,
 } from "./styled"
 import {
@@ -28,6 +26,7 @@ import {
   TAX_FIELD_ENTERPRISE,
   TAX_FIELD_IT,
 } from "./utilities/salary"
+import { isHoliday, isWeekend } from "./utilities/vacation"
 
 const radioStyle = {
   display: "block",
@@ -66,15 +65,21 @@ class FinalCalculator extends React.Component {
     this.state = {
       form: { ...form },
       result: {
+        amount: 0,
         total_fee: 0,
         income_tax: 0,
         pension_fee: 0,
         stamp_fee: 0,
         salary: 0,
       },
+      monthAvgSalary: 0,
       calculated: false,
       loading: false,
+      valid: false,
     }
+
+    this.holidays = []
+    this.workdays = []
   }
 
   get rowElement() {
@@ -114,26 +119,39 @@ class FinalCalculator extends React.Component {
   }
 
   get avgDailySalary() {
-    const { working_schedule, salary } = this.state.form
+    const { working_schedule, salary, static_salary } = this.state.form
     const workingDaysInMonth = working_schedule === 5 ? 21 : 25
+    const { monthAvgSalary } = this.state
 
-    if (salary) {
-      return salary / workingDaysInMonth
+    if (static_salary) {
+      if (salary) {
+        return salary / workingDaysInMonth
+      }
+
+      return null
+
+    } else {
+      if (monthAvgSalary) {
+        return monthAvgSalary / workingDaysInMonth
+      }
+
+      return null
+
     }
 
-    return null
+
   }
 
   get amounts() {
     let items = []
-    const { date_release } = this.state.form
+    const { date_release, salary } = this.state.form
 
     if (!date_release) {
       items.push({
         year: null,
         month: null,
         bonus: null,
-        salary: null,
+        salary: salary || null,
         surcharge: null,
       })
 
@@ -146,7 +164,7 @@ class FinalCalculator extends React.Component {
       items.push({
         month: momentStep.month(),
         year: momentStep.year(),
-        salary: null,
+        salary: salary || null,
         bonus: null,
         surcharge: null,
       })
@@ -177,6 +195,15 @@ class FinalCalculator extends React.Component {
       .querySelector("input")
   }
 
+  fetchDays() {
+    triple.get("/api/days")
+      .then(res => {
+        this.holidays = res.data.holidays
+        this.workdays = res.data.workdays
+      })
+      .catch(err => console.log(err))
+  }
+
   disabledAcceptanceDates = date => (this.state.form.date_release && (date.isSameOrAfter(this.state.form.date_release, "day")))
 
   disabledReleasedDates = date => (!this.state.form.date_acceptance || (date.isSameOrBefore(this.state.form.date_acceptance, "day")))
@@ -191,6 +218,12 @@ class FinalCalculator extends React.Component {
       this.colElement.classList.add("abs")
     } else {
       this.colElement.classList.remove("abs")
+    }
+    if (this.col.current.getBoundingClientRect().top <= 0) {
+      this.col.current.classList.add("fixed")
+      this.col.current.children[0].style.width = this.rowWidth.current.clientWidth*33.3333333/100-20+ 'px'
+    }else{
+      this.col.current.classList.remove('fixed')
     }
   }
 
@@ -218,7 +251,7 @@ class FinalCalculator extends React.Component {
         year: date_release.year(),
       }
 
-      this.setState({ loading: true })
+      // this.setState({ loading: true })
 
       triple
         .post("/api/counter/salary", data, {
@@ -226,15 +259,16 @@ class FinalCalculator extends React.Component {
             stamp: false,
           },
         })
-        .then(res => this.setState({ result: res.data }))
+        .then(res => {
+          const result = { ...res.data, amount: this.amount }
+          this.setState({ result: result, valid: false })
+        })
         .then(() => {
-          if (!this.state.calculated) this.setState({ calculated: true })
+          if (!this.state.calculated) this.setState({ calculated: true, valid: false })
         })
         .catch(err => console.log(err))
         .finally(() => {
-          this.setState({ loading: false })
-
-          document.body.scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" })
+          this.setState({ loading: false, valid: false })
         })
     }).catch(err => console.log(err))
   }
@@ -242,6 +276,8 @@ class FinalCalculator extends React.Component {
   setFormField(name, value, cb) {
     this.setState({ form: { ...this.state.form, [name]: value } }, cb)
   }
+
+  calcVacationAmount = monthAvgSalary => this.setState({ monthAvgSalary })
 
   handleInputValue(e) {
     const inputValue = e.target.value
@@ -266,20 +302,119 @@ class FinalCalculator extends React.Component {
     const { working_schedule } = this.state.form
 
     if (working_schedule === 5) {
-      this.setFormField("available_vacation_days", 20)
+      this.setFormField("available_vacation_days", 20, this.autoFillUnusedVacationDays)
     } else if (working_schedule === 6) {
-      this.setFormField("available_vacation_days", 24)
+      this.setFormField("available_vacation_days", 24, this.autoFillUnusedVacationDays)
     }
+
+
   }
 
   autoFillUnusedVacationDays() {
     const { used_vacation_days } = this.state.form
 
     if (this.totalVacationDays && used_vacation_days) {
-      this.setFormField("unused_vacation_days", this.totalVacationDays - used_vacation_days)
+      this.setFormField("unused_vacation_days", this.totalVacationDays - used_vacation_days, this.onBlur)
     } else if (this.totalVacationDays && !used_vacation_days) {
-      this.setFormField("unused_vacation_days", this.totalVacationDays)
+      this.setFormField("unused_vacation_days", this.totalVacationDays, this.onBlur)
     }
+  }
+
+  handlePickerRender(date, today, range) {
+    const { form } = this.state
+
+    const condition = range === "start"
+      ? form.date_release && (date.isSameOrAfter(form.date_release, "day"))
+      : !form.date_acceptance || (date.isSameOrBefore(form.date_acceptance, "day"))
+
+    if (date.isSame(today, "day")) {
+      return <div className={
+        !condition
+          ? "ant-picker-cell-inner ant-picker-cell-today"
+          : "ant-picker-cell-inner"
+      }>
+        {date.format("D")}
+        {this.workdays.length > 0
+        && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD"))
+        && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title &&
+        <span className={"day_title"}>
+                  {this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title}
+                </span>
+        || this.holidays.length > 0
+        && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD"))
+        && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title &&
+        <span className={"day_title"}>
+                  {this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title}
+                </span>
+        }
+      </div>
+    } else if (isHoliday(date, this.holidays)) {
+      return <div className={
+        !condition
+          ? "ant-picker-cell-inner ant-picker-cell-holiday"
+          : "ant-picker-cell-inner"
+      }>
+        {date.format("D")}
+        {this.workdays.length > 0
+        && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD"))
+        && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title &&
+        <span className={"day_title"}>
+                  {this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title}
+                </span>
+        || this.holidays.length > 0
+        && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD"))
+        && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title &&
+        <span className={"day_title"}>
+                  {this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title}
+                </span>
+        }
+      </div>
+    } else if (isWeekend(date, form.working_schedule)) {
+      return <div className={
+        !condition
+          ? "ant-picker-cell-inner ant-picker-cell-weekend"
+          : "ant-picker-cell-inner"
+      }>
+        {date.format("D")}
+        {this.workdays.length > 0
+        && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD"))
+        && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title &&
+        <span className={"day_title"}>
+                  {this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title}
+                </span>
+        || this.holidays.length > 0
+        && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD"))
+        && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title &&
+        <span className={"day_title"}>
+                  {this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title}
+                </span>
+        }
+      </div>
+    } else {
+      return <div className="ant-picker-cell-inner">
+        {date.format("D")}
+        {this.workdays.length > 0
+        && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD"))
+        && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title &&
+        <span className={"day_title"}>
+                  {this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title}
+                </span>
+        || this.holidays.length > 0
+        && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD"))
+        && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title &&
+        <span className={"day_title"}>
+                  {this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title}
+                </span>
+        }
+      </div>
+    }
+  }
+
+
+  onBlur = () => {
+    this.setState(prevState => (
+      { valid: true }
+    ), this.state.calculated ? this.handleSubmit : null)
   }
 
   autoFillUsedVacationDays() {
@@ -316,7 +451,8 @@ class FinalCalculator extends React.Component {
               <Row align="middle">
                 <Form.Item style={{ marginRight: "25px" }} label={<Label>{lang.form["acceptance"]}</Label>}>
                   <CalculatorDatePicker
-                    onChange={date => this.setFormField("date_acceptance", date)}
+                    onChange={date => this.setFormField("date_acceptance", date, this.onBlur)}
+                    dateRender={(date, today) => this.handlePickerRender(date, today, "start")}
                     placeholder={lang.form["date_acceptance_placeholder"]}
                     disabledDate={this.disabledAcceptanceDates}
                     value={form.date_acceptance}
@@ -328,7 +464,8 @@ class FinalCalculator extends React.Component {
                 </Form.Item>
                 <Form.Item label={<Label>{lang.form.release}</Label>}>
                   <CalculatorDatePicker
-                    onChange={date => this.setFormField("date_release", date)}
+                    onChange={date => this.setFormField("date_release", date, this.onBlur)}
+                    dateRender={(date, today) => this.handlePickerRender(date, today, "end")}
                     placeholder={lang.form["date_release_placeholder"]}
                     disabledDate={this.disabledReleasedDates}
                     value={form.date_release}
@@ -359,6 +496,7 @@ class FinalCalculator extends React.Component {
                   onChange={v => this.setFormField("available_vacation_days", v)}
                   value={form.available_vacation_days}
                   style={{ width: "54px" }}
+                  onBlur={this.onBlur}
                   min={SALARY_MIN}
                   name="available_vacation_days"
                   size="large"
@@ -371,6 +509,7 @@ class FinalCalculator extends React.Component {
                   value={this.totalVacationDays}
                   style={{ width: "54px" }}
                   readOnly={true}
+                  onBlur={this.onBlur}
                   min={0}
                   type="number"
                   size="large"
@@ -382,6 +521,7 @@ class FinalCalculator extends React.Component {
                   onChange={v => this.setFormField("used_vacation_days", v, this.autoFillUnusedVacationDays)}
                   value={form.used_vacation_days}
                   style={{ width: "54px" }}
+                  onBlur={this.onBlur}
                   max={this.totalVacationDays}
                   min={0}
                   onInput={e => this.handleInputValue(e)}
@@ -409,6 +549,7 @@ class FinalCalculator extends React.Component {
                     width: "54px",
                   }}
                   max={this.totalVacationDays}
+                  onBlur={this.onBlur}
                   min={0}
                   onInput={e => this.handleInputValue(e)}
                   name="unused_vacation_days"
@@ -504,7 +645,7 @@ class FinalCalculator extends React.Component {
         </Col>
         {/*className="calculator-result"*/}
         <Col xs={24} sm={24} md={24} lg={8} xl={8} xxl={8} className="result" ref={this.col}>
-          <div style={{padding:'0 10px'}}>
+          <div>
             <FormLabel style={{ margin: 0 }}>{lang.result.title}</FormLabel>
 
             <UnderLine />
@@ -549,15 +690,6 @@ class FinalCalculator extends React.Component {
     this.dateToInput.addEventListener("input", this.handlePickerInput)
 
     window.addEventListener("scroll", this.handleWindowScroll)
-
-    window.onscroll = () => {
-      if (this.col.current.getBoundingClientRect().top <= 0) {
-        this.col.current.classList.add("fixed")
-        this.col.current.children[0].style.width = this.rowWidth.current.clientWidth*33.3333333/100-20+ 'px'
-      }else{
-        this.col.current.classList.remove('fixed')
-      }
-    }
   }
 
   componentWillUnmount() {

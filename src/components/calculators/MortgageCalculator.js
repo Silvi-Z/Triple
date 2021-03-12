@@ -164,8 +164,8 @@ class MortgageCalculator extends React.Component {
           console.log(e)
         } finally {
           this.setLoading(false)
-
-          document.body.scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" })
+          //
+          // document.body.scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" })
         }
       }
     } else {
@@ -173,8 +173,8 @@ class MortgageCalculator extends React.Component {
         if (!this.state.calculated) {
           this.setState({ calculated: true })
         }
-
-        document.body.scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" })
+        //
+        // document.body.scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" })
       })
     }
   }

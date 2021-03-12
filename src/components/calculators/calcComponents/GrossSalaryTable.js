@@ -4,11 +4,13 @@ import { Select } from "antd"
 import { cloneDeep, isEqual, isNull } from "lodash"
 import { months, years } from "../utilities/vacation"
 import { SALARY_MAX, SALARY_MIN } from "../utilities/salary"
-import { CalculatorTable, CalculatorCol, CalculatorInput, CalculatorSelect } from "../styled"
+import { CalculatorCol, CalculatorInput, CalculatorSelect, CalculatorTable } from "../styled"
 
 class GrossSalaryTable extends React.Component {
   constructor(props) {
     super(props)
+
+    this.onBlur = props.onBlur
 
     this.state = {
       items: cloneDeep(props.items),
@@ -29,13 +31,13 @@ class GrossSalaryTable extends React.Component {
 
   setField({ name, v, i }, cb) {
     let items = cloneDeep(this.state.items)
-    items[i][name] = v
+    items[i][name] = v ? v : 0
 
     this.setState({ items }, cb)
   }
 
   autoFillItems() {
-    const [ item ] = this.state.items
+    const [item] = this.state.items
     const { month, year } = item
 
     if (!isNull(month) && year) {
@@ -84,7 +86,7 @@ class GrossSalaryTable extends React.Component {
                     onChange={v => this.setField({ name: "month", v, i }, this.autoFillItems)}
                   >
                     {months.arm.map((month, i) => (
-                      <Select.Option style={{textAlign: 'left'}} value={i} key={`month-${month}`}>
+                      <Select.Option style={{ textAlign: "left" }} value={i} key={`month-${month}`}>
                         {month}
                       </Select.Option>
                     ))}
@@ -97,7 +99,7 @@ class GrossSalaryTable extends React.Component {
                     onChange={v => this.setField({ name: "year", v, i }, this.autoFillItems)}
                   >
                     {years(20).map(year => (
-                      <Select.Option style={{textAlign: 'left'}} value={year} key={`year-${year}`}>
+                      <Select.Option style={{ textAlign: "left" }} value={year} key={`year-${year}`}>
                         {year}
                       </Select.Option>
                     ))}
@@ -112,6 +114,7 @@ class GrossSalaryTable extends React.Component {
                 parser={v => v.replace(/\$\s?|(,*)/g, "")}
                 style={{ width: "100%" }}
                 value={item.salary}
+                onBlur={this.onBlur}
                 min={SALARY_MIN}
                 max={SALARY_MAX}
                 step={1000}

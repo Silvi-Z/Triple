@@ -8,18 +8,15 @@ import {
   CalculatorInput,
   CalculatorSelect,
   FormLabel,
-  H1Styled,
   Label,
   RadioLabel,
-  TextStyled,
   UnderLine,
 } from "./styled"
 import triple from "../../api/triple"
 import Subsidy from "../../calculators/Subsidy"
 import GrossSalaryTable from "./calcComponents/GrossSalaryTable"
 import CalculatorCardResult from "./calcComponents/CalculatorCardResult"
-import { workingDaysInRangeForSubsidy } from "./utilities/vacation"
-import ReactDOM from "react-dom"
+import { isHoliday, isWeekend, workingDaysInRangeForSubsidy } from "./utilities/vacation"
 
 moment.locale("en", {
   week: {
@@ -47,9 +44,12 @@ class SubsidyCalculator extends React.Component {
       form: { ...Subsidy.form },
       result: { subsidy: null },
       calculated: false,
+      valid: false,
     }
     this.calculator = new Subsidy()
     this.availableYears = [2019, 2020, 2021]
+    this.holidays = []
+    this.workdays = []
   }
 
   get amounts() {
@@ -146,16 +146,13 @@ class SubsidyCalculator extends React.Component {
     }
   }
 
-  get colElement() {
-    return ReactDOM.findDOMNode(/**@type Element */this.col.current)
-  }
-
-  get rowElement() {
-    return ReactDOM.findDOMNode(/**@type Element */this.row.current)
-  }
-
-  get rowElementOffsetTop() {
-    return this.rowElement.getBoundingClientRect().top
+  fetchDays() {
+    triple.get("/api/days")
+      .then(res => {
+        this.holidays = res.data.holidays
+        this.workdays = res.data.workdays
+      })
+      .catch(err => console.log(err))
   }
 
   handleSubmit = () => {
@@ -176,6 +173,7 @@ class SubsidyCalculator extends React.Component {
             pure_subsidy: 0,
           },
           calculated: true,
+          valid: false,
         })
       } else {
         triple.post("/api/counter/salary", {
@@ -200,6 +198,7 @@ class SubsidyCalculator extends React.Component {
                 pure_subsidy: Math.round(salary + stamp_fee),
               },
               calculated: true,
+              valid: false,
             })
           } else {
             this.setState({
@@ -211,12 +210,10 @@ class SubsidyCalculator extends React.Component {
                 pure_subsidy: Math.round(salary + stamp_fee),
               },
               calculated: true,
+              valid: false,
             })
           }
         })
-          .finally(() => {
-            document.body.scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" })
-          })
       }
     })
   }
@@ -256,6 +253,7 @@ class SubsidyCalculator extends React.Component {
       this.setField("schedule", 5)
       this.autocompleteDays()
     }
+    this.onBlur()
   }
 
   autocompleteDays() {
@@ -284,9 +282,9 @@ class SubsidyCalculator extends React.Component {
   changeYear() {
     const { start, end } = this.state.form
     if (this.isTypeMaternity && start) {
-      this.setField("year", start.year())
+      this.setField("year", start.year(), this.onBlur)
     } else if (this.isTypeDisability && end) {
-      this.setField("year", end.year())
+      this.setField("year", end.year(), this.onBlur)
     }
   }
 
@@ -295,7 +293,7 @@ class SubsidyCalculator extends React.Component {
       start: null,
       end: null,
     }
-    this.setFields(fields)
+    this.setFields(fields, this.onBlur)
   }
 
   autocompleteEnd() {
@@ -320,6 +318,12 @@ class SubsidyCalculator extends React.Component {
     }
   }
 
+  onBlur = () => {
+    this.setState(prevState => (
+      { valid: true }
+    ), this.state.calculated ? this.handleSubmit : null)
+  }
+
   handleInputValue(e) {
     let inputValue = e.target.value
     const inputName = e.target.name
@@ -339,18 +343,110 @@ class SubsidyCalculator extends React.Component {
     this.setField(inputName, inputValue)
   }
 
+  handlePickerRender(date, today, range) {
+    const { form } = this.state
+
+    const condition = range === "start"
+      ? form.end && (date.isSameOrAfter(form.end, "day"))
+      : !form.start || (date.isSameOrBefore(form.start, "day"))
+
+    if (date.isSame(today, "day")) {
+      return <div className={
+        !condition
+          ? "ant-picker-cell-inner ant-picker-cell-today"
+          : "ant-picker-cell-inner"
+      }>
+        {date.format("D")}
+        {this.workdays.length > 0
+        && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD"))
+        && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title &&
+        <span className={"day_title"}>
+                  {this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title}
+                </span>
+        || this.holidays.length > 0
+        && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD"))
+        && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title &&
+        <span className={"day_title"}>
+                  {this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title}
+                </span>
+        }
+      </div>
+    } else if (isHoliday(date, this.holidays)) {
+      return <div className={
+        !condition
+          ? "ant-picker-cell-inner ant-picker-cell-holiday"
+          : "ant-picker-cell-inner"
+      }>
+        {date.format("D")}
+        {this.workdays.length > 0
+        && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD"))
+        && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title &&
+        <span className={"day_title"}>
+                  {this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title}
+                </span>
+        || this.holidays.length > 0
+        && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD"))
+        && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title &&
+        <span className={"day_title"}>
+                  {this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title}
+                </span>
+        }
+      </div>
+    } else if (isWeekend(date, form.schedule)) {
+      return <div className={
+        !condition
+          ? "ant-picker-cell-inner ant-picker-cell-weekend"
+          : "ant-picker-cell-inner"
+      }>
+        {date.format("D")}
+        {this.workdays.length > 0
+        && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD"))
+        && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title &&
+        <span className={"day_title"}>
+                  {this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title}
+                </span>
+        || this.holidays.length > 0
+        && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD"))
+        && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title &&
+        <span className={"day_title"}>
+                  {this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title}
+                </span>
+        }
+      </div>
+    } else {
+      return <div className="ant-picker-cell-inner">
+        {date.format("D")}
+        {this.workdays.length > 0
+        && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD"))
+        && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title &&
+        <span className={"day_title"}>
+                  {this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title}
+                </span>
+        || this.holidays.length > 0
+        && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD"))
+        && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title &&
+        <span className={"day_title"}>
+                  {this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title}
+                </span>
+        }
+      </div>
+    }
+  }
+
+
+  changeState = () => {
+    this.setState({ valid: true })
+  }
+
   componentDidUpdate(prevProps, prevState, snapshot) {
-    if (!isEqual(prevState.form, this.state.form) && this.state.calculated) {
+    if (!isEqual(prevState.form, this.state.form) && this.state.calculated && this.state.valid) {
       this.handleSubmit()
     }
   }
 
   componentDidMount() {
+    this.fetchDays()
     window.addEventListener("scroll", this.handleWindowScroll)
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener("scroll", this.handleWindowScroll)
   }
 
   render() {
@@ -383,6 +479,7 @@ class SubsidyCalculator extends React.Component {
                   size="large"
                   value={form.year}
                   className={"yearSelect"}
+                  onBlur={this.onBlur}
                   style={{ maxWidth: "424px", width: "90px" }}
                   onChange={value => this.setField("year", value, this.changeDates)}
                 >
@@ -415,8 +512,10 @@ class SubsidyCalculator extends React.Component {
                   <Form.Item style={{ marginRight: "25px" }} label={<Label>{lang.form.start}</Label>}>
                     <CalculatorDatePicker
                       onChange={date => this.setField("start", date, this.autocompleteDays)}
+                      dateRender={(date, today) => this.handlePickerRender(date, today, "start")}
                       placeholder={lang.form.dates_placeholder}
                       value={form.start}
+                      onBlur={this.onBlur}
                       format="DD.MM.YYYY"
                       name="start"
                       size="large"
@@ -426,8 +525,10 @@ class SubsidyCalculator extends React.Component {
                   <Form.Item label={<Label>{lang.form.end}</Label>}>
                     <CalculatorDatePicker
                       onChange={date => this.setField("end", date, this.autocompleteDays)}
+                      dateRender={(date, today) => this.handlePickerRender(date, today, "end")}
                       placeholder={lang.form.dates_placeholder}
                       value={form.end}
+                      onBlur={this.onBlur}
                       format="DD.MM.YYYY"
                       size="large"
                       name="end"
@@ -444,6 +545,7 @@ class SubsidyCalculator extends React.Component {
                   value={form.days}
                   onInput={e => this.handleInputValue(e)}
                   name="days"
+                  onBlur={this.onBlur}
                   size="large"
                   min={1}
                   max={180}
@@ -473,7 +575,7 @@ class SubsidyCalculator extends React.Component {
                 name="tax_field"
               >
                 <Radio.Group
-                  onChange={e => this.setField("tax_field", e.target.value)}
+                  onChange={e => this.setField("tax_field", e.target.value, this.onBlur)}
                   value={form.tax_field}
                 >
                   <Radio style={radioStyle} value={Subsidy.TAX_COMMON}>
@@ -496,7 +598,7 @@ class SubsidyCalculator extends React.Component {
                 name="tax_field"
               >
                 <Radio.Group
-                  onChange={e => this.setField("tax_field", e.target.value)}
+                  onChange={e => this.setField("tax_field", e.target.value, this.onBlur)}
                   value={form.tax_field}
                 >
                   <Radio style={radioStyle} value={Subsidy.TAX_COMMON}>
@@ -519,7 +621,7 @@ class SubsidyCalculator extends React.Component {
               {this.isTypeDisability && this.isWorkHired ?
                 <Form.Item label={lang.form.schedule} labelCol={{ span: 24 }}>
                   <Radio.Group
-                    onChange={e => this.setField("schedule", e.target.value)}
+                    onChange={e => this.setField("schedule", e.target.value, this.onBlur)}
                     value={form.schedule}
                   >
                     <Radio value={5}>
@@ -540,6 +642,7 @@ class SubsidyCalculator extends React.Component {
                       onChange={v => this.setField("amount", v)}
                       parser={v => v.replace(/\$\s?|(,*)/g, "")}
                       value={form.amount}
+                      onBlur={this.onBlur}
                       max={this.amountMaxValue}
                       step={1000}
                       name="amount"
@@ -557,6 +660,7 @@ class SubsidyCalculator extends React.Component {
                   onChange={v => this.setField("income", v)}
                   parser={v => v.replace(/\$\s?|(,*)/g, "")}
                   value={form.income}
+                  onBlur={this.onBlur}
                   step={1000}
                   name="income"
                   size="large"
@@ -581,19 +685,20 @@ class SubsidyCalculator extends React.Component {
               {this.isNotStatic ? <GrossSalaryTable
                 lang={lang.gross}
                 items={this.amounts}
+                onBlur={this.onBlur}
                 onChange={avg => this.calculator.setAvg(avg)}
                 setDate={date => this.setField("start", date)}
               /> : null}
 
               {/* Submit button */}
               <Form.Item style={{ marginTop: "50px" }}>
-                <ButtonSubmit htmlType="submit" shape="round" size="large">
+                <ButtonSubmit onClick={this.changeState} htmlType="submit" shape="round" size="large">
                   {lang.calculate}
                 </ButtonSubmit>
               </Form.Item>
             </Form>
           </Card>
-        </Col >
+        </Col>
 
         <Col xs={24} sm={24} md={24} lg={8} xl={8} xxl={8} className="result" ref={this.col}>
           <div>

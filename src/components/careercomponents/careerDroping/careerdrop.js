@@ -50,6 +50,7 @@ const CareerDropWrapper = ({
             <CareerSection>{data[`description_${lang}`]}</CareerSection>
         </CareerWrapper>
         <FormCareer
+          data={data}
           seotitle={seotitle}
           seodescription={seodescription}
           seolang={seolang}

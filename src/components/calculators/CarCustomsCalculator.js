@@ -1,19 +1,19 @@
 import React from "react"
 import { isEqual } from "lodash"
-import { Row, Col, Card, Form, Radio, Divider } from "antd"
+import { Col, Divider, Form, Radio, Row } from "antd"
 import {
   ButtonSubmit,
   CalculatorDatePicker,
-  CalculatorInput, CalculatorsCard,
+  CalculatorInput,
+  CalculatorsCard,
   FormLabel,
-  H1Styled,
   Label,
-  TextStyled,
   UnderLine,
 } from "./styled"
 import VehicleCustoms from "../../calculators/VehicleCustoms"
 import CalculatorCardResult from "./calcComponents/CalculatorCardResult"
 import triple from "../../api/triple"
+import { isHoliday, isWeekend } from "./utilities/vacation"
 
 const firstRadioButtonStyles = {
   borderTopLeftRadius: "5px",
@@ -39,9 +39,9 @@ class CarCustomsCalculator extends React.Component {
       .catch(err => {
         this.setState({
           result: { fee: null, tax: null, vat: null },
-          calculated: false
+          calculated: false,
         })
-      });
+      })
   }
 
   reset = field => {
@@ -59,10 +59,21 @@ class CarCustomsCalculator extends React.Component {
       rates: {},
       calculated: false,
     }
+    this.holidays = []
+    this.workdays = []
   }
 
   setField(name, value, cb) {
     this.setState({ form: { ...this.state.form, [name]: value } }, cb)
+  }
+
+  fetchDays() {
+    triple.get("/api/days")
+      .then(res => {
+        this.holidays = res.data.holidays
+        this.workdays = res.data.workdays
+      })
+      .catch(err => console.log(err))
   }
 
   getCBARates() {
@@ -80,8 +91,98 @@ class CarCustomsCalculator extends React.Component {
       .catch(err => console.log(err))
   }
 
+  handlePickerRender(date, today, range) {
+    const { form } = this.state
+
+    const condition = range === "start"
+      && form.date && (date.isSameOrAfter(form.date, "day"))
+
+    if (date.isSame(today, "day")) {
+      return <div className={
+        !condition
+          ? "ant-picker-cell-inner ant-picker-cell-today"
+          : "ant-picker-cell-inner"
+      }>
+        {date.format("D")}
+        {this.workdays.length > 0
+        && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD"))
+        && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title &&
+        <span className={"day_title"}>
+                  {this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title}
+                </span>
+        || this.holidays.length > 0
+        && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD"))
+        && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title &&
+        <span className={"day_title"}>
+                  {this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title}
+                </span>
+        }
+      </div>
+    } else if (isHoliday(date, this.holidays)) {
+      return <div className={
+        !condition
+          ? "ant-picker-cell-inner ant-picker-cell-holiday"
+          : "ant-picker-cell-inner"
+      }>
+        {date.format("D")}
+        {this.workdays.length > 0
+        && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD"))
+        && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title &&
+        <span className={"day_title"}>
+                  {this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title}
+                </span>
+        || this.holidays.length > 0
+        && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD"))
+        && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title &&
+        <span className={"day_title"}>
+                  {this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title}
+                </span>
+        }
+      </div>
+    } else if (isWeekend(date, 5)) {
+      return <div className={
+        !condition
+          ? "ant-picker-cell-inner ant-picker-cell-weekend"
+          : "ant-picker-cell-inner"
+      }>
+        {date.format("D")}
+        {this.workdays.length > 0
+        && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD"))
+        && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title &&
+        <span className={"day_title"}>
+                  {this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title}
+                </span>
+        || this.holidays.length > 0
+        && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD"))
+        && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title &&
+        <span className={"day_title"}>
+                  {this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title}
+                </span>
+        }
+      </div>
+    } else {
+      return <div className="ant-picker-cell-inner">
+        {date.format("D")}
+        {this.workdays.length > 0
+        && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD"))
+        && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title &&
+        <span className={"day_title"}>
+                  {this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title}
+                </span>
+        || this.holidays.length > 0
+        && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD"))
+        && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title &&
+        <span className={"day_title"}>
+                  {this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title}
+                </span>
+        }
+      </div>
+    }
+  }
+
   componentDidMount() {
     this.getCBARates()
+    this.fetchDays()
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
@@ -104,7 +205,7 @@ class CarCustomsCalculator extends React.Component {
           {/*  </div>*/}
           {/*</Row>*/}
 
-          <CalculatorsCard bordered={false} style={{marginTop: '30px'}}>
+          <CalculatorsCard bordered={false} style={{ marginTop: "30px" }}>
             <Form
               onFinish={this.handleSubmit}
               initialValues={form}
@@ -143,10 +244,10 @@ class CarCustomsCalculator extends React.Component {
               <Form.Item label={<Label>{lang.form.year}</Label>}>
                 <CalculatorDatePicker
                   onChange={date => this.setField("date", date)}
+                  dateRender={(date, today) => this.handlePickerRender(date, today, "start")}
                   value={form.date}
                   placeholder={null}
                   allowClear={true}
-                  format="DD.MM.YYYY"
                   size="large"
                 />
               </Form.Item>
@@ -189,7 +290,7 @@ class CarCustomsCalculator extends React.Component {
                     size="large"
                   />
                 </Form.Item>
-              : null}
+                : null}
 
               <Form.Item label={<Label>{lang.form.capacity}</Label>}>
                 <CalculatorInput
@@ -200,7 +301,7 @@ class CarCustomsCalculator extends React.Component {
                 />
               </Form.Item>
 
-              <Form.Item style={{marginTop: '50px'}}>
+              <Form.Item style={{ marginTop: "50px" }}>
                 <ButtonSubmit htmlType="submit" shape="round" size="large">
                   {lang.calculate}
                 </ButtonSubmit>
@@ -226,19 +327,20 @@ class CarCustomsCalculator extends React.Component {
                         dangerouslySetInnerHTML={{ __html: result[key][form.currency].sym }}
                       />
                       {result[key][form.currency].amount}
+                      <br />
                     </span>
-                  : null}
+                    : null}
 
-                  {(calculated && result[key].hasOwnProperty(form.currency) && form.currency !== 'AMD') ?
+                  {(calculated && result[key].hasOwnProperty(form.currency) && form.currency !== "AMD") ?
                     <span>
                       <span
                         className="currency-symbol"
-                        style={{marginLeft: '14px'}}
-                        dangerouslySetInnerHTML={{__html: '&#1423;'}}
+                        style={{ marginLeft: "14px" }}
+                        dangerouslySetInnerHTML={{ __html: "&#1423;" }}
                       />
-                      {result[key]['AMD'].amount}
+                      {result[key]["AMD"].amount}
                     </span>
-                  : null }
+                    : null}
                 </>
               }
             />,
