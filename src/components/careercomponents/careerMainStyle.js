@@ -40,11 +40,14 @@ export const H1Styled = styled.h1`
 `
 
 export const PStyled = styled.p`
+  background-color: white;
+  padding: 25px 35px;
+  border-radius: 10px;
+  font-size: 16px;
   white-space: pre-wrap;
   margin-bottom:0;
   width: 100%;
   font-family: ArialAMU;
-  font-size: 18px;
   text-align: center;
   color: #000000;
   @media only screen and (max-width: 1024px) {

@@ -1,5 +1,5 @@
 /*eslint-disable */
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useRef } from "react"
 import PropTypes from "prop-types"
 import { useTranslation } from "react-i18next"
 import withI18next from "../i18n/withI18next"
@@ -44,7 +44,7 @@ const FooterCust = styled(Footer)`
 const Layout = ({ children, location, pageContext: { locale, originalPath, localeResources } }) => {
   const { i18n, t } = useTranslation();
   const { layout } = useTranslations();
-  
+
   useEffect(() => {
     i18n.changeLanguage(locale)
   }, [location, i18n, locale]);
@@ -57,6 +57,18 @@ const Layout = ({ children, location, pageContext: { locale, originalPath, local
     (menuColorProp==="") ? setMenuColorProp("#1C1D21"): setMenuColorProp("");
     document.querySelector("body").classList.toggle("opened_response_menu")
   }
+  const footerHeight = useRef()
+  const top = useRef()
+
+  // useEffect(()=>{
+  //   window.onscroll=()=>{
+  //     if (this.top.current.getBoundingClientRect().top <=0){
+  //       this.top.current.classList.add('fixed')
+  //     }else {
+  //       this.top.current.classList.remove('fixed')
+  //     }
+  //   }
+  // })
   
   return (
     <>
@@ -74,6 +86,7 @@ const Layout = ({ children, location, pageContext: { locale, originalPath, local
       <Main>{children}</Main>
 
       <FooterCust
+        ref={footerHeight}
         backcolor={responseWrapper.toString()}
         langtext={layout}
       >

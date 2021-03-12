@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { Col, Form, Radio, Row, Select } from "antd"
 import ReactDOM from "react-dom"
 import triple from "../../api/triple"
@@ -59,6 +59,10 @@ const availableYears = [2019, 2020, 2021]
 
 class SalaryCalculator extends React.Component {
   daysInput = React.createRef()
+
+  top = React.createRef()
+
+  distance = React.createRef()
 
   dateToPicker = React.createRef()
 
@@ -370,8 +374,6 @@ class SalaryCalculator extends React.Component {
       tax_field,
       year,
       amount: gross_salary,
-    }).finally(() => {
-      document.body.scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" })
     })
 
     const result = Object.assign({}, res.data, { gross_salary })
@@ -381,9 +383,7 @@ class SalaryCalculator extends React.Component {
 
   async calculateByTable() {
     let { form } = this.state
-    const res = await triple.post("/api/counter/salary", form).finally(() => {
-      document.body.scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" })
-    })
+    const res = await triple.post("/api/counter/salary", form)
     this.setState({ result: res.data, loading: false, calculated: 2 })
   }
 
@@ -414,13 +414,22 @@ class SalaryCalculator extends React.Component {
     this.autoCalculate(prevState)
   }
 
+  componentDidMount() {
+    window.onscroll = () => {
+      if (this.top.current.getBoundingClientRect().top <= 0) {
+        this.top.current.classList.add("fixed")
+      }else{
+        this.top.current.classList.remove('fixed')
+      }
+    }
+  }
+
   render() {
     const { langText } = this.props
     const { form, result, loading } = this.state
-
     return (
       <>
-        <Row align="start" gutter={20}>
+        <Row ref={this.distance} align="start" gutter={20}>
           <Col span={16}>
             {/*<Row align="center" style={{ justifyContent: "space-between" }}>*/}
             {/*  <H1Styled>{langText.title}</H1Styled>*/}
@@ -430,7 +439,6 @@ class SalaryCalculator extends React.Component {
             {/*  <H1Styled>{langText.title}</H1Styled>*/}
             {/*  <TextStyled>{langText.paragraph}</TextStyled>*/}
             {/*</div>*/}
-
             <CalculatorsCard bordered={false}>
               <Form.Item style={{ textAlign: "right" }}>
                 <CalculatorSelect
@@ -643,48 +651,50 @@ class SalaryCalculator extends React.Component {
               </Form>
             </CalculatorsCard>
           </Col>
-          <Col span={8} className="result">
-            <FormLabel style={{ margin: 0 }}>{langText.result_title}</FormLabel>
+          <Col span={8} className="result" ref={this.top}>
+            <div>
+              <FormLabel style={{ margin: 0 }}>{langText.result_title}</FormLabel>
 
-            <UnderLine />
-            {result.gross_salary &&
-            <CalculatorCardResult
-              title={langText.gross_salary}
-              text={result.gross_salary}
-              loading={loading}
-              tooltip
-            />
-            }
+              <UnderLine />
+              {result.gross_salary &&
+              <CalculatorCardResult
+                title={langText.gross_salary}
+                text={result.gross_salary}
+                loading={loading}
+                tooltip
+              />
+              }
 
-            <CalculatorCardResult
-              title={langText["income_tax_label"]}
-              text={result.income_tax}
-              loading={loading}
-              tooltip={form.tax_field === TAX_FIELD_ENTERPRISE ? "prompt text" : null}
-            />
-            <CalculatorCardResult
-              title={langText["pension_paymet_label"]}
-              text={result.pension_fee}
-              loading={loading}
-              tooltip
-            />
-            <CalculatorCardResult
-              title={langText["stamp_duty_label"]}
-              text={result.stamp_fee}
-              loading={loading}
-              tooltip
-            />
-            <CalculatorCardResult
-              title={langText["general_storage_label"]}
-              text={result.total_fee}
-              loading={loading}
-            />
+              <CalculatorCardResult
+                title={langText["income_tax_label"]}
+                text={result.income_tax}
+                loading={loading}
+                tooltip={form.tax_field === TAX_FIELD_ENTERPRISE ? "prompt text" : null}
+              />
+              <CalculatorCardResult
+                title={langText["pension_paymet_label"]}
+                text={result.pension_fee}
+                loading={loading}
+                tooltip
+              />
+              <CalculatorCardResult
+                title={langText["stamp_duty_label"]}
+                text={result.stamp_fee}
+                loading={loading}
+                tooltip
+              />
+              <CalculatorCardResult
+                title={langText["general_storage_label"]}
+                text={result.total_fee}
+                loading={loading}
+              />
 
-            <CalculatorCardResult
-              title={form.from === 1 ? langText["dirty_to_clean_salary"] : langText["clean_dirty_to_salary"]}
-              text={result.salary}
-              loading={loading}
-            />
+              <CalculatorCardResult
+                title={form.from === 1 ? langText["dirty_to_clean_salary"] : langText["clean_dirty_to_salary"]}
+                text={result.salary}
+                loading={loading}
+              />
+            </div>
 
           </Col>
         </Row>

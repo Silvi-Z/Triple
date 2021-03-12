@@ -56,6 +56,8 @@ class FinalCalculator extends React.Component {
 
   row = React.createRef()
 
+  rowWidth = React.createRef()
+
   col = React.createRef()
 
   constructor(props) {
@@ -293,7 +295,7 @@ class FinalCalculator extends React.Component {
     const { lang } = this.props
 
     return (
-      <Row align="start" gutter={20}>
+      <Row align="start" gutter={20} ref={this.rowWidth}>
         <Col xs={24} sm={24} md={24} lg={16} xl={16} xxl={16} ref={this.row}>
           {/*<Row align="center" style={{ justifyContent: "space-between" }}>*/}
           {/*  <div className="textSec">*/}
@@ -502,39 +504,41 @@ class FinalCalculator extends React.Component {
         </Col>
         {/*className="calculator-result"*/}
         <Col xs={24} sm={24} md={24} lg={8} xl={8} xxl={8} className="result" ref={this.col}>
-          <FormLabel style={{ margin: 0 }}>{lang.result.title}</FormLabel>
+          <div style={{padding:'0 10px'}}>
+            <FormLabel style={{ margin: 0 }}>{lang.result.title}</FormLabel>
 
-          <UnderLine />
+            <UnderLine />
 
-          <CalculatorCardResult
-            title={lang.result["total_amount"]}
-            text={calculated ? this.amount : 0}
-            loading={loading}
-          />
+            <CalculatorCardResult
+              title={lang.result["total_amount"]}
+              text={calculated ? this.amount : 0}
+              loading={loading}
+            />
 
-          <CalculatorCardResult
-            title={lang.result["income_tax"]}
-            text={result.income_tax}
-            loading={loading}
-            tooltip={form.tax_field === TAX_FIELD_ENTERPRISE ? "prompt text" : null}
-          />
+            <CalculatorCardResult
+              title={lang.result["income_tax"]}
+              text={result.income_tax}
+              loading={loading}
+              tooltip={form.tax_field === TAX_FIELD_ENTERPRISE ? "prompt text" : null}
+            />
 
-          <CalculatorCardResult
-            title={lang.result["pension_fee"]}
-            text={result.pension_fee}
-            loading={loading}
-          />
+            <CalculatorCardResult
+              title={lang.result["pension_fee"]}
+              text={result.pension_fee}
+              loading={loading}
+            />
 
-          <CalculatorCardResult
-            title={lang.result["total_fee"]}
-            text={result.total_fee}
-            loading={loading}
-          />
-          <CalculatorCardResult
-            title={lang.result["net_amount"]}
-            text={result.salary}
-            loading={loading}
-          />
+            <CalculatorCardResult
+              title={lang.result["total_fee"]}
+              text={result.total_fee}
+              loading={loading}
+            />
+            <CalculatorCardResult
+              title={lang.result["net_amount"]}
+              text={result.salary}
+              loading={loading}
+            />
+          </div>
         </Col>
       </Row>
     )
@@ -545,6 +549,15 @@ class FinalCalculator extends React.Component {
     this.dateToInput.addEventListener("input", this.handlePickerInput)
 
     window.addEventListener("scroll", this.handleWindowScroll)
+
+    window.onscroll = () => {
+      if (this.col.current.getBoundingClientRect().top <= 0) {
+        this.col.current.classList.add("fixed")
+        this.col.current.children[0].style.width = this.rowWidth.current.clientWidth*33.3333333/100-20+ 'px'
+      }else{
+        this.col.current.classList.remove('fixed')
+      }
+    }
   }
 
   componentWillUnmount() {

@@ -64,9 +64,12 @@ export const H2Styled = styled.h2`
 `
 
 export const PStyled = styled.p`
+  background-color: white;
+  padding: 25px 35px;
+  border-radius: 10px;
+  font-size: 16px;
   width: 100%;
   font-family: ArialAMU;
-  font-size: 18px;
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;

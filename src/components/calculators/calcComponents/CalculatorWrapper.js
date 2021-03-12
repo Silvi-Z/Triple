@@ -106,7 +106,7 @@ const CalculatorWrapper = ({ ctx, children}) => {
         {/*{console.log([ctx.originalPath.split('/')[2].replace('-' , '_')])}*/}
         {/*{console.log(selectCalculator.title)}*/}
 
-        <Col className="calculatorsMenu" span={6} style={{paddingRight: '10px', paddingLeft: '35px'}}>
+        <Col className="calculatorsMenu" xl={6} style={{paddingRight: '10px', paddingLeft: '35px'}}>
           <CalculatorNav t={calculator} locale={ctx.locale} />
         </Col>
         <Col span={18} style={{paddingRight: '35px'}}>

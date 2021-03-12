@@ -92,8 +92,8 @@ export const DropHeadingTitle = styled.div`
 export const DropHeadingButton = styled.div``
 
 export const FormWrapper = styled.div`
-  display:flex;
   width:100%;
+  display:flex;
   transition: .3s ease-in-out;
   max-height: 1px;
   border-top:1px solid black;
@@ -101,7 +101,9 @@ export const FormWrapper = styled.div`
   padding: 0 24px;
   border-bottom:1px solid #D0D0D0;
   opacity: 0;
+  pointer-events:none;
   &.openTextCol{
+  pointer-events:unset;
     max-height: 1000px;
     padding: 48px 24px;
     opacity:100%;
@@ -136,6 +138,7 @@ export const CareerWrapper = styled.div`
 
 
 export const CareerSection = styled.p`
+  white-space: pre-wrap;
   max-width: 600px;
   margin-right: 50px;
   text-indent:0!important;

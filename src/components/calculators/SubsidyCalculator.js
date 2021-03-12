@@ -38,6 +38,8 @@ class SubsidyCalculator extends React.Component {
 
   row = React.createRef()
 
+  rowWidth = React.createRef()
+
   constructor(props) {
     super(props)
 
@@ -220,14 +222,22 @@ class SubsidyCalculator extends React.Component {
   }
 
   handleWindowScroll = () => {
-    if (
-      (window.scrollY + this.colElement.offsetHeight + this.rowElementOffsetTop) >=
-      (this.rowElementOffsetTop + this.rowElement.offsetHeight)
-    ) {
-      this.colElement.classList.add("abs")
-    } else {
-      this.colElement.classList.remove("abs")
+    window.onscroll = () => {
+      if (this.col.current.getBoundingClientRect().top <= 0) {
+        this.col.current.classList.add("fixed")
+        this.col.current.children[0].style.width = this.rowWidth.current.clientWidth*33.3333333/100-20+ 'px'
+      }else{
+        this.col.current.classList.remove('fixed')
+      }
     }
+    // if (
+    //   (window.scrollY + this.colElement.offsetHeight + this.rowElementOffsetTop) >=
+    //   (this.rowElementOffsetTop + this.rowElement.offsetHeight)
+    // ) {
+    //   this.colElement.classList.add("abs")
+    // } else {
+    //   this.colElement.classList.remove("abs")
+    // }
   }
 
   setField(name, value, cb) {
@@ -350,8 +360,8 @@ class SubsidyCalculator extends React.Component {
     this.calculator.setFields(form)
 
     return (
-      <Row align="start" gutter={20}>
-        <Col xs={24} sm={24} md={24} lg={16} xl={16} xxl={16}>
+      <Row align="start" gutter={20} ref={this.rowWidth}>
+        <Col xs={24} sm={24} md={24} lg={16} xl={16} xxl={16} ref={this.row}>
           {/*<Row align="center" style={{ justifyContent: "space-between" }}>*/}
           {/*  <div className="textSec">*/}
           {/*    <H1Styled>{lang.title}</H1Styled>*/}
@@ -583,46 +593,48 @@ class SubsidyCalculator extends React.Component {
               </Form.Item>
             </Form>
           </Card>
-        </Col>
+        </Col >
 
         <Col xs={24} sm={24} md={24} lg={8} xl={8} xxl={8} className="result" ref={this.col}>
-          <FormLabel style={{ margin: 0 }}>{lang.result.title}</FormLabel>
+          <div>
+            <FormLabel style={{ margin: 0 }}>{lang.result.title}</FormLabel>
 
-          <UnderLine />
+            <UnderLine />
 
-          <CalculatorCardResult
-            title={lang.result["all_pure_subsidy"]}
-            text={result.subsidy}
-          />
+            <CalculatorCardResult
+              title={lang.result["all_pure_subsidy"]}
+              text={result.subsidy}
+            />
 
-          <CalculatorCardResult
-            title={lang.result["subsidy_emp"]}
-            text={result.subsidy_emp}
-          />
+            <CalculatorCardResult
+              title={lang.result["subsidy_emp"]}
+              text={result.subsidy_emp}
+            />
 
-          <CalculatorCardResult
-            title={lang.result["subsidy_gov"]}
-            text={result.subsidy_gov}
-          />
+            <CalculatorCardResult
+              title={lang.result["subsidy_gov"]}
+              text={result.subsidy_gov}
+            />
 
-          <CalculatorCardResult
-            title={lang.result["income_tax"]}
-            text={result.income_tax}
-          />
+            <CalculatorCardResult
+              title={lang.result["income_tax"]}
+              text={result.income_tax}
+            />
 
-          <CalculatorCardResult
-            title={lang.result["pure_subsidy"]}
-            text={result.pure_subsidy}
-          />
+            <CalculatorCardResult
+              title={lang.result["pure_subsidy"]}
+              text={result.pure_subsidy}
+            />
 
-          {/*<CalculatorCardResult*/}
-          {/*  title={lang.result["total_fee"]}*/}
-          {/*  text={result.total_fee}*/}
-          {/*/>*/}
-          {/*<CalculatorCardResult*/}
-          {/*  title={lang.result["pure_vacation_amount"]}*/}
-          {/*  text={result.salary}*/}
-          {/*/>*/}
+            {/*<CalculatorCardResult*/}
+            {/*  title={lang.result["total_fee"]}*/}
+            {/*  text={result.total_fee}*/}
+            {/*/>*/}
+            {/*<CalculatorCardResult*/}
+            {/*  title={lang.result["pure_vacation_amount"]}*/}
+            {/*  text={result.salary}*/}
+            {/*/>*/}
+          </div>
         </Col>
       </Row>
     )

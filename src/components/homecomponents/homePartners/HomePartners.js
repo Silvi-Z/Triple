@@ -33,7 +33,7 @@ const Homepartners = ({ langText, lang }) => {
       <ResponsWrapper>
         {partners.map(item => (
           <ContentContainer key={item.name_arm}>
-            <Div>
+            <Div href={item.url} target='_blank'>
               <ServiceNameWrapper>
                 <IconWrapper src={apiUrl.apiUrl + item.image} alt={"icon"}/>
               </ServiceNameWrapper>

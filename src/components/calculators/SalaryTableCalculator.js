@@ -69,6 +69,10 @@ const Logo = require("../../assets/logo.jpeg")
 class SalaryTableCalculator extends React.Component {
   fileInput = React.createRef()
 
+  top = React.createRef()
+
+  rowWidth = React.createRef()
+
   constructor(props) {
     super(props)
 
@@ -354,19 +358,28 @@ class SalaryTableCalculator extends React.Component {
   }
 
   componentDidMount() {
-    this.fetchDays()
+    this.fetchDays();
+    window.onscroll = () => {
+      if (this.top.current.getBoundingClientRect().top <= 0) {
+        this.top.current.classList.add("fixed")
+        this.top.current.children[0].style.width = this.rowWidth.current.clientWidth*33.3333333/100-20+ 'px'
+      }else{
+        this.top.current.classList.remove('fixed')
+      }
+    }
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
     // this.autoCalculate(prevState)
   }
 
+
   render() {
     const { lang } = this.props
     const { form, employees, result, loading } = this.state
 
     return (
-      <Row align="start" gutter={20}>
+      <Row align="start" gutter={20} ref={this.rowWidth}>
         <Col span={16}>
           {/*<div className="textSec">*/}
           {/*  <H1Styled>{lang.title}</H1Styled>*/}
@@ -441,65 +454,66 @@ class SalaryTableCalculator extends React.Component {
           </CalculatorsCard>
         </Col>
 
-        <Col span={8} className="result">
-          <FormLabel style={{ margin: 0 }}>{lang.result.title}</FormLabel>
+        <Col span={8} className="result" ref={this.top}>
+          <div>
+            <FormLabel style={{ margin: 0 }}>{lang.result.title}</FormLabel>
 
-          <UnderLine />
+            <UnderLine />
 
-          <CalculatorCardResult
-            title={lang.result.gross_salary}
-            text={result.gross_salary}
-            loading={loading}
-            tooltip
-          />
+            <CalculatorCardResult
+              title={lang.result.gross_salary}
+              text={result.gross_salary}
+              loading={loading}
+              tooltip
+            />
 
-          <CalculatorCardResult
-            title={lang.result.income_tax}
-            text={result.income_tax}
-            loading={loading}
-            tooltip
-          />
+            <CalculatorCardResult
+              title={lang.result.income_tax}
+              text={result.income_tax}
+              loading={loading}
+              tooltip
+            />
 
-          <CalculatorCardResult
-            title={lang.result.pension_fee}
-            text={result.pension_fee}
-            loading={loading}
-            tooltip
-          />
+            <CalculatorCardResult
+              title={lang.result.pension_fee}
+              text={result.pension_fee}
+              loading={loading}
+              tooltip
+            />
 
-          <CalculatorCardResult
-            title={lang.result.stamp_fee}
-            text={result.stamp_fee}
-            loading={loading}
-            tooltip
-          />
+            <CalculatorCardResult
+              title={lang.result.stamp_fee}
+              text={result.stamp_fee}
+              loading={loading}
+              tooltip
+            />
 
-          <CalculatorCardResult
-            title={lang.result.total_fee}
-            text={result.total_fee}
-            loading={loading}
-          />
+            <CalculatorCardResult
+              title={lang.result.total_fee}
+              text={result.total_fee}
+              loading={loading}
+            />
 
-          <CalculatorCardResult
-            title={form.from === 1 ? lang.result["dirty_to_clean_salary"] : lang.result["clean_to_dirty_salary"]}
-            text={result.salary}
-            loading={loading}
-          />
+            <CalculatorCardResult
+              title={form.from === 1 ? lang.result["dirty_to_clean_salary"] : lang.result["clean_to_dirty_salary"]}
+              text={result.salary}
+              loading={loading}
+            />
 
-          {!form.by && !isEmpty(result) ?
-            <ButtonSubmit
-              style={{ textTransform: "none", width: "100%" }}
-              onClick={this.handleDownload}
-              icon={<DownloadOutlined />}
-              htmlType="button"
-              shape="round"
-              size="large"
-              block
+            {!form.by && !isEmpty(result) ?
+              <ButtonSubmit
+                style={{ textTransform: "none", width: "100%" }}
+                onClick={this.handleDownload}
+                icon={<DownloadOutlined />}
+                htmlType="button"
+                shape="round"
+                size="large"
+                block
 
-            >
-              {lang.result.download}
-            </ButtonSubmit>
-            : null}
+              >
+                {lang.result.download}
+              </ButtonSubmit>: null}
+          </div>
         </Col>
       </Row>
     )

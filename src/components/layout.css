@@ -1847,7 +1847,14 @@ div.currencyField {
 .result.calendarResult {
     margin-top: 0 !important;
 }
-
+.result{
+    transition: 2s;
+}
+.result.fixed > div{
+    position: fixed;
+    top: 0;
+    transition: 2s;
+}
 .ant-row.subsidyAmount {
     flex-wrap: wrap;
 }

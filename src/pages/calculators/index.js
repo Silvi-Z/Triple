@@ -29,6 +29,10 @@ const H1Element = styled.h1`
   }
 `
 const PElement = styled.p`
+  background-color: white;
+  padding: 25px 35px;
+  border-radius: 10px;
+  font-size: 16px;
   font-style: normal;
   font-weight: normal;
   font-size: 18px;
@@ -36,8 +40,7 @@ const PElement = styled.p`
   text-align: center;
   letter-spacing: 0.15px;
   color: #000000;
-  padding-bottom:50px;
-  margin: auto;
+  margin:0 auto 50px;
   width: 100%;
   @media only screen and (max-width:1024px){
     font-size:16px;

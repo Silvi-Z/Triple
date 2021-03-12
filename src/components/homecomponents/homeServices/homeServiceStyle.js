@@ -146,7 +146,7 @@ export const ServiceNameWrapper = styled.div`
     margin:0 auto;
   }
 `
-export const Div = styled.div`
+export const Div = styled.a`
   width:100%;
   position:relative;
   height:100%;

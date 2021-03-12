@@ -62,6 +62,8 @@ class VacationCalculator extends React.Component {
 
   row = React.createRef()
 
+  rowWidth = React.createRef()
+
   col = React.createRef()
 
   constructor(props) {
@@ -346,7 +348,6 @@ class VacationCalculator extends React.Component {
           if (!this.state.calculated) this.setState({ calculated: true })
         })
         .catch(err => console.log(err))
-        .finally(() => document.body.scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" }))
     })
   }
 
@@ -354,6 +355,15 @@ class VacationCalculator extends React.Component {
     this.fetchDays()
     this.dateToInput.addEventListener("input", this.handlePickerInput)
     this.dateFromInput.addEventListener("input", this.handlePickerInput)
+
+    window.onscroll = () => {
+      if (this.col.current.getBoundingClientRect().top <= 0) {
+        this.col.current.classList.add("fixed")
+        this.col.current.children[0].style.width = this.rowWidth.current.clientWidth*33.3333333/100-20+ 'px'
+      }else{
+        this.col.current.classList.remove('fixed')
+      }
+    }
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
@@ -365,14 +375,8 @@ class VacationCalculator extends React.Component {
     const { lang } = this.props
 
     return (
-      <Row align="start" gutter={20} ref={this.row}>
+      <Row align="start" gutter={20} ref={this.rowWidth}>
         <Col xs={24} sm={24} md={24} lg={16} xl={16} xxl={16}>
-          {/*<Row align="center" style={{ justifyContent: "space-between" }}>*/}
-          {/*  <div className="textSec">*/}
-          {/*    <H1Styled>{lang.title}</H1Styled>*/}
-          {/*    <TextStyled>{lang.paragraph}</TextStyled>*/}
-          {/*  </div>*/}
-          {/*</Row>*/}
 
           <CalculatorsCard bordered={false}>
             <Form
@@ -535,34 +539,36 @@ class VacationCalculator extends React.Component {
         </Col>
 
         <Col xs={24} sm={24} md={24} lg={8} xl={8} xxl={8} className="result" ref={this.col}>
-          <FormLabel style={{ margin: 0 }}>{lang.result.title}</FormLabel>
+          <div>
+            <FormLabel style={{ margin: 0 }}>{lang.result.title}</FormLabel>
 
-          <UnderLine />
+            <UnderLine />
 
-          <CalculatorCardResult
-            title={lang.result["gross_vacation_amount"]}
-            text={result.vacation_salary}
-          />
+            <CalculatorCardResult
+              title={lang.result["gross_vacation_amount"]}
+              text={result.vacation_salary}
+            />
 
-          <CalculatorCardResult
-            title={lang.result["income_tax"]}
-            text={result.income_tax}
-            tooltip={form.tax_field === TAX_FIELD_ENTERPRISE ? "prompt text" : null}
-          />
+            <CalculatorCardResult
+              title={lang.result["income_tax"]}
+              text={result.income_tax}
+              tooltip={form.tax_field === TAX_FIELD_ENTERPRISE ? "prompt text" : null}
+            />
 
-          <CalculatorCardResult
-            title={lang.result["pension_fee"]}
-            text={result.pension_fee}
-          />
+            <CalculatorCardResult
+              title={lang.result["pension_fee"]}
+              text={result.pension_fee}
+            />
 
-          <CalculatorCardResult
-            title={lang.result["total_fee"]}
-            text={result.total_fee}
-          />
-          <CalculatorCardResult
-            title={lang.result["pure_vacation_amount"]}
-            text={result.salary}
-          />
+            <CalculatorCardResult
+              title={lang.result["total_fee"]}
+              text={result.total_fee}
+            />
+            <CalculatorCardResult
+              title={lang.result["pure_vacation_amount"]}
+              text={result.salary}
+            />
+          </div>
         </Col>
       </Row>
     )

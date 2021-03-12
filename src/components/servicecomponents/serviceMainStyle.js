@@ -33,15 +33,17 @@ export const H2Styled = styled.h2`
 `
 
 export const PStyled = styled.p`
+  background-color: white;
+  padding: 25px 35px;
+  border-radius: 10px;
+  font-size: 16px;
   width:100%;
   font-family: ArialAMU;
-  font-size: 18px;
   font-weight: normal;
   line-height: 1.88;
   letter-spacing: 0.15px;
   text-align: center;
   color: #000000;
-  padding:30px 0 20px 0;
   margin-bottom:0;
   @media only screen and (max-width:1024px){
     font-size:16px;

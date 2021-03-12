@@ -48,6 +48,10 @@ const form = {
 const availableYears = [2019, 2020, 2021]
 
 class MortgageCalculator extends React.Component {
+  top = React.createRef()
+
+  row = React.createRef()
+
   constructor(props) {
     super(props)
 
@@ -181,12 +185,23 @@ class MortgageCalculator extends React.Component {
     }
   }
 
+  componentDidMount() {
+    window.onscroll = () => {
+      if (this.top.current.getBoundingClientRect().top <= 0) {
+        this.top.current.classList.add("fixed")
+        this.top.current.children[0].style.width = this.row.current.clientWidth*33.3333333/100+ 'px'
+      }else{
+        this.top.current.classList.remove('fixed')
+      }
+    }
+  }
+
   render() {
     const { form, items, tax, loading } = this.state
     const { lang } = this.props
 
     return (
-      <Row align="start" gutter={20}>
+      <Row align="start" gutter={20} ref={this.row}>
         <Col xs={24} sm={24} md={24} lg={16} xl={16} xxl={16}>
           {/*<Row align="center" style={{ justifyContent: "space-between" }}>*/}
           {/*  <div className="textSec">*/}
@@ -331,17 +346,19 @@ class MortgageCalculator extends React.Component {
           </CalculatorsCard>
         </Col>
 
-        <Col xs={24} sm={24} md={24} lg={8} xl={8} xxl={8} className="result">
-          <FormLabel style={{ margin: 0 }}>{lang.result.title}</FormLabel>
+        <Col xs={24} sm={24} md={24} lg={8} xl={8} xxl={8} className="result" ref={this.top}>
+          <div>
+            <FormLabel style={{ margin: 0 }}>{lang.result.title}</FormLabel>
 
-          <UnderLine />
+            <UnderLine />
 
-          <CalculatorCardResult
-            tooltip={form.tax_field === TAX_FIELD_ENTERPRISE ? "prompt text" : null}
-            title={lang.result["income_tax_back"]}
-            loading={loading}
-            text={tax}
-          />
+            <CalculatorCardResult
+              tooltip={form.tax_field === TAX_FIELD_ENTERPRISE ? "prompt text" : null}
+              title={lang.result["income_tax_back"]}
+              loading={loading}
+              text={tax}
+            />
+          </div>
         </Col>
       </Row>
     )
