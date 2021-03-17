@@ -303,6 +303,10 @@ const CalendarCalculator = ({ lang }) => {
     })
   }
 
+  const defaultDate = () => {
+    return moment({ year })
+  }
+
   const handleDateToChange = date => {
     const { date_from } = form
     const range = moment().range(date_from, date)
@@ -361,6 +365,7 @@ const CalendarCalculator = ({ lang }) => {
                       disabledDate={handleDateFromDisabled}
                       onChange={handleDateFromChange}
                       value={form.date_from}
+                      defaultPickerValue={defaultDate()}
                       placeholder={null}
                       allowClear={false}
                       format="DD.MM.YYYY"
@@ -371,9 +376,10 @@ const CalendarCalculator = ({ lang }) => {
                   <Form.Item label={<Label>{lang.form.end}</Label>}>
                     <CalculatorDatePicker
                       dateRender={(date, today) => handlePickerRender(date, today, "end")}
-                      defaultPickerValue={form.date_from}
+                      // defaultPickerValue={form.date_from}
                       disabledDate={handleDateToDisabled}
                       onChange={handleDateToChange}
+                      defaultPickerValue={defaultDate()}
                       value={form.date_to}
                       allowClear={false}
                       placeholder={null}

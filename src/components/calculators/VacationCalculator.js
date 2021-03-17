@@ -384,6 +384,12 @@ class VacationCalculator extends React.Component {
     })
   }
 
+  get defaultDate() {
+    const { year } = this.state.form
+
+    return moment({ year })
+  }
+
   onBlur = () => {
     this.setState(prevState => (
       { valid: true }
@@ -448,6 +454,7 @@ class VacationCalculator extends React.Component {
                     dateRender={(date, today) => this.handlePickerRender(date, today, "start")}
                     onChange={date => this.setDateField("date_from", date)}
                     placeholder={lang["date_from_placeholder"]}
+                    defaultPickerValue={this.defaultDate}
                     value={this.dateFromValue}
                     ref={this.dateFromPicker}
                     onBlur={this.onBlur}
@@ -458,6 +465,7 @@ class VacationCalculator extends React.Component {
                 </Form.Item>
                 <Form.Item label={<Label>{lang.end}</Label>}>
                   <CalculatorDatePicker
+                    defaultPickerValue={this.defaultDate}
                     disabledDate={d => !form.date_from || (d.isSameOrBefore(form.date_from, "day"))}
                     dateRender={(date, today) => this.handlePickerRender(date, today, "end")}
                     onChange={date => this.setDateField("date_to", date)}

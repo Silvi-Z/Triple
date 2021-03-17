@@ -75,6 +75,12 @@ class SubsidyCalculator extends React.Component {
       }]
   }
 
+  get defaultDate() {
+    const { year } = this.state.form
+
+    return moment({ year })
+  }
+
   get isStatic() {
     return this.state.form.static
   }
@@ -512,6 +518,7 @@ class SubsidyCalculator extends React.Component {
                     <CalculatorDatePicker
                       onChange={date => this.setField("start", date, this.autocompleteDays)}
                       dateRender={(date, today) => this.handlePickerRender(date, today, "start")}
+                      defaultPickerValue={this.defaultDate}
                       placeholder={lang.form.dates_placeholder}
                       value={form.start}
                       onBlur={this.onBlur}
@@ -525,6 +532,7 @@ class SubsidyCalculator extends React.Component {
                     <CalculatorDatePicker
                       onChange={date => this.setField("end", date, this.autocompleteDays)}
                       dateRender={(date, today) => this.handlePickerRender(date, today, "end")}
+                      defaultPickerValue={this.defaultDate}
                       placeholder={lang.form.dates_placeholder}
                       value={form.end}
                       onBlur={this.onBlur}
