@@ -37,7 +37,6 @@ moment.locale("en", {
 
 const radioStyle = {
   display: "block",
-  height: "30px",
   lineHeight: "30px",
 }
 const initialValues = {
@@ -209,14 +208,6 @@ class VacationCalculator extends React.Component {
     this.onBlur()
   }
 
-  changeDates() {
-    const fields = {
-      date_from: null,
-      date_to: null,
-    }
-    this.setFields(fields, this.onBlur)
-  }
-
   fetchDays() {
     triple.get("/api/days")
       .then(res => {
@@ -245,6 +236,17 @@ class VacationCalculator extends React.Component {
 
   setFields(fields, cb) {
     this.setState({ form: { ...this.state.form, ...fields } }, cb)
+  }
+
+  changeRange = () => {
+    const { date_from, date_to, year } = this.state.form
+
+    const diff = date_from ? moment(date_from).year() - year : moment(date_to).year() - year
+
+    this.setFields({
+      date_from: date_from ? moment(date_from).subtract(diff, "years").format("YYYY-MM-DD") : null,
+      date_to: date_to ? moment(date_to).subtract(diff, "years").format("YYYY-MM-DD") : null,
+    }, this.onBlur)
   }
 
   calcVacationAmount = monthAvgSalary => this.setState({ monthAvgSalary })
@@ -396,9 +398,9 @@ class VacationCalculator extends React.Component {
     window.onscroll = () => {
       if (this.col.current.getBoundingClientRect().top <= 0) {
         this.col.current.classList.add("fixed")
-        this.col.current.children[0].style.width = this.rowWidth.current.clientWidth*33.3333333/100-20+ 'px'
-      }else{
-        this.col.current.classList.remove('fixed')
+        this.col.current.children[0].style.width = this.rowWidth.current.clientWidth * 33.3333333 / 100 - 20 + "px"
+      } else {
+        this.col.current.classList.remove("fixed")
       }
     }
   }
@@ -429,7 +431,7 @@ class VacationCalculator extends React.Component {
                   value={form.year}
                   className={"yearSelect"}
                   style={{ maxWidth: "424px", width: "90px" }}
-                  onChange={value => this.setField("year", value, this.changeDates)}
+                  onChange={value => this.setField("year", value, this.changeRange)}
                 >
                   {this.availableYears.map(year =>
                     <Select.Option value={year} key={`vehicle-${year}`}>

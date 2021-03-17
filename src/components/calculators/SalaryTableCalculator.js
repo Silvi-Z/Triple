@@ -37,7 +37,6 @@ const form = {
 
 const radioStyle = {
   display: "block",
-  height: "30px",
   lineHeight: "30px",
 }
 
@@ -358,13 +357,13 @@ class SalaryTableCalculator extends React.Component {
   }
 
   componentDidMount() {
-    this.fetchDays();
+    this.fetchDays()
     window.onscroll = () => {
-      if (this.top.current.getBoundingClientRect().top <= 0) {
+      if (this.top.current && this.top.current.getBoundingClientRect().top <= 0) {
         this.top.current.classList.add("fixed")
-        this.top.current.children[0].style.width = this.rowWidth.current.clientWidth*33.3333333/100-20+ 'px'
-      }else{
-        this.top.current.classList.remove('fixed')
+        this.top.current.children[0].style.width = this.rowWidth.current.clientWidth * 33.3333333 / 100 - 20 + "px"
+      } else {
+        this.top.current.classList.remove("fixed")
       }
     }
   }
@@ -512,7 +511,7 @@ class SalaryTableCalculator extends React.Component {
 
               >
                 {lang.result.download}
-              </ButtonSubmit>: null}
+              </ButtonSubmit> : null}
           </div>
         </Col>
       </Row>

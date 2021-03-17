@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useState } from "react"
+import React, { useEffect, useMemo, useState } from "react"
 import moment from "moment"
 import { Checkbox, Col, Form, Radio, Row } from "antd"
 import {
@@ -192,11 +192,11 @@ const CalendarCalculator = ({ lang }) => {
   }
 
   const handlePickerRender = (date, today, range) => {
-    const { schedule } = form
+    const { schedule, date_to, date_from } = form
 
     const condition = range === "start"
-      ? handleDateFromDisabled(date)
-      : handleDateToDisabled(date)
+      ? date_from && (date.isSameOrAfter(date_from, "day"))
+      : !date_to || (date.isSameOrBefore(date_to, "day"))
 
     if (date.isSame(today, "day")) {
       return <div className={
@@ -219,7 +219,7 @@ const CalendarCalculator = ({ lang }) => {
                 </span>
         }
       </div>
-    } else if (isHoliday(date, holidays)) {
+    } else if (isHoliday(date, initialState.holidays)) {
       return <div className={
         !condition
           ? "ant-picker-cell-inner ant-picker-cell-holiday"

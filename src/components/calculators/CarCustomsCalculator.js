@@ -335,7 +335,6 @@ class CarCustomsCalculator extends React.Component {
                     <span>
                       <span
                         className="currency-symbol"
-                        style={{ marginLeft: "14px" }}
                         dangerouslySetInnerHTML={{ __html: "&#1423;" }}
                       />
                       {result[key]["AMD"].amount}

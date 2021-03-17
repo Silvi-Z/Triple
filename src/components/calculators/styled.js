@@ -106,6 +106,10 @@ export const CalculatorInput = styled(InputNumber)`
   }
 `
 
+export const CurrencySymbol = styled.strong`
+  margin-left: 10px;
+`
+
 export const CalculatorSelect = styled(Select)`
   background: #FFFFFF;
   border: 0.5px solid #555555;
@@ -135,9 +139,9 @@ export const CalculatorSelect = styled(Select)`
     fill: black;
   }
   
-  .ant-select-arrow .anticon > svg{
-    fill: white;
-  }
+  // .ant-select-arrow .anticon > svg{
+  //   fill: white;
+  // }
 `
 
 export const Label = styled(Text)`
@@ -154,6 +158,8 @@ export const RadioLabel = styled(Text)`
   font-style: normal;
   font-weight: normal;
   font-size: 14px;
+  white-space: normal;
+  height: fit-content;
   line-height: 25px;
   letter-spacing: 1.15px;
   color: #000000;
@@ -291,6 +297,8 @@ export const CalendarTable = styled.table`
   width: 100%;
   margin: 0;
   padding: 0;
+  position: relative;
+  z-index: 0;
   
   thead tr:last-child td {
     border: unset;
@@ -372,6 +380,7 @@ export const CheckboxField = styled(Checkbox)`
   }
   
   .day_title{
+      max-width: 170px;
       position: absolute;
       bottom: calc(100% + 5px);
       display: block;
@@ -382,21 +391,12 @@ export const CheckboxField = styled(Checkbox)`
       padding: 5px 10px;
       background-color: white;
       border: 0.5px solid #555555;
-      width: fit-content;
+      width: max-content;
       border-radius: 5px;
       margin: auto;
       color: #555555;
       display: none;
-      max-width: 70px;
       
-      // &:after {
-      //   content: '';
-      //   width: 0; 
-      //   height: 0; 
-      //   border-left: 20px solid transparent;
-      //   border-right: 20px solid transparent;
-      //   border-top: 20px solid #f00;
-      // }
     }
     
     .ant-checkbox-inner{
