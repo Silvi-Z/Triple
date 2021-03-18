@@ -9,7 +9,7 @@ class VehicleSell extends Vehicle {
     alienationDate: null,
     price: null,
     power: null,
-    powerType: Vehicle.HORSEPOWER
+    powerType: Vehicle.HORSEPOWER,
   }
 
   static schema = Yup.object().shape({
@@ -74,7 +74,7 @@ class VehicleSell extends Vehicle {
    */
   get buyingSellingPeriod() {
     return Math.ceil(
-      this.alienationDate.diff(this.achievementDate, 'year', true)
+      this.alienationDate.diff(this.achievementDate, "year", true),
     )
   }
 
@@ -87,14 +87,14 @@ class VehicleSell extends Vehicle {
     let contractValue = this.price * 0.01
     let powerValue
 
-    if (this.buyingSellingPeriod >= 1) {
+    if (this.buyingSellingPeriod <= 1) {
       return 0
     }
 
     if (this.isHorsepower) {
-      powerValue = this.power * 150;
+      powerValue = this.power * 150
 
-      const tax = contractValue > powerValue ? contractValue : powerValue;
+      const tax = contractValue > powerValue ? contractValue : powerValue
 
       return Math.round(tax)
     }

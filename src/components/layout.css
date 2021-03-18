@@ -1708,6 +1708,8 @@ pre tt:after {
     line-height: 25px;
     margin-right: 9px;
     color: #000000;
+    display: inline-block;
+    width: 25px;
 }
 
 .whiteButton {
@@ -1767,6 +1769,7 @@ a.calc-nav-item:hover {
 
 .day_title {
     position: absolute;
+    max-width: 270px;
     bottom: calc(100% + 5px);
     left: 0;
     right: 0;
@@ -1774,7 +1777,7 @@ a.calc-nav-item:hover {
     padding: 5px 10px;
     background-color: white;
     border: 0.5px solid #555555;
-    width: fit-content;
+    width: max-content;
     border-radius: 5px;
     margin: auto;
     color: #555555;

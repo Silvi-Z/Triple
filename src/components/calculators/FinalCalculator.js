@@ -30,7 +30,6 @@ import { isHoliday, isWeekend } from "./utilities/vacation"
 
 const radioStyle = {
   display: "block",
-  height: "30px",
   lineHeight: "30px",
 }
 const form = {
@@ -219,12 +218,21 @@ class FinalCalculator extends React.Component {
     } else {
       this.colElement.classList.remove("abs")
     }
+<<<<<<< HEAD
     // if (this.col.current.getBoundingClientRect().top <= 0) {
     //   this.col.current.classList.add("fixed")
     //   this.col.current.children[0].style.width = this.rowWidth.current.clientWidth*33.3333333/100-20+ 'px'
     // }else{
     //   this.col.current.classList.remove('fixed')
     // }
+=======
+    if (this.col.current.getBoundingClientRect().top <= 0) {
+      this.col.current.classList.add("fixed")
+      this.col.current.children[0].style.width = this.rowWidth.current.clientWidth * 33.3333333 / 100 - 20 + "px"
+    } else {
+      this.col.current.classList.remove("fixed")
+    }
+>>>>>>> a21e36ac15c6c9ffeba3992c021c3ebf812ca400
   }
 
   handlePickerInput = e => {
@@ -243,38 +251,52 @@ class FinalCalculator extends React.Component {
     const { form } = this.state
     const { date_release } = this.state.form
     let data = { ...pick(form, Object.keys(schema.fields)), amount: this.amount }
-
     schema.isValid(data).then(valid => {
-      if (!valid) return
-      data = {
-        ...data,
-        year: date_release.year(),
+      if (!valid) {
+        const result = {
+          amount: 0,
+          income_tax: 0,
+          pension_fee: 0,
+          salary: 0,
+          stamp_fee: 0,
+          total_fee: 0,
+        }
+        this.setState({ ...this.state, result: result })
+      } else {
+        data = {
+          ...data,
+          year: date_release.year(),
+        }
+
+        // this.setState({ loading: true })
+
+        triple
+          .post("/api/counter/salary", data, {
+            params: {
+              stamp: false,
+            },
+          })
+          .then(res => {
+            const result = { ...res.data, amount: this.amount }
+            this.setState({ result: result, valid: false })
+          })
+          .then(() => {
+            if (!this.state.calculated) this.setState({ calculated: true, valid: false })
+          })
+          .catch(err => console.log(err))
+          .finally(() => {
+            this.setState({ loading: false, valid: false })
+          })
       }
-
-      // this.setState({ loading: true })
-
-      triple
-        .post("/api/counter/salary", data, {
-          params: {
-            stamp: false,
-          },
-        })
-        .then(res => {
-          const result = { ...res.data, amount: this.amount }
-          this.setState({ result: result, valid: false })
-        })
-        .then(() => {
-          if (!this.state.calculated) this.setState({ calculated: true, valid: false })
-        })
-        .catch(err => console.log(err))
-        .finally(() => {
-          this.setState({ loading: false, valid: false })
-        })
     }).catch(err => console.log(err))
   }
 
   setFormField(name, value, cb) {
     this.setState({ form: { ...this.state.form, [name]: value } }, cb)
+  }
+
+  setFormFields(fields) {
+    this.setState({ form: { ...this.state.form, ...fields } })
   }
 
   calcVacationAmount = monthAvgSalary => this.setState({ monthAvgSalary })
@@ -306,8 +328,6 @@ class FinalCalculator extends React.Component {
     } else if (working_schedule === 6) {
       this.setFormField("available_vacation_days", 24, this.autoFillUnusedVacationDays)
     }
-
-
   }
 
   autoFillUnusedVacationDays() {
@@ -317,6 +337,44 @@ class FinalCalculator extends React.Component {
       this.setFormField("unused_vacation_days", this.totalVacationDays - used_vacation_days, this.onBlur)
     } else if (this.totalVacationDays && !used_vacation_days) {
       this.setFormField("unused_vacation_days", this.totalVacationDays, this.onBlur)
+    }
+  }
+
+  autoFillTotalVacationDays() {
+    const { date_release, date_acceptance, available_vacation_days, unused_vacation_days, used_vacation_days } = this.state.form
+    if (date_release && date_acceptance) {
+      if (!unused_vacation_days && !used_vacation_days) {
+        this.setFormFields({
+          total_vacation_days: Math.round(date_release.diff(date_acceptance, "days") / 365 * available_vacation_days),
+          used_vacation_days: 0,
+          unused_vacation_days: Math.round(date_release.diff(date_acceptance, "days") / 365 * available_vacation_days),
+        })
+      } else if (unused_vacation_days && !used_vacation_days) {
+        this.setFormFields({
+          total_vacation_days: Math.round(date_release.diff(date_acceptance, "days") / 365 * available_vacation_days),
+          used_vacation_days: Math.round(date_release.diff(date_acceptance, "days") / 365 * available_vacation_days) - unused_vacation_days,
+        })
+      } else if (!unused_vacation_days && used_vacation_days) {
+        this.setFormFields({
+          total_vacation_days: Math.round(date_release.diff(date_acceptance, "days") / 365 * available_vacation_days),
+          unused_vacation_days: Math.round(date_release.diff(date_acceptance, "days") / 365 * available_vacation_days) - used_vacation_days,
+        })
+      } else if (used_vacation_days && unused_vacation_days) {
+        this.setFormFields({
+          total_vacation_days: Math.round(date_release.diff(date_acceptance, "days") / 365 * available_vacation_days),
+          unused_vacation_days: Math.round(date_release.diff(date_acceptance, "days") / 365 * available_vacation_days) - used_vacation_days,
+        })
+      }
+    }
+  }
+
+  autoFillUsedVacationDays() {
+    const { unused_vacation_days } = this.state.form
+
+    if (this.totalVacationDays && unused_vacation_days) {
+      this.setFormField("used_vacation_days", this.totalVacationDays - unused_vacation_days, this.autoFillUnusedVacationDays)
+    } else if (this.totalVacationDays && !unused_vacation_days) {
+      this.setFormField("used_vacation_days", this.totalVacationDays, this.onBlur)
     }
   }
 
@@ -410,19 +468,11 @@ class FinalCalculator extends React.Component {
     }
   }
 
-
   onBlur = () => {
+    this.autoFillTotalVacationDays()
     this.setState(prevState => (
       { valid: true }
     ), this.state.calculated ? this.handleSubmit : null)
-  }
-
-  autoFillUsedVacationDays() {
-    const { unused_vacation_days } = this.state.form
-
-    if (this.totalVacationDays && unused_vacation_days) {
-      this.setFormField("used_vacation_days", this.totalVacationDays - unused_vacation_days)
-    }
   }
 
   render() {
@@ -506,7 +556,7 @@ class FinalCalculator extends React.Component {
 
               <Form.Item label={<Label style={{ textTransform: "none" }}>{lang.form.total_vacation_days}</Label>}>
                 <CalculatorInput
-                  value={this.totalVacationDays}
+                  value={form.total_vacation_days}
                   style={{ width: "54px" }}
                   readOnly={true}
                   onBlur={this.onBlur}
@@ -575,7 +625,7 @@ class FinalCalculator extends React.Component {
 
               <Form.Item>
                 <Checkbox
-                  onChange={e => this.setFormField("static_salary", e.target.checked)}
+                  onChange={e => this.setFormField("static_salary", e.target.checked, this.onBlur)}
                   checked={form.static_salary}
                 >
                   <RadioLabel>{lang.form.static_salary}</RadioLabel>
@@ -588,7 +638,8 @@ class FinalCalculator extends React.Component {
                     lang={lang.table}
                     items={this.amounts}
                     setDate={this.setReleaseDate}
-                    onChange={value => this.setFormField("salary", value)}
+                    onChange={this.calcVacationAmount}
+                    onBlur={this.onBlur}
                   />
                   : null
               }
@@ -643,7 +694,6 @@ class FinalCalculator extends React.Component {
             </Form>
           </CalculatorsCard>
         </Col>
-        {/*className="calculator-result"*/}
         <Col xs={24} sm={24} md={24} lg={8} xl={8} xxl={8} className="result" ref={this.col}>
           <div>
             <FormLabel style={{ margin: 0 }}>{lang.result.title}</FormLabel>
@@ -690,6 +740,8 @@ class FinalCalculator extends React.Component {
     this.dateToInput.addEventListener("input", this.handlePickerInput)
 
     window.addEventListener("scroll", this.handleWindowScroll)
+
+    this.fetchDays()
   }
 
   componentWillUnmount() {

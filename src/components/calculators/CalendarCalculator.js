@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useState } from "react"
+import React, { useEffect, useMemo, useState } from "react"
 import moment from "moment"
 import { Checkbox, Col, Form, Radio, Row } from "antd"
 import {
@@ -22,6 +22,7 @@ import { isHoliday, isWeekend } from "./utilities/vacation"
 import arrow from "../../assets/arrowForCalendar.svg"
 import { getCalendarDates } from "./utilities/calendar"
 import CalendarItem from "./calcComponents/Calendar"
+import { randomString } from "./utilities/tabel"
 
 const CalendarCalculator = ({ lang }) => {
   const [form, setForm] = useState({
@@ -29,6 +30,7 @@ const CalendarCalculator = ({ lang }) => {
     schedule: 5,
     date_to: null,
     date_from: null,
+    randomKey: randomString(),
   })
   const monthsList = [
     {
@@ -107,6 +109,7 @@ const CalendarCalculator = ({ lang }) => {
   const setField = (name, value, cb) => {
     setForm((state) => ({
       ...state,
+      randomKey: randomString(),
       [name]: value,
     }))
   }
@@ -120,6 +123,10 @@ const CalendarCalculator = ({ lang }) => {
 
   const setNewYear = (event) => {
     const actionType = event.currentTarget.getAttribute("data-action")
+    setForm((state) => ({
+      ...state,
+      randomKey: randomString(),
+    }))
     if (actionType === "prev") {
       setYear(year - 1)
     } else if (actionType === "next") {
@@ -192,11 +199,11 @@ const CalendarCalculator = ({ lang }) => {
   }
 
   const handlePickerRender = (date, today, range) => {
-    const { schedule } = form
+    const { schedule, date_to, date_from } = form
 
     const condition = range === "start"
-      ? handleDateFromDisabled(date)
-      : handleDateToDisabled(date)
+      ? date_from && (date.isSameOrAfter(date_from, "day"))
+      : !date_to || (date.isSameOrBefore(date_to, "day"))
 
     if (date.isSame(today, "day")) {
       return <div className={
@@ -219,7 +226,7 @@ const CalendarCalculator = ({ lang }) => {
                 </span>
         }
       </div>
-    } else if (isHoliday(date, holidays)) {
+    } else if (isHoliday(date, initialState.holidays)) {
       return <div className={
         !condition
           ? "ant-picker-cell-inner ant-picker-cell-holiday"
@@ -283,12 +290,22 @@ const CalendarCalculator = ({ lang }) => {
 
   const handleDateFromDisabled = d => {
     const { date_to } = form
-    return date_to && (d.isAfter(date_to, "day"))
+    // return date_to && (d.isAfter(date_to, "day"))
+    if (date_to) {
+      return d.isSameOrAfter(date_to, "day")
+    } else {
+      return d && d.year() !== year
+    }
   }
 
   const handleDateToDisabled = d => {
     const { date_from } = form
-    return !date_from || !d || (d.isBefore(date_from, "day"))
+    // return !date_from || !d || (d.isBefore(date_from, "day"))
+    if (date_from) {
+      return d.isSameOrBefore(date_from, "day")
+    } else {
+      return d && d.year() !== year
+    }
   }
 
   const handleDateFromChange = date => {
@@ -301,6 +318,10 @@ const CalendarCalculator = ({ lang }) => {
       dates: checkedDates,
       date_from: date,
     })
+  }
+
+  const defaultDate = () => {
+    return moment({ year })
   }
 
   const handleDateToChange = date => {
@@ -361,7 +382,9 @@ const CalendarCalculator = ({ lang }) => {
                       disabledDate={handleDateFromDisabled}
                       onChange={handleDateFromChange}
                       value={form.date_from}
+                      defaultPickerValue={defaultDate()}
                       placeholder={null}
+                      key={form.randomKey}
                       allowClear={false}
                       format="DD.MM.YYYY"
                       name="date_from"
@@ -371,11 +394,13 @@ const CalendarCalculator = ({ lang }) => {
                   <Form.Item label={<Label>{lang.form.end}</Label>}>
                     <CalculatorDatePicker
                       dateRender={(date, today) => handlePickerRender(date, today, "end")}
-                      defaultPickerValue={form.date_from}
+                      // defaultPickerValue={form.date_from}
                       disabledDate={handleDateToDisabled}
                       onChange={handleDateToChange}
+                      defaultPickerValue={defaultDate()}
                       value={form.date_to}
                       allowClear={false}
+                      key={form.randomKey}
                       placeholder={null}
                       format="DD.MM.YYYY"
                       name="date_to"

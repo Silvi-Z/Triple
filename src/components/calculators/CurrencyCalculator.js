@@ -302,7 +302,7 @@ class CurrencyCalculator extends React.Component {
   }
 
   render() {
-    const { lang } = this.props
+    const { lang, locale } = this.props
     const { form, rates } = this.state
 
     return (
@@ -316,7 +316,7 @@ class CurrencyCalculator extends React.Component {
           {/*</Row>*/}
           <CalculatorsCard bordered={false} className={"calendarBody"}>
             <Form onFinish={this.handleSubmit} initialValues={form} layout="horizontal" colon={false}>
-              <Form.Item>
+              <Form.Item label={locale === "en" && <Label>{lang.form.date}</Label>}>
                 <CalculatorDatePicker
                   dateRender={(date, today) => this.handlePickerRender(date, today, "start")}
                   disabledDate={this.handleDateFromDisabled}
@@ -330,10 +330,11 @@ class CurrencyCalculator extends React.Component {
                   name="date"
                   size="large"
                 />
-
+                {locale === "arm" &&
                 <Label style={{ textTransform: "none" }}>
                   {lang.form.date}
                 </Label>
+                }
               </Form.Item>
 
               <Row gutter={12} align="middle">

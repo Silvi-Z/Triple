@@ -28,6 +28,7 @@ import {
   TAX_FIELD_ENTERPRISE,
   TAX_FIELD_IT,
 } from "./utilities/salary"
+import { randomString } from "./utilities/tabel"
 
 moment.locale("en", {
   week: {
@@ -37,7 +38,6 @@ moment.locale("en", {
 
 const radioStyle = {
   display: "block",
-  height: "30px",
   lineHeight: "30px",
 }
 const initialValues = {
@@ -77,6 +77,7 @@ class VacationCalculator extends React.Component {
         salary: 0,
         vacation_salary: 0,
       },
+      randomKey: randomString(),
       monthAvgSalary: 0,
       calculated: false,
       valid: false,
@@ -209,14 +210,6 @@ class VacationCalculator extends React.Component {
     this.onBlur()
   }
 
-  changeDates() {
-    const fields = {
-      date_from: null,
-      date_to: null,
-    }
-    this.setFields(fields, this.onBlur)
-  }
-
   fetchDays() {
     triple.get("/api/days")
       .then(res => {
@@ -240,11 +233,29 @@ class VacationCalculator extends React.Component {
   }
 
   setField(name, value, cb) {
-    this.setState({ form: { ...this.state.form, [name]: value } }, cb)
+    this.setState((prevState) => ({
+      ...prevState,
+      randomKey: randomString(),
+      form: {
+        ...prevState.form,
+        [name]: value,
+      },
+    }), cb)
   }
 
   setFields(fields, cb) {
     this.setState({ form: { ...this.state.form, ...fields } }, cb)
+  }
+
+  changeRange = () => {
+    const { date_from, date_to, year } = this.state.form
+
+    const diff = date_from ? moment(date_from).year() - year : moment(date_to).year() - year
+
+    this.setFields({
+      date_from: date_from ? moment(date_from).subtract(diff, "years").format("YYYY-MM-DD") : null,
+      date_to: date_to ? moment(date_to).subtract(diff, "years").format("YYYY-MM-DD") : null,
+    }, this.onBlur)
   }
 
   calcVacationAmount = monthAvgSalary => this.setState({ monthAvgSalary })
@@ -382,6 +393,12 @@ class VacationCalculator extends React.Component {
     })
   }
 
+  get defaultDate() {
+    const { year } = this.state.form
+
+    return moment({ year })
+  }
+
   onBlur = () => {
     this.setState(prevState => (
       { valid: true }
@@ -393,6 +410,7 @@ class VacationCalculator extends React.Component {
     this.dateToInput.addEventListener("input", this.handlePickerInput)
     this.dateFromInput.addEventListener("input", this.handlePickerInput)
 
+<<<<<<< HEAD
     // window.onscroll = () => {
     //   if (this.col.current.getBoundingClientRect().top <= 0) {
     //     this.col.current.classList.add("fixed")
@@ -401,6 +419,16 @@ class VacationCalculator extends React.Component {
     //     this.col.current.classList.remove('fixed')
     //   }
     // }
+=======
+    window.onscroll = () => {
+      if (this.col.current.getBoundingClientRect().top <= 0) {
+        this.col.current.classList.add("fixed")
+        this.col.current.children[0].style.width = this.rowWidth.current.clientWidth * 33.3333333 / 100 - 20 + "px"
+      } else {
+        this.col.current.classList.remove("fixed")
+      }
+    }
+>>>>>>> a21e36ac15c6c9ffeba3992c021c3ebf812ca400
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
@@ -408,7 +436,7 @@ class VacationCalculator extends React.Component {
   }
 
   render() {
-    const { form, result } = this.state
+    const { form, result, randomKey } = this.state
     const { lang } = this.props
 
     return (
@@ -429,7 +457,7 @@ class VacationCalculator extends React.Component {
                   value={form.year}
                   className={"yearSelect"}
                   style={{ maxWidth: "424px", width: "90px" }}
-                  onChange={value => this.setField("year", value, this.changeDates)}
+                  onChange={value => this.setField("year", value, this.changeRange)}
                 >
                   {this.availableYears.map(year =>
                     <Select.Option value={year} key={`vehicle-${year}`}>
@@ -446,8 +474,10 @@ class VacationCalculator extends React.Component {
                     dateRender={(date, today) => this.handlePickerRender(date, today, "start")}
                     onChange={date => this.setDateField("date_from", date)}
                     placeholder={lang["date_from_placeholder"]}
+                    defaultPickerValue={this.defaultDate}
                     value={this.dateFromValue}
                     ref={this.dateFromPicker}
+                    key={randomKey}
                     onBlur={this.onBlur}
                     format="DD.MM.YYYY"
                     name="date_from"
@@ -456,12 +486,14 @@ class VacationCalculator extends React.Component {
                 </Form.Item>
                 <Form.Item label={<Label>{lang.end}</Label>}>
                   <CalculatorDatePicker
+                    defaultPickerValue={this.defaultDate}
                     disabledDate={d => !form.date_from || (d.isSameOrBefore(form.date_from, "day"))}
                     dateRender={(date, today) => this.handlePickerRender(date, today, "end")}
                     onChange={date => this.setDateField("date_to", date)}
                     placeholder={lang["date_from_placeholder"]}
                     value={this.dateToValue}
                     ref={this.dateToPicker}
+                    key={randomKey}
                     onBlur={this.onBlur}
                     format="DD.MM.YYYY"
                     name="date_to"

@@ -17,6 +17,7 @@ import Subsidy from "../../calculators/Subsidy"
 import GrossSalaryTable from "./calcComponents/GrossSalaryTable"
 import CalculatorCardResult from "./calcComponents/CalculatorCardResult"
 import { isHoliday, isWeekend, workingDaysInRangeForSubsidy } from "./utilities/vacation"
+import { randomString } from "./utilities/tabel"
 
 moment.locale("en", {
   week: {
@@ -26,7 +27,6 @@ moment.locale("en", {
 
 const radioStyle = {
   display: "block",
-  height: "30px",
   lineHeight: "30px",
 }
 
@@ -45,6 +45,7 @@ class SubsidyCalculator extends React.Component {
       result: { subsidy: null },
       calculated: false,
       valid: false,
+      randomKey: randomString(),
     }
     this.calculator = new Subsidy()
     this.availableYears = [2019, 2020, 2021]
@@ -74,6 +75,12 @@ class SubsidyCalculator extends React.Component {
         surcharge: null,
         salary: amount || null,
       }]
+  }
+
+  get defaultDate() {
+    const { year } = this.state.form
+
+    return moment({ year })
   }
 
   get isStatic() {
@@ -238,9 +245,14 @@ class SubsidyCalculator extends React.Component {
   }
 
   setField(name, value, cb) {
-    this.setState(prevState => (
-      { form: { ...prevState.form, [name]: value } }
-    ), cb)
+    this.setState((prevState) => ({
+      ...prevState,
+      randomKey: randomString(),
+      form: {
+        ...prevState.form,
+        [name]: value,
+      },
+    }), cb)
   }
 
   setFields(fields, cb) {
@@ -451,7 +463,7 @@ class SubsidyCalculator extends React.Component {
 
   render() {
     const { lang } = this.props
-    const { form, result } = this.state
+    const { form, result, randomKey } = this.state
 
     this.calculator.setFields(form)
 
@@ -513,8 +525,10 @@ class SubsidyCalculator extends React.Component {
                     <CalculatorDatePicker
                       onChange={date => this.setField("start", date, this.autocompleteDays)}
                       dateRender={(date, today) => this.handlePickerRender(date, today, "start")}
+                      defaultPickerValue={this.defaultDate}
                       placeholder={lang.form.dates_placeholder}
                       value={form.start}
+                      key={randomKey}
                       onBlur={this.onBlur}
                       format="DD.MM.YYYY"
                       name="start"
@@ -526,8 +540,10 @@ class SubsidyCalculator extends React.Component {
                     <CalculatorDatePicker
                       onChange={date => this.setField("end", date, this.autocompleteDays)}
                       dateRender={(date, today) => this.handlePickerRender(date, today, "end")}
+                      defaultPickerValue={this.defaultDate}
                       placeholder={lang.form.dates_placeholder}
                       value={form.end}
+                      key={randomKey}
                       onBlur={this.onBlur}
                       format="DD.MM.YYYY"
                       size="large"

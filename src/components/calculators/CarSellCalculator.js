@@ -7,7 +7,7 @@ import {
   ButtonSubmit,
   CalculatorDatePicker,
   CalculatorInput,
-  CalculatorsCard,
+  CalculatorsCard, CurrencySymbol,
   FormLabel,
   Label,
   UnderLine,
@@ -222,6 +222,7 @@ class CarSellCalculator extends React.Component {
                   min={VehicleSell.MIN_PRICE}
                   size="large"
                 />
+                <CurrencySymbol>&#1423;</CurrencySymbol>
               </Form.Item>
 
               <Form.Item label={<Label>{lang.power}</Label>}>

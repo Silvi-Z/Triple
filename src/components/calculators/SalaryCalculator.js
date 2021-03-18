@@ -36,7 +36,6 @@ import { isEqual, isNull } from "lodash"
 
 const radioStyle = {
   display: "block",
-  height: "30px",
   lineHeight: "30px",
 }
 
@@ -83,6 +82,7 @@ class SalaryCalculator extends React.Component {
       valid: false,
       result: {},
       excel: [],
+      randomKey: randomString(),
     }
     this.holidays = []
     this.workdays = []
@@ -117,15 +117,26 @@ class SalaryCalculator extends React.Component {
   }
 
   get dateFromValue() {
-    const { date_from } = this.state.form
+    const { date_from, year } = this.state.form
 
     return isNull(date_from) ? date_from : moment(date_from)
+
+    // return !isNull(date_from) ? moment(date_from) : moment({ year })
+  }
+
+  get dateToDefaultValue() {
+    const { date_from, year } = this.state.form
+    //
+    // return isNull(date_from) ? date_from : moment(date_from)
+
+    return !isNull(date_from) ? moment(date_from) : moment({ year })
   }
 
   get dateToValue() {
     const { date_to } = this.state.form
 
     return isNull(date_to) ? date_to : moment(date_to)
+
   }
 
   handleSubmit = async () => {
@@ -147,7 +158,6 @@ class SalaryCalculator extends React.Component {
 
     if (!valid) {
       this.setState({ loading: false, valid: false })
-      return
     } else {
       // this.setState({ loading: true, valid: false })
       by ? await this.calculateByTable() : await this.calculateByDate(avgWorkingDays)
@@ -180,8 +190,6 @@ class SalaryCalculator extends React.Component {
    */
   handlePickerRender = (date, today, range) => {
     const { schedule } = this.state.form
-
-    console.log(this.holidays)
 
     const condition = range === "start"
       ? this.handleDateFromDisabled(date)
@@ -291,7 +299,7 @@ class SalaryCalculator extends React.Component {
     const { date_to, year } = this.state.form
 
     if (date_to) {
-      return d.isSameOrAfter(date_to, "day") && !d.isSame(date_to, "month")
+      return d.isSameOrAfter(date_to, "day")
     } else {
       return d && d.year() !== year
     }
@@ -301,7 +309,7 @@ class SalaryCalculator extends React.Component {
     const { date_from, year } = this.state.form
 
     if (date_from) {
-      return d.isBefore(date_from, "day")
+      return d.isSameOrBefore(date_from, "day")
     } else {
       return d && d.year() !== year
     }
@@ -337,39 +345,46 @@ class SalaryCalculator extends React.Component {
   }
 
   setField(name, value, cb) {
-    this.setState({ form: { ...this.state.form, [name]: value } }, cb)
+    this.setState((prevState) => ({
+      ...prevState,
+      randomKey: randomString(),
+      form: {
+        ...prevState.form,
+        [name]: value,
+      },
+    }), cb)
   }
 
   setFields(fields, cb) {
     this.setState({ form: { ...this.state.form, ...fields } }, cb)
   }
 
-  setDateField(name, date) {
-    date = isNull(date) ? date : date.format("YYYY-MM-DD")
+  // setDateField(name, date) {
+  //   date = isNull(date) ? date : date.format("YYYY-MM-DD")
 
-    this.setField(name, date, this.autocompleteWorkingDays)
-    // if ((name === 'date_from') && date) {
-    //   this.setField(name, date, () => {
-    //     if (!this.state.form.date_to) {
-    //       this.setField("date_to", date, () => {
-    //         this.setField('date_to', null)
-    //       })
-    //     } else {
-    //       this.autocompleteWorkingDays()
-    //     }
-    //   })
-    // } else if ((name === 'date_from') && !date) {
-    //   this.setField(name, moment().format("YYYY-MM-DD"), () => {
-    //     this.setField(name, null, () => {
-    //       this.setField('date_to', moment().format("YYYY-MM-DD"), () => {
-    //         this.setState({ form: { ...this.state.form, date_to : null , working_days: null} })
-    //       })
-    //     })
-    //   })
-    // } else {
-    //   this.setField(name, date, this.autocompleteWorkingDays)
-    // }
-  }
+  // this.setField(name, date, this.autocompleteWorkingDays)
+  // if ((name === 'date_from') && date) {
+  //   this.setField(name, date, () => {
+  //     if (!this.state.form.date_to) {
+  //       this.setField("date_to", date, () => {
+  //         this.setField('date_to', null)
+  //       })
+  //     } else {
+  //       this.autocompleteWorkingDays()
+  //     }
+  //   })
+  // } else if ((name === 'date_from') && !date) {
+  //   this.setField(name, moment().format("YYYY-MM-DD"), () => {
+  //     this.setField(name, null, () => {
+  //       this.setField('date_to', moment().format("YYYY-MM-DD"), () => {
+  //         this.setState({ form: { ...this.state.form, date_to : null , working_days: null} })
+  //       })
+  //     })
+  //   })
+  // } else {
+  //   this.setField(name, date, this.autocompleteWorkingDays)
+  // }
+  // }
 
   autocompleteVacationDateTo() {
     const { date_from, working_days, schedule } = this.state.form
@@ -383,6 +398,22 @@ class SalaryCalculator extends React.Component {
       const date_to = endDate(moment(date_from), days, schedule, this.holidays, this.workdays).format("YYYY-MM-DD")
 
       this.setField("date_to", date_to)
+    }
+  }
+
+  get setWorkingDays() {
+    const { date_from, date_to, schedule } = this.state.form
+
+    if (date_from && date_to) {
+      const working_days = workingDaysInRange({
+        start: moment(date_from),
+        end: moment(date_to),
+        workdays: this.workdays,
+        holidays: this.holidays,
+        schedule,
+      }).length
+
+      return working_days
     }
   }
 
@@ -406,6 +437,12 @@ class SalaryCalculator extends React.Component {
 
       this.setField("working_days", working_days)
     }
+  }
+
+  get defaultDate() {
+    const { year } = this.state.form
+
+    return moment({ year })
   }
 
   autoCalculate(prevState) {
@@ -461,6 +498,7 @@ class SalaryCalculator extends React.Component {
   }
 
   componentDidMount() {
+<<<<<<< HEAD
     console.log('this',this)
 
     // window.onscroll = () => {
@@ -471,6 +509,16 @@ class SalaryCalculator extends React.Component {
     //     this.top.current.classList.remove('fixed')
     //   }
     // }
+=======
+    window.onscroll = () => {
+      if (this.top.current.getBoundingClientRect().top <= 0) {
+        this.top.current.classList.add("fixed")
+        this.top.current.children[0].style.width = this.distance.current.clientWidth * 33.3333333 / 100 - 20 + "px"
+      } else {
+        this.top.current.classList.remove("fixed")
+      }
+    }
+>>>>>>> a21e36ac15c6c9ffeba3992c021c3ebf812ca400
     this.fetchDays()
 
     this.dateFromPicker.current &&
@@ -491,11 +539,10 @@ class SalaryCalculator extends React.Component {
     this.autoCalculate(prevState)
   }
 
-
-
   render() {
     const { langText } = this.props
-    const { form, result, loading } = this.state
+    const { form, result, loading, randomKey } = this.state
+
     return (
       <>
         <Row ref={this.distance} align="start" gutter={20} className="rowWrapper">
@@ -605,7 +652,8 @@ class SalaryCalculator extends React.Component {
                           disabledDate={this.handleDateFromDisabled}
                           onChange={this.handleDateFromChange}
                           value={this.dateFromValue}
-                          key={this.dateFromPickerKey}
+                          defaultPickerValue={this.defaultDate}
+                          key={randomKey}
                           ref={this.dateFromPicker}
                           onBlur={this.onBlur}
                           placeholder={null}
@@ -617,11 +665,11 @@ class SalaryCalculator extends React.Component {
                       <Form.Item label={<Label>{langText.form.end}</Label>}>
                         <CalculatorDatePicker
                           dateRender={(date, today) => this.handlePickerRender(date, today, "end")}
-                          defaultPickerValue={this.dateFromValue}
+                          defaultPickerValue={this.defaultDate}
                           disabledDate={this.handleDateToDisabled}
                           onChange={this.handleDateToChange}
                           value={this.dateToValue}
-                          key={this.dateToPickerKey}
+                          key={randomKey}
                           onBlur={this.onBlur}
                           ref={this.dateToPicker}
                           placeholder={null}
@@ -635,7 +683,7 @@ class SalaryCalculator extends React.Component {
                     <Form.Item label={<Label>{langText.form.working_days}</Label>}>
                       <CalculatorInput
                         onChange={v => this.setField("working_days", v, this.autocompleteVacationDateTo)}
-                        value={form.working_days}
+                        value={this.setWorkingDays}
                         style={{ width: "54px" }}
                         ref={this.daysInput}
                         max={this.maxWorkingDays}
@@ -729,45 +777,42 @@ class SalaryCalculator extends React.Component {
             <div>
               <FormLabel style={{ margin: 0 }}>{langText.result_title}</FormLabel>
 
-            <UnderLine />
-            <CalculatorCardResult
-              title={form.from === 1 ? langText["dirty_to_clean_salary"] : langText["clean_dirty_to_salary"]}
-              text={result.salary}
-              loading={loading}
-            />
-
-            {result.gross_salary &&
-            <CalculatorCardResult
-              title={langText.gross_salary}
-              text={result.gross_salary}
-              loading={loading}
-              tooltip
-            />
-            }
-
-            <CalculatorCardResult
-              title={langText["income_tax_label"]}
-              text={result.income_tax}
-              loading={loading}
-              tooltip={form.tax_field === TAX_FIELD_ENTERPRISE ? "prompt text" : null}
-            />
-            <CalculatorCardResult
-              title={langText["pension_paymet_label"]}
-              text={result.pension_fee}
-              loading={loading}
-              tooltip
-            />
-            <CalculatorCardResult
-              title={langText["stamp_duty_label"]}
-              text={result.stamp_fee}
-              loading={loading}
-              tooltip
-            />
-            <CalculatorCardResult
-              title={langText["general_storage_label"]}
-              text={result.total_fee}
-              loading={loading}
-            />
+              <UnderLine />
+              {result.gross_salary &&
+              <CalculatorCardResult
+                title={langText.gross_salary}
+                text={result.gross_salary}
+                loading={loading}
+                tooltip
+              />}
+              <CalculatorCardResult
+                title={form.from === 1 ? langText["dirty_to_clean_salary"] : langText["clean_dirty_to_salary"]}
+                text={result.salary}
+                loading={loading}
+              />
+              <CalculatorCardResult
+                title={langText["income_tax_label"]}
+                text={result.income_tax}
+                loading={loading}
+                tooltip={form.tax_field === TAX_FIELD_ENTERPRISE ? "prompt text" : null}
+              />
+              <CalculatorCardResult
+                title={langText["pension_paymet_label"]}
+                text={result.pension_fee}
+                loading={loading}
+                tooltip
+              />
+              <CalculatorCardResult
+                title={langText["stamp_duty_label"]}
+                text={result.stamp_fee}
+                loading={loading}
+                tooltip
+              />
+              <CalculatorCardResult
+                title={langText["general_storage_label"]}
+                text={result.total_fee}
+                loading={loading}
+              />
             </div>
           </Col>
         </Row>
