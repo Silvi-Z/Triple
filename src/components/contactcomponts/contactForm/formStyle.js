@@ -25,12 +25,12 @@ export const StyledForm = styled(Form)`
 export const ContactPageWrapper = styled.div`
   margin: 0 auto;
   max-width:1440px;
-  padding:50px 118px 40px 118px;
+  padding:30px 118px 40px 118px;
   @media only screen and (max-width: 1024px){
-    padding: 50px 60px 40px 60px;
+    padding: 30px 60px 40px 60px;
   }
   @media only screen and (max-width: 768px){
-    padding: 50px 20px 40px 20px;
+    padding: 30px 20px 40px 20px;
   }
 `
 

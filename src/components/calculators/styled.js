@@ -220,13 +220,14 @@ export const H1Styled = styled.h1`
   text-align: center;
   letter-spacing: 1.15px;
   color: #000000;
- padding-top: 50px;
+  padding-top: 30px;
+  margin-bottom:30px;
 `
 export const TextStyled = styled.p`
   font-family: ArialAMU,serif;
   font-style: normal;
   font-weight: normal;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 25px;
   text-align: center;
   letter-spacing: 1.15px;
@@ -234,7 +235,7 @@ export const TextStyled = styled.p`
   margin: 0 40px 50px;
   background: white;
   border-radius: 5px;
-  padding: 25px 35px;
+  padding: 10px 35px;
 `
 export const CalculatorsCard = styled(Card)`
   margin-top: 30px;
@@ -251,7 +252,7 @@ export const CalendarWrapper = styled.div`
 `
 export const CalendarInfo = styled.div`
   width: 100%;
-  height: 158px;
+  height: 168px;
   border: 0.5px solid #555555;
   border-radius: 10px;
   margin-bottom: 25px;

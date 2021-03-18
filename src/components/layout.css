@@ -21,7 +21,14 @@ body {
     -moz-osx-font-smoothing: grayscale;
     background-color: #f7f7f7;
 }
-
+.rowWrapper{
+    height: 100%;
+}
+.absolute{
+    position: absolute!important;
+    bottom: 0;
+    top: unset!important;
+}
 nav {
     height: calc(var(--header-height));
 }

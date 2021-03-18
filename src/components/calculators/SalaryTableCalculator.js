@@ -359,14 +359,14 @@ class SalaryTableCalculator extends React.Component {
 
   componentDidMount() {
     this.fetchDays();
-    window.onscroll = () => {
-      if (this.top.current.getBoundingClientRect().top <= 0) {
-        this.top.current.classList.add("fixed")
-        this.top.current.children[0].style.width = this.rowWidth.current.clientWidth*33.3333333/100-20+ 'px'
-      }else{
-        this.top.current.classList.remove('fixed')
-      }
-    }
+    // window.onscroll = () => {
+    //   if (this.top.current.getBoundingClientRect().top <= 0) {
+    //     this.top.current.classList.add("fixed")
+    //     this.top.current.children[0].style.width = this.rowWidth.current.clientWidth*33.3333333/100-20+ 'px'
+    //   }else{
+    //     this.top.current.classList.remove('fixed')
+    //   }
+    // }
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
@@ -379,7 +379,7 @@ class SalaryTableCalculator extends React.Component {
     const { form, employees, result, loading } = this.state
 
     return (
-      <Row align="start" gutter={20} ref={this.rowWidth}>
+      <Row className="rowWrapper" align="start" gutter={20} ref={this.rowWidth}>
         <Col span={16}>
           {/*<div className="textSec">*/}
           {/*  <H1Styled>{lang.title}</H1Styled>*/}

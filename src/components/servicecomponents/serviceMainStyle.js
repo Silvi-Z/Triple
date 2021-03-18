@@ -6,7 +6,7 @@ import LinkdinBlackIcon from "../../assets/career/linkedinCareer.svg"
 import LinkedinBlueIcon from "../../assets/career/linkedinBlueCareer.svg"
 
 export const ServicePageWrapper = styled.div`
-  padding:50px 118px 90px 118px;
+  padding:30px 118px 90px 118px;
   max-width: 1440px;
   margin: 0 auto;
   @media only screen and (max-width:1024px){
@@ -27,6 +27,7 @@ export const H2Styled = styled.h2`
   letter-spacing: 1.15px;
   text-align: center;
   color: #000000;
+  margin-bottom:30px;
   @media only screen and (max-width:1024px){
     font-size:20px;
   }
@@ -34,9 +35,9 @@ export const H2Styled = styled.h2`
 
 export const PStyled = styled.p`
   background-color: white;
-  padding: 25px 35px;
+  padding: 10px 35px;
   border-radius: 10px;
-  font-size: 16px;
+  font-size: 14px;
   width:100%;
   font-family: ArialAMU;
   font-weight: normal;
@@ -46,7 +47,6 @@ export const PStyled = styled.p`
   color: #000000;
   margin-bottom:0;
   @media only screen and (max-width:1024px){
-    font-size:16px;
     padding:30px 0 10px 0;
   }
   @media only screen and (max-width:768px){

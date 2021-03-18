@@ -7,12 +7,12 @@ import FbBlackIcon from "../../assets/career/facebookCareer.svg"
 export const InformationPageWrapper = styled.div`
   margin: 0 auto;
   max-width:1440px;
-  padding:50px 118px 90px 118px;
+  padding:30px 118px 90px 118px;
   @media only screen and (max-width: 1400px){
-    padding:50px 40px 90px 40px;
+    padding:30px 40px 90px 40px;
   }
   @media only screen and (max-width: 1000px){
-    padding:50px 20px 60px 20px;
+    padding:30px 20px 60px 20px;
   }
 `
 export const InformationParagraphRow = styled(Row)`
@@ -38,11 +38,12 @@ export const H2Styled = styled.h2`
 `
 export const PStyled = styled.p`
   background-color: white;
-  padding: 25px 35px;
+  padding: 10px 35px;
   border-radius: 10px;
   font-size: 16px;
   line-height:25px;
   width: 100%;
+  font-size:14px;
   font-family: ArialAMU;
   font-weight: normal;
   font-stretch: normal;
@@ -52,9 +53,6 @@ export const PStyled = styled.p`
   text-align: center;
   color: #000000;
   margin-bottom: 52px;
-  @media only screen and (max-width: 770px){
-    font-size:16px;
-  }
 `
 export const InformationNavRow = styled.div`
   display:flex;

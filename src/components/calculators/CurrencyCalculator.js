@@ -242,7 +242,7 @@ class CurrencyCalculator extends React.Component {
     Currency.schema.isValid(form).then(valid => {
       if (!valid) return
 
-      this.setState({ loading: true })
+      // this.setState({ loading: true })
 
       triple
         .get(`api/rates/byDate?amount=${changedAmount ? form.amount : form.amount_right}&date=${form.date}&from=${changedAmount ? form.from : form.to}&to=${changedAmount ? form.to : form.from}`)

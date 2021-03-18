@@ -4,12 +4,12 @@ import { Row } from "antd"
 export const CareerPageWrapper = styled.div`
   max-width:1440px;
   margin: 0 auto;
-  padding:50px 118px;
+  padding:30px 118px;
   @media (max-width: 1200px) {
-    padding: 50px;
+    padding: 30px 50px;
   }
   @media (max-width: 1024px) {
-    padding: 50px 20px 60px 20px;
+    padding: 30px 20px 60px 20px;
   }
 `
 
@@ -34,6 +34,7 @@ export const H1Styled = styled.h1`
   letter-spacing: normal;
   text-align: center;
   color: #000000;
+  margin-bottom:30px;
   @media only screen and (max-width: 1024px) {
     font-size: 20px;
   }
@@ -41,9 +42,9 @@ export const H1Styled = styled.h1`
 
 export const PStyled = styled.p`
   background-color: white;
-  padding: 25px 35px;
+  padding: 10px 35px;
   border-radius: 10px;
-  font-size: 16px;
+  font-size: 14px;
   white-space: pre-wrap;
   margin-bottom:0;
   width: 100%;
@@ -52,7 +53,6 @@ export const PStyled = styled.p`
   color: #000000;
   @media only screen and (max-width: 1024px) {
     width: 100%;
-    font-size: 16px;
     color: #000000;
     margin-top: 49px;
   }

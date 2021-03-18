@@ -219,12 +219,12 @@ class FinalCalculator extends React.Component {
     } else {
       this.colElement.classList.remove("abs")
     }
-    if (this.col.current.getBoundingClientRect().top <= 0) {
-      this.col.current.classList.add("fixed")
-      this.col.current.children[0].style.width = this.rowWidth.current.clientWidth*33.3333333/100-20+ 'px'
-    }else{
-      this.col.current.classList.remove('fixed')
-    }
+    // if (this.col.current.getBoundingClientRect().top <= 0) {
+    //   this.col.current.classList.add("fixed")
+    //   this.col.current.children[0].style.width = this.rowWidth.current.clientWidth*33.3333333/100-20+ 'px'
+    // }else{
+    //   this.col.current.classList.remove('fixed')
+    // }
   }
 
   handlePickerInput = e => {
@@ -430,7 +430,7 @@ class FinalCalculator extends React.Component {
     const { lang } = this.props
 
     return (
-      <Row align="start" gutter={20} ref={this.rowWidth}>
+      <Row className="rowWrapper" align="start" gutter={20} ref={this.rowWidth}>
         <Col xs={24} sm={24} md={24} lg={16} xl={16} xxl={16} ref={this.row}>
           {/*<Row align="center" style={{ justifyContent: "space-between" }}>*/}
           {/*  <div className="textSec">*/}

@@ -62,6 +62,8 @@ class SalaryCalculator extends React.Component {
 
   distance = React.createRef()
 
+  calcCard = React.createRef()
+
   dateToPicker = React.createRef()
 
   dateFromPicker = React.createRef()
@@ -419,7 +421,7 @@ class SalaryCalculator extends React.Component {
   }
 
   async calculateByDate(avgWorkingDays) {
-    this.setState({ loading: true })
+    // this.setState({ loading: true })
 
     const { from, pension, tax_field, schedule, date_from, date_to, amount, year } = this.state.form
     const workingDays = workingDaysInRange({
@@ -459,14 +461,16 @@ class SalaryCalculator extends React.Component {
   }
 
   componentDidMount() {
-    window.onscroll = () => {
-      if (this.top.current.getBoundingClientRect().top <= 0) {
-        this.top.current.classList.add("fixed")
-        this.top.current.children[0].style.width = this.distance.current.clientWidth*33.3333333/100-20+ 'px'
-      }else{
-        this.top.current.classList.remove('fixed')
-      }
-    }
+    console.log('this',this)
+
+    // window.onscroll = () => {
+    //   if (this.top.current.getBoundingClientRect().top <= 0) {
+    //     this.top.current.classList.add("fixed")
+    //     this.top.current.children[0].style.width = this.distance.current.clientWidth*33.3333333/100-20+ 'px'
+    //   }else{
+    //     this.top.current.classList.remove('fixed')
+    //   }
+    // }
     this.fetchDays()
 
     this.dateFromPicker.current &&
@@ -480,6 +484,7 @@ class SalaryCalculator extends React.Component {
       .findDOMNode(/** @type Element */this.dateToPicker.current)
       .querySelector("input")
       .addEventListener("input", this.handleDateToInput)
+
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
@@ -493,7 +498,7 @@ class SalaryCalculator extends React.Component {
     const { form, result, loading } = this.state
     return (
       <>
-        <Row ref={this.distance} align="start" gutter={20}>
+        <Row ref={this.distance} align="start" gutter={20} className="rowWrapper">
           <Col span={16}>
             {/*<Row align="center" style={{ justifyContent: "space-between" }}>*/}
             {/*  <H1Styled>{langText.title}</H1Styled>*/}
@@ -503,7 +508,7 @@ class SalaryCalculator extends React.Component {
             {/*  <H1Styled>{langText.title}</H1Styled>*/}
             {/*  <TextStyled>{langText.paragraph}</TextStyled>*/}
             {/*</div>*/}
-            <CalculatorsCard bordered={false}>
+            <CalculatorsCard ref={this.calcCard} bordered={false}>
               <Form.Item style={{ textAlign: "right" }}>
                 <CalculatorSelect
                   size="large"

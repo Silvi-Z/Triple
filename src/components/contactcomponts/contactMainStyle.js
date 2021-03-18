@@ -65,9 +65,9 @@ export const H2Styled = styled.h2`
 
 export const PStyled = styled.p`
   background-color: white;
-  padding: 25px 35px;
+  padding: 10px 35px;
   border-radius: 10px;
-  font-size: 16px;
+  font-size: 14px;
   width: 100%;
   font-family: ArialAMU;
   font-weight: normal;
@@ -78,9 +78,6 @@ export const PStyled = styled.p`
   text-align: center;
   color: #000000;
   margin-bottom:0;
-  @media only screen and (max-width: 1200px) {
-    font-size:16px
-  }
 `
 
 export const AdressMapCol = styled(Col)`

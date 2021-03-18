@@ -188,13 +188,13 @@ export const ContentContainer = styled.div`
   &:nth-child(1n+10){
     border-top: 1px solid #D0D0D0;
   }
-  &:nth-child(9){
-    border-bottom: 1px solid #D0D0D0;
-  }
-  &:last-child{
-    border-left: 1px solid #D0D0D0;
-    border-right: 1px solid #D0D0D0;
-  }
+  // &:nth-child(9){
+  //   border-bottom: 1px solid #D0D0D0;
+  // }
+  // &:last-child{
+  //   border-left: 1px solid #D0D0D0;
+  //   border-right: 1px solid #D0D0D0;
+  // }
   @media only screen and (max-width: 1024px){
     &:nth-child(n){
       width:50%;
