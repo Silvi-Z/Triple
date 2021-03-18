@@ -80,6 +80,7 @@ class SalaryCalculator extends React.Component {
       valid: false,
       result: {},
       excel: [],
+      randomKey: randomString(),
     }
     this.holidays = []
     this.workdays = []
@@ -342,7 +343,14 @@ class SalaryCalculator extends React.Component {
   }
 
   setField(name, value, cb) {
-    this.setState({ form: { ...this.state.form, [name]: value } }, cb)
+    this.setState((prevState) => ({
+      ...prevState,
+      randomKey: randomString(),
+      form: {
+        ...prevState.form,
+        [name]: value,
+      },
+    }), cb)
   }
 
   setFields(fields, cb) {
@@ -517,7 +525,7 @@ class SalaryCalculator extends React.Component {
 
   render() {
     const { langText } = this.props
-    const { form, result, loading } = this.state
+    const { form, result, loading, randomKey } = this.state
 
     return (
       <>
@@ -629,7 +637,7 @@ class SalaryCalculator extends React.Component {
                           onChange={this.handleDateFromChange}
                           value={this.dateFromValue}
                           defaultPickerValue={this.defaultDate}
-                          key={this.dateFromPickerKey}
+                          key={randomKey}
                           ref={this.dateFromPicker}
                           onBlur={this.onBlur}
                           placeholder={null}
@@ -645,7 +653,7 @@ class SalaryCalculator extends React.Component {
                           disabledDate={this.handleDateToDisabled}
                           onChange={this.handleDateToChange}
                           value={this.dateToValue}
-                          key={this.dateToPickerKey}
+                          key={randomKey}
                           onBlur={this.onBlur}
                           ref={this.dateToPicker}
                           placeholder={null}

@@ -8,7 +8,7 @@ const carTax = ({ pageContext }) => {
 
   return (
     <CalculatorWrapper ctx={pageContext}>
-      <CurrencyCalculator lang={calculator.currency} />
+      <CurrencyCalculator lang={calculator.currency} locale={pageContext.locale}/>
     </CalculatorWrapper>
   )
 }

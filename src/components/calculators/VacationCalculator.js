@@ -28,6 +28,7 @@ import {
   TAX_FIELD_ENTERPRISE,
   TAX_FIELD_IT,
 } from "./utilities/salary"
+import { randomString } from "./utilities/tabel"
 
 moment.locale("en", {
   week: {
@@ -76,6 +77,7 @@ class VacationCalculator extends React.Component {
         salary: 0,
         vacation_salary: 0,
       },
+      randomKey: randomString(),
       monthAvgSalary: 0,
       calculated: false,
       valid: false,
@@ -231,7 +233,14 @@ class VacationCalculator extends React.Component {
   }
 
   setField(name, value, cb) {
-    this.setState({ form: { ...this.state.form, [name]: value } }, cb)
+    this.setState((prevState) => ({
+      ...prevState,
+      randomKey: randomString(),
+      form: {
+        ...prevState.form,
+        [name]: value,
+      },
+    }), cb)
   }
 
   setFields(fields, cb) {
@@ -416,7 +425,7 @@ class VacationCalculator extends React.Component {
   }
 
   render() {
-    const { form, result } = this.state
+    const { form, result, randomKey } = this.state
     const { lang } = this.props
 
     return (
@@ -457,6 +466,7 @@ class VacationCalculator extends React.Component {
                     defaultPickerValue={this.defaultDate}
                     value={this.dateFromValue}
                     ref={this.dateFromPicker}
+                    key={randomKey}
                     onBlur={this.onBlur}
                     format="DD.MM.YYYY"
                     name="date_from"
@@ -472,6 +482,7 @@ class VacationCalculator extends React.Component {
                     placeholder={lang["date_from_placeholder"]}
                     value={this.dateToValue}
                     ref={this.dateToPicker}
+                    key={randomKey}
                     onBlur={this.onBlur}
                     format="DD.MM.YYYY"
                     name="date_to"
