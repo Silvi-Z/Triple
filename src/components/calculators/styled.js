@@ -90,6 +90,10 @@ export const RadioButton = styled(Radio.Button)`
   &.ant-radio-button-wrapper-checked {
     border-radius: 5px !important;
   } 
+  @media only screen and (max-width:1200px){
+    padding:0
+  }
+  
 `
 
 export const CalculatorInput = styled(InputNumber)`

@@ -29,6 +29,9 @@ const NavItem = styled(List.Item)`
   margin-bottom: 0;
   padding-bottom: 15px;
   padding-top: 0;
+  @media only screen and (max-width:1200px){
+    padding-bottom: 5px;
+  }
 `
 
 const UnderLine = styled(Divider)`

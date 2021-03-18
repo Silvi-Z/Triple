@@ -182,29 +182,6 @@ class MortgageCalculator extends React.Component {
     }
   }
 
-<<<<<<< HEAD
-  // componentDidMount() {
-  //   window.onscroll = () => {
-  //     if (this.top.current.getBoundingClientRect().top <= 0) {
-  //       this.top.current.classList.add("fixed")
-  //       this.top.current.children[0].style.width = this.row.current.clientWidth*33.3333333/100+ 'px'
-  //     }else{
-  //       this.top.current.classList.remove('fixed')
-  //     }
-  //   }
-  // }
-=======
-  componentDidMount() {
-    window.onscroll = () => {
-      if (this.top.current.getBoundingClientRect().top <= 0) {
-        this.top.current.classList.add("fixed")
-        this.top.current.children[0].style.width = this.row.current.clientWidth * 33.3333333 / 100 + "px"
-      } else {
-        this.top.current.classList.remove("fixed")
-      }
-    }
-  }
->>>>>>> a21e36ac15c6c9ffeba3992c021c3ebf812ca400
 
   render() {
     const { form, items, tax, loading } = this.state

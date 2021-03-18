@@ -357,27 +357,8 @@ class SalaryTableCalculator extends React.Component {
   }
 
   componentDidMount() {
-<<<<<<< HEAD
-    this.fetchDays();
-    // window.onscroll = () => {
-    //   if (this.top.current.getBoundingClientRect().top <= 0) {
-    //     this.top.current.classList.add("fixed")
-    //     this.top.current.children[0].style.width = this.rowWidth.current.clientWidth*33.3333333/100-20+ 'px'
-    //   }else{
-    //     this.top.current.classList.remove('fixed')
-    //   }
-    // }
-=======
+
     this.fetchDays()
-    window.onscroll = () => {
-      if (this.top.current && this.top.current.getBoundingClientRect().top <= 0) {
-        this.top.current.classList.add("fixed")
-        this.top.current.children[0].style.width = this.rowWidth.current.clientWidth * 33.3333333 / 100 - 20 + "px"
-      } else {
-        this.top.current.classList.remove("fixed")
-      }
-    }
->>>>>>> a21e36ac15c6c9ffeba3992c021c3ebf812ca400
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
