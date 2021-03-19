@@ -72,13 +72,20 @@ const Layout = ({ children, location, pageContext: { locale, originalPath, local
     function fixedPos(){
       console.log('here!')
       if (resultWrapper && result && rowWrapper) {
+        console.log('test 1')
+
         if (result.offsetHeight >= footerHeight.current.getBoundingClientRect().top) {
+          console.log('test 2')
+
           result.classList.add('absolute')
         } else if (resultWrapper.getBoundingClientRect().top <= 0) {
+          console.log('test 3')
+
           resultWrapper.classList.add("fixed")
           result.classList.remove("absolute")
           result.style.width = rowWrapper.clientWidth * 33.3333333 / 100 - 20 + 'px'
         } else if (footerHeight.current.getBoundingClientRect().top > window.innerHeight || footerHeight.current.getBoundingClientRect().top > window.innerHeight && resultWrapper.getBoundingClientRect().top <= 0) {
+          console.log('test 4')
           resultWrapper.classList.remove('fixed')
           result.classList.remove('absolute')
         }
