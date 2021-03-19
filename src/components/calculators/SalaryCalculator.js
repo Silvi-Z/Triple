@@ -5,6 +5,7 @@ import triple from "../../api/triple"
 import CalculatorCardResult from "./calcComponents/CalculatorCardResult"
 import {
   ButtonSubmit,
+  CalculatorsCardWrapper,
   CalculatorDatePicker,
   CalculatorInput,
   CalculatorsCard,
@@ -37,6 +38,7 @@ import { isEqual, isNull } from "lodash"
 const radioStyle = {
   display: "block",
   lineHeight: "30px",
+  margin: "15px 0 0 0",
 }
 
 const form = {
@@ -80,7 +82,13 @@ class SalaryCalculator extends React.Component {
       form: { ...form },
       employees: [],
       valid: false,
-      result: {},
+      result: {
+        income_tax: 0,
+        pension_fee: 0,
+        salary: 0,
+        stamp_fee: 0,
+        total_fee: 0,
+      },
       excel: [],
       randomKey: randomString(),
     }
@@ -173,8 +181,22 @@ class SalaryCalculator extends React.Component {
   handleByFieldChange = () => {
     const { form } = this.state
     const state = !form.by
-      ? { form: { ...form, from: 1 }, result: {}, calculated: 1 }
-      : { result: {}, calculated: 1 }
+      ? {
+        form: { ...form, from: 1 }, result: {
+          income_tax: 0,
+          pension_fee: 0,
+          salary: 0,
+          stamp_fee: 0,
+          total_fee: 0,
+        }, calculated: 1,
+      }
+      : { result: {
+          income_tax: 0,
+          pension_fee: 0,
+          salary: 0,
+          stamp_fee: 0,
+          total_fee: 0,
+        }, calculated: 1 }
 
     this.setState(state)
     this.onBlur()
@@ -526,17 +548,9 @@ class SalaryCalculator extends React.Component {
     return (
       <>
         <Row ref={this.distance} align="start" gutter={20} className="rowWrapper">
-          <Col span={16}>
-            {/*<Row align="center" style={{ justifyContent: "space-between" }}>*/}
-            {/*  <H1Styled>{langText.title}</H1Styled>*/}
-            {/*  <TextStyled>{langText.paragraph}</TextStyled>*/}
-            {/*</Row>*/}
-            {/*<div className="textSec">*/}
-            {/*  <H1Styled>{langText.title}</H1Styled>*/}
-            {/*  <TextStyled>{langText.paragraph}</TextStyled>*/}
-            {/*</div>*/}
+          <CalculatorsCardWrapper span={24} xl={16}>
             <CalculatorsCard ref={this.calcCard} bordered={false}>
-              <Form.Item style={{ textAlign: "right" }}>
+              <Form.Item style={{ display: "flex" }}>
                 <CalculatorSelect
                   size="large"
                   className={"yearSelect"}
@@ -560,13 +574,14 @@ class SalaryCalculator extends React.Component {
                   <Row align="middle" justify="start" gutter={[10, 10]} style={{
                     width: "100%",
                     flexDirection: form.from === 2 ? "row-reverse" : "row",
+                    flexWrap: "wrap",
                   }}>
-                    <Col span={11}>
+                    <Col span={24} md={11}>
                       <RadioButton value={1} size="large">
                         {langText["dirty_salary_button"]}
                       </RadioButton>
                     </Col>
-                    <Col span={2} style={{ textAlign: "center" }}>
+                    <Col span={24} md={2} style={{ textAlign: "center" }}>
                       <svg
                         fill="none"
                         width="30"
@@ -579,7 +594,7 @@ class SalaryCalculator extends React.Component {
                               fill="#00B3C7" />
                       </svg>
                     </Col>
-                    <Col span={11}>
+                    <Col span={24} md={11}>
                       <RadioButton value={2} size="large">
                         {langText["clean_salary_button"]}
                       </RadioButton>
@@ -733,7 +748,8 @@ class SalaryCalculator extends React.Component {
                       <Label>{langText["yes"]}</Label>
                     </Radio>
                     <Radio value={PENSION_FIELD_YES_VOLUNTEER}>
-                      <Label>{langText["yes_volunteer"]}</Label>
+                      <Label>{langText["yes"]}</Label>
+                      <Label className="volunteer">{langText["yes_volunteer"]}</Label>
                     </Radio>
                     <Radio value={PENSION_FIELD_NO}>
                       <Label>{langText["no"]}</Label>
@@ -752,8 +768,8 @@ class SalaryCalculator extends React.Component {
                 </Form.Item>
               </Form>
             </CalculatorsCard>
-          </Col>
-          <Col span={8} className="result" ref={this.top}>
+          </CalculatorsCardWrapper>
+          <Col span={20} md={17} xl={8} sm={10} className="result" ref={this.top}>
             <div>
               <FormLabel style={{ margin: 0 }}>{langText.result_title}</FormLabel>
 

@@ -42,7 +42,13 @@ class SubsidyCalculator extends React.Component {
 
     this.state = {
       form: { ...Subsidy.form },
-      result: { subsidy: null },
+      result: {
+        income_tax: 0,
+        subsidy: 0,
+        subsidy_gov: 0,
+        subsidy_emp: 0,
+        pure_subsidy: 0,
+      },
       calculated: false,
       valid: false,
       randomKey: randomString(),

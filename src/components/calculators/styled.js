@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import { Card, Checkbox, DatePicker, Divider, InputNumber, Radio, Row, Select, Typography } from "antd"
+import { Card, Checkbox, DatePicker, Divider, InputNumber, Radio, Row, Select, Typography , Col} from "antd"
 import { SubmitButton } from "../careercomponents/careerDroping/dropStyle"
 
 const { Text } = Typography
@@ -232,6 +232,9 @@ export const H1Styled = styled.h1`
   color: #000000;
   padding-top: 30px;
   margin-bottom:30px;
+  @media (max-width: 1200px){
+    font-size:20px
+  }
 `
 export const TextStyled = styled.p`
   font-family: ArialAMU,serif;
@@ -246,9 +249,19 @@ export const TextStyled = styled.p`
   background: white;
   border-radius: 5px;
   padding: 10px 35px;
+  @media (max-width: 768px){
+    margin:0 10px 50px;
+    padding:10px
+  }
 `
 export const CalculatorsCard = styled(Card)`
   margin-top: 30px;
+  @media (max-width: 768px){
+    & > div{
+    padding: 20px;
+    }
+  }
+  
 `
 export const CalendarWrapper = styled.div`
   width: 100%;
@@ -347,6 +360,11 @@ export const InformationTitles = styled.th`
   line-height: 15px;
   letter-spacing: 0.15px;
   color: #555555;
+`
+
+export const CalculatorsCardWrapper = styled(Col)`
+  padding-left:0!important;
+  padding-right:0!important;
 `
 export const CheckboxField = styled(Checkbox)`
   font-family: ArialAMU, serif;

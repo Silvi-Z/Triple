@@ -12,6 +12,7 @@ import {
   CalculatorDatePicker,
   CalculatorInput,
   CalculatorsCard,
+  CalculatorsCardWrapper,
   CalculatorSelect,
   FormLabel,
   Label,
@@ -422,7 +423,7 @@ class VacationCalculator extends React.Component {
 
     return (
       <Row className="rowWrapper" align="start" gutter={20} ref={this.rowWidth}>
-        <Col xs={24} sm={24} md={24} lg={16} xl={16} xxl={16}>
+        <CalculatorsCardWrapper span={24} xl={16}>
 
           <CalculatorsCard bordered={false}>
             <Form
@@ -432,7 +433,7 @@ class VacationCalculator extends React.Component {
               layout="horizontal"
               size="large"
             >
-              <Form.Item style={{ textAlign: "right" }}>
+              <Form.Item style={{ display: "flex" }}>
                 <CalculatorSelect
                   size="large"
                   value={form.year}
@@ -448,8 +449,8 @@ class VacationCalculator extends React.Component {
                 </CalculatorSelect>
               </Form.Item>
 
-              <Row gutter={10} align="middle">
-                <Form.Item style={{ marginRight: "25px" }} label={<Label>{lang.start}</Label>}>
+              <Row gutter={10} align="middle" className={"startEndInputs"}>
+                <Form.Item style={{ flexWrap:"nowrap"}} label={<Label>{lang.start}</Label>}>
                   <CalculatorDatePicker
                     disabledDate={d => form.date_to && (d.isSameOrAfter(form.date_to, "day"))}
                     dateRender={(date, today) => this.handlePickerRender(date, today, "start")}
@@ -465,7 +466,7 @@ class VacationCalculator extends React.Component {
                     size="large"
                   />
                 </Form.Item>
-                <Form.Item label={<Label>{lang.end}</Label>}>
+                <Form.Item style={{ flexWrap:"nowrap"}} label={<Label>{lang.end}</Label>}>
                   <CalculatorDatePicker
                     defaultPickerValue={this.defaultDate}
                     disabledDate={d => !form.date_from || (d.isSameOrBefore(form.date_from, "day"))}
@@ -576,7 +577,8 @@ class VacationCalculator extends React.Component {
                     <Label>{lang["yes"]}</Label>
                   </Radio>
                   <Radio value={PENSION_FIELD_YES_VOLUNTEER}>
-                    <Label>{lang["yes_volunteer"]}</Label>
+                    <Label>{lang["yes"]}</Label>
+                    <Label className="volunteer">{lang["yes_volunteer"]}</Label>
                   </Radio>
                   <Radio value={PENSION_FIELD_NO}>
                     <Label>{lang["no"]}</Label>
@@ -591,9 +593,9 @@ class VacationCalculator extends React.Component {
               </Form.Item>
             </Form>
           </CalculatorsCard>
-        </Col>
+        </CalculatorsCardWrapper>
 
-        <Col xs={24} sm={24} md={24} lg={8} xl={8} xxl={8} className="result" ref={this.col}>
+        <Col span={20} md={17} xl={8} sm={10} className="result" ref={this.col}>
           <div>
             <FormLabel style={{ margin: 0 }}>{lang.result.title}</FormLabel>
 
