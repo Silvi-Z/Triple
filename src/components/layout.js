@@ -72,7 +72,6 @@ const Layout = ({ children, location, pageContext: { locale, originalPath, local
     function fixedPos(){
       console.log('here!')
       if (resultWrapper && result && rowWrapper) {
-        console.log('test 1')
 
         if (result.offsetHeight >= footerHeight.current.getBoundingClientRect().top) {
           console.log('test 2')
@@ -80,6 +79,11 @@ const Layout = ({ children, location, pageContext: { locale, originalPath, local
           result.classList.add('absolute')
         } else if (resultWrapper.getBoundingClientRect().top <= 0) {
           console.log('test 3')
+
+
+          console.log('result', result)
+          console.log('resultWrapper', resultWrapper)
+
 
           resultWrapper.classList.add("fixed")
           result.classList.remove("absolute")
