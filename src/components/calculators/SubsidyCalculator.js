@@ -468,7 +468,7 @@ class SubsidyCalculator extends React.Component {
     this.calculator.setFields(form)
 
     return (
-      <Row align="start" gutter={20} ref={this.rowWidth}>
+      <Row align="start" gutter={20} ref={this.rowWidth} className="rowWrapper">
         <Col xs={24} sm={24} md={24} lg={16} xl={16} xxl={16} ref={this.row}>
           {/*<Row align="center" style={{ justifyContent: "space-between" }}>*/}
           {/*  <div className="textSec">*/}
