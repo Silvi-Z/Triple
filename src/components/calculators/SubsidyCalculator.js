@@ -226,14 +226,14 @@ class SubsidyCalculator extends React.Component {
   }
 
   handleWindowScroll = () => {
-    window.onscroll = () => {
-      if (this.col.current.getBoundingClientRect().top <= 0) {
-        this.col.current.classList.add("fixed")
-        this.col.current.children[0].style.width = this.rowWidth.current.clientWidth*33.3333333/100-20+ 'px'
-      }else{
-        this.col.current.classList.remove('fixed')
-      }
-    }
+    // window.onscroll = () => {
+    //   if (this.col.current.getBoundingClientRect().top <= 0) {
+    //     this.col.current.classList.add("fixed")
+    //     this.col.current.children[0].style.width = this.rowWidth.current.clientWidth*33.3333333/100-20+ 'px'
+    //   }else{
+    //     this.col.current.classList.remove('fixed')
+    //   }
+    // }
     // if (
     //   (window.scrollY + this.colElement.offsetHeight + this.rowElementOffsetTop) >=
     //   (this.rowElementOffsetTop + this.rowElement.offsetHeight)
