@@ -91,16 +91,16 @@ const Layout = ({ children, location, pageContext: { locale, originalPath, local
     //   resultHeight()
     // })
     fixedPos()
-    resultHeight()
-    const cards = document.querySelectorAll(".result .ant-card");
-    const heightEl = cards.length > 0 && cards[0].offsetHeight + cards[1].offsetHeight + cards[2].offsetHeight;
-    function resultHeight() {
-      if(window.innerWidth > 768 && window.innerWidth < 1200){
-        resultWrapper.style.maxHeight = heightEl+80 + 'px'
-      }else {
-        resultWrapper.style.maxHeight = 'unset'
-      }
-    }
+    // resultHeight()
+    // const cards = document.querySelectorAll(".result .ant-card");
+    // const heightEl = cards.length > 0 && cards[0].offsetHeight + cards[1].offsetHeight + cards[2].offsetHeight;
+    // function resultHeight() {
+    //   if(window.innerWidth > 768 && window.innerWidth < 1200){
+    //     resultWrapper.style.maxHeight = heightEl+80 + 'px'
+    //   }else {
+    //     resultWrapper.style.maxHeight = 'unset'gi
+    //   }
+    // }
   }, [footerHeight])
 
 
