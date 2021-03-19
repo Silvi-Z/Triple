@@ -42,7 +42,13 @@ class SubsidyCalculator extends React.Component {
 
     this.state = {
       form: { ...Subsidy.form },
-      result: { subsidy: null },
+      result: {
+        income_tax: 0,
+        subsidy: 0,
+        subsidy_gov: 0,
+        subsidy_emp: 0,
+        pure_subsidy: 0,
+      },
       calculated: false,
       valid: false,
       randomKey: randomString(),
@@ -229,9 +235,9 @@ class SubsidyCalculator extends React.Component {
     window.onscroll = () => {
       if (this.col.current.getBoundingClientRect().top <= 0) {
         this.col.current.classList.add("fixed")
-        this.col.current.children[0].style.width = this.rowWidth.current.clientWidth*33.3333333/100-20+ 'px'
-      }else{
-        this.col.current.classList.remove('fixed')
+        this.col.current.children[0].style.width = this.rowWidth.current.clientWidth * 33.3333333 / 100 - 20 + "px"
+      } else {
+        this.col.current.classList.remove("fixed")
       }
     }
     // if (

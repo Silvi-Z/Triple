@@ -9,7 +9,17 @@ import { DownloadOutlined, UploadOutlined } from "@ant-design/icons"
 import { Button, Col, Form, notification, Radio, Row } from "antd"
 import { defineSchedule, urlToBase64 } from "./utilities/tabel"
 import { workingDaysInMonth, workingDaysInRange } from "./utilities/vacation"
-import { ButtonSubmit, CalculatorsCard, FormLabel, H1Styled, Label, RadioLabel, TextStyled, UnderLine } from "./styled"
+import {
+  ButtonSubmit,
+  CalculatorsCard,
+  CalculatorsCardWrapper,
+  FormLabel,
+  H1Styled,
+  Label,
+  RadioLabel,
+  TextStyled,
+  UnderLine,
+} from "./styled"
 import {
   BY_FIELD_TABLE,
   PENSION_FIELD_YES,
@@ -372,12 +382,7 @@ class SalaryTableCalculator extends React.Component {
 
     return (
       <Row className="rowWrapper" align="start" gutter={20} ref={this.rowWidth}>
-        <Col span={16}>
-          {/*<div className="textSec">*/}
-          {/*  <H1Styled>{lang.title}</H1Styled>*/}
-          {/*  <TextStyled>{lang.paragraph}</TextStyled>*/}
-          {/*</div>*/}
-
+          <CalculatorsCardWrapper span={24} xl={16}>
           <CalculatorsCard bordered={false}>
             <Form
               onFinish={this.handleSubmit}
@@ -444,9 +449,9 @@ class SalaryTableCalculator extends React.Component {
               </Form.Item>
             </Form>
           </CalculatorsCard>
-        </Col>
+          </CalculatorsCardWrapper>
 
-        <Col span={8} className="result" ref={this.top}>
+        <Col span={20} md={17} xl={8} sm={10} className="result" ref={this.top}>
           <div>
             <FormLabel style={{ margin: 0 }}>{lang.result.title}</FormLabel>
 

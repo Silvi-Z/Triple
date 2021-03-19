@@ -70,7 +70,7 @@ const Layout = ({ children, location, pageContext: { locale, originalPath, local
     const result = document.querySelectorAll(".main .result > div")[0]
     const rowWrapper = document.querySelectorAll(".rowWrapper")[0]
     function fixedPos(){
-      if (resultWrapper && result && rowWrapper) {
+      if (resultWrapper && result && rowWrapper && window.innerWidth > 1200) {
         if (result.offsetHeight >= footerHeight.current.getBoundingClientRect().top) {
           result.classList.add('absolute')
         } else if (resultWrapper.getBoundingClientRect().top <= 0) {
@@ -84,9 +84,22 @@ const Layout = ({ children, location, pageContext: { locale, originalPath, local
       }
     }
     window.addEventListener('scroll', function(){
-      fixedPos()
+      fixedPos();
     });
+    // window.addEventListener('resize', function() {
+    //   resultHeight()
+    // })
     fixedPos()
+    resultHeight()
+    const cards = document.querySelectorAll(".result .ant-card");
+    const heightEl = cards.length > 0 && cards[0].offsetHeight + cards[1].offsetHeight + cards[2].offsetHeight;
+    function resultHeight() {
+      if(window.innerWidth > 768 && window.innerWidth < 1200){
+        resultWrapper.style.maxHeight = heightEl+80 + 'px'
+      }else {
+        resultWrapper.style.maxHeight = 'unset'
+      }
+    }
   }, [footerHeight])
 
 
@@ -103,8 +116,7 @@ const Layout = ({ children, location, pageContext: { locale, originalPath, local
         langText={localeResources.translation.layout}
       />
       
-      <Main
-      class='main'>{children}</Main>
+      <Main class='main'>{children}</Main>
 
 
       <FooterCust
