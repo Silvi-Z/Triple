@@ -70,6 +70,7 @@ const Layout = ({ children, location, pageContext: { locale, originalPath, local
     const result = document.querySelectorAll(".main .result > div")[0]
     const rowWrapper = document.querySelectorAll(".rowWrapper")[0]
     function fixedPos(){
+      console.log('here!')
       if (resultWrapper && result && rowWrapper) {
         if (result.offsetHeight >= footerHeight.current.getBoundingClientRect().top) {
           result.classList.add('absolute')
