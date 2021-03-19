@@ -66,11 +66,13 @@ const Layout = ({ children, location, pageContext: { locale, originalPath, local
   const top = useRef()
 
   useEffect(()=>{
-    const resultWrapper =  document.querySelectorAll(".main .result")[0]
-    const result = document.querySelectorAll(".main .result > div")[0]
-    const rowWrapper = document.querySelectorAll(".rowWrapper")[0]
     function fixedPos(){
       console.log('here!')
+
+      const resultWrapper =  document.querySelectorAll(".main .result")[0]
+      const result = document.querySelectorAll(".main .result > div")[0]
+      const rowWrapper = document.querySelectorAll(".rowWrapper")[0]
+
       if (resultWrapper && result && rowWrapper) {
 
         if (result.offsetHeight >= footerHeight.current.getBoundingClientRect().top) {
