@@ -34,7 +34,7 @@ class Subsidy extends Salary {
     work: Yup.number().oneOf([this.HIRED, this.SELF_EMPLOYED]).required(),
     static: Yup.boolean().oneOf([true, false]).required(),
     schedule: Yup.number().oneOf([5, 6]).required(),
-    amount: Yup.number().nullable().test("amount",
+    amount: Yup.number().nullable()/*.test("amount",
       function(item) {
         if (this.parent.tax_field === Subsidy.TAX_ENTERPRISE && item > 12) {
           return false
@@ -44,7 +44,7 @@ class Subsidy extends Salary {
           return item
         }
       },
-    ).when("static", {
+    )*/.when("static", {
       is: true,
       then: Yup.number().required(),
     }),
@@ -321,6 +321,7 @@ class Subsidy extends Salary {
    * @param {Number} avg
    */
   setAvg(avg) {
+    console.log(this.avg)
     this.avg = avg
   }
 
