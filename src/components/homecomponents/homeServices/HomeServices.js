@@ -1,17 +1,18 @@
 import React from "react"
 import {
-  NavLink,
-  Link,
+  ContainerRow,
+  ContentContainer,
   H2Styled,
+  Link,
+  NavLink,
   PStyled,
+  ResponsWrapper,
   SeemoreWrapper,
   ServiceNameWrapper,
-  ResponsWrapper,
-  ContentContainer,
-  ContainerRow,
-  ServiceTitle
+  ServiceTitle,
 } from "./homeServiceStyle.js"
-const HomeServices = ({pageContext, langText, lang }) => {
+
+const HomeServices = ({ pageContext, langText, lang }) => {
   return (
     <>
       <ServiceTitle>
@@ -20,12 +21,12 @@ const HomeServices = ({pageContext, langText, lang }) => {
       </ServiceTitle>
       <ResponsWrapper>
         <ContainerRow>
-          {pageContext.map(item=>(
+          {pageContext.map((item, index) => (
             <ContentContainer
-              key={item.link}
+              key={`services_${index}`}
               className="servicesContainer"
             >
-              <Link to={`/${lang}/${item.link}`} >
+              <Link to={`/${lang}/${item.link}`}>
                 <ServiceNameWrapper>
                   {item.paragraph}
                 </ServiceNameWrapper>
@@ -36,7 +37,7 @@ const HomeServices = ({pageContext, langText, lang }) => {
       </ResponsWrapper>
       <NavLink to={`/${lang}/services/`}>
         <SeemoreWrapper className="submit_button">
-            {langText.button_text}
+          {langText.button_text}
         </SeemoreWrapper>
       </NavLink>
     </>

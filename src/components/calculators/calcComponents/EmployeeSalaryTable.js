@@ -18,7 +18,7 @@ class EmployeeSalaryTable extends React.Component {
 
   render() {
     const { lang, items, style } = this.props
-
+    console.log('lang',lang)
     return (
       <CalculatorTable style={style}>
         <thead>

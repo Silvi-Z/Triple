@@ -757,7 +757,7 @@ class SalaryCalculator extends React.Component {
                   </Radio.Group>
                 </Form.Item>
 
-                <Form.Item style={{ marginTop: "50px" }}>
+                <Form.Item style={{ marginTop: "46px" }}>
                   <ButtonSubmit
                     htmlType="submit"
                     shape="round"
@@ -796,7 +796,7 @@ class SalaryCalculator extends React.Component {
                 title={langText["pension_paymet_label"]}
                 text={result.pension_fee}
                 loading={loading}
-                tooltip
+                tooltip={false}
               />
               <CalculatorCardResult
                 title={langText["stamp_duty_label"]}

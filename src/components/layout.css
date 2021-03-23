@@ -958,8 +958,8 @@ pre tt:after {
 
     /*register*/
     label[title] {
-        width: 400px;
-        height: 31px;
+        /*width: 400px;*/
+        /*height: 31px;*/
         font-family: ArialAMU;
         font-size: 14px;
         font-weight: normal;
@@ -1224,6 +1224,10 @@ pre tt:after {
     padding-right: 10px;
     padding-left: 35px;
 }
+.calculator-result-label {
+    margin-top: 25px;
+    margin-bottom: 0;
+}
 
 @media only screen and (max-width: 480px) {
     html {
@@ -1267,7 +1271,10 @@ pre tt:after {
 
 @media only screen and (max-width: 1200px) {
     .startEndInputs > div:first-child{
-        margin-right: 0px;
+        margin-right: 0;
+    }
+    .calculator-result-label{
+        margin-top: 0;
     }
     #register_address {
         width: 100%;
@@ -1275,9 +1282,9 @@ pre tt:after {
         border: solid 1px #009db8;
         background-color: #ffffff;
     }
-    .result{
-        margin: 65px 0 60px 10px;
-    }
+    /*.result{*/
+    /*    padding: 65px 0 60px 10px;*/
+    /*}*/
     .result > div{
         height: 100%;
         display: flex;
@@ -1296,7 +1303,7 @@ pre tt:after {
         display: flex;
         flex-direction: column;
         flex-wrap: wrap;
-        max-height: 330px;
+        /*max-height: 330px;*/
     }
     .result > div > *{
         width: 50%;
@@ -1746,10 +1753,6 @@ pre tt:after {
     }
 }
 
-.calculator-result-label {
-    margin-top: 25px;
-    margin-bottom: 0;
-}
 
 .currency {
     font-family: ArialAMU, serif;

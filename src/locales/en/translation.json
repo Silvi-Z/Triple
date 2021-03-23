@@ -289,14 +289,16 @@
         "no": "No",
         "working_schedule": "Work schedule",
         "five_days": "5 day schedule",
-        "six_days": "6 day schedule"
+        "six_days": "6 day schedule",
+        "message": "Սխալ day ներբեռնում։",
+        "description": "Ձեր կողմից ներբեռնված ֆայլի սխալ ֆորմատի է։"
       },
       "table": {
-        "name": "ԱՆՈՒՆ / ԱԶԳԱՆՈՒՆ",
-        "day": "ՕՐ",
-        "hour": "ԺԱՄ",
+        "name": "Name / Surname",
+        "day": "DAY",
+        "hour": "HOUR",
         "social_fee": "ՍՈՑԻԱԼԱԿԱՆ ՎՃԱՐ",
-        "salary": "ԳՐԱՆՑՎԱԾ աշխԱՏԱՎԱՐՁ",
+        "salary": "Gross salary",
         "yes_volunteer": "Yes (voluntary)",
         "yes": "Yes",
         "no": "No"

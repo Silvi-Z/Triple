@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react"
-import contentData from "./contentData"
 import {
-  NavLink,
-  PStyled,
   H2Styled,
   IconWrapper,
-  SeemoreWrapper,
-  ResponsWrapper,
+  NavLink,
   PartnerspHeadingColumn,
+  PStyled,
+  ResponsWrapper,
+  SeemoreWrapper,
 } from "./homePartStyle.js"
 import { ContentContainer, Div, InfoAboutPartners, ServiceNameWrapper } from "../homeServices/homeServiceStyle"
 import triple from "../../../api/triple"
@@ -15,11 +14,12 @@ import apiUrl from "../../../api/api.json"
 
 const Homepartners = ({ langText, lang }) => {
   const [partners, setPartners] = useState([])
-  useEffect(()=>{
-    triple.get('/api/partner')
-      .then(res =>{
+
+  useEffect(() => {
+    triple.get("/api/partner")
+      .then(res => {
         setPartners(res.data.data)
-      } )
+      })
       .catch(err => console.log(err))
   }, [])
   return (
@@ -31,11 +31,11 @@ const Homepartners = ({ langText, lang }) => {
         </PStyled>
       </PartnerspHeadingColumn>
       <ResponsWrapper>
-        {partners.map(item => (
-          <ContentContainer key={item.name_arm}>
+        {partners.map((item, index) => (
+          <ContentContainer key={`partner_${index}`}>
             <Div href={item.url} target='_blank'>
               <ServiceNameWrapper>
-                <IconWrapper src={apiUrl.apiUrl + item.image} alt={"icon"}/>
+                <IconWrapper src={apiUrl.apiUrl + item.image} alt={"icon"} />
               </ServiceNameWrapper>
               <InfoAboutPartners>
                 {item.name_arm}

@@ -133,7 +133,7 @@ class SalaryTableCalculator extends React.Component {
     return isNull(date_to) ? date_to : moment(date_to)
   }
 
-  handleUpload = e => {
+  handleUpload = (e) => {
     e.persist()
 
     const file = e.target.files[0]
@@ -171,11 +171,11 @@ class SalaryTableCalculator extends React.Component {
 
         return acc
       }, [])
-
+      const lang= this.props.lang.form
       if (!date.isValid() || !employees.length) {
         notification.error({
-          message: "Սխալ ֆայլի ներբեռնում։",
-          description: "Ձեր կողմից ներբեռնված ֆայլի սխալ ֆորմատի է։",
+          message:  lang.message,
+          description: lang.description,
         })
 
         employees.splice(0, employees.length)
@@ -499,7 +499,7 @@ class SalaryTableCalculator extends React.Component {
 
             {!form.by && !isEmpty(result) ?
               <ButtonSubmit
-                style={{ textTransform: "none", width: "100%" }}
+                style={{ textTransform: "none", width: "100%", marginBottom: "40px" }}
                 onClick={this.handleDownload}
                 icon={<DownloadOutlined />}
                 htmlType="button"

@@ -39,7 +39,7 @@ const UsefulNews = ({news, lang , buttonDisplay, setButtonDisplay, apiUrl,pageCo
             >
               <ImageWrapper>
                 <img style={{ width: "100%" }} src={apiUrl + item.image} alt="" />
-              </ImageWrapper>font
+              </ImageWrapper>
               <TextPart>
                 <Title>{item.title_arm}</Title>
                 <NewsText>{item.description_arm}</NewsText>

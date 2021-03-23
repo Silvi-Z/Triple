@@ -32,8 +32,9 @@ const Index = ({location, pageContext }) => {
     console.log(triple)
     triple.get('/api/news')
       .then(res =>{
-        setConstData(res.data.data)
-        setData(res.data.data);
+        const filter = res.data.data.slice().sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
+        setConstData(filter);
+        setData(filter)
       } )
       .catch(err => console.log(err))
   }, [])
@@ -94,7 +95,6 @@ const Index = ({location, pageContext }) => {
   }
 
   const filteredDate =data.filter(item =>location.hash.substring(1).includes(item.id.toString()))
-  // console.log("filteredDate", filteredDate)
   const onChange = (e) => {
     const data = constData.filter(item => item.title_arm.toLowerCase().includes(e.target.value.toLowerCase()))
     setData(data)
@@ -102,7 +102,7 @@ const Index = ({location, pageContext }) => {
 
   const showNews = (e) =>{
     if (e.target.parentNode.title==='Վերջին նորություններ'){
-      const sortedNews = constData.slice().sort((a, b) => new Date(b.date) - new Date(a.date))
+      const sortedNews = constData.slice().sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
       setData(sortedNews)
     }else if(e.target.parentNode.title==='Շատ ընթերցված'){
       const sortedNews = constData.slice().sort((a, b) => b.views - a.views)

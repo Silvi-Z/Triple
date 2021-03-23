@@ -1,11 +1,12 @@
 import React from "react"
 import moment from "moment"
 import { isEmpty, isEqual, isNull } from "lodash"
-import { Card, Checkbox, Col, Form, Radio, Row, Select } from "antd"
+import { Card, Checkbox, Col, Form, Radio, Row, Select ,Tooltip} from "antd"
+import { InfoCircleTwoTone } from "@ant-design/icons";
 import {
   ButtonSubmit,
   CalculatorDatePicker,
-  CalculatorInput,
+  CalculatorInput, CalculatorsCardWrapper,
   CalculatorSelect,
   FormLabel,
   Label,
@@ -229,25 +230,6 @@ class SubsidyCalculator extends React.Component {
         })
       }
     })
-  }
-
-  handleWindowScroll = () => {
-    // window.onscroll = () => {
-    //   if (this.col.current.getBoundingClientRect().top <= 0) {
-    //     this.col.current.classList.add("fixed")
-    //     this.col.current.children[0].style.width = this.rowWidth.current.clientWidth*33.3333333/100-20+ 'px'
-    //   }else{
-    //     this.col.current.classList.remove('fixed')
-    //   }
-    // }
-    // if (
-    //   (window.scrollY + this.colElement.offsetHeight + this.rowElementOffsetTop) >=
-    //   (this.rowElementOffsetTop + this.rowElement.offsetHeight)
-    // ) {
-    //   this.colElement.classList.add("abs")
-    // } else {
-    //   this.colElement.classList.remove("abs")
-    // }
   }
 
   setField(name, value, cb) {
@@ -474,15 +456,8 @@ class SubsidyCalculator extends React.Component {
     this.calculator.setFields(form)
 
     return (
-      <Row align="start" gutter={20} ref={this.rowWidth} className="rowWrapper">
-        <Col xs={24} sm={24} md={24} lg={16} xl={16} xxl={16} ref={this.row}>
-          {/*<Row align="center" style={{ justifyContent: "space-between" }}>*/}
-          {/*  <div className="textSec">*/}
-          {/*    <H1Styled>{lang.title}</H1Styled>*/}
-          {/*    <TextStyled>{lang.paragraph}</TextStyled>*/}
-          {/*  </div>*/}
-          {/*</Row>*/}
-
+      <Row align="start" gutter={20} ref={this.rowWidth} className="fixElement">
+        <CalculatorsCardWrapper span={24} xl={16} ref={this.row}>
           <Card bordered={false}>
             <Form
               onFinish={this.handleSubmit}
@@ -492,7 +467,7 @@ class SubsidyCalculator extends React.Component {
               size="large"
             >
 
-              <Form.Item style={{ textAlign: "right" }}>
+              <Form.Item style={{ display: "flex" }}>
                 <CalculatorSelect
                   size="large"
                   value={form.year}
@@ -572,6 +547,9 @@ class SubsidyCalculator extends React.Component {
                   min={1}
                   max={180}
                 />
+                <Tooltip title="prompt text" color="black">
+                  <InfoCircleTwoTone twoToneColor="#00B3C7" style={{marginLeft: 5}} />
+                </Tooltip>
               </Form.Item>
 
               {/* work field */}
@@ -602,9 +580,6 @@ class SubsidyCalculator extends React.Component {
                 >
                   <Radio style={radioStyle} value={Subsidy.TAX_COMMON}>
                     <RadioLabel>{lang.form.tax_common}</RadioLabel>
-                  </Radio>
-                  <Radio style={radioStyle} value={Subsidy.TAX_IT}>
-                    <RadioLabel>{lang.form.tax_enterprise}</RadioLabel>
                   </Radio>
                   <Radio style={radioStyle} value={Subsidy.TAX_ENTERPRISE}>
                     <RadioLabel>{lang.form.tax_it}</RadioLabel>
@@ -687,6 +662,9 @@ class SubsidyCalculator extends React.Component {
                   name="income"
                   size="large"
                 />
+                <Tooltip title="prompt text" color="black">
+                  <InfoCircleTwoTone twoToneColor="#00B3C7" style={{marginLeft: 5}} />
+                </Tooltip>
               </Form.Item>
               }
 
@@ -720,9 +698,9 @@ class SubsidyCalculator extends React.Component {
               </Form.Item>
             </Form>
           </Card>
-        </Col>
+        </CalculatorsCardWrapper>
 
-        <Col xs={24} sm={24} md={24} lg={8} xl={8} xxl={8} className="result" ref={this.col}>
+        <Col span={20} md={17} xl={8} sm={10} className="result" ref={this.col}>
           <div>
             <FormLabel style={{ margin: 0 }}>{lang.result.title}</FormLabel>
 
@@ -746,6 +724,7 @@ class SubsidyCalculator extends React.Component {
             <CalculatorCardResult
               title={lang.result["income_tax"]}
               text={result.income_tax}
+              tooltip={this.isTaxEnterprise}
             />
 
             <CalculatorCardResult

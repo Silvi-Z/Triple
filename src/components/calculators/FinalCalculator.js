@@ -465,7 +465,7 @@ class FinalCalculator extends React.Component {
     const { lang } = this.props
 
     return (
-      <Row className="rowWrapper" align="start" gutter={20} ref={this.rowWidth}>
+      <Row className="fixElement" align="start" gutter={20} ref={this.rowWidth}>
         <CalculatorsCardWrapper span={24} xl={16} ref={this.row}>
           {/*<Row align="center" style={{ justifyContent: "space-between" }}>*/}
           {/*  <div className="textSec">*/}

@@ -156,6 +156,8 @@ export const Label = styled(Text)`
   text-transform: uppercase;
   color: #000000;
   font-weight: bold;
+    margin-right:0!important;
+ white-space: normal;
 `
 
 export const RadioLabel = styled(Text)`

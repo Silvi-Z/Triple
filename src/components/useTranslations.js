@@ -265,6 +265,8 @@ const query = graphql`
                   five_days
                   six_days
                   year
+                  message
+                  description
                 }
                 table {
                   name
