@@ -769,7 +769,7 @@ class SalaryCalculator extends React.Component {
               </Form>
             </CalculatorsCard>
           </CalculatorsCardWrapper>
-          <Col span={20} md={17} xl={8} sm={10} className="result" ref={this.top}>
+          <Col span={20} md={17} xl={8} sm={15} className="result" ref={this.top}>
             <div>
               <FormLabel style={{ margin: 0 }}>{langText.result_title}</FormLabel>
 

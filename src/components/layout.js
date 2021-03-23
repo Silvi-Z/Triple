@@ -56,7 +56,7 @@ const Layout = ({ children, location, pageContext: { locale, originalPath, local
 
   const [responseWrapper, setResponseWrapper] = useState(true)
   const [menuColorProp , setMenuColorProp] = useState("")
-  
+
   const openMenu = () => {
     setResponseWrapper(!responseWrapper);
     (menuColorProp==="") ? setMenuColorProp("#1C1D21"): setMenuColorProp("");
@@ -99,7 +99,7 @@ const Layout = ({ children, location, pageContext: { locale, originalPath, local
       const resultWrapper =  document.querySelectorAll(".main .result")[0]
       if(cards && heightEl && resultWrapper){
         if(heightEl && window.innerWidth > 768 && window.innerWidth < 1200){
-          resultWrapper.style.maxHeight = heightEl + 80 + 'px';
+          resultWrapper.style.maxHeight = heightEl + 140 + 'px';
           console.log(resultWrapper.style.maxHeight)
         }else {
           resultWrapper.style.maxHeight = 'unset'
@@ -112,6 +112,7 @@ const Layout = ({ children, location, pageContext: { locale, originalPath, local
   return (
     <>
       <Navbar
+
         open={openMenu}
         originalPath={originalPath}
         setMenuColor={setMenuColorProp}
@@ -121,7 +122,7 @@ const Layout = ({ children, location, pageContext: { locale, originalPath, local
         lang={locale}
         langText={localeResources.translation.layout}
       />
-      
+
       <Main className='main'>{children}</Main>
 
 

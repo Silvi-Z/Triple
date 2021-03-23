@@ -645,6 +645,9 @@ class SubsidyCalculator extends React.Component {
                       name="amount"
                       size="large"
                     />
+                    <Tooltip title="prompt text" color="black">
+                      <InfoCircleTwoTone twoToneColor="#00B3C7" style={{marginLeft: 5}} />
+                    </Tooltip>
                   </Form.Item>
                   : null
               }

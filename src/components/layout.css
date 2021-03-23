@@ -1287,6 +1287,8 @@ pre tt:after {
     /*}*/
     .result > div{
         height: 100%;
+        padding-left: 24px;
+        margin-top: 65px;
         display: flex;
         flex-direction: column;
     }
@@ -1299,6 +1301,9 @@ pre tt:after {
     }
 }
 @media all and (max-width: 1200px) and (min-width: 768px){
+    .startEndInputs > div:last-child{
+        margin-left: 25px;
+    }
     .result > div{
         display: flex;
         flex-direction: column;
@@ -1439,6 +1444,31 @@ pre tt:after {
     bottom: -31px !important;
 }
 
+.tableScroll{
+    overflow-y: scroll;
+}
+.tableScroll, .tableScroll > div{
+    transform: rotate(180deg);
+}
+::-webkit-scrollbar {
+    height: 4px;
+    width: 0;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #00B3C7;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #00B3C7;
+}
 @media (max-width: 1165px) {
     .slick-initialized {
         max-width: 100%;
@@ -1463,6 +1493,9 @@ pre tt:after {
 }
 
 @media (max-width: 768px) {
+    .result > div{
+        margin-top:50px
+    }
     .slick-track {
         padding-top: 0;
     }

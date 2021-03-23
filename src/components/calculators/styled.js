@@ -186,7 +186,7 @@ export const CalculatorDatePicker = styled(DatePicker)`
   background: #FFFFFF;
   box-sizing: border-box;
   border-radius: 5px !important;
-  
+  border: 1px solid #555555;
   &.currencyDate{
     margin-right: 10px;
   }
