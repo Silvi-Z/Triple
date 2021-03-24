@@ -66,11 +66,12 @@ const Layout = ({ children, location, pageContext: { locale, originalPath, local
   const top = useRef()
 
   useEffect(()=>{
-    const resultWrapper =  document.querySelectorAll(".main .result")[0]
-    const result = document.querySelectorAll(".main .result > div")[0]
-    const rowWrapper = document.querySelectorAll(".rowWrapper")[0]
     function fixedPos(){
-      if (resultWrapper && result && rowWrapper) {
+      const resultWrapper =  document.querySelectorAll(".main .result")[0]
+      const result = document.querySelectorAll(".main .result > div")[0]
+      const rowWrapper = document.querySelectorAll(".rowWrapper")[0]
+
+      if (resultWrapper && result && rowWrapper && window.innerWidth > 1200) {
         if (result.offsetHeight >= footerHeight.current.getBoundingClientRect().top) {
           result.classList.add('absolute')
         } else if (resultWrapper.getBoundingClientRect().top <= 0) {
@@ -84,9 +85,27 @@ const Layout = ({ children, location, pageContext: { locale, originalPath, local
       }
     }
     window.addEventListener('scroll', function(){
-      fixedPos()
+      fixedPos();
     });
+    window.addEventListener('resize', function() {
+      resultHeight()
+    })
     fixedPos()
+    resultHeight()
+    function resultHeight() {
+      const h3 = document.querySelector('.result h3')
+      const cards = document.querySelectorAll(".result .ant-card");
+      const heightEl = cards.length>3 && cards.length > 0 && cards[0].offsetHeight + cards[1].offsetHeight + cards[2].offsetHeight+ h3.clientHeight;
+      const resultWrapper =  document.querySelectorAll(".main .result")[0]
+      if(cards && heightEl && resultWrapper){
+        if(heightEl && window.innerWidth > 768 && window.innerWidth < 1200){
+          resultWrapper.style.maxHeight = heightEl + 80 + 'px';
+          console.log(resultWrapper.style.maxHeight)
+        }else {
+          resultWrapper.style.maxHeight = 'unset'
+        }
+      }
+    }
   }, [footerHeight])
 
 
@@ -103,8 +122,7 @@ const Layout = ({ children, location, pageContext: { locale, originalPath, local
         langText={localeResources.translation.layout}
       />
       
-      <Main
-      class='main'>{children}</Main>
+      <Main className='main'>{children}</Main>
 
 
       <FooterCust

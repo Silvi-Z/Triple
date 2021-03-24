@@ -1,11 +1,13 @@
 import React from "react"
 import { isEqual } from "lodash"
-import { Col, Divider, Form, Radio, Row } from "antd"
+import { Col, Divider, Form, Radio, Row, Tooltip } from "antd"
+import { InfoCircleTwoTone } from "@ant-design/icons"
+// import { Checkbox, Col, Form, Input, Radio, Row,  } from "antd"
 import {
   ButtonSubmit,
   CalculatorDatePicker,
   CalculatorInput,
-  CalculatorsCard,
+  CalculatorsCard, CalculatorsCardWrapper,
   FormLabel,
   Label,
   UnderLine,
@@ -196,8 +198,8 @@ class CarCustomsCalculator extends React.Component {
     const { form, result, rates, calculated } = this.state
 
     return (
-      <Row align="start" gutter={20}>
-        <Col xs={24} sm={24} md={24} lg={16} xl={16} xxl={16}>
+      <Row align="start" gutter={{ xl: 20 }}>
+        <CalculatorsCardWrapper span={24} xl={16}>
           {/*<Row align="center" style={{ justifyContent: "space-between" }}>*/}
           {/*  <div className="textSec">*/}
           {/*    <H1Styled>{lang.title}</H1Styled>*/}
@@ -289,6 +291,9 @@ class CarCustomsCalculator extends React.Component {
                     value={form.costs}
                     size="large"
                   />
+                  <Tooltip title="prompt text" color="black">
+                    <InfoCircleTwoTone twoToneColor="#00B3C7" style={{ marginLeft: 5 }} />
+                  </Tooltip>
                 </Form.Item>
                 : null}
 
@@ -308,67 +313,69 @@ class CarCustomsCalculator extends React.Component {
               </Form.Item>
             </Form>
           </CalculatorsCard>
-        </Col>
-        <Col xs={24} sm={24} md={24} lg={8} xl={8} xxl={8} className="result">
-          <FormLabel style={{ margin: 0 }}>{lang.result.title}</FormLabel>
+        </CalculatorsCardWrapper>
+        <Col span={20} md={17} xl={8} sm={10} className="result">
+          <div>
+            <FormLabel style={{ margin: 0 }}>{lang.result.title}</FormLabel>
 
-          <UnderLine />
+            <UnderLine />
 
-          {Object.keys(result).map(key =>
-            <CalculatorCardResult
-              title={lang.result[key]}
-              key={key}
-              text={
-                <>
-                  {(calculated && result[key] && result[key].hasOwnProperty(form.currency)) ?
-                    <span>
+            {Object.keys(result).map(key =>
+              <CalculatorCardResult
+                title={lang.result[key]}
+                key={key}
+                text={
+                  <>
+                    {(calculated && result[key] && result[key].hasOwnProperty(form.currency)) ?
+                      <span>
                       <span
                         className="currency-symbol"
                         dangerouslySetInnerHTML={{ __html: result[key][form.currency].sym }}
                       />
-                      {result[key][form.currency].amount}
-                      <br />
+                        {result[key][form.currency].amount}
+                        <br />
                     </span>
-                    : null}
+                      : null}
 
-                  {(calculated && result[key].hasOwnProperty(form.currency) && form.currency !== "AMD") ?
-                    <span>
+                    {(calculated && result[key].hasOwnProperty(form.currency) && form.currency !== "AMD") ?
+                      <span>
                       <span
                         className="currency-symbol"
                         dangerouslySetInnerHTML={{ __html: "&#1423;" }}
                       />
-                      {result[key]["AMD"].amount}
+                        {result[key]["AMD"].amount}
                     </span>
-                    : null}
-                </>
-              }
-            />,
-          )}
+                      : null}
+                  </>
+                }
+              />,
+            )}
 
-          <p className="calculator-result-label">{lang.result.currency}</p>
+            <p className="calculator-result-label">{lang.result.currency}</p>
 
-          <UnderLine />
+            <UnderLine />
 
-          <CalculatorCardResult style={{ padding: "15px" }}>
-            {Object.keys(rates).map((currency, c) => (
-              <Row align="center" key={`currency-${currency}`}>
-                <Col span={12} className="currency">
+            <CalculatorCardResult style={{ padding: "15px" }}>
+              {Object.keys(rates).map((currency, c) => (
+                <Row align="center" key={`currency-${currency}`}>
+                  <Col span={12} className="currency">
                   <span
                     className="c-label sym"
                     dangerouslySetInnerHTML={{ __html: `${(currency === "EUR" ? "&#8364;" : "&#36;")}` }}
                   />
 
-                  <span className="c-label">{currency}</span>
-                </Col>
-                <Col span={12} className="currency">
-                  <span className="c-text">{rates[currency]}</span>
-                </Col>
-                {c < Object.keys(rates).length - 1 ?
-                  <Divider style={{ margin: "10px 0", border: "1px solid #555555" }} />
-                  : null}
-              </Row>
-            ))}
-          </CalculatorCardResult>
+                    <span className="c-label">{currency}</span>
+                  </Col>
+                  <Col span={12} className="currency">
+                    <span className="c-text">{rates[currency]}</span>
+                  </Col>
+                  {c < Object.keys(rates).length - 1 ?
+                    <Divider style={{ margin: "10px 0", border: "1px solid #555555" }} />
+                    : null}
+                </Row>
+              ))}
+            </CalculatorCardResult>
+          </div>
         </Col>
       </Row>
     )

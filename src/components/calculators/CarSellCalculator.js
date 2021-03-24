@@ -7,8 +7,7 @@ import {
   ButtonSubmit,
   CalculatorDatePicker,
   CalculatorInput,
-  CalculatorsCard,
-  CurrencySymbol,
+  CalculatorsCard, CalculatorsCardWrapper, CurrencySymbol,
   FormLabel,
   Label,
   UnderLine,
@@ -181,7 +180,7 @@ class CarSellCalculator extends React.Component {
 
     return (
       <Row align="start" gutter={20}>
-        <Col xs={24} sm={24} md={24} lg={16} xl={16} xxl={16}>
+        <CalculatorsCardWrapper span={24} xl={16}>
           {/*<Row align="center" style={{justifyContent: 'space-between'}}>*/}
           {/*  <div className="textSec">*/}
           {/*    <H1Styled>{lang.title}</H1Styled>*/}
@@ -267,18 +266,20 @@ class CarSellCalculator extends React.Component {
               </Form.Item>
             </Form>
           </CalculatorsCard>
-        </Col>
+        </CalculatorsCardWrapper>
 
         <Col xs={24} sm={24} md={24} lg={8} xl={8} xxl={8} className="result">
-          <FormLabel style={{ margin: 0 }}>{lang.result.title}</FormLabel>
+          <div>
+            <FormLabel style={{ margin: 0 }}>{lang.result.title}</FormLabel>
 
-          <UnderLine />
+            <UnderLine />
 
-          <CalculatorCardResult
-            title={lang.tax_label}
-            subtitle={tax === 0 ? lang.tax_body : ""}
-            text={tax}
-          />
+            <CalculatorCardResult
+              title={lang.tax_label}
+              subtitle={tax === 0 ? lang.tax_body : ""}
+              text={tax}
+            />
+          </div>
         </Col>
       </Row>
     )

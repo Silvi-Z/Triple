@@ -6,7 +6,7 @@ import {
   ButtonSubmit,
   CalculatorDatePicker,
   CalculatorInput,
-  CalculatorsCard,
+  CalculatorsCard, CalculatorsCardWrapper,
   CalculatorSelect,
   FormLabel,
   H1Styled,
@@ -68,14 +68,8 @@ class CarTaxCalculator extends React.Component {
     const { form, tax } = this.state
 
     return (
-      <Row align="start" gutter={20}>
-        <Col xs={24} sm={24} md={24} lg={16} xl={16} xxl={16}>
-          {/*<Row align="center" style={{ justifyContent: "space-between" }}>*/}
-          {/*  <div className="textSec">*/}
-          {/*    <H1Styled>{lang.title}</H1Styled>*/}
-          {/*    <TextStyled>{lang.paragraph}</TextStyled>*/}
-          {/*  </div>*/}
-          {/*</Row>*/}
+      <Row align="start" gutter={20} className="fixElement">
+        <CalculatorsCardWrapper span={24} xl={16}>
           <CalculatorsCard bordered={false}>
             <Form
               onFinish={this.handleSubmit}
@@ -186,16 +180,18 @@ class CarTaxCalculator extends React.Component {
               </Form.Item>
             </Form>
           </CalculatorsCard>
-        </Col>
-        <Col xs={24} sm={24} md={24} lg={8} xl={8} xxl={8} className="result">
-          <FormLabel style={{ margin: 0 }}>{lang.result.title}</FormLabel>
+        </CalculatorsCardWrapper>
+        <Col span={20} md={17} xl={8} sm={10} className="result">
+          <div>
+            <FormLabel style={{ margin: 0 }}>{lang.result.title}</FormLabel>
 
-          <UnderLine />
+            <UnderLine />
 
-          <CalculatorCardResult
-            title={lang.result.tax}
-            text={tax}
-          />
+            <CalculatorCardResult
+              title={lang.result.tax}
+              text={tax}
+            />
+          </div>
         </Col>
       </Row>
     )

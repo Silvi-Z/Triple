@@ -4,7 +4,7 @@ import { Checkbox, Col, Form, Radio, Row } from "antd"
 import {
   ButtonSubmit,
   CalculatorDatePicker,
-  CalculatorsCard,
+  CalculatorsCard, CalculatorsCardWrapper,
   CalendarInfo,
   CalendarTable,
   CalendarTitle,
@@ -342,8 +342,8 @@ const CalendarCalculator = ({ lang }) => {
   }
 
   return (
-    <Row align="start" gutter={20}>
-      <Col xs={24} sm={24} md={24} lg={24} xl={24} xxl={24}>
+    <Row align="start" gutter={20} className="fixElement">
+      <CalculatorsCardWrapper xs={24} sm={24} md={24} lg={24} xl={24} xxl={24}>
         {/*<Row align="center" style={{ justifyContent: "space-between" }}>*/}
         {/*  <div className="textSec">*/}
         {/*    <H1Styled>{lang.title}</H1Styled>*/}
@@ -362,7 +362,7 @@ const CalendarCalculator = ({ lang }) => {
           >
             <Row align="start"
                  justify="space-between">
-              <Col xxl={16} xl={14} lg={16} md={24} sm={24} xs={24}>
+              <CalculatorsCardWrapper span={24} xl={16}>
                 <Form.Item label={<Label>{lang.chooseDaysRange}</Label>} labelCol={{ span: 24 }}>
                 </Form.Item>
                 <Form.Item label={lang.working_schedule} labelCol={{ span: 24 }}>
@@ -421,40 +421,42 @@ const CalendarCalculator = ({ lang }) => {
                     {lang.calculate}
                   </ButtonSubmit>
                 </Form.Item>
-              </Col>
+              </CalculatorsCardWrapper>
               <Col xxl={8} xl={8} lg={8} md={24} sm={24} xs={24} className={"result calendarResult"}>
-                <FormLabel style={{ margin: 0, minHeight: "40px", lineHeight: "40px" }}>
-                  {lang.result.title}
-                  {Object.keys(initialState.result).length > 0 && form.date_from && form.date_to &&
-                  <span className={"dateRange"}>
+               <div>
+                 <FormLabel style={{ margin: 0, minHeight: "40px", lineHeight: "40px" }}>
+                   {lang.result.title}
+                   {Object.keys(initialState.result).length > 0 && form.date_from && form.date_to &&
+                   <span className={"dateRange"}>
               {` (${moment(form.date_from).format("DD.MM.YY")}${lang.year} -
           ${moment(form.date_to).format("DD.MM.YY")}${lang.year})`}
             </span>
 
-                  }
-                </FormLabel>
+                   }
+                 </FormLabel>
 
-                <UnderLine />
+                 <UnderLine />
 
-                <CalculatorCardResult
-                  title={lang.result.calendarDays}
-                  text={initialState.result.overallDays}
-                />
+                 <CalculatorCardResult
+                   title={lang.result.calendarDays}
+                   text={initialState.result.overallDays}
+                 />
 
-                <CalculatorCardResult
-                  title={lang.result.workDays}
-                  text={initialState.result.workingDays}
-                />
+                 <CalculatorCardResult
+                   title={lang.result.workDays}
+                   text={initialState.result.workingDays}
+                 />
 
-                <CalculatorCardResult
-                  title={lang.result.nonWorkingDays}
-                  text={initialState.result.nonWorkingDays}
-                />
+                 <CalculatorCardResult
+                   title={lang.result.nonWorkingDays}
+                   text={initialState.result.nonWorkingDays}
+                 />
 
-                <CalculatorCardResult
-                  title={lang.result.workHours}
-                  text={initialState.result.workingHours}
-                />
+                 <CalculatorCardResult
+                   title={lang.result.workHours}
+                   text={initialState.result.workingHours}
+                 />
+               </div>
               </Col>
             </Row>
             <YearField align="middle">
@@ -575,7 +577,7 @@ const CalendarCalculator = ({ lang }) => {
             </Checkbox.Group>
           </Form>
         </CalculatorsCard>
-      </Col>
+      </CalculatorsCardWrapper>
     </Row>
   )
 }

@@ -10,7 +10,7 @@ import {
   ButtonSubmit,
   CalculatorDatePicker,
   CalculatorInput,
-  CalculatorsCard,
+  CalculatorsCard, CalculatorsCardWrapper,
   FormLabel,
   Label,
   RadioLabel,
@@ -472,8 +472,8 @@ class FinalCalculator extends React.Component {
     const { lang } = this.props
 
     return (
-      <Row className="rowWrapper" align="start" gutter={20} ref={this.rowWidth}>
-        <Col xs={24} sm={24} md={24} lg={16} xl={16} xxl={16} ref={this.row}>
+      <Row className="fixElement" align="start" gutter={20} ref={this.rowWidth}>
+        <CalculatorsCardWrapper span={24} xl={16} ref={this.row}>
           {/*<Row align="center" style={{ justifyContent: "space-between" }}>*/}
           {/*  <div className="textSec">*/}
           {/*    <H1Styled>{lang.title}</H1Styled>*/}
@@ -671,7 +671,8 @@ class FinalCalculator extends React.Component {
                     <Label>{lang.form["yes"]}</Label>
                   </Radio>
                   <Radio value={PENSION_FIELD_YES_VOLUNTEER}>
-                    <Label>{lang.form["yes_volunteer"]}</Label>
+                    <Label>{lang.form["yes"]}</Label>
+                    <Label className="volunteer">{lang.form["yes_volunteer"]}</Label>
                   </Radio>
                   <Radio value={PENSION_FIELD_NO}>
                     <Label>{lang.form["no"]}</Label>
@@ -686,8 +687,8 @@ class FinalCalculator extends React.Component {
               </Form.Item>
             </Form>
           </CalculatorsCard>
-        </Col>
-        <Col xs={24} sm={24} md={24} lg={8} xl={8} xxl={8} className="result" ref={this.col}>
+        </CalculatorsCardWrapper>
+        <Col span={20} md={17} xl={8} sm={10} className="result" ref={this.col}>
           <div>
             <FormLabel style={{ margin: 0 }}>{lang.result.title}</FormLabel>
 

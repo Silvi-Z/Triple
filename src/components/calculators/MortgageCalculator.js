@@ -9,7 +9,7 @@ import { SALARY_TYPE_NET, SALARY_TYPE_REGISTERED } from "./utilities/mortgage"
 import {
   ButtonSubmit,
   CalculatorInput,
-  CalculatorsCard,
+  CalculatorsCard, CalculatorsCardWrapper,
   CalculatorSelect,
   FormLabel,
   Label,
@@ -199,17 +199,10 @@ class MortgageCalculator extends React.Component {
     const { lang } = this.props
 
     return (
-      <Row className="rowWrapper" align="start" gutter={20} ref={this.row}>
-        <Col xs={24} sm={24} md={24} lg={16} xl={16} xxl={16}>
-          {/*<Row align="center" style={{ justifyContent: "space-between" }}>*/}
-          {/*  <div className="textSec">*/}
-          {/*    <H1Styled>{lang.title}</H1Styled>*/}
-          {/*    <TextStyled>{lang.paragraph}</TextStyled>*/}
-          {/*  </div>*/}
-          {/*</Row>*/}
-
+      <Row className="fixElement" align="start" gutter={20} ref={this.row}>
+        <CalculatorsCardWrapper span={24} xl={16}>
           <CalculatorsCard bordered={false}>
-            <Form.Item style={{ textAlign: "right" }}>
+            <Form.Item style={{ display: "flex" }}>
               <CalculatorSelect
                 size="large"
                 value={form.year}
@@ -342,7 +335,7 @@ class MortgageCalculator extends React.Component {
               </Form.Item>
             </Form>
           </CalculatorsCard>
-        </Col>
+        </CalculatorsCardWrapper>
 
         <Col xs={24} sm={24} md={24} lg={8} xl={8} xxl={8} className="result" ref={this.top}>
           <div>
