@@ -440,9 +440,9 @@ class SalaryCalculator extends React.Component {
   }
 
   get defaultDate() {
-    const { year } = this.state.form
+    const { date_from, year } = this.state.form
 
-    return moment({ year })
+    return date_from ? moment(date_from) : moment({ year })
   }
 
   autoCalculate(prevState) {

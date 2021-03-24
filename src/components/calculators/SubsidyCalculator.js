@@ -77,12 +77,6 @@ class SubsidyCalculator extends React.Component {
       }]
   }
 
-  get defaultDate() {
-    const { year } = this.state.form
-
-    return moment({ year })
-  }
-
   get isStatic() {
     return this.state.form.static
   }
@@ -229,9 +223,9 @@ class SubsidyCalculator extends React.Component {
     window.onscroll = () => {
       if (this.col.current.getBoundingClientRect().top <= 0) {
         this.col.current.classList.add("fixed")
-        this.col.current.children[0].style.width = this.rowWidth.current.clientWidth*33.3333333/100-20+ 'px'
-      }else{
-        this.col.current.classList.remove('fixed')
+        this.col.current.children[0].style.width = this.rowWidth.current.clientWidth * 33.3333333 / 100 - 20 + "px"
+      } else {
+        this.col.current.classList.remove("fixed")
       }
     }
     // if (
@@ -269,7 +263,7 @@ class SubsidyCalculator extends React.Component {
   }
 
   autocompleteDays() {
-    const { start, end, type, work } = this.state.form
+    const { start, end, type, work, schedule } = this.state.form
 
     if (isNull(start) || isNull(end)) {
       this.setState({ form: { ...this.state.form, days: null } })
@@ -277,17 +271,19 @@ class SubsidyCalculator extends React.Component {
 
     if (start && end) {
       const daysCount = workingDaysInRangeForSubsidy({
-        holidays: [],
-        workdays: [],
-        schedule: 5,
+        holidays: this.holidays,
+        workdays: this.workdays,
+        schedule,
         start: start.clone(),
         end: end.clone(),
         type,
         work,
       })
       this.setField("days", daysCount.length, this.changeYear)
+      this.onBlur()
     } else {
       this.changeYear()
+      this.onBlur()
     }
   }
 
@@ -334,6 +330,18 @@ class SubsidyCalculator extends React.Component {
     this.setState(prevState => (
       { valid: true }
     ), this.state.calculated ? this.handleSubmit : null)
+  }
+
+  get defaultDate() {
+    const { year } = this.state.form
+
+    return moment({ year })
+  }
+
+  get defaultToDate() {
+    const { start, year } = this.state.form
+
+    return start ? moment(start) : moment({ year })
   }
 
   handleInputValue(e) {
@@ -461,6 +469,14 @@ class SubsidyCalculator extends React.Component {
     window.addEventListener("scroll", this.handleWindowScroll)
   }
 
+  handleDateToDisabled = d => {
+    const { start } = this.state.form
+
+    if (start) {
+      return d.isSameOrBefore(start, "day")
+    }
+  }
+
   render() {
     const { lang } = this.props
     const { form, result, randomKey } = this.state
@@ -540,7 +556,8 @@ class SubsidyCalculator extends React.Component {
                     <CalculatorDatePicker
                       onChange={date => this.setField("end", date, this.autocompleteDays)}
                       dateRender={(date, today) => this.handlePickerRender(date, today, "end")}
-                      defaultPickerValue={this.defaultDate}
+                      defaultPickerValue={this.defaultToDate}
+                      disabledDate={this.handleDateToDisabled}
                       placeholder={lang.form.dates_placeholder}
                       value={form.end}
                       key={randomKey}
@@ -623,9 +640,6 @@ class SubsidyCalculator extends React.Component {
                   <Radio style={radioStyle} value={Subsidy.TAX_TURNOVER}>
                     <RadioLabel>{lang.form.tax_turnover_for_self_employed}</RadioLabel>
                   </Radio>
-                  <Radio style={radioStyle} value={Subsidy.TAX_IT}>
-                    <RadioLabel>{lang.form.tax_enterprise}</RadioLabel>
-                  </Radio>
                   <Radio style={radioStyle} value={Subsidy.TAX_ENTERPRISE}>
                     <RadioLabel>{lang.form.tax_it}</RadioLabel>
                   </Radio>
@@ -637,7 +651,7 @@ class SubsidyCalculator extends React.Component {
               {this.isTypeDisability && this.isWorkHired ?
                 <Form.Item label={lang.form.schedule} labelCol={{ span: 24 }}>
                   <Radio.Group
-                    onChange={e => this.setField("schedule", e.target.value, this.onBlur)}
+                    onChange={e => this.setField("schedule", e.target.value, this.autocompleteDays)}
                     value={form.schedule}
                   >
                     <Radio value={5}>
@@ -696,7 +710,6 @@ class SubsidyCalculator extends React.Component {
                 </Form.Item>
                 :
                 null}
-
 
               {this.isNotStatic ? <GrossSalaryTable
                 lang={lang.gross}

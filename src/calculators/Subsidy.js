@@ -172,7 +172,7 @@ class Subsidy extends Salary {
 
     if (this.fields.tax_field === Subsidy.TAX_ENTERPRISE) {
       avg = this.isSalaryStatic
-        ? ((this.fields.amount * this.minSalaryAmount / 2) + (this.fields.income || 0)) / 12
+        ? ((this.fields.amount * Math.ceil(this.minSalaryAmount / 2)) + (this.fields.income || 0)) / 12
         : (this.avg + (this.fields.income || 0)) / 12
 
       if (avg > this.minSalaryAmount * 15) {
@@ -183,8 +183,8 @@ class Subsidy extends Salary {
 
       return avg
     } else {
-      if (avg < this.minSalaryAmount / 2) {
-        return this.minSalaryAmount / 2
+      if (avg < Math.ceil(this.minSalaryAmount / 2)) {
+        return Math.ceil(this.minSalaryAmount / 2)
       } else if (avg > this.minSalaryAmount * 15) {
         return this.minSalaryAmount * 15
       } else {
@@ -217,7 +217,7 @@ class Subsidy extends Salary {
 
     } else if (tax_field === Subsidy.TAX_TURNOVER) {
       avg = this.isSalaryStatic
-        ? ((this.fields.amount / 5000) * (this.minSalaryAmount / 2) + (this.fields.income || 0)) / 12
+        ? ((this.fields.amount / 5000) * Math.ceil(this.minSalaryAmount / 2) + (this.fields.income || 0)) / 12
         : (this.avg + (this.fields.income || 0)) / 12
 
       if (avg > this.minSalaryAmount * 5) {
@@ -230,7 +230,7 @@ class Subsidy extends Salary {
 
     } else if (tax_field === Subsidy.TAX_ENTERPRISE) {
       avg = this.isSalaryStatic
-        ? ((this.fields.amount * this.minSalaryAmount / 2) + (this.fields.income || 0)) / 12
+        ? ((this.fields.amount * Math.ceil(this.minSalaryAmount / 2)) + (this.fields.income || 0)) / 12
         : (this.avg + (this.fields.income || 0)) / 12
 
       if (avg > this.minSalaryAmount * 5) {
@@ -263,7 +263,7 @@ class Subsidy extends Salary {
 
     } else if (tax_field === Subsidy.TAX_TURNOVER) {
       avg = this.isSalaryStatic
-        ? ((this.fields.amount / 5000) * (this.minSalaryAmount / 2) + (this.fields.income || 0)) / 12 * 80 / 100
+        ? ((this.fields.amount / 5000) * Math.ceil(this.minSalaryAmount / 2) + (this.fields.income || 0)) / 12 * 80 / 100
         : (this.avg + (this.fields.income || 0)) / 12 * 80 / 100
 
       if (avg > this.minSalaryAmount * 5) {
@@ -287,7 +287,7 @@ class Subsidy extends Salary {
     let avg = this.avgMonthSalaryForHired * 80 / 100
     if (this.fields.tax_field === Subsidy.TAX_ENTERPRISE) {
       avg = this.isSalaryStatic
-        ? ((this.fields.amount * this.minSalaryAmount / 2) + (this.fields.income || 0)) / 12 * 80 / 100
+        ? ((this.fields.amount * Math.ceil(this.minSalaryAmount / 2)) + (this.fields.income || 0)) / 12 * 80 / 100
         : (this.avg + ((this.fields.income || 0) / 12)) * 80 / 100
 
       if (avg > this.minSalaryAmount * 10) {
@@ -306,9 +306,6 @@ class Subsidy extends Salary {
 
   get daysForCalculate() {
     if (this.fields.type === Subsidy.DISABILITY && this.fields.work === Subsidy.HIRED) {
-      if (this.fields.tax_field === Subsidy.TAX_ENTERPRISE) {
-        return this.fields.days
-      }
       return (this.fields.days - 1)
     } else {
       return this.fields.days
@@ -321,7 +318,6 @@ class Subsidy extends Salary {
    * @param {Number} avg
    */
   setAvg(avg) {
-    console.log(this.avg)
     this.avg = avg
   }
 

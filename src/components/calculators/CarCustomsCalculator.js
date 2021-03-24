@@ -99,9 +99,9 @@ class CarCustomsCalculator extends React.Component {
 
     if (date.isSame(today, "day")) {
       return <div className={
-        !condition
-          ? "ant-picker-cell-inner ant-picker-cell-today"
-          : "ant-picker-cell-inner"
+        // !condition
+           "ant-picker-cell-inner ant-picker-cell-today"
+          // : "ant-picker-cell-inner"
       }>
         {date.format("D")}
         {this.workdays.length > 0
@@ -120,9 +120,9 @@ class CarCustomsCalculator extends React.Component {
       </div>
     } else if (isHoliday(date, this.holidays)) {
       return <div className={
-        !condition
-          ? "ant-picker-cell-inner ant-picker-cell-holiday"
-          : "ant-picker-cell-inner"
+        // !condition
+           "ant-picker-cell-inner ant-picker-cell-holiday"
+          // : "ant-picker-cell-inner"
       }>
         {date.format("D")}
         {this.workdays.length > 0
@@ -141,9 +141,9 @@ class CarCustomsCalculator extends React.Component {
       </div>
     } else if (isWeekend(date, 5)) {
       return <div className={
-        !condition
-          ? "ant-picker-cell-inner ant-picker-cell-weekend"
-          : "ant-picker-cell-inner"
+        // !condition
+           "ant-picker-cell-inner ant-picker-cell-weekend"
+          // : "ant-picker-cell-inner"
       }>
         {date.format("D")}
         {this.workdays.length > 0

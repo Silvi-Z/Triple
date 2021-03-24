@@ -15,6 +15,8 @@ export const TAX_FIELD_ENTERPRISE = 2
 export const BY_FIELD_DATE = 1
 export const BY_FIELD_TABLE = 0
 
+export const MORTGAGE_MAX_LIMIT = 1500000
+
 export const schema = Yup.object().shape({
   from: Yup.number().oneOf([1, 2]).required(),
   year: Yup.number().nullable(),

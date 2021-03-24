@@ -207,9 +207,9 @@ const CalendarCalculator = ({ lang }) => {
 
     if (date.isSame(today, "day")) {
       return <div className={
-        !condition
-          ? "ant-picker-cell-inner ant-picker-cell-today"
-          : "ant-picker-cell-inner"
+        // !condition
+        "ant-picker-cell-inner ant-picker-cell-today"
+        // : "ant-picker-cell-inner"
       }>
         {date.format("D")}
         {initialState.workdays.length > 0
@@ -228,9 +228,9 @@ const CalendarCalculator = ({ lang }) => {
       </div>
     } else if (isHoliday(date, initialState.holidays)) {
       return <div className={
-        !condition
-          ? "ant-picker-cell-inner ant-picker-cell-holiday"
-          : "ant-picker-cell-inner"
+        // !condition
+        "ant-picker-cell-inner ant-picker-cell-holiday"
+        // : "ant-picker-cell-inner"
       }>
         {date.format("D")}
         {initialState.workdays.length > 0
@@ -249,9 +249,9 @@ const CalendarCalculator = ({ lang }) => {
       </div>
     } else if (isWeekend(date, schedule)) {
       return <div className={
-        !condition
-          ? "ant-picker-cell-inner ant-picker-cell-weekend"
-          : "ant-picker-cell-inner"
+        // !condition
+        "ant-picker-cell-inner ant-picker-cell-weekend"
+        // : "ant-picker-cell-inner"
       }>
         {date.format("D")}
         {initialState.workdays.length > 0
@@ -324,6 +324,11 @@ const CalendarCalculator = ({ lang }) => {
     return moment({ year })
   }
 
+  const defaultToDate = () => {
+    const { date_from } = form
+    return date_from ? moment(date_from) : moment({ year })
+  }
+
   const handleDateToChange = date => {
     const { date_from } = form
     const range = moment().range(date_from, date)
@@ -394,10 +399,9 @@ const CalendarCalculator = ({ lang }) => {
                   <Form.Item label={<Label>{lang.form.end}</Label>}>
                     <CalculatorDatePicker
                       dateRender={(date, today) => handlePickerRender(date, today, "end")}
-                      // defaultPickerValue={form.date_from}
                       disabledDate={handleDateToDisabled}
                       onChange={handleDateToChange}
-                      defaultPickerValue={defaultDate()}
+                      defaultPickerValue={defaultToDate()}
                       value={form.date_to}
                       allowClear={false}
                       key={form.randomKey}

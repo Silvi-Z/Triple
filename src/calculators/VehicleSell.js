@@ -87,7 +87,7 @@ class VehicleSell extends Vehicle {
     let contractValue = this.price * 0.01
     let powerValue
 
-    if (this.buyingSellingPeriod <= 1) {
+    if (this.buyingSellingPeriod > 1) {
       return 0
     }
 

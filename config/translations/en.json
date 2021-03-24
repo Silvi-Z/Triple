@@ -643,6 +643,13 @@
         "income": "income paid by other employers",
         "static": "The salary has not been changed during 12 last months or bonuses have not been provided"
       },
+      "gross": {
+        "month": "Month",
+        "year": "Year",
+        "gross_salary": "Gross salary",
+        "bonus": "BONUSES",
+        "surcharge": "Premium"
+      },
       "result": {
         "title": "Result",
         "calculate": "CALCULATE",

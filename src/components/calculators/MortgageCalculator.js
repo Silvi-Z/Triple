@@ -17,6 +17,7 @@ import {
   UnderLine,
 } from "./styled"
 import {
+  MORTGAGE_MAX_LIMIT,
   PENSION_FIELD_NO,
   PENSION_FIELD_YES,
   PENSION_FIELD_YES_VOLUNTEER,
@@ -94,7 +95,13 @@ class MortgageCalculator extends React.Component {
       quarterTax = 5000 * 3
     }
 
-    return quarterTax > interest_amount ? interest_amount : Math.round(quarterTax)
+    let finalAmount = quarterTax > interest_amount ? interest_amount : Math.round(quarterTax)
+
+    if (finalAmount > MORTGAGE_MAX_LIMIT) {
+      finalAmount = MORTGAGE_MAX_LIMIT
+    }
+
+    return finalAmount
   }
 
   quarterTotalTax(percent) {
@@ -151,6 +158,10 @@ class MortgageCalculator extends React.Component {
 
           let tax = income_tax > interest_amount ? interest_amount : income_tax
           tax = Math.round(tax)
+
+          if (tax > MORTGAGE_MAX_LIMIT) {
+            tax = MORTGAGE_MAX_LIMIT
+          }
 
           this.setState({ tax }, () => {
             if (!this.state.calculated) {

@@ -7,14 +7,15 @@ import {
   ButtonSubmit,
   CalculatorDatePicker,
   CalculatorInput,
-  CalculatorsCard, CurrencySymbol,
+  CalculatorsCard,
+  CurrencySymbol,
   FormLabel,
   Label,
   UnderLine,
 } from "./styled"
 import { isHoliday, isWeekend } from "./utilities/vacation"
 import triple from "../../api/triple"
-
+import moment from "moment"
 
 class CarSellCalculator extends React.Component {
   constructor(props) {
@@ -158,6 +159,11 @@ class CarSellCalculator extends React.Component {
     }
   }
 
+  get defaultToDate() {
+    const { achievementDate } = this.state.form
+
+    return achievementDate ? moment(achievementDate) : null
+  }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
     if (!isEqual(this.state.form, prevState.form) && this.state.calculated) {
@@ -207,6 +213,7 @@ class CarSellCalculator extends React.Component {
                     dateRender={(date, today) => this.handlePickerRender(date, today, "end")}
                     disabledDate={d => !form.achievementDate || (d.isSameOrBefore(form.achievementDate, "day"))}
                     placeholder={null}
+                    defaultPickerValue={this.defaultToDate}
                     format="DD.MM.YYYY"
                     size="large"
                   />

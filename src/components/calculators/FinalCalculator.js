@@ -27,6 +27,7 @@ import {
   TAX_FIELD_IT,
 } from "./utilities/salary"
 import { isHoliday, isWeekend } from "./utilities/vacation"
+import moment from "moment"
 
 const radioStyle = {
   display: "block",
@@ -460,6 +461,12 @@ class FinalCalculator extends React.Component {
     ), this.state.calculated ? this.handleSubmit : null)
   }
 
+  get defaultToDate() {
+    const { date_acceptance } = this.state.form
+
+    return date_acceptance ? moment(date_acceptance) : null
+  }
+
   render() {
     const { form, result, loading, calculated } = this.state
     const { lang } = this.props
@@ -504,6 +511,7 @@ class FinalCalculator extends React.Component {
                     placeholder={lang.form["date_release_placeholder"]}
                     disabledDate={this.disabledReleasedDates}
                     value={form.date_release}
+                    defaultPickerValue={this.defaultToDate}
                     ref={this.dateToPicker}
                     format="DD.MM.YYYY"
                     name="date_release"
