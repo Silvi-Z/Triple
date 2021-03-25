@@ -14,10 +14,8 @@ import {
   CalculatorsCard,
   CalculatorsCardWrapper,
   FormLabel,
-  H1Styled,
   Label,
   RadioLabel,
-  TextStyled,
   UnderLine,
 } from "./styled"
 import {
@@ -171,10 +169,10 @@ class SalaryTableCalculator extends React.Component {
 
         return acc
       }, [])
-      const lang= this.props.lang.form
+      const lang = this.props.lang.form
       if (!date.isValid() || !employees.length) {
         notification.error({
-          message:  lang.message,
+          message: lang.message,
           description: lang.description,
         })
 
@@ -342,14 +340,14 @@ class SalaryTableCalculator extends React.Component {
       ["Սոցիալական վճար"]: result.pension_fee,
       ["Դրոշմանշային վճար"]: result.stamp_fee,
       ["Ընդհանուր պահումներ"]: result.total_fee,
-      ["Զուտ աշխատավարձ"]: result.salary,
+      ["Զուտ աշխատավարձ"]: Math.round(result.salary),
     }))
     const result = results.reduce((acc, result) => ({
-      total_fee: acc.total_fee + result.total_fee,
-      income_tax: acc.income_tax + result.income_tax,
-      pension_fee: acc.pension_fee + result.pension_fee,
-      stamp_fee: acc.stamp_fee + result.stamp_fee,
-      salary: acc.salary + result.salary,
+      total_fee: Math.round(acc.total_fee + result.total_fee),
+      income_tax: Math.round(acc.income_tax + result.income_tax),
+      pension_fee: Math.round(acc.pension_fee + result.pension_fee),
+      stamp_fee: Math.round(acc.stamp_fee + result.stamp_fee),
+      salary: Math.round(acc.salary + result.salary),
     }))
     result["gross_salary"] = employees.map(employee => (employee.workingDaysInMonth === employee.days)
       ? employee.amount
@@ -382,7 +380,7 @@ class SalaryTableCalculator extends React.Component {
 
     return (
       <Row className="rowWrapper" align="start" gutter={20} ref={this.rowWidth}>
-          <CalculatorsCardWrapper span={24} xl={16}>
+        <CalculatorsCardWrapper span={24} xl={16}>
           <CalculatorsCard bordered={false}>
             <Form
               onFinish={this.handleSubmit}
@@ -449,13 +447,15 @@ class SalaryTableCalculator extends React.Component {
               </Form.Item>
             </Form>
           </CalculatorsCard>
-          </CalculatorsCardWrapper>
+        </CalculatorsCardWrapper>
 
         <Col span={20} md={17} xl={8} sm={10} className="result" ref={this.top}>
           <div>
             <FormLabel style={{ margin: 0 }}>{lang.result.title}</FormLabel>
 
             <UnderLine />
+
+            {console.log(result)}
 
             <CalculatorCardResult
               title={lang.result.gross_salary}
