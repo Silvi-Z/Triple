@@ -35,7 +35,7 @@ const CardText = styled.p`
   margin: 0;
 `
 
-const CalculatorCardResult = ({title, subtitle = '', text, tooltip, loading = false, children}) => (
+const CalculatorCardResult = ({title, subtitle = '', text, tooltip, loading = false, children, className}) => (
   <Card
     style={{
       border: '0.5px solid #555555',
@@ -43,7 +43,8 @@ const CalculatorCardResult = ({title, subtitle = '', text, tooltip, loading = fa
       borderRadius: '5px',
       padding: "10px 20px",
       marginBottom: 10,
-      width: '100%'
+      width: '100%',
+      className:{className}
     }}
     bodyStyle={{padding: 0}}
     loading={loading}
