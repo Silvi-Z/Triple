@@ -455,8 +455,6 @@ class SalaryTableCalculator extends React.Component {
 
             <UnderLine />
 
-            {console.log(result)}
-
             <CalculatorCardResult
               title={lang.result.gross_salary}
               text={result.gross_salary}
