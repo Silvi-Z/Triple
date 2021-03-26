@@ -4,7 +4,7 @@
     "header": {
       "serveTitle": "Services",
       "reportTitle": "Reporting",
-      "calcTitle": "Calculator",
+      "calcTitle": "Calculators",
       "infoTitle": "Useful information",
       "careerTitle": "Join us",
       "contractTitle": "Contact us",
@@ -31,7 +31,7 @@
     },
     "our_partners": {
       "title": "Our Partners",
-      "sub_title": "During its two years of operation, Triple Consulting has managed to cooperate with a number of companies.",
+      "sub_title": "We are beyond lucky to work with small and big businesses all over the world.",
       "button_text": "Become a partner"
     }
   },
