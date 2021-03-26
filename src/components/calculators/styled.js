@@ -274,6 +274,10 @@ export const CalendarWrapper = styled.div`
   min-width: 250px;
   width: 250px;
   max-width: 250px;
+  height:230px;
+  @media (max-width: 768px){
+    margin: auto auto 50px;
+  }
 `
 export const CalendarInfo = styled.div`
   width: 100%;
