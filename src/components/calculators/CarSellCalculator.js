@@ -269,7 +269,7 @@ class CarSellCalculator extends React.Component {
         </CalculatorsCardWrapper>
 
         <Col xs={24} sm={24} md={24} lg={8} xl={8} xxl={8} className="result">
-          <div>
+          <div className="carSell">
             <FormLabel style={{ margin: 0 }}>{lang.result.title}</FormLabel>
 
             <UnderLine />

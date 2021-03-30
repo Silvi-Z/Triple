@@ -5,7 +5,7 @@
       "serveTitle": "Services",
       "newsTitle": "News",
       "reportTitle": "Reporting",
-      "calcTitle": "Calculator",
+      "calcTitle": "Calculators",
       "infoTitle": "Useful information",
       "careerTitle": "Join us",
       "contractTitle": "Contact us",
@@ -55,7 +55,7 @@
     },
     "our_partners": {
       "title": "Our Partners",
-      "sub_title": "During its two years of operation, Triple Consulting has managed to cooperate with a number of companies.",
+      "sub_title": "We are beyond lucky to work with small and big businesses all over the world.",
       "button_text": "Become a partner"
     }
   },
@@ -212,7 +212,9 @@
       "file_label": "Attach the file",
       "title_label": "Title",
       "textare_label": "Your message",
-      "send_button": "Send"
+      "send_button": "Send",
+      "message": "Dear user, your email has been sent.",
+      "description": "Thank you for getting in touch!"
     },
     "address": "Hr Qochar 44/54",
     "share": "Share"
@@ -235,7 +237,7 @@
       "tax_label_enterprise": "Micro-enterprises",
       "tax_label_it": "Companies having IT tax exemption",
       "salary_label": "Salary",
-      "bonus_label": "Պարգևավճար",
+      "bonus_label": "Bonuses",
       "pensioner_label": "Do you participate in the accumulative pension system?",
       "stamp_label": "Վճարե՞լ եք արդեն դրոշմանիշային վճարը",
       "yes_volunteer": "(voluntary)",
@@ -281,7 +283,7 @@
         "tax_enterprise": "Micro-enterprises",
         "tax_it": "Companies having IT tax exemption",
         "salary": "Salary",
-        "bonus": "Պարգևավճար",
+        "bonus": "Bonuses",
         "pensioner": "Do you participate in the accumulative pension system?",
         "stamp": "Վճարե՞լ եք արդեն դրոշմանիշային վճարը",
         "yes_volunteer": "Yes (voluntary)",
@@ -290,14 +292,14 @@
         "working_schedule": "Work schedule",
         "five_days": "5 day schedule",
         "six_days": "6 day schedule",
-        "message": "Սխալ day ներբեռնում։",
-        "description": "Ձեր կողմից ներբեռնված ֆայլի սխալ ֆորմատի է։"
+        "message": "Wrong file is downloaded.",
+        "description": "The file you downloaded is in the wrong format."
       },
       "table": {
         "name": "Name / Surname",
         "day": "DAY",
         "hour": "HOUR",
-        "social_fee": "ՍՈՑԻԱԼԱԿԱՆ ՎՃԱՐ",
+        "social_fee": "SOCIAL CHARGES",
         "salary": "Gross salary",
         "yes_volunteer": "Yes (voluntary)",
         "yes": "Yes",
@@ -334,7 +336,7 @@
       "month": "Ամիս",
       "year": "Տարի",
       "gross_salary": "Համախառն աշխատավարձ",
-      "bonus": "Պարգևավճար",
+      "bonus": "Bonuses",
       "surcharge": "Premium",
       "date_from_placeholder": "ամսաթիվ",
       "date_to_placeholder": "ամսաթիվ",
@@ -415,7 +417,7 @@
       "no": "No",
       "quarter_months": "months",
       "gross_salary": "Համախառն աշխատավարձ",
-      "bonus": "Պարգևավճար",
+      "bonus": "Bonuses",
       "surcharge": "Premium",
       "calculate": "CALCULATE",
       "result": {
@@ -425,7 +427,7 @@
     },
     "subsidy": {
       "title": "Social benefits calculator",
-      "paragraph": "All the main services of Triple Consulting related to accounting and audit.",
+      "paragraph": "The Social benefits calculator allows you to easily calculate the amount of maternity as well as short–term disability payments.\nAll you have to do is enter the period of incapacity for work, the monthly salary, the income paid by other employers if available (and if the amount of salary is not fixed or has been changed or bonuses have been provided, fill in the relevant table), and the instrument will calculate the amount of maternity or short–term disability payments and all deductions required by law.\n",
       "calculate": "CALCULATE",
       "form": {
         "type": "Social benefit type",
@@ -450,7 +452,7 @@
         "amount": "Monthly salary",
         "amount_self_common": "CORPORATE TAX TAXABLE BASE OF THE PREVIOUS FISCAL YEAR",
         "amount_self_turnover": "Նախորդող տարվա շահութահարկի գումարը",
-        "amount_self_enterprise": "Նախորդող տարվա ընթացքում գործունեություն իրականացրած ամիսների քանակ",
+        "amount_self_enterprise": "Number of months of activity of the previous year",
         "income": "income paid by other employers",
         "static": "The salary has not been changed during 12 last months or bonuses have not been provided"
       },

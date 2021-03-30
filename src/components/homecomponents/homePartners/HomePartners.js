@@ -37,9 +37,10 @@ const Homepartners = ({ langText, lang }) => {
               <ServiceNameWrapper>
                 <IconWrapper src={apiUrl.apiUrl + item.image} alt={"icon"} />
               </ServiceNameWrapper>
+              {console.log(lang)}
               <InfoAboutPartners>
-                {item.name_arm}
-                <p>{item.sphere_arm}</p>
+                {item[`name_${lang}`]}
+                <p>{item[`sphere_${lang}`]}</p>
               </InfoAboutPartners>
             </Div>
           </ContentContainer>

@@ -222,7 +222,7 @@ class CarTaxCalculator extends React.Component {
           </CalculatorsCard>
         </CalculatorsCardWrapper>
         <Col span={20} md={17} xl={8} sm={10} className="result">
-          <div>
+          <div className="carTax">
             <FormLabel style={{ margin: 0 }}>{lang.result.title}</FormLabel>
 
             <UnderLine />

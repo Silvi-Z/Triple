@@ -226,7 +226,7 @@ const Formfield = ({ langtext, lang }) => {
           {langtext.send_button}
         </SubmitButton>
       </StyledForm.Item>
-      <CareerModal handleOk={handleOk} modalVisible={modalVisible} />
+      <CareerModal handleOk={handleOk} modalVisible={modalVisible} langtext={langtext} />
     </StyledForm>
   )
 }

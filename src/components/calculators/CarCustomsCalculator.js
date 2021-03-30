@@ -215,20 +215,6 @@ class CarCustomsCalculator extends React.Component {
               layout="horizontal"
               size="large"
             >
-              {/*<Form.Item>*/}
-              {/*  <Radio.Group*/}
-              {/*    onChange={e => this.setField("imported", e.target.value)}*/}
-              {/*    value={form.imported}*/}
-              {/*  >*/}
-              {/*    <Radio value={VehicleCustoms.COUNTRY_EEU}>*/}
-              {/*      <Label style={{ textTransform: "none" }}>{lang.form["imported_eeu"]}</Label>*/}
-              {/*    </Radio>*/}
-              {/*    <Radio value={VehicleCustoms.COUNTRY_THIRD}>*/}
-              {/*      <Label style={{ textTransform: "none" }}>{lang.form["imported_third"]}</Label>*/}
-              {/*    </Radio>*/}
-              {/*  </Radio.Group>*/}
-              {/*</Form.Item>*/}
-
               <Form.Item>
                 <Radio.Group
                   onChange={e => this.setField("person", e.target.value, () => this.reset("costs"))}
@@ -314,7 +300,7 @@ class CarCustomsCalculator extends React.Component {
             </Form>
           </CalculatorsCard>
         </CalculatorsCardWrapper>
-        <Col span={20} md={17} xl={8} sm={10} className="result">
+        <Col span={20} md={17} xl={8} sm={10} className="result carCustomsResult">
           <div>
             <FormLabel style={{ margin: 0 }}>{lang.result.title}</FormLabel>
 

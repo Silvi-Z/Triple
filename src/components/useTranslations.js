@@ -187,6 +187,8 @@ const query = graphql`
                 title_label
                 textare_label
                 send_button
+                message
+                description
               }
               address
               share

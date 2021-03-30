@@ -91,16 +91,18 @@ const Layout = ({ children, location, pageContext: { locale, originalPath, local
       resultHeight()
     })
     fixedPos()
-    resultHeight()
     function resultHeight() {
       const h3 = document.querySelector('.result h3')
-      const cards = document.querySelectorAll(".result .ant-card");
-      const heightEl = cards.length>3 && cards.length > 0 && cards[0].offsetHeight + cards[1].offsetHeight + cards[2].offsetHeight+ h3.clientHeight;
+      const cards = document.querySelectorAll(".result .ant-card:not(.currency)")
+      let heightEl = cards.length > 1 && cards[0].offsetHeight + cards[1].offsetHeight + cards[2].offsetHeight+ h3.clientHeight
       const resultWrapper =  document.querySelectorAll(".main .result")[0]
       if(cards && heightEl && resultWrapper){
-        if(heightEl && window.innerWidth > 768 && window.innerWidth < 1200){
-          resultWrapper.style.maxHeight = heightEl + 80 + 'px';
-          console.log(resultWrapper.style.maxHeight)
+        if(heightEl && window.innerWidth >= 768 && window.innerWidth < 1200){
+          if (cards.length >= 3){
+            resultWrapper.style.maxHeight = heightEl + 135 + 'px';
+          }else {
+            resultWrapper.style.maxHeight = heightEl + 80 + 'px';
+          }
         }else {
           resultWrapper.style.maxHeight = 'unset'
         }

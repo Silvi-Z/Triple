@@ -1305,7 +1305,7 @@ pre tt:after {
         flex-wrap: wrap;
         /*max-height: 330px;*/
     }
-    .result > div > *{
+    .result > div:not(.mortage, .carSell, .carTax) > *{
         width: 50%;
         min-width: 50%;
         max-width: 50%;
