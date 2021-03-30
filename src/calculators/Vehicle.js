@@ -11,6 +11,12 @@ class Vehicle {
    *
    * @type {number}
    */
+  static COEFFICIENT = 1.36
+
+  /**
+   *
+   * @type {number}
+   */
   static TAX_REAL_ESTATE = 2
 
   /**
@@ -48,6 +54,60 @@ class Vehicle {
    *
    * @type {number}
    */
+  static AGRICULTURAL = 4
+
+  /**
+   *
+   * @type {number}
+   */
+  static FORCONSTRUCTIONRESIDENTAL = 5
+
+  /**
+   *
+   * @type {number}
+   */
+  static FORCONSTRUCTIONPUBLIC = 6
+
+  /**
+   *
+   * @type {number}
+   */
+  static INDUSTRY = 7
+
+  /**
+   *
+   * @type {number}
+   */
+  static ENERGETIC = 8
+
+  /**
+   *
+   * @type {number}
+   */
+  static OTHERLANDS = 9
+
+  /**
+   *
+   * @type {number}
+   */
+  static PRIVATEHOUSE = 10
+
+  /**
+   *
+   * @type {number}
+   */
+  static PUBLIC = 11
+
+  /**
+   *
+   * @type {number}
+   */
+  static PRODUCTION = 12
+
+  /**
+   *
+   * @type {number}
+   */
   static PUBLIC_PRODUCTION = 2
 
   /**
@@ -68,10 +128,20 @@ class Vehicle {
 
   static RATELIMITS = {
     threeMillion: 3000000,
+    sevenMillion: 7000000,
     tenMillion: 10000000,
     twentyMillion: 20000000,
+    twentyThreeMillion: 23000000,
+    twentyFiveMillion: 25000000,
     thirtyMillion: 30000000,
     fortyMillion: 40000000,
+    fiftyMillion: 50000000,
+    fortySevenMillion: 47000000,
+    seventyFiveMillion: 75000000,
+    eightyFiveMillion: 85000000,
+    hundredMillion: 100000000,
+    hundredTwentyMillion: 120000000,
+    twoHundredMillion: 200000000,
   }
 
   /**
@@ -109,6 +179,7 @@ class Vehicle {
                 estateValue,
                 taxType,
                 estateType,
+                year,
               }) {
     this.date = date || null
     this.type = type || null
@@ -119,6 +190,7 @@ class Vehicle {
     this.taxType = taxType || Vehicle.TAX_CAR
     this.capacity = capacity || null
     this.powerType = powerType || Vehicle.HORSEPOWER
+    this.year = year
   }
 
   /**
@@ -136,7 +208,7 @@ class Vehicle {
    * @return {boolean}
    */
   get isAutomobile() {
-    return this.type && (this.type === Vehicle.CAR || this.type === Vehicle.VAN || this.type === Vehicle.TRUCK)
+    return this.type && (this.type === Vehicle.CAR || this.type === Vehicle.VAN || this.type === Vehicle.TRUCK || this.type === Vehicle.MOTORCYCLE || this.type === Vehicle.WATER_VEHICLE)
   }
 
   /**
@@ -161,12 +233,27 @@ class Vehicle {
    * @param {Object} lang
    * @return {{value: number, text: String}[]}
    */
-  static estateTypes(lang) {
-    return [
-      { value: Vehicle.RESIDENTIAL, text: lang.residential },
-      { value: Vehicle.PUBLIC_PRODUCTION, text: lang.public_production },
-      { value: Vehicle.GARAGE, text: lang.garage },
-    ]
+  static estateTypes(lang, year) {
+    if (year < 2021) {
+      return [
+        { value: Vehicle.RESIDENTIAL, text: lang.residential },
+        { value: Vehicle.PUBLIC_PRODUCTION, text: lang.public_production },
+        { value: Vehicle.GARAGE, text: lang.garage },
+      ]
+    } else {
+      return [
+        { value: Vehicle.GARAGE, text: lang.garage },
+        { value: Vehicle.AGRICULTURAL, text: lang.agricultural },
+        { value: Vehicle.PRODUCTION, text: lang.production },
+        { value: Vehicle.PRIVATEHOUSE, text: lang.privateHouse },
+        { value: Vehicle.PUBLIC, text: lang.public },
+        { value: Vehicle.FORCONSTRUCTIONRESIDENTAL, text: lang.forConstructionResidental },
+        { value: Vehicle.FORCONSTRUCTIONPUBLIC, text: lang.forConstructionPublic },
+        { value: Vehicle.INDUSTRY, text: lang.industry },
+        { value: Vehicle.ENERGETIC, text: lang.energetic },
+        { value: Vehicle.OTHERLANDS, text: lang.otherLands },
+      ]
+    }
   }
 
   /**

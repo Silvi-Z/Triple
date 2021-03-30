@@ -1,8 +1,8 @@
 import React from "react"
 import moment from "moment"
 import { isEmpty, isEqual, isNull } from "lodash"
-import { Card, Checkbox, Col, Form, Radio, Row, Select ,Tooltip} from "antd"
-import { InfoCircleTwoTone } from "@ant-design/icons";
+import { Card, Checkbox, Col, Form, Radio, Row, Select, Tooltip } from "antd"
+import { InfoCircleTwoTone } from "@ant-design/icons"
 import {
   ButtonSubmit,
   CalculatorDatePicker,
@@ -361,9 +361,9 @@ class SubsidyCalculator extends React.Component {
 
     if (date.isSame(today, "day")) {
       return <div className={
-        !condition
-          ? "ant-picker-cell-inner ant-picker-cell-today"
-          : "ant-picker-cell-inner"
+        // !condition
+          "ant-picker-cell-inner ant-picker-cell-today"
+          // : "ant-picker-cell-inner"
       }>
         {date.format("D")}
         {this.workdays.length > 0
@@ -382,9 +382,9 @@ class SubsidyCalculator extends React.Component {
       </div>
     } else if (isHoliday(date, this.holidays)) {
       return <div className={
-        !condition
-          ? "ant-picker-cell-inner ant-picker-cell-holiday"
-          : "ant-picker-cell-inner"
+        // !condition
+          "ant-picker-cell-inner ant-picker-cell-holiday"
+          // : "ant-picker-cell-inner"
       }>
         {date.format("D")}
         {this.workdays.length > 0
@@ -403,9 +403,9 @@ class SubsidyCalculator extends React.Component {
       </div>
     } else if (isWeekend(date, form.schedule)) {
       return <div className={
-        !condition
-          ? "ant-picker-cell-inner ant-picker-cell-weekend"
-          : "ant-picker-cell-inner"
+        // !condition
+           "ant-picker-cell-inner ant-picker-cell-weekend"
+          // : "ant-picker-cell-inner"
       }>
         {date.format("D")}
         {this.workdays.length > 0
@@ -566,7 +566,7 @@ class SubsidyCalculator extends React.Component {
                   max={180}
                 />
                 <Tooltip title="prompt text" color="black">
-                  <InfoCircleTwoTone twoToneColor="#00B3C7" style={{marginLeft: 5}} />
+                  <InfoCircleTwoTone twoToneColor="#00B3C7" style={{ marginLeft: 5 }} />
                 </Tooltip>
               </Form.Item>
 
@@ -681,7 +681,7 @@ class SubsidyCalculator extends React.Component {
                   size="large"
                 />
                 <Tooltip title="prompt text" color="black">
-                  <InfoCircleTwoTone twoToneColor="#00B3C7" style={{marginLeft: 5}} />
+                  <InfoCircleTwoTone twoToneColor="#00B3C7" style={{ marginLeft: 5 }} />
                 </Tooltip>
               </Form.Item>
               }
