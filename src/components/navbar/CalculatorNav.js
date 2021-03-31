@@ -54,7 +54,6 @@ const UnderLine = styled(Divider)`
 
 const NavLink = props => (
   <Link {...props} getProps={({ isPartiallyCurrent }) => {
-    console.log('isCurrent',isPartiallyCurrent)
     return {
       style: {
         background: isPartiallyCurrent ? "#BCE7EC" : "inherit",
@@ -74,16 +73,16 @@ const settings = {
       breakpoint: 768,
       settings: {
         dots: false,
-        arrows:false,
+        arrows: false,
         infinite: false,
-        swipeToSlide:true,
+        swipeToSlide: true,
         variableWidth: true,
       },
     }],
 }
 // console.log(window.innerWidth)
 // if(window.innerWidth <= 768){
-  const SliderList = window.innerWidth <= 768 ? styled(Slider) `
+const SliderList = window.innerWidth <= 768 ? styled(Slider)`
  height:fit-content;
  display:flex;
  & .slick-slider{
@@ -92,7 +91,7 @@ const settings = {
  & .calc-nav-item{
  margin-left:15px;
  }
-`: styled.div`
+` : styled.div`
  flex-direction:column
 `
 // }else {
