@@ -27,7 +27,7 @@ class CarSellCalculator extends React.Component {
       form: { ...VehicleSell.form },
       tax: null,
       calculated: false,
-      // randomKey: randomString(),
+      randomKey: randomString(),
     }
     this.holidays = []
     this.workdays = []
@@ -46,7 +46,7 @@ class CarSellCalculator extends React.Component {
   setField(name, value, cb) {
     this.setState((prevState) => ({
       ...prevState,
-      // randomKey: randomString(),
+      randomKey: randomString(),
       form: {
         ...prevState.form,
         [name]: value,
@@ -278,11 +278,12 @@ class CarSellCalculator extends React.Component {
                     dateRender={(date, today) => this.handlePickerRender(date, today, "start")}
                     onChange={date => this.setField("achievementDate", date)}
                     placeholder={null}
-                    // key={randomKey}
+                    key={randomKey}
                     format="DD.MM.YYYY"
                     size="large"
                     name="achievementDate"
                     allowClear={true}
+                    defaultVaolue={form.achievementDate}
                     value={form.achievementDate}
                   />
                 </Form.Item>
@@ -292,12 +293,13 @@ class CarSellCalculator extends React.Component {
                     dateRender={(date, today) => this.handlePickerRender(date, today, "end")}
                     disabledDate={d => !form.achievementDate || (d.isSameOrBefore(form.achievementDate, "day"))}
                     placeholder={null}
-                    // key={randomKey}
+                    key={randomKey}
                     defaultPickerValue={this.defaultToDate}
                     format="DD.MM.YYYY"
                     size="large"
                     name="alienationDate"
                     allowClear={true}
+                    defaultVaolue={form.alienationDate}
                     value={form.alienationDate}
                   />
                 </Form.Item>
