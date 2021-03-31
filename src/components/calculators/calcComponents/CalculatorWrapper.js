@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { Row, Col } from "antd";
+import { Row, Col, Tooltip } from "antd"
 import styled from "styled-components";
 import FbBlueIcon from "../../../assets/career/facebookBlueCareer.svg";
 import FbBlackIcon from "../../../assets/career/facebookCareer.svg";
@@ -10,6 +10,7 @@ import CalculatorNav from "../../../components/navbar/CalculatorNav";
 import useTranslations from "../../../components/useTranslations";
 import { FacebookShareButton, LinkedinShareButton } from "react-share";
 import { H1Styled, TextStyled } from "../styled"
+import { InfoCircleTwoTone } from "@ant-design/icons"
 
 //share button container
 export const SharedWrapperCol = styled(Col)`
@@ -58,7 +59,13 @@ const CalculatorWrapper = ({ ctx, children}) => {
       />
       <Row className="textSec">
         <H1Styled>{selectCalculator.title}</H1Styled>
+        {(window.innerWidth>768) ? (
         <TextStyled>{selectCalculator.paragraph}</TextStyled>
+        ) : (
+        <Tooltip title={selectCalculator.paragraph} color="black">
+          <InfoCircleTwoTone twoToneColor="#00B3C7" style={{marginLeft: 5}} />
+        </Tooltip>
+        )}
       </Row>
       <Row gutter={0}>
         <Col className="calculatorsMenu" xl={6}>

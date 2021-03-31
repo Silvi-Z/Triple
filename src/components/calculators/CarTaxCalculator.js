@@ -68,7 +68,7 @@ class CarTaxCalculator extends React.Component {
     const { form, tax } = this.state
 
     return (
-      <Row align="start" gutter={20} className="fixElement">
+      <Row align="start" className="fixElement">
         <CalculatorsCardWrapper span={24} xl={16}>
           <CalculatorsCard bordered={false}>
             <Form
@@ -181,8 +181,8 @@ class CarTaxCalculator extends React.Component {
             </Form>
           </CalculatorsCard>
         </CalculatorsCardWrapper>
-        <Col span={20} md={17} xl={8} sm={10} className="result">
-          <div className="carTax">
+        <Col span={20}  xl={8} sm={10} className="result">
+          <div className="taxResult carTax">
             <FormLabel style={{ margin: 0 }}>{lang.result.title}</FormLabel>
 
             <UnderLine />

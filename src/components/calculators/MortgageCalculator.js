@@ -199,7 +199,7 @@ class MortgageCalculator extends React.Component {
     const { lang } = this.props
 
     return (
-      <Row className="fixElement" align="start" gutter={20} ref={this.row}>
+      <Row className="fixElement rowWrapper" align="start" gutter={20} ref={this.row}>
         <CalculatorsCardWrapper span={24} xl={16}>
           <CalculatorsCard bordered={false}>
             <Form.Item style={{ display: "flex" }}>
@@ -337,8 +337,8 @@ class MortgageCalculator extends React.Component {
           </CalculatorsCard>
         </CalculatorsCardWrapper>
 
-        <Col xs={24} sm={24} md={24} lg={8} xl={8} xxl={8} className="result" ref={this.top}>
-          <div>
+        <Col span={20}  xl={8} sm={10} className="result" ref={this.top}>
+          <div className="mortgageResult">
             <FormLabel style={{ margin: 0 }}>{lang.result.title}</FormLabel>
 
             <UnderLine />

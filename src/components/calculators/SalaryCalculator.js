@@ -769,47 +769,51 @@ class SalaryCalculator extends React.Component {
               </Form>
             </CalculatorsCard>
           </CalculatorsCardWrapper>
-          <Col span={20} md={17} xl={8} sm={10} className="result" ref={this.top}>
-            <div>
-              <FormLabel style={{ margin: 0 }}>{langText.result_title}</FormLabel>
+          <Col span={20} xl={8} className="result" ref={this.top}>
+            <Row>
+              <Col md={12} span={24} xl={24}>
+                <FormLabel style={{ margin: 0 }}>{langText.result_title}</FormLabel>
 
-              <UnderLine />
-              {result.gross_salary &&
-              <CalculatorCardResult
-                title={langText.gross_salary}
-                text={result.gross_salary}
-                loading={loading}
-                tooltip
-              />}
-              <CalculatorCardResult
-                title={form.from === 1 ? langText["dirty_to_clean_salary"] : langText["clean_dirty_to_salary"]}
-                text={result.salary}
-                loading={loading}
-              />
-              <CalculatorCardResult
-                title={langText["income_tax_label"]}
-                text={result.income_tax}
-                loading={loading}
-                tooltip={form.tax_field === TAX_FIELD_ENTERPRISE ? "prompt text" : null}
-              />
-              <CalculatorCardResult
-                title={langText["pension_paymet_label"]}
-                text={result.pension_fee}
-                loading={loading}
-                tooltip={false}
-              />
-              <CalculatorCardResult
-                title={langText["stamp_duty_label"]}
-                text={result.stamp_fee}
-                loading={loading}
-                tooltip
-              />
-              <CalculatorCardResult
-                title={langText["general_storage_label"]}
-                text={result.total_fee}
-                loading={loading}
-              />
-            </div>
+                <UnderLine />
+                {result.gross_salary &&
+                <CalculatorCardResult
+                  title={langText.gross_salary}
+                  text={result.gross_salary}
+                  loading={loading}
+                  tooltip
+                />}
+                <CalculatorCardResult
+                  title={form.from === 1 ? langText["dirty_to_clean_salary"] : langText["clean_dirty_to_salary"]}
+                  text={result.salary}
+                  loading={loading}
+                />
+                <CalculatorCardResult
+                  title={langText["income_tax_label"]}
+                  text={result.income_tax}
+                  loading={loading}
+                  tooltip={form.tax_field === TAX_FIELD_ENTERPRISE ? "prompt text" : null}
+                />
+                <CalculatorCardResult
+                  title={langText["pension_paymet_label"]}
+                  text={result.pension_fee}
+                  loading={loading}
+                  tooltip={false}
+                />
+              </Col>
+              <Col md={12} span={24} xl={24}>
+                <CalculatorCardResult
+                  title={langText["stamp_duty_label"]}
+                  text={result.stamp_fee}
+                  loading={loading}
+                  tooltip
+                />
+                <CalculatorCardResult
+                  title={langText["general_storage_label"]}
+                  text={result.total_fee}
+                  loading={loading}
+                />
+              </Col>
+            </Row>
           </Col>
         </Row>
       </>

@@ -300,68 +300,72 @@ class CarCustomsCalculator extends React.Component {
             </Form>
           </CalculatorsCard>
         </CalculatorsCardWrapper>
-        <Col span={20} md={17} xl={8} sm={10} className="result carCustomsResult">
-          <div>
+        <Col span={20} xl={8} className="result carCustomsResult">
+          <Row>
+            <Col md={12} span={24} xl={24}>
             <FormLabel style={{ margin: 0 }}>{lang.result.title}</FormLabel>
 
-            <UnderLine />
+              <UnderLine />
 
-            {Object.keys(result).map(key =>
-              <CalculatorCardResult
-                title={lang.result[key]}
-                key={key}
-                text={
-                  <>
-                    {(calculated && result[key] && result[key].hasOwnProperty(form.currency)) ?
-                      <span>
+              {Object.keys(result).map(key =>
+                <CalculatorCardResult
+                  title={lang.result[key]}
+                  key={key}
+                  text={
+                    <>
+                      {(calculated && result[key] && result[key].hasOwnProperty(form.currency)) ?
+                        <span>
                       <span
                         className="currency-symbol"
                         dangerouslySetInnerHTML={{ __html: result[key][form.currency].sym }}
                       />
-                        {result[key][form.currency].amount}
-                        <br />
+                          {result[key][form.currency].amount}
+                          <br />
                     </span>
-                      : null}
+                        : null}
 
-                    {(calculated && result[key].hasOwnProperty(form.currency) && form.currency !== "AMD") ?
-                      <span>
+                      {(calculated && result[key].hasOwnProperty(form.currency) && form.currency !== "AMD") ?
+                        <span>
                       <span
                         className="currency-symbol"
                         dangerouslySetInnerHTML={{ __html: "&#1423;" }}
                       />
-                        {result[key]["AMD"].amount}
+                          {result[key]["AMD"].amount}
                     </span>
-                      : null}
-                  </>
-                }
-              />,
-            )}
+                        : null}
+                    </>
+                  }
+                />,
+              )}
+            </Col>
 
-            <p className="calculator-result-label">{lang.result.currency}</p>
+            <Col md={12} span={24} xl={24} className="currencyResult">
+              <p className="calculator-result-label">{lang.result.currency}</p>
 
-            <UnderLine />
+              <UnderLine />
 
-            <CalculatorCardResult style={{ padding: "15px" }}>
-              {Object.keys(rates).map((currency, c) => (
-                <Row align="center" key={`currency-${currency}`}>
-                  <Col span={12} className="currency">
+              <CalculatorCardResult style={{ padding: "15px" }}>
+                {Object.keys(rates).map((currency, c) => (
+                  <Row align="center" key={`currency-${currency}`}>
+                    <Col span={12} className="currency">
                   <span
                     className="c-label sym"
                     dangerouslySetInnerHTML={{ __html: `${(currency === "EUR" ? "&#8364;" : "&#36;")}` }}
                   />
 
-                    <span className="c-label">{currency}</span>
-                  </Col>
-                  <Col span={12} className="currency">
-                    <span className="c-text">{rates[currency]}</span>
-                  </Col>
-                  {c < Object.keys(rates).length - 1 ?
-                    <Divider style={{ margin: "10px 0", border: "1px solid #555555" }} />
-                    : null}
-                </Row>
-              ))}
-            </CalculatorCardResult>
-          </div>
+                      <span className="c-label">{currency}</span>
+                    </Col>
+                    <Col span={12} className="currency">
+                      <span className="c-text">{rates[currency]}</span>
+                    </Col>
+                    {c < Object.keys(rates).length - 1 ?
+                      <Divider style={{ margin: "10px 0", border: "1px solid #555555" }} />
+                      : null}
+                  </Row>
+                ))}
+              </CalculatorCardResult>
+            </Col>
+          </Row>
         </Col>
       </Row>
     )
