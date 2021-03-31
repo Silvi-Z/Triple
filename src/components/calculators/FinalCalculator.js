@@ -30,6 +30,7 @@ import {
 } from "./utilities/salary"
 import { isHoliday, isWeekend } from "./utilities/vacation"
 import moment from "moment"
+import { randomString } from "./utilities/tabel"
 
 const radioStyle = {
   display: "block",
@@ -74,6 +75,7 @@ class FinalCalculator extends React.Component {
         stamp_fee: 0,
         salary: 0,
       },
+      randomKey: randomString(),
       monthAvgSalary: 0,
       calculated: false,
       loading: false,
@@ -280,7 +282,14 @@ class FinalCalculator extends React.Component {
   }
 
   setFormField(name, value, cb) {
-    this.setState({ form: { ...this.state.form, [name]: value } }, cb)
+    this.setState((prevState) => ({
+      ...prevState,
+      randomKey: randomString(),
+      form: {
+        ...prevState.form,
+        [name]: value,
+      },
+    }), cb)
   }
 
   setFormFields(fields) {
@@ -531,7 +540,7 @@ class FinalCalculator extends React.Component {
   }
 
   render() {
-    const { form, result, loading, calculated } = this.state
+    const { form, result, loading, calculated, randomKey } = this.state
     const { lang } = this.props
 
     return (
@@ -554,6 +563,7 @@ class FinalCalculator extends React.Component {
                     disabledDate={this.disabledAcceptanceDates}
                     value={form.date_acceptance}
                     ref={this.dateFromPicker}
+                    key={randomKey}
                     format="DD.MM.YYYY"
                     name="date_acceptance"
                     size="large"
@@ -564,6 +574,7 @@ class FinalCalculator extends React.Component {
                     onChange={date => this.setFormField("date_release", date, this.onBlur)}
                     dateRender={(date, today) => this.handlePickerRender(date, today, "end")}
                     placeholder={lang.form["date_release_placeholder"]}
+                    key={randomKey}
                     disabledDate={this.disabledReleasedDates}
                     value={form.date_release}
                     defaultPickerValue={this.defaultToDate}
