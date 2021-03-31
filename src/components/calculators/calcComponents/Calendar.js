@@ -2,7 +2,7 @@ import { CheckboxField, DayWrapper } from "../styled"
 import moment from "moment"
 import React from "react"
 
-const CalendarItem = React.memo(({ week, holidays, workdays }) => {
+const CalendarItem = React.memo(({ week, holidays, workdays, locale }) => {
   return (
     week.map((day) => {
       if (day) {
@@ -21,18 +21,32 @@ const CalendarItem = React.memo(({ week, holidays, workdays }) => {
               value={`${day}`}
               id={`${day}`}>
               {moment(day).format("D")}
-              {workdays.length > 0
+              {locale === "arm" && workdays.length > 0
               && workdays.find(workday => workday.date === day)
               && workdays.find(workday => workday.date === day).title &&
               <span className={"day_title"}>
                   {workdays.find(workday => workday.date === day).title}
                 </span>
               }
-              {holidays.length > 0
+              {locale !== "arm" && workdays.length > 0
+              && workdays.find(workday => workday.date === day)
+              && workdays.find(workday => workday.date === day).title_en &&
+              <span className={"day_title"}>
+                  {workdays.find(workday => workday.date === day).title_en}
+                </span>
+              }
+              {locale === "arm" && holidays.length > 0
               && holidays.find(holiday => holiday.date === day)
               && holidays.find(holiday => holiday.date === day).title &&
               <span className={"day_title"}>
                   {holidays.find(holiday => holiday.date === day).title}
+                </span>
+              }
+              {locale !== "arm" && holidays.length > 0
+              && holidays.find(holiday => holiday.date === day)
+              && holidays.find(holiday => holiday.date === day).title_en &&
+              <span className={"day_title"}>
+                  {holidays.find(holiday => holiday.date === day).title_en}
                 </span>
               }
             </CheckboxField>
@@ -43,7 +57,6 @@ const CalendarItem = React.memo(({ week, holidays, workdays }) => {
     })
   )
 })
-
 
 
 export default CalendarItem

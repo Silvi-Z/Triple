@@ -8,7 +8,7 @@ const final = ({ pageContext }) => {
 
   return (
     <CalculatorWrapper ctx={pageContext}>
-      <FinalCalculator lang={calculator.final} />
+      <FinalCalculator lang={calculator.final} locale={pageContext.locale}/>
     </CalculatorWrapper>
   )
 };

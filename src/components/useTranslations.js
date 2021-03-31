@@ -515,6 +515,15 @@ const query = graphql`
                     residential
                     public_production
                     garage
+                    agricultural
+                    forConstructionResidental
+                    forConstructionPublic
+                    industry
+                    energetic
+                    otherLands
+                    privateHouse
+                    public
+                    production
                   }
                   year
                   power

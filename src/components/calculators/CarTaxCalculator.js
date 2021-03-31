@@ -6,22 +6,23 @@ import {
   ButtonSubmit,
   CalculatorDatePicker,
   CalculatorInput,
-  CalculatorsCard, CalculatorsCardWrapper,
+  CalculatorsCard,
+  CalculatorsCardWrapper,
   CalculatorSelect,
   FormLabel,
-  H1Styled,
   Label,
-  TextStyled,
   UnderLine,
 } from "./styled"
 import VehicleTax from "../../calculators/VehicleTax"
 import CalculatorCardResult from "./calcComponents/CalculatorCardResult"
+import VehicleSell from "../../calculators/VehicleSell"
 
 class CarTaxCalculator extends React.Component {
   constructor(props) {
     super(props)
 
     this.state = { form: { ...VehicleTax.form }, tax: null, calculated: false }
+    this.availableYears = [2019, 2020, 2021]
   }
 
   get yearValue() {
@@ -32,6 +33,10 @@ class CarTaxCalculator extends React.Component {
 
   get isTypeCar() {
     return this.state.form.taxType === VehicleTax.TAX_CAR
+  }
+
+  get isTypeRealEstate() {
+    return this.state.form.taxType === VehicleTax.TAX_REAL_ESTATE
   }
 
   get isTypeRealEstate() {
@@ -57,6 +62,13 @@ class CarTaxCalculator extends React.Component {
     })
   })
 
+  changeTaxType() {
+    const { estateType } = this.state.form
+    if (estateType) {
+      this.setField("estateType", null)
+    }
+  }
+
   componentDidUpdate(prevProps, prevState, snapshot) {
     if (!isEqual(prevState.form, this.state.form) && this.state.calculated) {
       this.handleSubmit()
@@ -78,6 +90,26 @@ class CarTaxCalculator extends React.Component {
               layout="horizontal"
               size="large"
             >
+
+              {this.isTypeRealEstate &&
+              <Form.Item style={{ display: "flex" }}>
+                <CalculatorSelect
+                  size="large"
+                  value={form.year}
+                  className={"yearSelect"}
+                  onBlur={this.onBlur}
+                  style={{ maxWidth: "424px", width: "90px" }}
+                  onChange={value => this.setField("year", value, this.changeTaxType)}
+                >
+                  {this.availableYears.map(year =>
+                    <Select.Option value={year} key={`vehicle-${year}`}>
+                      {year}
+                    </Select.Option>,
+                  )}
+                </CalculatorSelect>
+              </Form.Item>
+              }
+
               {/* type field */}
               <Form.Item label={<Label>{lang.form.type}</Label>} labelCol={{ span: 24 }}>
                 <Radio.Group
@@ -130,9 +162,17 @@ class CarTaxCalculator extends React.Component {
                       type="number"
                     />
 
-                    <Label style={{ textTransform: "none" }}>
-                      {lang.form.horsepower}
-                    </Label>
+                    <Radio.Group
+                      onChange={e => this.setField("powerType", e.target.value)}
+                      value={form.powerType}
+                    >
+                      <Radio value={VehicleSell.HORSEPOWER}>
+                        <Label style={{ textTransform: "none" }}>{lang.form.horsepower}</Label>
+                      </Radio>
+                      <Radio value={VehicleSell.KILOWATTS}>
+                        <Label style={{ textTransform: "none" }}>{lang.form.kilowatts}</Label>
+                      </Radio>
+                    </Radio.Group>
                   </Form.Item>
 
                 </>
@@ -148,7 +188,7 @@ class CarTaxCalculator extends React.Component {
                       style={{ maxWidth: "424px" }}
                       onChange={value => this.setField("estateType", value)}
                     >
-                      {VehicleTax.estateTypes(lang.form.estate).map(vehicle =>
+                      {VehicleTax.estateTypes(lang.form.estate, form.year).map(vehicle =>
                         <Select.Option value={vehicle.value} key={`vehicle-${vehicle.value}`}>
                           {vehicle.text}
                         </Select.Option>,
@@ -189,7 +229,7 @@ class CarTaxCalculator extends React.Component {
 
             <CalculatorCardResult
               title={lang.result.tax}
-              text={tax}
+              text={Math.round(tax)}
             />
           </div>
         </Col>
