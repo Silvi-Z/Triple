@@ -9,7 +9,7 @@ import {
   CalculatorInput,
   CalculatorsCard, CalculatorsCardWrapper,
   FormLabel,
-  Label,
+  Label, RowWrapper,
   UnderLine,
 } from "./styled"
 import VehicleCustoms from "../../calculators/VehicleCustoms"
@@ -261,12 +261,6 @@ class CarCustomsCalculator extends React.Component {
     return (
       <Row align="start" gutter={{ xl: 20 }}>
         <CalculatorsCardWrapper span={24} xl={16}>
-          {/*<Row align="center" style={{ justifyContent: "space-between" }}>*/}
-          {/*  <div className="textSec">*/}
-          {/*    <H1Styled>{lang.title}</H1Styled>*/}
-          {/*    <TextStyled>{lang.paragraph}</TextStyled>*/}
-          {/*  </div>*/}
-          {/*</Row>*/}
 
           <CalculatorsCard bordered={false} style={{ marginTop: "30px" }}>
             <Form
@@ -276,7 +270,7 @@ class CarCustomsCalculator extends React.Component {
               layout="horizontal"
               size="large"
             >
-              <Form.Item>
+              <RowWrapper>
                 <Radio.Group
                   onChange={e => this.setField("person", e.target.value, () => this.reset("costs"))}
                   value={form.person}
@@ -288,9 +282,9 @@ class CarCustomsCalculator extends React.Component {
                     <Label style={{ textTransform: "none" }}>{lang.form["person_legal"]}</Label>
                   </Radio>
                 </Radio.Group>
-              </Form.Item>
+              </RowWrapper>
 
-              <Form.Item label={<Label>{lang.form.year}</Label>}>
+              <RowWrapper label={<Label>{lang.form.year}</Label>}>
                 <CalculatorDatePicker
                   onChange={date => this.setField("date", date)}
                   dateRender={(date, today) => this.handlePickerRender(date, today, "start")}
@@ -299,9 +293,9 @@ class CarCustomsCalculator extends React.Component {
                   allowClear={true}
                   size="large"
                 />
-              </Form.Item>
+              </RowWrapper>
 
-              <Form.Item label={<Label>{lang.form.price}</Label>}>
+              <RowWrapper className="radioElements" label={<Label>{lang.form.price}</Label>}>
                 <CalculatorInput
                   formatter={v => `${v}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                   parser={v => v.replace(/\$\s?|(,*)/g, "")}
@@ -327,10 +321,10 @@ class CarCustomsCalculator extends React.Component {
                     <strong>&#8364;</strong>
                   </Radio>
                 </Radio.Group>
-              </Form.Item>
+              </RowWrapper>
 
               {form.person === VehicleCustoms.PERSON_LEGAL ?
-                <Form.Item label={<Label>{lang.form.costs}</Label>}>
+                <RowWrapper label={<Label>{lang.form.costs}</Label>}>
                   <CalculatorInput
                     formatter={v => `${v}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                     parser={v => v.replace(/\$\s?|(,*)/g, "")}
@@ -341,19 +335,19 @@ class CarCustomsCalculator extends React.Component {
                   <Tooltip title="prompt text" color="black">
                     <InfoCircleTwoTone twoToneColor="#00B3C7" style={{ marginLeft: 5 }} />
                   </Tooltip>
-                </Form.Item>
+                </RowWrapper>
                 : null}
 
-              <Form.Item label={<Label>{lang.form.capacity}</Label>}>
+              <RowWrapper label={<Label>{lang.form.capacity}</Label>}>
                 <CalculatorInput
                   onChange={v => this.setField("capacity", v)}
                   value={form.capacity}
                   min={0}
                   size="large"
                 />
-              </Form.Item>
+              </RowWrapper>
 
-              <Form.Item style={{ marginTop: "50px" }}>
+              <Form.Item style={{ marginTop: "20px" }}>
                 <ButtonSubmit htmlType="submit" shape="round" size="large">
                   {lang.calculate}
                 </ButtonSubmit>

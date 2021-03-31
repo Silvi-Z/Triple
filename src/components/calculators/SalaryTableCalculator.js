@@ -379,7 +379,7 @@ class SalaryTableCalculator extends React.Component {
     const { form, employees, result, loading } = this.state
 
     return (
-      <Row /*{ className="rowWrapper"}*/ align="start" gutter={20} ref={this.rowWidth}>
+      <Row className="rowWrapper" align="start" gutter={20} ref={this.rowWidth}>
           <CalculatorsCardWrapper span={24} xl={16}>
           <CalculatorsCard bordered={false}>
             <Form
@@ -436,7 +436,7 @@ class SalaryTableCalculator extends React.Component {
                 </Radio.Group>
               </Form.Item>
 
-              <Form.Item style={{ marginTop: "50px" }}>
+              <Form.Item style={{ marginTop: "20px" }}>
                 <ButtonSubmit
                   htmlType="submit"
                   shape="round"

@@ -18,7 +18,6 @@ class EmployeeSalaryTable extends React.Component {
 
   render() {
     const { lang, items, style } = this.props
-    console.log('lang',lang)
     return (
       <div className="tableScroll">
         <CalculatorTable style={style}>

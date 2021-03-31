@@ -209,7 +209,7 @@ class CarTaxCalculator extends React.Component {
                 </>
                 : null}
 
-              <Form.Item style={{ marginTop: "50px" }}>
+              <Form.Item style={{ marginTop: "20px" }}>
                 <ButtonSubmit
                   htmlType="submit"
                   shape="round"

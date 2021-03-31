@@ -13,11 +13,14 @@ import {
   FormLabel,
   Label,
   UnderLine,
+  RowWrapper, RadioElementsWrapper,
 } from "./styled"
 import { isHoliday, isWeekend } from "./utilities/vacation"
 import triple from "../../api/triple"
 import moment from "moment"
 import { randomString } from "./utilities/tabel"
+
+
 
 class CarSellCalculator extends React.Component {
   constructor(props) {
@@ -255,8 +258,8 @@ class CarSellCalculator extends React.Component {
     const { lang } = this.props
 
     return (
-      <Row align="start" gutter={20}>
-        <CalculatorsCardWrapper span={24} xl={16}>
+      <Row align="start" >
+        <CalculatorsCardWrapper span={24} xl={16} gutter={20}>
           {/*<Row align="center" style={{justifyContent: 'space-between'}}>*/}
           {/*  <div className="textSec">*/}
           {/*    <H1Styled>{lang.title}</H1Styled>*/}
@@ -272,8 +275,8 @@ class CarSellCalculator extends React.Component {
               layout="horizontal"
               size="large"
             >
-              <Row gutter={10} align="middle">
-                <Form.Item style={{ marginRight: "25px" }} label={<Label>{lang.achievement}</Label>}>
+              <Row align="middle">
+                <RowWrapper style={{ marginRight: "25px" }} label={<Label>{lang.achievement}</Label>}>
                   <CalculatorDatePicker
                     dateRender={(date, today) => this.handlePickerRender(date, today, "start")}
                     onChange={date => this.setField("achievementDate", date)}
@@ -286,8 +289,8 @@ class CarSellCalculator extends React.Component {
                     defaultVaolue={form.achievementDate}
                     value={form.achievementDate}
                   />
-                </Form.Item>
-                <Form.Item label={<Label>{lang.alienation}</Label>}>
+                </RowWrapper>
+                <RowWrapper label={<Label>{lang.alienation}</Label>}>
                   <CalculatorDatePicker
                     onChange={date => this.setField("alienationDate", date)}
                     dateRender={(date, today) => this.handlePickerRender(date, today, "end")}
@@ -302,46 +305,49 @@ class CarSellCalculator extends React.Component {
                     defaultVaolue={form.alienationDate}
                     value={form.alienationDate}
                   />
-                </Form.Item>
+                </RowWrapper>
+
+              </Row>
+              <Row>
+                <RowWrapper label={<Label>{lang.price}</Label>}>
+                  <CalculatorInput
+                    formatter={v => `${v}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                    parser={v => v.replace(/\$\s?|(,*)/g, "")}
+                    onChange={v => this.setField("price", v)}
+                    value={form.price}
+                    min={VehicleSell.MIN_PRICE}
+                    size="large"
+                  />
+                  <CurrencySymbol>&#1423;</CurrencySymbol>
+                </RowWrapper>
+                <RadioElementsWrapper>
+                  <RowWrapper className="radioElements" label={<Label>{lang.power}</Label>}>
+                    <CalculatorInput
+                      onChange={v => this.setField("power", v)}
+                      style={{ marginRight: "10px" }}
+                      value={form.power}
+                      max={2000}
+                      min={1}
+                      size="large"
+                      type="number"
+                    />
+                  </RowWrapper>
+                  <Radio.Group
+                    onChange={e => this.setField("powerType", e.target.value)}
+                    value={form.powerType}
+                  >
+                    <Radio value={VehicleSell.HORSEPOWER}>
+                      <Label style={{ textTransform: "none" }}>{lang.horsepower}</Label>
+                    </Radio>
+                    <Radio value={VehicleSell.KILOWATTS}>
+                      <Label style={{ textTransform: "none" }}>{lang.kilowatts}</Label>
+                    </Radio>
+                  </Radio.Group>
+                </RadioElementsWrapper>
               </Row>
 
-              <Form.Item label={<Label>{lang.price}</Label>}>
-                <CalculatorInput
-                  formatter={v => `${v}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
-                  parser={v => v.replace(/\$\s?|(,*)/g, "")}
-                  onChange={v => this.setField("price", v)}
-                  value={form.price}
-                  min={VehicleSell.MIN_PRICE}
-                  size="large"
-                />
-                <CurrencySymbol>&#1423;</CurrencySymbol>
-              </Form.Item>
 
-              <Form.Item label={<Label>{lang.power}</Label>}>
-                <CalculatorInput
-                  onChange={v => this.setField("power", v)}
-                  style={{ marginRight: "10px" }}
-                  value={form.power}
-                  max={2000}
-                  min={1}
-                  size="large"
-                  type="number"
-                />
-
-                <Radio.Group
-                  onChange={e => this.setField("powerType", e.target.value)}
-                  value={form.powerType}
-                >
-                  <Radio value={VehicleSell.HORSEPOWER}>
-                    <Label style={{ textTransform: "none" }}>{lang.horsepower}</Label>
-                  </Radio>
-                  <Radio value={VehicleSell.KILOWATTS}>
-                    <Label style={{ textTransform: "none" }}>{lang.kilowatts}</Label>
-                  </Radio>
-                </Radio.Group>
-              </Form.Item>
-
-              <Form.Item style={{ marginTop: "50px" }}>
+              <Form.Item style={{ marginTop: "20px" }}>
                 <ButtonSubmit
                   htmlType="submit"
                   shape="round"

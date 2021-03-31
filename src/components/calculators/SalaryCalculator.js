@@ -16,6 +16,7 @@ import {
   RadioGroup,
   RadioLabel,
   UnderLine,
+  RowWrapper,
 } from "./styled"
 import {
   BY_FIELD_DATE,
@@ -677,7 +678,7 @@ class SalaryCalculator extends React.Component {
 
                 {form.by ?
                   <>
-                    <Form.Item label={<Label>{langText["salary_label"]}</Label>} name="amount">
+                    <RowWrapper label={<Label>{langText["salary_label"]}</Label>} name="amount">
                       <CalculatorInput
                         formatter={v => `${v}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                         parser={v => v.replace(/\$\s?|(,*)/g, "")}
@@ -696,7 +697,7 @@ class SalaryCalculator extends React.Component {
                         name="amount"
                         size="large"
                       />
-                    </Form.Item>
+                    </RowWrapper>
                   </>
                   :
                   <>

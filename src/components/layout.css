@@ -1090,7 +1090,7 @@ pre tt:after {
         flex-direction: column!important;
     }
     .startEndInputs > div{
-        width: 100%;
+        width: fit-content;
     }
     #basic_career {
         width: 100%;
@@ -1468,7 +1468,7 @@ pre tt:after {
     overflow-y: scroll;
 }
 .tableScroll, .tableScroll > div{
-    transform: rotate(180deg);
+    transform: rotateX(180deg);
 }
 ::-webkit-scrollbar {
     height: 4px;
@@ -1880,6 +1880,14 @@ pre tt:after {
 
 a.calc-nav-item {
     transition: background-color ease-in-out 0.1s;
+}
+
+.radioElements .ant-form-item-control-input-content{
+    flex-direction: column;
+}
+.radioElements .ant-radio-group{
+    display: flex;
+    margin-top: 20px;
 }
 
 a.calc-nav-item:hover {

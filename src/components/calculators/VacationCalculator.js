@@ -16,7 +16,7 @@ import {
   CalculatorSelect,
   FormLabel,
   Label,
-  RadioLabel,
+  RadioLabel, RowWrapper,
   UnderLine,
 } from "./styled"
 import {
@@ -516,8 +516,8 @@ class VacationCalculator extends React.Component {
                 </CalculatorSelect>
               </Form.Item>
 
-              <Row gutter={10} align="middle" className={"startEndInputs"}>
-                <Form.Item style={{ flexWrap: "nowrap" }} label={<Label>{lang.start}</Label>}>
+              <Row gutter={10} className={"startEndInputs"}>
+                <RowWrapper style={{ flexWrap: "nowrap" }} label={<Label>{lang.start}</Label>}>
                   <CalculatorDatePicker
                     disabledDate={d => form.date_to && (d.isSameOrAfter(form.date_to, "day"))}
                     dateRender={(date, today) => this.handlePickerRender(date, today, "start")}
@@ -532,8 +532,8 @@ class VacationCalculator extends React.Component {
                     name="date_from"
                     size="large"
                   />
-                </Form.Item>
-                <Form.Item style={{ flexWrap: "nowrap" }} label={<Label>{lang.end}</Label>}>
+                </RowWrapper>
+                <RowWrapper style={{ flexWrap: "nowrap" }} label={<Label>{lang.end}</Label>}>
                   <CalculatorDatePicker
                     defaultPickerValue={this.defaultToDate}
                     disabledDate={d => !form.date_from || (d.isSameOrBefore(form.date_from, "day"))}
@@ -548,10 +548,10 @@ class VacationCalculator extends React.Component {
                     name="date_to"
                     size="large"
                   />
-                </Form.Item>
+                </RowWrapper>
               </Row>
 
-              <Form.Item label={<Label>{lang.vacation_days}</Label>}>
+              <RowWrapper label={<Label>{lang.vacation_days}</Label>}>
                 <CalculatorInput
                   onChange={v => this.setField("vacation_days", v, this.autocompleteVacationDateTo)}
                   value={form.vacation_days}
@@ -561,7 +561,7 @@ class VacationCalculator extends React.Component {
                   name="vacation_days"
                   size="large"
                 />
-              </Form.Item>
+              </RowWrapper>
 
               <Form.Item label={<Label>{lang.working_schedule}</Label>} labelCol={{ span: 24 }}>
                 <Radio.Group
@@ -653,7 +653,7 @@ class VacationCalculator extends React.Component {
                 </Radio.Group>
               </Form.Item>
 
-              <Form.Item style={{ marginTop: "50px" }}>
+              <Form.Item style={{ marginTop: "20px" }}>
                 <ButtonSubmit htmlType="submit" shape="round" size="large">
                   {lang["calculate"]}
                 </ButtonSubmit>
