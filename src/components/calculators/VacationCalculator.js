@@ -662,37 +662,40 @@ class VacationCalculator extends React.Component {
           </CalculatorsCard>
         </CalculatorsCardWrapper>
 
-        <Col span={20} md={17} xl={8} sm={10} className="result" ref={this.col}>
-          <div>
-            <FormLabel style={{ margin: 0 }}>{lang.result.title}</FormLabel>
+        <Col span={20} xl={8} className="result" ref={this.col}>
+          <Row>
+            <Col md={12} span={24} xl={24}>
+              <FormLabel style={{ margin: 0 }}>{lang.result.title}</FormLabel>
 
-            <UnderLine />
+              <UnderLine />
 
-            <CalculatorCardResult
-              title={lang.result["gross_vacation_amount"]}
-              text={result.vacation_salary}
-            />
+              <CalculatorCardResult
+                title={lang.result["gross_vacation_amount"]}
+                text={result.vacation_salary}
+              />
 
-            <CalculatorCardResult
-              title={lang.result["income_tax"]}
-              text={result.income_tax}
-              tooltip={form.tax_field === TAX_FIELD_ENTERPRISE ? "prompt text" : null}
-            />
+              <CalculatorCardResult
+                title={lang.result["income_tax"]}
+                text={result.income_tax}
+                tooltip={form.tax_field === TAX_FIELD_ENTERPRISE ? "prompt text" : null}
+              />
 
-            <CalculatorCardResult
-              title={lang.result["pension_fee"]}
-              text={result.pension_fee}
-            />
-
-            <CalculatorCardResult
-              title={lang.result["total_fee"]}
-              text={result.total_fee}
-            />
-            <CalculatorCardResult
-              title={lang.result["pure_vacation_amount"]}
-              text={result.salary}
-            />
-          </div>
+              <CalculatorCardResult
+                title={lang.result["pension_fee"]}
+                text={result.pension_fee}
+              />
+            </Col>
+            <Col md={12} span={24} xl={24}>
+              <CalculatorCardResult
+                title={lang.result["total_fee"]}
+                text={result.total_fee}
+              />
+              <CalculatorCardResult
+                title={lang.result["pure_vacation_amount"]}
+                text={result.salary}
+              />
+            </Col>
+          </Row>
         </Col>
       </Row>
     )

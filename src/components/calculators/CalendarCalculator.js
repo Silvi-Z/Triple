@@ -482,6 +482,47 @@ const CalendarCalculator = ({ lang, locale }) => {
                   </ButtonSubmit>
                 </Form.Item>
               </CalculatorsCardWrapper>
+<<<<<<< HEAD
+              <Col xxl={8} xl={8}  className={"result calendarResult"}>
+                <Row>
+                  <Col md={12} span={24} xl={24}>
+                    <FormLabel style={{ margin: 0, minHeight: "40px", lineHeight: "40px" }}>
+                      {lang.result.title}
+                      {Object.keys(initialState.result).length > 0 && form.date_from && form.date_to &&
+                      <span className={"dateRange"}>
+              {` (${moment(form.date_from).format("DD.MM.YY")}${lang.year} -
+          ${moment(form.date_to).format("DD.MM.YY")}${lang.year})`}
+            </span>
+
+                      }
+                    </FormLabel>
+
+                    <UnderLine />
+
+                    <CalculatorCardResult
+                      title={lang.result.calendarDays}
+                      text={initialState.result.overallDays}
+                    />
+
+                    <CalculatorCardResult
+                      title={lang.result.workDays}
+                      text={initialState.result.workingDays}
+                    />
+                  </Col>
+                  <Col md={12} span={24} xl={24}>
+
+                    <CalculatorCardResult
+                      title={lang.result.nonWorkingDays}
+                      text={initialState.result.nonWorkingDays}
+                    />
+
+                    <CalculatorCardResult
+                      title={lang.result.workHours}
+                      text={initialState.result.workingHours}
+                    />
+                  </Col>
+                </Row>
+=======
               <Col xxl={8} xl={8} lg={8} md={24} sm={24} xs={24} className={"result calendarResult"}>
                 <div>
                   <FormLabel style={{ margin: 0, minHeight: "40px", lineHeight: "40px" }}>
@@ -516,6 +557,7 @@ const CalendarCalculator = ({ lang, locale }) => {
                     text={initialState.result.workingHours}
                   />
                 </div>
+>>>>>>> 66d3d3c7520864ca65e54d54fdbcbf3d8c9b9db8
               </Col>
             </Row>
             <YearField align="middle">

@@ -354,9 +354,9 @@ class CarSellCalculator extends React.Component {
           </CalculatorsCard>
         </CalculatorsCardWrapper>
 
-        <Col xs={24} sm={24} md={24} lg={8} xl={8} xxl={8} className="result">
-          <div className="carSell">
-            <FormLabel style={{ margin: 0 }}>{lang.result.title}</FormLabel>
+        <Col span={20}  xl={8} sm={10} className="result">
+         <div className="sellResult carSell">
+           <FormLabel style={{ margin: 0 }}>{lang.result.title}</FormLabel>
 
             <UnderLine />
 

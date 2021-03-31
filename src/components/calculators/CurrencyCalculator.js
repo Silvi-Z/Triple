@@ -6,7 +6,7 @@ import {
   ButtonSubmit,
   CalculatorDatePicker,
   CalculatorInput,
-  CalculatorsCard,
+  CalculatorsCard, CalculatorsCardWrapper,
   CalculatorSelect,
   FormLabel,
   Label,
@@ -369,7 +369,7 @@ class CurrencyCalculator extends React.Component {
 
     return (
       <Row align="start" gutter={20}>
-        <Col xs={24} sm={24} md={24} lg={16} xl={16} xxl={16}>
+        <CalculatorsCardWrapper span={24} xl={16}>
           {/*<Row align="center" style={{ justifyContent: "space-between" }}>*/}
           {/*  <div className="textSec">*/}
           {/*    <H1Styled>{lang.title}</H1Styled>*/}
@@ -486,17 +486,18 @@ class CurrencyCalculator extends React.Component {
             </Form>
 
           </CalculatorsCard>
-        </Col>
+        </CalculatorsCardWrapper>
 
-        <Col xs={24} sm={24} md={24} lg={8} xl={8} xxl={8} className="result">
-          <FormLabel style={{ margin: 0 }}>{lang.result.currency}</FormLabel>
+        <Col span={20} md={12}  xl={8} className="result">
+          <div className="currencyResult">
+            <FormLabel style={{ margin: 0 }}>{lang.result.currency}</FormLabel>
 
-          <UnderLine />
+            <UnderLine />
 
-          <CalculatorCardResult style={{ padding: "15px" }}>
-            {Object.keys(rates).map((currency, c) => (
-              <Row align="center" key={`currency-${currency}`}>
-                <Col span={12} className="currency">
+            <CalculatorCardResult style={{ padding: "15px" }}>
+              {Object.keys(rates).map((currency, c) => (
+                <Row align="center" key={`currency-${currency}`}>
+                  <Col span={12} className="currency">
                   <span
                     className="c-label sym"
                     dangerouslySetInnerHTML={{
@@ -510,17 +511,18 @@ class CurrencyCalculator extends React.Component {
                     }}
                   />
 
-                  <span className="c-label">{currency}</span>
-                </Col>
-                <Col span={12} className="currency">
-                  <span className="c-text">{rates[currency]}</span>
-                </Col>
-                {c < Object.keys(rates).length - 1 ?
-                  <Divider style={{ margin: "10px 0", border: "1px solid #555555" }} />
-                  : null}
-              </Row>
-            ))}
-          </CalculatorCardResult>
+                    <span className="c-label">{currency}</span>
+                  </Col>
+                  <Col span={12} className="currency">
+                    <span className="c-text">{rates[currency]}</span>
+                  </Col>
+                  {c < Object.keys(rates).length - 1 ?
+                    <Divider style={{ margin: "10px 0", border: "1px solid #555555" }} />
+                    : null}
+                </Row>
+              ))}
+            </CalculatorCardResult>
+          </div>
         </Col>
       </Row>
     )

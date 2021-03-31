@@ -94,7 +94,6 @@ const Index = ({location, pageContext }) => {
     }
   }
 
-  const filteredDate =data.filter(item =>location.hash.substring(1).includes(item.id.toString()))
   const onChange = (e) => {
     const data = constData.filter(item => item.title_arm.toLowerCase().includes(e.target.value.toLowerCase()))
     setData(data)

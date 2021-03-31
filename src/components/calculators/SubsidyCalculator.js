@@ -544,7 +544,7 @@ class SubsidyCalculator extends React.Component {
     this.calculator.setFields(form)
 
     return (
-      <Row align="start" gutter={20} ref={this.rowWidth} className="fixElement">
+      <Row align="start" gutter={20} ref={this.rowWidth} className="fixElement rowWrapper">
         <CalculatorsCardWrapper span={24} xl={16} ref={this.row}>
           <Card bordered={false}>
             <Form
@@ -734,6 +734,9 @@ class SubsidyCalculator extends React.Component {
                       name="amount"
                       size="large"
                     />
+                    <Tooltip title="prompt text" color="black">
+                      <InfoCircleTwoTone twoToneColor="#00B3C7" style={{marginLeft: 5}} />
+                    </Tooltip>
                   </Form.Item>
                   : null
               }
@@ -789,37 +792,40 @@ class SubsidyCalculator extends React.Component {
           </Card>
         </CalculatorsCardWrapper>
 
-        <Col span={20} md={17} xl={8} sm={10} className="result" ref={this.col}>
-          <div>
-            <FormLabel style={{ margin: 0 }}>{lang.result.title}</FormLabel>
+        <Col span={20}xl={8} className="result" ref={this.col}>
+          <Row>
+            <Col md={12} span={24} xl={24}>
+              <FormLabel style={{ margin: 0 }}>{lang.result.title}</FormLabel>
 
-            <UnderLine />
+              <UnderLine />
 
-            <CalculatorCardResult
-              title={lang.result["all_pure_subsidy"]}
-              text={result.subsidy}
-            />
+              <CalculatorCardResult
+                title={lang.result["all_pure_subsidy"]}
+                text={result.subsidy}
+              />
 
-            <CalculatorCardResult
-              title={lang.result["subsidy_emp"]}
-              text={result.subsidy_emp}
-            />
+              <CalculatorCardResult
+                title={lang.result["subsidy_emp"]}
+                text={result.subsidy_emp}
+              />
 
-            <CalculatorCardResult
-              title={lang.result["subsidy_gov"]}
-              text={result.subsidy_gov}
-            />
+              <CalculatorCardResult
+                title={lang.result["subsidy_gov"]}
+                text={result.subsidy_gov}
+              />
+            </Col>
+            <Col md={12} span={24} xl={24}>
+              <CalculatorCardResult
+                title={lang.result["income_tax"]}
+                text={result.income_tax}
+                tooltip={this.isTaxEnterprise}
+              />
 
-            <CalculatorCardResult
-              title={lang.result["income_tax"]}
-              text={result.income_tax}
-              tooltip={this.isTaxEnterprise}
-            />
-
-            <CalculatorCardResult
-              title={lang.result["pure_subsidy"]}
-              text={result.pure_subsidy}
-            />
+              <CalculatorCardResult
+                title={lang.result["pure_subsidy"]}
+                text={result.pure_subsidy}
+              />
+            </Col>
 
             {/*<CalculatorCardResult*/}
             {/*  title={lang.result["total_fee"]}*/}
@@ -829,7 +835,7 @@ class SubsidyCalculator extends React.Component {
             {/*  title={lang.result["pure_vacation_amount"]}*/}
             {/*  text={result.salary}*/}
             {/*/>*/}
-          </div>
+          </Row>
         </Col>
       </Row>
     )
