@@ -185,14 +185,24 @@ class SubsidyCalculator extends React.Component {
           valid: false,
         })
       } else {
-        triple.post("/api/counter/salary", {
+        const data = this.isTypeDisability && this.isTaxEnterprise ? {
+          from: 1,
+          amount,
+          pension,
+          tax_field,
+          stamp: false,
+          no_income: "yes",
+          year,
+        } : {
           from: 1,
           amount,
           pension,
           tax_field,
           stamp: false,
           year,
-        }).then(res => {
+        }
+
+        triple.post("/api/counter/salary", data).then(res => {
           const { income_tax, salary, stamp_fee } = res.data
 
           if (this.isWorkHired) {
@@ -354,88 +364,149 @@ class SubsidyCalculator extends React.Component {
 
   handlePickerRender(date, today, range) {
     const { form } = this.state
+    const { locale } = this.props
 
-    const condition = range === "start"
-      ? form.end && (date.isSameOrAfter(form.end, "day"))
-      : !form.start || (date.isSameOrBefore(form.start, "day"))
+    // const condition = range === "start"
+    //   ? form.end && (date.isSameOrAfter(form.end, "day"))
+    //   : !form.start || (date.isSameOrBefore(form.start, "day"))
 
     if (date.isSame(today, "day")) {
       return <div className={
         // !condition
-          "ant-picker-cell-inner ant-picker-cell-today"
-          // : "ant-picker-cell-inner"
+        "ant-picker-cell-inner ant-picker-cell-today"
+        // : "ant-picker-cell-inner"
       }>
         {date.format("D")}
-        {this.workdays.length > 0
+        {locale === "arm" && this.workdays.length > 0
         && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD"))
         && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title &&
         <span className={"day_title"}>
                   {this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title}
                 </span>
-        || this.holidays.length > 0
+        }
+        {locale !== "arm" && this.workdays.length > 0
+        && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD"))
+        && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title_en &&
+        <span className={"day_title"}>
+                  {this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title_en}
+                </span>
+        }
+        {locale === "arm" && this.holidays.length > 0
         && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD"))
         && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title &&
         <span className={"day_title"}>
                   {this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title}
+                </span>
+        }
+        {locale !== "arm" && this.holidays.length > 0
+        && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD"))
+        && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title_en &&
+        <span className={"day_title"}>
+                  {this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title_en}
                 </span>
         }
       </div>
     } else if (isHoliday(date, this.holidays)) {
       return <div className={
         // !condition
-          "ant-picker-cell-inner ant-picker-cell-holiday"
-          // : "ant-picker-cell-inner"
+        "ant-picker-cell-inner ant-picker-cell-holiday"
+        // : "ant-picker-cell-inner"
       }>
         {date.format("D")}
-        {this.workdays.length > 0
+        {locale === "arm" && this.workdays.length > 0
         && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD"))
         && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title &&
         <span className={"day_title"}>
                   {this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title}
                 </span>
-        || this.holidays.length > 0
+        }
+        {locale !== "arm" && this.workdays.length > 0
+        && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD"))
+        && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title_en &&
+        <span className={"day_title"}>
+                  {this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title_en}
+                </span>
+        }
+        {locale === "arm" && this.holidays.length > 0
         && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD"))
         && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title &&
         <span className={"day_title"}>
                   {this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title}
+                </span>
+        }
+        {locale !== "arm" && this.holidays.length > 0
+        && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD"))
+        && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title_en &&
+        <span className={"day_title"}>
+                  {this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title_en}
                 </span>
         }
       </div>
     } else if (isWeekend(date, form.schedule)) {
       return <div className={
         // !condition
-           "ant-picker-cell-inner ant-picker-cell-weekend"
-          // : "ant-picker-cell-inner"
+        "ant-picker-cell-inner ant-picker-cell-weekend"
+        // : "ant-picker-cell-inner"
       }>
         {date.format("D")}
-        {this.workdays.length > 0
+        {locale === "arm" && this.workdays.length > 0
         && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD"))
         && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title &&
         <span className={"day_title"}>
                   {this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title}
                 </span>
-        || this.holidays.length > 0
+        }
+        {locale !== "arm" && this.workdays.length > 0
+        && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD"))
+        && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title_en &&
+        <span className={"day_title"}>
+                  {this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title_en}
+                </span>
+        }
+        {locale === "arm" && this.holidays.length > 0
         && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD"))
         && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title &&
         <span className={"day_title"}>
                   {this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title}
                 </span>
         }
+        {locale !== "arm" && this.holidays.length > 0
+        && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD"))
+        && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title_en &&
+        <span className={"day_title"}>
+                  {this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title_en}
+                </span>
+        }
       </div>
     } else {
       return <div className="ant-picker-cell-inner">
         {date.format("D")}
-        {this.workdays.length > 0
+        {locale === "arm" && this.workdays.length > 0
         && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD"))
         && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title &&
         <span className={"day_title"}>
                   {this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title}
                 </span>
-        || this.holidays.length > 0
+        }
+        {locale !== "arm" && this.workdays.length > 0
+        && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD"))
+        && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title_en &&
+        <span className={"day_title"}>
+                  {this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title_en}
+                </span>
+        }
+        {locale === "arm" && this.holidays.length > 0
         && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD"))
         && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title &&
         <span className={"day_title"}>
                   {this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title}
+                </span>
+        }
+        {locale !== "arm" && this.holidays.length > 0
+        && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD"))
+        && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title_en &&
+        <span className={"day_title"}>
+                  {this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title_en}
                 </span>
         }
       </div>

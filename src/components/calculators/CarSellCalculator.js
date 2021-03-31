@@ -7,7 +7,9 @@ import {
   ButtonSubmit,
   CalculatorDatePicker,
   CalculatorInput,
-  CalculatorsCard, CalculatorsCardWrapper, CurrencySymbol,
+  CalculatorsCard,
+  CalculatorsCardWrapper,
+  CurrencySymbol,
   FormLabel,
   Label,
   UnderLine,
@@ -15,12 +17,18 @@ import {
 import { isHoliday, isWeekend } from "./utilities/vacation"
 import triple from "../../api/triple"
 import moment from "moment"
+import { randomString } from "./utilities/tabel"
 
 class CarSellCalculator extends React.Component {
   constructor(props) {
     super(props)
 
-    this.state = { form: { ...VehicleSell.form }, tax: null, calculated: false }
+    this.state = {
+      form: { ...VehicleSell.form },
+      tax: null,
+      calculated: false,
+      // randomKey: randomString(),
+    }
     this.holidays = []
     this.workdays = []
   }
@@ -36,7 +44,14 @@ class CarSellCalculator extends React.Component {
   }
 
   setField(name, value, cb) {
-    this.setState({ form: { ...this.state.form, [name]: value } }, cb)
+    this.setState((prevState) => ({
+      ...prevState,
+      // randomKey: randomString(),
+      form: {
+        ...prevState.form,
+        [name]: value,
+      },
+    }), cb)
   }
 
   fetchDays() {
@@ -71,6 +86,7 @@ class CarSellCalculator extends React.Component {
 
   handlePickerRender(date, today, range) {
     const { form } = this.state
+    const { locale } = this.props
 
     const condition = range === "start"
       && form.date && (date.isSameOrAfter(form.date, "day"))
@@ -82,17 +98,32 @@ class CarSellCalculator extends React.Component {
           : "ant-picker-cell-inner"
       }>
         {date.format("D")}
-        {this.workdays.length > 0
+        {locale === "arm" && this.workdays.length > 0
         && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD"))
         && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title &&
         <span className={"day_title"}>
                   {this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title}
                 </span>
-        || this.holidays.length > 0
+        }
+        {locale !== "arm" && this.workdays.length > 0
+        && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD"))
+        && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title_en &&
+        <span className={"day_title"}>
+                  {this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title_en}
+                </span>
+        }
+        {locale === "arm" && this.holidays.length > 0
         && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD"))
         && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title &&
         <span className={"day_title"}>
                   {this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title}
+                </span>
+        }
+        {locale !== "arm" && this.holidays.length > 0
+        && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD"))
+        && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title_en &&
+        <span className={"day_title"}>
+                  {this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title_en}
                 </span>
         }
       </div>
@@ -103,17 +134,32 @@ class CarSellCalculator extends React.Component {
           : "ant-picker-cell-inner"
       }>
         {date.format("D")}
-        {this.workdays.length > 0
+        {locale === "arm" && this.workdays.length > 0
         && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD"))
         && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title &&
         <span className={"day_title"}>
                   {this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title}
                 </span>
-        || this.holidays.length > 0
+        }
+        {locale !== "arm" && this.workdays.length > 0
+        && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD"))
+        && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title_en &&
+        <span className={"day_title"}>
+                  {this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title_en}
+                </span>
+        }
+        {locale === "arm" && this.holidays.length > 0
         && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD"))
         && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title &&
         <span className={"day_title"}>
                   {this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title}
+                </span>
+        }
+        {locale !== "arm" && this.holidays.length > 0
+        && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD"))
+        && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title_en &&
+        <span className={"day_title"}>
+                  {this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title_en}
                 </span>
         }
       </div>
@@ -124,34 +170,64 @@ class CarSellCalculator extends React.Component {
           : "ant-picker-cell-inner"
       }>
         {date.format("D")}
-        {this.workdays.length > 0
+        {locale === "arm" && this.workdays.length > 0
         && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD"))
         && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title &&
         <span className={"day_title"}>
                   {this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title}
                 </span>
-        || this.holidays.length > 0
+        }
+        {locale !== "arm" && this.workdays.length > 0
+        && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD"))
+        && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title_en &&
+        <span className={"day_title"}>
+                  {this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title_en}
+                </span>
+        }
+        {locale === "arm" && this.holidays.length > 0
         && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD"))
         && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title &&
         <span className={"day_title"}>
                   {this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title}
                 </span>
         }
+        {locale !== "arm" && this.holidays.length > 0
+        && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD"))
+        && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title_en &&
+        <span className={"day_title"}>
+                  {this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title_en}
+                </span>
+        }
       </div>
     } else {
       return <div className="ant-picker-cell-inner">
         {date.format("D")}
-        {this.workdays.length > 0
+        {locale === "arm" && this.workdays.length > 0
         && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD"))
         && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title &&
         <span className={"day_title"}>
                   {this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title}
                 </span>
-        || this.holidays.length > 0
+        }
+        {locale !== "arm" && this.workdays.length > 0
+        && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD"))
+        && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title_en &&
+        <span className={"day_title"}>
+                  {this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title_en}
+                </span>
+        }
+        {locale === "arm" && this.holidays.length > 0
         && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD"))
         && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title &&
         <span className={"day_title"}>
                   {this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title}
+                </span>
+        }
+        {locale !== "arm" && this.holidays.length > 0
+        && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD"))
+        && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title_en &&
+        <span className={"day_title"}>
+                  {this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title_en}
                 </span>
         }
       </div>
@@ -175,7 +251,7 @@ class CarSellCalculator extends React.Component {
   }
 
   render() {
-    const { form, tax } = this.state
+    const { form, tax, randomKey } = this.state
     const { lang } = this.props
 
     return (
@@ -202,8 +278,12 @@ class CarSellCalculator extends React.Component {
                     dateRender={(date, today) => this.handlePickerRender(date, today, "start")}
                     onChange={date => this.setField("achievementDate", date)}
                     placeholder={null}
+                    // key={randomKey}
                     format="DD.MM.YYYY"
                     size="large"
+                    name="achievementDate"
+                    allowClear={true}
+                    value={form.achievementDate}
                   />
                 </Form.Item>
                 <Form.Item label={<Label>{lang.alienation}</Label>}>
@@ -212,9 +292,13 @@ class CarSellCalculator extends React.Component {
                     dateRender={(date, today) => this.handlePickerRender(date, today, "end")}
                     disabledDate={d => !form.achievementDate || (d.isSameOrBefore(form.achievementDate, "day"))}
                     placeholder={null}
+                    // key={randomKey}
                     defaultPickerValue={this.defaultToDate}
                     format="DD.MM.YYYY"
                     size="large"
+                    name="alienationDate"
+                    allowClear={true}
+                    value={form.alienationDate}
                   />
                 </Form.Item>
               </Row>

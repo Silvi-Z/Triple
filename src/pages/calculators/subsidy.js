@@ -8,7 +8,7 @@ const vacation = ({pageContext}) => {
 
   return (
     <CalculatorWrapper ctx={pageContext}>
-      <SubsidyCalculator lang={calculator.subsidy}/>
+      <SubsidyCalculator lang={calculator.subsidy} locale={pageContext.locale}/>
     </CalculatorWrapper>
   )
 };

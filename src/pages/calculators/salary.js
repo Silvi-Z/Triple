@@ -8,7 +8,7 @@ const salary = ({ pageContext }) => {
 
   return (
     <CalculatorWrapper ctx={pageContext}>
-      <SalaryCalculator langText={calculator.salary} sameMargin/>
+      <SalaryCalculator langText={calculator.salary} sameMargin locale={pageContext.locale}/>
     </CalculatorWrapper>
   )
 };

@@ -8,7 +8,7 @@ const vacation = ({pageContext}) => {
 
   return (
     <CalculatorWrapper ctx={pageContext}>
-      <VacationCalculator lang={calculator.vacation} sameMargin/>
+      <VacationCalculator lang={calculator.vacation} sameMargin locale={pageContext.locale}/>
     </CalculatorWrapper>
   )
 };

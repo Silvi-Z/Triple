@@ -285,6 +285,7 @@ class VacationCalculator extends React.Component {
    */
   handlePickerRender = (date, today, range) => {
     const { form } = this.state
+    const { locale } = this.props
 
     const condition = range === "start"
       ? form.date_to && (date.isSameOrAfter(form.date_to, "day"))
@@ -297,17 +298,32 @@ class VacationCalculator extends React.Component {
           : "ant-picker-cell-inner"
       }>
         {date.format("D")}
-        {this.workdays.length > 0
+        {locale === "arm" && this.workdays.length > 0
         && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD"))
         && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title &&
         <span className={"day_title"}>
                   {this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title}
                 </span>
-        || this.holidays.length > 0
+        }
+        {locale !== "arm" && this.workdays.length > 0
+        && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD"))
+        && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title_en &&
+        <span className={"day_title"}>
+                  {this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title_en}
+                </span>
+        }
+        {locale === "arm" && this.holidays.length > 0
         && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD"))
         && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title &&
         <span className={"day_title"}>
                   {this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title}
+                </span>
+        }
+        {locale !== "arm" && this.holidays.length > 0
+        && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD"))
+        && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title_en &&
+        <span className={"day_title"}>
+                  {this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title_en}
                 </span>
         }
       </div>
@@ -318,17 +334,32 @@ class VacationCalculator extends React.Component {
           : "ant-picker-cell-inner"
       }>
         {date.format("D")}
-        {this.workdays.length > 0
+        {locale === "arm" && this.workdays.length > 0
         && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD"))
         && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title &&
         <span className={"day_title"}>
                   {this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title}
                 </span>
-        || this.holidays.length > 0
+        }
+        {locale !== "arm" && this.workdays.length > 0
+        && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD"))
+        && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title_en &&
+        <span className={"day_title"}>
+                  {this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title_en}
+                </span>
+        }
+        {locale === "arm" && this.holidays.length > 0
         && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD"))
         && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title &&
         <span className={"day_title"}>
                   {this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title}
+                </span>
+        }
+        {locale !== "arm" && this.holidays.length > 0
+        && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD"))
+        && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title_en &&
+        <span className={"day_title"}>
+                  {this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title_en}
                 </span>
         }
       </div>
@@ -339,34 +370,64 @@ class VacationCalculator extends React.Component {
           : "ant-picker-cell-inner"
       }>
         {date.format("D")}
-        {this.workdays.length > 0
+        {locale === "arm" && this.workdays.length > 0
         && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD"))
         && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title &&
         <span className={"day_title"}>
                   {this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title}
                 </span>
-        || this.holidays.length > 0
+        }
+        {locale !== "arm" && this.workdays.length > 0
+        && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD"))
+        && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title_en &&
+        <span className={"day_title"}>
+                  {this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title_en}
+                </span>
+        }
+        {locale === "arm" && this.holidays.length > 0
         && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD"))
         && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title &&
         <span className={"day_title"}>
                   {this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title}
                 </span>
         }
+        {locale !== "arm" && this.holidays.length > 0
+        && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD"))
+        && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title_en &&
+        <span className={"day_title"}>
+                  {this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title_en}
+                </span>
+        }
       </div>
     } else {
       return <div className="ant-picker-cell-inner">
         {date.format("D")}
-        {this.workdays.length > 0
+        {locale === "arm" && this.workdays.length > 0
         && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD"))
         && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title &&
         <span className={"day_title"}>
                   {this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title}
                 </span>
-        || this.holidays.length > 0
+        }
+        {locale !== "arm" && this.workdays.length > 0
+        && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD"))
+        && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title_en &&
+        <span className={"day_title"}>
+                  {this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title_en}
+                </span>
+        }
+        {locale === "arm" && this.holidays.length > 0
         && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD"))
         && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title &&
         <span className={"day_title"}>
                   {this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title}
+                </span>
+        }
+        {locale !== "arm" && this.holidays.length > 0
+        && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD"))
+        && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title_en &&
+        <span className={"day_title"}>
+                  {this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title_en}
                 </span>
         }
       </div>
@@ -456,7 +517,7 @@ class VacationCalculator extends React.Component {
               </Form.Item>
 
               <Row gutter={10} align="middle" className={"startEndInputs"}>
-                <Form.Item style={{ flexWrap:"nowrap"}} label={<Label>{lang.start}</Label>}>
+                <Form.Item style={{ flexWrap: "nowrap" }} label={<Label>{lang.start}</Label>}>
                   <CalculatorDatePicker
                     disabledDate={d => form.date_to && (d.isSameOrAfter(form.date_to, "day"))}
                     dateRender={(date, today) => this.handlePickerRender(date, today, "start")}
@@ -472,7 +533,7 @@ class VacationCalculator extends React.Component {
                     size="large"
                   />
                 </Form.Item>
-                <Form.Item style={{ flexWrap:"nowrap"}} label={<Label>{lang.end}</Label>}>
+                <Form.Item style={{ flexWrap: "nowrap" }} label={<Label>{lang.end}</Label>}>
                   <CalculatorDatePicker
                     defaultPickerValue={this.defaultToDate}
                     disabledDate={d => !form.date_from || (d.isSameOrBefore(form.date_from, "day"))}

@@ -4,7 +4,8 @@ import { Checkbox, Col, Form, Radio, Row } from "antd"
 import {
   ButtonSubmit,
   CalculatorDatePicker,
-  CalculatorsCard, CalculatorsCardWrapper,
+  CalculatorsCard,
+  CalculatorsCardWrapper,
   CalendarInfo,
   CalendarTable,
   CalendarTitle,
@@ -24,7 +25,7 @@ import { getCalendarDates } from "./utilities/calendar"
 import CalendarItem from "./calcComponents/Calendar"
 import { randomString } from "./utilities/tabel"
 
-const CalendarCalculator = ({ lang }) => {
+const CalendarCalculator = ({ lang, locale }) => {
   const [form, setForm] = useState({
     dates: [],
     schedule: 5,
@@ -92,7 +93,6 @@ const CalendarCalculator = ({ lang }) => {
     workingDaysAndHours: [],
     result: {},
   })
-  const holidays = []
 
   const getHolidays = () => {
     triple.get(`/api/days?year=${year}&calculated=1`).then(res => {
@@ -201,9 +201,9 @@ const CalendarCalculator = ({ lang }) => {
   const handlePickerRender = (date, today, range) => {
     const { schedule, date_to, date_from } = form
 
-    const condition = range === "start"
-      ? date_from && (date.isSameOrAfter(date_from, "day"))
-      : !date_to || (date.isSameOrBefore(date_to, "day"))
+    // const condition = range === "start"
+    //   ? date_from && (date.isSameOrAfter(date_from, "day"))
+    //   : !date_to || (date.isSameOrBefore(date_to, "day"))
 
     if (date.isSame(today, "day")) {
       return <div className={
@@ -212,17 +212,32 @@ const CalendarCalculator = ({ lang }) => {
         // : "ant-picker-cell-inner"
       }>
         {date.format("D")}
-        {initialState.workdays.length > 0
+        {locale === "arm" && initialState.workdays.length > 0
         && initialState.workdays.find(workday => workday.date === date.format("YYYY-MM-DD"))
         && initialState.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title &&
         <span className={"day_title"}>
                   {initialState.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title}
                 </span>
-        || initialState.holidays.length > 0
+        }
+        {locale !== "arm" && initialState.workdays.length > 0
+        && initialState.workdays.find(workday => workday.date === date.format("YYYY-MM-DD"))
+        && initialState.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title_en &&
+        <span className={"day_title"}>
+                  {initialState.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title_en}
+                </span>
+        }
+        {locale === "arm" && initialState.holidays.length > 0
         && initialState.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD"))
         && initialState.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title &&
         <span className={"day_title"}>
-                  {initialState.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title}
+                  {holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title}
+                </span>
+        }
+        {locale !== "arm" && initialState.holidays.length > 0
+        && initialState.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD"))
+        && initialState.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title_en &&
+        <span className={"day_title"}>
+                  {initialState.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title_en}
                 </span>
         }
       </div>
@@ -233,17 +248,32 @@ const CalendarCalculator = ({ lang }) => {
         // : "ant-picker-cell-inner"
       }>
         {date.format("D")}
-        {initialState.workdays.length > 0
+        {locale === "arm" && initialState.workdays.length > 0
         && initialState.workdays.find(workday => workday.date === date.format("YYYY-MM-DD"))
         && initialState.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title &&
         <span className={"day_title"}>
                   {initialState.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title}
                 </span>
-        || initialState.holidays.length > 0
+        }
+        {locale !== "arm" && initialState.workdays.length > 0
+        && initialState.workdays.find(workday => workday.date === date.format("YYYY-MM-DD"))
+        && initialState.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title_en &&
+        <span className={"day_title"}>
+                  {initialState.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title_en}
+                </span>
+        }
+        {locale === "arm" && initialState.holidays.length > 0
         && initialState.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD"))
         && initialState.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title &&
         <span className={"day_title"}>
                   {initialState.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title}
+                </span>
+        }
+        {locale !== "arm" && initialState.holidays.length > 0
+        && initialState.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD"))
+        && initialState.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title_en &&
+        <span className={"day_title"}>
+                  {initialState.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title_en}
                 </span>
         }
       </div>
@@ -254,34 +284,64 @@ const CalendarCalculator = ({ lang }) => {
         // : "ant-picker-cell-inner"
       }>
         {date.format("D")}
-        {initialState.workdays.length > 0
+        {locale === "arm" && initialState.workdays.length > 0
         && initialState.workdays.find(workday => workday.date === date.format("YYYY-MM-DD"))
         && initialState.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title &&
         <span className={"day_title"}>
                   {initialState.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title}
                 </span>
-        || initialState.holidays.length > 0
+        }
+        {locale !== "arm" && initialState.workdays.length > 0
+        && initialState.workdays.find(workday => workday.date === date.format("YYYY-MM-DD"))
+        && initialState.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title_en &&
+        <span className={"day_title"}>
+                  {initialState.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title_en}
+                </span>
+        }
+        {locale === "arm" && initialState.holidays.length > 0
         && initialState.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD"))
         && initialState.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title &&
         <span className={"day_title"}>
                   {initialState.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title}
                 </span>
         }
+        {locale !== "arm" && initialState.holidays.length > 0
+        && initialState.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD"))
+        && initialState.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title_en &&
+        <span className={"day_title"}>
+                  {initialState.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title_en}
+                </span>
+        }
       </div>
     } else {
       return <div className="ant-picker-cell-inner">
         {date.format("D")}
-        {initialState.workdays.length > 0
+        {locale === "arm" && initialState.workdays.length > 0
         && initialState.workdays.find(workday => workday.date === date.format("YYYY-MM-DD"))
         && initialState.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title &&
         <span className={"day_title"}>
                   {initialState.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title}
                 </span>
-        || initialState.holidays.length > 0
+        }
+        {locale !== "arm" && initialState.workdays.length > 0
+        && initialState.workdays.find(workday => workday.date === date.format("YYYY-MM-DD"))
+        && initialState.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title_en &&
+        <span className={"day_title"}>
+                  {initialState.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title_en}
+                </span>
+        }
+        {locale === "arm" && initialState.holidays.length > 0
         && initialState.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD"))
         && initialState.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title &&
         <span className={"day_title"}>
                   {initialState.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title}
+                </span>
+        }
+        {locale !== "arm" && initialState.holidays.length > 0
+        && initialState.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD"))
+        && initialState.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title_en &&
+        <span className={"day_title"}>
+                  {initialState.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title_en}
                 </span>
         }
       </div>
@@ -423,40 +483,39 @@ const CalendarCalculator = ({ lang }) => {
                 </Form.Item>
               </CalculatorsCardWrapper>
               <Col xxl={8} xl={8} lg={8} md={24} sm={24} xs={24} className={"result calendarResult"}>
-               <div>
-                 <FormLabel style={{ margin: 0, minHeight: "40px", lineHeight: "40px" }}>
-                   {lang.result.title}
-                   {Object.keys(initialState.result).length > 0 && form.date_from && form.date_to &&
-                   <span className={"dateRange"}>
+                <div>
+                  <FormLabel style={{ margin: 0, minHeight: "40px", lineHeight: "40px" }}>
+                    {lang.result.title}
+                    {Object.keys(initialState.result).length > 0 && form.date_from && form.date_to &&
+                    <span className={"dateRange"}>
               {` (${moment(form.date_from).format("DD.MM.YY")}${lang.year} -
           ${moment(form.date_to).format("DD.MM.YY")}${lang.year})`}
             </span>
+                    }
+                  </FormLabel>
 
-                   }
-                 </FormLabel>
+                  <UnderLine />
 
-                 <UnderLine />
+                  <CalculatorCardResult
+                    title={lang.result.calendarDays}
+                    text={initialState.result.overallDays}
+                  />
 
-                 <CalculatorCardResult
-                   title={lang.result.calendarDays}
-                   text={initialState.result.overallDays}
-                 />
+                  <CalculatorCardResult
+                    title={lang.result.workDays}
+                    text={initialState.result.workingDays}
+                  />
 
-                 <CalculatorCardResult
-                   title={lang.result.workDays}
-                   text={initialState.result.workingDays}
-                 />
+                  <CalculatorCardResult
+                    title={lang.result.nonWorkingDays}
+                    text={initialState.result.nonWorkingDays}
+                  />
 
-                 <CalculatorCardResult
-                   title={lang.result.nonWorkingDays}
-                   text={initialState.result.nonWorkingDays}
-                 />
-
-                 <CalculatorCardResult
-                   title={lang.result.workHours}
-                   text={initialState.result.workingHours}
-                 />
-               </div>
+                  <CalculatorCardResult
+                    title={lang.result.workHours}
+                    text={initialState.result.workingHours}
+                  />
+                </div>
               </Col>
             </Row>
             <YearField align="middle">
@@ -520,6 +579,7 @@ const CalendarCalculator = ({ lang }) => {
                         {month.map((week, i) => (
                           <tr key={`calendar_${index}_week_${i}`}>
                             <CalendarItem
+                              locale={locale}
                               week={week}
                               holidays={initialState.holidays}
                               workdays={initialState.workdays}
