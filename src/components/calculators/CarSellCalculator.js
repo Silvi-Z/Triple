@@ -174,7 +174,7 @@ class CarSellCalculator extends React.Component {
     const { lang } = this.props
 
     return (
-      <Row align="start" gutter={20}>
+      <Row align="start">
         <CalculatorsCardWrapper span={24} xl={16}>
           {/*<Row align="center" style={{justifyContent: 'space-between'}}>*/}
           {/*  <div className="textSec">*/}
@@ -262,8 +262,8 @@ class CarSellCalculator extends React.Component {
           </CalculatorsCard>
         </CalculatorsCardWrapper>
 
-        <Col xs={24} sm={24} md={24} lg={8} xl={8} xxl={8} className="result">
-         <div>
+        <Col span={20}  xl={8} sm={10} className="result">
+         <div className="sellResult">
            <FormLabel style={{ margin: 0 }}>{lang.result.title}</FormLabel>
 
            <UnderLine />

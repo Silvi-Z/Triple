@@ -381,7 +381,7 @@ class SalaryTableCalculator extends React.Component {
     const { form, employees, result, loading } = this.state
 
     return (
-      <Row className="rowWrapper" align="start" gutter={20} ref={this.rowWidth}>
+      <Row align="start" gutter={20} ref={this.rowWidth}>
           <CalculatorsCardWrapper span={24} xl={16}>
           <CalculatorsCard bordered={false}>
             <Form
@@ -451,51 +451,51 @@ class SalaryTableCalculator extends React.Component {
           </CalculatorsCard>
           </CalculatorsCardWrapper>
 
-        <Col span={20} md={17} xl={8} sm={10} className="result" ref={this.top}>
-          <div>
-            <FormLabel style={{ margin: 0 }}>{lang.result.title}</FormLabel>
+        <Col span={20} xl={8} className="result" ref={this.top}>
+          <Row>
+           <Col md={12} span={24} xl={24}>
+             <FormLabel style={{ margin: 0 }}>{lang.result.title}</FormLabel>
 
-            <UnderLine />
+             <UnderLine />
 
-            <CalculatorCardResult
-              title={lang.result.gross_salary}
-              text={result.gross_salary}
-              loading={loading}
-              tooltip
-            />
+             <CalculatorCardResult
+               title={lang.result.gross_salary}
+               text={result.gross_salary}
+               loading={loading}
+             />
 
-            <CalculatorCardResult
-              title={lang.result.income_tax}
-              text={result.income_tax}
-              loading={loading}
-              tooltip
-            />
+             <CalculatorCardResult
+               title={lang.result.income_tax}
+               text={result.income_tax}
+               loading={loading}
+             />
 
-            <CalculatorCardResult
-              title={lang.result.pension_fee}
-              text={result.pension_fee}
-              loading={loading}
-              tooltip
-            />
+             <CalculatorCardResult
+               title={lang.result.pension_fee}
+               text={result.pension_fee}
+               loading={loading}
+             />
+           </Col>
 
-            <CalculatorCardResult
-              title={lang.result.stamp_fee}
-              text={result.stamp_fee}
-              loading={loading}
-              tooltip
-            />
+            <Col md={12} span={24} xl={24}>
+              <CalculatorCardResult
+                title={lang.result.stamp_fee}
+                text={result.stamp_fee}
+                loading={loading}
+              />
 
-            <CalculatorCardResult
-              title={lang.result.total_fee}
-              text={result.total_fee}
-              loading={loading}
-            />
+              <CalculatorCardResult
+                title={lang.result.total_fee}
+                text={result.total_fee}
+                loading={loading}
+              />
 
-            <CalculatorCardResult
-              title={form.from === 1 ? lang.result["dirty_to_clean_salary"] : lang.result["clean_to_dirty_salary"]}
-              text={result.salary}
-              loading={loading}
-            />
+              <CalculatorCardResult
+                title={form.from === 1 ? lang.result["dirty_to_clean_salary"] : lang.result["clean_to_dirty_salary"]}
+                text={result.salary}
+                loading={loading}
+              />
+            </Col>
 
             {!form.by && !isEmpty(result) ?
               <ButtonSubmit
@@ -510,7 +510,7 @@ class SalaryTableCalculator extends React.Component {
               >
                 {lang.result.download}
               </ButtonSubmit> : null}
-          </div>
+          </Row>
         </Col>
       </Row>
     )

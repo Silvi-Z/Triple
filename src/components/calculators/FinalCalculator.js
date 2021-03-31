@@ -465,7 +465,7 @@ class FinalCalculator extends React.Component {
     const { lang } = this.props
 
     return (
-      <Row className="fixElement" align="start" gutter={20} ref={this.rowWidth}>
+      <Row className="fixElement rowWrapper" align="start" gutter={20} ref={this.rowWidth}>
         <CalculatorsCardWrapper span={24} xl={16} ref={this.row}>
           {/*<Row align="center" style={{ justifyContent: "space-between" }}>*/}
           {/*  <div className="textSec">*/}
@@ -680,42 +680,45 @@ class FinalCalculator extends React.Component {
             </Form>
           </CalculatorsCard>
         </CalculatorsCardWrapper>
-        <Col span={20} md={17} xl={8} sm={10} className="result" ref={this.col}>
-          <div>
-            <FormLabel style={{ margin: 0 }}>{lang.result.title}</FormLabel>
+        <Col span={20} xl={8} className="result " ref={this.col}>
+          <Row>
+            <Col md={12} span={24} xl={24}>
+              <FormLabel style={{ margin: 0 }}>{lang.result.title}</FormLabel>
 
-            <UnderLine />
+              <UnderLine />
 
-            <CalculatorCardResult
-              title={lang.result["total_amount"]}
-              text={calculated ? this.amount : 0}
-              loading={loading}
-            />
+              <CalculatorCardResult
+                title={lang.result["total_amount"]}
+                text={calculated ? this.amount : 0}
+                loading={loading}
+              />
 
-            <CalculatorCardResult
-              title={lang.result["income_tax"]}
-              text={result.income_tax}
-              loading={loading}
-              tooltip={form.tax_field === TAX_FIELD_ENTERPRISE ? "prompt text" : null}
-            />
+              <CalculatorCardResult
+                title={lang.result["income_tax"]}
+                text={result.income_tax}
+                loading={loading}
+                tooltip={form.tax_field === TAX_FIELD_ENTERPRISE ? "prompt text" : null}
+              />
 
-            <CalculatorCardResult
-              title={lang.result["pension_fee"]}
-              text={result.pension_fee}
-              loading={loading}
-            />
-
-            <CalculatorCardResult
-              title={lang.result["total_fee"]}
-              text={result.total_fee}
-              loading={loading}
-            />
-            <CalculatorCardResult
-              title={lang.result["net_amount"]}
-              text={result.salary}
-              loading={loading}
-            />
-          </div>
+              <CalculatorCardResult
+                title={lang.result["pension_fee"]}
+                text={result.pension_fee}
+                loading={loading}
+              />
+            </Col>
+            <Col md={12} span={24} xl={24}>
+              <CalculatorCardResult
+                title={lang.result["total_fee"]}
+                text={result.total_fee}
+                loading={loading}
+              />
+              <CalculatorCardResult
+                title={lang.result["net_amount"]}
+                text={result.salary}
+                loading={loading}
+              />
+            </Col>
+          </Row>
         </Col>
       </Row>
     )

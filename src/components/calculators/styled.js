@@ -289,7 +289,7 @@ export const CalendarInfo = styled.div`
   tbody td, tbody th {
     padding: 0 5px;
     border: 1px solid #555555;   
-    height: 40px; 
+    height: 44px; 
   }
       
   tbody th{

@@ -35,8 +35,10 @@ nav {
     height: calc(var(--header-height));
 }
 .textSec{
-    flex-direction: column!important;
+    /*flex-direction: column!important;*/
     justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
 }
 
 main {
@@ -1252,16 +1254,6 @@ pre tt:after {
     }
 }
 
-@media only screen and (max-width: 768px) {
-    .slick-slider {
-        margin-left: -20px;
-        margin-right: -20px;
-    }
-
-    #footerfirstrow img {
-        margin-bottom: 0;
-    }
-}
 
 @media only screen and (max-width: 1024px) {
     .phonebox {
@@ -1286,38 +1278,65 @@ pre tt:after {
     /*    padding: 65px 0 60px 10px;*/
     /*}*/
     .result > div{
-        height: 100%;
-        padding-left: 24px;
+        /*height: 100%;*/
+        padding-left: 20px;
         margin-top: 65px;
         display: flex;
-        flex-direction: column;
+        /*flex-direction: column;*/
     }
     .calculatorsMenu{
         padding-left: 0;
     }
+    .taxResult, .sellResult, .mortgageResult, .currencyResult{
+        flex-direction: column;
+    }
 
     a.calc-nav-item {
-        padding: 5px 10px 5px 0 !important;
+        padding: 5px 10px !important;
     }
 }
+
 @media all and (max-width: 1200px) and (min-width: 768px){
+    .result > .ant-row > div:last-child:not(.currencyResult){
+        padding: 30px 0 0 10px;
+    }
+    .currencyResult{
+        padding-left: 10px;
+    }
+    .result > .ant-row > div:first-child{
+        padding-right: 10px;
+    }
     .startEndInputs > div:last-child{
         margin-left: 25px;
     }
-    .result > div{
-        display: flex;
-        flex-direction: column;
-        flex-wrap: wrap;
+    /*.result > div{*/
+        /*display: flex;*/
+        /*flex-direction: column;*/
+        /*flex-wrap: wrap;*/
         /*max-height: 330px;*/
-    }
+    /*}*/
     .result > div > *{
-        width: 50%;
-        min-width: 50%;
-        max-width: 50%;
-        margin-right: 20px;
+        /*width: 50%;*/
+        /*min-width: 50%;*/
+        /*max-width: 50%;*/
+        /*margin-right: 20px;*/
     }
     .result > div > div.ant-card:nth-of-type(5){
         margin-top: 45px;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .slick-slider {
+        /*margin-left: -20px;*/
+        margin-right: -20px;
+    }
+
+    #footerfirstrow img {
+        margin-bottom: 0;
+    }
+    a.calc-nav-item {
+        padding: 5px!important;
     }
 }
 
@@ -1373,6 +1392,7 @@ pre tt:after {
     right: -1px;
     bottom: 0;
 }
+
 
 @media (max-width: 1024px) {
     .calculator-result {
