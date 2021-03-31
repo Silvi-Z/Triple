@@ -53,10 +53,11 @@ const UnderLine = styled(Divider)`
 `
 
 const NavLink = props => (
-  <Link {...props} getProps={({ isCurrent }) => {
+  <Link {...props} getProps={({ isPartiallyCurrent }) => {
+    console.log('isCurrent',isPartiallyCurrent)
     return {
       style: {
-        background: isCurrent ? "#BCE7EC" : "inherit",
+        background: isPartiallyCurrent ? "#BCE7EC" : "inherit",
         textDecoration: "none",
         color: "#000000",
         padding: "5px 10px",
