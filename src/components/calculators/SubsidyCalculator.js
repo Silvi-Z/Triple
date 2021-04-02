@@ -11,7 +11,7 @@ import {
   CalculatorSelect,
   FormLabel,
   Label,
-  RadioLabel,
+  RadioLabel, RowWrapper,
   UnderLine,
 } from "./styled"
 import triple from "../../api/triple"
@@ -643,9 +643,9 @@ class SubsidyCalculator extends React.Component {
               </Form.Item>
 
               {/* start-end dates fields */}
-              <Form.Item label={<Label>{lang.form.dates}</Label>} labelCol={{ span: 24 }}>
+              <Form.Item label={<Label style={{marginBottom:'25px'}}>{lang.form.dates}</Label>} labelCol={{ span: 24 }}>
                 <Row gutter={10} align="middle">
-                  <Form.Item style={{ marginRight: "25px" }} label={<Label>{lang.form.start}</Label>}>
+                  <RowWrapper style={{ marginRight: "25px" }} label={<Label>{lang.form.start}</Label>}>
                     <CalculatorDatePicker
                       onChange={date => this.setField("start", date, this.autocompleteDays)}
                       dateRender={(date, today) => this.handlePickerRender(date, today, "start")}
@@ -659,9 +659,9 @@ class SubsidyCalculator extends React.Component {
                       name="start"
                       size="large"
                     />
-                  </Form.Item>
+                  </RowWrapper>
 
-                  <Form.Item label={<Label>{lang.form.end}</Label>}>
+                  <RowWrapper label={<Label>{lang.form.end}</Label>}>
                     <CalculatorDatePicker
                       onChange={date => this.setField("end", date, this.autocompleteDays)}
                       dateRender={(date, today) => this.handlePickerRender(date, today, "end")}
@@ -676,12 +676,12 @@ class SubsidyCalculator extends React.Component {
                       size="large"
                       name="end"
                     />
-                  </Form.Item>
+                  </RowWrapper>
                 </Row>
               </Form.Item>
 
               {/* days field */}
-              <Form.Item label={<Label>{lang.form.days}</Label>}>
+              <RowWrapper label={<Label>{lang.form.days}</Label>}>
                 <CalculatorInput
                   onChange={v => this.setField("days", v, this.autocompleteEnd)}
                   style={{ width: "54px" }}
@@ -696,7 +696,7 @@ class SubsidyCalculator extends React.Component {
                 <Tooltip title="prompt text" color="black">
                   <InfoCircleTwoTone twoToneColor="#00B3C7" style={{ marginLeft: 5 }} />
                 </Tooltip>
-              </Form.Item>
+              </RowWrapper>
 
               {/* work field */}
               <Form.Item labelCol={{ span: 24 }}>
@@ -738,7 +738,7 @@ class SubsidyCalculator extends React.Component {
               }
 
               {this.isWorkSelfEmployed &&
-              <Form.Item
+              <RowWrapper
                 label={<Label style={{ fontSize: "16px" }}>{lang.form.tax}</Label>}
                 labelCol={{ span: 24 }}
                 name="tax_field"
@@ -757,12 +757,12 @@ class SubsidyCalculator extends React.Component {
                     <RadioLabel>{lang.form.tax_it}</RadioLabel>
                   </Radio>
                 </Radio.Group>
-              </Form.Item>
+              </RowWrapper>
               }
 
               {/* schedule field */}
               {this.isTypeDisability && this.isWorkHired ?
-                <Form.Item label={lang.form.schedule} labelCol={{ span: 24 }}>
+                <RowWrapper label={lang.form.schedule} labelCol={{ span: 24 }}>
                   <Radio.Group
                     onChange={e => this.setField("schedule", e.target.value, this.autocompleteDays)}
                     value={form.schedule}
@@ -774,12 +774,12 @@ class SubsidyCalculator extends React.Component {
                       {<Label style={{ textTransform: "none" }}>{lang.form["six_days"]}</Label>}
                     </Radio>
                   </Radio.Group>
-                </Form.Item> : null}
+                </RowWrapper> : null}
 
               {/* amount input */}
               {
                 this.isStatic ?
-                  <Form.Item className={"subsidyAmount"} label={<Label>{this.changeAmountFieldTitle}</Label>}>
+                  <RowWrapper className={"subsidyAmount"} label={<Label>{this.changeAmountFieldTitle}</Label>}>
                     <CalculatorInput
                       formatter={v => `${v}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                       onChange={v => this.setField("amount", v)}
@@ -794,13 +794,13 @@ class SubsidyCalculator extends React.Component {
                     <Tooltip title="prompt text" color="black">
                       <InfoCircleTwoTone twoToneColor="#00B3C7" style={{ marginLeft: 5 }} />
                     </Tooltip>
-                  </Form.Item>
+                  </RowWrapper>
                   : null
               }
 
               {/* income input */}
               {this.isTypeMaternity &&
-              <Form.Item label={<Label>{lang.form.income}</Label>}>
+              <RowWrapper label={<Label>{lang.form.income}</Label>}>
                 <CalculatorInput
                   formatter={v => `${v}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                   onChange={v => this.setField("income", v)}
@@ -814,19 +814,19 @@ class SubsidyCalculator extends React.Component {
                 <Tooltip title="prompt text" color="black">
                   <InfoCircleTwoTone twoToneColor="#00B3C7" style={{ marginLeft: 5 }} />
                 </Tooltip>
-              </Form.Item>
+              </RowWrapper>
               }
 
               {/* static field */}
               {this.isWorkHired ?
-                <Form.Item>
+                <RowWrapper>
                   <Checkbox
                     onChange={e => this.setField("static", e.target.checked)}
                     checked={form.static}
                   >
                     <RadioLabel>{lang.form.static}</RadioLabel>
                   </Checkbox>
-                </Form.Item>
+                </RowWrapper>
                 :
                 null}
 
@@ -840,7 +840,7 @@ class SubsidyCalculator extends React.Component {
               /> : null}
 
               {/* Submit button */}
-              <Form.Item style={{ marginTop: "50px" }}>
+              <Form.Item style={{ marginTop: "20px" }}>
                 <ButtonSubmit onClick={this.changeState} htmlType="submit" shape="round" size="large">
                   {lang.calculate}
                 </ButtonSubmit>

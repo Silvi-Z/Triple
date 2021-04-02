@@ -382,8 +382,8 @@ class SalaryTableCalculator extends React.Component {
     const { form, employees, result, loading } = this.state
 
     return (
-      <Row /*{ className="rowWrapper"}*/ align="start" gutter={20} ref={this.rowWidth}>
-        <CalculatorsCardWrapper span={24} xl={16}>
+      <Row className="rowWrapper" align="start" gutter={20} ref={this.rowWidth}>
+          <CalculatorsCardWrapper span={24} xl={16}>
           <CalculatorsCard bordered={false}>
             <Form
               onFinish={this.handleSubmit}
@@ -439,7 +439,7 @@ class SalaryTableCalculator extends React.Component {
                 </Radio.Group>
               </Form.Item>
 
-              <Form.Item style={{ marginTop: "50px" }}>
+              <Form.Item style={{ marginTop: "20px" }}>
                 <ButtonSubmit
                   htmlType="submit"
                   shape="round"
@@ -454,29 +454,29 @@ class SalaryTableCalculator extends React.Component {
 
         <Col span={20} xl={8} className="result" ref={this.top}>
           <Row>
-            <Col md={12} span={24} xl={24}>
-              <FormLabel style={{ margin: 0 }}>{lang.result.title}</FormLabel>
+           <Col md={12} span={24} xl={24}>
+             <FormLabel style={{ margin: 0 }}>{lang.result.title}</FormLabel>
 
-              <UnderLine />
+             <UnderLine />
 
-              <CalculatorCardResult
-                title={lang.result.gross_salary}
-                text={result.gross_salary}
-                loading={loading}
-              />
+             <CalculatorCardResult
+               title={lang.result.gross_salary}
+               text={result.gross_salary}
+               loading={loading}
+             />
 
-              <CalculatorCardResult
-                title={lang.result.income_tax}
-                text={result.income_tax}
-                loading={loading}
-              />
+             <CalculatorCardResult
+               title={lang.result.income_tax}
+               text={result.income_tax}
+               loading={loading}
+             />
 
-              <CalculatorCardResult
-                title={lang.result.pension_fee}
-                text={result.pension_fee}
-                loading={loading}
-              />
-            </Col>
+             <CalculatorCardResult
+               title={lang.result.pension_fee}
+               text={result.pension_fee}
+               loading={loading}
+             />
+           </Col>
 
             <Col md={12} span={24} xl={24}>
               <CalculatorCardResult

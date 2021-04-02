@@ -25,9 +25,11 @@ export const SharedWrapperCol = styled(Col)`
 
 const CalculatorsContent = styled(Col)`
   padding-right: 35px;
+  margin-bottom:90px;
   @media only screen and (max-width:1200px){
-  padding-right: 0;
-  border-radius: 10px;
+    padding-right: 0;
+    border-radius: 10px;
+    margin-bottom:60px;
   }
 `
 
@@ -59,7 +61,7 @@ const CalculatorWrapper = ({ ctx, children}) => {
       />
       <Row className="textSec">
         <H1Styled>{selectCalculator.title}</H1Styled>
-        {(window.innerWidth>768) ? (
+        {(typeof window !== `undefined` && window.innerWidth>768) ? (
         <TextStyled>{selectCalculator.paragraph}</TextStyled>
         ) : (
         <Tooltip title={selectCalculator.paragraph} color="black">

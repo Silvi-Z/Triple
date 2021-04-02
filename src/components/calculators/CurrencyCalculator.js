@@ -491,7 +491,7 @@ class CurrencyCalculator extends React.Component {
                 </Col>
               </Row>
 
-              <Form.Item style={{ marginTop: "50px" }}>
+              <Form.Item style={{ marginTop: "20px" }}>
                 <ButtonSubmit
                   onClick={this.changeState}
                   htmlType="submit"

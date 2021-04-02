@@ -15,6 +15,7 @@ import {
   FormLabel,
   Label,
   RadioLabel,
+  RowWrapper,
   UnderLine,
 } from "./styled"
 import {
@@ -563,14 +564,6 @@ class FinalCalculator extends React.Component {
     return (
       <Row className="fixElement rowWrapper" align="start" gutter={20} ref={this.rowWidth}>
         <CalculatorsCardWrapper span={24} xl={16} ref={this.row}>
-          {/*<Row align="center" style={{ justifyContent: "space-between" }}>*/}
-          {/*  <div className="textSec">*/}
-          {/*    <H1Styled>{lang.title}</H1Styled>*/}
-          {/*    <TextStyled>{lang.paragraph}</TextStyled>*/}
-          {/*  </div>*/}
-
-          {/*</Row>*/}
-
           <CalculatorsCard bordered={false}>
             <Form
               onFinish={this.handleSubmit}
@@ -580,7 +573,7 @@ class FinalCalculator extends React.Component {
               size="large"
             >
               <Row align="middle">
-                <Form.Item style={{ marginRight: "25px" }} label={<Label>{lang.form["acceptance"]}</Label>}>
+                <RowWrapper style={{ marginRight: "25px" }} label={<Label>{lang.form["acceptance"]}</Label>}>
                   <CalculatorDatePicker
                     onChange={date => this.setFormField("date_acceptance", date, this.onBlur)}
                     dateRender={(date, today) => this.handlePickerRender(date, today, "start")}
@@ -593,8 +586,8 @@ class FinalCalculator extends React.Component {
                     name="date_acceptance"
                     size="large"
                   />
-                </Form.Item>
-                <Form.Item label={<Label>{lang.form.release}</Label>}>
+                </RowWrapper>
+                <RowWrapper label={<Label>{lang.form.release}</Label>}>
                   <CalculatorDatePicker
                     onChange={date => this.setFormField("date_release", date, this.onBlur)}
                     dateRender={(date, today) => this.handlePickerRender(date, today, "end")}
@@ -608,7 +601,7 @@ class FinalCalculator extends React.Component {
                     name="date_release"
                     size="large"
                   />
-                </Form.Item>
+                </RowWrapper>
               </Row>
 
               <Form.Item label={<Label>{lang.form.working_schedule}</Label>} labelCol={{ span: 24 }}>
@@ -625,7 +618,7 @@ class FinalCalculator extends React.Component {
                 </Radio.Group>
               </Form.Item>
 
-              <Form.Item label={<Label style={{ textTransform: "none" }}>{lang.form.available_vacation_days}</Label>}>
+              <RowWrapper label={<Label style={{ textTransform: "none" }}>{lang.form.available_vacation_days}</Label>}>
                 <CalculatorInput
                   onChange={v => this.setFormField("available_vacation_days", v)}
                   value={form.available_vacation_days}
@@ -636,9 +629,9 @@ class FinalCalculator extends React.Component {
                   size="large"
                   type="number"
                 />
-              </Form.Item>
+              </RowWrapper>
 
-              <Form.Item label={<Label style={{ textTransform: "none" }}>{lang.form.total_vacation_days}</Label>}>
+              <RowWrapper label={<Label style={{ textTransform: "none" }}>{lang.form.total_vacation_days}</Label>}>
                 <CalculatorInput
                   value={form.total_vacation_days}
                   style={{ width: "54px" }}
@@ -648,9 +641,9 @@ class FinalCalculator extends React.Component {
                   type="number"
                   size="large"
                 />
-              </Form.Item>
+              </RowWrapper>
 
-              <Form.Item label={<Label style={{ textTransform: "none" }}>{lang.form.used_vacation_days}</Label>}>
+              <RowWrapper label={<Label style={{ textTransform: "none" }}>{lang.form.used_vacation_days}</Label>}>
                 <CalculatorInput
                   onChange={v => this.setFormField("used_vacation_days", v, this.autoFillUnusedVacationDays)}
                   value={form.used_vacation_days}
@@ -663,9 +656,9 @@ class FinalCalculator extends React.Component {
                   type="number"
                   size="large"
                 />
-              </Form.Item>
+              </RowWrapper>
 
-              <Form.Item label={
+              <RowWrapper label={
                 <Label style={{ textTransform: "none" }}>
                   {lang.form.unused_vacation_days}
                   <Tooltip title="prompt text" color="black">
@@ -690,10 +683,10 @@ class FinalCalculator extends React.Component {
                   type="number"
                   size="large"
                 />
-              </Form.Item>
+              </RowWrapper>
 
               {form.static_salary ?
-                <Form.Item label={<Label>{lang.form.salary}</Label>}>
+                <RowWrapper label={<Label>{lang.form.salary}</Label>}>
                   <CalculatorInput
                     formatter={v => `${v}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                     parser={v => v.replace(/\$\s?|(,*)/g, "")}
@@ -704,7 +697,7 @@ class FinalCalculator extends React.Component {
                     name="salary"
                     size="large"
                   />
-                </Form.Item>
+                </RowWrapper>
                 : null}
 
               <Form.Item>
@@ -771,7 +764,7 @@ class FinalCalculator extends React.Component {
                 </Radio.Group>
               </Form.Item>
 
-              <Form.Item style={{ marginTop: "50px" }}>
+              <Form.Item style={{ marginTop: "20px" }}>
                 <ButtonSubmit htmlType="submit" shape="round" size="large">
                   {lang.form["calculate"]}
                 </ButtonSubmit>

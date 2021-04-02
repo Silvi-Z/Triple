@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import { Card, Checkbox, DatePicker, Divider, InputNumber, Radio, Row, Select, Typography , Col} from "antd"
+import { Card, Checkbox, DatePicker, Divider, InputNumber, Radio, Row, Select, Typography, Col, Form } from "antd"
 import { SubmitButton } from "../careercomponents/careerDroping/dropStyle"
 
 const { Text } = Typography
@@ -112,6 +112,11 @@ export const CalculatorInput = styled(InputNumber)`
 
 export const CurrencySymbol = styled.strong`
   margin-left: 10px;
+  display: flex;
+  align-items: center;
+  @media (min-width: 768px){
+    margin-right: 20px;
+  }
 `
 
 export const CalculatorSelect = styled(Select)`
@@ -151,6 +156,7 @@ export const CalculatorSelect = styled(Select)`
 export const Label = styled(Text)`
   font-style: normal;
   font-size: 14px;
+  display:flex;
   line-height: 25px;
   letter-spacing: 1.15px;
   text-transform: uppercase;
@@ -208,6 +214,7 @@ export const CalculatorTable = styled.table`
   border-collapse: separate;
   border-spacing: 10px;
   max-width: 100%;
+  transform: rotateX(180deg);
 `
 
 export const CalculatorCol = styled.td`
@@ -258,10 +265,51 @@ export const TextStyled = styled.p`
 `
 export const CalculatorsCard = styled(Card)`
   margin-top: 30px;
+  @media (min-width: 1200px){
+    margin: 30px 70px 0 70px;
+  }
   @media (max-width: 768px){
     & > div{
     padding: 20px;
     }
+  }
+  & .ant-form-item-control-input-content{
+    display:flex
+  }
+  & .ant-form-large .ant-form-item-label > label{
+    height:unset
+  }
+  
+`
+export const RadioElementsWrapper = styled.div`
+  display: flex;
+  @media only screen and (max-width:768px){
+    flex-direction:column;
+    width:100%;
+  }
+`
+export const RowWrapper = styled(Form.Item)`
+  display:flex;
+  height:fit-content;
+  align-items:center;
+  & .ant-form-large .ant-form-item-label > label{
+    height:unset
+  }
+  @media only screen and (max-width:768px){
+  & > div{
+    width:fit-content;
+    flex: 1 1 !important;
+  }
+  & > div:first-child{
+    max-width:fit-content !important;
+    margin-right:10px;
+  }
+  & > div:last-child{
+    max-width:fit-content !important;
+  }
+  & .ant-form-item-label{
+    text-align: left;
+  }
   }
   
 `
