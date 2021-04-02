@@ -15,7 +15,7 @@ import {
   FormLabel,
   Label,
   RadioLabel,
-  RowWrapper,
+  RowWrapper, SvgWrapper,
   UnderLine,
 } from "./styled"
 import {
@@ -31,6 +31,7 @@ import {
 import { isHoliday, isWeekend } from "./utilities/vacation"
 import moment from "moment"
 import { randomString } from "./utilities/tabel"
+import Svg from "../../assets/note.svg"
 
 const radioStyle = {
   display: "block",
@@ -80,6 +81,8 @@ class FinalCalculator extends React.Component {
       calculated: false,
       loading: false,
       valid: false,
+      check: false,
+      width: typeof window !="undefined" && window.innerWidth <=768
     }
 
     this.holidays = []
@@ -238,7 +241,7 @@ class FinalCalculator extends React.Component {
   }
 
   handleSubmit = () => {
-    const { form } = this.state
+    const { form , check, width} = this.state
     const { date_release } = this.state.form
     let data = { ...pick(form, Object.keys(schema.fields)), amount: this.amount }
     schema.isValid(data).then(valid => {
@@ -279,6 +282,21 @@ class FinalCalculator extends React.Component {
           })
       }
     }).catch(err => console.log(err))
+      .finally(() => {
+        if (check && width){
+          this.col.current.scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" })
+        }
+        this.setState((prevState) => ({
+          ...prevState,
+          check: false,
+        }))
+      })
+  }
+  checkValue() {
+    this.setState((prevState) => ({
+      ...prevState,
+      check: true,
+    }))
   }
 
   setFormField(name, value, cb) {
@@ -591,10 +609,10 @@ class FinalCalculator extends React.Component {
                   onChange={e => this.setFormField("working_schedule", e.target.value, this.autoFillAvailableVacationDays)}
                   value={form.working_schedule}
                 >
-                  <Radio value={5}>
+                  <Radio className="inlineElements" value={5}>
                     {<Label style={{ textTransform: "none" }}>{lang.form["five_days"]}</Label>}
                   </Radio>
-                  <Radio value={6}>
+                  <Radio className="inlineElements" value={6}>
                     {<Label style={{ textTransform: "none" }}>{lang.form["six_days"]}</Label>}
                   </Radio>
                 </Radio.Group>
@@ -644,7 +662,7 @@ class FinalCalculator extends React.Component {
                 <Label style={{ textTransform: "none" }}>
                   {lang.form.unused_vacation_days}
                   <Tooltip title="prompt text" color="black">
-                    <InfoCircleTwoTone twoToneColor="#00B3C7" style={{ marginLeft: 5 }} />
+                    <SvgWrapper style={{backgroundImage: `url(${Svg})`}} />
                   </Tooltip>
                 </Label>
               }>
@@ -712,13 +730,13 @@ class FinalCalculator extends React.Component {
                   onChange={e => this.setFormField("tax_field", e.target.value)}
                   value={form.tax_field}
                 >
-                  <Radio style={radioStyle} value={TAX_FIELD_COMMON}>
+                  <Radio className="inlineElements" style={radioStyle} value={TAX_FIELD_COMMON}>
                     <RadioLabel>{lang.form["tax_common"]}</RadioLabel>
                   </Radio>
-                  <Radio style={radioStyle} value={TAX_FIELD_IT}>
+                  <Radio className="inlineElements" style={radioStyle} value={TAX_FIELD_IT}>
                     <RadioLabel>{lang.form["tax_it"]}</RadioLabel>
                   </Radio>
-                  <Radio style={radioStyle} value={TAX_FIELD_ENTERPRISE}>
+                  <Radio className="inlineElements" style={radioStyle} value={TAX_FIELD_ENTERPRISE}>
                     <RadioLabel>{lang.form["tax_enterprise"]}</RadioLabel>
                   </Radio>
                 </Radio.Group>
@@ -736,7 +754,7 @@ class FinalCalculator extends React.Component {
                   <Radio value={PENSION_FIELD_YES}>
                     <Label>{lang.form["yes"]}</Label>
                   </Radio>
-                  <Radio value={PENSION_FIELD_YES_VOLUNTEER}>
+                  <Radio className="inlineElements" value={PENSION_FIELD_YES_VOLUNTEER}>
                     <Label>{lang.form["yes"]}</Label>
                     <Label className="volunteer">{lang.form["yes_volunteer"]}</Label>
                   </Radio>
@@ -747,7 +765,12 @@ class FinalCalculator extends React.Component {
               </Form.Item>
 
               <Form.Item style={{ marginTop: "20px" }}>
-                <ButtonSubmit htmlType="submit" shape="round" size="large">
+                <ButtonSubmit
+                  className="calcButton"
+                  htmlType="submit"
+                  shape="round"
+                  size="large"
+                  onClick={()=>this.checkValue()}>
                   {lang.form["calculate"]}
                 </ButtonSubmit>
               </Form.Item>

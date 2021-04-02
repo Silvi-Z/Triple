@@ -15,8 +15,8 @@ import {
   RadioButton,
   RadioGroup,
   RadioLabel,
-  UnderLine,
   RowWrapper,
+  UnderLine,
 } from "./styled"
 import {
   BY_FIELD_DATE,
@@ -37,7 +37,7 @@ import moment from "moment"
 import { isEqual, isNull } from "lodash"
 
 const radioStyle = {
-  display: "block",
+  display: "flex",
   lineHeight: "30px",
   margin: "15px 0 0 0",
 }
@@ -58,6 +58,7 @@ const form = {
 const availableYears = [2019, 2020, 2021]
 
 class SalaryCalculator extends React.Component {
+
   daysInput = React.createRef()
 
   top = React.createRef()
@@ -88,6 +89,8 @@ class SalaryCalculator extends React.Component {
       },
       excel: [],
       randomKey: randomString(),
+      check: false,
+      width: typeof window !="undefined" && window.innerWidth <=768
     }
     this.locale = this.props.locale
     this.holidays = []
@@ -109,6 +112,7 @@ class SalaryCalculator extends React.Component {
   get calculatedByDate() {
     return this.state.calculated === 1
   }
+
 
   get maxWorkingDays() {
     const { date_from, schedule } = this.state.form
@@ -175,6 +179,7 @@ class SalaryCalculator extends React.Component {
 
   handleByFieldChange = () => {
     const { form } = this.state
+
     const state = !form.by
       ? {
         form: { ...form, from: 1 }, result: {
@@ -371,6 +376,9 @@ class SalaryCalculator extends React.Component {
     this.setField("date_to", date, () => this.autocompleteWorkingDays())
   }
 
+  test = () => {
+
+  }
   handleDateFromDisabled = d => {
     const { date_to, year } = this.state.form
 
@@ -535,6 +543,7 @@ class SalaryCalculator extends React.Component {
 
   async calculateByDate(avgWorkingDays) {
     const { from, pension, tax_field, schedule, date_from, date_to, amount, year } = this.state.form
+    let { check, width } = this.state
     const workingDays = workingDaysInRange({
       start: moment(date_from),
       end: moment(date_to),
@@ -551,6 +560,14 @@ class SalaryCalculator extends React.Component {
       tax_field,
       year,
       amount: gross_salary,
+    }).finally(() => {
+      if(check && width){
+        this.top.current.scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" })
+      }
+      this.setState((prevState) => ({
+        ...prevState,
+        check: false,
+      }))
     })
 
     const result = Object.assign({}, res.data, { gross_salary })
@@ -559,16 +576,32 @@ class SalaryCalculator extends React.Component {
   }
 
   async calculateByTable() {
-    let { form } = this.state
+    let { form, check, width } = this.state
     const res = await triple.post("/api/counter/salary", form)
+      .finally(() => {
+        if(check && width){
+          this.top.current.scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" })
+        }
+        this.setState((prevState) => ({
+          ...prevState,
+          check: false,
+        }))
+      })
     this.setState({ result: res.data, loading: false, calculated: 2 })
   }
-
+  CalculatorsCard
   fetchDays() {
     triple.get("/api/days").then(res => {
       this.holidays = res.data.holidays
       this.workdays = res.data.workdays
     }).catch(err => console.log(err))
+  }
+
+  checkValue() {
+    this.setState((prevState) => ({
+      ...prevState,
+      check: true,
+    }))
   }
 
   // keyDown = (event) => {
@@ -632,7 +665,7 @@ class SalaryCalculator extends React.Component {
                   value={form.from}
                   size="large"
                 >
-                  <Row align="middle" justify="start" gutter={[10, 10]} style={{
+                  <Row align="middle" justify="start" style={{
                     width: "100%",
                     flexDirection: form.from === 2 ? "row-reverse" : "row",
                     flexWrap: "wrap",
@@ -667,10 +700,10 @@ class SalaryCalculator extends React.Component {
                     onChange={e => this.setField("by", e.target.value, this.handleByFieldChange)}
                     value={form.by}
                   >
-                    <Radio value={BY_FIELD_DATE}>
+                    <Radio className="inlineElements" value={BY_FIELD_DATE}>
                       {<Label style={{ textTransform: "none" }}>{langText.form["by_date"]}</Label>}
                     </Radio>
-                    <Radio value={BY_FIELD_TABLE}>
+                    <Radio className="inlineElements" value={BY_FIELD_TABLE}>
                       {<Label style={{ textTransform: "none" }}>{langText.form["by_table"]}</Label>}
                     </Radio>
                   </Radio.Group>
@@ -702,7 +735,7 @@ class SalaryCalculator extends React.Component {
                   :
                   <>
                     <Row gutter={10} align="middle">
-                      <Form.Item style={{ marginRight: "25px" }} label={<Label>{langText.form.start}</Label>}>
+                      <RowWrapper style={{ marginRight: "25px" }} label={<Label>{langText.form.start}</Label>}>
                         <CalculatorDatePicker
                           dateRender={(date, today) => this.handlePickerRender(date, today, "start")}
                           disabledDate={this.handleDateFromDisabled}
@@ -719,8 +752,8 @@ class SalaryCalculator extends React.Component {
                           name="date_from"
                           size="large"
                         />
-                      </Form.Item>
-                      <Form.Item label={<Label>{langText.form.end}</Label>}>
+                      </RowWrapper>
+                      <RowWrapper label={<Label>{langText.form.end}</Label>}>
                         <CalculatorDatePicker
                           dateRender={(date, today) => this.handlePickerRender(date, today, "end")}
                           defaultPickerValue={this.defaultDate}
@@ -737,10 +770,10 @@ class SalaryCalculator extends React.Component {
                           name="date_to"
                           size="large"
                         />
-                      </Form.Item>
+                      </RowWrapper>
                     </Row>
 
-                    <Form.Item label={<Label>{langText.form.working_days}</Label>}>
+                    <RowWrapper label={<Label>{langText.form.working_days}</Label>}>
                       <CalculatorInput
                         onChange={v => this.setField("working_days", v, this.autocompleteVacationDateTo)}
                         value={this.setWorkingDays}
@@ -753,7 +786,7 @@ class SalaryCalculator extends React.Component {
                         type="number"
                         size="large"
                       />
-                    </Form.Item>
+                    </RowWrapper>
 
                     {/* schedule field */}
                     <Form.Item label={langText.form.working_schedule} labelCol={{ span: 24 }}>
@@ -761,16 +794,16 @@ class SalaryCalculator extends React.Component {
                         onChange={e => this.setField("schedule", e.target.value, this.autocompleteWorkingDays)}
                         value={form.schedule}
                       >
-                        <Radio value={5}>
+                        <Radio className="inlineElements" value={5}>
                           {<Label style={{ textTransform: "none" }}>{langText.form["five_days"]}</Label>}
                         </Radio>
-                        <Radio value={6}>
+                        <Radio className="inlineElements" value={6}>
                           {<Label style={{ textTransform: "none" }}>{langText.form["six_days"]}</Label>}
                         </Radio>
                       </Radio.Group>
                     </Form.Item>
 
-                    <Form.Item label={<Label>{langText["salary_label"]}</Label>} name="amount">
+                    <RowWrapper label={<Label>{langText["salary_label"]}</Label>} name="amount">
                       <CalculatorInput
                         formatter={v => `${v}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                         parser={v => v.replace(/\$\s?|(,*)/g, "")}
@@ -782,7 +815,7 @@ class SalaryCalculator extends React.Component {
                         name="amount"
                         size="large"
                       />
-                    </Form.Item>
+                    </RowWrapper>
                   </>
                 }
 
@@ -792,31 +825,32 @@ class SalaryCalculator extends React.Component {
                     onChange={(e) => this.setField("tax_field", e.target.value, this.onBlur)}
                     value={form.tax_field}
                   >
-                    <Radio style={radioStyle} value={TAX_FIELD_COMMON}>
+                    <Radio className="inlineElements" style={radioStyle} value={TAX_FIELD_COMMON}>
                       <RadioLabel>{langText["tax_label_common"]}</RadioLabel>
                     </Radio>
-                    <Radio style={radioStyle} value={TAX_FIELD_IT}>
+                    <Radio className="inlineElements" style={radioStyle} value={TAX_FIELD_IT}>
                       <RadioLabel>{langText["tax_label_it"]}</RadioLabel>
                     </Radio>
-                    <Radio style={radioStyle} value={TAX_FIELD_ENTERPRISE}>
+                    <Radio className="inlineElements" style={radioStyle} value={TAX_FIELD_ENTERPRISE}>
                       <RadioLabel>{langText["tax_label_enterprise"]}</RadioLabel>
                     </Radio>
                   </Radio.Group>
                 </Form.Item>
 
-                <Form.Item label={<RadioLabel>{langText["pensioner_label"]}</RadioLabel>} name="pension">
+                <Form.Item className="nonWrap" label={<RadioLabel>{langText["pensioner_label"]}</RadioLabel>}
+                           name="pension">
                   <Radio.Group
                     onChange={(e) => this.setField("pension", e.target.value, this.onBlur)}
                     value={form.pension}
                   >
-                    <Radio value={PENSION_FIELD_YES}>
+                    <Radio className="inlineElements" value={PENSION_FIELD_YES}>
                       <Label>{langText["yes"]}</Label>
                     </Radio>
-                    <Radio value={PENSION_FIELD_YES_VOLUNTEER}>
+                    <Radio className="inlineElements" value={PENSION_FIELD_YES_VOLUNTEER}>
                       <Label>{langText["yes"]}</Label>
                       <Label className="volunteer">{langText["yes_volunteer"]}</Label>
                     </Radio>
-                    <Radio value={PENSION_FIELD_NO}>
+                    <Radio className="inlineElements" value={PENSION_FIELD_NO}>
                       <Label>{langText["no"]}</Label>
                     </Radio>
                   </Radio.Group>
@@ -827,6 +861,7 @@ class SalaryCalculator extends React.Component {
                     htmlType="submit"
                     shape="round"
                     size="large"
+                    onClick={()=>this.checkValue()}
                   >
                     {langText["count_button"]}
                   </ButtonSubmit>
@@ -834,9 +869,9 @@ class SalaryCalculator extends React.Component {
               </Form>
             </CalculatorsCard>
           </CalculatorsCardWrapper>
-          <Col span={20} xl={8} className="result" ref={this.top}>
+          <Col span={24} xl={8} className="result" ref={this.top}>
             <Row>
-              <Col md={12} span={24} xl={24}>
+              <Col md={10} span={22} xl={24}>
                 <FormLabel style={{ margin: 0 }}>{langText.result_title}</FormLabel>
 
                 <UnderLine />
@@ -865,7 +900,7 @@ class SalaryCalculator extends React.Component {
                   tooltip={false}
                 />
               </Col>
-              <Col md={12} span={24} xl={24}>
+              <Col md={10} span={22} xl={24}>
                 <CalculatorCardResult
                   title={langText["stamp_duty_label"]}
                   text={result.stamp_fee}

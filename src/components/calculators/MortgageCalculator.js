@@ -13,7 +13,7 @@ import {
   CalculatorSelect,
   FormLabel,
   Label,
-  RadioLabel,
+  RadioLabel, RowWrapper,
   UnderLine,
 } from "./styled"
 import {
@@ -60,6 +60,8 @@ class MortgageCalculator extends React.Component {
         { month: 1, salary: null, surcharge: null, bonus: null },
         { month: 2, salary: null, surcharge: null, bonus: null },
       ],
+      check: false,
+      width: typeof window !="undefined" && window.innerWidth <=768,
       calculated: false,
       loading: false,
       tax: null,
@@ -129,7 +131,7 @@ class MortgageCalculator extends React.Component {
 
   handleSubmit = async () => {
     const { salary_type, tax_field, pension, static_salary, amount, interest_amount, year } = this.state.form
-    let { items } = this.state
+    let { items , check, width } = this.state
 
     const a = static_salary
       ? amount
@@ -143,7 +145,15 @@ class MortgageCalculator extends React.Component {
         pension,
         year,
       }
-      const valid = await schema.isValid(data)
+      const valid = await schema.isValid(data).finally(() => {
+        if(check && width){
+          this.top.current.scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" })
+        }
+        this.setState((prevState) => ({
+          ...prevState,
+          check: false,
+        }))
+      })
 
       if (valid) {
         // this.setLoading(true)
@@ -171,9 +181,14 @@ class MortgageCalculator extends React.Component {
         } catch (e) {
           console.log(e)
         } finally {
-          this.setLoading(false)
-          //
-          // document.body.scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" })
+          if (check && width) {
+            this.setLoading(false)
+            this.top.current.scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" })
+            this.setState((prevState) => ({
+              ...prevState,
+              check: false,
+            }))
+          }
         }
       }
     } else {
@@ -181,10 +196,22 @@ class MortgageCalculator extends React.Component {
         if (!this.state.calculated) {
           this.setState({ calculated: true })
         }
-        //
-        // document.body.scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" })
+        if (check && width){
+          this.top.current.scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" })
+          this.setState((prevState) => ({
+            ...prevState,
+            check: false,
+          }))
+        }
       })
     }
+  }
+
+  checkValue() {
+    this.setState((prevState) => ({
+      ...prevState,
+      check: true,
+    }))
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
@@ -258,7 +285,7 @@ class MortgageCalculator extends React.Component {
                 : null}
 
               {form.static_salary ?
-                <Form.Item label={<Label>{lang["salary_label"]}</Label>} name="amount">
+                <RowWrapper label={<Label>{lang["salary_label"]}</Label>} name="amount">
                   <CalculatorInput
                     formatter={v => `${v}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                     parser={v => v.replace(/\$\s?|(,*)/g, "")}
@@ -268,10 +295,10 @@ class MortgageCalculator extends React.Component {
                     name="amount"
                     size="large"
                   />
-                </Form.Item>
+                </RowWrapper>
                 : null}
 
-              <Form.Item label={<Label>{lang["interest_amount_label"]}</Label>} name="interest_amount">
+              <RowWrapper label={<Label>{lang["interest_amount_label"]}</Label>} name="interest_amount">
                 <CalculatorInput
                   onChange={v => this.setField("interest_amount", v)}
                   value={form.interest_amount}
@@ -279,7 +306,7 @@ class MortgageCalculator extends React.Component {
                   type="number"
                   size="large"
                 />
-              </Form.Item>
+              </RowWrapper>
 
               <Form.Item label={<Label style={{ fontSize: "16px" }}>{lang["tax_label"]}</Label>} labelCol={{ span: 24 }}
                          name="tax_field">
@@ -287,13 +314,13 @@ class MortgageCalculator extends React.Component {
                   onChange={e => this.setField("tax_field", e.target.value)}
                   value={form.tax_field}
                 >
-                  <Radio style={radioStyle} value={TAX_FIELD_COMMON}>
+                  <Radio className="inlineElements" style={radioStyle} value={TAX_FIELD_COMMON}>
                     <RadioLabel>{lang["tax_label_common"]}</RadioLabel>
                   </Radio>
-                  <Radio style={radioStyle} value={TAX_FIELD_IT}>
+                  <Radio className="inlineElements" style={radioStyle} value={TAX_FIELD_IT}>
                     <RadioLabel>{lang["tax_label_it"]}</RadioLabel>
                   </Radio>
-                  <Radio style={radioStyle} value={TAX_FIELD_ENTERPRISE}>
+                  <Radio className="inlineElements" style={radioStyle} value={TAX_FIELD_ENTERPRISE}>
                     <RadioLabel>{lang["tax_label_enterprise"]}</RadioLabel>
                   </Radio>
                 </Radio.Group>
@@ -312,8 +339,8 @@ class MortgageCalculator extends React.Component {
                     <Radio value={PENSION_FIELD_YES}>
                       <Label>{lang["yes"]}</Label>
                     </Radio>
-                    <Radio value={PENSION_FIELD_YES_VOLUNTEER}>
-                      <Label>{lang["yes_volunteer"]}</Label>
+                    <Radio className="inlineElements" value={PENSION_FIELD_YES_VOLUNTEER}>
+                      <Label>{lang["yes"]}{lang["yes_volunteer"]}</Label>
                     </Radio>
                     <Radio value={PENSION_FIELD_NO}>
                       <Label>{lang["no"]}</Label>
@@ -329,6 +356,7 @@ class MortgageCalculator extends React.Component {
                   htmlType="submit"
                   shape="round"
                   size="large"
+                  onClick={()=>this.checkValue()}
                 >
                   {lang["calculate"]}
                 </ButtonSubmit>

@@ -23,6 +23,7 @@ import { randomString } from "./utilities/tabel"
 
 
 class CarSellCalculator extends React.Component {
+  top = React.createRef()
   constructor(props) {
     super(props)
 
@@ -31,6 +32,8 @@ class CarSellCalculator extends React.Component {
       tax: null,
       calculated: false,
       randomKey: randomString(),
+      check: false,
+      width: typeof window !="undefined" && window.innerWidth <=768
     }
     this.holidays = []
     this.workdays = []
@@ -67,7 +70,7 @@ class CarSellCalculator extends React.Component {
   }
 
   handleSubmit = () => {
-    const { form } = this.state
+    const { form, check, width } = this.state
 
     VehicleSell.schema.isValid(form).then(valid => {
       if (!valid) {
@@ -84,7 +87,22 @@ class CarSellCalculator extends React.Component {
           this.setState({ calculated: true })
         }
       })
+    }).finally(() => {
+      if(check && width){
+        this.top.current.scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" })
+      }
+      this.setState((prevState) => ({
+        ...prevState,
+        check: false,
+      }))
     })
+  }
+
+  checkValue() {
+    this.setState((prevState) => ({
+      ...prevState,
+      check: true,
+    }))
   }
 
   handlePickerRender(date, today, range) {
@@ -260,13 +278,6 @@ class CarSellCalculator extends React.Component {
     return (
       <Row align="start" >
         <CalculatorsCardWrapper span={24} xl={16} gutter={20}>
-          {/*<Row align="center" style={{justifyContent: 'space-between'}}>*/}
-          {/*  <div className="textSec">*/}
-          {/*    <H1Styled>{lang.title}</H1Styled>*/}
-          {/*    <TextStyled>{lang.paragraph}</TextStyled>*/}
-          {/*  </div>*/}
-          {/*</Row>*/}
-
           <CalculatorsCard bordered={false} className="calculatorsCard">
             <Form
               onFinish={this.handleSubmit}
@@ -276,7 +287,7 @@ class CarSellCalculator extends React.Component {
               size="large"
             >
               <Row align="middle">
-                <RowWrapper style={{ marginRight: "25px" }} label={<Label>{lang.achievement}</Label>}>
+                <RowWrapper style={{ marginRight: "20px" }} label={<Label>{lang.achievement}</Label>}>
                   <CalculatorDatePicker
                     dateRender={(date, today) => this.handlePickerRender(date, today, "start")}
                     onChange={date => this.setField("achievementDate", date)}
@@ -308,7 +319,7 @@ class CarSellCalculator extends React.Component {
                 </RowWrapper>
 
               </Row>
-              <Row>
+              <Row   style={{display:"flex", flexDirection:"column"}}>
                 <RowWrapper label={<Label>{lang.price}</Label>}>
                   <CalculatorInput
                     formatter={v => `${v}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
@@ -335,6 +346,7 @@ class CarSellCalculator extends React.Component {
                   <Radio.Group
                     onChange={e => this.setField("powerType", e.target.value)}
                     value={form.powerType}
+                    style={{marginBottom:"25px", display:"flex", alignItems:"center"}}
                   >
                     <Radio value={VehicleSell.HORSEPOWER}>
                       <Label style={{ textTransform: "none" }}>{lang.horsepower}</Label>
@@ -352,6 +364,7 @@ class CarSellCalculator extends React.Component {
                   htmlType="submit"
                   shape="round"
                   size="large"
+                  onClick={()=>this.checkValue()}
                 >
                   {lang.calculate}
                 </ButtonSubmit>
@@ -360,7 +373,7 @@ class CarSellCalculator extends React.Component {
           </CalculatorsCard>
         </CalculatorsCardWrapper>
 
-        <Col span={20}  xl={8} sm={10} className="result">
+        <Col span={20}  xl={8} sm={10} className="result" ref={this.top}>
          <div className="sellResult carSell">
            <FormLabel style={{ margin: 0 }}>{lang.result.title}</FormLabel>
 

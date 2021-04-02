@@ -11,7 +11,7 @@ import {
   CalculatorSelect,
   FormLabel,
   Label,
-  RadioLabel, RowWrapper,
+  RadioLabel, RowWrapper, SvgWrapper,
   UnderLine,
 } from "./styled"
 import triple from "../../api/triple"
@@ -20,6 +20,7 @@ import GrossSalaryTable from "./calcComponents/GrossSalaryTable"
 import CalculatorCardResult from "./calcComponents/CalculatorCardResult"
 import { isHoliday, isWeekend, workingDaysInRangeForSubsidy } from "./utilities/vacation"
 import { randomString } from "./utilities/tabel"
+import Svg from "../../assets/note.svg"
 
 moment.locale("en", {
   week: {
@@ -54,6 +55,8 @@ class SubsidyCalculator extends React.Component {
       calculated: false,
       valid: false,
       randomKey: randomString(),
+      check: false,
+      width: typeof window !="undefined" && window.innerWidth <=768
     }
     this.calculator = new Subsidy()
     this.availableYears = [2019, 2020, 2021]
@@ -166,6 +169,7 @@ class SubsidyCalculator extends React.Component {
 
   handleSubmit = () => {
     const amount = this.calculator.calculate()
+    const { check, width } = this.state
     let { pension, tax_field, days, type, year } = this.state.form
     tax_field = tax_field === Subsidy.TAX_IT ? Subsidy.TAX_COMMON : tax_field
 
@@ -233,8 +237,24 @@ class SubsidyCalculator extends React.Component {
             })
           }
         })
+          .finally(() => {
+            if (check && width) {
+              this.col.current.scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" })
+            }
+            this.setState((prevState) => ({
+              ...prevState,
+              check: false,
+            }))
+          })
       }
     })
+  }
+
+  checkValue() {
+    this.setState((prevState) => ({
+      ...prevState,
+      check: true,
+    }))
   }
 
   setField(name, value, cb) {
@@ -516,6 +536,7 @@ class SubsidyCalculator extends React.Component {
 
   changeState = () => {
     this.setState({ valid: true })
+    this.checkValue()
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
@@ -545,7 +566,7 @@ class SubsidyCalculator extends React.Component {
 
     return (
       <Row align="start" gutter={20} ref={this.rowWidth} className="fixElement rowWrapper">
-        <CalculatorsCardWrapper span={24} xl={16} ref={this.row}>
+        <CalculatorsCardWrapper className="subsidyWrapper" span={24} xl={16} ref={this.row}>
           <Card bordered={false}>
             <Form
               onFinish={this.handleSubmit}
@@ -578,10 +599,10 @@ class SubsidyCalculator extends React.Component {
                   onChange={e => this.setField("type", e.target.value, this.resetSchedule)}
                   value={form.type}
                 >
-                  <Radio value={Subsidy.MATERNITY}>
+                  <Radio className="inlineElements" value={Subsidy.MATERNITY}>
                     {<Label style={{ textTransform: "none" }}>{lang.form.maternity}</Label>}
                   </Radio>
-                  <Radio value={Subsidy.DISABILITY}>
+                  <Radio className="inlineElements" value={Subsidy.DISABILITY}>
                     {<Label style={{ textTransform: "none" }}>{lang.form.disability}</Label>}
                   </Radio>
                 </Radio.Group>
@@ -624,7 +645,10 @@ class SubsidyCalculator extends React.Component {
               </Form.Item>
 
               {/* days field */}
-              <RowWrapper label={<Label>{lang.form.days}</Label>}>
+              <RowWrapper label={<Label>{lang.form.days}
+                <Tooltip title="prompt text" color="black">
+                  <SvgWrapper style={{backgroundImage: `url(${Svg})`}} />
+                </Tooltip></Label>}>
                 <CalculatorInput
                   onChange={v => this.setField("days", v, this.autocompleteEnd)}
                   style={{ width: "54px" }}
@@ -636,9 +660,6 @@ class SubsidyCalculator extends React.Component {
                   min={1}
                   max={180}
                 />
-                <Tooltip title="prompt text" color="black">
-                  <InfoCircleTwoTone twoToneColor="#00B3C7" style={{ marginLeft: 5 }} />
-                </Tooltip>
               </RowWrapper>
 
               {/* work field */}
@@ -647,10 +668,10 @@ class SubsidyCalculator extends React.Component {
                   onChange={e => this.setField("work", e.target.value, this.autocompleteDays)}
                   value={form.work}
                 >
-                  <Radio value={Subsidy.HIRED}>
+                  <Radio className="inlineElements" value={Subsidy.HIRED}>
                     {<Label style={{ textTransform: "none" }}>{lang.form.hired}</Label>}
                   </Radio>
-                  <Radio value={Subsidy.SELF_EMPLOYED}>
+                  <Radio className="inlineElements" value={Subsidy.SELF_EMPLOYED}>
                     {<Label style={{ textTransform: "none" }}>{lang.form.self}</Label>}
                   </Radio>
                 </Radio.Group>
@@ -667,13 +688,13 @@ class SubsidyCalculator extends React.Component {
                   onChange={e => this.setField("tax_field", e.target.value, this.onBlur)}
                   value={form.tax_field}
                 >
-                  <Radio style={radioStyle} value={Subsidy.TAX_COMMON}>
+                  <Radio className="inlineElements" style={radioStyle} value={Subsidy.TAX_COMMON}>
                     <RadioLabel>{lang.form.tax_common}</RadioLabel>
                   </Radio>
-                  <Radio style={radioStyle} value={Subsidy.TAX_IT}>
+                  <Radio className="inlineElements" style={radioStyle} value={Subsidy.TAX_IT}>
                     <RadioLabel>{lang.form.tax_enterprise}</RadioLabel>
                   </Radio>
-                  <Radio style={radioStyle} value={Subsidy.TAX_ENTERPRISE}>
+                  <Radio className="inlineElements" style={radioStyle} value={Subsidy.TAX_ENTERPRISE}>
                     <RadioLabel>{lang.form.tax_it}</RadioLabel>
                   </Radio>
                 </Radio.Group>
@@ -681,7 +702,7 @@ class SubsidyCalculator extends React.Component {
               }
 
               {this.isWorkSelfEmployed &&
-              <RowWrapper
+              <Form.Item
                 label={<Label style={{ fontSize: "16px" }}>{lang.form.tax}</Label>}
                 labelCol={{ span: 24 }}
                 name="tax_field"
@@ -690,30 +711,31 @@ class SubsidyCalculator extends React.Component {
                   onChange={e => this.setField("tax_field", e.target.value, this.onBlur)}
                   value={form.tax_field}
                 >
-                  <Radio style={radioStyle} value={Subsidy.TAX_COMMON}>
+                  <Radio className="inlineElements" style={radioStyle} value={Subsidy.TAX_COMMON}>
                     <RadioLabel>{lang.form.tax_common_for_self_employed}</RadioLabel>
                   </Radio>
-                  <Radio style={radioStyle} value={Subsidy.TAX_TURNOVER}>
+                  <Radio className="inlineElements" style={radioStyle} value={Subsidy.TAX_TURNOVER}>
                     <RadioLabel>{lang.form.tax_turnover_for_self_employed}</RadioLabel>
                   </Radio>
-                  <Radio style={radioStyle} value={Subsidy.TAX_ENTERPRISE}>
+                  <Radio className="inlineElements" style={radioStyle} value={Subsidy.TAX_ENTERPRISE}>
                     <RadioLabel>{lang.form.tax_it}</RadioLabel>
                   </Radio>
                 </Radio.Group>
-              </RowWrapper>
+              </Form.Item>
               }
 
               {/* schedule field */}
               {this.isTypeDisability && this.isWorkHired ?
                 <RowWrapper label={lang.form.schedule} labelCol={{ span: 24 }}>
                   <Radio.Group
+                    style={{display: "flex"}}
                     onChange={e => this.setField("schedule", e.target.value, this.autocompleteDays)}
                     value={form.schedule}
                   >
-                    <Radio value={5}>
+                    <Radio value={5} className="inlineElements">
                       {<Label style={{ textTransform: "none" }}>{lang.form["five_days"]}</Label>}
                     </Radio>
-                    <Radio value={6}>
+                    <Radio value={6} className="inlineElements">
                       {<Label style={{ textTransform: "none" }}>{lang.form["six_days"]}</Label>}
                     </Radio>
                   </Radio.Group>
@@ -722,7 +744,10 @@ class SubsidyCalculator extends React.Component {
               {/* amount input */}
               {
                 this.isStatic ?
-                  <RowWrapper className={"subsidyAmount"} label={<Label>{this.changeAmountFieldTitle}</Label>}>
+                  <RowWrapper className={"subsidyAmount"} label={<Label>{this.changeAmountFieldTitle}
+                    <Tooltip title="prompt text" color="black">
+                      <SvgWrapper style={{backgroundImage: `url(${Svg})`}} />
+                    </Tooltip></Label>}>
                     <CalculatorInput
                       formatter={v => `${v}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                       onChange={v => this.setField("amount", v)}
@@ -734,16 +759,16 @@ class SubsidyCalculator extends React.Component {
                       name="amount"
                       size="large"
                     />
-                    <Tooltip title="prompt text" color="black">
-                      <InfoCircleTwoTone twoToneColor="#00B3C7" style={{marginLeft: 5}} />
-                    </Tooltip>
                   </RowWrapper>
                   : null
               }
 
               {/* income input */}
               {this.isTypeMaternity &&
-              <RowWrapper label={<Label>{lang.form.income}</Label>}>
+              <RowWrapper label={<Label>{lang.form.income}
+                <Tooltip title="prompt text" color="black">
+                  <SvgWrapper style={{backgroundImage: `url(${Svg})`}} />
+                </Tooltip></Label>}>
                 <CalculatorInput
                   formatter={v => `${v}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                   onChange={v => this.setField("income", v)}
@@ -754,9 +779,7 @@ class SubsidyCalculator extends React.Component {
                   name="income"
                   size="large"
                 />
-                <Tooltip title="prompt text" color="black">
-                  <InfoCircleTwoTone twoToneColor="#00B3C7" style={{ marginLeft: 5 }} />
-                </Tooltip>
+
               </RowWrapper>
               }
 

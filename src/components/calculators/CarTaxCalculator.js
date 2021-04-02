@@ -10,7 +10,7 @@ import {
   CalculatorsCardWrapper,
   CalculatorSelect,
   FormLabel,
-  Label,
+  Label, RadioElementsWrapper, RowWrapper,
   UnderLine,
 } from "./styled"
 import VehicleTax from "../../calculators/VehicleTax"
@@ -18,10 +18,18 @@ import CalculatorCardResult from "./calcComponents/CalculatorCardResult"
 import VehicleSell from "../../calculators/VehicleSell"
 
 class CarTaxCalculator extends React.Component {
+  top = React.createRef()
+
   constructor(props) {
     super(props)
 
-    this.state = { form: { ...VehicleTax.form }, tax: null, calculated: false }
+    this.state = {
+      form: { ...VehicleTax.form },
+      tax: null,
+      calculated: false,
+      check: false,
+      width: typeof window !="undefined" && window.innerWidth <=768
+    }
     this.availableYears = [2019, 2020, 2021]
   }
 
@@ -60,7 +68,23 @@ class CarTaxCalculator extends React.Component {
       tax: calculator.calculate(),
       calculated: true,
     })
+  }).finally(() => {
+    const { check, width} = this.state
+    if(check && width){
+      this.top.current.scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" })
+    }
+    this.setState((prevState) => ({
+      ...prevState,
+      check: false,
+    }))
   })
+
+  checkValue() {
+    this.setState((prevState) => ({
+      ...prevState,
+      check: true,
+    }))
+  }
 
   changeTaxType() {
     const { estateType } = this.state.form
@@ -131,7 +155,7 @@ class CarTaxCalculator extends React.Component {
                     <CalculatorSelect
                       size="large"
                       value={form.type}
-                      style={{ maxWidth: "424px" }}
+                      style={{ maxWidth: "400px" }}
                       onChange={value => this.setField("type", value)}
                     >
                       {VehicleTax.types(lang.form.vehicle).map(vehicle =>
@@ -142,7 +166,7 @@ class CarTaxCalculator extends React.Component {
                     </CalculatorSelect>
                   </Form.Item>
 
-                  <Form.Item label={<Label>{lang.form.year}</Label>}>
+                  <RowWrapper label={<Label>{lang.form.year}</Label>}>
                     <CalculatorDatePicker
                       onChange={date => this.setField("date", date)}
                       value={form.date}
@@ -150,21 +174,22 @@ class CarTaxCalculator extends React.Component {
                       picker="year"
                       size="large"
                     />
-                  </Form.Item>
-
-                  <Form.Item label={<Label>{lang.form.power}</Label>}>
-                    <CalculatorInput
-                      onChange={v => this.setField("power", v)}
-                      style={{ marginRight: "10px" }}
-                      value={form.power}
-                      min={1}
-                      size="large"
-                      type="number"
-                    />
-
+                  </RowWrapper>
+                  <RadioElementsWrapper>
+                    <RowWrapper className="radioElements" label={<Label>{lang.form.power}</Label>}>
+                      <CalculatorInput
+                        onChange={v => this.setField("power", v)}
+                        style={{ marginRight: "10px" }}
+                        value={form.power}
+                        min={1}
+                        size="large"
+                        type="number"
+                      />
+                    </RowWrapper>
                     <Radio.Group
                       onChange={e => this.setField("powerType", e.target.value)}
                       value={form.powerType}
+                      style={{marginBottom:"25px", display:"flex", alignItems:"center"}}
                     >
                       <Radio value={VehicleSell.HORSEPOWER}>
                         <Label style={{ textTransform: "none" }}>{lang.form.horsepower}</Label>
@@ -173,8 +198,8 @@ class CarTaxCalculator extends React.Component {
                         <Label style={{ textTransform: "none" }}>{lang.form.kilowatts}</Label>
                       </Radio>
                     </Radio.Group>
-                  </Form.Item>
 
+                  </RadioElementsWrapper>
                 </>
                 : null
               }
@@ -185,7 +210,7 @@ class CarTaxCalculator extends React.Component {
                     <CalculatorSelect
                       size="large"
                       value={form.estateType}
-                      style={{ maxWidth: "424px" }}
+                      style={{ maxWidth: "400px" }}
                       onChange={value => this.setField("estateType", value)}
                     >
                       {VehicleTax.estateTypes(lang.form.estate, form.year).map(vehicle =>
@@ -214,6 +239,7 @@ class CarTaxCalculator extends React.Component {
                   htmlType="submit"
                   shape="round"
                   size="large"
+                  onClick={()=>this.checkValue()}
                 >
                   {lang.calculate}
                 </ButtonSubmit>
@@ -221,7 +247,7 @@ class CarTaxCalculator extends React.Component {
             </Form>
           </CalculatorsCard>
         </CalculatorsCardWrapper>
-        <Col span={20}  xl={8} sm={10} className="result">
+        <Col span={20} xl={8} sm={10} className="result" ref={this.top}>
           <div className="taxResult carTax">
             <FormLabel style={{ margin: 0 }}>{lang.result.title}</FormLabel>
 

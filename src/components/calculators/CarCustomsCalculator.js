@@ -9,13 +9,14 @@ import {
   CalculatorInput,
   CalculatorsCard, CalculatorsCardWrapper,
   FormLabel,
-  Label, RowWrapper,
+  Label, RadioElementsWrapper, RowWrapper, SvgWrapper,
   UnderLine,
 } from "./styled"
 import VehicleCustoms from "../../calculators/VehicleCustoms"
 import CalculatorCardResult from "./calcComponents/CalculatorCardResult"
 import triple from "../../api/triple"
 import { isHoliday, isWeekend } from "./utilities/vacation"
+import Svg from "../../assets/note.svg"
 
 const firstRadioButtonStyles = {
   borderTopLeftRadius: "5px",
@@ -27,9 +28,10 @@ const lastRadioButtonStyles = {
 }
 
 class CarCustomsCalculator extends React.Component {
+  top = React.createRef()
 
   handleSubmit = () => {
-    const { form, rates } = this.state
+    const { form, rates, check, width } = this.state
     VehicleCustoms.schema
       .validate(form)
       .then(() => {
@@ -44,6 +46,22 @@ class CarCustomsCalculator extends React.Component {
           calculated: false,
         })
       })
+      .finally(() => {
+        if (check && width) {
+          this.top.current.scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" })
+        }
+        this.setState((prevState) => ({
+          ...prevState,
+          check: false,
+        }))
+      })
+  }
+
+  checkValue() {
+    this.setState((prevState) => ({
+      ...prevState,
+      check: true,
+    }))
   }
 
   reset = field => {
@@ -56,6 +74,8 @@ class CarCustomsCalculator extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
+      check: false,
+      width: typeof window !="undefined" && window.innerWidth <=768,
       form: { ...VehicleCustoms.form },
       result: { fee: null, tax: null, vat: null },
       rates: {},
@@ -294,7 +314,7 @@ class CarCustomsCalculator extends React.Component {
                   size="large"
                 />
               </RowWrapper>
-
+              <RadioElementsWrapper>
               <RowWrapper className="radioElements" label={<Label>{lang.form.price}</Label>}>
                 <CalculatorInput
                   formatter={v => `${v}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
@@ -303,10 +323,10 @@ class CarCustomsCalculator extends React.Component {
                   value={form.price}
                   size="large"
                 />
-
+              </RowWrapper>
                 <Radio.Group
                   onChange={e => this.setField("currency", e.target.value)}
-                  style={{ marginLeft: "10px" }}
+                  style={{ marginBottom:"25px", display:"flex", alignItems:"center"}}
                   value={form.currency}
                   buttonStyle="solid"
                   size="large"
@@ -321,10 +341,14 @@ class CarCustomsCalculator extends React.Component {
                     <strong>&#8364;</strong>
                   </Radio>
                 </Radio.Group>
-              </RowWrapper>
+              </RadioElementsWrapper>
+
 
               {form.person === VehicleCustoms.PERSON_LEGAL ?
-                <RowWrapper label={<Label>{lang.form.costs}</Label>}>
+                <RowWrapper label={<Label>{lang.form.costs}
+                  <Tooltip title="prompt text" color="black">
+                    <SvgWrapper style={{backgroundImage: `url(${Svg})`}} />
+                  </Tooltip></Label>}>
                   <CalculatorInput
                     formatter={v => `${v}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                     parser={v => v.replace(/\$\s?|(,*)/g, "")}
@@ -332,9 +356,6 @@ class CarCustomsCalculator extends React.Component {
                     value={form.costs}
                     size="large"
                   />
-                  <Tooltip title="prompt text" color="black">
-                    <InfoCircleTwoTone twoToneColor="#00B3C7" style={{ marginLeft: 5 }} />
-                  </Tooltip>
                 </RowWrapper>
                 : null}
 
@@ -348,14 +369,19 @@ class CarCustomsCalculator extends React.Component {
               </RowWrapper>
 
               <Form.Item style={{ marginTop: "20px" }}>
-                <ButtonSubmit htmlType="submit" shape="round" size="large">
+                <ButtonSubmit
+                  htmlType="submit"
+                  shape="round"
+                  size="large"
+                  onClick={()=>this.checkValue()}
+                >
                   {lang.calculate}
                 </ButtonSubmit>
               </Form.Item>
             </Form>
           </CalculatorsCard>
         </CalculatorsCardWrapper>
-        <Col span={20} xl={8} className="result carCustomsResult">
+        <Col span={20} xl={8} className="result carCustomsResult" ref={this.top}>
           <Row>
             <Col md={12} span={24} xl={24}>
             <FormLabel style={{ margin: 0 }}>{lang.result.title}</FormLabel>

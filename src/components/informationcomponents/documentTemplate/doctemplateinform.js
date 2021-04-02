@@ -32,7 +32,7 @@ const DocTemplateInform = ({ usedata }) => {
                 <H2text>{label}</H2text>
               </TextWrapper>
               <FormatsWrapper>
-                <FormatsIcons className={wrapperClass[id] ? "shown" : ""}>
+                <FormatsIcons className={wrapperClass[id] ? "shown" : "none"}>
                   <Image alt="pdf" className={wrapperClass[id] ? "transform" : ""} />
                   <Image alt="word" className={wrapperClass[id] ? "transform" : ""} />
                   <Image alt="excel" className={wrapperClass[id] ? "transform" : ""} />

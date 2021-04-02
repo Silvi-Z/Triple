@@ -5,11 +5,12 @@ import FbBlueIcon from "../../../assets/career/facebookBlueCareer.svg";
 import FbBlackIcon from "../../../assets/career/facebookCareer.svg";
 import LinkdinBlackIcon from "../../../assets/career/linkedinCareer.svg";
 import LinkedinBlueIcon from "../../../assets/career/linkedinBlueCareer.svg";
+import Svg from "../../../assets/note.svg"
 import SEO from "../../../components/seo";
 import CalculatorNav from "../../../components/navbar/CalculatorNav";
 import useTranslations from "../../../components/useTranslations";
 import { FacebookShareButton, LinkedinShareButton } from "react-share";
-import { H1Styled, TextStyled } from "../styled"
+import { H1Styled, SvgWrapper, TextStyled } from "../styled"
 import { InfoCircleTwoTone } from "@ant-design/icons"
 
 //share button container
@@ -25,7 +26,6 @@ export const SharedWrapperCol = styled(Col)`
 
 const CalculatorsContent = styled(Col)`
   padding-right: 35px;
-  margin-bottom:90px;
   @media only screen and (max-width:1200px){
     padding-right: 0;
     border-radius: 10px;
@@ -50,7 +50,13 @@ const CalculatorWrapper = ({ ctx, children}) => {
   };
 
   hookComponent();
-
+// const Svg = styled(InfoCircleTwoTone)`
+//    margin-left:5px;
+//    & * {
+//     height:20px;
+//     width:20px;
+//    }
+// `
   const selectCalculator = calculator[ctx.originalPath.split('/')[2].replace('-' , '_')]
   return (
     <>
@@ -65,7 +71,7 @@ const CalculatorWrapper = ({ ctx, children}) => {
         <TextStyled>{selectCalculator.paragraph}</TextStyled>
         ) : (
         <Tooltip title={selectCalculator.paragraph} color="black">
-          <InfoCircleTwoTone twoToneColor="#00B3C7" style={{marginLeft: 5}} />
+          <SvgWrapper style={{backgroundImage: `url(${Svg})`}} />
         </Tooltip>
         )}
       </Row>

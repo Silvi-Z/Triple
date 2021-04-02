@@ -35,6 +35,7 @@ export const H2Styled = styled.section`
   letter-spacing: 1.15px;
 `
 export const PStyled = styled.section`
+  text-align:center;
   font-family: ArialAMU;
   font-size: 18px;
   font-weight: normal;
@@ -56,11 +57,6 @@ export const SeemoreWrapper = styled.button`
   align-items: center;
 `
 
-export const Seemoreimg = styled.img`
-  width: 22px;
-  height: 17px;
-  margin-left: 16px;
-`
 export const ResponsWrapper = styled.div`
   margin-bottom:42px;
   justify-content:center;
@@ -188,32 +184,38 @@ export const ContentContainer = styled.div`
   &:nth-child(1n+10){
     border-top: 1px solid #D0D0D0;
   }
-  // &:nth-child(9){
-  //   border-bottom: 1px solid #D0D0D0;
-  // }
-  // &:last-child{
-  //   border-left: 1px solid #D0D0D0;
-  //   border-right: 1px solid #D0D0D0;
-  // }
   @media only screen and (max-width: 1024px){
-    &:nth-child(n){
-      width:50%;
-      border-bottom: none !important;
+    border-bottom: none !important;
       border-right: none !important;
       border-left: none !important;
       border-top: none !important;
       padding:20px 30px;
       height:auto;
+  }
+  @media only screen and (max-width: 1024px) and (min-width: 768px){
+    &:nth-child(n){
+      width:50%;
     }
   }
   @media only screen and (max-width: 768px){
     &:nth-child(n){
       justify-content: center;
-      width:100%;
       padding:10px 0;
     }
   }
 `
+export const ServicesContainer = styled(ContentContainer)`
+  @media only screen and (max-width: 768px){
+      width: 100%;
+  }
+`
+export const CalculatorContainer = styled(ServicesContainer)``
+export const PartnersContainer = styled(ContentContainer)`
+  @media only screen and (max-width: 768px){
+      width: 280px !important;
+  }
+`
+
 export const HomePageWrapper = styled.div`
   max-width:1440px;
   margin:0 auto;
@@ -227,25 +229,7 @@ export const HomePageWrapper = styled.div`
     }
   }
 `
-export const IconWrapperSecondLastCol = styled(Col)`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 250px;
-  height: 180px;
-  border-color: #d7d7d7;
-  background-color: #ffffff;
-`
-export const IconWrapperSecondCol = styled(Col)`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 250px;
-  height: 180px;
-  border-right: 1px solid;
-  border-color: #d7d7d7;
-  background-color: #ffffff;
-`
+
 
 export const ContainerRow = styled(Row)`
   display: flex;
@@ -253,4 +237,7 @@ export const ContainerRow = styled(Row)`
   width: 100%;
   height: auto;
   margin: auto;
+  @media only screen and (max-width: 1024px){
+    justify-content: center;
+  }
 `

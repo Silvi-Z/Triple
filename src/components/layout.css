@@ -1260,8 +1260,18 @@ pre tt:after {
         margin-right: 6%;
     }
 }
+.test{
+    background-color: white;
+    width: 250px!important;
+    height: 150px;
+}
 
 @media only screen and (max-width: 1200px) {
+    .calendarCol{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
     .startEndInputs > div:first-child{
         margin-right: 0;
     }
@@ -1279,7 +1289,8 @@ pre tt:after {
     /*}*/
     .result > div{
         /*height: 100%;*/
-        padding-left: 20px;
+        padding-left: 10px;
+        padding-right: 10px;
         margin-top: 65px;
         display: flex;
         /*flex-direction: column;*/
@@ -1309,18 +1320,6 @@ pre tt:after {
     .startEndInputs > div:last-child{
         margin-left: 25px;
     }
-    /*.result > div{*/
-        /*display: flex;*/
-        /*flex-direction: column;*/
-        /*flex-wrap: wrap;*/
-        /*max-height: 330px;*/
-    /*}*/
-    .result > div:not(.mortage, .carSell, .carTax) > *{
-        /*width: 50%;*/
-        /*min-width: 50%;*/
-        /*max-width: 50%;*/
-        /*margin-right: 20px;*/
-    }
     .result > div > div.ant-card:nth-of-type(5){
         margin-top: 45px;
     }
@@ -1328,7 +1327,6 @@ pre tt:after {
 
 @media only screen and (max-width: 768px) {
     .slick-slider {
-        /*margin-left: -20px;*/
         margin-right: -20px;
     }
 
@@ -1463,8 +1461,25 @@ pre tt:after {
     left: 41px !important;
     bottom: -31px !important;
 }
-
+.ant-form-large .ant-form-item-label > label{
+    height: unset!important;
+}
+.ant-form-item .ant-form-item-label{
+    padding: 0!important;
+}
+.inlineElements{
+    display:inline-flex !important;
+    align-items: center ;
+}
+#tax_field{
+    display: flex;
+    flex-direction: column;
+}
+#pension > label > span{
+    display: inline-flex;
+}
 .tableScroll{
+    margin-bottom:30px;
     overflow-y: scroll;
 }
 .tableScroll, .tableScroll > div{
@@ -1759,8 +1774,11 @@ pre tt:after {
 .opened_response_menu {
     position: fixed;
 }
-
+.none{
+    display:none;
+}
 .shown {
+    display:flex;
     animation-name: formats-shown;
     animation-duration: 1s;
     animation-fill-mode: forwards;
@@ -1881,13 +1899,21 @@ pre tt:after {
 a.calc-nav-item {
     transition: background-color ease-in-out 0.1s;
 }
-
+.ant-form-item-label{
+    text-align: left!important;
+}
+.radioElements{
+    margin-right: 10px!important;
+}
 .radioElements .ant-form-item-control-input-content{
     flex-direction: column;
 }
 .radioElements .ant-radio-group{
     display: flex;
     margin-top: 20px;
+}
+.nonWrap .ant-form-item-control{
+    flex: auto!important;
 }
 
 a.calc-nav-item:hover {
@@ -1976,7 +2002,7 @@ a.calc-nav-item:hover {
     }
 
     table.gross th:nth-of-type(5) {
-        max-width: 100px;
+        /*max-width: 100px;*/
     }
 }
 

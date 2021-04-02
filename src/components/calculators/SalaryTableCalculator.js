@@ -15,7 +15,7 @@ import {
   CalculatorsCardWrapper,
   FormLabel,
   Label,
-  RadioLabel,
+  RadioLabel, RowWrapper,
   UnderLine,
 } from "./styled"
 import {
@@ -90,6 +90,8 @@ class SalaryTableCalculator extends React.Component {
       employees: [],
       result: {},
       excel: [],
+      check: false,
+      width: typeof window !="undefined" && window.innerWidth <=768
     }
     this.holidays = []
     this.workdays = []
@@ -308,7 +310,7 @@ class SalaryTableCalculator extends React.Component {
   }
 
   async calculateByTable() {
-    const { employees } = this.state
+    const { employees, check, width} = this.state
     const { from, tax_field, year } = this.state.form
 
     this.setState({ loading: true })
@@ -325,7 +327,16 @@ class SalaryTableCalculator extends React.Component {
       }))
       .map(data => triple.post("/api/counter/salary", data))
 
-    const results = await Promise.all(reqs).then(res => res.map(r => r.data))
+
+    const results = await Promise.all(reqs).then(res => res.map(r => r.data)).finally(() => {
+      if(check && width){
+        this.top.current.scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" })
+      }
+      this.setState((prevState) => ({
+        ...prevState,
+        check: false,
+      }))
+    })
     const excel = results.map((result, i) => ({
       N: employees[i].id,
       ["Անուն, Ազգանուն, Հայրանուն"]: employees[i].name,
@@ -355,6 +366,13 @@ class SalaryTableCalculator extends React.Component {
     ).reduce((acc, amount) => acc + Math.round(amount), 0)
 
     this.setState({ excel, result, loading: false, calculated: 2 })
+  }
+
+  checkValue() {
+    this.setState((prevState) => ({
+      ...prevState,
+      check: true,
+    }))
   }
 
   fetchDays() {
@@ -391,7 +409,7 @@ class SalaryTableCalculator extends React.Component {
             >
 
               <>
-                <Form.Item label={lang.form.upload}>
+                <RowWrapper style={{flexDirection:"row-reverse"}} className="inlineElements uploadInput" label={lang.form.upload}>
                   <input
                     type="file"
                     name="file"
@@ -403,12 +421,12 @@ class SalaryTableCalculator extends React.Component {
 
                   <Button
                     onClick={() => this.fileInput.current.click()}
-                    style={{ background: "#1C1D21", color: "#FFFFFF" }}
+                    style={{ background: "#1C1D21", color: "#FFFFFF" , marginRight: "15px"}}
                     icon={<UploadOutlined />}
                     shape="circle"
                     type="ghost"
                   />
-                </Form.Item>
+                </RowWrapper>
 
                 {employees.length ? <EmployeeSalaryTable
                   items={employees}
@@ -424,13 +442,13 @@ class SalaryTableCalculator extends React.Component {
                   onChange={e => this.setField("tax_field", e.target.value)}
                   value={form.tax_field}
                 >
-                  <Radio style={radioStyle} value={TAX_FIELD_COMMON}>
+                  <Radio className="inlineElements" style={radioStyle} value={TAX_FIELD_COMMON}>
                     <RadioLabel>{lang.form["tax_common"]}</RadioLabel>
                   </Radio>
-                  <Radio style={radioStyle} value={TAX_FIELD_IT}>
+                  <Radio className="inlineElements" style={radioStyle} value={TAX_FIELD_IT}>
                     <RadioLabel>{lang.form["tax_it"]}</RadioLabel>
                   </Radio>
-                  <Radio style={radioStyle} value={TAX_FIELD_ENTERPRISE}>
+                  <Radio className="inlineElements" style={radioStyle} value={TAX_FIELD_ENTERPRISE}>
                     <RadioLabel>{lang.form["tax_enterprise"]}</RadioLabel>
                   </Radio>
                 </Radio.Group>
@@ -441,6 +459,7 @@ class SalaryTableCalculator extends React.Component {
                   htmlType="submit"
                   shape="round"
                   size="large"
+                  onClick={()=>this.checkValue()}
                 >
                   {lang["calculate"]}
                 </ButtonSubmit>

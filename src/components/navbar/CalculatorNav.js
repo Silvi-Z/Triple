@@ -73,6 +73,7 @@ const settings = {
         infinite: false,
         swipeToSlide:true,
         variableWidth: true,
+        focusOnSelect: true,
 }
   const SliderList = typeof window !== `undefined` && window.innerWidth <= 768 ? styled(Slider) `
      height:fit-content;
@@ -84,7 +85,8 @@ const settings = {
      margin-left:15px;
      }
     `: styled.div`
-     flex-direction:column
+     flex-direction:column;
+     padding-left: 20px;
 `
 
 const CalculatorNav = ({ t, locale }) => {

@@ -2,8 +2,13 @@ import React from "react";
 import styled from "styled-components";
 import { Card, Tooltip } from "antd";
 import { InfoCircleTwoTone } from "@ant-design/icons";
+import { SvgWrapper } from "../styled"
+import Svg from "../../../assets/note.svg"
 
 const CardTitle = styled.h3`
+  display:flex;
+  align-items:center;
+  // justify-content:center;
   font-family: 'ArialAMU';
   font-style: normal;
   font-weight: bold;
@@ -55,7 +60,7 @@ const CalculatorCardResult = ({title, subtitle = '', text, tooltip, loading = fa
 
         { tooltip ?
           <Tooltip title="prompt text" color="black">
-            <InfoCircleTwoTone twoToneColor="#00B3C7" style={{marginLeft: 5}} />
+            <SvgWrapper style={{backgroundImage: `url(${Svg})`}} />
           </Tooltip>
           : null }
       </CardTitle>

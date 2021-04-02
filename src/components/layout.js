@@ -69,6 +69,12 @@ const Layout = ({ children, location, pageContext: { locale, originalPath, local
     function resultHeight() {
 
     }
+    // function scrollToResult() {
+    //   document.querySelector(".calcButton").addEventListener('onclick', ()=>{
+    //     console.log("calcButton" )
+    //   })
+    // }
+    // scrollToResult()
     function fixedPos(){
       const resultWrapper =  document.querySelectorAll(".main .result")[0]
       const result = document.querySelectorAll(".main .result > div")[0]

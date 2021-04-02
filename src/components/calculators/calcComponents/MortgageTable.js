@@ -12,7 +12,8 @@ class MortgageTable extends React.Component {
     const { lang, items, onChange } = this.props
 
     return (
-      <CalculatorTable>
+      <div className="tableScroll">
+        <CalculatorTable>
         <thead>
         <tr>
           <ColHeader>{lang.quarter_months}</ColHeader>
@@ -62,6 +63,7 @@ class MortgageTable extends React.Component {
           ))}
         </tbody>
       </CalculatorTable>
+      </div>
     )
   }
 }

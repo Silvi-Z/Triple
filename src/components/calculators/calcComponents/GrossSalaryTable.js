@@ -60,6 +60,7 @@ class GrossSalaryTable extends React.Component {
     const { items } = this.state
 
     return (
+      <div className="tableScroll">
       <CalculatorTable className="gross">
         <thead>
         <tr>
@@ -148,6 +149,7 @@ class GrossSalaryTable extends React.Component {
         ))}
         </tbody>
       </CalculatorTable>
+      </div>
     )
   }
 }

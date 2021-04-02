@@ -3,6 +3,7 @@ import moment from "moment"
 import { isEqual, isNull } from "lodash"
 import { Col, Divider, Form, Row, Select } from "antd"
 import {
+  Arrows,
   ButtonSubmit,
   CalculatorDatePicker,
   CalculatorInput,
@@ -27,6 +28,7 @@ const form = {
 }
 
 class CurrencyCalculator extends React.Component {
+  top = React.createRef()
 
   dateFromPickerKey = randomString()
 
@@ -42,6 +44,8 @@ class CurrencyCalculator extends React.Component {
       changedAmount: true,
       calculated: false,
       valid: false,
+      check: false,
+      width: typeof window !="undefined" && window.innerWidth <=768
     }
     this.holidays = []
     this.workdays = []
@@ -299,7 +303,7 @@ class CurrencyCalculator extends React.Component {
   }
 
   handleSubmit = () => {
-    const { form, changedAmount } = this.state
+    const { form, changedAmount, check, width } = this.state
 
     Currency.schema.isValid(form).then(valid => {
       if (!valid) return
@@ -327,12 +331,21 @@ class CurrencyCalculator extends React.Component {
         .catch(err => console.log(err))
         .finally(() => {
           this.setState({ loading: false, calculated: false })
-
-          document.body.scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" })
+          if(check && width){
+            this.top.current.scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" })
+          }this.setState((prevState) => ({
+            ...prevState,
+            check: false,
+          }))
         })
     }).catch(err => console.log(err))
   }
-
+  checkValue() {
+    this.setState((prevState) => ({
+      ...prevState,
+      check: true,
+    }))
+  }
   onBlur = () => {
     if (this.state.valid) {
       this.handleSubmit()
@@ -361,21 +374,15 @@ class CurrencyCalculator extends React.Component {
 
   changeState = () => {
     this.setState({ valid: true })
+    this.checkValue()
   }
 
   render() {
     const { lang, locale } = this.props
     const { form, rates } = this.state
-
     return (
       <Row align="start" gutter={20}>
         <CalculatorsCardWrapper span={24} xl={16}>
-          {/*<Row align="center" style={{ justifyContent: "space-between" }}>*/}
-          {/*  <div className="textSec">*/}
-          {/*    <H1Styled>{lang.title}</H1Styled>*/}
-          {/*    <TextStyled>{lang.paragraph}</TextStyled>*/}
-          {/*  </div>*/}
-          {/*</Row>*/}
           <CalculatorsCard bordered={false} className={"calendarBody"}>
             <Form onFinish={this.handleSubmit} initialValues={form} layout="horizontal" colon={false}>
               <Form.Item label={locale === "en" && <Label>{lang.form.date}</Label>}>
@@ -399,8 +406,8 @@ class CurrencyCalculator extends React.Component {
                 }
               </Form.Item>
 
-              <Row gutter={12} align="middle">
-                <Col span={10}>
+              <Row gutter={1} align="middle">
+                <Arrows span={13} md={11}>
                   <Form.Item className={"currencyField"}>
                     <CalculatorInput
                       onChange={v => this.setField("amount", v)}
@@ -427,8 +434,8 @@ class CurrencyCalculator extends React.Component {
                       )}
                     </CalculatorSelect>
                   </Form.Item>
-                </Col>
-                <Col span={2} style={{ textAlign: "center" }}>
+                </Arrows>
+                <Arrows span={13} md={2} style={{textAlign: "center", display: "flex", justifyContent:"center" }}>
                   <Form.Item className={"currencyField"}>
                     <svg
                       fill="none"
@@ -441,8 +448,8 @@ class CurrencyCalculator extends React.Component {
                             fill="#00B3C7" />
                     </svg>
                   </Form.Item>
-                </Col>
-                <Col span={10}>
+                </Arrows>
+                <Arrows span={13} md={11}>
                   <Form.Item className={"currencyField"}>
                     <CalculatorInput
                       onChange={v => this.setField("amount_right", v)}
@@ -469,7 +476,7 @@ class CurrencyCalculator extends React.Component {
                       )}
                     </CalculatorSelect>
                   </Form.Item>
-                </Col>
+                </Arrows>
               </Row>
 
               <Form.Item style={{ marginTop: "20px" }}>
@@ -488,7 +495,7 @@ class CurrencyCalculator extends React.Component {
           </CalculatorsCard>
         </CalculatorsCardWrapper>
 
-        <Col span={20} md={12}  xl={8} className="result">
+        <Col span={20} md={12}  xl={8} className="result" ref={this.top}>
           <div className="currencyResult">
             <FormLabel style={{ margin: 0 }}>{lang.result.currency}</FormLabel>
 

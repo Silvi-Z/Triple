@@ -78,6 +78,8 @@ export const RadioButton = styled(Radio.Button)`
   text-align: center;
   border-radius: 5px;
   width: 100%;
+  padding-right:0;
+  padding-left:0;
   word-break: break-word;
   min-height: 50px !important;
   border-color: #555555 !important;
@@ -85,13 +87,14 @@ export const RadioButton = styled(Radio.Button)`
   white-space: nowrap;
   height: auto !important;
   &.ant-radio-button-wrapper {
-    line-height: 50px;
+    line-height: unset;
+    white-space: break-spaces;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   &.ant-radio-button-wrapper-checked {
     border-radius: 5px !important;
-  } 
-  @media only screen and (max-width:1200px){
-    padding:0
   }
   
 `
@@ -154,6 +157,8 @@ export const CalculatorSelect = styled(Select)`
 `
 
 export const Label = styled(Text)`
+  display: flex;
+  align-items: center;
   font-style: normal;
   font-size: 14px;
   display:flex;
@@ -162,11 +167,14 @@ export const Label = styled(Text)`
   text-transform: uppercase;
   color: #000000;
   font-weight: bold;
-    margin-right:0!important;
+    // margin-right:0!important;
  white-space: normal;
 `
 
 export const RadioLabel = styled(Text)`
+  display:inline-flex;
+  align-items: center;
+  justify-content: center;
   font-style: normal;
   font-weight: normal;
   font-size: 14px;
@@ -229,9 +237,13 @@ export const CalculatorCol = styled.td`
   color: #555555;
   padding: 8px 10px;
   text-align: left; 
+  @media (max-width: 1200px){
+    white-space: pre;
+  }
 `
 export const H1Styled = styled.h1`
   font-family: ArialAMU,serif;
+  max-width:80%;
   font-style: normal;
   font-weight: bold;
   font-size: 24px;
@@ -263,10 +275,20 @@ export const TextStyled = styled.p`
     padding:10px
   }
 `
+export const SvgWrapper = styled.div`
+  display:inline-block;
+  height: 20px;
+  max-width: 50px;
+  width: 20px;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin-left: 5px 
+`
 export const CalculatorsCard = styled(Card)`
   margin-top: 30px;
+  border-radius: 10px;
   @media (min-width: 1200px){
-    margin: 30px 70px 0 70px;
+    margin: 30px 20px 0 20px;
   }
   @media (max-width: 768px){
     & > div{
@@ -276,10 +298,14 @@ export const CalculatorsCard = styled(Card)`
   & .ant-form-item-control-input-content{
     display:flex
   }
-  & .ant-form-large .ant-form-item-label > label{
-    height:unset
+  & .ant-form-item-label > label{
+    height:unset !important;
   }
-  
+`
+export const Arrows = styled(Col)`
+  @media (max-width: 768px){
+    min-width:230px;
+  }
 `
 export const RadioElementsWrapper = styled.div`
   display: flex;
@@ -290,6 +316,7 @@ export const RadioElementsWrapper = styled.div`
 `
 export const RowWrapper = styled(Form.Item)`
   display:flex;
+  flex-wrap: nowrap;
   height:fit-content;
   align-items:center;
   & .ant-form-large .ant-form-item-label > label{
@@ -300,7 +327,7 @@ export const RowWrapper = styled(Form.Item)`
     width:fit-content;
     flex: 1 1 !important;
   }
-  & > div:first-child{
+  &:not(&.uploadInput) > div:first-child{
     max-width:fit-content !important;
     margin-right:10px;
   }
@@ -318,7 +345,7 @@ export const CalendarWrapper = styled.div`
   border: 0.5px solid #555555;
   padding-bottom: 10px;
   border-radius: 10px;
-  margin-bottom: 15px;
+  margin: 0 auto 15px;
   min-width: 250px;
   width: 250px;
   max-width: 250px;
@@ -329,10 +356,10 @@ export const CalendarWrapper = styled.div`
 `
 export const CalendarInfo = styled.div`
   width: 100%;
-  height: 168px;
+  height: 180px;
   border: 0.5px solid #555555;
   border-radius: 10px;
-  margin-bottom: 25px;
+  margin:0 auto 25px;
   overflow: hidden;
   min-width: 250px;
   width: 250px;
@@ -419,6 +446,15 @@ export const InformationTitles = styled.th`
 export const CalculatorsCardWrapper = styled(Col)`
   padding-left:0!important;
   padding-right:0!important;
+  @media only screen and (min-width:1200px){
+    margin-bottom:90px;
+  }
+  @media only screen and (max-width: 370px){
+    &.subsidyWrapper ${RowWrapper} > div{
+      max-width: 100%!important;
+      min-width: 80%!important;
+    }
+  }
 `
 export const CheckboxField = styled(Checkbox)`
   font-family: ArialAMU, serif;
@@ -444,7 +480,8 @@ export const CheckboxField = styled(Checkbox)`
     &:hover {
     
       .day_title{
-        display: block
+        display: block;
+        background-color: white;
       }
       .ant-checkbox-inner{
         background-color: #85c1dc
@@ -458,6 +495,7 @@ export const CheckboxField = styled(Checkbox)`
   
   .day_title{
       max-width: 170px;
+      min-width:fit-content;
       position: absolute;
       bottom: calc(100% + 5px);
       display: block;
@@ -592,7 +630,7 @@ export const CheckboxField = styled(Checkbox)`
 
 export const YearField = styled(Row)`
   margin-bottom: 25px;
-
+  margin-left: 10px;
   button{
     background: #00779C;
     height: 20px;

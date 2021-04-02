@@ -82,6 +82,8 @@ class VacationCalculator extends React.Component {
       monthAvgSalary: 0,
       calculated: false,
       valid: false,
+      check: false,
+      width: typeof window !="undefined" && window.innerWidth <=768
     }
     this.holidays = []
     this.workdays = []
@@ -435,7 +437,7 @@ class VacationCalculator extends React.Component {
   }
 
   handleSubmit = () => {
-    const { form } = this.state
+    const { form, check, width } = this.state
     let data = { ...pick(form, Object.keys(schema.fields)), amount: this.vacationSalary }
 
     schema.isValid(data).then(valid => {
@@ -452,7 +454,22 @@ class VacationCalculator extends React.Component {
           if (!this.state.calculated) this.setState({ calculated: true, valid: false })
         })
         .catch(err => console.log(err))
+        .finally(() => {
+          if (check && width){
+            this.col.current.scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" })
+          }
+          this.setState((prevState) => ({
+            ...prevState,
+            check: false,
+          }))
+        })
     })
+  }
+  checkValue() {
+    this.setState((prevState) => ({
+      ...prevState,
+      check: true,
+    }))
   }
 
   get defaultDate() {
@@ -568,16 +585,16 @@ class VacationCalculator extends React.Component {
                   onChange={e => this.setField("working_schedule", e.target.value, this.autocompleteVacationDays)}
                   value={form.working_schedule}
                 >
-                  <Radio value={5}>
+                  <Radio className="inlineElements" value={5}>
                     {<Label style={{ textTransform: "none" }}>{lang["five_days"]}</Label>}
                   </Radio>
-                  <Radio value={6}>
+                  <Radio className="inlineElements" value={6}>
                     {<Label style={{ textTransform: "none" }}>{lang["six_days"]}</Label>}
                   </Radio>
                 </Radio.Group>
               </Form.Item>
 
-              <Form.Item label={<Label>{lang["salary_label"]}</Label>}>
+              <RowWrapper label={<Label>{lang["salary_label"]}</Label>}>
                 <CalculatorInput
                   formatter={v => `${v}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                   parser={v => v.replace(/\$\s?|(,*)/g, "")}
@@ -589,7 +606,7 @@ class VacationCalculator extends React.Component {
                   name="amount"
                   size="large"
                 />
-              </Form.Item>
+              </RowWrapper>
 
               <Form.Item>
                 <Checkbox
@@ -619,13 +636,13 @@ class VacationCalculator extends React.Component {
                   onChange={e => this.setField("tax_field", e.target.value, this.onBlur)}
                   value={form.tax_field}
                 >
-                  <Radio style={radioStyle} value={TAX_FIELD_COMMON}>
+                  <Radio className="inlineElements" style={radioStyle} value={TAX_FIELD_COMMON}>
                     <RadioLabel>{lang["tax_label_common"]}</RadioLabel>
                   </Radio>
-                  <Radio style={radioStyle} value={TAX_FIELD_IT}>
+                  <Radio className="inlineElements" style={radioStyle} value={TAX_FIELD_IT}>
                     <RadioLabel>{lang["tax_label_it"]}</RadioLabel>
                   </Radio>
-                  <Radio style={radioStyle} value={TAX_FIELD_ENTERPRISE}>
+                  <Radio className="inlineElements" style={radioStyle} value={TAX_FIELD_ENTERPRISE}>
                     <RadioLabel>{lang["tax_label_enterprise"]}</RadioLabel>
                   </Radio>
                 </Radio.Group>
@@ -643,7 +660,7 @@ class VacationCalculator extends React.Component {
                   <Radio value={PENSION_FIELD_YES}>
                     <Label>{lang["yes"]}</Label>
                   </Radio>
-                  <Radio value={PENSION_FIELD_YES_VOLUNTEER}>
+                  <Radio className="inlineElements" value={PENSION_FIELD_YES_VOLUNTEER}>
                     <Label>{lang["yes"]}</Label>
                     <Label className="volunteer">{lang["yes_volunteer"]}</Label>
                   </Radio>
@@ -654,7 +671,11 @@ class VacationCalculator extends React.Component {
               </Form.Item>
 
               <Form.Item style={{ marginTop: "20px" }}>
-                <ButtonSubmit htmlType="submit" shape="round" size="large">
+                <ButtonSubmit
+                  htmlType="submit"
+                  shape="round"
+                  size="large"
+                  onClick={()=>this.checkValue()}>
                   {lang["calculate"]}
                 </ButtonSubmit>
               </Form.Item>

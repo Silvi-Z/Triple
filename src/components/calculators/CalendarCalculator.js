@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react"
+import React, { useEffect, useMemo, useRef, useState } from "react"
 import moment from "moment"
 import { Checkbox, Col, Form, Radio, Row } from "antd"
 import {
@@ -12,7 +12,7 @@ import {
   CalendarWrapper,
   FormLabel,
   InformationTitles,
-  Label,
+  Label, RowWrapper,
   UnderLine,
   YearField,
 } from "./styled"
@@ -33,6 +33,9 @@ const CalendarCalculator = ({ lang, locale }) => {
     date_from: null,
     randomKey: randomString(),
   })
+  const [check, setCheck] = useState(false)
+  const top = useRef(null)
+  const [width, setWidth] = useState(typeof window !="undefined" && window.innerWidth <=768)
   const monthsList = [
     {
       id: 0,
@@ -145,6 +148,12 @@ const CalendarCalculator = ({ lang, locale }) => {
     }
 
     calculateDates(form.date_from.format("YYYY-MM-DD"), form.date_to.format("YYYY-MM-DD"))
+  }).finally(() => {
+    if(check && width){
+      top.current.scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" })
+      setCheck(false)
+    }
+
   })
 
   const calculateDates = (start, end) => {
@@ -404,15 +413,7 @@ const CalendarCalculator = ({ lang, locale }) => {
   return (
     <Row align="start" gutter={20} className="fixElement">
       <CalculatorsCardWrapper xs={24} sm={24} md={24} lg={24} xl={24} xxl={24}>
-        {/*<Row align="center" style={{ justifyContent: "space-between" }}>*/}
-        {/*  <div className="textSec">*/}
-        {/*    <H1Styled>{lang.title}</H1Styled>*/}
-        {/*    <TextStyled>{lang.paragraph}</TextStyled>*/}
-        {/*  </div>*/}
-        {/*</Row>*/}
         <CalculatorsCard bordered={false} className={"calendarBody"}>
-          {/*<Form.Item label={<Label>{lang.chooseDaysRange}</Label>} labelCol={{ span: 24 }}>*/}
-          {/*</Form.Item>*/}
           <Form
             onFinish={handleSubmit}
             initialValues={form}
@@ -423,25 +424,23 @@ const CalendarCalculator = ({ lang, locale }) => {
             <Row align="start"
                  justify="space-between">
               <CalculatorsCardWrapper span={24} xl={16}>
-                <Form.Item label={<Label>{lang.chooseDaysRange}</Label>} labelCol={{ span: 24 }}>
-                </Form.Item>
                 <Form.Item label={lang.working_schedule} labelCol={{ span: 24 }}>
                   <Radio.Group
                     onChange={e => setField("schedule", e.target.value)}
                     value={form.schedule}
                   >
-                    <Radio value={5}>
+                    <Radio className="inlineElements" value={5}>
                       {<Label
                         style={{ textTransform: "none" }}>{lang.calendar.additionalInformation["five_days"]}</Label>}
                     </Radio>
-                    <Radio value={6}>
+                    <Radio className="inlineElements" value={6}>
                       {<Label
                         style={{ textTransform: "none" }}>{lang.calendar.additionalInformation["six_days"]}</Label>}
                     </Radio>
                   </Radio.Group>
                 </Form.Item>
                 <Row gutter={10} align="middle">
-                  <Form.Item style={{ marginRight: "25px" }} label={<Label>{lang.form.start}</Label>}>
+                  <RowWrapper style={{ marginRight: "25px", display:"flex", alignItems: "center" }} label={<Label>{lang.form.start}</Label>}>
                     <CalculatorDatePicker
                       dateRender={(date, today) => handlePickerRender(date, today, "start")}
                       disabledDate={handleDateFromDisabled}
@@ -455,8 +454,8 @@ const CalendarCalculator = ({ lang, locale }) => {
                       name="date_from"
                       size="large"
                     />
-                  </Form.Item>
-                  <Form.Item label={<Label>{lang.form.end}</Label>}>
+                  </RowWrapper>
+                  <RowWrapper style={{display:"flex", alignItems: "center"}} label={<Label>{lang.form.end}</Label>}>
                     <CalculatorDatePicker
                       dateRender={(date, today) => handlePickerRender(date, today, "end")}
                       disabledDate={handleDateToDisabled}
@@ -470,19 +469,20 @@ const CalendarCalculator = ({ lang, locale }) => {
                       name="date_to"
                       size="large"
                     />
-                  </Form.Item>
+                  </RowWrapper>
                 </Row>
                 <Form.Item style={{ marginTop: "20px" }}>
                   <ButtonSubmit
                     htmlType="submit"
                     shape="round"
                     size="large"
+                    onClick={()=>setCheck(true)}
                   >
                     {lang.calculate}
                   </ButtonSubmit>
                 </Form.Item>
               </CalculatorsCardWrapper>
-              <Col xxl={8} xl={8} className={"result calendarResult"}>
+              <Col xxl={8} xl={8} ref={top}  className={"result calendarResult"}>
                 <Row>
                   <Col md={12} span={24} xl={24}>
                     <FormLabel style={{ margin: 0, minHeight: "40px", lineHeight: "40px" }}>
@@ -523,6 +523,8 @@ const CalendarCalculator = ({ lang, locale }) => {
                 </Row>
               </Col>
             </Row>
+            <Form.Item style={{marginLeft:"10px", marginTop:"25px"}} label={<Label>{lang.chooseDaysRange}</Label>} labelCol={{ span: 24 }}>
+            </Form.Item>
             <YearField align="middle">
               <button onClick={setNewYear} data-action={"prev"} type={"button"}>
                 <img src={arrow} alt="arrow" />

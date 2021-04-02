@@ -11,6 +11,7 @@ import {
   ServiceNameWrapper,
   ServiceTitle,
 } from "./homeServiceStyle.js"
+import { ServicesContainer } from "./homeServiceStyle"
 
 const HomeServices = ({ pageContext, langText, lang }) => {
   return (
@@ -22,7 +23,7 @@ const HomeServices = ({ pageContext, langText, lang }) => {
       <ResponsWrapper>
         <ContainerRow>
           {pageContext.map((item, index) => (
-            <ContentContainer
+            <ServicesContainer
               key={`services_${index}`}
               className="servicesContainer"
             >
@@ -31,7 +32,7 @@ const HomeServices = ({ pageContext, langText, lang }) => {
                   {item.paragraph}
                 </ServiceNameWrapper>
               </Link>
-            </ContentContainer>
+            </ServicesContainer>
           ))}
         </ContainerRow>
       </ResponsWrapper>
