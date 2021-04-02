@@ -93,4 +93,3 @@ const Homepartners = ({ langText, lang }) => {
 }
 
 export default Homepartners
-

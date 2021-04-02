@@ -4,7 +4,7 @@ import ExcelJS from "exceljs"
 import moment from "moment"
 import triple from "../../api/triple"
 import { saveAs } from "file-saver"
-import { compact, isEmpty, isEqual, isInteger, isNull } from "lodash"
+import { isEmpty, isEqual, isInteger, isNull } from "lodash"
 import { DownloadOutlined, UploadOutlined } from "@ant-design/icons"
 import { Button, Col, Form, notification, Radio, Row } from "antd"
 import { defineSchedule, urlToBase64 } from "./utilities/tabel"
@@ -144,18 +144,21 @@ class SalaryTableCalculator extends React.Component {
       const workbook = Excel.read(data, { type: "array", cellStyles: true })
       /** @type {[][]} */
       const rows = Excel.utils.sheet_to_json(workbook.Sheets["WTimesheet"], { header: 1 })
+
       const date = moment(rows[9][12], "DD/MM/YY")
       const year = moment(rows[9][12])
       this.setField("year", year)
       const employees = rows.reduce((acc, row, i) => {
         if (i >= 20 && isInteger(Number(row[0]))) {
-          const schedule = defineSchedule(row.slice(4, date.daysInMonth() + 4), date, this.holidays)
+          const tableDays = row.slice(4, date.daysInMonth() + 4)
+          const monthDays = rows[18].slice(4, date.daysInMonth() + 4)
+          const { schedule, days } = defineSchedule(tableDays, date, this.holidays, monthDays)
 
           acc.push({
             id: row[0],
             name: row[2],
             profession: row[1],
-            days: compact(row.slice(4, date.daysInMonth() + 4)).length, // workedDays
+            days, // workedDays
             hours: +row[date.daysInMonth() + 5], // workedHours
             pension: PENSION_FIELD_YES,
             amount: null,

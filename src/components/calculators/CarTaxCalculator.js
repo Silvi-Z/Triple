@@ -1,5 +1,4 @@
 import React from "react"
-import moment from "moment"
 import { isEqual } from "lodash"
 import { Col, Form, Radio, Row, Select } from "antd"
 import {
@@ -16,8 +15,12 @@ import {
 import VehicleTax from "../../calculators/VehicleTax"
 import CalculatorCardResult from "./calcComponents/CalculatorCardResult"
 import VehicleSell from "../../calculators/VehicleSell"
+import ReactDOM from "react-dom"
 
 class CarTaxCalculator extends React.Component {
+
+  dateFromPicker = React.createRef()
+
   top = React.createRef()
 
   constructor(props) {
@@ -31,12 +34,6 @@ class CarTaxCalculator extends React.Component {
       width: typeof window !="undefined" && window.innerWidth <=768
     }
     this.availableYears = [2019, 2020, 2021]
-  }
-
-  get yearValue() {
-    const { year } = this.state.form
-
-    year ? moment({ year }) : null
   }
 
   get isTypeCar() {
@@ -93,11 +90,40 @@ class CarTaxCalculator extends React.Component {
     }
   }
 
+  handleDateFromInput = e => {
+    const { value } = e.target
+
+    if (!value) {
+      this.setField("date", null)
+      this.dateFromPicker.current.blur()
+    }
+  }
+
   componentDidUpdate(prevProps, prevState, snapshot) {
     if (!isEqual(prevState.form, this.state.form) && this.state.calculated) {
       this.handleSubmit()
     }
+
+    this.dateFromPicker.current && ReactDOM
+      .findDOMNode(/** @type Element */this.dateFromPicker.current)
+      .querySelector("input")
+      .addEventListener("input", this.handleDateFromInput)
   }
+
+  componentDidMount() {
+    this.dateFromPicker.current && ReactDOM
+      .findDOMNode(/** @type Element */this.dateFromPicker.current)
+      .querySelector("input")
+      .addEventListener("input", this.handleDateFromInput)
+  }
+
+  componentWillUnmount() {
+    this.dateFromPicker.current && ReactDOM
+      .findDOMNode(/** @type Element */this.dateFromPicker.current)
+      .querySelector("input")
+      .removeEventListener("input", this.handleDateFromInput)
+  }
+
 
   render() {
     const { lang } = this.props
@@ -170,6 +196,8 @@ class CarTaxCalculator extends React.Component {
                     <CalculatorDatePicker
                       onChange={date => this.setField("date", date)}
                       value={form.date}
+                      name={"date"}
+                      ref={this.dateFromPicker}
                       placeholder={null}
                       picker="year"
                       size="large"

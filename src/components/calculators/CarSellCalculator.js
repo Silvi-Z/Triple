@@ -19,11 +19,17 @@ import { isHoliday, isWeekend } from "./utilities/vacation"
 import triple from "../../api/triple"
 import moment from "moment"
 import { randomString } from "./utilities/tabel"
+import ReactDOM from "react-dom"
 
 
 
 class CarSellCalculator extends React.Component {
   top = React.createRef()
+
+  dateToPicker = React.createRef()
+
+  dateFromPicker = React.createRef()
+
   constructor(props) {
     super(props)
 
@@ -261,14 +267,64 @@ class CarSellCalculator extends React.Component {
     return achievementDate ? moment(achievementDate) : null
   }
 
+  handleDateFromInput = e => {
+    const { value } = e.target
+
+    if (!value) {
+      this.setField("achievementDate", null)
+      this.dateFromPicker.current.blur()
+    }
+  }
+
+  handleDateToInput = e => {
+    const { value } = e.target
+
+    if (!value) {
+      this.setField("alienationDate", null)
+      this.dateToPicker.current.blur()
+    }
+  }
+
   componentDidUpdate(prevProps, prevState, snapshot) {
     if (!isEqual(this.state.form, prevState.form) && this.state.calculated) {
       this.handleSubmit()
     }
+
+    this.dateFromPicker.current && ReactDOM
+      .findDOMNode(/** @type Element */this.dateFromPicker.current)
+      .querySelector("input")
+      .addEventListener("input", this.handleDateFromInput)
+
+    this.dateToPicker.current && ReactDOM
+      .findDOMNode(/** @type Element */this.dateToPicker.current)
+      .querySelector("input")
+      .addEventListener("input", this.handleDateToInput)
   }
 
   componentDidMount() {
     this.fetchDays()
+
+    this.dateFromPicker.current && ReactDOM
+      .findDOMNode(/** @type Element */this.dateFromPicker.current)
+      .querySelector("input")
+      .addEventListener("input", this.handleDateFromInput)
+
+    this.dateToPicker.current && ReactDOM
+      .findDOMNode(/** @type Element */this.dateToPicker.current)
+      .querySelector("input")
+      .addEventListener("input", this.handleDateToInput)
+  }
+
+  componentWillUnmount() {
+    this.dateFromPicker.current && ReactDOM
+      .findDOMNode(/** @type Element */this.dateFromPicker.current)
+      .querySelector("input")
+      .removeEventListener("input", this.handleDateFromInput)
+
+    this.dateToPicker.current && ReactDOM
+      .findDOMNode(/** @type Element */this.dateToPicker.current)
+      .querySelector("input")
+      .removeEventListener("input", this.handleDateToInput)
   }
 
   render() {
@@ -296,6 +352,7 @@ class CarSellCalculator extends React.Component {
                     format="DD.MM.YYYY"
                     size="large"
                     name="achievementDate"
+                    ref={this.dateFromPicker}
                     allowClear={true}
                     defaultVaolue={form.achievementDate}
                     value={form.achievementDate}
@@ -309,6 +366,7 @@ class CarSellCalculator extends React.Component {
                     placeholder={null}
                     key={randomKey}
                     defaultPickerValue={this.defaultToDate}
+                    ref={this.dateToPicker}
                     format="DD.MM.YYYY"
                     size="large"
                     name="alienationDate"
