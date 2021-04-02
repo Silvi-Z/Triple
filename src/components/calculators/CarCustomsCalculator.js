@@ -2,12 +2,12 @@ import React from "react"
 import { isEqual } from "lodash"
 import { Col, Divider, Form, Radio, Row, Tooltip } from "antd"
 import { InfoCircleTwoTone } from "@ant-design/icons"
-// import { Checkbox, Col, Form, Input, Radio, Row,  } from "antd"
 import {
   ButtonSubmit,
   CalculatorDatePicker,
   CalculatorInput,
-  CalculatorsCard, CalculatorsCardWrapper,
+  CalculatorsCard,
+  CalculatorsCardWrapper,
   FormLabel,
   Label,
   UnderLine,
@@ -16,6 +16,7 @@ import VehicleCustoms from "../../calculators/VehicleCustoms"
 import CalculatorCardResult from "./calcComponents/CalculatorCardResult"
 import triple from "../../api/triple"
 import { isHoliday, isWeekend } from "./utilities/vacation"
+import ReactDOM from "react-dom"
 
 const firstRadioButtonStyles = {
   borderTopLeftRadius: "5px",
@@ -27,6 +28,8 @@ const lastRadioButtonStyles = {
 }
 
 class CarCustomsCalculator extends React.Component {
+
+  dateFromPicker = React.createRef()
 
   handleSubmit = () => {
     const { form, rates } = this.state
@@ -103,8 +106,8 @@ class CarCustomsCalculator extends React.Component {
     if (date.isSame(today, "day")) {
       return <div className={
         // !condition
-           "ant-picker-cell-inner ant-picker-cell-today"
-          // : "ant-picker-cell-inner"
+        "ant-picker-cell-inner ant-picker-cell-today"
+        // : "ant-picker-cell-inner"
       }>
         {date.format("D")}
         {locale === "arm" && this.workdays.length > 0
@@ -139,8 +142,8 @@ class CarCustomsCalculator extends React.Component {
     } else if (isHoliday(date, this.holidays)) {
       return <div className={
         // !condition
-           "ant-picker-cell-inner ant-picker-cell-holiday"
-          // : "ant-picker-cell-inner"
+        "ant-picker-cell-inner ant-picker-cell-holiday"
+        // : "ant-picker-cell-inner"
       }>
         {date.format("D")}
         {locale === "arm" && this.workdays.length > 0
@@ -175,8 +178,8 @@ class CarCustomsCalculator extends React.Component {
     } else if (isWeekend(date, 5)) {
       return <div className={
         // !condition
-           "ant-picker-cell-inner ant-picker-cell-weekend"
-          // : "ant-picker-cell-inner"
+        "ant-picker-cell-inner ant-picker-cell-weekend"
+        // : "ant-picker-cell-inner"
       }>
         {date.format("D")}
         {locale === "arm" && this.workdays.length > 0
@@ -243,15 +246,41 @@ class CarCustomsCalculator extends React.Component {
     }
   }
 
+  handleDateFromInput = e => {
+    const { value } = e.target
+
+    if (!value) {
+      this.setField("date", null)
+      this.dateFromPicker.current.blur()
+    }
+  }
+
   componentDidMount() {
     this.getCBARates()
     this.fetchDays()
+
+    this.dateFromPicker.current && ReactDOM
+      .findDOMNode(/** @type Element */this.dateFromPicker.current)
+      .querySelector("input")
+      .addEventListener("input", this.handleDateFromInput)
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
     if (!isEqual(prevState.form, this.state.form) && this.state.calculated) {
       this.handleSubmit()
     }
+
+    this.dateFromPicker.current && ReactDOM
+      .findDOMNode(/** @type Element */this.dateFromPicker.current)
+      .querySelector("input")
+      .addEventListener("input", this.handleDateFromInput)
+  }
+
+  componentWillUnmount() {
+    this.dateFromPicker.current && ReactDOM
+      .findDOMNode(/** @type Element */this.dateFromPicker.current)
+      .querySelector("input")
+      .removeEventListener("input", this.handleDateFromInput)
   }
 
   render() {
@@ -296,6 +325,8 @@ class CarCustomsCalculator extends React.Component {
                   dateRender={(date, today) => this.handlePickerRender(date, today, "start")}
                   value={form.date}
                   placeholder={null}
+                  name={"date"}
+                  ref={this.dateFromPicker}
                   allowClear={true}
                   size="large"
                 />
@@ -364,7 +395,7 @@ class CarCustomsCalculator extends React.Component {
         <Col span={20} xl={8} className="result carCustomsResult">
           <Row>
             <Col md={12} span={24} xl={24}>
-            <FormLabel style={{ margin: 0 }}>{lang.result.title}</FormLabel>
+              <FormLabel style={{ margin: 0 }}>{lang.result.title}</FormLabel>
 
               <UnderLine />
 

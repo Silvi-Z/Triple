@@ -538,6 +538,24 @@ class FinalCalculator extends React.Component {
     return date_acceptance ? moment(date_acceptance) : null
   }
 
+  handleDateFromInput = e => {
+    const { value } = e.target
+
+    if (!value) {
+      this.setFormField("date_acceptance", null, this.onBlur)
+      this.dateFromPicker.current.blur()
+    }
+  }
+
+  handleDateToInput = e => {
+    const { value } = e.target
+
+    if (!value) {
+      this.setFormField("date_release", null, this.onBlur)
+      this.dateToPicker.current.blur()
+    }
+  }
+
   render() {
     const { form, result, loading, calculated, randomKey } = this.state
     const { lang } = this.props
@@ -812,16 +830,47 @@ class FinalCalculator extends React.Component {
     window.addEventListener("scroll", this.handleWindowScroll)
 
     this.fetchDays()
+
+    this.dateFromPicker.current && ReactDOM
+      .findDOMNode(/** @type Element */this.dateFromPicker.current)
+      .querySelector("input")
+      .addEventListener("input", this.handleDateFromInput)
+
+    this.dateToPicker.current && ReactDOM
+      .findDOMNode(/** @type Element */this.dateToPicker.current)
+      .querySelector("input")
+      .addEventListener("input", this.handleDateToInput)
+
   }
 
   componentWillUnmount() {
     window.removeEventListener("scroll", this.handleWindowScroll)
+
+    this.dateFromPicker.current && ReactDOM
+      .findDOMNode(/** @type Element */this.dateFromPicker.current)
+      .querySelector("input")
+      .removeEventListener("input", this.handleDateFromInput)
+
+    this.dateToPicker.current && ReactDOM
+      .findDOMNode(/** @type Element */this.dateToPicker.current)
+      .querySelector("input")
+      .removeEventListener("input", this.handleDateToInput)
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
     if (!isEqual(prevState.form, this.state.form) && this.state.calculated) {
       this.handleSubmit()
     }
+
+    this.dateFromPicker.current && ReactDOM
+      .findDOMNode(/** @type Element */this.dateFromPicker.current)
+      .querySelector("input")
+      .addEventListener("input", this.handleDateFromInput)
+
+    this.dateToPicker.current && ReactDOM
+      .findDOMNode(/** @type Element */this.dateToPicker.current)
+      .querySelector("input")
+      .addEventListener("input", this.handleDateToInput)
   }
 }
 

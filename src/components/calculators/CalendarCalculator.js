@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react"
+import React, { useEffect, useMemo, useRef, useState } from "react"
 import moment from "moment"
 import { Checkbox, Col, Form, Radio, Row } from "antd"
 import {
@@ -26,6 +26,8 @@ import CalendarItem from "./calcComponents/Calendar"
 import { randomString } from "./utilities/tabel"
 
 const CalendarCalculator = ({ lang, locale }) => {
+  const dateToPicker = useRef()
+  const dateFromPicker = useRef()
   const [form, setForm] = useState({
     dates: [],
     schedule: 5,
@@ -450,6 +452,7 @@ const CalendarCalculator = ({ lang, locale }) => {
                       defaultPickerValue={defaultDate()}
                       placeholder={null}
                       key={form.randomKey}
+                      ref={dateFromPicker}
                       allowClear={false}
                       format="DD.MM.YYYY"
                       name="date_from"
@@ -464,6 +467,7 @@ const CalendarCalculator = ({ lang, locale }) => {
                       defaultPickerValue={defaultToDate()}
                       value={form.date_to}
                       allowClear={false}
+                      ref={dateToPicker}
                       key={form.randomKey}
                       placeholder={null}
                       format="DD.MM.YYYY"

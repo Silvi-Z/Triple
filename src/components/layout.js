@@ -123,7 +123,6 @@ const Layout = ({ children, location, pageContext: { locale, originalPath, local
       }
     }
     // resultHeight()
-    console.log("location", location)
   }, [footerHeight])
 
 

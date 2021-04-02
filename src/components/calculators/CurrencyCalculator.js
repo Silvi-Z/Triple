@@ -6,7 +6,8 @@ import {
   ButtonSubmit,
   CalculatorDatePicker,
   CalculatorInput,
-  CalculatorsCard, CalculatorsCardWrapper,
+  CalculatorsCard,
+  CalculatorsCardWrapper,
   CalculatorSelect,
   FormLabel,
   Label,
@@ -17,6 +18,7 @@ import CalculatorCardResult from "./calcComponents/CalculatorCardResult"
 import { isHoliday, isWeekend } from "./utilities/vacation"
 import { randomString } from "./utilities/tabel"
 import Currency from "../../calculators/Currency"
+import ReactDOM from "react-dom"
 
 const form = {
   amount: null,
@@ -352,11 +354,28 @@ class CurrencyCalculator extends React.Component {
     if (!isEqual(prevState.form, this.state.form) && this.state.calculated && this.state.valid) {
       this.handleSubmit()
     }
+
+    this.dateFromPicker.current && ReactDOM
+      .findDOMNode(/** @type Element */this.dateFromPicker.current)
+      .querySelector("input")
+      .addEventListener("input", this.handleDateFromInput)
   }
 
   componentDidMount() {
     this.getCBARates()
     this.fetchDays()
+
+    this.dateFromPicker.current && ReactDOM
+      .findDOMNode(/** @type Element */this.dateFromPicker.current)
+      .querySelector("input")
+      .addEventListener("input", this.handleDateFromInput)
+  }
+
+  componentWillUnmount() {
+    this.dateFromPicker.current && ReactDOM
+      .findDOMNode(/** @type Element */this.dateFromPicker.current)
+      .querySelector("input")
+      .removeEventListener("input", this.handleDateFromInput)
   }
 
   changeState = () => {
@@ -488,7 +507,7 @@ class CurrencyCalculator extends React.Component {
           </CalculatorsCard>
         </CalculatorsCardWrapper>
 
-        <Col span={20} md={12}  xl={8} className="result">
+        <Col span={20} md={12} xl={8} className="result">
           <div className="currencyResult">
             <FormLabel style={{ margin: 0 }}>{lang.result.currency}</FormLabel>
 

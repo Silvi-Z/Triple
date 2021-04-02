@@ -41,49 +41,49 @@
     "contentData": [
       {
         "scroll_id": "test_1",
-        "link" : "services#test_1",
+        "link": "services#test_1",
         "paragraph": "Accounting",
         "text": "Our team offers a wide range of accounting services that allows a company to summarize, analyze and report financial transactions to oversight agencies, regulators and tax collection entities․ Our services include:\n● Establishment of accounting policy,\n● Financial and tax accounting,\n● Accounting documentation management,\n● Financial, tax and other purposes reporting,\n● Tax optimisation."
       },
       {
         "scroll_id": "test_2",
-        "link" : "services#test_2",
+        "link": "services#test_2",
         "paragraph": "Tax audit",
         "text": "Tax audit carried out by our qualified specialists permit to verify the accuracy of previously submitted tax reports, make all necessary changes in order to avoid additional fiscal responsibilities and various penalties."
       },
       {
         "scroll_id": "test_3",
-        "link" : "services#test_3",
+        "link": "services#test_3",
         "paragraph": "Advisor services",
         "text": "Our team offers advisory services aiming to support and assisting organisations to operate as efficient as possible and reach all their potential. Our advisory services include:\n● Profit and financial analysis,\n● Financial transaction consulting,\n● Accounting records consulting,\n● Legal and tax consulting,\n● Business plan analysis and consulting, \n● Business registration and liquidation support."
       },
       {
         "scroll_id": "test_4",
-        "link" : "services#test_4",
+        "link": "services#test_4",
         "paragraph": "Company registration",
         "text": "In reality, individuals are also involved in transactions that may evoke any sort of tax liabilities and  requirements to submit tax reports. Our specialists are willing to support individuals throughout that process from simple consulting till the submission of all required documents."
       },
       {
         "scroll_id": "test_5",
-        "link" : "services#test_5",
+        "link": "services#test_5",
         "paragraph": "Customs clearance",
         "text": "Our specialists provide a wide range of customs support for standard as well as non-routine customs-clearance processes including:\n● Preparation of documents needed to be submitted to the customs authorities,\n● Submission of export and import declarations.\n● Preparation of other necessary documents for relevant state bodies"
       },
       {
         "scroll_id": "test_6",
-        "link" : "services#test_6",
+        "link": "services#test_6",
         "paragraph": "Customs transactions",
         "text": "We believe that the efficient documentation of a company employee movement is crucial for businesses of all sizes. Thus, we offer these services: preparation of the employment contracts, agreements, internal legal acts, calculation of working time and salary, income tax and social charges."
       },
       {
         "scroll_id": "test_7",
-        "link" : "services#test_7",
+        "link": "services#test_7",
         "paragraph": "Public and Private procurement",
         "text": "The specialists of Triple Consulting support bidders taking part in local and international tenders announced on ARMEPS and other equivalent platforms. Our offer includes services starting from the preparation of the bidding documents, ending up with the full procedure implementation of the entire procurement."
       },
       {
         "scroll_id": "test_8",
-        "link" : "services#test_8",
+        "link": "services#test_8",
         "paragraph": "Business automation",
         "text": "Excellence and workflow automation: these are critical aspects for customer satisfaction and growing revenue. By identifying all your needs, analysing specificities of your business and your management accounting as well as internal systems and processes, specialists of Triple Consulting will design and develop software packages (web applications, computer applications, EXCEL format documents developed and adapted to the given activity). The developed tools will reduce operating costs, speed up and optimize business processes, as well as reduce possible risks and improve the overall management system."
       }
@@ -203,7 +203,7 @@
           },
           {
             "id": 4,
-            "label":"Debit cash voucher (exported from Armenian Software)"
+            "label": "Debit cash voucher (exported from Armenian Software)"
           },
           {
             "id": 5,
@@ -219,11 +219,11 @@
           },
           {
             "id": 8,
-            "label":"Declaration example form of information pasting by taxpayer"
+            "label": "Declaration example form of information pasting by taxpayer"
           },
           {
             "id": 9,
-            "label":"Invoice (exported from Armenian Software)"
+            "label": "Invoice (exported from Armenian Software)"
           },
           {
             "id": 10,
@@ -239,7 +239,7 @@
           },
           {
             "id": 13,
-            "label":"Payment order (exported from Armenian Software)"
+            "label": "Payment order (exported from Armenian Software)"
           },
           {
             "id": 14,
@@ -375,7 +375,7 @@
     "popular": "Popular",
     "noResult": "Sorry, there are no results",
     "text": "Please, try again",
-    "share":"Share"
+    "share": "Share"
   },
   "careerForm": {
     "textare_label": "Your message",
@@ -611,7 +611,7 @@
       "calculate": "CALCULATE",
       "year": "Year",
       "result": {
-        "title" : "Result",
+        "title": "Result",
         "income_tax_back": "Returnable income tax"
       }
     },
@@ -726,15 +726,15 @@
           "residential": "Residential buildings",
           "public_production": "Public and industrial buildings",
           "garage": "Garages",
-          "agricultural": "Գյուղատնտեսական նշանակության հող հանդիսացող",
-          "forConstructionResidental": "Բնակավայրերի հողերից բնակելի կառուցապատման համար նախատեսված հող հանդիսացող",
-          "forConstructionPublic": "Բնակավայրերի հողերից հասարակական կառուցապատման համար նախատեսված հող հանդիսացող",
-          "industry": "Արդյունաբերության, ընդերքօգտագործման և այլ արտադրական նշանակության հող հանդիսացող",
-          "energetic": "Էներգետիկայի, կապի, տրանսպորտի, կոմունալ ենթակառուցվածքների օբյեկտների, ինչպես նաև ջրային հող հանդիսացող",
-          "otherLands": "Ոչ գյուղատնտեսական նշանակության մյուս հող հանդիսացող",
-          "privateHouse": "Անհատական բնակելի տուն և այգետնակ հանդիսացող",
-          "public": "Հասարակական նշանակության շինություն հանդիսացող",
-          "production": "Արտադրական նշանակության շինություն հանդիսացող"
+          "agricultural": "Land of agricultural significance",
+          "forConstructionResidental": "Land for residential construction from residential lands",
+          "forConstructionPublic": "Land for public construction from residential lands",
+          "industry": "Land of industrial significance",
+          "energetic": "Energy, communication, transport, utility infrastructure facilities, water land",
+          "otherLands": "Non-agricultural land",
+          "privateHouse": "Private house",
+          "public": "Public buildings",
+          "production": "Industrial building"
         },
         "year": "DATE OF ISSUE",
         "power": "ENGINE POWER",

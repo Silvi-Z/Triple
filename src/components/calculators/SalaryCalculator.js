@@ -57,6 +57,9 @@ const form = {
 const availableYears = [2019, 2020, 2021]
 
 class SalaryCalculator extends React.Component {
+
+  formRef = React.createRef()
+
   daysInput = React.createRef()
 
   top = React.createRef()
@@ -570,35 +573,45 @@ class SalaryCalculator extends React.Component {
     }).catch(err => console.log(err))
   }
 
-  // keyDown = (event) => {
-  //   let value = event.target.value
-  //   let name = event.target.name
-  //   console.log(value)
-  //   if (value.length <= 1) {
-  //     this.setField(name, null)
-  //   }
-  // }
-
   componentDidMount() {
 
     this.fetchDays()
 
-    this.dateFromPicker.current &&
-    ReactDOM
+    this.dateFromPicker.current && ReactDOM
       .findDOMNode(/** @type Element */this.dateFromPicker.current)
       .querySelector("input")
       .addEventListener("input", this.handleDateFromInput)
 
-    this.dateToPicker.current &&
-    ReactDOM
+    this.dateToPicker.current && ReactDOM
       .findDOMNode(/** @type Element */this.dateToPicker.current)
       .querySelector("input")
       .addEventListener("input", this.handleDateToInput)
-
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
     this.autoCalculate(prevState)
+
+    this.dateFromPicker.current && ReactDOM
+      .findDOMNode(/** @type Element */this.dateFromPicker.current)
+      .querySelector("input")
+      .addEventListener("input", this.handleDateFromInput)
+
+    this.dateToPicker.current && ReactDOM
+      .findDOMNode(/** @type Element */this.dateToPicker.current)
+      .querySelector("input")
+      .addEventListener("input", this.handleDateToInput)
+  }
+
+  componentWillUnmount() {
+    this.dateFromPicker.current && ReactDOM
+      .findDOMNode(/** @type Element */this.dateFromPicker.current)
+      .querySelector("input")
+      .removeEventListener("input", this.handleDateFromInput)
+
+    this.dateToPicker.current && ReactDOM
+      .findDOMNode(/** @type Element */this.dateToPicker.current)
+      .querySelector("input")
+      .removeEventListener("input", this.handleDateToInput)
   }
 
   render() {
@@ -706,9 +719,8 @@ class SalaryCalculator extends React.Component {
                           dateRender={(date, today) => this.handlePickerRender(date, today, "start")}
                           disabledDate={this.handleDateFromDisabled}
                           onChange={this.handleDateFromChange}
-                          // onKeyPress={this.keyDown}
                           value={this.dateFromValue}
-                          // allowClear={true}
+                          allowClear={true}
                           defaultPickerValue={this.defaultDate}
                           key={randomKey}
                           ref={this.dateFromPicker}
@@ -725,11 +737,10 @@ class SalaryCalculator extends React.Component {
                           defaultPickerValue={this.defaultDate}
                           disabledDate={this.handleDateToDisabled}
                           onChange={this.handleDateToChange}
-                          // allowClear={true}
+                          allowClear={true}
                           value={this.dateToValue}
                           key={randomKey}
                           onBlur={this.onBlur}
-                          // onKeyDown={this.keyDown}
                           ref={this.dateToPicker}
                           placeholder={null}
                           format="DD.MM.YYYY"

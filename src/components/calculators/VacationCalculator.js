@@ -467,6 +467,26 @@ class VacationCalculator extends React.Component {
     return date_from ? moment(date_from) : moment({ year })
   }
 
+  handleDateFromInput = e => {
+    const { value, name } = e.target
+
+    if (!value) {
+      this.setDateField("date_from", null)
+      this.dateFromPicker.current.blur()
+    } else if (!moment(value).isValid()) {
+      // console.log("value", value)
+    }
+  }
+
+  handleDateToInput = e => {
+    const { value } = e.target
+
+    if (!value) {
+      this.setDateField("date_to", null)
+      this.dateToPicker.current.blur()
+    }
+  }
+
   onBlur = () => {
     this.setState(prevState => (
       { valid: true }
@@ -478,10 +498,41 @@ class VacationCalculator extends React.Component {
     this.dateToInput.addEventListener("input", this.handlePickerInput)
     this.dateFromInput.addEventListener("input", this.handlePickerInput)
 
+    this.dateFromPicker.current && ReactDOM
+      .findDOMNode(/** @type Element */this.dateFromPicker.current)
+      .querySelector("input")
+      .addEventListener("input", this.handleDateFromInput)
+
+    this.dateToPicker.current && ReactDOM
+      .findDOMNode(/** @type Element */this.dateToPicker.current)
+      .querySelector("input")
+      .addEventListener("input", this.handleDateToInput)
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
     this.autoCalculate(prevState)
+
+    this.dateFromPicker.current && ReactDOM
+      .findDOMNode(/** @type Element */this.dateFromPicker.current)
+      .querySelector("input")
+      .addEventListener("input", this.handleDateFromInput)
+
+    this.dateToPicker.current && ReactDOM
+      .findDOMNode(/** @type Element */this.dateToPicker.current)
+      .querySelector("input")
+      .addEventListener("input", this.handleDateToInput)
+  }
+
+  componentWillUnmount() {
+    this.dateFromPicker.current && ReactDOM
+      .findDOMNode(/** @type Element */this.dateFromPicker.current)
+      .querySelector("input")
+      .removeEventListener("input", this.handleDateFromInput)
+
+    this.dateToPicker.current && ReactDOM
+      .findDOMNode(/** @type Element */this.dateToPicker.current)
+      .querySelector("input")
+      .removeEventListener("input", this.handleDateToInput)
   }
 
   render() {

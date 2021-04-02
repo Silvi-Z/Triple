@@ -4,7 +4,7 @@ import ExcelJS from "exceljs"
 import moment from "moment"
 import triple from "../../api/triple"
 import { saveAs } from "file-saver"
-import { compact, isEmpty, isEqual, isInteger, isNull } from "lodash"
+import { isEmpty, isEqual, isInteger, isNull } from "lodash"
 import { DownloadOutlined, UploadOutlined } from "@ant-design/icons"
 import { Button, Col, Form, notification, Radio, Row } from "antd"
 import { defineSchedule, urlToBase64 } from "./utilities/tabel"
@@ -142,18 +142,21 @@ class SalaryTableCalculator extends React.Component {
       const workbook = Excel.read(data, { type: "array", cellStyles: true })
       /** @type {[][]} */
       const rows = Excel.utils.sheet_to_json(workbook.Sheets["WTimesheet"], { header: 1 })
+
       const date = moment(rows[9][12], "DD/MM/YY")
       const year = moment(rows[9][12])
       this.setField("year", year)
       const employees = rows.reduce((acc, row, i) => {
         if (i >= 20 && isInteger(Number(row[0]))) {
-          const schedule = defineSchedule(row.slice(4, date.daysInMonth() + 4), date, this.holidays)
+          const tableDays = row.slice(4, date.daysInMonth() + 4)
+          const monthDays = rows[18].slice(4, date.daysInMonth() + 4)
+          const { schedule, days } = defineSchedule(tableDays, date, this.holidays, monthDays)
 
           acc.push({
             id: row[0],
             name: row[2],
             profession: row[1],
-            days: compact(row.slice(4, date.daysInMonth() + 4)).length, // workedDays
+            days, // workedDays
             hours: +row[date.daysInMonth() + 5], // workedHours
             pension: PENSION_FIELD_YES,
             amount: null,
@@ -380,7 +383,7 @@ class SalaryTableCalculator extends React.Component {
 
     return (
       <Row /*{ className="rowWrapper"}*/ align="start" gutter={20} ref={this.rowWidth}>
-          <CalculatorsCardWrapper span={24} xl={16}>
+        <CalculatorsCardWrapper span={24} xl={16}>
           <CalculatorsCard bordered={false}>
             <Form
               onFinish={this.handleSubmit}
@@ -451,29 +454,29 @@ class SalaryTableCalculator extends React.Component {
 
         <Col span={20} xl={8} className="result" ref={this.top}>
           <Row>
-           <Col md={12} span={24} xl={24}>
-             <FormLabel style={{ margin: 0 }}>{lang.result.title}</FormLabel>
+            <Col md={12} span={24} xl={24}>
+              <FormLabel style={{ margin: 0 }}>{lang.result.title}</FormLabel>
 
-             <UnderLine />
+              <UnderLine />
 
-             <CalculatorCardResult
-               title={lang.result.gross_salary}
-               text={result.gross_salary}
-               loading={loading}
-             />
+              <CalculatorCardResult
+                title={lang.result.gross_salary}
+                text={result.gross_salary}
+                loading={loading}
+              />
 
-             <CalculatorCardResult
-               title={lang.result.income_tax}
-               text={result.income_tax}
-               loading={loading}
-             />
+              <CalculatorCardResult
+                title={lang.result.income_tax}
+                text={result.income_tax}
+                loading={loading}
+              />
 
-             <CalculatorCardResult
-               title={lang.result.pension_fee}
-               text={result.pension_fee}
-               loading={loading}
-             />
-           </Col>
+              <CalculatorCardResult
+                title={lang.result.pension_fee}
+                text={result.pension_fee}
+                loading={loading}
+              />
+            </Col>
 
             <Col md={12} span={24} xl={24}>
               <CalculatorCardResult

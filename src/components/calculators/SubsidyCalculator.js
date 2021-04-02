@@ -20,6 +20,7 @@ import GrossSalaryTable from "./calcComponents/GrossSalaryTable"
 import CalculatorCardResult from "./calcComponents/CalculatorCardResult"
 import { isHoliday, isWeekend, workingDaysInRangeForSubsidy } from "./utilities/vacation"
 import { randomString } from "./utilities/tabel"
+import ReactDOM from "react-dom"
 
 moment.locale("en", {
   week: {
@@ -38,6 +39,10 @@ class SubsidyCalculator extends React.Component {
   row = React.createRef()
 
   rowWidth = React.createRef()
+
+  dateToPicker = React.createRef()
+
+  dateFromPicker = React.createRef()
 
   constructor(props) {
     super(props)
@@ -518,15 +523,65 @@ class SubsidyCalculator extends React.Component {
     this.setState({ valid: true })
   }
 
+  handleDateFromInput = e => {
+    const { value } = e.target
+
+    if (!value) {
+      this.setField("start", null, this.autocompleteDays)
+      this.dateFromPicker.current.blur()
+    }
+  }
+
+  handleDateToInput = e => {
+    const { value } = e.target
+
+    if (!value) {
+      this.setField("end", null, this.autocompleteDays)
+      this.dateToPicker.current.blur()
+    }
+  }
+
   componentDidUpdate(prevProps, prevState, snapshot) {
     if (!isEqual(prevState.form, this.state.form) && this.state.calculated && this.state.valid) {
       this.handleSubmit()
     }
+
+    this.dateFromPicker.current && ReactDOM
+      .findDOMNode(/** @type Element */this.dateFromPicker.current)
+      .querySelector("input")
+      .addEventListener("input", this.handleDateFromInput)
+
+    this.dateToPicker.current && ReactDOM
+      .findDOMNode(/** @type Element */this.dateToPicker.current)
+      .querySelector("input")
+      .addEventListener("input", this.handleDateToInput)
   }
 
   componentDidMount() {
     this.fetchDays()
     window.addEventListener("scroll", this.handleWindowScroll)
+
+    this.dateFromPicker.current && ReactDOM
+      .findDOMNode(/** @type Element */this.dateFromPicker.current)
+      .querySelector("input")
+      .addEventListener("input", this.handleDateFromInput)
+
+    this.dateToPicker.current && ReactDOM
+      .findDOMNode(/** @type Element */this.dateToPicker.current)
+      .querySelector("input")
+      .addEventListener("input", this.handleDateToInput)
+  }
+
+  componentWillUnmount() {
+    this.dateFromPicker.current && ReactDOM
+      .findDOMNode(/** @type Element */this.dateFromPicker.current)
+      .querySelector("input")
+      .removeEventListener("input", this.handleDateFromInput)
+
+    this.dateToPicker.current && ReactDOM
+      .findDOMNode(/** @type Element */this.dateToPicker.current)
+      .querySelector("input")
+      .removeEventListener("input", this.handleDateToInput)
   }
 
   handleDateToDisabled = d => {
@@ -597,6 +652,7 @@ class SubsidyCalculator extends React.Component {
                       defaultPickerValue={this.defaultDate}
                       placeholder={lang.form.dates_placeholder}
                       value={form.start}
+                      ref={this.dateFromPicker}
                       key={randomKey}
                       onBlur={this.onBlur}
                       format="DD.MM.YYYY"
@@ -612,6 +668,7 @@ class SubsidyCalculator extends React.Component {
                       defaultPickerValue={this.defaultToDate}
                       disabledDate={this.handleDateToDisabled}
                       placeholder={lang.form.dates_placeholder}
+                      ref={this.dateToPicker}
                       value={form.end}
                       key={randomKey}
                       onBlur={this.onBlur}
@@ -735,7 +792,7 @@ class SubsidyCalculator extends React.Component {
                       size="large"
                     />
                     <Tooltip title="prompt text" color="black">
-                      <InfoCircleTwoTone twoToneColor="#00B3C7" style={{marginLeft: 5}} />
+                      <InfoCircleTwoTone twoToneColor="#00B3C7" style={{ marginLeft: 5 }} />
                     </Tooltip>
                   </Form.Item>
                   : null
@@ -792,7 +849,7 @@ class SubsidyCalculator extends React.Component {
           </Card>
         </CalculatorsCardWrapper>
 
-        <Col span={20}xl={8} className="result" ref={this.col}>
+        <Col span={20} xl={8} className="result" ref={this.col}>
           <Row>
             <Col md={12} span={24} xl={24}>
               <FormLabel style={{ margin: 0 }}>{lang.result.title}</FormLabel>
