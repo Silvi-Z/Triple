@@ -1,5 +1,5 @@
 import React from "react"
-import { useStaticQuery, graphql } from "gatsby"
+import { graphql, useStaticQuery } from "gatsby"
 import LocaleContext from "../localeContext"
 
 function useTranslations() {
@@ -110,12 +110,61 @@ const query = graphql`
               paragraph
               news_button
               useInf_button
+              usefulInformation{
+                data{
+                  id
+                  title
+                  url
+                  status
+                  order
+                  first_heading
+                  href
+                  links{
+                    id
+                    label
+                    link
+                  }
+                }
+              }
+              documents{
+                links{
+                  id
+                  label
+                }
+              }
+              dataUseInfo{
+                status
+                data{
+                  id
+                  title
+                  url
+                  status
+                  order
+                  first_heading
+                  href
+                  links{
+                    id
+                    label
+                    link
+                  }
+                }
+              }
               doc_button
               share 
             }
             career {
               title
               paragraph
+            }
+            news{
+              title
+              search
+              date
+              latestNews
+              popular
+              noResult
+              text
+              share
             }
             careerForm {
               textare_label
@@ -127,6 +176,9 @@ const query = graphql`
             contact {
               title
               paragraph
+              contact_address
+              tel
+              follow_us
               form_content {
                 name_label_first
                 name_label_second
@@ -135,6 +187,8 @@ const query = graphql`
                 title_label
                 textare_label
                 send_button
+                message
+                description
               }
               address
               share
@@ -176,6 +230,7 @@ const query = graphql`
                   by_table
                   start
                   end
+                  year
                   working_days
                   working_schedule
                   five_days
@@ -211,6 +266,9 @@ const query = graphql`
                   working_schedule
                   five_days
                   six_days
+                  year
+                  message
+                  description
                 }
                 table {
                   name
@@ -262,6 +320,9 @@ const query = graphql`
                 five_days
                 six_days
                 calculate
+                form{
+                  year
+                }
                 result {
                   title
                   gross_vacation_amount
@@ -298,6 +359,7 @@ const query = graphql`
                   yes
                   no
                   calculate   
+                  year
                 }
                 table {
                   hint
@@ -338,6 +400,7 @@ const query = graphql`
                 bonus
                 surcharge
                 calculate
+                year
                 result {
                   title
                   income_tax_back
@@ -356,16 +419,22 @@ const query = graphql`
                   start
                   end
                   days
+                  year
                   hired
                   self
                   tax
                   tax_common
+                  tax_common_for_self_employed
+                  tax_turnover_for_self_employed
                   tax_it
                   tax_enterprise
                   schedule
                   five_days
                   six_days
                   amount
+                  amount_self_common
+                  amount_self_turnover
+                  amount_self_enterprise
                   income
                   static
                 }
@@ -426,8 +495,12 @@ const query = graphql`
               }
               car_tax {
                 title
+                paragraph
                 calculate
                 form {
+                type
+                car
+                realEstate
                   vehicle {
                     title
                     car
@@ -435,6 +508,22 @@ const query = graphql`
                     truck
                     motorcycle
                     water_vehicle
+                  }
+                  estate {
+                    title
+                    cadastralValue
+                    residential
+                    public_production
+                    garage
+                    agricultural
+                    forConstructionResidental
+                    forConstructionPublic
+                    industry
+                    energetic
+                    otherLands
+                    privateHouse
+                    public
+                    production
                   }
                   year
                   power
@@ -444,6 +533,78 @@ const query = graphql`
                 result {
                   title
                   tax
+                }
+              }
+              calendar{
+                title
+                paragraph
+                calculate
+                chooseDaysRange
+                working_schedule
+                year
+                form{
+                  start
+                  end
+                }
+                calendar {
+                  months {
+                    january
+                    february
+                    march
+                    april
+                    may
+                    june
+                    july
+                    august
+                    september
+                    october
+                    november
+                    december
+                  }
+                  daysOfWeek {
+                    monday
+                    tuesday
+                    wednesday
+                    thursday
+                    friday
+                    saturday
+                    sunday
+                  }
+                  additionalInformation {
+                    calendarDays
+                    workDays
+                    workHours
+                    five_days
+                    six_days
+                  }
+                }
+                result {
+                  title
+                  calendarDays
+                  workDays
+                  workHours
+                  nonWorkingDays
+                }
+              }
+              currency {
+                title
+                paragraph
+                calculate
+                currency {
+                  amd
+                  usd
+                  rub
+                  eur
+                  cny
+                  gbp
+                  gel
+                  irr
+                }
+                form {
+                  date
+                }
+                result {
+                  currency
                 }
               }
               share

@@ -1,17 +1,16 @@
 import React from "react"
-import SEO from "../../../components/seo"
 import {
-  ImagePart,
   BigImage,
-  TripleIcon,
-  SliderAboutUs,
-  TextWrapper,
+  ImagePart,
+  InformationSection,
   PElement,
+  SliderAboutUs,
+  SliderText,
   TextComponent,
   TextOrder,
-  InformationSection,
+  TextWrapper,
+  TripleIcon,
   TripleIconWrapper,
-  SliderText,
 } from "./homeAboutUsStyle"
 import PhoneImg from "../../../assets/homeImages/phone.png"
 import Icon from "../../../assets/homeImages/tripleIcon.png"
@@ -24,7 +23,7 @@ const HomeAboutUs = ({ pageContext }) => {
     dotsClass: "slick-dots slick-thumb",
     infinite: true,
     arrows: true,
-    autoplay: false,
+    autoplay: true,
     autoplaySpeed: 5000,
     slidesToShow: 1,
     rows: 3,
@@ -60,7 +59,7 @@ const HomeAboutUs = ({ pageContext }) => {
         </TripleIconWrapper>
         <SliderAboutUs {...settings}>
           {slides.slide.map((slide, index) => (
-            <TextComponent key={index}>
+            <TextComponent key={`about_${index}`}>
               <TextOrder>{slide.order}</TextOrder>
               <SliderText>{slide.context}</SliderText>
             </TextComponent>

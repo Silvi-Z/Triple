@@ -244,9 +244,6 @@ const NonWorkingCalculator = ({ toggleForm, showForm }) => {
     // validationSchema: validationSchema1,
     // validateOnMount: true,
     onSubmit: async values => {
-      console.log('Values', values);
-      console.log(moment(values.date_from).format('YYYY-MM-DD'));
-      console.log(moment(values.date_to).format('YYYY-MM-DD'));
       let bodyFormData = new FormData();
       bodyFormData.append('benefit_type', values.benefit_type);
       bodyFormData.append('employment', values.employment);

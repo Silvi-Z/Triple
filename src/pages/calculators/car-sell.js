@@ -8,7 +8,7 @@ const carSell = ({ pageContext }) => {
 
   return (
     <CalculatorWrapper ctx={pageContext}>
-      <CarSellCalculator lang={calculator.car_sell} />
+      <CarSellCalculator lang={calculator.car_sell} locale={pageContext.locale}/>
     </CalculatorWrapper>
   )
 };

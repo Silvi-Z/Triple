@@ -12,6 +12,7 @@ export const ContainerUseful = styled.div`
 `
 export const ContainerNews = styled.div`
   width: 100%;
+  min-width: 100%;
   background: #FFFFFF;
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.05);
   border-radius: 10px;

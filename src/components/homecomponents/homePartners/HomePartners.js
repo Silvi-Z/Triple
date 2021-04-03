@@ -1,17 +1,64 @@
-import React from "react"
-import contentData from "./contentData"
+import React, { useEffect, useState } from "react"
 import {
-  NavLink,
-  PStyled,
   H2Styled,
   IconWrapper,
-  SeemoreWrapper,
-  ResponsWrapper,
+  NavLink,
   PartnerspHeadingColumn,
+  PStyled,
+  ResponsWrapper,
+  SeemoreWrapper,
 } from "./homePartStyle.js"
-import { ContentContainer, Div, InfoAboutPartners, ServiceNameWrapper } from "../homeServices/homeServiceStyle"
+import {
+  ContentContainer,
+  Div,
+  InfoAboutPartners,
+  PartnersContainer,
+  ServiceNameWrapper,
+} from "../homeServices/homeServiceStyle"
+import triple from "../../../api/triple"
+import apiUrl from "../../../api/api.json"
 
 const Homepartners = ({ langText, lang }) => {
+  const [partners, setPartners] = useState([])
+  const settings = {
+    // infinite: true,
+    // arrows: false,
+    // pauseOnFocus: true,
+    // // pauseOnHover: true,
+    // // autoplay: true,
+    // // autoplaySpeed: 0,
+    // slidesToScroll: 0.4,
+    // autoplay: true,
+    // autoplaySpeed: 0,
+    // swipe:true,
+    // speed: 5000,
+    // // speed: 7000,
+    // cssEase: 'linear',
+    autoplay: true,
+    infinite: true,
+    swipe: true,
+    pauseOnFocus: true,
+    slidesToShow:2,
+    pauseOnHover: false,
+    pauseOnDotsHover: false,
+    arrows: false,
+    autoplaySpeed: 0,
+    speed: 7000,
+    cssEase: 'linear',
+    responsive: [
+      {
+        breakpoint: 768,
+        settings: {
+        },
+      }],
+  }
+  useEffect(() => {
+    triple.get("/api/partner")
+      .then(res => {
+        setPartners(res.data.data)
+      })
+      .catch(err => console.log(err))
+  }, [])
   return (
     <>
       <PartnerspHeadingColumn>
@@ -20,19 +67,19 @@ const Homepartners = ({ langText, lang }) => {
           {langText.sub_title}
         </PStyled>
       </PartnerspHeadingColumn>
-      <ResponsWrapper>
-        {contentData.map(item => (
-          <ContentContainer key={item.name}>
-            <Div>
+      <ResponsWrapper {...settings}>
+        {partners.map((item, index) => (
+          <PartnersContainer key={`partner_${index}`}>
+            <Div href={item.url} target='_blank'>
               <ServiceNameWrapper>
-                <IconWrapper src={item.src} alt={"icon"}/>
+                <IconWrapper src={apiUrl.apiUrl + item.image} alt={"icon"} />
               </ServiceNameWrapper>
               <InfoAboutPartners>
-                {item.name}
-                <p>{item.sphere}</p>
+                {item[`name_${lang}`]}
+                <p>{item[`sphere_${lang}`]}</p>
               </InfoAboutPartners>
             </Div>
-          </ContentContainer>
+          </PartnersContainer>
         ))}
       </ResponsWrapper>
       <NavLink to={`/${lang}/contact`}>

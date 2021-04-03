@@ -1,5 +1,6 @@
 import styled from "styled-components"
 import { Typography, Row, Col } from "antd"
+import Slider from "react-slick"
 import { Link } from "gatsby"
 
 export const NavLink = styled(Link)`
@@ -59,57 +60,22 @@ export const SeemoreWrapper = styled.button`
   margin-top:42px;
   letter-spacing: 1.15px;
 `
-export const Seemoreimg = styled.img`
-  width: 22px;
-  height: 17px;
-  margin-left: 20px;
-  @media only screen and (max-width: 768px) {
-    margin-left: 0px;
-    margin-top: 8%;
-  }
-  @media (max-width: 380px) {
-    margin-bottom: 0px;
-    margin-top: 23px;
-  }
-`
+
 export const IconWrapper = styled.img`
-    margin-bottom:0
+    margin-bottom:0;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
 `
 
-export const ResponsWrapper = styled.div`
+export const ResponsWrapper = typeof window!="undefined" && window.innerWidth >= 768? styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;justify-content:end;
-`
-export const IconWrapperCol = styled(Col)`
-  width: 250px;
-  height: 180px;
-  border-bottom: 1px solid;
-  border-right: 1px solid;
-  border-color: #d7d7d7;
-  background-color: #ffffff;
-  text-align: center;
-`
-export const IconWrapperColLast = styled(Col)`
-  width: 250px;
-  height: 180px;
-  border-bottom: 1px solid;
-  border-color: #d7d7d7;
-  background-color: #ffffff;
-  text-align: center;
-`
-export const IconWrapperSecondLastCol = styled(Col)`
-  width: 250px;
-  height: 180px;
-  border-color: #d7d7d7;
-  background-color: #ffffff;
-  text-align: center;
-`
-export const IconWrapperSecondCol = styled(Col)`
-  width: 250px;
-  height: 180px;
-  border-right: 1px solid;
-  border-color: #d7d7d7;
-  background-color: #ffffff;
-  text-align: center;
+`: styled(Slider)`
+  display: flex;
+  & .slick-slide{ 
+    // width: fit-content !important;
+    margin: 0 10px;
+  }
 `

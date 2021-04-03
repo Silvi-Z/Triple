@@ -1,30 +1,35 @@
 import React from "react"
 import triple from "../../api/triple"
-import { cloneDeep, isNull, isEqual } from "lodash"
+import { cloneDeep, isEqual, isNull } from "lodash"
+import moment from "moment"
 import MortgageTable from "./calcComponents/MortgageTable"
 import CalculatorCardResult from "./calcComponents/CalculatorCardResult"
-import { Row, Col, Card, Form, Radio, Checkbox } from "antd"
+import { Checkbox, Col, Form, Radio, Row, Select } from "antd"
 import { SALARY_TYPE_NET, SALARY_TYPE_REGISTERED } from "./utilities/mortgage"
 import {
   ButtonSubmit,
+  CalculatorInput,
+  CalculatorsCard, CalculatorsCardWrapper,
+  CalculatorSelect,
   FormLabel,
   Label,
-  RadioLabel,
-  CalculatorInput,
+  RadioLabel, RowWrapper,
   UnderLine,
-  H1Styled,
-  TextStyled,
-  CalculatorsCard,
 } from "./styled"
 import {
+  MORTGAGE_MAX_LIMIT,
+  PENSION_FIELD_NO,
+  PENSION_FIELD_YES,
+  PENSION_FIELD_YES_VOLUNTEER,
   SALARY_MIN,
-  TAX_FIELD_COMMON, TAX_FIELD_ENTERPRISE, TAX_FIELD_IT,
-  PENSION_FIELD_NO, PENSION_FIELD_YES, PENSION_FIELD_YES_VOLUNTEER, schema,
+  schema,
+  TAX_FIELD_COMMON,
+  TAX_FIELD_ENTERPRISE,
+  TAX_FIELD_IT,
 } from "./utilities/salary"
 
 const radioStyle = {
   display: "block",
-  height: "30px",
   lineHeight: "30px",
 }
 
@@ -34,40 +39,52 @@ const form = {
   static_salary: true,
   salary_type: SALARY_TYPE_REGISTERED,
   tax_field: TAX_FIELD_COMMON,
-  pension: PENSION_FIELD_YES
+  pension: PENSION_FIELD_YES,
+  year: moment().year(),
 }
 
+const availableYears = [2019, 2020, 2021]
+
 class MortgageCalculator extends React.Component {
+  top = React.createRef()
+
+  row = React.createRef()
+
   constructor(props) {
     super(props)
 
     this.state = {
       form: { ...form },
       items: [
-        {month: 0, salary: null, surcharge: null, bonus: null},
-        {month: 1, salary: null, surcharge: null, bonus: null},
-        {month: 2, salary: null, surcharge: null, bonus: null}
+        { month: 0, salary: null, surcharge: null, bonus: null },
+        { month: 1, salary: null, surcharge: null, bonus: null },
+        { month: 2, salary: null, surcharge: null, bonus: null },
       ],
+      check: false,
+      width: typeof window !="undefined" && window.innerWidth <=768,
       calculated: false,
       loading: false,
-      tax: null
+      tax: null,
     }
   }
 
   get backIncomeTax() {
-    const { amount, interest_amount, static_salary, tax_field } = this.state.form
+    const { amount, interest_amount, static_salary, tax_field, year } = this.state.form
 
     if (!interest_amount)
-      return null;
+      return null
 
     let percent, quarterTax
 
     switch (tax_field) {
-      case TAX_FIELD_COMMON: percent = 0.23
+      case TAX_FIELD_COMMON:
+        percent = year >= 2021 ? 0.22 : 0.23
         break
-      case TAX_FIELD_IT: percent = 0.1
+      case TAX_FIELD_IT:
+        percent = 0.1
         break
-      default: percent = null
+      default:
+        percent = null
     }
 
     if (!isNull(percent)) {
@@ -77,16 +94,22 @@ class MortgageCalculator extends React.Component {
         quarterTax = this.quarterTotalTax(percent)
       }
     } else {
-      quarterTax = 5000 * 3;
+      quarterTax = 5000 * 3
     }
 
-    return quarterTax > interest_amount ? interest_amount : Math.round(quarterTax);
+    let finalAmount = quarterTax > interest_amount ? interest_amount : Math.round(quarterTax)
+
+    if (finalAmount > MORTGAGE_MAX_LIMIT) {
+      finalAmount = MORTGAGE_MAX_LIMIT
+    }
+
+    return finalAmount
   }
 
   quarterTotalTax(percent) {
     const { items } = this.state
 
-    const tax = items.reduce((t ,item) => t + (((item.salary || 0) + (item.bonus || 0) + (item.surcharge || 0)) * percent), 0)
+    const tax = items.reduce((t, item) => t + (((item.salary || 0) + (item.bonus || 0) + (item.surcharge || 0)) * percent), 0)
 
     return Math.round(tax)
   }
@@ -96,38 +119,47 @@ class MortgageCalculator extends React.Component {
   }
 
   setLoading(loading) {
-    this.setState({loading})
+    this.setState({ loading })
   }
 
   setItemField = ({ name, value, i }) => {
     let items = cloneDeep(this.state.items)
-      items[i][name] = value
+    items[i][name] = value
 
     this.setState({ items })
   }
 
   handleSubmit = async () => {
-    const { salary_type, tax_field, pension, static_salary, amount, interest_amount } = this.state.form;
-    let { items } = this.state;
+    const { salary_type, tax_field, pension, static_salary, amount, interest_amount, year } = this.state.form
+    let { items , check, width } = this.state
 
     const a = static_salary
       ? amount
-      : items.reduce((t ,item) => t + Math.round(( (item.salary || 0) + (item.bonus || 0) + (item.surcharge || 0) )), 0)
+      : items.reduce((t, item) => t + Math.round(((item.salary || 0) + (item.bonus || 0) + (item.surcharge || 0))), 0)
 
     if (salary_type === SALARY_TYPE_NET) {
-      const data = {
+      let data = {
         from: salary_type,
         amount: a,
         tax_field,
-        pension
+        pension,
+        year,
       }
-      const valid = await schema.isValid(data)
+      const valid = await schema.isValid(data).finally(() => {
+        if(check && width){
+          this.top.current.scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" })
+        }
+        this.setState((prevState) => ({
+          ...prevState,
+          check: false,
+        }))
+      })
 
       if (valid) {
-        this.setLoading(true)
+        // this.setLoading(true)
 
         try {
-          const res = await triple.post("/api/counter/salary", data);
+          const res = await triple.post("/api/counter/salary", data)
           let { income_tax } = res.data
 
           if (static_salary || tax_field === TAX_FIELD_ENTERPRISE) {
@@ -135,30 +167,51 @@ class MortgageCalculator extends React.Component {
           }
 
           let tax = income_tax > interest_amount ? interest_amount : income_tax
-            tax = Math.round(tax)
+          tax = Math.round(tax)
+
+          if (tax > MORTGAGE_MAX_LIMIT) {
+            tax = MORTGAGE_MAX_LIMIT
+          }
 
           this.setState({ tax }, () => {
             if (!this.state.calculated) {
-              this.setState({calculated: true})
+              this.setState({ calculated: true })
             }
           })
         } catch (e) {
           console.log(e)
         } finally {
-          this.setLoading(false)
-
-          document.body.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"})
+          if (check && width) {
+            this.setLoading(false)
+            this.top.current.scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" })
+            this.setState((prevState) => ({
+              ...prevState,
+              check: false,
+            }))
+          }
         }
       }
     } else {
-      this.setState({tax: this.backIncomeTax}, () => {
+      this.setState({ tax: this.backIncomeTax }, () => {
         if (!this.state.calculated) {
-          this.setState({calculated: true})
+          this.setState({ calculated: true })
         }
-
-        document.body.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"})
+        if (check && width){
+          this.top.current.scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" })
+          this.setState((prevState) => ({
+            ...prevState,
+            check: false,
+          }))
+        }
       })
     }
+  }
+
+  checkValue() {
+    this.setState((prevState) => ({
+      ...prevState,
+      check: true,
+    }))
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
@@ -167,21 +220,30 @@ class MortgageCalculator extends React.Component {
     }
   }
 
+
   render() {
     const { form, items, tax, loading } = this.state
     const { lang } = this.props
 
     return (
-      <Row align="start" gutter={20}>
-        <Col xs={24} sm={24} md={24} lg={16} xl={16} xxl={16}>
-          <Row align="center" style={{ justifyContent: "space-between" }}>
-            <div className="textSec">
-              <H1Styled>{lang.title}</H1Styled>
-              <TextStyled>{lang.paragraph}</TextStyled>
-            </div>
-          </Row>
-
+      <Row className="fixElement rowWrapper" align="start" gutter={20} ref={this.row}>
+        <CalculatorsCardWrapper span={24} xl={16}>
           <CalculatorsCard bordered={false}>
+            <Form.Item style={{ display: "flex" }}>
+              <CalculatorSelect
+                size="large"
+                value={form.year}
+                className={"yearSelect"}
+                style={{ maxWidth: "424px", width: "90px" }}
+                onChange={value => this.setField("year", value)}
+              >
+                {availableYears.map(year =>
+                  <Select.Option value={year} key={`vehicle-${year}`}>
+                    {year}
+                  </Select.Option>,
+                )}
+              </CalculatorSelect>
+            </Form.Item>
             <Form
               onFinish={this.handleSubmit}
               initialValues={form}
@@ -189,7 +251,8 @@ class MortgageCalculator extends React.Component {
               layout="horizontal"
               size="large"
             >
-              <Form.Item label={<Label style={{ fontSize: "16px" }}>{lang["salary_type_label"]}</Label>} labelCol={{ span: 24 }}>
+              <Form.Item label={<Label style={{ fontSize: "16px" }}>{lang["salary_type_label"]}</Label>}
+                         labelCol={{ span: 24 }}>
                 <Radio.Group
                   onChange={e => this.setField("salary_type", e.target.value)}
                   value={form.salary_type}
@@ -202,6 +265,7 @@ class MortgageCalculator extends React.Component {
                   </Radio>
                 </Radio.Group>
               </Form.Item>
+
 
               <Form.Item>
                 <Checkbox
@@ -221,20 +285,20 @@ class MortgageCalculator extends React.Component {
                 : null}
 
               {form.static_salary ?
-                <Form.Item label={<Label>{lang["salary_label"]}</Label>} name="amount">
+                <RowWrapper label={<Label>{lang["salary_label"]}</Label>} name="amount">
                   <CalculatorInput
-                    formatter={v => `${v}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
-                    parser={v => v.replace(/\$\s?|(,*)/g, '')}
+                    formatter={v => `${v}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                    parser={v => v.replace(/\$\s?|(,*)/g, "")}
                     onChange={v => this.setField("amount", v)}
                     value={form.amount}
                     min={SALARY_MIN}
                     name="amount"
                     size="large"
                   />
-                </Form.Item>
-              : null}
+                </RowWrapper>
+                : null}
 
-              <Form.Item label={<Label>{lang["interest_amount_label"]}</Label>} name="interest_amount">
+              <RowWrapper label={<Label>{lang["interest_amount_label"]}</Label>} name="interest_amount">
                 <CalculatorInput
                   onChange={v => this.setField("interest_amount", v)}
                   value={form.interest_amount}
@@ -242,20 +306,21 @@ class MortgageCalculator extends React.Component {
                   type="number"
                   size="large"
                 />
-              </Form.Item>
+              </RowWrapper>
 
-              <Form.Item label={<Label style={{ fontSize: "16px" }}>{lang["tax_label"]}</Label>} labelCol={{ span: 24 }} name="tax_field">
+              <Form.Item label={<Label style={{ fontSize: "16px" }}>{lang["tax_label"]}</Label>} labelCol={{ span: 24 }}
+                         name="tax_field">
                 <Radio.Group
                   onChange={e => this.setField("tax_field", e.target.value)}
                   value={form.tax_field}
                 >
-                  <Radio style={radioStyle} value={TAX_FIELD_COMMON}>
+                  <Radio className="inlineElements" style={radioStyle} value={TAX_FIELD_COMMON}>
                     <RadioLabel>{lang["tax_label_common"]}</RadioLabel>
                   </Radio>
-                  <Radio style={radioStyle} value={TAX_FIELD_IT}>
+                  <Radio className="inlineElements" style={radioStyle} value={TAX_FIELD_IT}>
                     <RadioLabel>{lang["tax_label_it"]}</RadioLabel>
                   </Radio>
-                  <Radio style={radioStyle} value={TAX_FIELD_ENTERPRISE}>
+                  <Radio className="inlineElements" style={radioStyle} value={TAX_FIELD_ENTERPRISE}>
                     <RadioLabel>{lang["tax_label_enterprise"]}</RadioLabel>
                   </Radio>
                 </Radio.Group>
@@ -274,42 +339,45 @@ class MortgageCalculator extends React.Component {
                     <Radio value={PENSION_FIELD_YES}>
                       <Label>{lang["yes"]}</Label>
                     </Radio>
-                    <Radio value={PENSION_FIELD_YES_VOLUNTEER}>
-                      <Label>{lang["yes_volunteer"]}</Label>
+                    <Radio className="inlineElements" value={PENSION_FIELD_YES_VOLUNTEER}>
+                      <Label>{lang["yes"]}{lang["yes_volunteer"]}</Label>
                     </Radio>
                     <Radio value={PENSION_FIELD_NO}>
                       <Label>{lang["no"]}</Label>
                     </Radio>
                   </Radio.Group>
                 </Form.Item>
-              : null}
+                : null}
 
-              <Form.Item style={{marginTop: '50px'}}>
+              <Form.Item style={{ marginTop: "20px" }}>
                 <ButtonSubmit
                   loading={loading}
                   disabled={loading}
                   htmlType="submit"
                   shape="round"
                   size="large"
+                  onClick={()=>this.checkValue()}
                 >
                   {lang["calculate"]}
                 </ButtonSubmit>
               </Form.Item>
             </Form>
           </CalculatorsCard>
-        </Col>
+        </CalculatorsCardWrapper>
 
-        <Col xs={24} sm={24} md={24} lg={8} xl={8} xxl={8} className="result">
-          <FormLabel style={{margin: 0}}>{lang.result.title}</FormLabel>
+        <Col span={20}  xl={8} sm={10} className="result" ref={this.top}>
+          <div className="mortgageResult">
+            <FormLabel style={{ margin: 0 }}>{lang.result.title}</FormLabel>
 
-          <UnderLine/>
+            <UnderLine />
 
-          <CalculatorCardResult
-            tooltip={form.tax_field === TAX_FIELD_ENTERPRISE ? 'prompt text': null}
-            title={lang.result["income_tax_back"]}
-            loading={loading}
-            text={tax}
-          />
+            <CalculatorCardResult
+              tooltip={form.tax_field === TAX_FIELD_ENTERPRISE ? "prompt text" : null}
+              title={lang.result["income_tax_back"]}
+              loading={loading}
+              text={tax}
+            />
+          </div>
         </Col>
       </Row>
     )

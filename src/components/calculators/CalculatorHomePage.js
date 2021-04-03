@@ -4,28 +4,30 @@ import {
   CalcImagesWrapper ,
   IconWrapper
 } from "./styled"
-import { ResponsWrapper } from "../homecomponents/homePartners/homePartStyle"
 import {
-  ContentContainer,
+  ResponsWrapper,
+  CalculatorContainer,
   ContainerRow,
   ContentLink,
   PElement
 } from "../homecomponents/homeServices/homeServiceStyle"
+import useTranslations from "../useTranslations"
 
 const CalculatorHomePage = ({ pageContext }) => {
+  const { calculator } = useTranslations();
   return(
     <>
     <ResponsWrapper>
       <ContainerRow>
         {contentData.map(item => (
-          <ContentContainer key={item.src}>
+          <CalculatorContainer key={item.src}>
             <ContentLink to={`/${pageContext}${item.link}`}>
               <CalcImagesWrapper>
                 <IconWrapper src={item.src} alt={"icon"}/>
-                <PElement>{item.title[0][pageContext]}</PElement>
+                <PElement>{item.title[0][`${pageContext}`]}</PElement>
               </CalcImagesWrapper>
             </ContentLink>
-          </ContentContainer>
+          </CalculatorContainer>
         ))}
 
         </ContainerRow>

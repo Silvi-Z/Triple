@@ -319,12 +319,12 @@ const Information = ({ pageContext }) => {
       {openUseful ? (
         <InformSectionRow>
           <LeftSection>
-            {leftdataUseInfo.map((d, id) =>(
+            {information.usefulInformation.map((d, id) =>(
             <LeftSectionUseInform usedata={d} key={id}/>
           ))}
           </LeftSection>
           <RightSection>
-            {dataUseInfo.map((d, id) => (
+            {information.dataUseInfo.map((d, id) => (
             <RightSectionUseInform usedata={d} key={id} />
           ))}
           </RightSection>
@@ -332,7 +332,7 @@ const Information = ({ pageContext }) => {
         </InformSectionRow>
       ) : openDocTemp ? (
         <InformSectionRow>
-          {dataDoctempInfo.map((d, id) => (
+          {information.documents.map((d, id) => (
             <InformDocTemplate usedata={d} key={id} />
           ))}
         </InformSectionRow>

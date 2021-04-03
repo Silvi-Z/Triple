@@ -3,7 +3,7 @@ import ReactDOM from "react-dom"
 import moment from "moment"
 import triple from "../../api/triple"
 import { isEmpty, isEqual, isNull, pick } from "lodash"
-import { Checkbox, Col, Form, Radio, Row } from "antd"
+import { Checkbox, Col, Form, Radio, Row, Select } from "antd"
 import GrossSalaryTable from "./calcComponents/GrossSalaryTable"
 import CalculatorCardResult from "./calcComponents/CalculatorCardResult"
 import { isHoliday, isWeekend, workingDaysInRange } from "./utilities/vacation"
@@ -12,11 +12,11 @@ import {
   CalculatorDatePicker,
   CalculatorInput,
   CalculatorsCard,
+  CalculatorsCardWrapper,
+  CalculatorSelect,
   FormLabel,
-  H1Styled,
   Label,
-  RadioLabel,
-  TextStyled,
+  RadioLabel, RowWrapper,
   UnderLine,
 } from "./styled"
 import {
@@ -29,6 +29,7 @@ import {
   TAX_FIELD_ENTERPRISE,
   TAX_FIELD_IT,
 } from "./utilities/salary"
+import { randomString } from "./utilities/tabel"
 
 moment.locale("en", {
   week: {
@@ -38,7 +39,6 @@ moment.locale("en", {
 
 const radioStyle = {
   display: "block",
-  height: "30px",
   lineHeight: "30px",
 }
 const initialValues = {
@@ -51,6 +51,7 @@ const initialValues = {
   pension: PENSION_FIELD_YES,
   static_salary: true,
   tax_field: TAX_FIELD_COMMON,
+  year: moment().year(),
 }
 
 class VacationCalculator extends React.Component {
@@ -59,6 +60,8 @@ class VacationCalculator extends React.Component {
   dateToPicker = React.createRef()
 
   row = React.createRef()
+
+  rowWidth = React.createRef()
 
   col = React.createRef()
 
@@ -75,23 +78,16 @@ class VacationCalculator extends React.Component {
         salary: 0,
         vacation_salary: 0,
       },
+      randomKey: randomString(),
       monthAvgSalary: 0,
       calculated: false,
+      valid: false,
+      check: false,
+      width: typeof window !="undefined" && window.innerWidth <=768
     }
     this.holidays = []
     this.workdays = []
-  }
-
-  get rowElement() {
-    return ReactDOM.findDOMNode(/**@type Element*/this.row.current)
-  }
-
-  get rowElementOffsetTop() {
-    return this.rowElement.getBoundingClientRect().top
-  }
-
-  get colElement() {
-    return ReactDOM.findDOMNode(/**@type Element*/this.col.current)
+    this.availableYears = [2019, 2020, 2021]
   }
 
   get dateFromInput() {
@@ -205,8 +201,16 @@ class VacationCalculator extends React.Component {
         holidays: this.holidays,
         workdays: this.workdays,
         schedule: working_schedule,
-      }).length)
+      }).length, this.changeYear)
+    } else {
+      this.changeYear()
     }
+  }
+
+  changeYear() {
+    const { date_from } = this.state.form
+    date_from && this.setField("year", moment(date_from).year())
+    this.onBlur()
   }
 
   fetchDays() {
@@ -220,8 +224,8 @@ class VacationCalculator extends React.Component {
 
   autoCalculate(prevState) {
     if (
-      (!isEqual(prevState.form, this.state.form) && this.state.calculated) ||
-      (!isEqual(prevState.monthAvgSalary, this.state.monthAvgSalary) && this.state.calculated)
+      (!isEqual(prevState.form, this.state.form) && this.state.calculated && this.state.valid) ||
+      (!isEqual(prevState.monthAvgSalary, this.state.monthAvgSalary) && this.state.calculated && this.state.valid)
     ) this.handleSubmit()
   }
 
@@ -232,23 +236,34 @@ class VacationCalculator extends React.Component {
   }
 
   setField(name, value, cb) {
-    this.setState({ form: { ...this.state.form, [name]: value } }, cb)
+    this.setState((prevState) => ({
+      ...prevState,
+      randomKey: randomString(),
+      form: {
+        ...prevState.form,
+        [name]: value,
+      },
+    }), cb)
+  }
+
+  setFields(fields, cb) {
+    this.setState({ form: { ...this.state.form, ...fields } }, cb)
+  }
+
+  changeRange = () => {
+    const { date_from, date_to, year } = this.state.form
+
+    const diff = date_from ? moment(date_from).year() - year : moment(date_to).year() - year
+
+    this.setFields({
+      date_from: date_from ? moment(date_from).subtract(diff, "years").format("YYYY-MM-DD") : null,
+      date_to: date_to ? moment(date_to).subtract(diff, "years").format("YYYY-MM-DD") : null,
+    }, this.onBlur)
   }
 
   calcVacationAmount = monthAvgSalary => this.setState({ monthAvgSalary })
 
   setFromDate = date => this.setDateField("date_from", date)
-
-  handleWindowScroll = () => {
-    if (
-      (window.scrollY + this.colElement.offsetHeight + this.rowElementOffsetTop) >=
-      (this.rowElementOffsetTop + this.rowElement.offsetHeight)
-    ) {
-      this.colElement.classList.add("abs")
-    } else {
-      this.colElement.classList.remove("abs")
-    }
-  }
 
   handlePickerInput = e => {
     const { value, name } = e.target
@@ -272,6 +287,7 @@ class VacationCalculator extends React.Component {
    */
   handlePickerRender = (date, today, range) => {
     const { form } = this.state
+    const { locale } = this.props
 
     const condition = range === "start"
       ? form.date_to && (date.isSameOrAfter(form.date_to, "day"))
@@ -284,6 +300,34 @@ class VacationCalculator extends React.Component {
           : "ant-picker-cell-inner"
       }>
         {date.format("D")}
+        {locale === "arm" && this.workdays.length > 0
+        && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD"))
+        && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title &&
+        <span className={"day_title"}>
+                  {this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title}
+                </span>
+        }
+        {locale !== "arm" && this.workdays.length > 0
+        && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD"))
+        && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title_en &&
+        <span className={"day_title"}>
+                  {this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title_en}
+                </span>
+        }
+        {locale === "arm" && this.holidays.length > 0
+        && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD"))
+        && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title &&
+        <span className={"day_title"}>
+                  {this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title}
+                </span>
+        }
+        {locale !== "arm" && this.holidays.length > 0
+        && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD"))
+        && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title_en &&
+        <span className={"day_title"}>
+                  {this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title_en}
+                </span>
+        }
       </div>
     } else if (isHoliday(date, this.holidays)) {
       return <div className={
@@ -292,6 +336,34 @@ class VacationCalculator extends React.Component {
           : "ant-picker-cell-inner"
       }>
         {date.format("D")}
+        {locale === "arm" && this.workdays.length > 0
+        && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD"))
+        && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title &&
+        <span className={"day_title"}>
+                  {this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title}
+                </span>
+        }
+        {locale !== "arm" && this.workdays.length > 0
+        && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD"))
+        && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title_en &&
+        <span className={"day_title"}>
+                  {this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title_en}
+                </span>
+        }
+        {locale === "arm" && this.holidays.length > 0
+        && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD"))
+        && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title &&
+        <span className={"day_title"}>
+                  {this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title}
+                </span>
+        }
+        {locale !== "arm" && this.holidays.length > 0
+        && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD"))
+        && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title_en &&
+        <span className={"day_title"}>
+                  {this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title_en}
+                </span>
+        }
       </div>
     } else if (isWeekend(date, form.working_schedule)) {
       return <div className={
@@ -300,15 +372,73 @@ class VacationCalculator extends React.Component {
           : "ant-picker-cell-inner"
       }>
         {date.format("D")}
+        {locale === "arm" && this.workdays.length > 0
+        && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD"))
+        && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title &&
+        <span className={"day_title"}>
+                  {this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title}
+                </span>
+        }
+        {locale !== "arm" && this.workdays.length > 0
+        && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD"))
+        && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title_en &&
+        <span className={"day_title"}>
+                  {this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title_en}
+                </span>
+        }
+        {locale === "arm" && this.holidays.length > 0
+        && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD"))
+        && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title &&
+        <span className={"day_title"}>
+                  {this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title}
+                </span>
+        }
+        {locale !== "arm" && this.holidays.length > 0
+        && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD"))
+        && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title_en &&
+        <span className={"day_title"}>
+                  {this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title_en}
+                </span>
+        }
       </div>
     } else {
-      return <div className="ant-picker-cell-inner">{date.format("D")}</div>
+      return <div className="ant-picker-cell-inner">
+        {date.format("D")}
+        {locale === "arm" && this.workdays.length > 0
+        && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD"))
+        && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title &&
+        <span className={"day_title"}>
+                  {this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title}
+                </span>
+        }
+        {locale !== "arm" && this.workdays.length > 0
+        && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD"))
+        && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title_en &&
+        <span className={"day_title"}>
+                  {this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title_en}
+                </span>
+        }
+        {locale === "arm" && this.holidays.length > 0
+        && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD"))
+        && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title &&
+        <span className={"day_title"}>
+                  {this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title}
+                </span>
+        }
+        {locale !== "arm" && this.holidays.length > 0
+        && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD"))
+        && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title_en &&
+        <span className={"day_title"}>
+                  {this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title_en}
+                </span>
+        }
+      </div>
     }
   }
 
   handleSubmit = () => {
-    const { form } = this.state
-    const data = { ...pick(form, Object.keys(schema.fields)), amount: this.vacationSalary }
+    const { form, check, width } = this.state
+    let data = { ...pick(form, Object.keys(schema.fields)), amount: this.vacationSalary }
 
     schema.isValid(data).then(valid => {
       if (!valid) return
@@ -319,46 +449,116 @@ class VacationCalculator extends React.Component {
             stamp: false,
           },
         })
-        .then(res => this.setState({ result: { ...res.data, vacation_salary: this.vacationSalary } }))
+        .then(res => this.setState({ result: { ...res.data, vacation_salary: this.vacationSalary }, valid: false }))
         .then(() => {
-          if (!this.state.calculated) this.setState({ calculated: true })
+          if (!this.state.calculated) this.setState({ calculated: true, valid: false })
         })
         .catch(err => console.log(err))
-        .finally(() => document.body.scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" }))
+        .finally(() => {
+          if (check && width){
+            this.col.current.scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" })
+          }
+          this.setState((prevState) => ({
+            ...prevState,
+            check: false,
+          }))
+        })
     })
+  }
+  checkValue() {
+    this.setState((prevState) => ({
+      ...prevState,
+      check: true,
+    }))
+  }
+
+  get defaultDate() {
+    const { year } = this.state.form
+
+    return moment({ year })
+  }
+
+  get defaultToDate() {
+    const { date_from, year } = this.state.form
+
+    return date_from ? moment(date_from) : moment({ year })
+  }
+
+  handleDateFromInput = e => {
+    const { value, name } = e.target
+
+    if (!value) {
+      this.setDateField("date_from", null)
+      this.dateFromPicker.current.blur()
+    } else if (!moment(value).isValid()) {
+      // console.log("value", value)
+    }
+  }
+
+  handleDateToInput = e => {
+    const { value } = e.target
+
+    if (!value) {
+      this.setDateField("date_to", null)
+      this.dateToPicker.current.blur()
+    }
+  }
+
+  onBlur = () => {
+    this.setState(prevState => (
+      { valid: true }
+    ), this.state.calculated ? this.handleSubmit : null)
   }
 
   componentDidMount() {
     this.fetchDays()
     this.dateToInput.addEventListener("input", this.handlePickerInput)
     this.dateFromInput.addEventListener("input", this.handlePickerInput)
-    // window.addEventListener('scroll', this.handleWindowScroll)
+
+    this.dateFromPicker.current && ReactDOM
+      .findDOMNode(/** @type Element */this.dateFromPicker.current)
+      .querySelector("input")
+      .addEventListener("input", this.handleDateFromInput)
+
+    this.dateToPicker.current && ReactDOM
+      .findDOMNode(/** @type Element */this.dateToPicker.current)
+      .querySelector("input")
+      .addEventListener("input", this.handleDateToInput)
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
     this.autoCalculate(prevState)
+
+    this.dateFromPicker.current && ReactDOM
+      .findDOMNode(/** @type Element */this.dateFromPicker.current)
+      .querySelector("input")
+      .addEventListener("input", this.handleDateFromInput)
+
+    this.dateToPicker.current && ReactDOM
+      .findDOMNode(/** @type Element */this.dateToPicker.current)
+      .querySelector("input")
+      .addEventListener("input", this.handleDateToInput)
   }
 
   componentWillUnmount() {
-    window.removeEventListener("scroll", this.handleWindowScroll)
+    this.dateFromPicker.current && ReactDOM
+      .findDOMNode(/** @type Element */this.dateFromPicker.current)
+      .querySelector("input")
+      .removeEventListener("input", this.handleDateFromInput)
+
+    this.dateToPicker.current && ReactDOM
+      .findDOMNode(/** @type Element */this.dateToPicker.current)
+      .querySelector("input")
+      .removeEventListener("input", this.handleDateToInput)
   }
 
   render() {
-    const { form, result } = this.state
+    const { form, result, randomKey } = this.state
     const { lang } = this.props
-    const { sameMarginTop } = this.props
-    // const width =  (typeof window !== `undefined`)
-    //   ? document.documentElement.clientWidth : 992
 
     return (
-      <Row align="start" gutter={20} ref={this.row}>
-        <Col xs={24} sm={24} md={24} lg={16} xl={16} xxl={16}>
-          <Row align="center" style={{ justifyContent: "space-between" }}>
-            <div className="textSec">
-              <H1Styled>{lang.title}</H1Styled>
-              <TextStyled>{lang.paragraph}</TextStyled>
-            </div>
-          </Row>
+      <Row className="rowWrapper" align="start" gutter={20} ref={this.rowWidth}>
+        <CalculatorsCardWrapper span={24} xl={16}>
 
           <CalculatorsCard bordered={false}>
             <Form
@@ -368,72 +568,96 @@ class VacationCalculator extends React.Component {
               layout="horizontal"
               size="large"
             >
-              <Row gutter={10} align="middle">
-                <Form.Item style={{ marginRight: "25px" }} label={<Label>{lang.start}</Label>}>
+              <Form.Item style={{ display: "flex" }}>
+                <CalculatorSelect
+                  size="large"
+                  value={form.year}
+                  className={"yearSelect"}
+                  style={{ maxWidth: "424px", width: "90px" }}
+                  onChange={value => this.setField("year", value, this.changeRange)}
+                >
+                  {this.availableYears.map(year =>
+                    <Select.Option value={year} key={`vehicle-${year}`}>
+                      {year}
+                    </Select.Option>,
+                  )}
+                </CalculatorSelect>
+              </Form.Item>
+
+              <Row gutter={10} className={"startEndInputs"}>
+                <RowWrapper style={{ flexWrap: "nowrap" }} label={<Label>{lang.start}</Label>}>
                   <CalculatorDatePicker
                     disabledDate={d => form.date_to && (d.isSameOrAfter(form.date_to, "day"))}
                     dateRender={(date, today) => this.handlePickerRender(date, today, "start")}
                     onChange={date => this.setDateField("date_from", date)}
                     placeholder={lang["date_from_placeholder"]}
+                    defaultPickerValue={this.defaultDate}
                     value={this.dateFromValue}
                     ref={this.dateFromPicker}
+                    key={randomKey}
+                    onBlur={this.onBlur}
                     format="DD.MM.YYYY"
                     name="date_from"
                     size="large"
                   />
-                </Form.Item>
-                <Form.Item label={<Label>{lang.end}</Label>}>
+                </RowWrapper>
+                <RowWrapper style={{ flexWrap: "nowrap" }} label={<Label>{lang.end}</Label>}>
                   <CalculatorDatePicker
+                    defaultPickerValue={this.defaultToDate}
                     disabledDate={d => !form.date_from || (d.isSameOrBefore(form.date_from, "day"))}
                     dateRender={(date, today) => this.handlePickerRender(date, today, "end")}
                     onChange={date => this.setDateField("date_to", date)}
                     placeholder={lang["date_from_placeholder"]}
                     value={this.dateToValue}
                     ref={this.dateToPicker}
+                    key={randomKey}
+                    onBlur={this.onBlur}
                     format="DD.MM.YYYY"
                     name="date_to"
                     size="large"
                   />
-                </Form.Item>
+                </RowWrapper>
               </Row>
 
-              <Form.Item label={<Label>{lang.vacation_days}</Label>}>
+              <RowWrapper label={<Label>{lang.vacation_days}</Label>}>
                 <CalculatorInput
                   onChange={v => this.setField("vacation_days", v, this.autocompleteVacationDateTo)}
                   value={form.vacation_days}
                   style={{ width: "54px" }}
                   min={1}
+                  onBlur={this.onBlur}
                   name="vacation_days"
                   size="large"
                 />
-              </Form.Item>
+              </RowWrapper>
 
               <Form.Item label={<Label>{lang.working_schedule}</Label>} labelCol={{ span: 24 }}>
                 <Radio.Group
                   onChange={e => this.setField("working_schedule", e.target.value, this.autocompleteVacationDays)}
                   value={form.working_schedule}
                 >
-                  <Radio value={5}>
+                  <Radio className="inlineElements" value={5}>
                     {<Label style={{ textTransform: "none" }}>{lang["five_days"]}</Label>}
                   </Radio>
-                  <Radio value={6}>
+                  <Radio className="inlineElements" value={6}>
                     {<Label style={{ textTransform: "none" }}>{lang["six_days"]}</Label>}
                   </Radio>
                 </Radio.Group>
               </Form.Item>
 
-              <Form.Item label={<Label>{lang["salary_label"]}</Label>}>
+              <RowWrapper label={<Label>{lang["salary_label"]}</Label>}>
                 <CalculatorInput
                   formatter={v => `${v}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                   parser={v => v.replace(/\$\s?|(,*)/g, "")}
                   onChange={v => this.setField("amount", v)}
                   value={form.amount}
+                  onBlur={this.onBlur}
                   min={SALARY_MIN}
                   step={1000}
                   name="amount"
                   size="large"
                 />
-              </Form.Item>
+              </RowWrapper>
 
               <Form.Item>
                 <Checkbox
@@ -447,6 +671,7 @@ class VacationCalculator extends React.Component {
               {!form.static_salary ?
                 <GrossSalaryTable
                   lang={lang}
+                  onBlur={this.onBlur}
                   items={this.amounts}
                   onChange={this.calcVacationAmount}
                   setDate={this.setFromDate}
@@ -459,16 +684,16 @@ class VacationCalculator extends React.Component {
                 name="tax_field"
               >
                 <Radio.Group
-                  onChange={e => this.setField("tax_field", e.target.value)}
+                  onChange={e => this.setField("tax_field", e.target.value, this.onBlur)}
                   value={form.tax_field}
                 >
-                  <Radio style={radioStyle} value={TAX_FIELD_COMMON}>
+                  <Radio className="inlineElements" style={radioStyle} value={TAX_FIELD_COMMON}>
                     <RadioLabel>{lang["tax_label_common"]}</RadioLabel>
                   </Radio>
-                  <Radio style={radioStyle} value={TAX_FIELD_IT}>
+                  <Radio className="inlineElements" style={radioStyle} value={TAX_FIELD_IT}>
                     <RadioLabel>{lang["tax_label_it"]}</RadioLabel>
                   </Radio>
-                  <Radio style={radioStyle} value={TAX_FIELD_ENTERPRISE}>
+                  <Radio className="inlineElements" style={radioStyle} value={TAX_FIELD_ENTERPRISE}>
                     <RadioLabel>{lang["tax_label_enterprise"]}</RadioLabel>
                   </Radio>
                 </Radio.Group>
@@ -480,14 +705,15 @@ class VacationCalculator extends React.Component {
                 name="pension"
               >
                 <Radio.Group
-                  onChange={e => this.setField("pension", e.target.value)}
+                  onChange={e => this.setField("pension", e.target.value, this.onBlur)}
                   value={form.pension}
                 >
                   <Radio value={PENSION_FIELD_YES}>
                     <Label>{lang["yes"]}</Label>
                   </Radio>
-                  <Radio value={PENSION_FIELD_YES_VOLUNTEER}>
-                    <Label>{lang["yes_volunteer"]}</Label>
+                  <Radio className="inlineElements" value={PENSION_FIELD_YES_VOLUNTEER}>
+                    <Label>{lang["yes"]}</Label>
+                    <Label className="volunteer">{lang["yes_volunteer"]}</Label>
                   </Radio>
                   <Radio value={PENSION_FIELD_NO}>
                     <Label>{lang["no"]}</Label>
@@ -495,44 +721,53 @@ class VacationCalculator extends React.Component {
                 </Radio.Group>
               </Form.Item>
 
-              <Form.Item style={{ marginTop: "50px" }}>
-                <ButtonSubmit htmlType="submit" shape="round" size="large">
+              <Form.Item style={{ marginTop: "20px" }}>
+                <ButtonSubmit
+                  htmlType="submit"
+                  shape="round"
+                  size="large"
+                  onClick={()=>this.checkValue()}>
                   {lang["calculate"]}
                 </ButtonSubmit>
               </Form.Item>
             </Form>
           </CalculatorsCard>
-        </Col>
+        </CalculatorsCardWrapper>
 
-        <Col xs={24} sm={24} md={24} lg={8} xl={8} xxl={8} className="result" ref={this.col}>
-          <FormLabel style={{ margin: 0 }}>{lang.result.title}</FormLabel>
+        <Col span={20} xl={8} className="result" ref={this.col}>
+          <Row>
+            <Col md={12} span={24} xl={24}>
+              <FormLabel style={{ margin: 0 }}>{lang.result.title}</FormLabel>
 
-          <UnderLine />
+              <UnderLine />
 
-          <CalculatorCardResult
-            title={lang.result["gross_vacation_amount"]}
-            text={result.vacation_salary}
-          />
+              <CalculatorCardResult
+                title={lang.result["gross_vacation_amount"]}
+                text={result.vacation_salary}
+              />
 
-          <CalculatorCardResult
-            title={lang.result["income_tax"]}
-            text={result.income_tax}
-            tooltip={form.tax_field === TAX_FIELD_ENTERPRISE ? "prompt text" : null}
-          />
+              <CalculatorCardResult
+                title={lang.result["income_tax"]}
+                text={result.income_tax}
+                tooltip={form.tax_field === TAX_FIELD_ENTERPRISE ? "prompt text" : null}
+              />
 
-          <CalculatorCardResult
-            title={lang.result["pension_fee"]}
-            text={result.pension_fee}
-          />
-
-          <CalculatorCardResult
-            title={lang.result["total_fee"]}
-            text={result.total_fee}
-          />
-          <CalculatorCardResult
-            title={lang.result["pure_vacation_amount"]}
-            text={result.salary}
-          />
+              <CalculatorCardResult
+                title={lang.result["pension_fee"]}
+                text={result.pension_fee}
+              />
+            </Col>
+            <Col md={12} span={24} xl={24}>
+              <CalculatorCardResult
+                title={lang.result["total_fee"]}
+                text={result.total_fee}
+              />
+              <CalculatorCardResult
+                title={lang.result["pure_vacation_amount"]}
+                text={result.salary}
+              />
+            </Col>
+          </Row>
         </Col>
       </Row>
     )

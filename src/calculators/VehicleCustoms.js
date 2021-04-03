@@ -68,7 +68,7 @@ class VehicleCustoms extends Vehicle {
     currency: Yup.string().oneOf(Object.keys(VehicleCustoms.symbols)).required(),
     costs: Yup.number().nullable().when('person', {
       is: VehicleCustoms.PERSON_LEGAL,
-      then: Yup.number().required(),
+      then: Yup.number(),
     }),
     capacity: Yup.number().required(),
     price: Yup.number().required(),

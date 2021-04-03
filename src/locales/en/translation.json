@@ -5,7 +5,7 @@
       "serveTitle": "Services",
       "newsTitle": "News",
       "reportTitle": "Reporting",
-      "calcTitle": "Calculator",
+      "calcTitle": "Calculators",
       "infoTitle": "Useful information",
       "careerTitle": "Join us",
       "contractTitle": "Contact us",
@@ -55,7 +55,7 @@
     },
     "our_partners": {
       "title": "Our Partners",
-      "sub_title": "During its two years of operation, Triple Consulting has managed to cooperate with a number of companies.",
+      "sub_title": "We are beyond lucky to work with small and big businesses all over the world.",
       "button_text": "Become a partner"
     }
   },
@@ -84,7 +84,7 @@
       {
         "scroll_id": "test_4",
         "link" : "services#test_4",
-        "paragraph": "Services provided to individuals",
+        "paragraph": "Company registration",
         "text": "In reality, individuals are also involved in transactions that may evoke any sort of tax liabilities and  requirements to submit tax reports. Our specialists are willing to support individuals throughout that process from simple consulting till the submission of all required documents."
       },
       {
@@ -152,15 +152,15 @@
       "subParagraph_1": "This is your query number.",
       "subParagraph_2": "Please save this code.",
       "closeButton": "Close"
-    }
+    },
+    "share": "Share"
   },
   "information": {
     "title": "Useful information",
     "paragraph": "Our specialists, aiming to contribute in future and constante development of our clients and partners, are always willing to share any useful information concerning the taxation in RA, changes in fiscal legislation. Moreover, we always try to raise all the issues currently worrying in finance and accounting.",
     "news_button": "News",
     "useInf_button": "Useful information",
-    "doc_button": "Sample documents",
-    "share": "Share"
+    "doc_button": "Sample documents"
   },
   "news": {
     "title": "News",
@@ -174,10 +174,11 @@
         "info_title": "Sorry, there are no results",
         "info_text": "Please search again"
       }
-    ]
+    ],
+    "share": "Share"
   },
   "career": {
-    "title": "Join us",
+    "title": "Join Us",
     "paragraph": "We are always happy to expand our team with highly qualified specialists. If you want to join us, you can send your CV.\nWe will be happy to see the best among us.\nOur recruiters will keep you up-to-date on vacancies and on what is happening at Triple Consulting.\n",
     "drop_content": [
       {
@@ -198,7 +199,6 @@
   },
   "careerForm": {
     "textare_label": "Your message",
-    "email_label": "E-mail",
     "file_label": "Upload CV *",
     "send_button": "Send",
     "share": "Share"
@@ -207,13 +207,14 @@
     "title": "Contact us",
     "paragraph": "In case of questions, fill in the necessary information and we will be happy to contact you.",
     "form_content": {
-      "name_label_first":"* Name / Surname ( Name of company )",
-      "name_label_second": "( Name of company )",
+      "name_label": "Name / Surname (Company Name)",
       "email_label": "E-mail",
       "file_label": "Attach the file",
       "title_label": "Title",
       "textare_label": "Your message",
-      "send_button": "Send"
+      "send_button": "Send",
+      "message": "Dear user, your email has been sent.",
+      "description": "Thank you for getting in touch!"
     },
     "address": "Hr Qochar 44/54",
     "share": "Share"
@@ -221,7 +222,394 @@
   "calculator": {
     "title": "Calculators",
     "paragraph": "Below you can get acquainted with numerous tools created by our specialists that can facilitate all the calculations you carry out.",
-    "share": "Share"
-  },
-  "link": "Go back to the homepage"
+    "share": "Share",
+    "nav": {
+      "title": "Հաշվիչներ"
+    },
+    "salary": {
+      "title": "Salary calculator",
+      "paragraph": "Salary calculator will facilitate all the necessary calculations concerning the gross and net salary. The tool can be used to calculate the salaries of employees working in the companies of general tax field, micro-enterprises as well as in the companies that have IT tax exemption.",
+      "clean_salary_button": "Net salary",
+      "dirty_salary_button": "Gross salary",
+      "tax_label": "Choose the option",
+      "gross_salary": "Net salary (based on worked days)",
+      "tax_label_common": "General tax field",
+      "tax_label_enterprise": "Micro-enterprises",
+      "tax_label_it": "Companies having IT tax exemption",
+      "salary_label": "Salary",
+      "bonus_label": "Bonuses",
+      "pensioner_label": "Do you participate in the accumulative pension system?",
+      "stamp_label": "Վճարե՞լ եք արդեն դրոշմանիշային վճարը",
+      "yes_volunteer": "(voluntary)",
+      "yes": "Yes",
+      "no": "No",
+      "count_button": "CALCULATE",
+      "result_title": "Result",
+      "general_storage_label": "Total deductions",
+      "income_tax_label": "Income tax",
+      "pension_paymet_label": "Social charges",
+      "stamp_duty_label": "Stamp Duty Payments",
+      "dirty_to_clean_salary": "Net salary",
+      "clean_dirty_to_salary": "Գրանցված աշխատավարձ",
+      "result_duty_bonus": "Կեղտոտ պարգևավճար",
+      "form": {
+        "by_date": "Calculation based on worked days",
+        "by_table": "Calculation based on worked days",
+        "start": "START",
+        "end": "END",
+        "working_days": "Worked days",
+        "working_schedule": "Work schedule",
+        "five_days": "5 day schedule",
+        "six_days": "6 day schedule",
+        "salary": "Salary"
+      }
+    },
+    "salary_table": {
+      "title": "Salary Calculator (based on the employee time record sheet)",
+      "paragraph": "With this tool you can simultaneously calculate the salary of more than one employee by exporting employee time record sheet from Armenian Software and then importing on our platform. Based on the imported employee time record sheet, the tool automatically decides the work schedule of each employee, executes the calculation of the salary for worked days,  income tax and social charges. Moreover, the result can be imported as an Excel file.",
+      "calculate": "CALCULATE",
+      "form": {
+        "title": "Աշխատավարձի հաշվիչ",
+        "by_date": "Calculation based on worked days",
+        "by_table": "Calculation based on worked days",
+        "upload": "Import the employee time record sheet",
+        "start": "START",
+        "end": "END",
+        "working_days": "Worked days",
+        "clean_salary": "Net salary",
+        "dirty_salary": "Գրանցված աշխատավարձ",
+        "tax_label": "Choose the option",
+        "tax_common": "General tax field",
+        "tax_enterprise": "Micro-enterprises",
+        "tax_it": "Companies having IT tax exemption",
+        "salary": "Salary",
+        "bonus": "Bonuses",
+        "pensioner": "Do you participate in the accumulative pension system?",
+        "stamp": "Վճարե՞լ եք արդեն դրոշմանիշային վճարը",
+        "yes_volunteer": "Yes (voluntary)",
+        "yes": "Yes",
+        "no": "No",
+        "working_schedule": "Work schedule",
+        "five_days": "5 day schedule",
+        "six_days": "6 day schedule",
+        "message": "Wrong file is downloaded.",
+        "description": "The file you downloaded is in the wrong format."
+      },
+      "table": {
+        "name": "Name / Surname",
+        "day": "DAY",
+        "hour": "HOUR",
+        "social_fee": "SOCIAL CHARGES",
+        "salary": "Gross salary",
+        "yes_volunteer": "Yes (voluntary)",
+        "yes": "Yes",
+        "no": "No"
+      },
+      "result": {
+        "title": "Result",
+        "gross_salary": "Net salary (based on worked days)",
+        "total_fee": "Total deductions",
+        "income_tax": "Income tax",
+        "stamp_fee": "Stamp Duty Payments",
+        "pension_fee": "Social charges",
+        "dirty_to_clean_salary": "Net salary",
+        "clean_to_dirty_salary": "Գրանցված աշխատավարձ",
+        "duty_bonus": "Կեղտոտ պարգևավճար",
+        "download": "Ներբեռնել արդյունքը"
+      }
+    },
+    "vacation": {
+      "title": "Vacation calculator",
+      "paragraph": "According to the Tax code of RA and other legal acts, the tool calculates vacation pay corresponding to the number of vacation days available to employees as well as deductions required by law.Fulfill the starting and ending day, and the tool ill automatically decide number of vacation days taking into the consideration weekend, holidays and days off announced by RA Gouvernement.",
+      "salary_label": "ԳՐԱՆՑՎԱԾ Աշխատավարձ",
+      "static_salary_label": "The salary has not been changed during 12 last months or bonuses have not been provided",
+      "pensioner_label": "Մասնակցում ե՞ք կուտակային կենսաթոշակային համակարգին",
+      "tax_label_common": "General tax field",
+      "tax_label_enterprise": "Micro-enterprises",
+      "tax_label_it": "Companies having IT tax exemption",
+      "tax_label": "Choose the option",
+      "yes_volunteer": "Yes (voluntary)",
+      "yes": "Yes",
+      "no": "No",
+      "start": "START",
+      "end": "END",
+      "month": "Ամիս",
+      "year": "Տարի",
+      "gross_salary": "Համախառն աշխատավարձ",
+      "bonus": "Bonuses",
+      "surcharge": "Premium",
+      "date_from_placeholder": "ամսաթիվ",
+      "date_to_placeholder": "ամսաթիվ",
+      "vacation_days": "vacation days",
+      "working_schedule": "Work schedule",
+      "five_days": "5 day schedule",
+      "six_days": "6 day schedule",
+      "calculate": "CALCULATE",
+      "result": {
+        "title" : "Result",
+        "gross_vacation_amount": "Gross vacation pay",
+        "income_tax": "Income tax",
+        "pension_fee": "Social charges",
+        "stamp_fee": "Stamp Duty Payments",
+        "total_fee": "Total deductions",
+        "pure_vacation_amount": "Net vacation pay"
+      }
+    },
+    "final": {
+      "title": "Final settlement calculator",
+      "paragraph": "The final settlement calculator allows you to get the final settlement amount in a few simple steps.\nEnter admission and employment termination dates, work schedule and the calculator will automatically calculate the total number of vacation days. Fill in the vacation days already used and the amount of salary (and if the amount of salary is not fixed or has been changed or bonuses have been provided, fill in the relevant table), and the instrument will calculate the final settlement and all deductions required by law.\n",
+      "form": {
+        "acceptance": "ADMISSION DATES",
+        "release": "EMPLOYMENT TERMINATION DATES",
+        "working_schedule": "Work schedule",
+        "five_days": "5 day schedule",
+        "six_days": "6 day schedule",
+        "available_vacation_days": "Number of vacation days available to employee annually",
+        "total_vacation_days": "Total vacation day",
+        "general_vacation_days": "Total vacation day",
+        "used_vacation_days": "Used vacation days",
+        "unused_vacation_days": "Unused vacation days",
+        "salary": "ԳՐԱՆՑՎԱԾ Աշխատավարձ",
+        "static_salary": "The salary has not been changed during 12 last months or bonuses have not been provided",
+        "tax": "Choose the option",
+        "tax_common": "General tax field",
+        "tax_enterprise": "Micro-enterprises",
+        "tax_it": "Companies having IT tax exemption",
+        "pensioner": "Do you participate in the accumulative pension system?",
+        "yes_volunteer": "Yes (voluntary)",
+        "yes": "Yes",
+        "no": "No",
+        "calculate": "CALCULATE"
+      },
+      "table": {
+        "hint": "Այն ամիս(ներ)ը, երբ աշխատակիցը գտնվել է արձակուրդում, անաշխատունակության մեջ կամ այլ պատճառով բացակայել է աշխատանքից, չլրացնել",
+        "month": "Ամիս",
+        "year": "Տարի",
+        "gross_salary": "Համախառն աշխատավարձ",
+        "bonus": "BONUSES",
+        "surcharge": "Premium"
+      },
+      "result": {
+        "title": "Result",
+        "total_amount": "Gross final settlement amount",
+        "income_tax": "Income tax",
+        "pension_fee": "Social charges",
+        "total_fee": "Total deductions",
+        "net_amount": "Net final settlement amount"
+      }
+    },
+    "mortgage": {
+      "title": "Mortgage repayment calculator",
+      "paragraph": "With the help of the income tax return calculator you can calculate the amount of income tax reimbursable for the interest paid on the mortgage loan.",
+      "clean_salary": "Net salary",
+      "dirty_salary": "Գրանցված աշխատավարձ",
+      "salary_label": "MONTHLY salary",
+      "salary_type_label": "Calculation in accordance with",
+      "static_salary_label": "The salary has not been changed during 3 last months or bonuses have not been provided",
+      "pensioner_label": "Մասնակցում ե՞ք կուտակային կենսաթոշակային համակարգին",
+      "interest_amount_label": "Interest paid quarterly",
+      "tax_label_common": "General tax field",
+      "tax_label_enterprise": "Micro-enterprises",
+      "tax_label_it": "Companies having IT tax exemption",
+      "tax_label": "Choose the option",
+      "yes_volunteer": "Yes (voluntary)",
+      "yes": "Yes",
+      "no": "No",
+      "quarter_months": "months",
+      "gross_salary": "Համախառն աշխատավարձ",
+      "bonus": "Bonuses",
+      "surcharge": "Premium",
+      "calculate": "CALCULATE",
+      "result": {
+        "title" : "Result",
+        "income_tax_back": "Returnable income tax"
+      }
+    },
+    "subsidy": {
+      "title": "Social benefits calculator",
+      "paragraph": "The Social benefits calculator allows you to easily calculate the amount of maternity as well as short–term disability payments.\nAll you have to do is enter the period of incapacity for work, the monthly salary, the income paid by other employers if available (and if the amount of salary is not fixed or has been changed or bonuses have been provided, fill in the relevant table), and the instrument will calculate the amount of maternity or short–term disability payments and all deductions required by law.\n",
+      "calculate": "CALCULATE",
+      "form": {
+        "type": "Social benefit type",
+        "maternity": "Մայրության",
+        "disability": "Short–term disability payments",
+        "dates_placeholder": "ամսաթիվ",
+        "dates": "period of incapacity for work",
+        "start": "START",
+        "end": "END",
+        "days": "total number of days",
+        "hired": "Employee",
+        "self": "Self-employed person",
+        "tax": "Choose the option",
+        "tax_common": "General tax field",
+        "tax_common_for_self_employed": "Companies imposed corporate tax",
+        "tax_turnover_for_self_employed": "Companies paying turnover tax",
+        "tax_it": "Micro-enterprises",
+        "tax_enterprise": "Companies having IT tax exemption",
+        "schedule": "Work schedule",
+        "five_days": "5 day schedule",
+        "six_days": "6 day schedule",
+        "amount": "Monthly salary",
+        "amount_self_common": "CORPORATE TAX TAXABLE BASE OF THE PREVIOUS FISCAL YEAR",
+        "amount_self_turnover": "Նախորդող տարվա շահութահարկի գումարը",
+        "amount_self_enterprise": "Number of months of activity of the previous year",
+        "income": "income paid by other employers",
+        "static": "The salary has not been changed during 12 last months or bonuses have not been provided"
+      },
+      "result": {
+        "title": "Result",
+        "calculate": "CALCULATE",
+        "subsidy": "Social benefit paid by employer",
+        "pure_subsidy": "Net social benefit payment",
+        "all_pure_subsidy": "Total amount of social benefit payment",
+        "subsidy_gov": "social benefit paid by state",
+        "subsidy_emp": "Social benefit paid by employer",
+        "income_tax": "Income tax"
+      }
+    },
+    "car_customs": {
+      "title": "Car customs clearance fee calculator",
+      "paragraph": "With the help of the car customs clearance fee calculator you can easily calculate the customs fees for a car imported from third countries. Enter the value of the car, the date of issue and engine power, and the tool, based on the requirements of the RA tax and customs codes and other legal normative acts, the customs clearance fee and the environmental tax to be paid will be calculated.",
+      "calculate": "CALCULATE",
+      "form": {
+        "imported_eeu": "ԵԱՏՄ երկրներից ներմուծում",
+        "imported_third": "Երրորդ երկրից ներմուծում",
+        "person_physical": "Physical person",
+        "person_legal": "Legal Person",
+        "year": "DATE OF ISSUE",
+        "capacity": "ENGINE POWER",
+        "costs": "OTHER EXPENSES INCLUDED IN CUSTOMS VALUE",
+        "price": "VALUE OF THE CAR"
+      },
+      "result": {
+        "title": "Result",
+        "currency": "The exchange rate at the moment",
+        "fee": "Customs clearance fee",
+        "tax": "Environmental tax",
+        "vat": "VAT",
+        "total": "Customs clearance fee payable"
+      }
+    },
+    "car_sell": {
+      "title": "Car sales calculator",
+      "paragraph": "According to the Tax code of RA, if the car is purchased and sold in the same fiscal year, the individual is required to pay income tax. Simply fulfill the necessary fields, and the tool will calculate the amount of income tax payable \n",
+      "achievement": "PURCHASE",
+      "alienation": "SALE",
+      "price": "price",
+      "power": "ENGINE POWER",
+      "horsepower": "Horsepower (hp)",
+      "kilowatts": "Kilowatt",
+      "calculate": "CALCULATE",
+      "tax_label": "Income tax payable",
+      "tax_body": "The sale has not taken place within 365 days after the purchase. Therefore, the transaction is not subject to taxation",
+      "result": {
+        "title": "Result"
+      }
+    },
+    "car_tax": {
+      "calculate": "CALCULATE",
+      "title": "Property tax calculator",
+      "paragraph": "With the help of the property tax calculator you can easily calculate the property tax of your car. Just enter the type of vehicle, year of issue, engine power and the amount of property tax of the given vehicle will be calculated, according to the requirements of the Tax code of RA.",
+      "form": {
+        "type": "Property tax types",
+        "car": "C",
+        "realEstate": "Real Estate",
+        "vehicle": {
+          "title": "VEHICLE TYPE",
+          "car": "Cars with up to 10 seats",
+          "van": "Cars with more than 10 seats",
+          "truck": "Truck",
+          "motorcycle": "Motorcycle",
+          "water_vehicle": "Water vehicle"
+        },
+        "estate": {
+          "title": "Real estate type",
+          "cadastralValue": "CADASTRAL VALUE",
+          "residential": "Residential buildings",
+          "public_production": "Public and industrial buildings",
+          "garage": "Garages"
+        },
+        "year": "DATE OF ISSUE",
+        "power": "ENGINE POWER",
+        "horsepower": "Horsepower (hp)",
+        "kilowatts": "Kilowatt"
+      },
+      "result": {
+        "title": "Result",
+        "tax": "Property tax"
+      }
+    },
+    "calendar": {
+      "title": "Business calendar",
+      "paragraph": "In the business calendar you can find working and non-working days, days preceding holidays, remembrance days, as well as the total sum of the working and calendar days, working hours. The calendar is based on the RA Law \"On holidays and memorial days\" and the relevant decisions of the RA Government.\n\nWith the help of the business calendar you can easily calculate the number of calendar days, working days, non-working days, working hours between the two dates, in accordance with the selected work schedule.\n",
+      "calculate": "CALCULATE",
+      "chooseDaysRange": "Choose days in business calendar",
+      "working_schedule": "Choose the work schedule",
+      "year": "y.",
+      "calendar": {
+        "months": {
+          "january": "January",
+          "february": "February",
+          "march": "March",
+          "april": "April",
+          "may": "May",
+          "june": "June",
+          "july": "July",
+          "august": "August",
+          "september": "September",
+          "october": "October",
+          "november": "November",
+          "december": "December"
+        },
+        "daysOfWeek": {
+          "monday": "Mon",
+          "tuesday": "Tues",
+          "wednesday": "Wed ",
+          "thursday": "Thurs ",
+          "friday": "Fri",
+          "saturday": "Sat",
+          "sunday": "Sun"
+        },
+        "additionalInformation": {
+          "calendarDays": "Calendar days",
+          "workDays": "Worked days",
+          "workHours": "Worked hours",
+          "five_days": "5 day schedule",
+          "six_days": "6 day schedule"
+        }
+      },
+      "form": {
+        "start": "START",
+        "end": "END"
+      },
+      "result": {
+        "title": "Result",
+        "calendarDays": "Calendar days",
+        "workDays": "Worked days",
+        "workHours": "Worked hours",
+        "nonWorkingDays": "Non-working days"
+      }
+    },
+    "currency": {
+      "title": "Currency Converter",
+      "paragraph": "The Currency Converter executes the necessary conversions in the preferred currency based on the exchange rate announced by the Central Bank for a  given date.\nTo get started, enter the transaction values and date, relevant currencies and calculate exchange rates for any two currencies for any date you will possibly need.\n",
+      "calculate": "CALCULATE",
+      "currency": {
+        "amd": "AMD",
+        "usd": "USD",
+        "rub": "RUB",
+        "eur": "EUR",
+        "cny": "CNY",
+        "gbp": "GBP",
+        "gel": "GEL",
+        "irr": "IRR"
+      },
+      "form": {
+        "date": "ԴՐՈՒԹՅԱՄԲ"
+      },
+      "result": {
+        "currency": "The exchange rate at the moment"
+      }
+    }
+  }
 }

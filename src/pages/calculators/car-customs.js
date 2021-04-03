@@ -7,14 +7,12 @@ const carCustoms = ({ pageContext}) => {
   const { calculator } = useTranslations();
   const [sameMarginTop, setSameMarginTop] = useState( '10px')
 
-  console.log(sameMarginTop)
   useEffect(()=>{
     setSameMarginTop(document.querySelector('.textSec').clientHeight+'px')
   })
   return (
     <CalculatorWrapper ctx={pageContext} >
-      {console.log(sameMarginTop)}
-      <CarCustomsCalculator lang={calculator.car_customs} sameMarginTop={sameMarginTop}/>
+      <CarCustomsCalculator lang={calculator.car_customs} sameMarginTop={sameMarginTop} locale={pageContext.locale}/>
     </CalculatorWrapper>
   )
 };

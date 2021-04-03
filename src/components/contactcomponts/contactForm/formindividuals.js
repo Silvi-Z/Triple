@@ -117,8 +117,8 @@ const Formfield = ({ langtext, lang }) => {
             <InputElement
               name="username"
               placeholder={`${langtext.name_label_first} ${langtext.name_label_second}`}
+              size="large"
             />
-            {console.log(langtext)}
           </StyledForm.Item>
         </InputWrapper>
         <InputWrapper>
@@ -226,7 +226,7 @@ const Formfield = ({ langtext, lang }) => {
           {langtext.send_button}
         </SubmitButton>
       </StyledForm.Item>
-      <CareerModal handleOk={handleOk} modalVisible={modalVisible} />
+      <CareerModal handleOk={handleOk} modalVisible={modalVisible} langtext={langtext} />
     </StyledForm>
   )
 }

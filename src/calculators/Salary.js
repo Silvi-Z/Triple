@@ -1,15 +1,16 @@
 class Salary {
   static MIN = 68000
-  static MATERNITY_SUBSIDY_MIN = 44155.8441558;
-  static MATERNITY_SUBSIDY_MAX = 1324675.32467;
-  static DISABILITY_SUBSIDY_MAX = 883166.883116;
-  static PENSION_NO = 0;
-  static PENSION_YES = 1;
-  static PENSION_YES_VOLUNTEER = 2;
+  static MINWITHTAXBEFORE2021 = 88311.688
+  static MINWITHTAXSINCE2021 = 87179.487
 
-  static TAX_IT = 3;
-  static TAX_COMMON = 1;
-  static TAX_ENTERPRISE = 2;
+  static PENSION_NO = 0
+  static PENSION_YES = 1
+  static PENSION_YES_VOLUNTEER = 2
+
+  static TAX_IT = 3
+  static TAX_COMMON = 1
+  static TAX_ENTERPRISE = 2
+  static TAX_TURNOVER = 4
 }
 
 export default Salary

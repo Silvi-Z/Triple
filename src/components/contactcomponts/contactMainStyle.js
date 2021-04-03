@@ -29,6 +29,7 @@ export const PElement = styled.p`
 `
 
 export const H3Element = styled.h3`
+  width:100%;
   font-size: 24px;
   font-style: normal;
   font-weight: bold;
@@ -63,9 +64,12 @@ export const H2Styled = styled.h2`
 `
 
 export const PStyled = styled.p`
+  background-color: white;
+  padding: 10px 35px;
+  border-radius: 10px;
+  font-size: 14px;
   width: 100%;
   font-family: ArialAMU;
-  font-size: 18px;
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;
@@ -74,9 +78,6 @@ export const PStyled = styled.p`
   text-align: center;
   color: #000000;
   margin-bottom:0;
-  @media only screen and (max-width: 1200px) {
-    font-size:16px
-  }
 `
 
 export const AdressMapCol = styled(Col)`
@@ -248,6 +249,7 @@ export const FacebookIcon = styled.div`
 
 export const FacebookShare = styled(FacebookShareButton)`
     outline:none;
+    height:fit-content;
     background-image:url(${FbBlackIcon});
     display: block;
     background-position: 0 0;

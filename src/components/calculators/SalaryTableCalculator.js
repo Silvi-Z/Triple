@@ -4,12 +4,20 @@ import ExcelJS from "exceljs"
 import moment from "moment"
 import triple from "../../api/triple"
 import { saveAs } from "file-saver"
-import { compact, isEmpty, isEqual, isInteger, isNull } from "lodash"
+import { isEmpty, isEqual, isInteger, isNull } from "lodash"
 import { DownloadOutlined, UploadOutlined } from "@ant-design/icons"
 import { Button, Col, Form, notification, Radio, Row } from "antd"
 import { defineSchedule, urlToBase64 } from "./utilities/tabel"
 import { workingDaysInMonth, workingDaysInRange } from "./utilities/vacation"
-import { ButtonSubmit, CalculatorsCard, FormLabel, H1Styled, Label, RadioLabel, TextStyled, UnderLine } from "./styled"
+import {
+  ButtonSubmit,
+  CalculatorsCard,
+  CalculatorsCardWrapper,
+  FormLabel,
+  Label,
+  RadioLabel, RowWrapper,
+  UnderLine,
+} from "./styled"
 import {
   BY_FIELD_TABLE,
   PENSION_FIELD_YES,
@@ -37,7 +45,6 @@ const form = {
 
 const radioStyle = {
   display: "block",
-  height: "30px",
   lineHeight: "30px",
 }
 
@@ -69,6 +76,10 @@ const Logo = require("../../assets/logo.jpeg")
 class SalaryTableCalculator extends React.Component {
   fileInput = React.createRef()
 
+  top = React.createRef()
+
+  rowWidth = React.createRef()
+
   constructor(props) {
     super(props)
 
@@ -79,6 +90,8 @@ class SalaryTableCalculator extends React.Component {
       employees: [],
       result: {},
       excel: [],
+      check: false,
+      width: typeof window !="undefined" && window.innerWidth <=768
     }
     this.holidays = []
     this.workdays = []
@@ -120,7 +133,7 @@ class SalaryTableCalculator extends React.Component {
     return isNull(date_to) ? date_to : moment(date_to)
   }
 
-  handleUpload = e => {
+  handleUpload = (e) => {
     e.persist()
 
     const file = e.target.files[0]
@@ -131,16 +144,21 @@ class SalaryTableCalculator extends React.Component {
       const workbook = Excel.read(data, { type: "array", cellStyles: true })
       /** @type {[][]} */
       const rows = Excel.utils.sheet_to_json(workbook.Sheets["WTimesheet"], { header: 1 })
+
       const date = moment(rows[9][12], "DD/MM/YY")
+      const year = moment(rows[9][12])
+      this.setField("year", year)
       const employees = rows.reduce((acc, row, i) => {
         if (i >= 20 && isInteger(Number(row[0]))) {
-          const schedule = defineSchedule(row.slice(4, date.daysInMonth() + 4), date, this.holidays)
+          const tableDays = row.slice(4, date.daysInMonth() + 4)
+          const monthDays = rows[18].slice(4, date.daysInMonth() + 4)
+          const { schedule, days } = defineSchedule(tableDays, date, this.holidays, monthDays)
 
           acc.push({
             id: row[0],
             name: row[2],
             profession: row[1],
-            days: compact(row.slice(4, date.daysInMonth() + 4)).length, // workedDays
+            days, // workedDays
             hours: +row[date.daysInMonth() + 5], // workedHours
             pension: PENSION_FIELD_YES,
             amount: null,
@@ -156,11 +174,11 @@ class SalaryTableCalculator extends React.Component {
 
         return acc
       }, [])
-
+      const lang = this.props.lang.form
       if (!date.isValid() || !employees.length) {
         notification.error({
-          message: "Սխալ ֆայլի ներբեռնում։",
-          description: "Ձեր կողմից ներբեռնված ֆայլի սխալ ֆորմատի է։",
+          message: lang.message,
+          description: lang.description,
         })
 
         employees.splice(0, employees.length)
@@ -295,8 +313,8 @@ class SalaryTableCalculator extends React.Component {
   }
 
   async calculateByTable() {
-    const { employees } = this.state
-    const { from, tax_field } = this.state.form
+    const { employees, check, width} = this.state
+    const { from, tax_field, year } = this.state.form
 
     this.setState({ loading: true })
 
@@ -304,6 +322,7 @@ class SalaryTableCalculator extends React.Component {
       .map(employee => ({
         from,
         tax_field,
+        year: year.year(),
         pension: employee.pension,
         amount: (employee.workingDaysInMonth === employee.days)
           ? employee.amount
@@ -311,7 +330,16 @@ class SalaryTableCalculator extends React.Component {
       }))
       .map(data => triple.post("/api/counter/salary", data))
 
-    const results = await Promise.all(reqs).then(res => res.map(r => r.data))
+
+    const results = await Promise.all(reqs).then(res => res.map(r => r.data)).finally(() => {
+      if(check && width){
+        this.top.current.scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" })
+      }
+      this.setState((prevState) => ({
+        ...prevState,
+        check: false,
+      }))
+    })
     const excel = results.map((result, i) => ({
       N: employees[i].id,
       ["Անուն, Ազգանուն, Հայրանուն"]: employees[i].name,
@@ -326,14 +354,14 @@ class SalaryTableCalculator extends React.Component {
       ["Սոցիալական վճար"]: result.pension_fee,
       ["Դրոշմանշային վճար"]: result.stamp_fee,
       ["Ընդհանուր պահումներ"]: result.total_fee,
-      ["Զուտ աշխատավարձ"]: result.salary,
+      ["Զուտ աշխատավարձ"]: Math.round(result.salary),
     }))
     const result = results.reduce((acc, result) => ({
-      total_fee: acc.total_fee + result.total_fee,
-      income_tax: acc.income_tax + result.income_tax,
-      pension_fee: acc.pension_fee + result.pension_fee,
-      stamp_fee: acc.stamp_fee + result.stamp_fee,
-      salary: acc.salary + result.salary,
+      total_fee: Math.round(acc.total_fee + result.total_fee),
+      income_tax: Math.round(acc.income_tax + result.income_tax),
+      pension_fee: Math.round(acc.pension_fee + result.pension_fee),
+      stamp_fee: Math.round(acc.stamp_fee + result.stamp_fee),
+      salary: Math.round(acc.salary + result.salary),
     }))
     result["gross_salary"] = employees.map(employee => (employee.workingDaysInMonth === employee.days)
       ? employee.amount
@@ -341,6 +369,13 @@ class SalaryTableCalculator extends React.Component {
     ).reduce((acc, amount) => acc + Math.round(amount), 0)
 
     this.setState({ excel, result, loading: false, calculated: 2 })
+  }
+
+  checkValue() {
+    this.setState((prevState) => ({
+      ...prevState,
+      check: true,
+    }))
   }
 
   fetchDays() {
@@ -351,6 +386,7 @@ class SalaryTableCalculator extends React.Component {
   }
 
   componentDidMount() {
+
     this.fetchDays()
   }
 
@@ -358,18 +394,14 @@ class SalaryTableCalculator extends React.Component {
     // this.autoCalculate(prevState)
   }
 
+
   render() {
     const { lang } = this.props
     const { form, employees, result, loading } = this.state
 
     return (
-      <Row align="start" gutter={20}>
-        <Col span={16}>
-          <div className="textSec">
-            <H1Styled>{lang.title}</H1Styled>
-            <TextStyled>{lang.paragraph}</TextStyled>
-          </div>
-
+      <Row className="rowWrapper" align="start" gutter={20} ref={this.rowWidth}>
+          <CalculatorsCardWrapper span={24} xl={16}>
           <CalculatorsCard bordered={false}>
             <Form
               onFinish={this.handleSubmit}
@@ -380,7 +412,7 @@ class SalaryTableCalculator extends React.Component {
             >
 
               <>
-                <Form.Item label={lang.form.upload}>
+                <RowWrapper style={{flexDirection:"row-reverse"}} className="inlineElements uploadInput" label={lang.form.upload}>
                   <input
                     type="file"
                     name="file"
@@ -392,12 +424,12 @@ class SalaryTableCalculator extends React.Component {
 
                   <Button
                     onClick={() => this.fileInput.current.click()}
-                    style={{ background: "#1C1D21", color: "#FFFFFF" }}
+                    style={{ background: "#1C1D21", color: "#FFFFFF" , marginRight: "15px"}}
                     icon={<UploadOutlined />}
                     shape="circle"
                     type="ghost"
                   />
-                </Form.Item>
+                </RowWrapper>
 
                 {employees.length ? <EmployeeSalaryTable
                   items={employees}
@@ -405,6 +437,7 @@ class SalaryTableCalculator extends React.Component {
                   onChange={employees => this.setState({ employees })}
                 /> : null}
               </>
+
               {/* tax field */}
               <Form.Item label={<Label style={{ fontSize: "16px" }}>{lang.form["tax_label"]}</Label>}
                          labelCol={{ span: 24 }} name="tax_field">
@@ -412,90 +445,92 @@ class SalaryTableCalculator extends React.Component {
                   onChange={e => this.setField("tax_field", e.target.value)}
                   value={form.tax_field}
                 >
-                  <Radio style={radioStyle} value={TAX_FIELD_COMMON}>
+                  <Radio className="inlineElements" style={radioStyle} value={TAX_FIELD_COMMON}>
                     <RadioLabel>{lang.form["tax_common"]}</RadioLabel>
                   </Radio>
-                  <Radio style={radioStyle} value={TAX_FIELD_IT}>
+                  <Radio className="inlineElements" style={radioStyle} value={TAX_FIELD_IT}>
                     <RadioLabel>{lang.form["tax_it"]}</RadioLabel>
                   </Radio>
-                  <Radio style={radioStyle} value={TAX_FIELD_ENTERPRISE}>
+                  <Radio className="inlineElements" style={radioStyle} value={TAX_FIELD_ENTERPRISE}>
                     <RadioLabel>{lang.form["tax_enterprise"]}</RadioLabel>
                   </Radio>
                 </Radio.Group>
               </Form.Item>
 
-              <Form.Item style={{ marginTop: "50px" }}>
+              <Form.Item style={{ marginTop: "20px" }}>
                 <ButtonSubmit
                   htmlType="submit"
                   shape="round"
                   size="large"
+                  onClick={()=>this.checkValue()}
                 >
                   {lang["calculate"]}
                 </ButtonSubmit>
               </Form.Item>
             </Form>
           </CalculatorsCard>
-        </Col>
+        </CalculatorsCardWrapper>
 
-        <Col span={8} className="result">
-          <FormLabel style={{ margin: 0 }}>{lang.result.title}</FormLabel>
+        <Col span={20} xl={8} className="result" ref={this.top}>
+          <Row>
+           <Col md={12} span={24} xl={24}>
+             <FormLabel style={{ margin: 0 }}>{lang.result.title}</FormLabel>
 
-          <UnderLine />
+             <UnderLine />
 
-          <CalculatorCardResult
-            title={lang.result.gross_salary}
-            text={result.gross_salary}
-            loading={loading}
-            tooltip
-          />
+             <CalculatorCardResult
+               title={lang.result.gross_salary}
+               text={result.gross_salary}
+               loading={loading}
+             />
 
-          <CalculatorCardResult
-            title={lang.result.income_tax}
-            text={result.income_tax}
-            loading={loading}
-            tooltip
-          />
+             <CalculatorCardResult
+               title={lang.result.income_tax}
+               text={result.income_tax}
+               loading={loading}
+             />
 
-          <CalculatorCardResult
-            title={lang.result.pension_fee}
-            text={result.pension_fee}
-            loading={loading}
-            tooltip
-          />
+             <CalculatorCardResult
+               title={lang.result.pension_fee}
+               text={result.pension_fee}
+               loading={loading}
+             />
+           </Col>
 
-          <CalculatorCardResult
-            title={lang.result.stamp_fee}
-            text={result.stamp_fee}
-            loading={loading}
-            tooltip
-          />
+            <Col md={12} span={24} xl={24}>
+              <CalculatorCardResult
+                title={lang.result.stamp_fee}
+                text={result.stamp_fee}
+                loading={loading}
+              />
 
-          <CalculatorCardResult
-            title={lang.result.total_fee}
-            text={result.total_fee}
-            loading={loading}
-          />
+              <CalculatorCardResult
+                title={lang.result.total_fee}
+                text={result.total_fee}
+                loading={loading}
+              />
 
-          <CalculatorCardResult
-            title={form.from === 1 ? lang.result["dirty_to_clean_salary"] : lang.result["clean_to_dirty_salary"]}
-            text={result.salary}
-            loading={loading}
-          />
+              <CalculatorCardResult
+                title={form.from === 1 ? lang.result["dirty_to_clean_salary"] : lang.result["clean_to_dirty_salary"]}
+                text={result.salary}
+                loading={loading}
+              />
+            </Col>
 
-          {!form.by && !isEmpty(result) ?
-            <ButtonSubmit
-              style={{ textTransform: "none", width: "100%" }}
-              onClick={this.handleDownload}
-              icon={<DownloadOutlined />}
-              htmlType="button"
-              shape="round"
-              size="large"
-              block
+            {!form.by && !isEmpty(result) ?
+              <ButtonSubmit
+                style={{ textTransform: "none", width: "100%", marginBottom: "40px" }}
+                onClick={this.handleDownload}
+                icon={<DownloadOutlined />}
+                htmlType="button"
+                shape="round"
+                size="large"
+                block
 
-            >
-              {lang.result.download}
-            </ButtonSubmit>
-            : null}
+              >
+                {lang.result.download}
+              </ButtonSubmit> : null}
+          </Row>
         </Col>
       </Row>
     )

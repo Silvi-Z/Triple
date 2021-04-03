@@ -5,14 +5,14 @@ import { Dropdown } from "antd"
 import { PhoneOutlined, CaretDownOutlined, EnvironmentOutlined } from "@ant-design/icons"
 import BlackLogo from "../../assets/homeImages/3c1.png"
 import MainLogo from "../../assets/homeImages/3c.svg"
-import WhiteLogo  from "../../assets/homeImages/3c_white.png"
+import WhiteLogo from "../../assets/homeImages/3c_white.png"
 import EnvironmentImg from "../../assets/footericons/location.svg"
 import TelegramIcon from "../../assets/footericons/brandIcons/telegram (header).svg"
 import "@fortawesome/fontawesome-free/css/all.css"
 import "@fortawesome/fontawesome-free/js/all.js"
 import "../layout.css"
 import {
-  NavLink,
+  NavLinkMain,
   LangSpan,
   PhoneSpan,
   RespNavLink,
@@ -27,17 +27,16 @@ import {
   ResponsiveMenuColumn,
   ResponsiveMenuInfoRow, Coll,
 } from "./navbarStyle.js"
-import TelegramImg from "../../assets/footericons/brandIcons/telegram (header).svg"
 import { TelegramWrapper } from "../contactcomponts/contactForm/formStyle"
 
 const phones = (
   <div className="phonedrop">
     <div className="phonebox">
       <TelegramWrapper src={TelegramIcon}
-         style={{
-           height: "14px",
-           marginRight: "4%",
-         }}>
+                       style={{
+                         height: "14px",
+                         marginRight: "4%",
+                       }}>
       </TelegramWrapper>
       <span className="phonenumber">374 98 553533</span>
     </div>
@@ -80,7 +79,7 @@ const GridBlank1 = styled.div`
 `
 const GridHome = styled.div`
   grid-area: home;
-  ${NavLink}{
+  ${NavLinkMain}{
     height:100% !important;
   }
 `
@@ -114,7 +113,16 @@ const activeStyle = {
   border: "1px solid #009db8",
 }
 
-const Navbar = ({ open, color, setMenuColorProp, responseWrapper, setResponseWrapper,lang, langText, originalPath }) => {
+const Navbar = ({
+                  open,
+                  color,
+                  setMenuColorProp,
+                  responseWrapper,
+                  setResponseWrapper,
+                  lang,
+                  langText,
+                  originalPath,
+                }) => {
   const [languageText, setLanguageText] = useState(["Հայ", "Eng"])
 
   const language = (
@@ -135,7 +143,7 @@ const Navbar = ({ open, color, setMenuColorProp, responseWrapper, setResponseWra
     let lang
     if (defaultLang === "en") {
       lang = "Eng"
-    }else if (defaultLang === "arm") {
+    } else if (defaultLang === "arm") {
       lang = "Հայ"
     }
     let newtext = languageText.filter(text => text !== lang)
@@ -143,10 +151,10 @@ const Navbar = ({ open, color, setMenuColorProp, responseWrapper, setResponseWra
     setLanguageText(newtext)
   }
 
-  const changeLanguage = (e, id) =>{
-    if (id === "arm"){
+  const changeLanguage = (e, id) => {
+    if (id === "arm") {
       navigate(`/arm${originalPath}`)
-    }else if (id === "en"){
+    } else if (id === "en") {
       navigate(`/en${originalPath}`)
     }
   }
@@ -162,15 +170,15 @@ const Navbar = ({ open, color, setMenuColorProp, responseWrapper, setResponseWra
     setLanguageText(newtext)
   }
 
-  const resize = () =>{
+  const resize = () => {
     const innerWidth = (window.innerWidth);
-    (innerWidth>=1021 && !responseWrapper) ? setResponseWrapper(!responseWrapper) : null
+    (innerWidth >= 1021 && !responseWrapper) ? setResponseWrapper(!responseWrapper) : null
   }
- useEffect(()=>{
-   if (typeof window !== `undefined`) {
-     window.addEventListener("resize", resize);
-   }
- })
+  useEffect(() => {
+    if (typeof window !== `undefined`) {
+      window.addEventListener("resize", resize)
+    }
+  })
 
   useEffect(() => {
     checkDefaultLanguage(lang)
@@ -179,124 +187,125 @@ const Navbar = ({ open, color, setMenuColorProp, responseWrapper, setResponseWra
   return (
     <>
       <ResponsiveNavWrapper menuColorProp={color}>
-        <div  style={{ textAlign: "center" , display: 'flex'}}>
-          <RespNavLink to={`/${lang}/`} onClick={() => !responseWrapper ? open() : ''}>
-            <HeadMainIcon src={!responseWrapper ?  WhiteLogo : BlackLogo} alt={"icon"} />
+        <div style={{ textAlign: "center", display: "flex" }}>
+          <RespNavLink to={`/${lang}/`} onClick={() => !responseWrapper ? open() : ""}>
+            <HeadMainIcon src={!responseWrapper ? WhiteLogo : BlackLogo} alt={"icon"} />
           </RespNavLink>
         </div>
-        <div style={{position: "relative"}}>
-            <a id="burger" className={!responseWrapper ? "open" : ''}>
-              <ResponsiveMenuButton onClick={() => open()} responseWrapper={!responseWrapper} >
-                <span> </span>
-                <span> </span>
-                <span> </span>
-              </ResponsiveMenuButton>
-            </a>
+        <div style={{ position: "relative" }}>
+          <a id="burger" className={!responseWrapper ? "open" : ""}>
+            <ResponsiveMenuButton onClick={() => open()} responseWrapper={!responseWrapper}>
+              <span> </span>
+              <span> </span>
+              <span> </span>
+            </ResponsiveMenuButton>
+          </a>
         </div>
       </ResponsiveNavWrapper>
 
       {!responseWrapper ? (
-      <div id="menu">
-        <ResponsiveMenuWrapper >
-          <MenuWrapper>
-            <ResponsiveMenuColumn>
-            <Coll className="coll" style={{ marginBottom: "50px" }}>
-              <NavLink
-                className="menu_element"
-                to={`/${lang}/services/`}
-                activeStyle={activeStyle}
-                state={{ clickedItems: 0 }}
-                onClick={() => open()}
-              >
-                {langText.header.serveTitle}
-              </NavLink>
-            </Coll>
-            <Coll style={{ marginBottom: "50px" }}>
-              <NavLink
-                className="menu_element"
-                to={`/${lang}/calculators/`}
-                activeStyle={activeStyle}
-                onClick={() => open()}
-              >
-                {langText.header.calcTitle}
-              </NavLink>
-            </Coll>
-            <Coll  style={{ marginBottom: "50px" }}>
-              <NavLink
-                className="menu_element"
-                to={`/${lang}/news/`}
-                activeStyle={activeStyle}
-                onClick={() => open()}
-              >
-                {langText.header.newsTitle}
-              </NavLink>
-            </Coll>
-            <Coll  style={{ marginBottom: "50px" }}>
-              <NavLink
-                className="menu_element"
-                to={`/${lang}/information/`}
-                activeStyle={activeStyle}
-                onClick={() => open()}
-              >
-                {langText.header.infoTitle}
-              </NavLink>
-            </Coll>
-            <Coll  style={{ marginBottom: "50px" }}>
-              <NavLink
-                className="menu_element"
-                to={`/${lang}/career/`}
-                activeStyle={activeStyle}
-                onClick={() => open()}
-              >
-                {langText.header.careerTitle}
-              </NavLink>
-            </Coll>
-            <Coll  style={{ marginBottom: "50px" }}>
-              <NavLink
-                className="menu_element"
-                to={`/${lang}/contact/`}
-                activeStyle={activeStyle}
-                onClick={() => open()}
-              >
-                {langText.header.contractTitle}
-              </NavLink>
-            </Coll>
-            </ResponsiveMenuColumn>
-          </MenuWrapper>
-          <ResponsiveMenuInfoRow>
-            <div>
+        <div id="menu">
+          <ResponsiveMenuWrapper>
+            <MenuWrapper>
+              <ResponsiveMenuColumn>
+                <Coll className="coll" style={{ marginBottom: "50px" }}>
+                  <NavLinkMain
+                    className="menu_element"
+                    to={`/${lang}/services/`}
+                    activeStyle={activeStyle}
+                    state={{ clickedItems: 0 }}
+                    onClick={() => open()}
+                  >
+                    {langText.header.serveTitle}
+                  </NavLinkMain>
+                </Coll>
+                <Coll style={{ marginBottom: "50px" }}>
+                  <NavLinkMain
+                    className="menu_element"
+                    to={`/${lang}/calculators/`}
+                    activeStyle={activeStyle}
+                    isPartiallyCurrent={true}
+                    onClick={() => open()}
+                  >
+                    {langText.header.calcTitle}
+                  </NavLinkMain>
+                </Coll>
+                <Coll style={{ marginBottom: "50px" }}>
+                  <NavLinkMain
+                    className="menu_element"
+                    to={`/${lang}/news/`}
+                    activeStyle={activeStyle}
+                    onClick={() => open()}
+                  >
+                    {langText.header.newsTitle}
+                  </NavLinkMain>
+                </Coll>
+                <Coll style={{ marginBottom: "50px" }}>
+                  <NavLinkMain
+                    className="menu_element"
+                    to={`/${lang}/information/`}
+                    activeStyle={activeStyle}
+                    onClick={() => open()}
+                  >
+                    {langText.header.infoTitle}
+                  </NavLinkMain>
+                </Coll>
+                <Coll style={{ marginBottom: "50px" }}>
+                  <NavLinkMain
+                    className="menu_element"
+                    to={`/${lang}/career/`}
+                    activeStyle={activeStyle}
+                    onClick={() => open()}
+                  >
+                    {langText.header.careerTitle}
+                  </NavLinkMain>
+                </Coll>
+                <Coll style={{ marginBottom: "50px" }}>
+                  <NavLinkMain
+                    className="menu_element"
+                    to={`/${lang}/contact/`}
+                    activeStyle={activeStyle}
+                    onClick={() => open()}
+                  >
+                    {langText.header.contractTitle}
+                  </NavLinkMain>
+                </Coll>
+              </ResponsiveMenuColumn>
+            </MenuWrapper>
+            <ResponsiveMenuInfoRow>
+              <div>
               <span
-                style={{color:"white"}}
-                onClick={e => changeLanguage( e,"arm")}
+                style={{ color: "white" }}
+                onClick={e => changeLanguage(e, "arm")}
                 className="languagetext"
                 id="arm"
               >Հայ |
               </span>
-              <span
-                style={{color:"white"}}
-                onClick={e => changeLanguage(e,"en")}
-                className="languagetext"
-                id="en"
-              > Eng
+                <span
+                  style={{ color: "white" }}
+                  onClick={e => changeLanguage(e, "en")}
+                  className="languagetext"
+                  id="en"
+                > Eng
               </span>
-            </div>
-            <div>
-              <EnvironmentOutlined />
-              <AddressSpan lang={lang}> {langText.header.address}</AddressSpan>
-            </div>
-            <div>
-              <PhoneOutlined
-                style={{
-                  fontSize: "14px",
-                  marginRight: "4%",
-                  transform: "rotate(90deg)",
-                }}
-              />
-              <PhoneSpan>+374 98 553533,+374 98 553533</PhoneSpan>
-            </div>
-          </ResponsiveMenuInfoRow>
-        </ResponsiveMenuWrapper>
-       </div>
+              </div>
+              <div>
+                <EnvironmentOutlined />
+                <AddressSpan lang={lang}> {langText.header.address}</AddressSpan>
+              </div>
+              <div>
+                <PhoneOutlined
+                  style={{
+                    fontSize: "14px",
+                    marginRight: "4%",
+                    transform: "rotate(90deg)",
+                  }}
+                />
+                <PhoneSpan>+374 98 553533,+374 98 553533</PhoneSpan>
+              </div>
+            </ResponsiveMenuInfoRow>
+          </ResponsiveMenuWrapper>
+        </div>
       ) : null}
 
       <GridWrapper>
@@ -328,9 +337,10 @@ const Navbar = ({ open, color, setMenuColorProp, responseWrapper, setResponseWra
         </GridAddress>
         <GridBlank1 />
         <GridHome>
-          <NavLink to={`/${lang}/`}>
+          <NavLinkMain
+            to={`/${lang}/`}>
             <HeadMainIcon src={MainLogo} alt={"icon"} />
-          </NavLink>
+          </NavLinkMain>
         </GridHome>
         <GridBlank2 />
         <Dropdown overlay={phones} trigger={["click"]}>
@@ -352,38 +362,38 @@ const Navbar = ({ open, color, setMenuColorProp, responseWrapper, setResponseWra
           </GridPhone>
         </Dropdown>
         <GridService>
-          <NavLink
+          <NavLinkMain
             to={`/${lang}/services/`}
             activeStyle={activeStyle}
             state={{ responseWrapper }}
           >
             {langText.header.serveTitle}
-          </NavLink>
+          </NavLinkMain>
         </GridService>
         <GridReport>
-          <NavLink to={`/${lang}/news/`} activeStyle={activeStyle}>
+          <NavLinkMain to={`/${lang}/news/`} activeStyle={activeStyle}>
             {langText.header.newsTitle}
-          </NavLink>
+          </NavLinkMain>
         </GridReport>
         <GridCalc>
-          <NavLink to={`/${lang}/calculators/`} activeStyle={activeStyle}>
+          <NavLinkMain to={`/${lang}/calculators/`} activeStyle={activeStyle}>
             {langText.header.calcTitle}
-          </NavLink>
+          </NavLinkMain>
         </GridCalc>
         <GridInfo md={{ span: 0, offset: 2 }}>
-          <NavLink to={`/${lang}/information/`} activeStyle={activeStyle}>
+          <NavLinkMain to={`/${lang}/information/`} activeStyle={activeStyle}>
             {langText.header.infoTitle}
-          </NavLink>
+          </NavLinkMain>
         </GridInfo>
         <GridJoin md={{ span: 0, offset: 2 }}>
-          <NavLink to={`/${lang}/career/`} activeStyle={activeStyle}>
+          <NavLinkMain to={`/${lang}/career/`} activeStyle={activeStyle}>
             {langText.header.careerTitle}
-          </NavLink>
+          </NavLinkMain>
         </GridJoin>
         <GridContact>
-          <NavLink to={`/${lang}/contact/`} activeStyle={activeStyle}>
+          <NavLinkMain to={`/${lang}/contact/`} activeStyle={activeStyle}>
             {langText.header.contractTitle}
-          </NavLink>
+          </NavLinkMain>
         </GridContact>
       </GridWrapper>
     </>
