@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react"
 import SEO from "../../components/seo"
 import UsefulNews from "../../components/news/secondnewspage"
-import FullInfo from "../../components/news/fullNews"
+import FullInfo from "../../templates/fullNews"
 import { Select } from "antd"
-import newsDatas from "../../components/news/newsDatas"
+import newsDatas from "../../i18n/newsDatas"
 import moment from "moment"
 import "moment/locale/zh-cn"
 import triple from "../../api/triple"
@@ -29,10 +29,12 @@ const Index = ({location, pageContext }) => {
   const [constData, setConstData] = useState([])
   const [data, setData] = useState([])
   useEffect(()=>{
+    console.log(triple)
     triple.get('/api/news')
       .then(res =>{
-        setConstData(res.data.data)
-        setData(res.data.data);
+        const filter = res.data.data.slice().sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
+        setConstData(filter);
+        setData(filter)
       } )
       .catch(err => console.log(err))
   }, [])
@@ -40,6 +42,7 @@ const Index = ({location, pageContext }) => {
   let urlShared
   const [selectedDate, setSelectedDate] = useState(newsDatas)
   const getSharedUrl = lng => {
+
     if (lng) {
       return `http://triple-c.algorithm.am/${lng}/news${location.hash}`
     }
@@ -70,7 +73,6 @@ const Index = ({location, pageContext }) => {
 
   const handleChange = date => {
     if(date){
-      console.log(data)
       const selectedData = date.format("DD-MM-YYYY").replaceAll("-", ".")
       const newsDate = constData.filter(item => moment(item.created_at.substring(0, 10)).format("DD.MM.YYYY").includes(selectedData))
       setData(newsDate)
@@ -80,7 +82,7 @@ const Index = ({location, pageContext }) => {
         newsDate.length > 6 && newsDate.length % 6 < 6 && shownNewses === newsDate.length
           ? setButtonDisplay(false)
           : setButtonDisplay(true);
-  }
+    }
     else {
       const shownNewses = document.querySelectorAll(NewsItems).length
       setData(constData)
@@ -92,7 +94,6 @@ const Index = ({location, pageContext }) => {
     }
   }
 
-  const filteredDate = data.filter(item =>location.hash.substring(1).includes(item.id.toString()) )
   const onChange = (e) => {
     const data = constData.filter(item => item.title_arm.toLowerCase().includes(e.target.value.toLowerCase()))
     setData(data)
@@ -100,7 +101,7 @@ const Index = ({location, pageContext }) => {
 
   const showNews = (e) =>{
     if (e.target.parentNode.title==='Վերջին նորություններ'){
-      const sortedNews = constData.slice().sort((a, b) => new Date(b.date) - new Date(a.date))
+      const sortedNews = constData.slice().sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
       setData(sortedNews)
     }else if(e.target.parentNode.title==='Շատ ընթերցված'){
       const sortedNews = constData.slice().sort((a, b) => b.views - a.views)
@@ -134,7 +135,7 @@ const Index = ({location, pageContext }) => {
                 defaultValue={moment()}
                 onChange={handleChange}
                 suffixIcon={(windowInnerWidth>=400) &&
-                  <span>
+                <span>
                     <svg width="18" height="21" viewBox="0 0 18 21" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path
                         d="M14 9.5H4V11.5H14V9.5ZM16 2.5H15V0.5H13V2.5H5V0.5H3V2.5H2C0.89 2.5 0.00999999 3.4 0.00999999 4.5L0 18.5C0 19.6 0.89 20.5 2 20.5H16C17.1 20.5 18 19.6 18 18.5V4.5C18 3.4 17.1 2.5 16 2.5ZM16 18.5H2V7.5H16V18.5ZM11 13.5H4V15.5H11V13.5Z"
@@ -161,6 +162,7 @@ const Index = ({location, pageContext }) => {
                 lang={pageContext.locale}
                 buttonDisplay={buttonDisplay}
                 setButtonDisplay={setButtonDisplay}
+                pageContext={pageContext}
               />
               : <NoResult>
                 <NoResultTitle>{pageContext.localeResources.translation.news.no_result[0].info_title}</NoResultTitle>
@@ -169,7 +171,7 @@ const Index = ({location, pageContext }) => {
             }
           </>
         ) :
-        <FullInfo apiUrl={apiUrl.apiUrl} filteredData={filteredDate} data={data} lang={pageContext.locale} pageContext={pageContext}/>
+        <FullInfo apiUrl={apiUrl.apiUrl} data={data} lang={pageContext.locale} pageContext={pageContext}/>
 
       }
     </NewsPageWrapper>

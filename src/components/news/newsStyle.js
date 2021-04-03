@@ -56,10 +56,13 @@ export const NewsItems = styled(Link)`
   &:hover{
     color:unset
   }
-  @media only screen and (max-width:840px){
-    margin-left: 0;
-    margin-right: 0;
+  @media only screen and (max-width:1111px){
+    width:50%;
   }
+  // @media only screen and (max-width:768px){
+  //   margin-left: 0;
+  //   margin-right: 0;
+  // }
 `
 
 export const ImageWrapper = styled.div`
@@ -133,6 +136,7 @@ export const SeeMoreSingleNews = styled(SeemoreWrapper)`
 export const SeeMoreNews = styled(SeemoreWrapper)`
   display: ${props => props.buttonDisplay ? 'flex' :'none'};
   letter-spacing: 1.15px;
+  text-transform: uppercase;
 `
 
 export const SearchInput = styled.input`
@@ -165,7 +169,7 @@ export const StyledForm = styled(Form)`
   }
 `
 
- export const NewsPageWrapper = styled.div`
+export const NewsPageWrapper = styled.div`
     max-width:1440px;
     margin: 0 auto;
     padding: 50px 79px 93px 79px;

@@ -17,7 +17,7 @@ import {
 import moment from "moment"
 import { NavLink } from "../homecomponents/homePartners/homePartStyle"
 
-const UsefulNews = ({news, lang , buttonDisplay, setButtonDisplay, apiUrl }) => {
+const UsefulNews = ({news, lang , buttonDisplay, setButtonDisplay, apiUrl,pageContext }) => {
 
   let [items, setItems] = useState(news.length<6 ? news.length : 6)
   news.length < 6 && setButtonDisplay(false)
@@ -32,35 +32,35 @@ const UsefulNews = ({news, lang , buttonDisplay, setButtonDisplay, apiUrl }) => 
         {news.map((item, index) => (
           (index < items) ? (
             <NewsItems
-              to={`/${lang}/news#${item.id}`}
+              to={`/${lang}/news/${item.id}`}
               state={{modal: true}}
               key={index}
               margin={item.margin}
             >
               <ImageWrapper>
                 <img style={{ width: "100%" }} src={apiUrl + item.image} alt="" />
-              </ImageWrapper>font
+              </ImageWrapper>
               <TextPart>
                 <Title>{item.title_arm}</Title>
                 <NewsText>{item.description_arm}</NewsText>
                 <MoreRow>
                   <DataItem>{moment(item.created_at.substring(0, 10)).format("DD.MM.YYYY")}</DataItem>
-                    <SeeMoreSingleNews
-                      className="see_more_btn"
-                    > տեսնել ավելին
-                    </SeeMoreSingleNews>
+                  <SeeMoreSingleNews
+                    className="see_more_btn"
+                  > {pageContext.localeResources.translation.news.see_more}
+                  </SeeMoreSingleNews>
                 </MoreRow>
               </TextPart>
             </NewsItems>
           ) : null
         ))}
       </NewsPage>
-        <SeeMoreNews
-          buttonDisplay ={buttonDisplay}
-          onClick={addNews}
-          className="see_more_btn"
-        > ՏԵՍՆԵԼ ԱՎԵԼԻՆ
-        </SeeMoreNews>
+      <SeeMoreNews
+        buttonDisplay ={buttonDisplay}
+        onClick={addNews}
+        className="see_more_btn"
+      > {pageContext.localeResources.translation.news.see_more}
+      </SeeMoreNews>
     </ContainerNews>
   )
 }
