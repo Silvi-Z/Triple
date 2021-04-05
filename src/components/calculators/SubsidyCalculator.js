@@ -2,7 +2,6 @@ import React from "react"
 import moment from "moment"
 import { isEmpty, isEqual, isNull } from "lodash"
 import { Card, Checkbox, Col, Form, Radio, Row, Select, Tooltip } from "antd"
-import { InfoCircleTwoTone } from "@ant-design/icons"
 import {
   ButtonSubmit,
   CalculatorDatePicker,
@@ -63,7 +62,7 @@ class SubsidyCalculator extends React.Component {
       valid: false,
       randomKey: randomString(),
       check: false,
-      width: typeof window !="undefined" && window.innerWidth <=768
+      width: typeof window != "undefined" && window.innerWidth <= 768,
     }
     this.calculator = new Subsidy()
     this.availableYears = [2019, 2020, 2021]
@@ -289,28 +288,31 @@ class SubsidyCalculator extends React.Component {
   }
 
   autocompleteDays() {
-    const { start, end, type, work, schedule } = this.state.form
+    const { start, end, type, work, schedule, days } = this.state.form
 
-    if (isNull(start) || isNull(end)) {
-      this.setState({ form: { ...this.state.form, days: null } })
-    }
+    if (!days) {
+      if (isNull(start) || isNull(end)) {
+        this.setState({ form: { ...this.state.form, days: null } })
+      }
 
-    if (start && end) {
-      const daysCount = workingDaysInRangeForSubsidy({
-        holidays: this.holidays,
-        workdays: this.workdays,
-        schedule,
-        start: start.clone(),
-        end: end.clone(),
-        type,
-        work,
-      })
-      this.setField("days", daysCount.length, this.changeYear)
-      this.onBlur()
-    } else {
-      this.changeYear()
-      this.onBlur()
+      if (start && end) {
+        const daysCount = workingDaysInRangeForSubsidy({
+          holidays: this.holidays,
+          workdays: this.workdays,
+          schedule,
+          start: start.clone(),
+          end: end.clone(),
+          type,
+          work,
+        })
+        this.setField("days", daysCount.length, this.changeYear)
+        this.onBlur()
+      } else {
+        this.changeYear()
+        this.onBlur()
+      }
     }
+    this.onBlur()
   }
 
   changeYear() {
@@ -666,7 +668,8 @@ class SubsidyCalculator extends React.Component {
               </Form.Item>
 
               {/* start-end dates fields */}
-              <Form.Item label={<Label style={{marginBottom:'25px'}}>{lang.form.dates}</Label>} labelCol={{ span: 24 }}>
+              <Form.Item label={<Label style={{ marginBottom: "25px" }}>{lang.form.dates}</Label>}
+                         labelCol={{ span: 24 }}>
                 <Row gutter={10} align="middle">
                   <RowWrapper style={{ marginRight: "25px" }} label={<Label>{lang.form.start}</Label>}>
                     <CalculatorDatePicker
@@ -706,7 +709,7 @@ class SubsidyCalculator extends React.Component {
               {/* days field */}
               <RowWrapper label={<Label>{lang.form.days}
                 <Tooltip title="prompt text" color="black">
-                  <SvgWrapper style={{backgroundImage: `url(${Svg})`}} />
+                  <SvgWrapper style={{ backgroundImage: `url(${Svg})` }} />
                 </Tooltip></Label>}>
                 <CalculatorInput
                   onChange={v => this.setField("days", v, this.autocompleteEnd)}
@@ -787,7 +790,7 @@ class SubsidyCalculator extends React.Component {
               {this.isTypeDisability && this.isWorkHired ?
                 <Form.Item label={lang.form.schedule} labelCol={{ span: 24 }}>
                   <Radio.Group
-                    style={{display: "flex"}}
+                    style={{ display: "flex" }}
                     onChange={e => this.setField("schedule", e.target.value, this.autocompleteDays)}
                     value={form.schedule}
                   >
@@ -805,7 +808,7 @@ class SubsidyCalculator extends React.Component {
                 this.isStatic ?
                   <RowWrapper className={"subsidyAmount"} label={<Label>{this.changeAmountFieldTitle}
                     <Tooltip title="prompt text" color="black">
-                      <SvgWrapper style={{backgroundImage: `url(${Svg})`}} />
+                      <SvgWrapper style={{ backgroundImage: `url(${Svg})` }} />
                     </Tooltip></Label>}>
                     <CalculatorInput
                       formatter={v => `${v}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
@@ -826,7 +829,7 @@ class SubsidyCalculator extends React.Component {
               {this.isTypeMaternity &&
               <RowWrapper label={<Label>{lang.form.income}
                 <Tooltip title="prompt text" color="black">
-                  <SvgWrapper style={{backgroundImage: `url(${Svg})`}} />
+                  <SvgWrapper style={{ backgroundImage: `url(${Svg})` }} />
                 </Tooltip></Label>}>
                 <CalculatorInput
                   formatter={v => `${v}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}

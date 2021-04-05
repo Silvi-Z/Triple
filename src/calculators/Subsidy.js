@@ -210,7 +210,7 @@ class Subsidy extends Salary {
       if (avg > this.minSalaryAmount * 5) {
         avg = this.minSalaryAmount * 5
       } else if (avg < this.minSalaryAmount * 50 / 100) {
-        avg = this.minSalaryAmount * 50 / 100
+        avg = Math.ceil(this.minSalaryAmount * 50 / 100)
       }
 
       return avg
@@ -223,7 +223,7 @@ class Subsidy extends Salary {
       if (avg > this.minSalaryAmount * 5) {
         avg = this.minSalaryAmount * 5
       } else if (avg < this.minSalaryAmount * 50 / 100) {
-        avg = this.minSalaryAmount * 50 / 100
+        avg = Math.ceil(this.minSalaryAmount * 50 / 100)
       }
 
       return avg
@@ -236,7 +236,7 @@ class Subsidy extends Salary {
       if (avg > this.minSalaryAmount * 5) {
         avg = this.minSalaryAmount * 5
       } else if (avg < this.minSalaryAmount * 50 / 100) {
-        avg = this.minSalaryAmount * 50 / 100
+        avg = Math.ceil(this.minSalaryAmount * 50 / 100)
       }
 
       return avg
