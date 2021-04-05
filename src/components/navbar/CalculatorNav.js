@@ -87,7 +87,7 @@ const settings = {
      margin-left:15px;
      }
     `: styled.div`
-     height:50px;
+     // height:50px;
      align-items: center;
      flex-direction:column;
      padding-left: 20px;

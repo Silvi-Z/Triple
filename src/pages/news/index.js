@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 import SEO from "../../components/seo"
 import UsefulNews from "../../components/news/secondnewspage"
-import FullInfo from "../../templates/fullNews"
+import FullInfo from "../../templates/singleNewsPage"
 import { Select } from "antd"
 import newsDatas from "../../i18n/newsDatas"
 import moment from "moment"

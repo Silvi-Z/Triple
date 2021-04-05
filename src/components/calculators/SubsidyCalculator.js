@@ -667,7 +667,7 @@ class SubsidyCalculator extends React.Component {
 
               {/* start-end dates fields */}
               <Form.Item label={<Label style={{marginBottom:'25px'}}>{lang.form.dates}</Label>} labelCol={{ span: 24 }}>
-                <Row gutter={10} align="middle">
+                <Row gutter={10} className="startEndInputs">
                   <RowWrapper style={{ marginRight: "25px" }} label={<Label>{lang.form.start}</Label>}>
                     <CalculatorDatePicker
                       onChange={date => this.setField("start", date, this.autocompleteDays)}
@@ -844,14 +844,14 @@ class SubsidyCalculator extends React.Component {
 
               {/* static field */}
               {this.isWorkHired ?
-                <RowWrapper>
+                <Form.Item className="inlineElements">
                   <Checkbox
                     onChange={e => this.setField("static", e.target.checked)}
                     checked={form.static}
                   >
                     <RadioLabel>{lang.form.static}</RadioLabel>
                   </Checkbox>
-                </RowWrapper>
+                </Form.Item>
                 :
                 null}
 

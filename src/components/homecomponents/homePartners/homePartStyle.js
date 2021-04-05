@@ -87,6 +87,6 @@ export const ResponseWrapper = typeof window!="undefined" && window.innerWidth >
   // flex-wrap: nowrap;
   }
   @media only screen and (max-width: 500px){
-    max-width: 230px
+    max-height: 230px
   }
 `

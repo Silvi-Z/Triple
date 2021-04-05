@@ -277,11 +277,10 @@ export const TextStyled = styled.p`
 `
 export const SvgWrapper = styled.div`
   display:inline-block;
-  height: 50px;
-  width: 50px;
+  height: 40px;
+  width: 45px;
   background-position: center;
   background-repeat: no-repeat;
-  margin-left: 5px 
 `
 export const CalculatorsCard = styled(Card)`
   margin-top: 30px;
@@ -368,7 +367,7 @@ export const CalendarInfo = styled.div`
   
   tbody td, tbody th {
     padding: 0 5px;
-      box-shadow: inset 0px 0px 0px .5px rgb(0 0 0);
+      box-shadow: inset 0px 0px 0px .5px rgb(0 0 0)!important;
     // border: 1px solid #555555;   
     height: 49px; 
   }
@@ -439,7 +438,6 @@ export const InformationTitles = styled.th`
   font-family: ArialAMU, serif;
   font-style: normal;
   border:none!important;
-  box-shadow: inset 0px 0px 0px 1px rgb(0 0 0);
   font-weight: normal;
   font-size: 12px;
   line-height: 15px;
@@ -448,8 +446,14 @@ export const InformationTitles = styled.th`
 `
 
 export const CalculatorsCardWrapper = styled(Col)`
-  padding-left:0!important;
-  padding-right:0!important;
+  &:not(.calendarWrapper){
+    padding-left:0!important;
+    padding-right:0!important;
+  }
+  &.calendarWrapper{
+    padding-left:10px!important;
+    padding-right:10px!important;
+  }
   @media only screen and (min-width:1200px){
     margin-bottom:90px;
   }
