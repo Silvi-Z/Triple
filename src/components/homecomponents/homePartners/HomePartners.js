@@ -5,7 +5,7 @@ import {
   NavLink,
   PartnerspHeadingColumn,
   PStyled,
-  ResponsWrapper,
+  ResponseWrapper,
   SeemoreWrapper,
 } from "./homePartStyle.js"
 import {
@@ -44,6 +44,7 @@ const Homepartners = ({ langText, lang }) => {
     arrows: false,
     autoplaySpeed: 0,
     speed: 7000,
+    rows:1,
     cssEase: 'linear',
     responsive: [
       {
@@ -67,7 +68,7 @@ const Homepartners = ({ langText, lang }) => {
           {langText.sub_title}
         </PStyled>
       </PartnerspHeadingColumn>
-      <ResponsWrapper {...settings}>
+      <ResponseWrapper {...settings}>
         {partners.map((item, index) => (
           <PartnersContainer key={`partner_${index}`}>
             <Div href={item.url} target='_blank'>
@@ -81,7 +82,7 @@ const Homepartners = ({ langText, lang }) => {
             </Div>
           </PartnersContainer>
         ))}
-      </ResponsWrapper>
+      </ResponseWrapper>
       <NavLink to={`/${lang}/contact`}>
         <SeemoreWrapper
           className="submit_button">

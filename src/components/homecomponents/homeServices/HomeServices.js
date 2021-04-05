@@ -6,7 +6,7 @@ import {
   Link,
   NavLink,
   PStyled,
-  ResponsWrapper,
+  ResponseWrapper,
   SeemoreWrapper,
   ServiceNameWrapper,
   ServiceTitle,
@@ -20,7 +20,7 @@ const HomeServices = ({ pageContext, langText, lang }) => {
         <H2Styled>{langText.title}</H2Styled>
         <PStyled>{langText.sub_title}</PStyled>
       </ServiceTitle>
-      <ResponsWrapper>
+      <ResponseWrapper>
         <ContainerRow>
           {pageContext.map((item, index) => (
             <ServicesContainer
@@ -35,7 +35,7 @@ const HomeServices = ({ pageContext, langText, lang }) => {
             </ServicesContainer>
           ))}
         </ContainerRow>
-      </ResponsWrapper>
+      </ResponseWrapper>
       <NavLink to={`/${lang}/services/`}>
         <SeemoreWrapper className="submit_button">
           {langText.button_text}

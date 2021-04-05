@@ -45,38 +45,22 @@ const UsefulNews = ({news, lang , buttonDisplay, setButtonDisplay, apiUrl,pageCo
                 <NewsText>{item.description_arm}</NewsText>
                 <MoreRow>
                   <DataItem>{moment(item.created_at.substring(0, 10)).format("DD.MM.YYYY")}</DataItem>
-<<<<<<< HEAD
-                  <SeeMoreSingleNews
-                    className="see_more_btn"
-                  > {pageContext.localeResources.translation.news.see_more}
-                  </SeeMoreSingleNews>
-=======
                     <SeeMoreSingleNews
                       className="see_more_btn"
                     > {pageContext.localeResources.translation.news.see_more}
                     </SeeMoreSingleNews>
->>>>>>> 6d4240366474c37d19592bae8948e1ab8687dc84
                 </MoreRow>
               </TextPart>
             </NewsItems>
           ) : null
         ))}
       </NewsPage>
-<<<<<<< HEAD
-      <SeeMoreNews
-        buttonDisplay ={buttonDisplay}
-        onClick={addNews}
-        className="see_more_btn"
-      > {pageContext.localeResources.translation.news.see_more}
-      </SeeMoreNews>
-=======
         <SeeMoreNews
           buttonDisplay ={buttonDisplay}
           onClick={addNews}
           className="see_more_btn"
         > {pageContext.localeResources.translation.news.see_more}
         </SeeMoreNews>
->>>>>>> 6d4240366474c37d19592bae8948e1ab8687dc84
     </ContainerNews>
   )
 }

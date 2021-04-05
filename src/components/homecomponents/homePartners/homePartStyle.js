@@ -68,14 +68,25 @@ export const IconWrapper = styled.img`
     object-fit: cover;
 `
 
-export const ResponsWrapper = typeof window!="undefined" && window.innerWidth >= 768? styled.div`
+export const ResponseWrapper = typeof window!="undefined" && window.innerWidth >= 768? styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;justify-content:end;
 `: styled(Slider)`
   display: flex;
+  flex-wrap: nowrap;
+  max-height:320px;
+  overflow:hidden;
   & .slick-slide{ 
     // width: fit-content !important;
     margin: 0 10px;
+  }
+  & .slick-track{
+    height:100% !important;
+    // display: flex;
+  // flex-wrap: nowrap;
+  }
+  @media only screen and (max-width: 500px){
+    max-width: 230px
   }
 `

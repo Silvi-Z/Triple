@@ -1,9 +1,5 @@
-// import { useEffect } from "react"
-// import triple from "./src/api/triple"
-// import triple from "./src/components/news/newsDatas"
 import triple from "./src/api/triple"
 import apiUrl from "./src/api/api"
-// const json = JSON.stringify(triple.get('/api/news'))
 const config = require("./gatsby-config")
 const resources = require("./src/i18n/resources")
 

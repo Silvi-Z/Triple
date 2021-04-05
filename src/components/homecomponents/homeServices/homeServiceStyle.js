@@ -57,7 +57,7 @@ export const SeemoreWrapper = styled.button`
   align-items: center;
 `
 
-export const ResponsWrapper = styled.div`
+export const ResponseWrapper = styled.div`
   margin-bottom:42px;
   justify-content:center;
 `
@@ -108,6 +108,9 @@ export const InfoAboutPartners = styled.div`
   }
   @media only screen and (max-width: 768px){
     font-size: 16px;
+    p{
+    margin-top:0;
+    }
   }
 `
 export const ServiceNameWrapper = styled.div`
@@ -212,7 +215,7 @@ export const ServicesContainer = styled(ContentContainer)`
 export const CalculatorContainer = styled(ServicesContainer)``
 export const PartnersContainer = styled(ContentContainer)`
   @media only screen and (max-width: 768px){
-      width: 280px !important;
+      width: unset;
   }
 `
 
@@ -223,7 +226,7 @@ export const HomePageWrapper = styled.div`
   @media only screen and (max-width: 1024px) {
     padding:0 20px 63px 20px;
   }
-  ${ResponsWrapper}:nth-child(2){
+  ${ResponseWrapper}:nth-child(2){
     ${ContentContainer}{
     height:auto;
     }

@@ -56,8 +56,10 @@ export const NewsItems = styled(Link)`
   &:hover{
     color:unset
   }
-  @media only screen and (max-width:1111px){
-    width:50%;
+  @media only screen and (max-width:1111px) and (min-width:768px){
+    &.singleNews{
+      width:50%;
+    }
   }
   // @media only screen and (max-width:768px){
   //   margin-left: 0;

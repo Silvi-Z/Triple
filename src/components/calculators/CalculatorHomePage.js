@@ -5,7 +5,7 @@ import {
   IconWrapper
 } from "./styled"
 import {
-  ResponsWrapper,
+  ResponseWrapper,
   CalculatorContainer,
   ContainerRow,
   ContentLink,
@@ -17,7 +17,7 @@ const CalculatorHomePage = ({ pageContext }) => {
   const { calculator } = useTranslations();
   return(
     <>
-    <ResponsWrapper>
+    <ResponseWrapper>
       <ContainerRow>
         {contentData.map(item => (
           <CalculatorContainer key={item.src}>
@@ -31,7 +31,7 @@ const CalculatorHomePage = ({ pageContext }) => {
         ))}
 
         </ContainerRow>
-    </ResponsWrapper>
+    </ResponseWrapper>
     </>
   )
 }
