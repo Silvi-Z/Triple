@@ -30,24 +30,18 @@ import moment from "moment"
 const FullInfo = ({ pageContext, pageContext: {el, locale, apiUrl, data} }) => {
   const [size, setSize] = useState(3)
   const resize = () => {
-    console.log("window.innerWidth",window.innerWidth)
     if (window.innerWidth >= 1111) {
-      console.log(1111)
       setSize(4)
     } else if (768 < window.innerWidth && window.innerWidth < 1111) {
-      console.log("mij")
       setSize(3)
     } else if (window.innerWidth < 768) {
-      console.log(768)
       setSize(2)
     }
   }
 
   useEffect(() => {
-    console.log("location.pathname", location.pathname)
     resize()
   }, location.pathname)
-  console.log("location", location)
   useEffect(() => {
     if (typeof window !== `undefined`) {
       window.addEventListener("resize", resize)
@@ -98,7 +92,6 @@ const FullInfo = ({ pageContext, pageContext: {el, locale, apiUrl, data} }) => {
                 key={index}
                 margin={item.margin}
               >
-                {console.log('size',size)}
                 <ImageWrapper>
                   <img style={{ width: "100%" }} src={apiUrl + item.image} alt="" />
                 </ImageWrapper>

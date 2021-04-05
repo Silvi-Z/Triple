@@ -228,9 +228,9 @@
     },
     "salary": {
       "title": "Salary calculator",
-      "paragraph": "Salary calculator will facilitate all the necessary calculations concerning the gross and net salary. The tool can be used to calculate the salaries of employees working in the companies of general tax field, micro-enterprises as well as in the companies that have IT tax exemption.",
+      "paragraph": "Salary calculator will facilitate all the necessary calculations concerning the gross and net salary. The tool can be used to calculate the salaries of employees working in the companies of general tax field, micro-enterprises as well as in the companies that have IT tax exemption. ",
       "clean_salary_button": "Net salary",
-      "dirty_salary_button": "Gross salary",
+      "dirty_salary_button": "Salary",
       "tax_label": "Choose the option",
       "gross_salary": "Net salary (based on worked days)",
       "tax_label_common": "General tax field",
@@ -266,7 +266,7 @@
     },
     "salary_table": {
       "title": "Salary Calculator (based on the employee time record sheet)",
-      "paragraph": "With this tool you can simultaneously calculate the salary of more than one employee by exporting employee time record sheet from Armenian Software and then importing on our platform. Based on the imported employee time record sheet, the tool automatically decides the work schedule of each employee, executes the calculation of the salary for worked days,  income tax and social charges. Moreover, the result can be imported as an Excel file.",
+      "paragraph": "With this tool you can simultaneously calculate the salary of more than one employee by exporting employee time record sheet from Armenian Software and then importing on our platform (If you don't have the AS system, download the employee time record sheet here). Based on the imported employee time record sheet, the tool automatically decides the work schedule of each employee, executes the calculation of the salary for worked days,  income tax and social charges. Moreover, the result can be imported as an Excel file.",
       "calculate": "CALCULATE",
       "form": {
         "title": "Աշխատավարձի հաշվիչ",
@@ -300,7 +300,7 @@
         "day": "DAY",
         "hour": "HOUR",
         "social_fee": "SOCIAL CHARGES",
-        "salary": "Gross salary",
+        "salary": "Salary",
         "yes_volunteer": "Yes (voluntary)",
         "yes": "Yes",
         "no": "No"

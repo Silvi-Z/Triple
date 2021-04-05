@@ -411,9 +411,9 @@
     },
     "salary": {
       "title": "Salary calculator",
-      "paragraph": "Salary calculator will facilitate all the necessary calculations concerning the gross and net salary. The tool can be used to calculate the salaries of employees working in the companies of general tax field, micro-enterprises as well as in the companies that have IT tax exemption.",
+      "paragraph": "Salary calculator will facilitate all the necessary calculations concerning the gross and net salary. The tool can be used to calculate the salaries of employees working in the companies of general tax field, micro-enterprises as well as in the companies that have IT tax exemption. ",
       "clean_salary_button": "Net salary",
-      "dirty_salary_button": "Gross salary",
+      "dirty_salary_button": "Salary",
       "tax_label": "Choose the option",
       "gross_salary": "Net salary (based on worked days)",
       "tax_label_common": "General tax field",
@@ -433,7 +433,7 @@
       "pension_paymet_label": "Social charges",
       "stamp_duty_label": "Stamp Duty Payments",
       "dirty_to_clean_salary": "Net salary",
-      "clean_dirty_to_salary": "Gross salary",
+      "clean_dirty_to_salary": "Salary",
       "result_duty_bonus": "Կեղտոտ պարգևավճար",
       "form": {
         "by_date": "Calculation for full month",
@@ -450,7 +450,7 @@
     },
     "salary_table": {
       "title": "Salary Calculator (based on the employee time record sheet)",
-      "paragraph": "With this tool you can simultaneously calculate the salary of more than one employee by exporting employee time record sheet from Armenian Software and then importing on our platform. Based on the imported employee time record sheet, the tool automatically decides the work schedule of each employee, executes the calculation of the salary for worked days,  income tax and social charges. Moreover, the result can be imported as an Excel file.",
+      "paragraph": "With this tool you can simultaneously calculate the salary of more than one employee by exporting employee time record sheet from Armenian Software and then importing on our platform (If you don't have the AS system, download the employee time record sheet here). Based on the imported employee time record sheet, the tool automatically decides the work schedule of each employee, executes the calculation of the salary for worked days,  income tax and social charges. Moreover, the result can be imported as an Excel file.",
       "calculate": "CALCULATE",
       "form": {
         "title": "Աշխատավարձի հաշվիչ",
@@ -461,7 +461,7 @@
         "end": "END",
         "working_days": "Worked days",
         "clean_salary": "Net salary",
-        "dirty_salary": "Gross salary",
+        "dirty_salary": "Salary",
         "tax_label": "Choose the option",
         "tax_common": "General tax field",
         "tax_enterprise": "Micro-enterprises",
@@ -485,7 +485,7 @@
         "day": "DAY",
         "hour": "HOUR",
         "social_fee": "SOCIAL CHARGES",
-        "salary": "Gross salary",
+        "salary": "Salary",
         "yes_volunteer": "Yes (voluntary)",
         "yes": "Yes",
         "no": "No"
@@ -498,7 +498,7 @@
         "stamp_fee": "Stamp Duty Payments",
         "pension_fee": "Social charges",
         "dirty_to_clean_salary": "Net salary",
-        "clean_to_dirty_salary": "Gross salary",
+        "clean_to_dirty_salary": "Salary",
         "duty_bonus": "Կեղտոտ պարգևավճար",
         "download": "Ներբեռնել արդյունքը"
       }
@@ -506,7 +506,7 @@
     "vacation": {
       "title": "Vacation calculator",
       "paragraph": "According to the Tax code of RA and other legal acts, the tool calculates vacation pay corresponding to the number of vacation days available to employees as well as deductions required by law.Fulfill the starting and ending day, and the tool ill automatically decide number of vacation days taking into the consideration weekend, holidays and days off announced by RA Gouvernement.",
-      "salary_label": "Gross salary",
+      "salary_label": "Salary",
       "static_salary_label": "The salary has not been changed during 12 last months or bonuses have not been provided",
       "pensioner_label": "Do you participate in the accumulative pension system?",
       "tax_label_common": "General tax field",
@@ -520,7 +520,7 @@
       "end": "END",
       "month": "Month",
       "year": "Year",
-      "gross_salary": "Gross salary",
+      "gross_salary": "Salary",
       "bonus": "Bonuses",
       "surcharge": "Premium",
       "date_from_placeholder": "date",
@@ -557,7 +557,7 @@
         "general_vacation_days": "Total vacation day",
         "used_vacation_days": "Used vacation days",
         "unused_vacation_days": "Unused vacation days",
-        "salary": "Gross salary",
+        "salary": "Salary",
         "static_salary": "The salary has not been changed during 12 last months or bonuses have not been provided",
         "tax": "Choose the option",
         "tax_common": "General tax field",
@@ -574,7 +574,7 @@
         "hint": "Այն ամիս(ներ)ը, երբ աշխատակիցը գտնվել է արձակուրդում, անաշխատունակության մեջ կամ այլ պատճառով բացակայել է աշխատանքից, չլրացնել",
         "month": "Month",
         "year": "Year",
-        "gross_salary": "Gross salary",
+        "gross_salary": "Salary",
         "bonus": "BONUSES",
         "surcharge": "Premium"
       },
@@ -591,7 +591,7 @@
       "title": "Mortgage repayment calculator",
       "paragraph": "With the help of the income tax return calculator you can calculate the amount of income tax reimbursable for the interest paid on the mortgage loan.",
       "clean_salary": "Net salary",
-      "dirty_salary": "Gross salary",
+      "dirty_salary": "Salary",
       "salary_label": "MONTHLY salary",
       "salary_type_label": "Calculation in accordance with",
       "static_salary_label": "The salary has not been changed during 3 last months or bonuses have not been provided",
@@ -605,7 +605,7 @@
       "yes": "Yes",
       "no": "No",
       "quarter_months": "months",
-      "gross_salary": "Gross salary",
+      "gross_salary": "Salary",
       "bonus": "Bonuses",
       "surcharge": "Premium",
       "calculate": "CALCULATE",
@@ -650,7 +650,7 @@
       "gross": {
         "month": "Month",
         "year": "Year",
-        "gross_salary": "Gross salary",
+        "gross_salary": "Salary",
         "bonus": "BONUSES",
         "surcharge": "Premium"
       },

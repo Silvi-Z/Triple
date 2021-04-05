@@ -46,8 +46,6 @@ class CurrencyCalculator extends React.Component {
       changedAmount: true,
       calculated: false,
       valid: false,
-      check: false,
-      width: typeof window !="undefined" && window.innerWidth <=768
     }
     this.holidays = []
     this.workdays = []
@@ -305,7 +303,7 @@ class CurrencyCalculator extends React.Component {
   }
 
   handleSubmit = () => {
-    const { form, changedAmount, check, width } = this.state
+    const { form, changedAmount } = this.state
 
     Currency.schema.isValid(form).then(valid => {
       if (!valid) return
@@ -331,23 +329,10 @@ class CurrencyCalculator extends React.Component {
           this.setState({ calculated: false })
         })
         .catch(err => console.log(err))
-        .finally(() => {
-          this.setState({ loading: false, calculated: false })
-          if(check && width){
-            this.top.current.scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" })
-          }this.setState((prevState) => ({
-            ...prevState,
-            check: false,
-          }))
-        })
+
     }).catch(err => console.log(err))
   }
-  checkValue() {
-    this.setState((prevState) => ({
-      ...prevState,
-      check: true,
-    }))
-  }
+
   onBlur = () => {
     if (this.state.valid) {
       this.handleSubmit()
@@ -393,7 +378,6 @@ class CurrencyCalculator extends React.Component {
 
   changeState = () => {
     this.setState({ valid: true })
-    this.checkValue()
   }
 
   render() {

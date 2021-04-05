@@ -922,7 +922,9 @@ pre tt:after {
 /*.ant-picker-input:hover .ant-picker-clear{*/
 /*  display: none !important;*/
 /*}*/
-
+.ant-tooltip-inner{
+    margin-right: 10px!important;
+}
 @media only screen and (max-width: 375px) {
     #basic_companyname {
         width: 270px;
@@ -1041,7 +1043,13 @@ pre tt:after {
         background-color: #ffffff;
     }
 }
-
+.ant-form-item-label{
+    overflow: visible!important;
+    padding-bottom: 5px;
+}
+table.gross th:nth-of-type(3){
+    max-width: unset!important;
+}
 #basic_career_textarea {
     margin-top: 7px;
     box-shadow: none;
@@ -1174,7 +1182,12 @@ pre tt:after {
 .languagetext:hover {
     color: #009db8;
 }
-
+.langSection{
+    width: 100%;
+    /*margin: auto;*/
+    padding-bottom: 20px;
+    border-bottom: 1px solid #EAEAEA;
+}
 #footerfirstrow {
     height: 70%;
     justify-content: space-around;
@@ -1568,12 +1581,6 @@ pre tt:after {
     background-repeat: no-repeat;
 }
 
-#gatsby-focus-wrapper {
-    /*outline: none;*/
-    /*overflow: hidden;*/
-    /*height: 100vh;*/
-}
-
 
 /*menu animation*/
 #menu {
@@ -1583,6 +1590,19 @@ pre tt:after {
     position: absolute;
     animation: .5s openMenu ease forwards;
     margin-top: 89px;
+
+}
+#menu > div{
+    animation: .5s respMenu ease forwards;
+}
+
+@keyframes respMenu {
+    0% {
+        height: 0;
+    }
+    100% {
+        height: calc(100vh - 150px);
+    }
 }
 
 @keyframes showInfoRow {
@@ -1664,7 +1684,7 @@ pre tt:after {
 #burger.open span:nth-child(1) {
     transform: rotate(45deg);
     top: 11px;
-    margin-left: 6px;
+    margin-left: 4px;
 }
 
 #burger.open span:nth-child(2) {
@@ -1675,7 +1695,7 @@ pre tt:after {
 #burger.open span:nth-child(3) {
     transform: rotate(-45deg);
     top: 29px;
-    margin-left: 6px;
+    margin-left: 4px;
 }
 
 .see_more_btn {

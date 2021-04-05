@@ -12,7 +12,9 @@ import useTranslations from "../../../components/useTranslations";
 import { FacebookShareButton, LinkedinShareButton } from "react-share";
 import { H1Styled, SvgWrapper, TextStyled } from "../styled"
 import { InfoCircleTwoTone } from "@ant-design/icons"
-
+import {
+  BY_FIELD_TABLE,
+} from "../utilities/salary"
 //share button container
 export const SharedWrapperCol = styled(Col)`
   padding: 0 1%;
@@ -68,7 +70,7 @@ const CalculatorWrapper = ({ ctx, children}) => {
       <Row className="textSec">
         <H1Styled>{selectCalculator.title}</H1Styled>
         {(typeof window !== `undefined` && window.innerWidth>768) ? (
-        <TextStyled>{selectCalculator.paragraph}</TextStyled>
+        <TextStyled>{BY_FIELD_TABLE && console.log('selectCalculator',selectCalculator)}{selectCalculator.paragraph}</TextStyled>
         ) : (
         <Tooltip title={selectCalculator.paragraph} color="black">
           <SvgWrapper style={{backgroundImage: `url(${Svg})`}} />

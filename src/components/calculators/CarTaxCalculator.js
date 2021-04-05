@@ -166,10 +166,10 @@ class CarTaxCalculator extends React.Component {
                   onChange={e => this.setField("taxType", e.target.value)}
                   value={form.taxType}
                 >
-                  <Radio value={VehicleTax.TAX_CAR}>
+                  <Radio className="inlineElements" value={VehicleTax.TAX_CAR}>
                     {<Label style={{ textTransform: "none" }}>{lang.form.car}</Label>}
                   </Radio>
-                  <Radio value={VehicleTax.TAX_REAL_ESTATE}>
+                  <Radio className="inlineElements" value={VehicleTax.TAX_REAL_ESTATE}>
                     {<Label style={{ textTransform: "none" }}>{lang.form.realEstate}</Label>}
                   </Radio>
                 </Radio.Group>
@@ -219,10 +219,10 @@ class CarTaxCalculator extends React.Component {
                       value={form.powerType}
                       style={{marginBottom:"25px", display:"flex", alignItems:"center"}}
                     >
-                      <Radio value={VehicleSell.HORSEPOWER}>
+                      <Radio className="inlineElements" value={VehicleSell.HORSEPOWER}>
                         <Label style={{ textTransform: "none" }}>{lang.form.horsepower}</Label>
                       </Radio>
-                      <Radio value={VehicleSell.KILOWATTS}>
+                      <Radio className="inlineElements" value={VehicleSell.KILOWATTS}>
                         <Label style={{ textTransform: "none" }}>{lang.form.kilowatts}</Label>
                       </Radio>
                     </Radio.Group>

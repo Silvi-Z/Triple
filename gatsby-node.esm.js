@@ -43,10 +43,6 @@ exports.onCreatePage = async ({ page, actions: { createPage, deletePage, createR
           })
         })
 
-
-      const reg = new RegExp(`^${lang}/calculators`)
-
-
       if (page.path.match(/^\/arm\/calculators/)) {
         page.matchPath = `arm/calculators/*`
         // Update the page.

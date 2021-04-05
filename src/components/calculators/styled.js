@@ -277,9 +277,8 @@ export const TextStyled = styled.p`
 `
 export const SvgWrapper = styled.div`
   display:inline-block;
-  height: 20px;
-  max-width: 50px;
-  width: 20px;
+  height: 50px;
+  width: 50px;
   background-position: center;
   background-repeat: no-repeat;
   margin-left: 5px 
@@ -303,6 +302,7 @@ export const CalculatorsCard = styled(Card)`
   }
 `
 export const Arrows = styled(Col)`
+  overflow:hidden;
   @media (max-width: 768px){
     min-width:230px;
   }
@@ -357,18 +357,20 @@ export const CalendarWrapper = styled.div`
 export const CalendarInfo = styled.div`
   width: 100%;
   height: 180px;
-  border: 0.5px solid #555555;
+  // border: 0.5px solid #555555;
   border-radius: 10px;
   margin:0 auto 25px;
   overflow: hidden;
   min-width: 250px;
+  box-shadow: inset 0px 0px 0px 1px rgb(0 0 0);
   width: 250px;
   max-width: 250px;
   
   tbody td, tbody th {
     padding: 0 5px;
-    border: 1px solid #555555;   
-    height: 44px; 
+      box-shadow: inset 0px 0px 0px .5px rgb(0 0 0);
+    // border: 1px solid #555555;   
+    height: 49px; 
   }
       
   tbody th{
@@ -436,6 +438,8 @@ export const DayWrapper = styled.td`
 export const InformationTitles = styled.th`
   font-family: ArialAMU, serif;
   font-style: normal;
+  border:none!important;
+  box-shadow: inset 0px 0px 0px 1px rgb(0 0 0);
   font-weight: normal;
   font-size: 12px;
   line-height: 15px;
@@ -506,7 +510,7 @@ export const CheckboxField = styled(Checkbox)`
       padding: 5px 10px;
       background-color: white;
       border: 0.5px solid #555555;
-      width: max-content;
+      width: 100%;
       border-radius: 5px;
       margin: auto;
       color: #555555;

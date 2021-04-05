@@ -78,6 +78,8 @@ const settings = {
   const SliderList = typeof window !== `undefined` && window.innerWidth <= 768 ? styled(Slider) `
      height:fit-content;
      display:flex;
+     height:50px;
+     align-items: center;
      & .slick-slider{
       margin-left:0
      }
@@ -85,6 +87,8 @@ const settings = {
      margin-left:15px;
      }
     `: styled.div`
+     height:50px;
+     align-items: center;
      flex-direction:column;
      padding-left: 20px;
 `

@@ -406,10 +406,10 @@ class CarSellCalculator extends React.Component {
                     value={form.powerType}
                     style={{marginBottom:"25px", display:"flex", alignItems:"center"}}
                   >
-                    <Radio value={VehicleSell.HORSEPOWER}>
+                    <Radio className="inlineElements" value={VehicleSell.HORSEPOWER}>
                       <Label style={{ textTransform: "none" }}>{lang.horsepower}</Label>
                     </Radio>
-                    <Radio value={VehicleSell.KILOWATTS}>
+                    <Radio className="inlineElements" value={VehicleSell.KILOWATTS}>
                       <Label style={{ textTransform: "none" }}>{lang.kilowatts}</Label>
                     </Radio>
                   </Radio.Group>

@@ -47,32 +47,34 @@ export const RespNavLink = styled(Link)`
   align-items: center;
   text-decoration: none;
   text-align: center;
+  height: 72px;
 `
 export const ResponsiveMenuWrapper = styled.div`
   width: 100%;
-  height: 87%;
+  animation: .5s respMenu ease forwards;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  padding-top:50px;
   padding-left: 80px;
   padding-right: 80px;
   background-color: #1C1D21;
-   ${NavLink}{
+   ${NavLinkMain}{
     color : white;
     transform: translateY(200px);
-  opacity: 0;
-  animation: 1s slideUp ease forwards .5s;
-  
+    opacity: 0;
+    animation: .8s slideUp ease forwards .5s;
   }
   @media only screen and (max-width: 768px){
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-left: 0;
+    padding-right: 0;
+    width: 80%;
+    margin: auto;
   }
 `
 export const Coll = styled.div`
   height: 100%;
   overflow: hidden;  
+  margin-bottom: 25px;
 `
 export const ResponsiveMenuColumn = styled.div`
    display:flex;
@@ -83,12 +85,12 @@ export const ResponsiveMenuColumn = styled.div`
 export const MenuWrapper = styled.div`
    display: flex;
    flex-direction: column;
-   align-items: center;
-   margin: 0 auto;
+   // align-items: center;
+   // margin: 0 auto;
 `
 export const AddressSpan = styled.span`
   font-family: ArialAMU, serif;
-  font-size: ${props => props.lang !== "arm" ? "11px" : "12px"};
+  font-size: ${props => props.lang !== "arm" ? "11px" : "12px"};sub
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;
@@ -114,7 +116,7 @@ export const ResponsiveMenuInfoRow = styled.div`
    display:flex;
    justify-content:space-between;
    padding-top:50px;
-   border-top:1px solid grey;
+   border-top:1px solid #EAEAEA;
    opacity:0;
    animation: 2s showInfoRow ease forwards .5s;
       @media only screen and (max-width: 768px){
@@ -129,23 +131,11 @@ export const ResponsiveMenuInfoRow = styled.div`
             width:50%;
          }
    }
-   >div:nth-child(2){
-      @media only screen and (max-width: 535px){
-         text-align: end;
-      }
-   }
    >div:last-child{
-      display: flex;
-      align-items: center;
-      flex-wrap: nowrap;
       width: 42%;
-      justify-content: flex-end;
          @media only screen and (max-width: 535px){
-            text-align: center;
             margin-top: 16px;
             width: 100%;
-            align-items: center;
-            justify-content: center;
          }
    }
    ${PhoneSpan}{

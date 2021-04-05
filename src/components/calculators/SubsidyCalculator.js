@@ -785,7 +785,7 @@ class SubsidyCalculator extends React.Component {
 
               {/* schedule field */}
               {this.isTypeDisability && this.isWorkHired ?
-                <RowWrapper label={lang.form.schedule} labelCol={{ span: 24 }}>
+                <Form.Item label={lang.form.schedule} labelCol={{ span: 24 }}>
                   <Radio.Group
                     style={{display: "flex"}}
                     onChange={e => this.setField("schedule", e.target.value, this.autocompleteDays)}
@@ -798,7 +798,7 @@ class SubsidyCalculator extends React.Component {
                       {<Label style={{ textTransform: "none" }}>{lang.form["six_days"]}</Label>}
                     </Radio>
                   </Radio.Group>
-                </RowWrapper> : null}
+                </Form.Item> : null}
 
               {/* amount input */}
               {

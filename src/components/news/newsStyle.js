@@ -132,7 +132,7 @@ export const SeeMoreSingleNews = styled(SeemoreWrapper)`
   margin-top: 0;
   font-size:14px;
   font-weight: normal;
-  margin:unset;
+  margin:unset!important;
 `
 
 export const SeeMoreNews = styled(SeemoreWrapper)`

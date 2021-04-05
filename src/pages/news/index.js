@@ -28,8 +28,8 @@ const Index = ({location, pageContext }) => {
 
   const [constData, setConstData] = useState([])
   const [data, setData] = useState([])
+
   useEffect(()=>{
-    console.log(triple)
     triple.get('/api/news')
       .then(res =>{
         const filter = res.data.data.slice().sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
@@ -38,6 +38,7 @@ const Index = ({location, pageContext }) => {
       } )
       .catch(err => console.log(err))
   }, [])
+
   const [buttonDisplay, setButtonDisplay] = useState(true)
   let urlShared
   const [selectedDate, setSelectedDate] = useState(newsDatas)

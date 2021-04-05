@@ -257,10 +257,10 @@ class MortgageCalculator extends React.Component {
                   onChange={e => this.setField("salary_type", e.target.value)}
                   value={form.salary_type}
                 >
-                  <Radio value={SALARY_TYPE_REGISTERED}>
+                  <Radio className="inlineElements" value={SALARY_TYPE_REGISTERED}>
                     <Label>{lang["dirty_salary"]}</Label>
                   </Radio>
-                  <Radio value={SALARY_TYPE_NET}>
+                  <Radio className="inlineElements" value={SALARY_TYPE_NET}>
                     <Label>{lang["clean_salary"]}</Label>
                   </Radio>
                 </Radio.Group>

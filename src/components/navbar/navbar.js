@@ -3,9 +3,9 @@ import styled from "styled-components"
 import { navigate } from "gatsby"
 import { Dropdown } from "antd"
 import { PhoneOutlined, CaretDownOutlined, EnvironmentOutlined } from "@ant-design/icons"
-import BlackLogo from "../../assets/homeImages/3c1.png"
+import BlackLogo from "../../assets/homeImages/3c1.svg"
 import MainLogo from "../../assets/homeImages/3c.svg"
-import WhiteLogo from "../../assets/homeImages/3c_white.png"
+import WhiteLogo from "../../assets/homeImages/3c_white.svg"
 import EnvironmentImg from "../../assets/footericons/location.svg"
 import TelegramIcon from "../../assets/footericons/brandIcons/telegram (header).svg"
 import "@fortawesome/fontawesome-free/css/all.css"
@@ -188,6 +188,7 @@ const Navbar = ({
     <>
       <ResponsiveNavWrapper menuColorProp={color}>
         <div style={{ textAlign: "center", display: "flex" }}>
+          {console.log('responseWrapper',responseWrapper)}
           <RespNavLink to={`/${lang}/`} onClick={() => !responseWrapper ? open() : ""}>
             <HeadMainIcon src={!responseWrapper ? WhiteLogo : BlackLogo} alt={"icon"} />
           </RespNavLink>
@@ -206,9 +207,25 @@ const Navbar = ({
       {!responseWrapper ? (
         <div id="menu">
           <ResponsiveMenuWrapper>
+            <div className="langSection">
+              <span
+                style={{ color: "white" }}
+                onClick={e => changeLanguage(e, "arm")}
+                className="languagetext"
+                id="arm"
+              >Հայ |
+              </span>
+              <span
+                style={{ color: "white" }}
+                onClick={e => changeLanguage(e, "en")}
+                className="languagetext"
+                id="en"
+              > Eng
+              </span>
+            </div>
             <MenuWrapper>
               <ResponsiveMenuColumn>
-                <Coll className="coll" style={{ marginBottom: "50px" }}>
+                <Coll className="coll" >
                   <NavLinkMain
                     className="menu_element"
                     to={`/${lang}/services/`}
@@ -219,7 +236,7 @@ const Navbar = ({
                     {langText.header.serveTitle}
                   </NavLinkMain>
                 </Coll>
-                <Coll style={{ marginBottom: "50px" }}>
+                <Coll >
                   <NavLinkMain
                     className="menu_element"
                     to={`/${lang}/calculators/`}
@@ -230,7 +247,7 @@ const Navbar = ({
                     {langText.header.calcTitle}
                   </NavLinkMain>
                 </Coll>
-                <Coll style={{ marginBottom: "50px" }}>
+                <Coll >
                   <NavLinkMain
                     className="menu_element"
                     to={`/${lang}/news/`}
@@ -240,7 +257,7 @@ const Navbar = ({
                     {langText.header.newsTitle}
                   </NavLinkMain>
                 </Coll>
-                <Coll style={{ marginBottom: "50px" }}>
+                <Coll >
                   <NavLinkMain
                     className="menu_element"
                     to={`/${lang}/information/`}
@@ -250,7 +267,7 @@ const Navbar = ({
                     {langText.header.infoTitle}
                   </NavLinkMain>
                 </Coll>
-                <Coll style={{ marginBottom: "50px" }}>
+                <Coll >
                   <NavLinkMain
                     className="menu_element"
                     to={`/${lang}/career/`}
@@ -260,7 +277,7 @@ const Navbar = ({
                     {langText.header.careerTitle}
                   </NavLinkMain>
                 </Coll>
-                <Coll style={{ marginBottom: "50px" }}>
+                <Coll >
                   <NavLinkMain
                     className="menu_element"
                     to={`/${lang}/contact/`}
@@ -273,22 +290,6 @@ const Navbar = ({
               </ResponsiveMenuColumn>
             </MenuWrapper>
             <ResponsiveMenuInfoRow>
-              <div>
-              <span
-                style={{ color: "white" }}
-                onClick={e => changeLanguage(e, "arm")}
-                className="languagetext"
-                id="arm"
-              >Հայ |
-              </span>
-                <span
-                  style={{ color: "white" }}
-                  onClick={e => changeLanguage(e, "en")}
-                  className="languagetext"
-                  id="en"
-                > Eng
-              </span>
-              </div>
               <div>
                 <EnvironmentOutlined />
                 <AddressSpan lang={lang}> {langText.header.address}</AddressSpan>

@@ -327,10 +327,10 @@ class CarCustomsCalculator extends React.Component {
                   onChange={e => this.setField("person", e.target.value, () => this.reset("costs"))}
                   value={form.person}
                 >
-                  <Radio value={VehicleCustoms.PERSON_PHYSICAL}>
+                  <Radio className="inlineElements" value={VehicleCustoms.PERSON_PHYSICAL}>
                     <Label style={{ textTransform: "none" }}>{lang.form["person_physical"]}</Label>
                   </Radio>
-                  <Radio value={VehicleCustoms.PERSON_LEGAL}>
+                  <Radio className="inlineElements" value={VehicleCustoms.PERSON_LEGAL}>
                     <Label style={{ textTransform: "none" }}>{lang.form["person_legal"]}</Label>
                   </Radio>
                 </Radio.Group>
