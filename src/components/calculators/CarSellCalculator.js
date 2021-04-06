@@ -12,8 +12,9 @@ import {
   CurrencySymbol,
   FormLabel,
   Label,
+  RadioElementsWrapper,
+  RowWrapper,
   UnderLine,
-  RowWrapper, RadioElementsWrapper,
 } from "./styled"
 import { isHoliday, isWeekend } from "./utilities/vacation"
 import triple from "../../api/triple"
@@ -39,7 +40,7 @@ class CarSellCalculator extends React.Component {
       calculated: false,
       randomKey: randomString(),
       check: false,
-      width: typeof window !="undefined" && window.innerWidth <=768
+      width: typeof window != "undefined" && window.innerWidth <= 768,
     }
     this.holidays = []
     this.workdays = []
@@ -94,7 +95,7 @@ class CarSellCalculator extends React.Component {
         }
       })
     }).finally(() => {
-      if(check && width){
+      if (check && width) {
         this.top.current.scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" })
       }
       this.setState((prevState) => ({
@@ -332,7 +333,7 @@ class CarSellCalculator extends React.Component {
     const { lang } = this.props
 
     return (
-      <Row align="start" >
+      <Row align="start">
         <CalculatorsCardWrapper span={24} xl={16} gutter={20}>
           <CalculatorsCard bordered={false} className="calculatorsCard">
             <Form
@@ -377,7 +378,7 @@ class CarSellCalculator extends React.Component {
                 </RowWrapper>
 
               </Row>
-              <Row   style={{display:"flex", flexDirection:"column"}}>
+              <Row style={{ display: "flex", flexDirection: "column" }}>
                 <RowWrapper label={<Label>{lang.price}</Label>}>
                   <CalculatorInput
                     formatter={v => `${v}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
@@ -404,7 +405,7 @@ class CarSellCalculator extends React.Component {
                   <Radio.Group
                     onChange={e => this.setField("powerType", e.target.value)}
                     value={form.powerType}
-                    style={{marginBottom:"25px", display:"flex", alignItems:"center"}}
+                    style={{ marginBottom: "25px", display: "flex", alignItems: "center" }}
                   >
                     <Radio className="inlineElements" value={VehicleSell.HORSEPOWER}>
                       <Label style={{ textTransform: "none" }}>{lang.horsepower}</Label>
@@ -422,7 +423,7 @@ class CarSellCalculator extends React.Component {
                   htmlType="submit"
                   shape="round"
                   size="large"
-                  onClick={()=>this.checkValue()}
+                  onClick={() => this.checkValue()}
                 >
                   {lang.calculate}
                 </ButtonSubmit>
@@ -431,9 +432,9 @@ class CarSellCalculator extends React.Component {
           </CalculatorsCard>
         </CalculatorsCardWrapper>
 
-        <Col span={20}  xl={8} sm={10} className="result" ref={this.top}>
-         <div className="sellResult carSell">
-           <FormLabel style={{ margin: 0 }}>{lang.result.title}</FormLabel>
+        <Col span={20} xl={8} sm={10} className="result" ref={this.top}>
+          <div className="sellResult carSell">
+            <FormLabel style={{ margin: 0 }}>{lang.result.title}</FormLabel>
 
             <UnderLine />
 

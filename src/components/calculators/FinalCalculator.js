@@ -2,7 +2,6 @@ import React from "react"
 import ReactDOM from "react-dom"
 import triple from "../../api/triple"
 import { isEqual, pick } from "lodash"
-import { InfoCircleTwoTone } from "@ant-design/icons"
 import { Checkbox, Col, Form, Input, Radio, Row, Tooltip } from "antd"
 import GrossSalaryTable from "./calcComponents/GrossSalaryTable"
 import CalculatorCardResult from "./calcComponents/CalculatorCardResult"
@@ -15,7 +14,8 @@ import {
   FormLabel,
   Label,
   RadioLabel,
-  RowWrapper, SvgWrapper,
+  RowWrapper,
+  SvgWrapper,
   UnderLine,
 } from "./styled"
 import {
@@ -82,7 +82,7 @@ class FinalCalculator extends React.Component {
       loading: false,
       valid: false,
       check: false,
-      width: typeof window !="undefined" && window.innerWidth <=768
+      width: typeof window != "undefined" && window.innerWidth <= 768,
     }
 
     this.holidays = []
@@ -241,7 +241,7 @@ class FinalCalculator extends React.Component {
   }
 
   handleSubmit = () => {
-    const { form , check, width} = this.state
+    const { form, check, width } = this.state
     const { date_release } = this.state.form
     let data = { ...pick(form, Object.keys(schema.fields)), amount: this.amount }
     schema.isValid(data).then(valid => {
@@ -258,7 +258,7 @@ class FinalCalculator extends React.Component {
       } else {
         data = {
           ...data,
-          year: date_release.year(),
+          year: date_release ? date_release.year() : moment().year(),
         }
 
         // this.setState({ loading: true })
@@ -283,7 +283,7 @@ class FinalCalculator extends React.Component {
       }
     }).catch(err => console.log(err))
       .finally(() => {
-        if (check && width){
+        if (check && width) {
           this.col.current.scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" })
         }
         this.setState((prevState) => ({
@@ -680,7 +680,7 @@ class FinalCalculator extends React.Component {
                 <Label style={{ textTransform: "none" }}>
                   {lang.form.unused_vacation_days}
                   <Tooltip title="prompt text" color="black">
-                    <SvgWrapper style={{backgroundImage: `url(${Svg})`}} />
+                    <SvgWrapper style={{ backgroundImage: `url(${Svg})` }} />
                   </Tooltip>
                 </Label>
               }>
@@ -788,7 +788,7 @@ class FinalCalculator extends React.Component {
                   htmlType="submit"
                   shape="round"
                   size="large"
-                  onClick={()=>this.checkValue()}>
+                  onClick={() => this.checkValue()}>
                   {lang.form["calculate"]}
                 </ButtonSubmit>
               </Form.Item>

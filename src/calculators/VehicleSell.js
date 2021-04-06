@@ -30,12 +30,12 @@ class VehicleSell extends Vehicle {
    * @param {Number} powerType
    */
   constructor({
-    achievementDate,
-    alienationDate,
-    powerType,
-    power,
-    price,
-  }) {
+                achievementDate,
+                alienationDate,
+                powerType,
+                power,
+                price,
+              }) {
     super({
       capacity: null,
       date: null,
@@ -100,7 +100,11 @@ class VehicleSell extends Vehicle {
     }
 
     if (this.isKilowatts) {
-      return Math.ceil(this.power * 1.36)
+      powerValue = Math.ceil(this.power * 1.36) * 150
+
+      const tax = contractValue > powerValue ? contractValue : powerValue
+
+      return Math.round(tax)
     }
 
     return null
