@@ -379,11 +379,7 @@ class CarCustomsCalculator extends React.Component {
 
 
               {form.person === VehicleCustoms.PERSON_LEGAL ?
-                <RowWrapper label={<Label>
-                  <Tooltip className="tooltip" trigger={'click'} title="prompt text" color="black">
-                    {lang.form.costs}
-                    <SvgWrapper style={{backgroundImage: `url(${Svg})`}} />
-                  </Tooltip></Label>}>
+                <RowWrapper label={<Label>{lang.form.costs}</Label>}>
                   <CalculatorInput
                     formatter={v => `${v}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                     parser={v => v.replace(/\$\s?|(,*)/g, "")}
