@@ -414,7 +414,7 @@ const CalendarCalculator = ({ lang, locale }) => {
 
   return (
     <Row align="start" gutter={20} className="fixElement">
-      <CalculatorsCardWrapper xs={24} sm={24} md={24} lg={24} xl={24} xxl={24}>
+      <CalculatorsCardWrapper className="calendarWrapper" xs={24} sm={24} md={24} lg={24} xl={24} xxl={24}>
         <CalculatorsCard bordered={false} className={"calendarBody"}>
           <Form
             onFinish={handleSubmit}
@@ -425,7 +425,7 @@ const CalendarCalculator = ({ lang, locale }) => {
           >
             <Row align="start"
                  justify="space-between">
-              <CalculatorsCardWrapper span={24} xl={16}>
+              <CalculatorsCardWrapper className="calendarWrapper" span={24} xl={16}>
                 <Form.Item label={lang.working_schedule} labelCol={{ span: 24 }}>
                   <Radio.Group
                     onChange={e => setField("schedule", e.target.value)}
@@ -441,7 +441,7 @@ const CalendarCalculator = ({ lang, locale }) => {
                     </Radio>
                   </Radio.Group>
                 </Form.Item>
-                <Row gutter={10} align="middle">
+                <Row gutter={10} className="startEndInputs">
                   <RowWrapper style={{ marginRight: "25px", display:"flex", alignItems: "center" }} label={<Label>{lang.form.start}</Label>}>
                     <CalculatorDatePicker
                       dateRender={(date, today) => handlePickerRender(date, today, "start")}

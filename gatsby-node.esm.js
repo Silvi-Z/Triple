@@ -31,7 +31,7 @@ exports.onCreatePage = async ({ page, actions: { createPage, deletePage, createR
           res.data.data.forEach(el => {
             createPage({
               path: `${lang}/news/${el.id}`,
-              component: require.resolve(`./src/templates/fullNews.js`),
+              component: require.resolve(`./src/templates/singleNewsPage.js`),
               context: {
                 el,
                 locale: lang,

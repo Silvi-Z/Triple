@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import {
   H2Styled,
   IconWrapper,
@@ -21,19 +21,6 @@ import apiUrl from "../../../api/api.json"
 const Homepartners = ({ langText, lang }) => {
   const [partners, setPartners] = useState([])
   const settings = {
-    // infinite: true,
-    // arrows: false,
-    // pauseOnFocus: true,
-    // // pauseOnHover: true,
-    // // autoplay: true,
-    // // autoplaySpeed: 0,
-    // slidesToScroll: 0.4,
-    // autoplay: true,
-    // autoplaySpeed: 0,
-    // swipe:true,
-    // speed: 5000,
-    // // speed: 7000,
-    // cssEase: 'linear',
     autoplay: true,
     infinite: true,
     swipe: true,
@@ -41,7 +28,7 @@ const Homepartners = ({ langText, lang }) => {
     slidesToShow:2,
     pauseOnHover: false,
     pauseOnDotsHover: false,
-    arrows: false,
+    arrows: true,
     autoplaySpeed: 0,
     speed: 7000,
     rows:1,
@@ -53,6 +40,7 @@ const Homepartners = ({ langText, lang }) => {
         },
       }],
   }
+
   useEffect(() => {
     triple.get("/api/partner")
       .then(res => {
@@ -70,7 +58,7 @@ const Homepartners = ({ langText, lang }) => {
       </PartnerspHeadingColumn>
       <ResponseWrapper {...settings}>
         {partners.map((item, index) => (
-          <PartnersContainer key={`partner_${index}`}>
+          <PartnersContainer  key={`partner_${index}`}>
             <Div href={item.url} target='_blank'>
               <ServiceNameWrapper>
                 <IconWrapper src={apiUrl.apiUrl + item.image} alt={"icon"} />

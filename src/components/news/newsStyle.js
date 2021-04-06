@@ -2,6 +2,7 @@ import { Link } from "gatsby"
 import styled from "styled-components"
 import { Col, DatePicker, Form } from "antd"
 import { SeemoreWrapper } from "../homecomponents/homePartners/homePartStyle"
+import Slider from "react-slick"
 
 export const ContainerNews = styled.div`
   height: auto;
@@ -26,7 +27,15 @@ export const NewsPage = styled.div`
   }
 `
 
-export const FullNewsPage = styled.div`
+export const FullNewsPage = typeof window !== `undefined` && window.innerWidth <= 1111 ? styled(Slider)`
+  & .slick-slide{
+    margin: 0 10px;
+  }
+  & .slick-track{
+     display: flex;
+     margin: 0 -10px
+  }
+`:styled.div`
   width:100%;
   display:flex;
   justify-content: center;
@@ -101,6 +110,8 @@ export const Title = styled.h3`
 
 export const NewsText = styled.p`
   overflow: hidden;
+  color:black;
+  color:black;
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-box-orient: vertical;
@@ -124,6 +135,7 @@ export const DataItem = styled.p`
   text-align: center; 
   align-items: center; 
   display: flex;
+  color: black
 `
 
 export const SeeMoreSingleNews = styled(SeemoreWrapper)`
@@ -328,6 +340,7 @@ export const TitleRow = styled.div`
 export const P = styled.p`
   color: #555555;
   font-size:14px;
+  white-space: pre-line;
   margin-bottom:0;
 `
 
