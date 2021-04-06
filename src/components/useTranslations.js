@@ -464,6 +464,7 @@ const query = graphql`
                   pure_subsidy
                   all_pure_subsidy
                   income_tax
+                  income_tax_note
                 }
               }
               car_customs {

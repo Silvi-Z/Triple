@@ -150,7 +150,7 @@ const Navbar = ({
     newtext.unshift(lang)
     setLanguageText(newtext)
   }
-
+  console.log("originalPathhhh", originalPath)
   const changeLanguage = (e, id) => {
     if (id === "arm") {
       navigate(`/arm${originalPath}`)
@@ -301,7 +301,7 @@ const Navbar = ({
                     transform: "rotate(90deg)",
                   }}
                 />
-                <PhoneSpan>+374 98553533,+374 60407010</PhoneSpan>
+                <PhoneSpan>+374 98 553533,+374 60 407010</PhoneSpan>
               </div>
             </ResponsiveMenuInfoRow>
           </ResponsiveMenuWrapper>

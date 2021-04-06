@@ -85,7 +85,7 @@ const CalculatorWrapper = ({ ctx, children }) => {
             <TextStyled>{headTitle ? selectCalculator.paragraph : selectCalculator.paragraphType}</TextStyled>
           </>
         ) : (
-          <Tooltip trigger={'click'} className="tooltip" title={selectCalculator.paragraph} color="black">
+          <Tooltip trigger={'click'} className="tooltip title" title={selectCalculator.paragraph} color="black">
             <H1Styled>{selectCalculator.title}</H1Styled>
             <SvgWrapper style={{ backgroundImage: `url(${Svg})` }} />
           </Tooltip>

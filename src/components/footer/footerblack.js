@@ -14,7 +14,7 @@ import "@fortawesome/fontawesome-free/js/all.js"
 import "../layout.css"
 
 const FooterNumberWrap = styled.div`
-  width: 238px;
+  width: 250px;
   height: 15px;
   font-family: ArialAMU;
   font-size: 16px;
@@ -213,7 +213,7 @@ const FooterBlack = ({ langtext }) => {
           <ViberWrapper src={ViberImg} />
           <TelegramWrapper src={TelegramImg} />
           <FooterNumberWrap>
-            <span>+374 98553533,+374 60407010</span>
+            <span>+374 98 553533,+374 60 407010</span>
           </FooterNumberWrap>
         </FooterNumberColumn>
         <FooterAdressColumn

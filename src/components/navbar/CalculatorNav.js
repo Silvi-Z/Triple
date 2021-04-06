@@ -91,7 +91,7 @@ const settings = {
      align-items: center;
      flex-direction:column;
      padding-left: 20px;
-`
+  `
 
 const CalculatorNav = ({ t, locale }) => {
   return (

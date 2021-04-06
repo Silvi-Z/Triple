@@ -659,7 +659,7 @@ class VacationCalculator extends React.Component {
                 />
               </RowWrapper>
 
-              <Form.Item className="inlineElements">
+              <Form.Item className="inlineElements openTable">
                 <Checkbox
                   onChange={e => this.setField("static_salary", e.target.checked)}
                   checked={form.static_salary}

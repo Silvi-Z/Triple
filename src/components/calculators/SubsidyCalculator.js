@@ -834,6 +834,7 @@ class SubsidyCalculator extends React.Component {
                       formatter={v => `${v}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                       onChange={v => this.setField("amount", v)}
                       parser={v => v.replace(/\$\s?|(,*)/g, "")}
+                      style={{ marginTop: "10px"}}
                       value={form.amount}
                       onBlur={this.onBlur}
                       max={this.amountMaxValue}
@@ -856,6 +857,7 @@ class SubsidyCalculator extends React.Component {
                   formatter={v => `${v}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                   onChange={v => this.setField("income", v)}
                   parser={v => v.replace(/\$\s?|(,*)/g, "")}
+                  style={{ marginTop: "10px"}}
                   value={form.income}
                   onBlur={this.onBlur}
                   step={1000}
@@ -868,7 +870,7 @@ class SubsidyCalculator extends React.Component {
 
               {/* static field */}
               {this.isWorkHired ?
-                <Form.Item className="inlineElements">
+                <Form.Item className="inlineElements openTable">
                   <Checkbox
                     onChange={e => this.setField("static", e.target.checked)}
                     checked={form.static}
@@ -925,6 +927,7 @@ class SubsidyCalculator extends React.Component {
                 title={lang.result["income_tax"]}
                 text={result.income_tax}
                 tooltip={this.isTaxEnterprise}
+                note={lang.result["income_tax_note"]}
               />
 
               <CalculatorCardResult

@@ -158,6 +158,7 @@ const Index = ({location, pageContext }) => {
             </SearchRow>
             {data.length ?
               <UsefulNews
+                locale={pageContext.locale}
                 apiUrl={apiUrl.apiUrl}
                 news={data}
                 lang={pageContext.locale}

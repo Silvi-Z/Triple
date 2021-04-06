@@ -16,7 +16,7 @@ import {
 
 import moment from "moment"
 
-const UsefulNews = ({ news, lang, buttonDisplay, setButtonDisplay, apiUrl, pageContext }) => {
+const UsefulNews = ({ news, lang, buttonDisplay, setButtonDisplay, locale, apiUrl, pageContext }) => {
 
   let [items, setItems] = useState(news.length < 6 ? news.length : 6)
   news.length < 6 && setButtonDisplay(false)
@@ -40,8 +40,9 @@ const UsefulNews = ({ news, lang, buttonDisplay, setButtonDisplay, apiUrl, pageC
                 <img style={{ width: "100%" }} src={apiUrl + item.image} alt="" />
               </ImageWrapper>
               <TextPart>
-                <Title>{item.title_arm}</Title>
-                <NewsText>{item.description_arm}</NewsText>
+                {console.log('locale',locale)}
+                <Title>{item[`title_${locale}`]}</Title>
+                <NewsText>{item[`description_${locale}`]}</NewsText>
                 <MoreRow>
                   <DataItem>{moment(item.created_at.substring(0, 10)).format("DD.MM.YYYY")}</DataItem>
                   <SeeMoreSingleNews

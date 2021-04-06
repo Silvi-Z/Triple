@@ -341,7 +341,7 @@ export const RowWrapper = styled(Form.Item)`
 `
 export const CalendarWrapper = styled.div`
   width: 100%;
-  border: 0.5px solid #555555;
+  box-shadow: inset 0px 0px 0px 1px rgb(0 0 0);
   padding-bottom: 10px;
   border-radius: 10px;
   margin: 0 auto 15px;

@@ -127,13 +127,13 @@ export const ResponsiveMenuInfoRow = styled.div`
       color: #EAEAEA;
    }
    >div:not(last-child){
-      width:20%;
+      width:30%;
          @media only screen and (max-width: 535px){
             width:50%;
          }
    }
    >div:last-child{
-      width: 42%;
+      width: 50%;
          @media only screen and (max-width: 535px){
             margin-top: 16px;
             width: 100%;

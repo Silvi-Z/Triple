@@ -347,6 +347,7 @@ export const P = styled.p`
 export const FullInfoText = styled.p`
   font-size: 14px;
   line-height: 25px;
+  white-space: break-spaces;
   letter-spacing: 1.15px;
   margin-top:50px;
   @media only screen and (max-width: 1024px){

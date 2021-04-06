@@ -923,7 +923,7 @@ pre tt:after {
 /*  display: none !important;*/
 /*}*/
 .ant-tooltip-inner{
-    margin-right: 10px!important;
+    margin: 10px!important;
 }
 @media only screen and (max-width: 375px) {
     #basic_companyname {
@@ -1088,6 +1088,10 @@ table.gross th:nth-of-type(3){
 .tooltip{
     display: flex;
     align-items: center;
+}
+.tooltip.title{
+    width:100%;
+    justify-content: center;
 }
 
 @media only screen and (max-width: 768px) {
@@ -1489,6 +1493,9 @@ table.gross th:nth-of-type(3){
 .inlineElements{
     display:inline-flex !important;
     align-items: center ;
+}
+.inlineElements.openTable label{
+    display: flex!important;
 }
 #tax_field{
     display: flex;

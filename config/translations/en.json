@@ -674,7 +674,8 @@
         "all_pure_subsidy": "Total amount of social benefit payment",
         "subsidy_gov": "social benefit paid by state",
         "subsidy_emp": "Social benefit paid by employer",
-        "income_tax": "Income tax"
+        "income_tax": "Income tax",
+        "income_tax_note": "For the employees involved in the micro-enterprises, the income tax is equal to 5.000 AMD, which is considered to be the final income tax liability. \nTherefore, in case of calculation and payment of salary for the reporting month, there is no additional tax liability for income tax on the social benefits.\n"
       }
     },
     "car_customs": {
