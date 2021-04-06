@@ -71,15 +71,15 @@ export const IconWrapper = styled.img`
 export const ResponseWrapper = typeof window!="undefined" && window.innerWidth >= 768? styled.div`
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;justify-content:end;
+  justify-content: center;
 `: styled(Slider)`
   display: flex;
+  justify-content: center;
   flex-wrap: nowrap;
   max-height:320px;
   overflow:hidden;
   & .slick-slide{ 
-    // width: fit-content !important;
-    margin: 0 10px;
+    padding: 0 10px;
   }
   & .slick-track{
     height:100% !important;

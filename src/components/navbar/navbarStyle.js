@@ -74,7 +74,8 @@ export const ResponsiveMenuWrapper = styled.div`
 export const Coll = styled.div`
   height: 100%;
   overflow: hidden;  
-  margin-bottom: 25px;
+      margin-bottom: 10px;
+    margin-top: 10px;
 `
 export const ResponsiveMenuColumn = styled.div`
    display:flex;
@@ -115,7 +116,7 @@ export const PhoneSpan = styled.span`
 export const ResponsiveMenuInfoRow = styled.div`
    display:flex;
    justify-content:space-between;
-   padding-top:50px;
+   padding-top:30px;
    border-top:1px solid #EAEAEA;
    opacity:0;
    animation: 2s showInfoRow ease forwards .5s;

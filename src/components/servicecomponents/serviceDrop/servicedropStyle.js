@@ -70,6 +70,8 @@ export const ToggleButton = styled(Button)`
 
 export const Text = styled.div`
   width:100%;
+  opacity: 100%;
+  z-index: 100;
   font-family: ArialAMU;
   font-size: 18px;
   font-weight: normal;

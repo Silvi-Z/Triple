@@ -90,9 +90,10 @@ class SalaryCalculator extends React.Component {
         total_fee: 0,
       },
       excel: [],
+      note: false,
       randomKey: randomString(),
       check: false,
-      width: typeof window !="undefined" && window.innerWidth <=768
+      width: typeof window != "undefined" && window.innerWidth <= 768,
     }
     this.locale = this.props.locale
     this.holidays = []
@@ -167,7 +168,9 @@ class SalaryCalculator extends React.Component {
 
     if (!valid) {
       this.setState({ loading: false, valid: false })
+      this.setState({ note:false})
     } else {
+      this.setState({ note:true})
       by ? await this.calculateByTable() : await this.calculateByDate(avgWorkingDays)
     }
   }
@@ -180,6 +183,8 @@ class SalaryCalculator extends React.Component {
 
   handleByFieldChange = () => {
     const { form } = this.state
+
+    this.props.getSalaryType(form.by)
 
     const state = !form.by
       ? {
@@ -559,7 +564,7 @@ class SalaryCalculator extends React.Component {
       year,
       amount: gross_salary,
     }).finally(() => {
-      if(check && width){
+      if (check && width) {
         this.top.current.scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" })
       }
       this.setState((prevState) => ({
@@ -577,7 +582,7 @@ class SalaryCalculator extends React.Component {
     let { form, check, width } = this.state
     const res = await triple.post("/api/counter/salary", form)
       .finally(() => {
-        if(check && width){
+        if (check && width) {
           this.top.current.scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" })
         }
         this.setState((prevState) => ({
@@ -654,7 +659,7 @@ class SalaryCalculator extends React.Component {
 
   render() {
     const { langText } = this.props
-    const { form, result, loading, randomKey } = this.state
+    const { form, result, loading, randomKey, calculated, note } = this.state
 
     return (
       <>
@@ -876,7 +881,7 @@ class SalaryCalculator extends React.Component {
                     htmlType="submit"
                     shape="round"
                     size="large"
-                    onClick={()=>this.checkValue()}
+                    onClick={() => this.checkValue()}
                   >
                     {langText["count_button"]}
                   </ButtonSubmit>
@@ -895,7 +900,6 @@ class SalaryCalculator extends React.Component {
                   title={langText.gross_salary}
                   text={result.gross_salary}
                   loading={loading}
-                  tooltip
                 />}
                 <CalculatorCardResult
                   title={form.from === 1 ? langText["dirty_to_clean_salary"] : langText["clean_dirty_to_salary"]}
@@ -907,6 +911,7 @@ class SalaryCalculator extends React.Component {
                   text={result.income_tax}
                   loading={loading}
                   tooltip={form.tax_field === TAX_FIELD_ENTERPRISE ? "prompt text" : null}
+                  note={langText["income_tax_label_note"]}
                 />
                 <CalculatorCardResult
                   title={langText["pension_paymet_label"]}
@@ -919,8 +924,9 @@ class SalaryCalculator extends React.Component {
                 <CalculatorCardResult
                   title={langText["stamp_duty_label"]}
                   text={result.stamp_fee}
+                  note={langText["stamp_duty_label_note"]}
                   loading={loading}
-                  tooltip
+                  tooltip={ note && result.stamp_fee <= 0}
                 />
                 <CalculatorCardResult
                   title={langText["general_storage_label"]}

@@ -21,17 +21,14 @@ import apiUrl from "../../../api/api.json"
 const Homepartners = ({ langText, lang }) => {
   const [partners, setPartners] = useState([])
   const settings = {
-    autoplay: true,
+    className: "center",
+    centerMode: true,
     infinite: true,
+    slidesToShow: 1,
+    centerPadding: "60px",
+    autoplay: true,
     swipe: true,
-    pauseOnFocus: true,
-    slidesToShow:2,
-    pauseOnHover: false,
-    pauseOnDotsHover: false,
-    arrows: true,
-    autoplaySpeed: 0,
-    speed: 7000,
-    rows:1,
+    autoplaySpeed: 1500,
     cssEase: 'linear',
     responsive: [
       {
@@ -48,6 +45,8 @@ const Homepartners = ({ langText, lang }) => {
       })
       .catch(err => console.log(err))
   }, [])
+
+
   return (
     <>
       <PartnerspHeadingColumn>

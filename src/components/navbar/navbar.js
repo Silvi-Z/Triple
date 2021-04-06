@@ -188,7 +188,6 @@ const Navbar = ({
     <>
       <ResponsiveNavWrapper menuColorProp={color}>
         <div style={{ textAlign: "center", display: "flex" }}>
-          {console.log('responseWrapper',responseWrapper)}
           <RespNavLink to={`/${lang}/`} onClick={() => !responseWrapper ? open() : ""}>
             <HeadMainIcon src={!responseWrapper ? WhiteLogo : BlackLogo} alt={"icon"} />
           </RespNavLink>
@@ -302,7 +301,7 @@ const Navbar = ({
                     transform: "rotate(90deg)",
                   }}
                 />
-                <PhoneSpan>+374 98 553533,+374 98 553533</PhoneSpan>
+                <PhoneSpan>+374 98553533,+374 60407010</PhoneSpan>
               </div>
             </ResponsiveMenuInfoRow>
           </ResponsiveMenuWrapper>

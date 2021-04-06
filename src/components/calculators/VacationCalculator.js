@@ -750,6 +750,7 @@ class VacationCalculator extends React.Component {
                 title={lang.result["income_tax"]}
                 text={result.income_tax}
                 tooltip={form.tax_field === TAX_FIELD_ENTERPRISE ? "prompt text" : null}
+                note={lang.result["income_tax_note"]}
               />
 
               <CalculatorCardResult

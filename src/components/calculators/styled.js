@@ -277,7 +277,7 @@ export const TextStyled = styled.p`
 `
 export const SvgWrapper = styled.div`
   display:inline-block;
-  height: 40px;
+  height: 25px;
   width: 45px;
   background-position: center;
   background-repeat: no-repeat;
@@ -367,8 +367,7 @@ export const CalendarInfo = styled.div`
   
   tbody td, tbody th {
     padding: 0 5px;
-      box-shadow: inset 0px 0px 0px .5px rgb(0 0 0)!important;
-    // border: 1px solid #555555;   
+    border: 1px solid #555555;   
     height: 49px; 
   }
       
@@ -437,7 +436,6 @@ export const DayWrapper = styled.td`
 export const InformationTitles = styled.th`
   font-family: ArialAMU, serif;
   font-style: normal;
-  border:none!important;
   font-weight: normal;
   font-size: 12px;
   line-height: 15px;
@@ -655,6 +653,9 @@ export const YearField = styled(Row)`
     img{
       height: 80%;
       object-fit: contain;
+      width: 80%;
+      position: relative;
+      z-index: 11;
     }
     
     &[data-action='next']{

@@ -202,6 +202,7 @@ const query = graphql`
               salary {
                 title
                 paragraph
+                paragraphType
                 clean_salary_button
                 dirty_salary_button
                 gross_salary
@@ -220,8 +221,10 @@ const query = graphql`
                 result_title
                 general_storage_label
                 income_tax_label
+                income_tax_label_note
                 pension_paymet_label
                 stamp_duty_label
+                stamp_duty_label_note
                 dirty_to_clean_salary
                 clean_dirty_to_salary
                 result_duty_bonus
@@ -327,6 +330,7 @@ const query = graphql`
                   title
                   gross_vacation_amount
                   income_tax
+                  income_tax_note
                   pension_fee
                   stamp_fee
                   total_fee
@@ -348,6 +352,7 @@ const query = graphql`
                   total_vacation_days
                   used_vacation_days
                   unused_vacation_days
+                  unused_vacation_days_note
                   salary
                   static_salary
                   tax
@@ -373,6 +378,7 @@ const query = graphql`
                   title
                   total_amount
                   income_tax
+                  income_tax_note
                   pension_fee
                   total_fee
                   net_amount
@@ -419,6 +425,7 @@ const query = graphql`
                   start
                   end
                   days
+                  days_note
                   year
                   hired
                   self
@@ -432,10 +439,15 @@ const query = graphql`
                   five_days
                   six_days
                   amount
+                  amount_note
                   amount_self_common
+                  amount_self_common_note
                   amount_self_turnover
+                  amount_self_turnover_note
                   amount_self_enterprise
+                  amount_self_enterprise_note
                   income
+                  income_note
                   static
                 }
                 gross {
@@ -496,6 +508,7 @@ const query = graphql`
               car_tax {
                 title
                 paragraph
+                paragraphType
                 calculate
                 form {
                 type

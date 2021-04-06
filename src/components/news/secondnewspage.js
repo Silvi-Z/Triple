@@ -2,28 +2,27 @@ import React, { useState } from "react"
 
 import {
   ContainerNews,
+  DataItem,
   ImageWrapper,
+  MoreRow,
   NewsItems,
   NewsPage,
-  TextPart,
-  Title,
   NewsText,
-  MoreRow,
-  DataItem,
   SeeMoreNews,
   SeeMoreSingleNews,
+  TextPart,
+  Title,
 } from "./newsStyle"
 
 import moment from "moment"
-import { NavLink } from "../homecomponents/homePartners/homePartStyle"
 
-const UsefulNews = ({news, lang , buttonDisplay, setButtonDisplay, apiUrl,pageContext }) => {
+const UsefulNews = ({ news, lang, buttonDisplay, setButtonDisplay, apiUrl, pageContext }) => {
 
-  let [items, setItems] = useState(news.length<6 ? news.length : 6)
+  let [items, setItems] = useState(news.length < 6 ? news.length : 6)
   news.length < 6 && setButtonDisplay(false)
   const addNews = () => {
-    setItems(items + 6);
-    items + news.length%items === news.length ? setButtonDisplay(false) : setButtonDisplay(true)
+    setItems(items + 6)
+    items + news.length % items === news.length ? setButtonDisplay(false) : setButtonDisplay(true)
   }
 
   return (
@@ -33,7 +32,7 @@ const UsefulNews = ({news, lang , buttonDisplay, setButtonDisplay, apiUrl,pageCo
           (index < items) ? (
             <NewsItems
               to={`/${lang}/news/${item.id}`}
-              state={{modal: true}}
+              state={{ modal: true }}
               key={index}
               margin={item.margin}
             >
@@ -45,22 +44,22 @@ const UsefulNews = ({news, lang , buttonDisplay, setButtonDisplay, apiUrl,pageCo
                 <NewsText>{item.description_arm}</NewsText>
                 <MoreRow>
                   <DataItem>{moment(item.created_at.substring(0, 10)).format("DD.MM.YYYY")}</DataItem>
-                    <SeeMoreSingleNews
-                      className="see_more_btn"
-                    > {pageContext.localeResources.translation.news.see_more}
-                    </SeeMoreSingleNews>
+                  <SeeMoreSingleNews
+                    className="see_more_btn"
+                  > {pageContext.localeResources.translation.news.see_more}
+                  </SeeMoreSingleNews>
                 </MoreRow>
               </TextPart>
             </NewsItems>
           ) : null
         ))}
       </NewsPage>
-        <SeeMoreNews
-          buttonDisplay ={buttonDisplay}
-          onClick={addNews}
-          className="see_more_btn"
-        > {pageContext.localeResources.translation.news.see_more}
-        </SeeMoreNews>
+      <SeeMoreNews
+        buttonDisplay={buttonDisplay}
+        onClick={addNews}
+        className="see_more_btn"
+      > {pageContext.localeResources.translation.news.see_more}
+      </SeeMoreNews>
     </ContainerNews>
   )
 }

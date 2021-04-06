@@ -678,8 +678,8 @@ class FinalCalculator extends React.Component {
 
               <RowWrapper label={
                 <Label style={{ textTransform: "none" }}>
-                  {lang.form.unused_vacation_days}
-                  <Tooltip title="prompt text" color="black">
+                  <Tooltip trigger={'click'} className="tooltip" title={lang.form.unused_vacation_days_note} color="black">
+                    {lang.form.unused_vacation_days}
                     <SvgWrapper style={{ backgroundImage: `url(${Svg})` }} />
                   </Tooltip>
                 </Label>
@@ -812,7 +812,8 @@ class FinalCalculator extends React.Component {
                 title={lang.result["income_tax"]}
                 text={result.income_tax}
                 loading={loading}
-                tooltip={form.tax_field === TAX_FIELD_ENTERPRISE ? "prompt text" : null}
+                tooltip={form.tax_field === TAX_FIELD_ENTERPRISE ? lang.result["income_tax_note"] : null}
+                note={lang.result["income_tax_note"]}
               />
 
               <CalculatorCardResult

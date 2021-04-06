@@ -412,6 +412,7 @@
     "salary": {
       "title": "Salary calculator",
       "paragraph": "Salary calculator will facilitate all the necessary calculations concerning the gross and net salary. The tool can be used to calculate the salaries of employees working in the companies of general tax field, micro-enterprises as well as in the companies that have IT tax exemption. ",
+      "paragraphType": "This tool will support the calculations of the salary based on worked days (not complete month). It calculates gross salary as well as net salary, for that you only need to fulfill starting and ending dates. The calculator will automatically decide number of worked days taking into the consideration weekend, holidays and days off announced by RA Gouvernement.",
       "clean_salary_button": "Net salary",
       "dirty_salary_button": "Salary",
       "tax_label": "Choose the option",
@@ -430,8 +431,10 @@
       "result_title": "Result",
       "general_storage_label": "Total deductions",
       "income_tax_label": "Income tax",
+      "income_tax_label_note": "For the employees involved in the micro-enterprises, the income tax is equal to 5.000 AMD, which is considered to be the final income tax liability. \nTherefore, in case of calculation and payment of salary for the reporting month, there is no additional tax liability for income tax on the final settlement.",
       "pension_paymet_label": "Social charges",
       "stamp_duty_label": "Stamp Duty Payments",
+      "stamp_duty_label_note": "Stamp duty is paid by the employer at his expense when the employee works under only one employment contract and whose salary after all deductions such as taxes, other mandatory payments (including stamp duty) does not exceed the minimum salary.",
       "dirty_to_clean_salary": "Net salary",
       "clean_dirty_to_salary": "Salary",
       "result_duty_bonus": "Կեղտոտ պարգևավճար",
@@ -505,9 +508,9 @@
     },
     "vacation": {
       "title": "Vacation calculator",
-      "paragraph": "According to the Tax code of RA and other legal acts, the tool calculates vacation pay corresponding to the number of vacation days available to employees as well as deductions required by law.Fulfill the starting and ending day, and the tool ill automatically decide number of vacation days taking into the consideration weekend, holidays and days off announced by RA Gouvernement.",
+      "paragraph": "According to the Tax code of RA and other legal acts, the tool calculates vacation pay corresponding to the number of vacation days available to employees as well as deductions required by law. Fulfill the starting and ending day, and the tool will automatically decide the number of vacation days taking into the consideration weekend, holidays and days off announced by RA Gouvernement.",
       "salary_label": "Salary",
-      "static_salary_label": "The salary has not been changed during 12 last months or bonuses have not been provided",
+      "static_salary_label": "The salary has not been changed during 12 last months or Bonuses have not been provided",
       "pensioner_label": "Do you participate in the accumulative pension system?",
       "tax_label_common": "General tax field",
       "tax_label_enterprise": "Micro-enterprises",
@@ -534,6 +537,7 @@
         "title": "Result",
         "gross_vacation_amount": "Gross vacation pay",
         "income_tax": "Income tax",
+        "income_tax_note": "For the employees involved in the micro-enterprises, the income tax is equal to 5.000 AMD, which is considered to be the final income tax liability. \nTherefore, in case of calculation and payment of salary for the reporting month, there is no additional tax liability for income tax on the vacation pay.\n",
         "pension_fee": "Social charges",
         "stamp_fee": "Stamp Duty Payments",
         "total_fee": "Total deductions",
@@ -545,7 +549,7 @@
     },
     "final": {
       "title": "Final settlement calculator",
-      "paragraph": "The final settlement calculator allows you to get the final settlement amount in a few simple steps.\nEnter admission and employment termination dates, work schedule and the calculator will automatically calculate the total number of vacation days. Fill in the vacation days already used and the amount of salary (and if the amount of salary is not fixed or has been changed or bonuses have been provided, fill in the relevant table), and the instrument will calculate the final settlement and all deductions required by law.\n",
+      "paragraph": "The final settlement calculator allows you to get the final settlement amount in a few simple steps.\n\nEnter admission and employment termination dates, work schedule and the calculator will automatically calculate the total number of vacation days. Fill in the vacation days already used and the amount of salary (and if the amount of salary is not fixed or has been changed or Bonuses have been provided, fill in the relevant table), and the instrument will calculate the final settlement and all deductions required by law.\n",
       "form": {
         "acceptance": "ADMISSION DATES",
         "release": "EMPLOYMENT TERMINATION DATES",
@@ -557,8 +561,9 @@
         "general_vacation_days": "Total vacation day",
         "used_vacation_days": "Used vacation days",
         "unused_vacation_days": "Unused vacation days",
+        "unused_vacation_days_note": "It is possible to perform the calculation by skipping the fields presented above, simply by fulfilling this field \"Unused vacation days\".",
         "salary": "Salary",
-        "static_salary": "The salary has not been changed during 12 last months or bonuses have not been provided",
+        "static_salary": "The salary has not been changed during 12 last months or Bonuses have not been provided",
         "tax": "Choose the option",
         "tax_common": "General tax field",
         "tax_enterprise": "Micro-enterprises",
@@ -575,13 +580,14 @@
         "month": "Month",
         "year": "Year",
         "gross_salary": "Salary",
-        "bonus": "BONUSES",
+        "bonus": "Bonuses",
         "surcharge": "Premium"
       },
       "result": {
         "title": "Result",
         "total_amount": "Gross final settlement amount",
         "income_tax": "Income tax",
+        "income_tax_note":"For the employees involved in the micro-enterprises, the income tax is equal to 5.000 AMD, which is considered to be the final income tax liability. \nTherefore, in case of calculation and payment of salary for the reporting month, there is no additional tax liability for income tax on the final settlement.\n",
         "pension_fee": "Social charges",
         "total_fee": "Total deductions",
         "net_amount": "Net final settlement amount"
@@ -594,7 +600,7 @@
       "dirty_salary": "Salary",
       "salary_label": "MONTHLY salary",
       "salary_type_label": "Calculation in accordance with",
-      "static_salary_label": "The salary has not been changed during 3 last months or bonuses have not been provided",
+      "static_salary_label": "The salary has not been changed during 3 last months or Bonuses have not been provided",
       "pensioner_label": "Do you participate in the accumulative pension system?",
       "interest_amount_label": "Interest paid quarterly",
       "tax_label_common": "General tax field",
@@ -617,7 +623,7 @@
     },
     "subsidy": {
       "title": "Social benefits calculator",
-      "paragraph": "The Social benefits calculator allows you to easily calculate the amount of maternity as well as short–term disability payments.\nAll you have to do is enter the period of incapacity for work, the monthly salary, the income paid by other employers if available (and if the amount of salary is not fixed or has been changed or bonuses have been provided, fill in the relevant table), and the instrument will calculate the amount of maternity or short–term disability payments and all deductions required by law.\n",
+      "paragraph": "The Social benefits calculator allows you to easily calculate the amount of maternity as well as short–term disability payments.\nAll you have to do is enter the period of incapacity for work, the monthly salary, the income paid by other employers if available (and if the amount of salary is not fixed or has been changed or Bonuses have been provided, fill in the relevant table), and the instrument will calculate the amount of maternity or short–term disability payments and all deductions required by law.\nThe tool can be used to calculate the social benefit of employees working in the companies of general tax field, micro-enterprises as well as in the companies that have IT tax exemption.\n",
       "calculate": "CALCULATE",
       "form": {
         "type": "Social benefit type",
@@ -628,6 +634,7 @@
         "start": "START",
         "end": "END",
         "days": "total number of days",
+        "days_note": "It is possible to perform the calculation by skipping the fields presented above, simply by fulfilling this field \"total number of days\".",
         "year": "Year",
         "hired": "Employee",
         "self": "Self-employed person",
@@ -641,17 +648,22 @@
         "five_days": "5 day schedule",
         "six_days": "6 day schedule",
         "amount": "Monthly salary",
+        "amount_note": "If, as of the date of appointing the social benefits, the period of employment with the given employer is less than 12 months, then the income paid by the previous employer in the given period is taken into account. Moreover, the income paid by one employer to the hired employee can be recorded for only one month of the period.",
         "amount_self_common": "CORPORATE TAX TAXABLE BASE OF THE PREVIOUS FISCAL YEAR",
+        "amount_self_common_note": "It is necessary to fulfill the gross income from the corporate tax report of the previous reporting year (line 41).",
         "amount_self_turnover": "Նախորդող տարվա շահութահարկի գումարը",
+        "amount_self_turnover_note": "It is necessary to fulfill the number of months of activity of the previous reporting year.",
         "amount_self_enterprise": "Number of months of activity of the previous year",
+        "amount_self_enterprise_note": "It is necessary to fulfill the number of months of activity of the previous reporting year.",
         "income": "income paid by other employers",
-        "static": "The salary has not been changed during 12 last months or bonuses have not been provided"
+        "income_note": "If, as of the date of appointing the social benefits, the person also works in parallel with another employer, the sum of the salary calculated by the other employer for the last 12 months shall be filled in.",
+        "static": "The salary has not been changed during 12 last months or Bonuses have not been provided"
       },
       "gross": {
         "month": "Month",
         "year": "Year",
         "gross_salary": "Salary",
-        "bonus": "BONUSES",
+        "bonus": "Bonuses",
         "surcharge": "Premium"
       },
       "result": {
@@ -708,6 +720,7 @@
       "calculate": "CALCULATE",
       "title": "Property tax calculator",
       "paragraph": "With the help of the property tax calculator you can easily calculate the property tax of your car. Just enter the type of vehicle, year of issue, engine power and the amount of property tax of the given vehicle will be calculated, according to the requirements of the Tax code of RA.",
+      "paragraphType": "With the help of the property tax calculator you can easily calculate the property tax of any building. Just enter the type of building and the cadastral value, the amount of property tax of the given building will be calculated, according to the requirements of the Tax code of RA.",
       "form": {
         "type": "Property tax types",
         "car": "Car",
@@ -748,7 +761,7 @@
     },
     "calendar": {
       "title": "Business calendar",
-      "paragraph": "In the business calendar you can find working and non-working days, days preceding holidays, remembrance days, as well as the total sum of the working and calendar days, working hours. The calendar is based on the RA Law \"On holidays and memorial days\" and the relevant decisions of the RA Government.\n\nWith the help of the business calendar you can easily calculate the number of calendar days, working days, non-working days, working hours between the two dates, in accordance with the selected work schedule.\n",
+      "paragraph": "With the help of the business calendar you can easily calculate the number of calendar days, working days, non-working days, working hours between the two dates, in accordance with the selected work schedule.\nThe calendar is based on the RA Law \"On holidays and memorial days\" and the relevant decisions of the RA Government.\n",
       "calculate": "CALCULATE",
       "chooseDaysRange": "Choose days in business calendar",
       "working_schedule": "Choose the work schedule",

@@ -40,7 +40,7 @@ const CardText = styled.p`
   margin: 0;
 `
 
-const CalculatorCardResult = ({title, subtitle = '', text, tooltip, loading = false, children, className}) => (
+const CalculatorCardResult = ({title, note, subtitle = '', text, tooltip, loading = false, children, className}) => (
   <Card
     style={{
       border: '0.5px solid #555555',
@@ -55,19 +55,20 @@ const CalculatorCardResult = ({title, subtitle = '', text, tooltip, loading = fa
     loading={loading}
   >
     {!children ? <>
+    <Tooltip trigger={'click'} title={note} color="black" onVisibleChange={true} >
       <CardTitle>
-        {title}
-
         { tooltip ?
-          <Tooltip title="prompt text" color="black">
+          <>
+            {title}
             <SvgWrapper style={{backgroundImage: `url(${Svg})`}} />
-          </Tooltip>
-          : null }
+            </>
+          : <>{title}</> }
       </CardTitle>
 
       <CardText>{text}</CardText>
 
       {subtitle ? <CardSubtitle>{subtitle}</CardSubtitle> : null}
+    </Tooltip>
     </> : null}
 
     {children ? children : null}

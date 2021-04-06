@@ -1,20 +1,12 @@
-import React, { useEffect, useState } from "react"
-import { Row, Col, Tooltip } from "antd"
-import styled from "styled-components";
-import FbBlueIcon from "../../../assets/career/facebookBlueCareer.svg";
-import FbBlackIcon from "../../../assets/career/facebookCareer.svg";
-import LinkdinBlackIcon from "../../../assets/career/linkedinCareer.svg";
-import LinkedinBlueIcon from "../../../assets/career/linkedinBlueCareer.svg";
+import React, { useState } from "react"
+import { Col, Row, Tooltip } from "antd"
+import styled from "styled-components"
 import Svg from "../../../assets/note.svg"
-import SEO from "../../../components/seo";
-import CalculatorNav from "../../../components/navbar/CalculatorNav";
-import useTranslations from "../../../components/useTranslations";
-import { FacebookShareButton, LinkedinShareButton } from "react-share";
+import SEO from "../../../components/seo"
+import CalculatorNav from "../../../components/navbar/CalculatorNav"
+import useTranslations from "../../../components/useTranslations"
 import { H1Styled, SvgWrapper, TextStyled } from "../styled"
-import { InfoCircleTwoTone } from "@ant-design/icons"
-import {
-  BY_FIELD_TABLE,
-} from "../utilities/salary"
+import { BY_FIELD_TABLE } from "../utilities/salary"
 //share button container
 export const SharedWrapperCol = styled(Col)`
   padding: 0 1%;
@@ -24,7 +16,7 @@ export const SharedWrapperCol = styled(Col)`
   .react-share__ShareButton {
     all: unset;
   }
-`;
+`
 
 const CalculatorsContent = styled(Col)`
   padding-right: 35px;
@@ -35,23 +27,24 @@ const CalculatorsContent = styled(Col)`
   }
 `
 
-const CalculatorWrapper = ({ ctx, children}) => {
-  const { calculator } = useTranslations();
-  let urlShared;
+const CalculatorWrapper = ({ ctx, children }) => {
+  const { calculator } = useTranslations()
+  const [headTitle, setHeadTitle] = useState(true)
+  let urlShared
 
   const getSharedUrl = lng => {
     if (lng === "en") {
       return "http://triple-c.algorithm.am/en/calculators/"
-    }else {
+    } else {
       return "http://triple-c.algorithm.am/arm/calculators/"
     }
-  };
+  }
 
   const hookComponent = () => {
     urlShared = getSharedUrl(ctx.locale)
-  };
+  }
 
-  hookComponent();
+  hookComponent()
 // const Svg = styled(InfoCircleTwoTone)`
 //    margin-left:5px;
 //    & * {
@@ -59,7 +52,25 @@ const CalculatorWrapper = ({ ctx, children}) => {
 //     width:20px;
 //    }
 // `
-  const selectCalculator = calculator[ctx.originalPath.split('/')[2].replace('-' , '_')]
+
+  // const childrenWithProps = () => React.Children.map(children, child => {
+  //   //   if (React.isValidElement(child)) {
+  //   //     return React.cloneElement(child, { doSomething: "ok" })
+  //   //   }
+  //   //   return child
+  //   // })
+
+  const getSalaryType = (title) => {
+    setHeadTitle(title)
+  }
+  const getTaxType = (title) => {
+    setHeadTitle(title===2 && true)
+  }
+
+
+  const childrenWithProps = React.cloneElement(children, { getSalaryType: getSalaryType, getTaxType : getTaxType })
+
+  const selectCalculator = calculator[ctx.originalPath.split("/")[2].replace("-", "_")]
   return (
     <>
       <SEO
@@ -68,13 +79,16 @@ const CalculatorWrapper = ({ ctx, children}) => {
         pageContext={ctx}
       />
       <Row className="textSec">
-        <H1Styled>{selectCalculator.title}</H1Styled>
-        {(typeof window !== `undefined` && window.innerWidth>768) ? (
-        <TextStyled>{BY_FIELD_TABLE && console.log('selectCalculator',selectCalculator)}{selectCalculator.paragraph}</TextStyled>
+        {(typeof window !== `undefined` && window.innerWidth > 768) ? (
+          <>
+            <H1Styled>{selectCalculator.title}</H1Styled>
+            <TextStyled>{headTitle ? selectCalculator.paragraph : selectCalculator.paragraphType}</TextStyled>
+          </>
         ) : (
-        <Tooltip title={selectCalculator.paragraph} color="black">
-          <SvgWrapper style={{backgroundImage: `url(${Svg})`}} />
-        </Tooltip>
+          <Tooltip trigger={'click'} className="tooltip" title={selectCalculator.paragraph} color="black">
+            <H1Styled>{selectCalculator.title}</H1Styled>
+            <SvgWrapper style={{ backgroundImage: `url(${Svg})` }} />
+          </Tooltip>
         )}
       </Row>
       <Row gutter={0}>
@@ -82,7 +96,7 @@ const CalculatorWrapper = ({ ctx, children}) => {
           <CalculatorNav t={calculator} locale={ctx.locale} />
         </Col>
         <CalculatorsContent span={24} xl={18}>
-          {children}
+          {childrenWithProps}
         </CalculatorsContent>
       </Row>
 
@@ -90,4 +104,4 @@ const CalculatorWrapper = ({ ctx, children}) => {
   )
 }
 
-export default CalculatorWrapper;
+export default CalculatorWrapper

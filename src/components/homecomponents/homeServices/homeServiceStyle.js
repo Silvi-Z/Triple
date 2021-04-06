@@ -214,9 +214,9 @@ export const ServicesContainer = styled(ContentContainer)`
 `
 export const CalculatorContainer = styled(ServicesContainer)``
 export const PartnersContainer = styled(ContentContainer)`
-  @media only screen and (max-width: 768px){
-      width: unset;
-  }
+  // @media only screen and (max-width: 768px){
+  //     width: unset;
+  // }
 `
 
 export const HomePageWrapper = styled.div`

@@ -372,7 +372,7 @@ class MortgageCalculator extends React.Component {
             <UnderLine />
 
             <CalculatorCardResult
-              tooltip={form.tax_field === TAX_FIELD_ENTERPRISE ? "prompt text" : null}
+              // tooltip={form.tax_field === TAX_FIELD_ENTERPRISE ? "prompt text" : null}
               title={lang.result["income_tax_back"]}
               loading={loading}
               text={tax}

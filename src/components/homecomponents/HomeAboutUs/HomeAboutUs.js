@@ -28,11 +28,13 @@ const HomeAboutUs = ({ pageContext }) => {
     slidesToShow: 1,
     rows: 3,
     slidesPerRow: 1,
+    pauseOnHover: false,
     responsive: [
       {
         breakpoint: 768,
         settings: {
           slidesToShow: 1,
+          slidesToScroll:1,
           infinite: true,
           dots: true,
           rows: 1,

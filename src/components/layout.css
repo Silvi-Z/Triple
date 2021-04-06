@@ -1085,14 +1085,20 @@ table.gross th:nth-of-type(3){
 .startEndInputs > div:first-child{
     margin-right: 25px;
 }
+.tooltip{
+    display: flex;
+    align-items: center;
+}
 
 @media only screen and (max-width: 768px) {
+    .textSec > span{
+        display: flex;
+        align-items: center;
+    }
     .startEndInputs > div > div{
         max-width: fit-content!important;
     }
-    .startEndInputs .ant-typography{
-        margin-right: 15px;
-    }
+
     .startEndInputs{
         display: flex;
         flex-direction: column!important;
@@ -1185,7 +1191,7 @@ table.gross th:nth-of-type(3){
 .langSection{
     width: 100%;
     /*margin: auto;*/
-    padding-bottom: 20px;
+    padding-bottom: 30px;
     border-bottom: 1px solid #EAEAEA;
 }
 #footerfirstrow {
@@ -1682,9 +1688,9 @@ table.gross th:nth-of-type(3){
 }
 
 #burger.open span:nth-child(1) {
-    transform: rotate(45deg);
-    top: 11px;
-    margin-left: 4px;
+    transform: rotate(45deg) translate(-4px, -8px);
+    top: unset;
+    /*margin-left: 4px;*/
 }
 
 #burger.open span:nth-child(2) {
@@ -1693,9 +1699,9 @@ table.gross th:nth-of-type(3){
 }
 
 #burger.open span:nth-child(3) {
-    transform: rotate(-45deg);
-    top: 29px;
-    margin-left: 4px;
+    transform: rotate(-45deg) translate(-4px, 9px);
+    top: unset;
+    /*margin-left: 4px;*/
 }
 
 .see_more_btn {

@@ -50,6 +50,7 @@ class CarTaxCalculator extends React.Component {
 
   setField(name, value, cb) {
     this.setState({ form: { ...this.state.form, [name]: value } }, cb)
+    this.props.getTaxType(this.state.form.taxType)
   }
 
   handleSubmit = () => VehicleTax.schema.isValid(this.state.form).then(valid => {

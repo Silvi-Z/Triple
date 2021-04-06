@@ -153,6 +153,25 @@ class SubsidyCalculator extends React.Component {
       }
     }
   }
+  get changeAmountFieldNote() {
+    if (this.isWorkSelfEmployed) {
+      if (this.isTaxCommon || this.isTaxIt) {
+        return this.props.lang.form.amount_self_common_note
+      } else if (this.isTaxTurnover) {
+        return this.props.lang.form.amount_self_turnover_note
+      } else if (this.isTaxEnterprise) {
+        return this.props.lang.form.amount_self_enterprise_note
+      } else {
+        return this.props.lang.form.amount_note
+      }
+    } else {
+      if (this.isWorkHired && this.isTaxEnterprise) {
+        return this.props.lang.form.amount_self_enterprise
+      } else {
+        return this.props.lang.form.amount_note
+      }
+    }
+  }
 
   get amountMaxValue() {
     if (this.isTaxEnterprise) {
@@ -706,8 +725,9 @@ class SubsidyCalculator extends React.Component {
               </Form.Item>
 
               {/* days field */}
-              <RowWrapper label={<Label>{lang.form.days}
-                <Tooltip title="prompt text" color="black">
+              <RowWrapper label={<Label>
+                <Tooltip className="tooltip" trigger={'click'} title={lang.form.days_note} color="black">
+                  {lang.form.days}
                   <SvgWrapper style={{ backgroundImage: `url(${Svg})` }} />
                 </Tooltip></Label>}>
                 <CalculatorInput
@@ -805,8 +825,9 @@ class SubsidyCalculator extends React.Component {
               {/* amount input */}
               {
                 this.isStatic ?
-                  <RowWrapper className={"subsidyAmount"} label={<Label>{this.changeAmountFieldTitle}
-                    <Tooltip title="prompt text" color="black">
+                  <RowWrapper className={"subsidyAmount"} label={<Label>
+                    <Tooltip className="tooltip" trigger={'click'} title={this.changeAmountFieldNote} color="black">
+                      {this.changeAmountFieldTitle}
                       <SvgWrapper style={{ backgroundImage: `url(${Svg})` }} />
                     </Tooltip></Label>}>
                     <CalculatorInput
@@ -826,8 +847,9 @@ class SubsidyCalculator extends React.Component {
 
               {/* income input */}
               {this.isTypeMaternity &&
-              <RowWrapper label={<Label>{lang.form.income}
-                <Tooltip title="prompt text" color="black">
+              <RowWrapper label={<Label>
+                <Tooltip className="tooltip" trigger={'click'} title={lang.form.income_note} color="black">
+                  {lang.form.income}
                   <SvgWrapper style={{ backgroundImage: `url(${Svg})` }} />
                 </Tooltip></Label>}>
                 <CalculatorInput
