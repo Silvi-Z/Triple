@@ -25,6 +25,27 @@ exports.onCreatePage = async ({ page, actions: { createPage, deletePage, createR
         redirectInBrowser: isEnvDevelopment,
         statusCode: 301,
       })
+      triple.get("/api/news")
+        .then(res => {
+          res.data.data.forEach(el => {
+            createPage({
+              path: `${lang}/news/${el.id}`,
+              component: require.resolve(`./src/templates/singleNewsPage.js`),
+              context: {
+                el,
+                locale: lang,
+                fromPath: `/news/${el.id}`,
+                toPath: `${lang}/news/${el.id}`,
+                // page:page,
+                originalPath: `/news/${el.id}`,
+                apiUrl: apiUrl.apiUrl,
+                data: res.data.data,
+                localeResources: resources[lang] ? resources[lang] : {},
+              },
+            })
+          })
+        })
+
       if (page.path.match(/^\/arm\/calculators/)) {
         page.matchPath = `arm/calculators/*`
         // Update the page.
@@ -44,25 +65,7 @@ exports.onCreatePage = async ({ page, actions: { createPage, deletePage, createR
         },
       })
 
-      triple.get("/api/news")
-        .then(res => {
-          res.data.data.forEach(el => {
-            createPage({
-              path: `${lang}/news/${el.id}`,
-              component: require.resolve(`./src/templates/singleNewsPage.js`),
-              context: {
-                el,
-                locale: lang,
-                fromPath: originalPath,
-                page:page,
-                originalPath: originalPath,
-                apiUrl: apiUrl.apiUrl,
-                data: res.data.data,
-                localeResources: resources[lang] ? resources[lang] : {},
-              },
-            })
-          })
-        })
+
 
     }),
   )

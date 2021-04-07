@@ -27,10 +27,7 @@ import {
 } from "../components/careercomponents/careerForm/formStyle"
 import moment from "moment"
 
-const FullInfo = ({ location, pageContext, pageContext: { fromPath,originalPath,page, el, locale, apiUrl, data } }) => {
-  console.log("originalPath", originalPath)
-  console.log("fromPath", fromPath)
-  console.log("page", page)
+const FullInfo = ({  pageContext, pageContext: {toPath, fromPath,originalPath,page, el, locale, apiUrl, data } }) => {
   // const [size, setSize] = useState(3)
   // const resize = () => {
   //   if (window.innerWidth < 1111) {
