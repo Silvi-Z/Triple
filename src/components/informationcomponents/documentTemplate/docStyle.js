@@ -45,6 +45,9 @@ export const Image = styled.button`
   transform: rotate(-90deg);
   height: 18px;
   width: 18px;  
+  background-color: transparent;
+  background-repeat:no-repeat;
+  background-position: center;
 `
 
 export const FormatsIcons = styled.div`

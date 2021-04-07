@@ -103,10 +103,10 @@ export const FormWrapper = styled.div`
   opacity: 0;
   pointer-events:none;
   &.openTextCol{
-  pointer-events:unset;
+    pointer-events:unset;
     max-height: 1000px;
     padding: 48px 24px;
-    opacity:100%;
+    opacity:100;
   }
   .ant-input:-webkit-autofill,
   .ant-input:-webkit-autofill:hover,
