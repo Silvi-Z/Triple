@@ -1,14 +1,13 @@
 import React, { useState } from "react"
 import {
-  H2text,
-  TextWrapper,
-  LineWrapper,
   ContainerNews,
   DownloadingIcon,
-  ContainerUseful,
-  FormatsWrapper,
   FormatsIcons,
+  FormatsWrapper,
+  H2text,
   Image,
+  LineWrapper,
+  TextWrapper,
 } from "./docStyle"
 import { Row } from "antd"
 
@@ -23,27 +22,29 @@ const DocTemplateInform = ({ usedata }) => {
       setWrapperClass({ [element]: true })
   }
   return (
-    <ContainerUseful>
-      {usedata.links.map(({ label, id }) => (
-        <ContainerNews key={id}>
-          <Row>
-            <LineWrapper>
-              <TextWrapper>
-                <H2text>{label}</H2text>
-              </TextWrapper>
-              <FormatsWrapper>
-                <FormatsIcons className={wrapperClass[id] ? "shown" : "none"}>
-                  <Image alt="pdf" className={wrapperClass[id] ? "transform" : ""} />
-                  <Image alt="word" className={wrapperClass[id] ? "transform" : ""} />
-                  <Image alt="excel" className={wrapperClass[id] ? "transform" : ""} />
-                </FormatsIcons>
-                <DownloadingIcon id={id} onClick={selectFormat} />
-              </FormatsWrapper>
-            </LineWrapper>
-          </Row>
-        </ContainerNews>
-      ))}
-    </ContainerUseful>
+    <ContainerNews key={usedata.id}>
+      <Row>
+        <LineWrapper>
+          <TextWrapper>
+            <H2text>{usedata.label}</H2text>
+          </TextWrapper>
+          <FormatsWrapper>
+            <FormatsIcons className={wrapperClass[usedata.id] ? "shown" : "none"}>
+              {usedata.link_pdf && (<a href={usedata.link_pdf} download>
+                <Image  alt="pdf" className={wrapperClass[usedata.id] ? "transform pdf" : "none pdf"} />
+              </a>)}
+              {usedata.link_word && (<a href={usedata.link_word} download>
+                <Image alt="word" className={wrapperClass[usedata.id] ? "transform word" : "none word"} />
+              </a>)}
+              {usedata.link_exc && (<a href={usedata.link_exc} download>
+                <Image alt="excel" className={wrapperClass[usedata.id] ? "transform excel" : "none excel"} />
+              </a>)}
+            </FormatsIcons>
+            <DownloadingIcon id={usedata.id} onClick={selectFormat} />
+          </FormatsWrapper>
+        </LineWrapper>
+      </Row>
+    </ContainerNews>
   )
 }
 

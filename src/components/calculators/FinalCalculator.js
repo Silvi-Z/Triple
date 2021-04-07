@@ -718,7 +718,7 @@ class FinalCalculator extends React.Component {
                 </RowWrapper>
                 : null}
 
-              <Form.Item className="inlineElements">
+              <Form.Item className="inlineElements openTable">
                 <Checkbox
                   onChange={e => this.setFormField("static_salary", e.target.checked, this.onBlur)}
                   checked={form.static_salary}

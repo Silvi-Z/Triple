@@ -1,22 +1,23 @@
 /*eslint-disable */
-import React, { useState, useEffect } from "react"
+import React, { useEffect, useState } from "react"
 import RightSectionUseInform from "../components/informationcomponents/useFullInform/usefulinformation"
 import LeftSectionUseInform from "../components/informationcomponents/useFullInform/LeftSectionUseInfo"
 import InformDocTemplate from "../components/informationcomponents/documentTemplate/doctemplateinform"
 import useTranslations from "../components/useTranslations"
 import SEO from "../components/seo"
 import {
-  InformationParagraphRow,
-  InformationDocumentCol,
-  InformationPageWrapper,
-  InformationUsfulCol,
-  InformationNavRow,
-  InformSectionRow,
-  RightSection,
-  LeftSection,
   H2Styled,
+  InformationDocumentCol,
+  InformationNavRow,
+  InformationPageWrapper,
+  InformationParagraphRow,
+  InformationUsfulCol,
+  InformSectionRow,
+  LeftSection,
   PStyled,
+  RightSection,
 } from "../components/informationcomponents/informMainStyle"
+import { ContainerUseful } from "../components/informationcomponents/documentTemplate/docStyle"
 
 const Information = ({ pageContext }) => {
   const [dataUseInfo, setdataUseInfo] = useState([])
@@ -77,8 +78,8 @@ const Information = ({ pageContext }) => {
               },
             ],
           },
-        }
-      ]
+        },
+      ],
     )
   }
   const UseInfoRightSection = () => {
@@ -152,7 +153,7 @@ const Information = ({ pageContext }) => {
     ])
   }
   const GetDoctempInfo = () => {
-    setdataDoctempInfo([
+    setdataDoctempInfo(
       {
         status: true,
         data: {
@@ -168,97 +169,157 @@ const Information = ({ pageContext }) => {
           links: [
             {
               id: 0,
-              label: "Աշխատաժամանակի հաշվարկի տեղեկագիր",
+              label: "Գնման ակտ",
+              link_exc: "../../../files/Գնման ակտ.xls",
             },
             {
               id: 1,
-              label: "Արձանագրություն ընկերության մասնակիցների փոփոխության",
+              label: "Գույքագրման ակտ",
+              link_word: "../../../files/Գույքագրման ակտ.docx",
             },
             {
               id: 2,
-              label: "Բեռնատար ավտոմեքենայի երթուղային թերթ",
+              label: "Գործուղման վկայական",
+              link_word: "../../../files/Գործուղման վկայական.docx",
             },
             {
               id: 3,
-              label: "Գործուղման վկայական",
+              label: "Բեռնատար ավտոմեքենայի երթուղային թերթ",
+              link_exc: "../../../files/Բեռնատար ավտոմեքենայի երթուղային թերթ.xls",
             },
             {
               id: 4,
-              label:"Դրամարկղի ելքի օրդեր  (Փաստաթուղթը արտահանված է ՀԾ հաշվապահ 6 համակարգից)",
+              label: "Աշխատաժամանակի հաշվարկի տեղեկագիր",
+              link_word: "../../../files/Աշխատաժամանակի հաշվարկի տեղեկագիր.docx",
             },
             {
               id: 5,
-              label:
-                "Դրամարկղի մուտքի օրդեր  (Փաստաթուղթը արտահանված է ՀԾ հաշվապահ 6 համակարգից)",
+              label: "Դրամարկղի ելքի օրդեր (Փաստաթուղթը արտահանված է ՀԾ հաշվապահ 6 համակարգից)",
+              link_word: "../../../files/Դրամարկղի ելքի օրդեր (Փաստաթուղթը արտահանված է ՀԾ հաշվապահ 6 համակարգից).docx",
             },
             {
               id: 6,
-              label: "Ծառայությունների մատուցման պայմանագիր",
+              label: "Լիազորագիր",
+              link_word: "../../../files/Լիազորագիր.docx",
             },
             {
               id: 7,
-              label: "Լիազորագիր",
+              label: "Դրամարկղի մուտքի օրդեր (Փաստաթուղթը արտահանված է ՀԾ հաշվապահ 6 համակարգից)",
+              link_exc: "../../../files/Դրամարկղի մուտքի օրդեր (Փաստաթուղթը արտահանված է ՀԾ հաշվապահ 6 համակարգից).xls",
             },
             {
               id: 8,
-              label:"Հարկ վճարողների կողմից տեղեկություններ փակցնելու հայտարարության օրինակելի ձև",
+              label: "Լիազորագիր հարկային մարմիններ ներկայանալու համար",
+              link_word: "../../../files/Լիազորագիր հարկային մարմիններ ներկայանալու համար.docx",
             },
             {
               id: 9,
-              label:
-                "Հաշիվ ապրանքագիր (Փաստաթուղթը արտահանված է ՀԾ հաշվապահ 6 համակարգից)",
+              label: "Հանձնման-ընդունման ակտ",
+              link_word: "../../../files/Հանձնման-ընդունման ակտ.docx",
             },
             {
               id: 10,
-              label: "Հարկային հաշիվը անվավեր ճանաչելու  ակտ",
+              label: "Հայտարարություն գործունեության դադարեցման",
+              link_word: "../../../files/Հայտարարություն գործունեության դադարեցման.docx",
             },
             {
               id: 11,
-              label: "Հիմնադրի որոշում",
+              label: "Ծառայությունների մատուցման պայմանագիր",
+              link_word: "../../../files/Ծառայությունների մատուցման պայմանագիր.docx",
+              link_pdf: "../../../files/Ծառայությունների մատուցման պայմանագիր.pdf",
             },
             {
               id: 12,
-              label: "Հայտարարություն գործունեության դադարեցման",
+              label: "Հաշիվ ապրանքագիր (Փաստաթուղթը արտահանված է ՀԾ հաշվապահ 6 համակարգից)",
+              link_exc: "../../../files/Հաշիվ ապրանքագիր (Փաստաթուղթը արտահանված է ՀԾ հաշվապահ 6 համակարգից).xlsx",
             },
             {
               id: 13,
-              label:
-                "Վճարման հանձնարարագիր  (Փաստաթուղթը արտահանված է ՀԾ հաշվապահ 6 համակարգից)",
+              label: "Հաշիվ ապրանքագիր (Փաստաթուղթը արտահանված է ՀԾ հաշվապահ 6 համակարգից)",
+              link_exc: "../../../files/Հաշիվ ապրանքագիր (Փաստաթուղթը արտահանված է ՀԾ հաշվապահ 6 համակարգից).xlsx",
             },
             {
               id: 14,
-              label: "Մարդատար ավտոմեքենայի երթուղային թերթ",
+              label: "Հաշվետվություն առհաշիվ գումարների ծախսման մասին",
+              link_exc: "../../../files/հաշվետվություն առհաշիվ գումարների ծախսման մասին.xls",
             },
             {
               id: 15,
-              label: "Որոշում ընկերության միակ մասնակցի փոփոխության",
+              label: "Հարկ վճարողների կողմից տեղեկություններ փակցնելու հայտարարության օրինակելի ձև",
+              link_word: "../../../files/Հարկ վճարողների կողմից տեղեկություններ փակցնելու հայտարարության օրինակելի ձև.doc",
             },
             {
               id: 16,
-              label: "Պարունակության թերթիկ",
+              label: "Հարկային տեղեկանքի դիմում",
+              link_word: "../../../files/Հարկային տեղեկանքի դիմում.doc",
             },
             {
               id: 17,
-              label:
-                "Վճարային տեղեկագիր   (Փաստաթուղթը արտահանված է ՀԾ հաշվապահ 6 համակարգից)",
+              label: "Հարկային հաշիվը անվավեր ճանաչելու ակտ",
+              link_word: "../../../files/Հարկային հաշիվը անվավեր ճանաչելու ակտ.docx",
             },
             {
               id: 18,
-              label: "Տեղեկանք աշխատանքի վայրից (հայերեն)",
+              label: "Հիմնադրի որոշում",
+              link_word: "../../../files/Հիմնադրի որոշում.docx",
             },
             {
               id: 19,
-              label: "Տեղեկանք աշխատանքի վայրից (անգլերեն)",
+              label: "Մարդատար ավտոմեքենայի երթուղային թերթ",
+              link_exc: "../../../files/Մարդատար ավտոմեքենայի երթուղային թերթ.xls",
             },
             {
               id: 20,
-              label:
-                "ՏԵՂԵԿԱՏՎՈՒԹՅՈՒՆ Էլեկտրոնային փոստով վիճակագրական փաստաթղթերի ներկայացման",
+              label: "Որոշում ընկերության մասնակիցների փոփոխության",
+              link_word: "../../../files/Որոշում ընկերության մասնակիցների փոփոխության.doc",
             },
+            {
+              id: 21,
+              label: "Որոշում ընկերության միակ մասնակցի փոփոխության",
+              link_word: "../../../files/Որոշում ընկերության միակ մասնակցի փոփոխության.doc",
+            },
+            {
+              id: 22,
+              label: "Պահանջագիր-բեռնագիր",
+              link_exc: "../../../files/Պահանջագիր-բեռնագիր.xls",
+            },
+            {
+              id: 23,
+              label: "Պարունակության թերթիկ",
+              link_word: "../../../files/Պարունակության թերթիկ.doc",
+            },
+            {
+              id: 24,
+              label: "Վճարման հանձնարարագիր (Փաստաթուղթը արտահանված է ՀԾ հաշվապահ 6 համակարգից)",
+              link_exc: "../../../files/Վճարման հանձնարարագիր (Փաստաթուղթը արտահանված է ՀԾ հաշվապահ 6 համակարգից).xlsx",
+            },
+            {
+              id: 25,
+              label: "Տեղեկանք աշխատանքի վայրից (հայերեն)",
+              link_word: "../../../files/Տեղեկանք աշխատանքի վայրից (հայերեն).docx",
+            },
+            {
+              id: 26,
+              label: "Տեղեկանք աշխատանքի վայրից (անգլերեն)",
+              link_word: "../../../files/Տեղեկանք աշխատանքի վայրից (անգլերեն).doc",
+            },
+            {
+              id: 27,
+              label: "Տեղեկանք գործատուին փոխհատուցման ենթակա գումարների մասին",
+              link_word: "../../../files/Տեղեկանք գործատուին փոխհատուցման ենթակա գումարների մասին.docx",
+            },
+            {
+              id: 27,
+              label: "Տեղեկատվություն Էլեկտրոնային փոստով վիճակագրական փաստաթղթերի ներկայացման",
+              link_exc: "../../../files/ՏԵՂԵԿԱՏՎՈՒԹՅՈՒՆ Էլեկտրոնային փոստով վիճակագրական փաստաթղթերի ներկայացման.xls",
+            },
+
+
           ],
+
         },
       },
-    ])
+    )
   }
 
   useEffect(() => {
@@ -289,56 +350,58 @@ const Information = ({ pageContext }) => {
         pageContext={pageContext}
       />
       <InformationPageWrapper>
-      <InformationParagraphRow>
+        <InformationParagraphRow>
           <H2Styled>{information.title}</H2Styled>
           <PStyled>{information.paragraph}</PStyled>
-      </InformationParagraphRow>
-      <InformationNavRow>
-        <InformationUsfulCol
-          className="submit_button"
-          offset={0}
-          onClick={ChangePageUse}
-          open={openUseful}
-          xs={24}
-          active={activeUsefulButton}
-        >
-          {information.useInf_button}
-        </InformationUsfulCol>
-        <InformationDocumentCol
-          className="submit_button"
-          offset={0}
-          onClick={ChangePageDoc}
-          open={openDocTemp}
-          xs={24}
-          active={activeDocTempButton}
-        >
-          {information.doc_button}
-        </InformationDocumentCol>
+        </InformationParagraphRow>
+        <InformationNavRow>
+          <InformationUsfulCol
+            className="submit_button"
+            offset={0}
+            onClick={ChangePageUse}
+            open={openUseful}
+            xs={24}
+            active={activeUsefulButton}
+          >
+            {information.useInf_button}
+          </InformationUsfulCol>
+          <InformationDocumentCol
+            className="submit_button"
+            offset={0}
+            onClick={ChangePageDoc}
+            open={openDocTemp}
+            xs={24}
+            active={activeDocTempButton}
+          >
+            {information.doc_button}
+          </InformationDocumentCol>
 
-      </InformationNavRow>
-      {openUseful ? (
-        <InformSectionRow>
-          <LeftSection>
-            {information.usefulInformation.map((d, id) =>(
-            <LeftSectionUseInform usedata={d} key={id}/>
-          ))}
-          </LeftSection>
-          <RightSection>
-            {information.dataUseInfo.map((d, id) => (
-            <RightSectionUseInform usedata={d} key={id} />
-          ))}
-          </RightSection>
+        </InformationNavRow>
+        {openUseful ? (
+          <InformSectionRow>
+            <LeftSection>
+              {information.usefulInformation.map((d, id) => (
+                <LeftSectionUseInform usedata={d} key={id} />
+              ))}
+            </LeftSection>
+            <RightSection>
+              {information.dataUseInfo.map((d, id) => (
+                <RightSectionUseInform usedata={d} key={id} />
+              ))}
+            </RightSection>
 
-        </InformSectionRow>
-      ) : openDocTemp ? (
-        <InformSectionRow>
-          {information.documents.map((d, id) => (
-            <InformDocTemplate usedata={d} key={id} />
-          ))}
-        </InformSectionRow>
-      ) : null}
-    </InformationPageWrapper>
-      </>
+          </InformSectionRow>
+        ) : openDocTemp ? (
+          <InformSectionRow>
+            <ContainerUseful>
+              {dataDoctempInfo.data.links.map((item) => (
+                <InformDocTemplate usedata={item} />
+              ))}
+            </ContainerUseful>
+          </InformSectionRow>
+        ) : null}
+      </InformationPageWrapper>
+    </>
   )
 }
 
