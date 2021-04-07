@@ -33,9 +33,9 @@ const DocTemplateInform = ({ usedata }) => {
               </TextWrapper>
               <FormatsWrapper>
                 <FormatsIcons className={wrapperClass[id] ? "shown" : "none"}>
-                  <Image alt="pdf" className={wrapperClass[id] ? "transform" : ""} />
-                  <Image alt="word" className={wrapperClass[id] ? "transform" : ""} />
-                  <Image alt="excel" className={wrapperClass[id] ? "transform" : ""} />
+                  <Image alt="pdf" className={wrapperClass[id] ? "transform" : "none"} />
+                  <Image alt="word" className={wrapperClass[id] ? "transform" : "none"} />
+                  <Image alt="excel" className={wrapperClass[id] ? "transform" : "none"} />
                 </FormatsIcons>
                 <DownloadingIcon id={id} onClick={selectFormat} />
               </FormatsWrapper>

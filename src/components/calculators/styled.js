@@ -101,7 +101,7 @@ export const RadioButton = styled(Radio.Button)`
 
 export const CalculatorInput = styled(InputNumber)`
   background: #FFFFFF;
-  border: 0.5px solid #555555;
+  border: 1px solid rgb(85,85,85)!important;
   box-sizing: border-box;
   border-radius: 5px !important;
   width: 136px;
@@ -486,7 +486,7 @@ export const CheckboxField = styled(Checkbox)`
     &:hover {
     
       .day_title{
-        display: block;
+        display: flex;
         background-color: white;
       }
       .ant-checkbox-inner{
@@ -500,24 +500,33 @@ export const CheckboxField = styled(Checkbox)`
   }
   
   .day_title{
+      width: auto;
+      align-items: center;
+      justify-content: center;
       max-width: 170px;
-      min-width:fit-content;
-      position: absolute;
+      // min-width:fit-content;
+      // position: absolute;
       bottom: calc(100% + 5px);
       display: block;
       word-wrap: normal;
       left: 0;
       right: 0;
       height: fit-content;
-      padding: 5px 10px;
+      // padding: 5px 10px;
       background-color: white;
       border: 0.5px solid #555555;
-      width: 100%;
+      // width: 100%;
       border-radius: 5px;
       margin: auto;
       color: #555555;
       display: none;
       
+    }
+    
+    .day_title_context{
+      width: fit-content;
+      height: fit-content;
+      padding: 5px 10px;
     }
     
     .ant-checkbox-inner{

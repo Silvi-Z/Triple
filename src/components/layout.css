@@ -1807,6 +1807,9 @@ table.gross th:nth-of-type(3){
 .opened_response_menu {
     position: fixed;
 }
+.inlineElements .openTable label .ant-checkbox{
+    height: 16px;
+}
 .none{
     display:none;
 }
@@ -1965,26 +1968,31 @@ a.calc-nav-item:hover {
 }
 
 .day_title {
+    width: fit-content;
+    align-items: center;
+    justify-content: center;
+    max-width: 170px;
     position: absolute;
-    max-width: 270px;
     bottom: calc(100% + 5px);
+    word-wrap: normal;
     left: 0;
     right: 0;
     height: fit-content;
-    padding: 5px 10px;
     background-color: white;
     border: 0.5px solid #555555;
-    width: max-content;
     border-radius: 5px;
     margin: auto;
     color: #555555;
     display: none;
-    overflow: hidden;
-    word-wrap: normal;
+}
+.day_title_context{
+    width: fit-content;
+    height: fit-content;
+    padding: 5px 10px;
 }
 
 .ant-picker-cell-inner:hover .day_title{
-    display: block;
+    display: flex;
 }
 
 .ant-picker-panel-container{

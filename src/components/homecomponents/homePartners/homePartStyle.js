@@ -76,7 +76,7 @@ export const ResponseWrapper = typeof window!="undefined" && window.innerWidth >
   display: flex;
   justify-content: center;
   flex-wrap: nowrap;
-  max-height:320px;
+  max-height:350px;
   overflow:hidden;
   & .slick-slide{ 
     padding: 0 10px;
@@ -86,7 +86,7 @@ export const ResponseWrapper = typeof window!="undefined" && window.innerWidth >
     // display: flex;
   // flex-wrap: nowrap;
   }
-  @media only screen and (max-width: 500px){
-    max-height: 230px
-  }
+  // @media only screen and (max-width: 500px){
+  //   max-height: 230px
+  // }
 `

@@ -107,8 +107,10 @@ export const InfoAboutPartners = styled.div`
     letter-spacing:0.15px;
   }
   @media only screen and (max-width: 768px){
-    font-size: 16px;
+    font-size: 14px;
     p{
+    width: 100%;
+    font-size: 14px;
     margin-top:0;
     }
   }

@@ -25,28 +25,28 @@ const CalendarItem = React.memo(({ week, holidays, workdays, locale }) => {
               && workdays.find(workday => workday.date === day)
               && workdays.find(workday => workday.date === day).title &&
               <span className={"day_title"}>
-                  {workdays.find(workday => workday.date === day).title}
+                <span className="day_title_context">{workdays.find(workday => workday.date === day).title}</span>
                 </span>
               }
               {locale !== "arm" && workdays.length > 0
               && workdays.find(workday => workday.date === day)
               && workdays.find(workday => workday.date === day).title_en &&
               <span className={"day_title"}>
-                  {workdays.find(workday => workday.date === day).title_en}
+                <span className="day_title_context">{workdays.find(workday => workday.date === day).title_en}</span>
                 </span>
               }
               {locale === "arm" && holidays.length > 0
               && holidays.find(holiday => holiday.date === day)
               && holidays.find(holiday => holiday.date === day).title &&
               <span className={"day_title"}>
-                  {holidays.find(holiday => holiday.date === day).title}
+                <span className="day_title_context">{holidays.find(holiday => holiday.date === day).title}</span>
                 </span>
               }
               {locale !== "arm" && holidays.length > 0
               && holidays.find(holiday => holiday.date === day)
               && holidays.find(holiday => holiday.date === day).title_en &&
               <span className={"day_title"}>
-                  {holidays.find(holiday => holiday.date === day).title_en}
+                <span className="day_title_context">{holidays.find(holiday => holiday.date === day).title_en}</span>
                 </span>
               }
             </CheckboxField>
