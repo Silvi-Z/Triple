@@ -49,7 +49,20 @@ const FooterWrapper = styled.div`
 const Layout = ({ children, location, pageContext: { locale, originalPath, localeResources } }) => {
   const { i18n, t } = useTranslation()
   const { layout } = useTranslations()
-  const [loader, setLoader] = useState(false)
+  const [loader, setLoader] = useState(!sessionStorage.getItem("loader"))
+  //
+  // useEffect(() => {
+  //   sessionStorage.setItem("loader", loader)
+  // }, [])
+  //
+  // useEffect(() => {
+  //   let timer = setTimeout(() => {
+  //     setLoader(false)
+  //   }, 3000)
+  //   return () => {
+  //     clearTimeout(timer)
+  //   }
+  // }, [])
 
   useEffect(() => {
     i18n.changeLanguage(locale)
@@ -107,9 +120,9 @@ const Layout = ({ children, location, pageContext: { locale, originalPath, local
 
 
   return (
-    loader ?
-      <Loader />
-      :
+    // loader ?
+  /*{<Loader />}*/
+      // :
       <>
         <Navbar
 

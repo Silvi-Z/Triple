@@ -1808,8 +1808,11 @@ table.gross th:nth-of-type(3){
 .opened_response_menu {
     position: fixed;
 }
-.inlineElements .openTable label .ant-checkbox{
+.inlineElements label .ant-checkbox{
     height: 16px;
+}
+.ant-checkbox-checked:after{
+    height: 16px!important;
 }
 .none{
     display:none;
