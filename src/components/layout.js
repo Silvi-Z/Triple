@@ -9,7 +9,7 @@ import Navbar from "./navbar/navbar"
 import FooterBlack from "./footer/footerblack"
 import useTranslations from "../components/useTranslations"
 import "./layout.css"
-import Loader from "./loader"
+// import Loader from "./loader"
 
 const { Content, Footer } = CustomLayout
 
@@ -49,7 +49,7 @@ const FooterWrapper = styled.div`
 const Layout = ({ children, location, pageContext: { locale, originalPath, localeResources } }) => {
   const { i18n, t } = useTranslation()
   const { layout } = useTranslations()
-  const [loader, setLoader] = useState(!sessionStorage.getItem("loader"))
+  // const [loader, setLoader] = useState(!sessionStorage.getItem("loader"))
   //
   // useEffect(() => {
   //   sessionStorage.setItem("loader", loader)
