@@ -496,7 +496,7 @@ export const CheckboxField = styled(Checkbox)`
   
   span:last-of-type{
     position: absolute;
-    z-index: 11;
+    // z-index: 11;
   }
   
   .day_title{
@@ -504,18 +504,12 @@ export const CheckboxField = styled(Checkbox)`
       align-items: center;
       justify-content: center;
       max-width: 170px;
-      // min-width:fit-content;
-      // position: absolute;
       bottom: calc(100% + 5px);
       display: block;
       word-wrap: normal;
       left: 0;
       right: 0;
       height: fit-content;
-      // padding: 5px 10px;
-      background-color: white;
-      border: 0.5px solid #555555;
-      // width: 100%;
       border-radius: 5px;
       margin: auto;
       color: #555555;
@@ -526,6 +520,11 @@ export const CheckboxField = styled(Checkbox)`
     .day_title_context{
       width: fit-content;
       height: fit-content;
+      background-color: white;
+      border: 0.5px solid rgb(85, 85, 85);
+      border-radius: 5px;
+      z-index: 15;
+      bottom: -2px;
       padding: 5px 10px;
     }
     
