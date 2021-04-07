@@ -10,9 +10,10 @@ import {
   TextWrapper,
 } from "./docStyle"
 import { Row } from "antd"
+// import element from "../../../assets/files/Լիազորագիր.docx"
+import apiUrl from "../../../api/api"
 
 const DocTemplateInform = ({ usedata }) => {
-
   const [wrapperClass, setWrapperClass] = useState({})
 
   const selectFormat = (e) => {
@@ -21,6 +22,9 @@ const DocTemplateInform = ({ usedata }) => {
       setWrapperClass({}) :
       setWrapperClass({ [element]: true })
   }
+
+  const baseURL = apiUrl.apiUrl
+
   return (
     <ContainerNews key={usedata.id}>
       <Row>
@@ -30,13 +34,13 @@ const DocTemplateInform = ({ usedata }) => {
           </TextWrapper>
           <FormatsWrapper>
             <FormatsIcons className={wrapperClass[usedata.id] ? "shown" : "none"}>
-              {usedata.link_pdf && (<a href={usedata.link_pdf} download>
-                <Image  alt="pdf" className={wrapperClass[usedata.id] ? "transform pdf" : "none pdf"} />
+              {usedata.link_pdf && (<a href={`${baseURL}documents/${usedata.link_pdf}`} download>
+                <Image alt="pdf" className={wrapperClass[usedata.id] ? "transform pdf" : "none pdf"} />
               </a>)}
-              {usedata.link_word && (<a href={usedata.link_word} download>
+              {usedata.link_word && (<a href={`${baseURL}documents/${usedata.link_word}`} download>
                 <Image alt="word" className={wrapperClass[usedata.id] ? "transform word" : "none word"} />
               </a>)}
-              {usedata.link_exc && (<a href={usedata.link_exc} download>
+              {usedata.link_exc && (<a href={`${baseURL}documents/${usedata.link_exc}`} download>
                 <Image alt="excel" className={wrapperClass[usedata.id] ? "transform excel" : "none excel"} />
               </a>)}
             </FormatsIcons>

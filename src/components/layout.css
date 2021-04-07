@@ -1841,6 +1841,34 @@ table.gross th:nth-of-type(3){
     animation-delay: 0.1s;
 }
 
+section.loader{
+    height: 100vh;
+    background-color: #484b50;
+}
+section.loader #logo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 50px;
+}
+section.loader .loading{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70vh;
+}
+section.loader .loading *{
+    font-size: 40px;
+}
+section.loader .loadImg{
+    width: 0;
+    transition: 4s;
+    overflow: hidden;
+}
+section.loader .loadImgWidth{
+    width: 305px;
+}
+
 @keyframes image-rotate {
     from {
         opacity: 0;

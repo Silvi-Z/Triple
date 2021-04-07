@@ -13,6 +13,22 @@ module.exports = {
     `gatsby-plugin-react-helmet-async`,
     "gatsby-plugin-react-helmet",
     `gatsby-plugin-lodash`,
+    // {
+    //   resolve: `gatsby-source-filesystem`,
+    //   options: {
+    //     name: `data`,
+    //     path: `${__dirname}/src/data/`,
+    //   },
+    // },
+    // `gatsby-transformer-excel`,
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `data`,
+        path: `${__dirname}/src/data`
+      }
+    },
+    `gatsby-transformer-ms-word`,
     {
       resolve: "gatsby-source-filesystem",
       options: {
