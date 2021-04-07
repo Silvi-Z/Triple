@@ -35,7 +35,7 @@ nav {
     height: calc(var(--header-height));
 }
 .textSec{
-    /*flex-direction: column!important;*/
+    flex-direction: column!important;
     justify-content: center;
     align-items: center;
     margin-bottom: 30px;
@@ -1097,6 +1097,7 @@ table.gross th:nth-of-type(3){
 @media only screen and (max-width: 768px) {
     .textSec > span{
         display: flex;
+        flex-direction: row !important;
         align-items: center;
     }
     .startEndInputs > div > div{

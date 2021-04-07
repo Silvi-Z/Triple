@@ -40,7 +40,6 @@ const UsefulNews = ({ news, lang, buttonDisplay, setButtonDisplay, locale, apiUr
                 <img style={{ width: "100%" }} src={apiUrl + item.image} alt="" />
               </ImageWrapper>
               <TextPart>
-                {console.log('locale',locale)}
                 <Title>{item[`title_${locale}`]}</Title>
                 <NewsText>{item[`description_${locale}`]}</NewsText>
                 <MoreRow>
