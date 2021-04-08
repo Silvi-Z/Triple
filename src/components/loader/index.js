@@ -75,9 +75,9 @@ const Loader = () => {
         <img src={logo} alt="" />
       </Logo>
       <LoaderWrapper className="loading">
-        {/*<LoadImg className={loadImgWidth ? 'loadImgWidth' : ''}>*/}
-        {/*  <img src={loading} alt="" />*/}
-        {/*</LoadImg>*/}
+        <LoadImg className={loadImgWidth ? 'loadImgWidth' : ''}>
+          <img src={loading} alt="" />
+        </LoadImg>
       </LoaderWrapper>
     </LoaderSection>
   )
