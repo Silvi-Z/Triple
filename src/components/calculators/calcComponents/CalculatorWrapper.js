@@ -31,6 +31,7 @@ const CalculatorsContent = styled(Col)`
 const CalculatorWrapper = ({ ctx, children }) => {
   const { calculator } = useTranslations()
   const [headTitle, setHeadTitle] = useState(true)
+  const [singleTitle, setSingleTitle] = useState("")
   let urlShared
 
   const getSharedUrl = lng => {
@@ -64,21 +65,26 @@ const CalculatorWrapper = ({ ctx, children }) => {
   const getSalaryType = (title) => {
     setHeadTitle(title)
   }
+
   const getTaxType = (title) => {
-    setHeadTitle(title===2 && true)
+    setHeadTitle(title === 2 && true)
   }
 
+  const getTitle = (title) => {
+    setSingleTitle(title ? title : "")
+  }
 
-
-  const childrenWithProps = React.cloneElement(children, { getSalaryType: getSalaryType, getTaxType : getTaxType })
+  const childrenWithProps = React.cloneElement(children, {
+    getSalaryType: getSalaryType,
+    getTaxType: getTaxType,
+    getTitle,
+  })
 
   const selectCalculator = calculator[ctx.originalPath.split("/")[2].replace("-", "_")]
-  const htmlString = `${selectCalculator.paragraph}`;
-
   return (
     <>
       <SEO
-        title={calculator.title}
+        title={singleTitle ? singleTitle : calculator.title}
         description={calculator.paragraph}
         pageContext={ctx}
       />

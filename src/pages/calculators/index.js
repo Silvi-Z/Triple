@@ -2,6 +2,8 @@ import React from "react"
 import styled from "styled-components"
 import CalculatorHomePage from "../../components/calculators/CalculatorHomePage"
 import { ContentContainer } from "../../components/homecomponents/homeServices/homeServiceStyle"
+import SEO from "../../components/seo"
+import useTranslations from "../../components/useTranslations"
 
 
 const CalcPageWrapper = styled.div`
@@ -57,8 +59,14 @@ const PElement = styled.p`
 `
 
 const Index = ({ pageContext }) => {
+  const { calculator } = useTranslations()
+
   return (
     <>
+      <SEO
+        pageContext={pageContext}
+        title={calculator.title}
+      />
       <CalcPageWrapper ctx={pageContext}>
         <H1Element>{pageContext.localeResources.translation.calculator.title}</H1Element>
         <PElement>{pageContext.localeResources.translation.calculator.paragraph}</PElement>

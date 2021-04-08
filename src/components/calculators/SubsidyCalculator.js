@@ -602,6 +602,9 @@ class SubsidyCalculator extends React.Component {
   }
 
   componentDidMount() {
+    const { lang, getTitle } = this.props
+    getTitle(lang.title)
+
     this.fetchDays()
     window.addEventListener("scroll", this.handleWindowScroll)
 

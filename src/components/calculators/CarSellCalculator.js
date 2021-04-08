@@ -303,6 +303,9 @@ class CarSellCalculator extends React.Component {
   }
 
   componentDidMount() {
+    const { lang, getTitle } = this.props
+    getTitle(lang.title)
+
     this.fetchDays()
 
     this.dateFromPicker.current && ReactDOM

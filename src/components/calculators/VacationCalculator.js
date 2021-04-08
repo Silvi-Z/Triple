@@ -511,6 +511,9 @@ class VacationCalculator extends React.Component {
   }
 
   componentDidMount() {
+    const { lang, getTitle } = this.props
+    getTitle(lang.title)
+
     this.fetchDays()
     this.dateToInput.addEventListener("input", this.handlePickerInput)
     this.dateFromInput.addEventListener("input", this.handlePickerInput)

@@ -25,7 +25,7 @@ import { getCalendarDates } from "./utilities/calendar"
 import CalendarItem from "./calcComponents/Calendar"
 import { randomString } from "./utilities/tabel"
 
-const CalendarCalculator = ({ lang, locale }) => {
+const CalendarCalculator = ({ lang, locale, getTitle }) => {
   const dateToPicker = useRef()
   const dateFromPicker = useRef()
   const [form, setForm] = useState({
@@ -177,6 +177,10 @@ const CalendarCalculator = ({ lang, locale }) => {
       handleSubmit()
     }
   }, [form])
+
+  useEffect(()=>{
+    getTitle(lang.title)
+  }, [])
 
   const addCheckedDataRange = (date) => {
     if (date) {

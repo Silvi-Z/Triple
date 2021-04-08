@@ -112,6 +112,9 @@ class CarTaxCalculator extends React.Component {
   }
 
   componentDidMount() {
+    const { lang, getTitle } = this.props
+    getTitle(lang.title)
+
     this.dateFromPicker.current && ReactDOM
       .findDOMNode(/** @type Element */this.dateFromPicker.current)
       .querySelector("input")

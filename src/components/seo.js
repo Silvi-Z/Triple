@@ -7,7 +7,7 @@ import LocaleContext from "../localeContext"
 const SEO = ({ title, description, meta, pageContext }) => {
   const { locale } = React.useContext(LocaleContext)
   const { t } = useTranslation()
-
+  console.log("title", title)
   const { site } = useStaticQuery(
     graphql`
       query {
@@ -15,6 +15,8 @@ const SEO = ({ title, description, meta, pageContext }) => {
           siteMetadata {
             siteUrl
             supportedLanguages
+            title
+            description
           }
         }
       }
@@ -22,15 +24,17 @@ const SEO = ({ title, description, meta, pageContext }) => {
   )
 
   const { lang, originalPath } = pageContext
-  const metaDescription = description || t("siteMetadata.description")
+  const metaDescription = description || site.siteMetadata.description
   const host = site.siteMetadata.siteUrl
+  const staticTitle = site.siteMetadata.title
+
   return (
     <Helmet
       htmlAttributes={{
         lang,
       }}
-      title={title}
-      titleTemplate={`%s | ${t("siteMetadata.title")}`}
+      title={title || staticTitle}
+      // titleTemplate={`%s | ${titleTemplate}`}
       meta={[
         {
           name: "description",
@@ -66,7 +70,7 @@ const SEO = ({ title, description, meta, pageContext }) => {
         })),
       ]}
     >
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-FQ1MP5J8SM"></script>
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-FQ1MP5J8SM" />
       <script defer>
         {`
           window.dataLayer = window.dataLayer || [];
