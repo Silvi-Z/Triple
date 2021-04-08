@@ -49,7 +49,7 @@ const FooterWrapper = styled.div`
 const Layout = ({ children, location, pageContext: { locale, originalPath, localeResources } }) => {
   const { i18n, t } = useTranslation()
   const { layout } = useTranslations()
-  const [pageLoader, setPageLoader] = useState(sessionStorage && !!sessionStorage.getItem("loader"))
+  const [pageLoader, setPageLoader] = useState(typeof window !== 'undefined' && !!sessionStorage.getItem("loader"))
 
   useEffect(() => {
     let timer = setTimeout(() => {
