@@ -6,7 +6,6 @@ import SEO from "../../../components/seo"
 import CalculatorNav from "../../../components/navbar/CalculatorNav"
 import useTranslations from "../../../components/useTranslations"
 import { H1Styled, SvgWrapper, TextStyled } from "../styled"
-import { BY_FIELD_TABLE } from "../utilities/salary"
 //share button container
 export const SharedWrapperCol = styled(Col)`
   padding: 0 1%;
@@ -30,6 +29,7 @@ const CalculatorsContent = styled(Col)`
 const CalculatorWrapper = ({ ctx, children }) => {
   const { calculator } = useTranslations()
   const [headTitle, setHeadTitle] = useState(true)
+  const [singleTitle, setSingleTitle] = useState("")
   let urlShared
 
   const getSharedUrl = lng => {
@@ -63,18 +63,26 @@ const CalculatorWrapper = ({ ctx, children }) => {
   const getSalaryType = (title) => {
     setHeadTitle(title)
   }
+
   const getTaxType = (title) => {
-    setHeadTitle(title===2 && true)
+    setHeadTitle(title === 2 && true)
   }
 
+  const getTitle = (title) => {
+    setSingleTitle(title ? title : "")
+  }
 
-  const childrenWithProps = React.cloneElement(children, { getSalaryType: getSalaryType, getTaxType : getTaxType })
+  const childrenWithProps = React.cloneElement(children, {
+    getSalaryType: getSalaryType,
+    getTaxType: getTaxType,
+    getTitle,
+  })
 
   const selectCalculator = calculator[ctx.originalPath.split("/")[2].replace("-", "_")]
   return (
     <>
       <SEO
-        title={calculator.title}
+        title={singleTitle ? singleTitle : calculator.title}
         description={calculator.paragraph}
         pageContext={ctx}
       />
@@ -85,7 +93,7 @@ const CalculatorWrapper = ({ ctx, children }) => {
             <TextStyled>{headTitle ? selectCalculator.paragraph : selectCalculator.paragraphType}</TextStyled>
           </>
         ) : (
-          <Tooltip trigger={'click'} className="tooltip title" title={selectCalculator.paragraph} color="black">
+          <Tooltip trigger={"click"} className="tooltip title" title={selectCalculator.paragraph} color="black">
             <H1Styled>{selectCalculator.title}</H1Styled>
             <SvgWrapper style={{ backgroundImage: `url(${Svg})` }} />
           </Tooltip>

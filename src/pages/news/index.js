@@ -21,11 +21,12 @@ import {
   NoResultText,
   NewsItems,
 } from "../../components/news/newsStyle"
+import useTranslations from "../../components/useTranslations"
 
 const { Option } = Select
 
 const Index = ({location, pageContext }) => {
-
+  const { news } = useTranslations()
   const [constData, setConstData] = useState([])
   const [data, setData] = useState([])
 
@@ -114,6 +115,7 @@ const Index = ({location, pageContext }) => {
     <NewsPageWrapper>
       <SEO
         pageContext={pageContext}
+        title={news.title}
       />
       {!setlocationHash ? (
           <>

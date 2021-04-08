@@ -841,6 +841,9 @@ class FinalCalculator extends React.Component {
   }
 
   componentDidMount() {
+    const { lang, getTitle } = this.props
+    getTitle(lang.title)
+
     this.dateFromInput.addEventListener("input", this.handlePickerInput)
     this.dateToInput.addEventListener("input", this.handlePickerInput)
 

@@ -360,6 +360,9 @@ class CurrencyCalculator extends React.Component {
   }
 
   componentDidMount() {
+    const { lang, getTitle } = this.props
+    getTitle(lang.title)
+
     this.getCBARates()
     this.fetchDays()
 

@@ -220,6 +220,10 @@ class MortgageCalculator extends React.Component {
     }
   }
 
+  componentDidMount() {
+    const { lang, getTitle } = this.props
+    getTitle(lang.title)
+  }
 
   render() {
     const { form, items, tax, loading } = this.state

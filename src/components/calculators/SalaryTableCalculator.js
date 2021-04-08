@@ -388,6 +388,9 @@ class SalaryTableCalculator extends React.Component {
   componentDidMount() {
 
     this.fetchDays()
+
+    const { lang, getTitle } = this.props
+    getTitle(lang.title)
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {

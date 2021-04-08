@@ -150,7 +150,7 @@ const Navbar = ({
     newtext.unshift(lang)
     setLanguageText(newtext)
   }
-  console.log("originalPathhhh", originalPath)
+
   const changeLanguage = (e, id) => {
     if (id === "arm") {
       navigate(`/arm${originalPath}`)
