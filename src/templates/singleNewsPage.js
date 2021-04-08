@@ -26,25 +26,9 @@ import {
   ShareLabel,
 } from "../components/careercomponents/careerForm/formStyle"
 import moment from "moment"
+import triple from "../api/triple"
 
 const FullInfo = ({  pageContext, pageContext: {toPath, fromPath,originalPath,page, el, locale, apiUrl, data } }) => {
-  // const [size, setSize] = useState(3)
-  // const resize = () => {
-  //   if (window.innerWidth < 1111) {
-  //     setSize(2)
-  //   } else if (window.innerWidth < 768) {
-  //     setSize(1)
-  //   }
-  // }
-  //
-  // useEffect(() => {
-  //   resize()
-  // }, [location.pathname])
-  // useEffect(() => {
-  //   if (typeof window !== `undefined`) {
-  //     window.addEventListener("resize", resize)
-  //   }
-  // })
 
   let urlShared
   const getSharedUrl = lng => {
@@ -57,10 +41,25 @@ const FullInfo = ({  pageContext, pageContext: {toPath, fromPath,originalPath,pa
   const hookComponent = () => {
     urlShared = getSharedUrl(pageContext.locale)
   }
+  const [ single, setSingle] = useState({})
+  data.findIndex (item=> {
+    if(item.id === el.id){
+      useEffect(()=>{
+        triple.get(`/api/news/${el.id}`)
+          .then(res =>{
+            setSingle(res.data.data)
+          } )
+          .catch(err => console.log(err))
+      }, [])
+    }
+  })
+  console.log("single", single)
 
-  const index = data.findIndex(item => item.id === el.id)
-  data.splice(index, 1)
+  // const index = data.findIndex(item => item.id === el.id)
+  // data.splice(index, 1)
   const finalData = data.slice(0, 3)
+  console.log("finalData", finalData)
+  console.log("data", data)
   const settings = {
     infinite: true,
     swipe: true,
@@ -80,13 +79,13 @@ const FullInfo = ({  pageContext, pageContext: {toPath, fromPath,originalPath,pa
     <>
       <NewsPageWrapper>
         <BigImageInfo>
-          <Img src={el.image && apiUrl + el.image} alt="" />
+          <Img src={single.image && apiUrl + single.image} alt="" />
         </BigImageInfo>
         <TitleRow>
-          <H2> {el && el[`title_${locale}`]} </H2>
-          <P>{el && el.date}</P>
+          <H2> {single && single[`title_${locale}`]} </H2>
+          <P>{single && single.date}</P>
         </TitleRow>
-        <FullInfoText>{el && el[`description_${locale}`]}</FullInfoText>
+        <FullInfoText>{single && single[`description_${locale}`]}</FullInfoText>
         <SharedWrapperCol>
           <ShareLabel>{pageContext.localeResources.translation.news.share}</ShareLabel>
           <FacebookShare

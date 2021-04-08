@@ -1848,29 +1848,64 @@ section.loader{
     height: 100vh;
     background-color: #484b50;
 }
-section.loader #logo{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding-top: 50px;
-}
-section.loader .loading{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 70vh;
-}
-section.loader .loading *{
-    font-size: 40px;
-}
-section.loader .loadImg{
-    width: 0;
-    transition: 4s;
-    overflow: hidden;
-}
+/*section.loader #logo{*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*    align-items: center;*/
+/*    padding-top: 50px;*/
+/*}*/
+/*section.loader .loading{*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*    align-items: center;*/
+/*    height: 70vh;*/
+/*}*/
+/*section.loader .loading *{*/
+/*    font-size: 40px;*/
+/*}*/
+/*section.loader .loadImg{*/
+/*    width: 0;*/
+/*    transition: 4s;*/
+/*    overflow: hidden;*/
+/*}*/
+
 section.loader .loadImgWidth{
-    width: 305px;
+    /*width: 305px;*/
+    /*animation-name: image;*/
+    /*animation-duration: 2s;*/
 }
+.loadImgWidth:after{
+    animation-name: imageWidth;
+    animation-duration: 3s;
+}
+.loadImgWidth:before{
+    animation-name: imageWidthSec;
+    animation-duration: 3s;
+}
+
+@keyframes imageWidth {
+    0%{
+        right: -50%;
+    }
+    70%{
+        right:-110%;
+    }
+    100%{
+        right:-110%;
+    }
+}
+@keyframes imageWidthSec {
+    0%{
+        left: -50%;
+    }
+    70%{
+        left:-110%;
+    }
+    100%{
+        left:-110%;
+    }
+}
+
 
 @keyframes image-rotate {
     from {

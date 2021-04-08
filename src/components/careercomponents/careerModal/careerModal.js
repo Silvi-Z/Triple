@@ -8,7 +8,7 @@ import {
     P
 } from "./ModalStyle"
 
-const CareerModal = ({ handleOk, modalVisible }) => {
+const CareerModal = ({ langtext, handleOk, modalVisible }) => {
     return (
         <div>
             <Modal
@@ -31,8 +31,8 @@ const CareerModal = ({ handleOk, modalVisible }) => {
                 closable={false}
             >
                 <Img src={ModalImg} />
-                <H2>Հարգելի օգտատեր, ձեր նամակն ուղարկված է։</H2>
-                <P>Շնորհակալություն մեզ հետ կապ հաստատելու համար։</P>
+                <H2>{langtext.message}</H2>
+                <P>{langtext.description}</P>
             </Modal>
         </div>
     )

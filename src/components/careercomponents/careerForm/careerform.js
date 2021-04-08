@@ -125,8 +125,6 @@ const Formfield = ({
                   message:
                     lang === "en"
                       ? "Please fill in the fields provided"
-                      : lang === "ru"
-                      ? "Пожалуйста, заполните необходимые поля"
                       : "Խնդրում ենք լրացնել նշված դաշտերը",
                 },
               ]}
@@ -156,7 +154,7 @@ const Formfield = ({
             </Form.Item>
           </Col>
         </Row>
-        <CareerModal handleOk={handleOk} modalVisible={modalVisible} />
+        <CareerModal handleOk={handleOk} modalVisible={modalVisible} langtext={formlangtext}/>
       </Form>
     </>
   )

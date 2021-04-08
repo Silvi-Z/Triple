@@ -13,7 +13,7 @@
     },
     "footer": {
       "follow": "Follow Us",
-      "address": "Hr. Qochar 44"
+      "address": "Hr. Qochar 44",
     }
   },
   "home": {
@@ -21,7 +21,7 @@
     "slide": [
       {
         "order": "01. Commitment",
-        "context": "Our clients are not just our partners, but full-fledged members of a big family, whose wishes and goals are a priority for us."
+        "context": "Our clients are not just our partners, but full-fledgcontacted members of a big family, whose wishes and goals are a priority for us."
       },
       {
         "order": "02. Agility",
@@ -199,15 +199,19 @@
   },
   "careerForm": {
     "textare_label": "Your message",
+    "email_label": "E-mail",
     "file_label": "Upload CV *",
     "send_button": "Send",
-    "share": "Share"
+    "share": "Share",
+    "message": "Dear user, your email has been sent.",
+    "description": "Thank you for getting in touch!"
   },
   "contact": {
     "title": "Contact us",
     "paragraph": "In case of questions, fill in the necessary information and we will be happy to contact you.",
     "form_content": {
-      "name_label": "Name / Surname (Company Name)",
+      "name_label_first": "Name / Surname",
+      "name_label_second": "(Company Name)",
       "email_label": "E-mail",
       "file_label": "Attach the file",
       "title_label": "Title",

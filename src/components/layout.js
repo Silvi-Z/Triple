@@ -9,7 +9,7 @@ import Navbar from "./navbar/navbar"
 import FooterBlack from "./footer/footerblack"
 import useTranslations from "../components/useTranslations"
 import "./layout.css"
-// import Loader from "./loader"
+import Loader from "./loader"
 
 const { Content, Footer } = CustomLayout
 
@@ -49,20 +49,21 @@ const FooterWrapper = styled.div`
 const Layout = ({ children, location, pageContext: { locale, originalPath, localeResources } }) => {
   const { i18n, t } = useTranslation()
   const { layout } = useTranslations()
-  // const [loader, setLoader] = useState(!sessionStorage.getItem("loader"))
-  //
-  // useEffect(() => {
-  //   sessionStorage.setItem("loader", loader)
-  // }, [])
-  //
-  // useEffect(() => {
-  //   let timer = setTimeout(() => {
-  //     setLoader(false)
-  //   }, 3000)
-  //   return () => {
-  //     clearTimeout(timer)
-  //   }
-  // }, [])
+  const [pageLoader, setPageLoader] = useState(!!sessionStorage.getItem("loader"))
+
+  useEffect(() => {
+    let timer = setTimeout(() => {
+      setPageLoader(true)
+      sessionStorage.setItem("loader", true)
+    }, 3000)
+    return () => {
+      clearTimeout(timer)
+    }
+  }, [])
+
+  useEffect(()=>{
+    sessionStorage.setItem('loader', true)
+  },[])
 
   useEffect(() => {
     i18n.changeLanguage(locale)
@@ -85,11 +86,13 @@ const Layout = ({ children, location, pageContext: { locale, originalPath, local
     }
 
     // function scrollToResult() {
-    //   document.querySelector(".calcButton").addEventListener('onclick', ()=>{
-    //     console.log("calcButton" )
+    //   document.querySelector(".calcButton").addEventListener("onclick", () => {
+    //     console.log("calcButton")
     //   })
     // }
-    // scrollToResult()
+    //
+    // document.querySelector(".calcButton") && scrollToResult()
+
     function fixedPos() {
       const resultWrapper = document.querySelectorAll(".main .result")[0]
       const result = document.querySelectorAll(".main .result > div")[0]
@@ -120,9 +123,9 @@ const Layout = ({ children, location, pageContext: { locale, originalPath, local
 
 
   return (
-    // loader ?
-  /*{<Loader />}*/
-      // :
+    !pageLoader ?
+      <Loader />
+      :
       <>
         <Navbar
 

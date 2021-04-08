@@ -173,6 +173,8 @@ const query = graphql`
               file_label
               send_button
               share
+              message
+              description
             }
             contact {
               title

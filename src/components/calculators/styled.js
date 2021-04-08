@@ -257,7 +257,7 @@ export const H1Styled = styled.h1`
     font-size:20px
   }
 `
-export const TextStyled = styled.p`
+export const TextStyled = styled.div`
   font-family: ArialAMU,serif;
   font-style: normal;
   font-weight: normal;

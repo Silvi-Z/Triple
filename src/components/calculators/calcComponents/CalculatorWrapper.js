@@ -6,6 +6,7 @@ import SEO from "../../../components/seo"
 import CalculatorNav from "../../../components/navbar/CalculatorNav"
 import useTranslations from "../../../components/useTranslations"
 import { H1Styled, SvgWrapper, TextStyled } from "../styled"
+import apiUrl from "../../../api/api"
 import { BY_FIELD_TABLE } from "../utilities/salary"
 //share button container
 export const SharedWrapperCol = styled(Col)`
@@ -68,9 +69,12 @@ const CalculatorWrapper = ({ ctx, children }) => {
   }
 
 
+
   const childrenWithProps = React.cloneElement(children, { getSalaryType: getSalaryType, getTaxType : getTaxType })
 
   const selectCalculator = calculator[ctx.originalPath.split("/")[2].replace("-", "_")]
+  const htmlString = `${selectCalculator.paragraph}`;
+
   return (
     <>
       <SEO
@@ -82,10 +86,10 @@ const CalculatorWrapper = ({ ctx, children }) => {
         {(typeof window !== `undefined` && window.innerWidth > 768) ? (
           <>
             <H1Styled>{selectCalculator.title}</H1Styled>
-            <TextStyled>{headTitle ? selectCalculator.paragraph : selectCalculator.paragraphType}</TextStyled>
+            <TextStyled dangerouslySetInnerHTML={{ __html: htmlString }}/>
           </>
         ) : (
-          <Tooltip trigger={'click'} className="tooltip title" title={selectCalculator.paragraph} color="black">
+          <Tooltip trigger={'click'} className="tooltip title" title={headTitle ? selectCalculator.paragraph : selectCalculator.paragraphType} color="black">
             <H1Styled>{selectCalculator.title}</H1Styled>
             <SvgWrapper style={{ backgroundImage: `url(${Svg})` }} />
           </Tooltip>

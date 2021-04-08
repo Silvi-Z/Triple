@@ -39,7 +39,7 @@ const HomeAboutUs = ({ pageContext }) => {
           dots: true,
           rows: 1,
           slidesPerRow: 1,
-          customPaging: (i) => <>{`0${++i}/06`}</>,
+          customPaging: (i) => <>{`0${++i}/05`}</>,
         },
       }],
     customPaging: (i) => <>{`0${++i}/02`}</>,
