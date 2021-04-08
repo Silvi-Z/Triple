@@ -93,18 +93,19 @@ export const DropHeadingButton = styled.div``
 
 export const FormWrapper = styled.div`
   width:100%;
-  display:flex;
   transition: .3s ease-in-out;
-  max-height: 1px;
   border-top:1px solid black;
   justify-content:space-between;
-  padding: 0 24px;
+  // padding: 0 24px;
   border-bottom:1px solid #D0D0D0;
   opacity: 0;
+    display:flex;
+    overflow:hidden;
+  max-height: 1px;
   pointer-events:none;
   &.openTextCol{
+  max-height:unset;
     pointer-events:unset;
-    max-height: 1000px;
     padding: 48px 24px;
     opacity:100;
   }
@@ -119,7 +120,9 @@ export const FormWrapper = styled.div`
   }
     @media only screen and (max-width:1024px){
       flex-direction:column;
-      padding: 40px 0 53px 0;
+      &.openTextCol{
+        padding: 40px 0 53px 0;
+      }
     }
     @media only screen and (max-width:320px){
       padding-top: 30px;
@@ -147,6 +150,10 @@ export const CareerSection = styled.p`
   line-height: 1.88;
   text-align: left;
   color: #000000;
+  @media only screen and (max-width: 1024px){
+    margin-right: 0;
+    padding:0;
+  }
   @media only screen and (max-width: 375px) {
     font-family: ArialAMU;
     color: #000000;
