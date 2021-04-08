@@ -507,7 +507,7 @@
       }
     },
     "vacation": {
-      "title": "Vacation calculator",
+      "title": "Vacation Pay Calculator",
       "paragraph": "According to the Tax code of RA and other legal acts, the tool calculates vacation pay corresponding to the number of vacation days available to employees as well as deductions required by law. Fulfill the starting and ending day, and the tool will automatically decide the number of vacation days taking into the consideration weekend, holidays and days off announced by RA Gouvernement.",
       "salary_label": "Salary",
       "static_salary_label": "The salary has not been changed during 12 last months or Bonuses have not been provided",
@@ -516,7 +516,7 @@
       "tax_label_enterprise": "Micro-enterprises",
       "tax_label_it": "Companies having IT tax exemption",
       "tax_label": "Choose the option",
-      "yes_volunteer": "Yes (voluntary)",
+      "yes_volunteer": "(voluntary)",
       "yes": "Yes",
       "no": "No",
       "start": "START",
@@ -548,7 +548,7 @@
       }
     },
     "final": {
-      "title": "Final settlement calculator",
+      "title": "Calculator of final settlement of employee",
       "paragraph": "The final settlement calculator allows you to get the final settlement amount in a few simple steps.\n\nEnter admission and employment termination dates, work schedule and the calculator will automatically calculate the total number of vacation days. Fill in the vacation days already used and the amount of salary (and if the amount of salary is not fixed or has been changed or Bonuses have been provided, fill in the relevant table), and the instrument will calculate the final settlement and all deductions required by law.\n",
       "form": {
         "acceptance": "ADMISSION DATES",
@@ -594,7 +594,7 @@
       }
     },
     "mortgage": {
-      "title": "Mortgage repayment calculator",
+      "title": "Return of Income tax",
       "paragraph": "With the help of the income tax return calculator you can calculate the amount of income tax reimbursable for the interest paid on the mortgage loan.",
       "clean_salary": "Net salary",
       "dirty_salary": "Salary",

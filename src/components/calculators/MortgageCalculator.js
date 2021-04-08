@@ -267,7 +267,7 @@ class MortgageCalculator extends React.Component {
               </Form.Item>
 
 
-              <Form.Item>
+              <Form.Item className="inlineElements openTable">
                 <Checkbox
                   onChange={e => this.setField("static_salary", e.target.checked)}
                   checked={form.static_salary}

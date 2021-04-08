@@ -732,7 +732,7 @@ class SubsidyCalculator extends React.Component {
                 </Tooltip></Label>}>
                 <CalculatorInput
                   onChange={v => this.setField("days", v, this.autocompleteEnd)}
-                  style={{ width: "54px" }}
+                  style={{ width: "54px" , border: "1px solid rgb(85,85,85)"}}
                   value={form.days}
                   onInput={e => this.handleInputValue(e)}
                   name="days"

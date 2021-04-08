@@ -70,7 +70,7 @@ export const ToggleButton = styled(Button)`
 
 export const Text = styled.div`
   width:100%;
-  opacity: 100%;
+  opacity: 100;
   z-index: 100;
   font-family: ArialAMU;
   font-size: 18px;
@@ -100,6 +100,9 @@ export const DropTextCol = styled.div`
   &.openTextCol{
     max-height: 1000px;
     padding: 48px 24px;
-    opacity:100%;
+    opacity:100;
+    @media only screen and (max-width:768px){
+      padding: 30px 0;
+  }
   }
 `

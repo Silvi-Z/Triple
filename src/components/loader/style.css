@@ -1,0 +1,32 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+section{
+    height: 100vh;
+    background-color: #484b50;
+}
+#logo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 50px;
+}
+.loading{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70vh;
+}
+.loading *{
+    font-size: 40px;
+}
+.loadImg{
+    width: 0;
+    transition: 4s;
+    overflow: hidden;
+}
+.loadImgWidth{
+    width: 305px;
+}

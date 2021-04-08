@@ -1808,6 +1808,12 @@ table.gross th:nth-of-type(3){
 .opened_response_menu {
     position: fixed;
 }
+.inlineElements label .ant-checkbox{
+    height: 16px;
+}
+.ant-checkbox-checked:after{
+    height: 16px!important;
+}
 .none{
     display:none;
 }
@@ -1838,6 +1844,34 @@ table.gross th:nth-of-type(3){
     animation-delay: 0.1s;
 }
 
+section.loader{
+    height: 100vh;
+    background-color: #484b50;
+}
+section.loader #logo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 50px;
+}
+section.loader .loading{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70vh;
+}
+section.loader .loading *{
+    font-size: 40px;
+}
+section.loader .loadImg{
+    width: 0;
+    transition: 4s;
+    overflow: hidden;
+}
+section.loader .loadImgWidth{
+    width: 305px;
+}
+
 @keyframes image-rotate {
     from {
         opacity: 0;
@@ -1854,7 +1888,7 @@ table.gross th:nth-of-type(3){
         width: 20px;
     }
     to {
-        width: 100px;
+        width: 70px;
     }
 }
 
@@ -1966,26 +2000,31 @@ a.calc-nav-item:hover {
 }
 
 .day_title {
+    width: fit-content;
+    align-items: center;
+    justify-content: center;
+    max-width: 170px;
     position: absolute;
-    max-width: 270px;
     bottom: calc(100% + 5px);
+    word-wrap: normal;
     left: 0;
     right: 0;
     height: fit-content;
-    padding: 5px 10px;
     background-color: white;
     border: 0.5px solid #555555;
-    width: max-content;
     border-radius: 5px;
     margin: auto;
     color: #555555;
     display: none;
-    overflow: hidden;
-    word-wrap: normal;
+}
+.day_title_context{
+    width: fit-content;
+    height: fit-content;
+    padding: 5px 10px;
 }
 
 .ant-picker-cell-inner:hover .day_title{
-    display: block;
+    display: flex;
 }
 
 .ant-picker-panel-container{

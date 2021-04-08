@@ -39,6 +39,16 @@ export const H2text = styled.h2`
     font-size:14px;
   }
 `
+export const Image = styled.button`
+  opacity: 0;
+  border:none;
+  transform: rotate(-90deg);
+  height: 18px;
+  width: 18px;  
+  background-color: transparent;
+  background-repeat:no-repeat;
+  background-position: center;
+`
 
 export const FormatsIcons = styled.div`
   display: flex;
@@ -46,33 +56,26 @@ export const FormatsIcons = styled.div`
   overflow:hidden;
   position: relative;
   align-items: center;
-`
-export const Image = styled.button`
-  opacity: 0;
-  border:none;
-  transform: rotate(-90deg);
-  height: 18px;
-  width: 18px;
-  &:first-child{
+  & .pdf{
     background-image: url(${Pdf});
     :hover{
       background-image: url(${HoveredPdf});
     }
   }
-  &:nth-child(2){
+  & .word{
     background-image: url(${Word});
     :hover{
       background-image: url(${HoveredWord});
     }
   }
-  &:nth-child(3){
+  & .excel{
     background-image: url(${Excel});
     :hover{
       background-image: url(${HoveredExcel});
     }
   }
-  
 `
+
 export const DownloadingIcon = styled.button`
   cursor:pointer;
   border:1px solid black;
@@ -96,7 +99,7 @@ export const DownloadingIcon = styled.button`
 `
 export const FormatsWrapper = styled.div`
   display:flex;
-  *:not(${DownloadingIcon}){
+  *:not(${DownloadingIcon}, a){
     margin-left:10px;
   }
 `

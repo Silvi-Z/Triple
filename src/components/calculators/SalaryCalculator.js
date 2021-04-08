@@ -237,28 +237,28 @@ class SalaryCalculator extends React.Component {
         && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD"))
         && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title &&
         <span className={"day_title"}>
-                  {this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title}
+          <span className="day_title_context">{this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title}</span>
                 </span>
         }
         {locale !== "arm" && this.workdays.length > 0
         && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD"))
         && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title_en &&
         <span className={"day_title"}>
-                  {this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title_en}
+          <span className="day_title_context">{this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title_en}</span>
                 </span>
         }
         {locale === "arm" && this.holidays.length > 0
         && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD"))
         && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title &&
         <span className={"day_title"}>
-                  {this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title}
+          <span className="day_title_context">{this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title}</span>
                 </span>
         }
         {locale !== "arm" && this.holidays.length > 0
         && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD"))
         && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title_en &&
         <span className={"day_title"}>
-                  {this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title_en}
+          <span className="day_title_context">{this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title_en}</span>
                 </span>
         }
       </div>
@@ -273,28 +273,28 @@ class SalaryCalculator extends React.Component {
         && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD"))
         && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title &&
         <span className={"day_title"}>
-                  {this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title}
+          <span className="day_title_context">{this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title}</span>
                 </span>
         }
         {locale !== "arm" && this.workdays.length > 0
         && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD"))
         && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title_en &&
         <span className={"day_title"}>
-                  {this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title_en}
+          <span className="day_title_context">{this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title_en}</span>
                 </span>
         }
         {locale === "arm" && this.holidays.length > 0
         && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD"))
         && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title &&
         <span className={"day_title"}>
-                  {this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title}
+          <span className="day_title_context">{this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title}</span>
                 </span>
         }
         {locale !== "arm" && this.holidays.length > 0
         && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD"))
         && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title_en &&
         <span className={"day_title"}>
-                  {this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title_en}
+          <span className="day_title_context">{this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title_en}</span>
                 </span>
         }
       </div>
@@ -309,28 +309,28 @@ class SalaryCalculator extends React.Component {
         && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD"))
         && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title &&
         <span className={"day_title"}>
-                  {this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title}
+          <span className="day_title_context">{this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title}</span>
                 </span>
         }
         {locale !== "arm" && this.workdays.length > 0
         && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD"))
         && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title_en &&
         <span className={"day_title"}>
-                  {this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title_en}
+          <span className="day_title_context">{this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title_en}</span>
                 </span>
         }
         {locale === "arm" && this.holidays.length > 0
         && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD"))
         && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title &&
         <span className={"day_title"}>
-                  {this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title}
+          <span className="day_title_context">{this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title}</span>
                 </span>
         }
         {locale !== "arm" && this.holidays.length > 0
         && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD"))
         && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title_en &&
         <span className={"day_title"}>
-                  {this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title_en}
+          <span className="day_title_context">{this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title_en}</span>
                 </span>
         }
       </div>
@@ -341,28 +341,28 @@ class SalaryCalculator extends React.Component {
         && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD"))
         && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title &&
         <span className={"day_title"}>
-                  {this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title}
+          <span className="day_title_context">{this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title}</span>
                 </span>
         }
         {locale !== "arm" && this.workdays.length > 0
         && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD"))
         && this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title_en &&
         <span className={"day_title"}>
-                  {this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title_en}
+          <span className="day_title_context">{this.workdays.find(workday => workday.date === date.format("YYYY-MM-DD")).title_en}</span>
                 </span>
         }
         {locale === "arm" && this.holidays.length > 0
         && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD"))
         && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title &&
         <span className={"day_title"}>
-                  {this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title}
+          <span className="day_title_context">{this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title}</span>
                 </span>
         }
         {locale !== "arm" && this.holidays.length > 0
         && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD"))
         && this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title_en &&
         <span className={"day_title"}>
-                  {this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title_en}
+          <span className="day_title_context">{this.holidays.find(holiday => holiday.date === date.format("YYYY-MM-DD")).title_en}</span>
                 </span>
         }
       </div>
