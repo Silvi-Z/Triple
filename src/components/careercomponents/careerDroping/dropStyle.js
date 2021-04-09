@@ -96,7 +96,7 @@ export const FormWrapper = styled.div`
   transition: .3s ease-in-out;
   border-top:1px solid black;
   justify-content:space-between;
-  // padding: 0 24px;
+  padding: 0 24px;
   border-bottom:1px solid #D0D0D0;
   opacity: 0;
     display:flex;
@@ -120,6 +120,7 @@ export const FormWrapper = styled.div`
   }
     @media only screen and (max-width:1024px){
       flex-direction:column;
+      padding: 0;
       &.openTextCol{
         padding: 40px 0 53px 0;
       }

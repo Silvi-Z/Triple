@@ -1885,27 +1885,78 @@ section.loader .loadImgWidth{
 
 @keyframes imageWidth {
     0%{
-        right: -50%;
+        right: 0;
     }
     70%{
-        right:-110%;
+        right:-60%;
     }
     100%{
-        right:-110%;
+        right:-60%;
     }
 }
 @keyframes imageWidthSec {
     0%{
-        left: -50%;
+        left: 0;
     }
     70%{
-        left:-110%;
+        left: -30%;
     }
     100%{
-        left:-110%;
+        left:-30%;
     }
 }
-
+@media only screen and (max-width:768px){
+    @keyframes imageWidth {
+        0%{
+            right: 0;
+        }
+        70%{
+            right: -20%;
+        }
+        100%{
+            right: -20%;
+        }
+    }
+    @keyframes imageWidthSec {
+        0%{
+            left: 0;
+        }
+        70%{
+            left:-30%;
+        }
+        100%{
+            left:-30%;
+        }
+    }
+}
+@media only screen and (max-width:400px){
+    @keyframes imageWidth {
+        0%{
+            right: -50%;
+            width: 350px;
+        }
+        70%{
+            right: 10%;
+            width: fit-content;
+        }
+        /*100%{*/
+        /*    right:-70%;*/
+        /*}*/
+    }
+    @keyframes imageWidthSec {
+        0%{
+            left: -50%;
+            width: 350px;
+        }
+        70%{
+            left:30px;
+            width:50px
+        }
+        /*100%{*/
+        /*    left:-70%;*/
+        /*}*/
+    }
+}
 
 @keyframes image-rotate {
     from {
@@ -1926,7 +1977,6 @@ section.loader .loadImgWidth{
         width: 70px;
     }
 }
-
 
 .currency {
     font-family: ArialAMU, serif;

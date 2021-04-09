@@ -49,21 +49,21 @@ const FooterWrapper = styled.div`
 const Layout = ({ children, location, pageContext: { locale, originalPath, localeResources } }) => {
   const { i18n, t } = useTranslation()
   const { layout } = useTranslations()
-  const [pageLoader, setPageLoader] = useState(typeof window !== 'undefined' && !!sessionStorage.getItem("loader"))
+  // const [pageLoader, setPageLoader] = useState(typeof window !== 'undefined' && !!sessionStorage.getItem("loader"))
 
-  useEffect(() => {
-    let timer = setTimeout(() => {
-      setPageLoader(true)
-      sessionStorage.setItem("loader", true)
-    }, 3000)
-    return () => {
-      clearTimeout(timer)
-    }
-  }, [])
+  // useEffect(() => {
+    // let timer = setTimeout(() => {
+      // setPageLoader(true)
+      // sessionStorage.setItem("loader", true)
+    // }, 3000)
+    // return () => {
+    //   clearTimeout(timer)
+    // }
+  // }, [])
 
-  useEffect(()=>{
-    sessionStorage.setItem('loader', true)
-  },[])
+  // useEffect(()=>{
+  //   sessionStorage.setItem('loader', true)
+  // },[])
 
   useEffect(() => {
     i18n.changeLanguage(locale)
@@ -78,7 +78,7 @@ const Layout = ({ children, location, pageContext: { locale, originalPath, local
     document.querySelector("body").classList.toggle("opened_response_menu")
   }
   const footerHeight = useRef(null)
-  const top = useRef()
+  // const top = useRef()
 
   useEffect(() => {
     function resultHeight() {
@@ -123,10 +123,8 @@ const Layout = ({ children, location, pageContext: { locale, originalPath, local
 
 
   return (
-    !pageLoader ?
-      <Loader />
-      :
       <>
+        {/*<Loader />*/}
         <Navbar
 
           open={openMenu}

@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import { Col, Row, Tooltip } from "antd"
 import styled from "styled-components"
 import Svg from "../../../assets/note.svg"
@@ -33,6 +33,8 @@ const CalculatorWrapper = ({ ctx, children }) => {
   const [headTitle, setHeadTitle] = useState(true)
   const [singleTitle, setSingleTitle] = useState("")
   let urlShared
+  const link = useRef()
+
 
   const getSharedUrl = lng => {
     if (lng === "en") {
@@ -81,6 +83,14 @@ const CalculatorWrapper = ({ ctx, children }) => {
   })
 
   const selectCalculator = calculator[ctx.originalPath.split("/")[2].replace("-", "_")]
+  const htmlString = `${selectCalculator.paragraph}`
+
+  useEffect(() => {
+    const link = document && document.querySelector(".link")
+    link.setAttribute('href',`${apiUrl.apiUrl}documents/Աշխատաժամանակի հաշվարկի տեղեկագիր.xls`)
+    link.setAttribute('download',`true`)
+  }, [])
+
   return (
     <>
       <SEO
@@ -92,10 +102,11 @@ const CalculatorWrapper = ({ ctx, children }) => {
         {(typeof window !== `undefined` && window.innerWidth > 768) ? (
           <>
             <H1Styled>{selectCalculator.title}</H1Styled>
-            <TextStyled>{headTitle ? selectCalculator.paragraph : selectCalculator.paragraphType}</TextStyled>
+            <TextStyled dangerouslySetInnerHTML={{ __html: htmlString }} />
           </>
         ) : (
-          <Tooltip trigger={'click'} className="tooltip title" title={headTitle ? selectCalculator.paragraph : selectCalculator.paragraphType} color="black">
+          <Tooltip trigger={"click"} className="tooltip title"
+                   title={headTitle ? selectCalculator.paragraph : selectCalculator.paragraphType} color="black">
             <H1Styled>{selectCalculator.title}</H1Styled>
             <SvgWrapper style={{ backgroundImage: `url(${Svg})` }} />
           </Tooltip>

@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react"
 import SEO from "../../components/seo"
 import UsefulNews from "../../components/news/secondnewspage"
-import FullInfo from "../../templates/singleNewsPage"
 import { Select } from "antd"
-import newsDatas from "../../i18n/newsDatas"
 import moment from "moment"
 import "moment/locale/zh-cn"
 import triple from "../../api/triple"
@@ -16,46 +14,47 @@ import {
   H1Element,
   SearchRow,
   SelectBox,
-  NoResult,
-  NoResultTitle,
-  NoResultText,
   NewsItems,
 } from "../../components/news/newsStyle"
 import useTranslations from "../../components/useTranslations"
+import NewsLoad from "../../components/news/NewsLoad"
 
 const { Option } = Select
 
-const Index = ({location, pageContext }) => {
+const Index = ({ location, pageContext }) => {
   const { news } = useTranslations()
   const [constData, setConstData] = useState([])
   const [data, setData] = useState([])
+  const [length, setLength] = useState(0)
 
-  useEffect(()=>{
-    triple.get('/api/news')
-      .then(res =>{
-        const filter = res.data.data.slice().sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
-        setConstData(filter);
+  useEffect(() => {
+    triple.get("/api/news")
+      .then(res => {
+        // const filter = (a, b) => new Date(b.created_at) + new Date(a.created_at);
+        const filter =  res.data.data.slice().sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
+        setConstData(filter)
         setData(filter)
-      } )
+        setLength(filter.length)
+        // setTimeout(() => setLength(filter.length), 3000)
+      })
       .catch(err => console.log(err))
   }, [])
 
   const [buttonDisplay, setButtonDisplay] = useState(true)
   let urlShared
-  const [selectedDate, setSelectedDate] = useState(newsDatas)
   const getSharedUrl = lng => {
 
     if (lng) {
       return `http://triple-c.algorithm.am/${lng}/news${location.hash}`
     }
   }
-  const [windowInnerWidth, setWindowInnerWidth] = useState(typeof window !==`undefined` && window.innerWidth)
+  const [windowInnerWidth, setWindowInnerWidth] = useState(typeof window !== `undefined` && window.innerWidth)
 
-  useEffect(()=>{
-    if ( typeof window !== `undefined`) {
+  useEffect(() => {
+    if (typeof window !== `undefined`) {
 
       const removeNewsDatePickerIcon = () => {
-        setWindowInnerWidth(window.innerWidth);
+        setWindowInnerWidth(window.innerWidth)
       }
 
       window.addEventListener("resize", removeNewsDatePickerIcon)
@@ -66,15 +65,10 @@ const Index = ({location, pageContext }) => {
     urlShared = getSharedUrl(pageContext.locale)
   }
 
-  let setlocationHash = false
-  if (location.hash.length > 0) {
-    setlocationHash = true
-  }
-
   hookComponent()
 
   const handleChange = date => {
-    if(date){
+    if (date) {
       const selectedData = date.format("DD-MM-YYYY").replaceAll("-", ".")
       const newsDate = constData.filter(item => moment(item.created_at.substring(0, 10)).format("DD.MM.YYYY").includes(selectedData))
       setData(newsDate)
@@ -83,16 +77,15 @@ const Index = ({location, pageContext }) => {
         ? setButtonDisplay(false) :
         newsDate.length > 6 && newsDate.length % 6 < 6 && shownNewses === newsDate.length
           ? setButtonDisplay(false)
-          : setButtonDisplay(true);
-    }
-    else {
+          : setButtonDisplay(true)
+    } else {
       const shownNewses = document.querySelectorAll(NewsItems).length
       setData(constData)
       data.length <= 6
         ? setButtonDisplay(false) :
         data.length > 6 && data.length % 6 < 6 && shownNewses === constData.length
           ? setButtonDisplay(false)
-          : setButtonDisplay(true);
+          : setButtonDisplay(true)
     }
   }
 
@@ -101,23 +94,23 @@ const Index = ({location, pageContext }) => {
     setData(data)
   }
 
-  const showNews = (e) =>{
-    if (e.target.parentNode.title==='Վերջին նորություններ'){
+  const showNews = (e) => {
+    if (e.target.parentNode.title === "Վերջին նորություններ") {
       const sortedNews = constData.slice().sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
       setData(sortedNews)
-    }else if(e.target.parentNode.title==='Շատ ընթերցված'){
+    } else if (e.target.parentNode.title === "Շատ ընթերցված") {
       const sortedNews = constData.slice().sort((a, b) => b.views - a.views)
       setData(sortedNews)
     }
-  };
+  }
 
   return (
-    <NewsPageWrapper>
-      <SEO
-        pageContext={pageContext}
-        title={news.title}
-      />
-      {!setlocationHash ? (
+    <>
+        <NewsPageWrapper>
+          <SEO
+            pageContext={pageContext}
+            title={news.title}
+          />
           <>
             <H1Element>{pageContext.localeResources.translation.news.title}</H1Element>
             <SearchRow>
@@ -133,11 +126,10 @@ const Index = ({location, pageContext }) => {
                 </StyledForm.Item>
               </StyledForm>
               <NewsDatePicker
-                // placeholder={pageContext.localeResources.translation.news.date}
                 format={"DD-MM-YYYY"}
                 defaultValue={moment()}
                 onChange={handleChange}
-                suffixIcon={(windowInnerWidth>=400) &&
+                suffixIcon={(windowInnerWidth >= 400) &&
                 <span>
                     <svg width="18" height="21" viewBox="0 0 18 21" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path
@@ -147,10 +139,11 @@ const Index = ({location, pageContext }) => {
                   </span>
                 }
               > </NewsDatePicker>
-              <SelectBox onClick={showNews} >
+              <SelectBox onClick={showNews}>
                 <Select defaultValue="Վերջին նորություններ" suffixIcon={
                   <svg width="6" height="5" viewBox="0 0 6 5" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M5.295 4.5L3 2.02767L0.705 4.5L-3.32702e-08 3.73887L3 0.5L6 3.73887L5.295 4.5Z" fill="#1C1D21"/>
+                    <path d="M5.295 4.5L3 2.02767L0.705 4.5L-3.32702e-08 3.73887L3 0.5L6 3.73887L5.295 4.5Z"
+                          fill="#1C1D21" />
                   </svg>
                 }>
                   <Option value="Վերջին նորություններ">{pageContext.localeResources.translation.news.latest_news}</Option>
@@ -158,7 +151,7 @@ const Index = ({location, pageContext }) => {
                 </Select>
               </SelectBox>
             </SearchRow>
-            {data.length ?
+            {length ?
               <UsefulNews
                 locale={pageContext.locale}
                 apiUrl={apiUrl.apiUrl}
@@ -168,17 +161,12 @@ const Index = ({location, pageContext }) => {
                 setButtonDisplay={setButtonDisplay}
                 pageContext={pageContext}
               />
-              : <NoResult>
-                <NoResultTitle>{pageContext.localeResources.translation.news.no_result[0].info_title}</NoResultTitle>
-                <NoResultText>{pageContext.localeResources.translation.news.no_result[0].info_text}</NoResultText>
-              </NoResult>
+              :
+              <NewsLoad/>
             }
           </>
-        ) :
-        <FullInfo apiUrl={apiUrl.apiUrl} data={data} lang={pageContext.locale} pageContext={pageContext}/>
-
-      }
-    </NewsPageWrapper>
+        </NewsPageWrapper>
+      </>
   )
 }
 

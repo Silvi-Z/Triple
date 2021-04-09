@@ -196,6 +196,7 @@ const Services = ({ location, pageContext }) => {
   hookComponent()
 
   return (
+    <>
     <ServicePageWrapper>
       <SEO
         title={services.title}
@@ -209,6 +210,7 @@ const Services = ({ location, pageContext }) => {
         <ServiceDropWrap showServiceForm={toggle} data={d} key={id} />
       ))}
     </ServicePageWrapper>
+      </>
   )
 }
 

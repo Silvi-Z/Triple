@@ -19,6 +19,7 @@ import {
   ShareLabel,
 } from "../components/careercomponents/careerForm/formStyle"
 import triple from "../api/triple"
+
 const Career = ({ pageContext }) => {
 
   const [careerdata, setCareerdata] = useState([])
@@ -65,6 +66,7 @@ const Career = ({ pageContext }) => {
   hookComponent()
 
   return (
+    <>
     <CareerPageWrapper>
       <SEO
         title={career.title}
@@ -101,6 +103,7 @@ const Career = ({ pageContext }) => {
         />
       </SharedWrapperCol>
       </CareerPageWrapper>
+      </>
   )
 }
 
