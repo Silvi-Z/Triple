@@ -1,13 +1,11 @@
 import React from "react"
 import { graphql, useStaticQuery } from "gatsby"
 import Helmet from "react-helmet"
-import { useTranslation } from "react-i18next"
 import LocaleContext from "../localeContext"
 
 const SEO = ({ title, description, meta, pageContext }) => {
   const { locale } = React.useContext(LocaleContext)
-  const { t } = useTranslation()
-  console.log("title", title)
+
   const { site } = useStaticQuery(
     graphql`
       query {
