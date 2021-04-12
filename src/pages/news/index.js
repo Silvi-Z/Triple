@@ -14,7 +14,7 @@ import {
   H1Element,
   SearchRow,
   SelectBox,
-  NewsItems,
+  NewsItems, NoResult, NoResultTitle, NoResultText,
 } from "../../components/news/newsStyle"
 import useTranslations from "../../components/useTranslations"
 import NewsLoad from "../../components/news/NewsLoad"
@@ -26,6 +26,7 @@ const Index = ({ location, pageContext }) => {
   const [constData, setConstData] = useState([])
   const [data, setData] = useState([])
   const [length, setLength] = useState(0)
+  const [filter, setFilter] = useState(false)
 
   useEffect(() => {
     triple.get("/api/news")
@@ -72,6 +73,7 @@ const Index = ({ location, pageContext }) => {
       const selectedData = date.format("DD-MM-YYYY").replaceAll("-", ".")
       const newsDate = constData.filter(item => moment(item.created_at.substring(0, 10)).format("DD.MM.YYYY").includes(selectedData))
       setData(newsDate)
+      setFilter(true)
       const shownNewses = document.querySelectorAll(NewsItems).length
       newsDate.length <= 6
         ? setButtonDisplay(false) :
@@ -81,6 +83,7 @@ const Index = ({ location, pageContext }) => {
     } else {
       const shownNewses = document.querySelectorAll(NewsItems).length
       setData(constData)
+      setFilter(true)
       data.length <= 6
         ? setButtonDisplay(false) :
         data.length > 6 && data.length % 6 < 6 && shownNewses === constData.length
@@ -92,15 +95,18 @@ const Index = ({ location, pageContext }) => {
   const onChange = (e) => {
     const data = constData.filter(item => item.title_arm.toLowerCase().includes(e.target.value.toLowerCase()))
     setData(data)
+    setFilter(true)
   }
 
   const showNews = (e) => {
     if (e.target.parentNode.title === "Վերջին նորություններ") {
       const sortedNews = constData.slice().sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
       setData(sortedNews)
+      setFilter(true)
     } else if (e.target.parentNode.title === "Շատ ընթերցված") {
       const sortedNews = constData.slice().sort((a, b) => b.views - a.views)
       setData(sortedNews)
+      setFilter(true)
     }
   }
 
@@ -151,7 +157,8 @@ const Index = ({ location, pageContext }) => {
                 </Select>
               </SelectBox>
             </SearchRow>
-            {length ?
+            {(data.length > 0) ?
+              <>
               <UsefulNews
                 locale={pageContext.locale}
                 apiUrl={apiUrl.apiUrl}
@@ -161,7 +168,15 @@ const Index = ({ location, pageContext }) => {
                 setButtonDisplay={setButtonDisplay}
                 pageContext={pageContext}
               />
+                {console.log('data',data)}
+                {console.log('filter',filter)}
+              </>
               :
+              (filter && data.length === 0) ?
+                <NoResult>
+                  <NoResultTitle>{pageContext.localeResources.translation.news.no_result[0].info_title}</NoResultTitle>
+                  <NoResultText>{pageContext.localeResources.translation.news.no_result[0].info_text}</NoResultText>
+                </NoResult>:
               <NewsLoad/>
             }
           </>

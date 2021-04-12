@@ -1,16 +1,16 @@
 /*eslint-disable */
-import React, { useState } from "react"
+import React from "react"
 import { DownOutlined, UpOutlined } from "@ant-design/icons"
 import FormCareer from "../careerForm/careerform"
 import {
-  DropCareer,
-  FormWrapper,
   CareerSection,
-  ToggleButton,
   CareerWrapper,
-  ToggleH2Styled,
-  DropHeadingTitle,
+  DropCareer,
   DropHeadingButton,
+  DropHeadingTitle,
+  FormWrapper,
+  ToggleButton,
+  ToggleH2Styled,
 } from "./dropStyle"
 
 const CareerDropWrapper = ({
@@ -19,6 +19,7 @@ const CareerDropWrapper = ({
                              seotitle,
                              seodescription,
                              seolang,
+                             open,
                              formlangtext,
                              lang,
                            }) => {
@@ -29,16 +30,16 @@ const CareerDropWrapper = ({
           <ToggleH2Styled>{data[`title_${lang}`]}</ToggleH2Styled>
           <DropHeadingButton>
             <ToggleButton
-              className={data.open ? 'whiteButton' : 'blackButton'}
+              className={data.open ? "whiteButton" : "blackButton"}
               block onClick={() => showCareerForm(data)}
             >
-              {data.open ? <UpOutlined/> : <DownOutlined />}
+              {data.open ? <UpOutlined /> : <DownOutlined />}
             </ToggleButton>
           </DropHeadingButton>
         </DropHeadingTitle>
       </DropCareer>
       <FormWrapper
-        className={data.open ? 'openTextCol' : ''}
+        className={data.open ? "openTextCol" : ""}
         xxl={{ span: 19, offset: 5 }}
         xl={{ span: 22, offset: 3 }}
         lg={{ span: 22, offset: 2 }}
@@ -47,7 +48,7 @@ const CareerDropWrapper = ({
         xs={{ span: 22, offset: 0 }}
       >
         <CareerWrapper>
-            <CareerSection>{data[`description_${lang}`]}</CareerSection>
+          <CareerSection>{data[`description_${lang}`]}</CareerSection>
         </CareerWrapper>
         <FormCareer
           data={data}

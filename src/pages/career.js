@@ -84,6 +84,7 @@ const Career = ({ pageContext }) => {
           showCareerForm={toggle}
           data={d}
           key={id}
+          open={careerdata.length===1}
           seotitle={career.title}
           seodescription={career.paragraph}
           seolang={pageContext.locale}

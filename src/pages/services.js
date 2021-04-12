@@ -140,7 +140,8 @@ const Services = ({ location, pageContext }) => {
     toggleFromHomePage(location.state)
   }, [t])
 
-  const toggle = current => {
+  const toggle = (current) => {
+    typeof window != "undefined" && window.innerWidth <= 768 && window.scrollTo(0, 0)
     const data = serviceData.map(d => {
       if (d.data.id === current.data.id && d.open === false) {
         location.hash ='#'+current.data.scroll_id
@@ -166,7 +167,7 @@ const Services = ({ location, pageContext }) => {
       const bodyScrollPart = window.scrollY
       const windowHeight = window.outerHeight
       const bodyHeight = document.documentElement.scrollHeight
-      if (foundIndex > -1 && distance.top < 1 || bodyScrollPart + windowHeight >= bodyHeight) {
+      if (foundIndex > -1 && distance.top < 10 || bodyScrollPart + windowHeight >= bodyHeight) {
         serviceDataNew[foundIndex] = {
           ...foundElement,
           open: true
